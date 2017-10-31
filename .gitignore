@@ -15,6 +15,7 @@
 .Python
 /include
 /Include
+/tcl/
 /local
 
 # Installer logs
