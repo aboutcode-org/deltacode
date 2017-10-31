@@ -25,45 +25,18 @@ def generate_csv(data, result_file):
 
     for delta in deltas:
         category = delta['category']
-        if delta['category'] == 'added':
-            new = delta['new']['path']
-            new_filename = delta['new']['name']
-            new_sha1 = delta['new']['sha1']
-            new_size = delta['new']['size']
-            new_type = delta['new']['type']
-            new_orig = delta['new']['original_path']
-            old = ''
-            old_filename = ''
-            old_sha1 = ''
-            old_size = ''
-            old_type = ''
-            old_orig = ''
-        elif delta['category'] == 'removed':
-            new = ''
-            new_filename = ''
-            new_sha1 = ''
-            new_size = ''
-            new_type = ''
-            new_orig = ''
-            old = delta['old']['path']
-            old_filename = delta['old']['name']
-            old_sha1 = delta['old']['sha1']
-            old_size = delta['old']['size']
-            old_type = delta['old']['type']
-            old_orig = delta['old']['original_path']
-        else:
-            new = delta['new']['path']
-            new_filename = delta['new']['name']
-            new_sha1 = delta['new']['sha1']
-            new_size = delta['new']['size']
-            new_type = delta['new']['type']
-            new_orig = delta['new']['original_path']
-            old = delta['old']['path']
-            old_filename = delta['old']['name']
-            old_sha1 = delta['old']['sha1']
-            old_size = delta['old']['size']
-            old_type = delta['old']['type']
-            old_orig = delta['old']['original_path']
+        new = '' if delta['category'] == 'removed' else delta['new']['path']
+        new_filename = '' if delta['category'] == 'removed' else delta['new']['name']
+        new_sha1 = '' if delta['category'] == 'removed' else delta['new']['sha1']
+        new_size = '' if delta['category'] == 'removed' else delta['new']['size']
+        new_type = '' if delta['category'] == 'removed' else delta['new']['type']
+        new_orig = '' if delta['category'] == 'removed' else delta['new']['original_path']
+        old = '' if delta['category'] == 'added' else delta['old']['path']
+        old_filename = '' if delta['category'] == 'added' else delta['old']['name']
+        old_sha1 = '' if delta['category'] == 'added' else delta['old']['sha1']
+        old_size = '' if delta['category'] == 'added' else delta['old']['size']
+        old_type = '' if delta['category'] == 'added' else delta['old']['type']
+        old_orig = '' if delta['category'] == 'added' else delta['old']['original_path']
 
         tuple = (category, new, old, new_filename, old_filename, new_sha1,
                  old_sha1, new_size, old_size, new_type, old_type, new_orig, old_orig)
