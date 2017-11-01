@@ -1,0 +1,12 @@
+language: python
+python:
+- '2.7'
+install: source configure
+script: py.test -n 2
+notifications:
+  slack:
+    on_success: always
+    on_failure: always
+    rooms:
+        - secure: VODG+P5REBhL7psD3XydwJBbEpB+3HBKsmEIHEgxrdPDvY/KDP35JTpJdkzhb+nc7EvIPdgVbVcpbiacDtXOskk4Si7X9sAXnQt+P0LTol5Pk0/qbC5BlS+HebPB5LUmUv4gYBhyLHbWvxOrBOJ9K7fNuH2I1+NWRUzHUWmlNwqwVvWZwuFNISVEqVvVP/+a9NUYJLYKR9h6TOXjCCVUdOfho4RW/0MPG5+R337QgaAFzoi90Ug3vR/IU29e1PMWbAxgxMVcDt+cSdqcu7mkn6esPIglxFW4rW2qWZFLRfOdJqvq0QTvx/zK2BYl1U5fHxyslb5eO1UhzfQjpSQcgy/Ex7K62YB7B6hVaOWg7j7/3+hbVARe0MKOFwDYEeQkLA5PQcquk7rAvnr2QfAesENXDIzxL/ghXzB94JAqm4pcElMfZIV/H9+5FSsW1OmOEF2g+HnytyCYGyRFZIgKahVHt+QUFXny9D53UujqqZe4Za223D4tRCToHkKpHvRkbPP66XRSxHDuoLRzO3hJLHAxHfoV+1rIkFq+ymryaobUX1kojHx8ihRDZn/ptNGIIm+GGDBQQwXcjf0oQW4keeKnA9bvi5MtHIjpGEZimW0UK1EvgtP0cN/xBEr2EHJDinFYpWoF1zX61P/S34z6OOAlt8NARLyZy/R+9ck8lRQ=
+    email: false
