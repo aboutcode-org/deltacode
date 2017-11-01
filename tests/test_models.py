@@ -217,11 +217,11 @@ class TestModels(FileBasedTesting):
 
         scan = models.Scan(test_file)
 
-        assert scan.options.get( '--license', None ) == None
+        assert scan.options.get('--license', None) == None
         assert scan.options['--license-score'] == 0
         assert scan.options['--format'] == 'json'
-        assert scan.options.get( '--package', None ) == None
-        assert scan.options.get( '--copyright', None ) == None
+        assert scan.options.get('--package', None) == None
+        assert scan.options.get('--copyright', None) == None
         assert scan.options['--info'] == True
 
     def test_Scan_valid_scanfile(self):
@@ -273,6 +273,7 @@ class TestModels(FileBasedTesting):
         assert result.path == '/some/invalid/path.json'
         assert result.files_count == None
         assert result.files == None
+        assert result.options == None
 
     def test_Scan_empty_path(self):
         result = models.Scan('')
@@ -280,6 +281,7 @@ class TestModels(FileBasedTesting):
         assert result.path == ''
         assert result.files_count == None
         assert result.files == None
+        assert result.options == None
 
     def test_Scan_None_path(self):
         result = models.Scan(None)
@@ -287,6 +289,7 @@ class TestModels(FileBasedTesting):
         assert result.path == ''
         assert result.files_count == None
         assert result.files == None
+        assert result.options == None
 
     def test_File_create_object(self):
         data = {
