@@ -1,4 +1,5 @@
 # Deltacode
+Travis CI Status: ![travis-icon](https://travis-ci.com/nexB/deltacode.svg?token=XLgwFRMFsRd6Szjm55tE&branch=develop)
 
 ### About:
 `deltacode` is a simple command line utility that leverages the power of 
@@ -42,7 +43,6 @@ Options:
 
 ### Notes:
 * `deltacode` also collects statistical information, like # of files and other percentages. Currently, this output is not present in the `csv` output
-* We will be retiring the `csv` output in favor of a json output
 * json output will be consumable by other utilities. There will also be a json -> csv converter in the future as well. 
 
 ### Future TODOs/additions:
