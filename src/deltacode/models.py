@@ -17,6 +17,23 @@ class Scan:
         self.path = '' if path is None else path
         self.files_count = self.get_files_count(self.path)
         self.files = self.load_files(self.path)
+        self.options = self.get_options(self.path)
+
+    def get_options(self, path):
+        """
+        Collect the ScanCode options contained in the incoming ScanCode file.
+        """
+        # TODO: handle this exception during #171
+        try:
+            scan = json.loads(open(path).read())
+        except IOError:
+            return
+
+        scan = json.loads(open(path).read())
+
+        options = scan.get('scancode_options')
+
+        return options
 
     def is_valid_scan(self, location):
         """
