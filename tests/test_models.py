@@ -200,6 +200,30 @@ class TestModels(FileBasedTesting):
         assert index.get('zlibd32.mak').sha1 == 'ddf83b34d4c7d41ace39f96b5cb13fb390c8d2eb'
         assert index.get('readme.txt').sha1 == '066affe7fd1e8a9e54ef08d63abee644bb821c03'
 
+    def test_Scan_get_options_license_yes(self):
+        test_file = self.get_test_loc('models/scan/samples-clip-json-pp.json')
+
+        scan = models.Scan(test_file)
+
+        assert scan.options['--license'] == True
+        assert scan.options['--license-score'] == 0
+        assert scan.options['--format'] == 'json-pp'
+        assert scan.options['--package'] == True
+        assert scan.options['--copyright'] == True
+        assert scan.options['--info'] == True
+
+    def test_Scan_get_options_license_no(self):
+        test_file = self.get_test_loc('models/scan/samples-i-no-json-pp.json')
+
+        scan = models.Scan(test_file)
+
+        assert scan.options.get( '--license', None ) == None
+        assert scan.options['--license-score'] == 0
+        assert scan.options['--format'] == 'json'
+        assert scan.options.get( '--package', None ) == None
+        assert scan.options.get( '--copyright', None ) == None
+        assert scan.options['--info'] == True
+
     def test_Scan_valid_scanfile(self):
         valid_paths = [
             self.get_test_loc('models/scan/well-formed-scan.json'),

@@ -77,8 +77,8 @@ def cli(new, old, csv_file, json_file):
     """
 
     # do the delta
-    deltacode = DeltaCode(new, old)
-    data = deltacode.to_dict()
+    delta = DeltaCode(new, old)
+    data = delta.to_dict()
 
     # output to csv
     if csv_file:
