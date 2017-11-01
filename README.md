@@ -1,4 +1,5 @@
 # Deltacode
+Travis CI Status: ![travis-icon](https://travis-ci.com/nexB/deltacode.svg?token=XLgwFRMFsRd6Szjm55tE&branch=develop)
 
 ### About:
 `deltacode` is a simple command line utility that leverages the power of 
