@@ -5,7 +5,7 @@ from __future__ import absolute_import
 
 from collections import OrderedDict
 
-from deltacode.models import Scan
+from deltacode.models import Scan, License
 from deltacode import utils
 
 __version__ = '0.0.1.beta'
@@ -141,11 +141,11 @@ class DeltaCode:
             if f.new_file is None:
                 deltas_dict['new'] = f.new_file
             else:
-                deltas_dict['new'] = f.new_file.__dict__
+                deltas_dict['new'] = f.new_file.to_dict()
             if f.old_file is None:
                 deltas_dict['old'] = f.old_file
             else:
-                deltas_dict['old'] = f.old_file.__dict__
+                deltas_dict['old'] = f.old_file.to_dict()
             deltas_dict['category'] = f.category
             deltas_list.append(deltas_dict)
 

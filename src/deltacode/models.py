@@ -3,6 +3,8 @@
 #
 from __future__ import absolute_import
 
+from collections import OrderedDict
+
 import json
 
 
@@ -116,11 +118,32 @@ class File:
     File object created from an ABCD formatted 'file' dictionary.
     """
     def __init__(self, dictionary):
-        setattr(self, 'path', dictionary.get('path'))
-        setattr(self, 'type', dictionary.get('type'))
-        setattr(self, 'name', dictionary.get('name'))
-        setattr(self, 'size', dictionary.get('size'))
-        setattr(self, 'sha1', dictionary.get('sha1'))
+        self.path = dictionary.get('path')
+        self.type = dictionary.get('type')
+        self.name = dictionary.get('name')
+        self.size = dictionary.get('size')
+        self.sha1 = dictionary.get('sha1')
+        self.licenses = self.get_licenses(dictionary)
+
+    def get_licenses(self, dictionary):
+        if not dictionary.get('licenses'):
+            return None
+
+        if dictionary.get('licenses') == []:
+            return []
+        else:
+            return [License(l) for l in dictionary.get('licenses')]
+
+    def to_dict(self):
+        dict = {}
+        dict['path'] = self.path
+        dict['type'] = self.type
+        dict['name'] = self.name
+        dict['size'] = self.size
+        dict['sha1'] = self.sha1
+        dict['licenses'] = [l.to_dict() for l in self.licenses]
+
+        return dict
 
     def size_difference(self, other_file):
         """
@@ -128,6 +151,54 @@ class File:
         a second File object to which it is being compared.
         """
         return self.size - other_file.size
+
+    def __repr__(self):
+        """
+        Return string containing a printable representation of the File object.
+        """
+        return "%s" % self.__dict__
+
+
+class License:
+    """
+    License object created from the 'license' field in an ABCD formatted 'file' dictionary.
+    """
+    def __init__(self, dictionary):
+        self.key = dictionary.get('key')
+        self.score = dictionary.get('score')
+        self.short_name = dictionary.get('short_name')
+        self.category = dictionary.get('category')
+        self.owner = dictionary.get('owner')
+        self.homepage_url = dictionary.get('homepage_url')
+        self.text_url = dictionary.get('text_url')
+        self.reference_url = dictionary.get('reference_url')
+        self.spdx_license_key = dictionary.get('spdx_license_key')
+        self.spdx_url = dictionary.get('spdx_url')
+        self.start_line = dictionary.get('start_line')
+        self.end_line = dictionary.get('end_line')
+        self.matched_rule = dictionary.get('matched_rule')
+
+    def to_dict(self):
+        """
+        Given a list of License objects, return an OrderedDict with the full
+        set of fields from the ScanCode 'license' value.
+        """
+        dict = OrderedDict()
+        dict['key'] = self.key
+        dict['score'] = self.score
+        dict['short_name'] = self.short_name
+        dict['category'] = self.category
+        dict['owner'] = self.owner
+        dict['homepage_url'] = self.homepage_url
+        dict['text_url'] = self.text_url
+        dict['reference_url'] = self.reference_url
+        dict['spdx_license_key'] = self.spdx_license_key
+        dict['spdx_url'] = self.spdx_url
+        dict['start_line'] = self.start_line
+        dict['end_line'] = self.end_line
+        dict['matched_rule'] = self.matched_rule
+
+        return dict
 
     def __repr__(self):
         """

@@ -120,9 +120,11 @@ class TestDeltacode(FileBasedTesting):
         old_scan = self.get_test_loc('deltacode/old_added1.json')
 
         result = DeltaCode(new_scan, old_scan)
-        dict_output = result.to_dict()
-        json_output = json.dumps(dict_output)
-        loaded_json = json.loads(json_output)
+        # dict_output = result.to_dict()
+        # json_output = json.dumps(dict_output)
+        # loaded_json = json.loads(json_output)
+
+        loaded_json = result.to_dict()
 
         assert loaded_json['deltas_count'] == 9
         assert loaded_json['deltacode_stats']['added'] == 1
@@ -135,9 +137,11 @@ class TestDeltacode(FileBasedTesting):
         old_scan = self.get_test_loc('deltacode/old_modified1.json')
 
         result = DeltaCode(new_scan, old_scan)
-        dict_output = result.to_dict()
-        json_output = json.dumps(dict_output)
-        loaded_json = json.loads(json_output)
+        # dict_output = result.to_dict()
+        # json_output = json.dumps(dict_output)
+        # loaded_json = json.loads(json_output)
+
+        loaded_json = result.to_dict()
 
         assert loaded_json['deltas_count'] == 8
         assert loaded_json['deltacode_stats']['added'] == 0
