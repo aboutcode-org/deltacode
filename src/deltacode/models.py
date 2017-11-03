@@ -141,7 +141,10 @@ class File:
         dict['name'] = self.name
         dict['size'] = self.size
         dict['sha1'] = self.sha1
-        dict['licenses'] = [l.to_dict() for l in self.licenses]
+        if self.licenses:
+            dict['licenses'] = [l.to_dict() for l in self.licenses]
+
+        dict['original_path'] = self.original_path
 
         return dict
 
