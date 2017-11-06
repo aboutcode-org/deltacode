@@ -33,14 +33,14 @@ class DeltaCode:
             utils.fix_trees(self.new.files, self.old.files)
         except utils.AlignmentException:
             for f in self.new.files:
-                setattr(f, 'original_path', f.path)
+                f.original_path = f.path
             for f in self.old.files:
-                setattr(f, 'original_path', f.path)
+                f.original_path = f.path
 
     def determine_delta(self):
         """
         Given new and old scans, return a list of Delta objects identifying
-        each as 'added', 'modified', 'removed' or 'unchanged'. Returns None if
+        each as 'added', 'modified', 'removed' or 'unmodified'. Returns None if
         no File objects can be loaded from either scan.
         """
         if self.new.files is None or self.old.files is None:
@@ -58,7 +58,7 @@ class DeltaCode:
         new_nonfiles = 0
         old_nonfiles = 0
         modified = 0
-        unchanged = 0
+        unmodified = 0
 
         # perform the deltas
         for path, new_file in new_index.items():
@@ -77,9 +77,9 @@ class DeltaCode:
             # we need to determine wheather this is identical,
             # or a modification.
             if new_file.sha1 == delta_old_file.sha1:
-                delta = Delta(new_file, delta_old_file, 'unchanged')
+                delta = Delta(new_file, delta_old_file, 'unmodified')
                 deltas.append(delta)
-                unchanged += 1
+                unmodified += 1
                 continue
             else:
                 delta = Delta(new_file, delta_old_file, 'modified')
@@ -100,7 +100,7 @@ class DeltaCode:
                 continue
 
         # make sure everything is accounted for
-        assert len(deltas) == ((self.new.files_count - new_nonfiles) + (self.old.files_count - old_nonfiles) - modified - unchanged)
+        assert len(deltas) == ((self.new.files_count - new_nonfiles) + (self.old.files_count - old_nonfiles) - modified - unmodified)
 
         return deltas
 
@@ -109,7 +109,7 @@ class DeltaCode:
         Given a list of Delta objects, return a 'counts' dictionary keyed by
         category that contains the count as a value for each category.
         """
-        added, modified, removed, unchanged = 0, 0, 0, 0
+        added, modified, removed, unmodified = 0, 0, 0, 0
 
         for delta in self.deltas:
             if delta.category == 'added':
@@ -118,10 +118,10 @@ class DeltaCode:
                 modified += 1
             if delta.category == 'removed':
                 removed += 1
-            if delta.category == 'unchanged':
-                unchanged += 1
+            if delta.category == 'unmodified':
+                unmodified += 1
 
-        return OrderedDict([('added', added), ('modified', modified), ('removed', removed), ('unchanged', unchanged)])
+        return OrderedDict([('added', added), ('modified', modified), ('removed', removed), ('unmodified', unmodified)])
 
     def to_dict(self):
         """
@@ -158,7 +158,7 @@ class Delta:
     """
     A tuple reflecting a comparison of two files -- each of which is a File
     object -- and the category that characterizes the comparison:
-    'added', 'modified', 'removed' or 'unchanged'.
+    'added', 'modified', 'removed' or 'unmodified'.
     """
     def __init__(self, new_file, old_file, delta_type):
         # TODO: add check to ensure both are File objects

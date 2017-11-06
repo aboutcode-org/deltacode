@@ -123,6 +123,7 @@ class File:
         self.name = dictionary.get('name')
         self.size = dictionary.get('size')
         self.sha1 = dictionary.get('sha1')
+        self.original_path = ''
         self.licenses = self.get_licenses(dictionary)
 
     def get_licenses(self, dictionary):
@@ -141,10 +142,9 @@ class File:
         dict['name'] = self.name
         dict['size'] = self.size
         dict['sha1'] = self.sha1
+        dict['original_path'] = self.original_path
         if self.licenses:
             dict['licenses'] = [l.to_dict() for l in self.licenses]
-
-        dict['original_path'] = self.original_path
 
         return dict
 

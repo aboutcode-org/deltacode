@@ -8,7 +8,13 @@ import pytest
 from click.testing import CliRunner
 
 from commoncode.testcase import FileBasedTesting
+from deltacode import DeltaCode
 from deltacode import models
+
+def get_original_path(data, scan, path):
+    for scanPair in data['deltas']:
+        if scanPair[scan] and scanPair[scan]['path'] == path:
+            return scanPair[scan]['original_path']
 
 class TestModels(FileBasedTesting):
 
@@ -320,3 +326,109 @@ class TestModels(FileBasedTesting):
         b['size'] = 8192
         b_file = models.File(b)
         assert -4096 == a_file.size_difference(b_file)
+
+    def test_original_path_full_root(self):
+        test_scan_new = self.get_test_loc('models/scan/align-trees-simple-new.json')
+        # Our old scan uses --full-root option in scancode
+        test_scan_old = self.get_test_loc('models/scan/align-trees-simple-old.json')
+
+        delta = DeltaCode(test_scan_new, test_scan_old)
+        data = delta.to_dict()
+
+        assert get_original_path(data, 'new', 'samples/JGroups/EULA') == \
+                                 'samples/JGroups/EULA'
+        assert get_original_path(data, 'old', 'samples/JGroups/EULA') == \
+                                 '/Users/sesser/code/nexb/scancode-toolkit/samples/JGroups/EULA'
+
+        assert get_original_path(data, 'new', 'samples/zlib/dotzlib/LICENSE_1_0.txt') == \
+                                 'samples/zlib/dotzlib/LICENSE_1_0.txt'
+        assert get_original_path(data, 'old', 'samples/zlib/dotzlib/LICENSE_1_0.txt') == \
+                                 '/Users/sesser/code/nexb/scancode-toolkit/samples/zlib/dotzlib/LICENSE_1_0.txt'
+
+    def test_original_path_added1(self):
+        test_scan_new = self.get_test_loc('models/scan/new_added1.json')
+        test_scan_old = self.get_test_loc('models/scan/old_added1.json')
+
+        delta = DeltaCode(test_scan_new, test_scan_old)
+        data = delta.to_dict()
+
+        assert get_original_path(data, 'new', 'a/a3.py') == \
+                                 'codebase_01_1_file_added/a/a3.py'
+        assert get_original_path(data, 'old', 'a/a3.py') == \
+                                 'codebase_01/a/a3.py'
+
+        assert get_original_path(data, 'new', 'b/b4.py') == \
+                                 'codebase_01_1_file_added/b/b4.py'
+        assert get_original_path(data, 'old', 'b/b4.py') == \
+                                 'codebase_01/b/b4.py'
+
+        assert get_original_path(data, 'new', 'a/a2.py') == \
+                                 'codebase_01_1_file_added/a/a2.py'
+        assert get_original_path(data, 'old', 'a/a2.py') == \
+                                 'codebase_01/a/a2.py'
+
+    def test_original_path_zlib(self):
+        test_scan_new = self.get_test_loc('models/scan/zlib-1.2.11-clip_scan.json')
+        test_scan_old = self.get_test_loc('models/scan/zlib-1.2.9-clip_scan.json')
+
+        delta = DeltaCode(test_scan_new, test_scan_old)
+        data = delta.to_dict()
+
+        assert get_original_path(data, 'new', 'contrib/ada/read.adb') == \
+                                 'zlib-1.2.11/contrib/ada/read.adb'
+        assert get_original_path(data, 'old', 'contrib/ada/read.adb') == \
+                                 'zlib-1.2.9/contrib/ada/read.adb'
+
+        assert get_original_path(data, 'new', 'contrib/masmx86/bld_ml32.bat') == \
+                                 'zlib-1.2.11/contrib/masmx86/bld_ml32.bat'
+        assert get_original_path(data, 'old', 'contrib/masmx86/bld_ml32.bat') == \
+                                 'zlib-1.2.9/contrib/masmx86/bld_ml32.bat'
+
+        assert get_original_path(data, 'new', 'contrib/masmx64/readme.txt') == \
+                                 'zlib-1.2.11/contrib/masmx64/readme.txt'
+        assert get_original_path(data, 'old', 'contrib/masmx64/readme.txt') == \
+                                 'zlib-1.2.9/contrib/masmx64/readme.txt'
+
+    def test_original_path_dropbear(self):
+        test_scan_new = self.get_test_loc('models/scan/dropbear-2017.75-clip_scan.json')
+        test_scan_old = self.get_test_loc('models/scan/dropbear-2016.74-clip_scan.json')
+
+        delta = DeltaCode(test_scan_new, test_scan_old)
+        data = delta.to_dict()
+
+        assert get_original_path(data, 'new', 'dbutil.h') == \
+                                 'dropbear-2017.75/dbutil.h'
+        assert get_original_path(data, 'old', 'dbutil.h') == \
+                                 'dropbear-2016.74/dbutil.h'
+
+        assert get_original_path(data, 'new', 'libtomcrypt/src/encauth/gcm/gcm_reset.c') == \
+                                 'dropbear-2017.75/libtomcrypt/src/encauth/gcm/gcm_reset.c'
+        assert get_original_path(data, 'old', 'libtomcrypt/src/encauth/gcm/gcm_reset.c') == \
+                                 'dropbear-2016.74/libtomcrypt/src/encauth/gcm/gcm_reset.c'
+
+        assert get_original_path(data, 'new', 'install-sh') == \
+                                 'dropbear-2017.75/install-sh'
+        assert get_original_path(data, 'old', 'install-sh') == \
+                                 'dropbear-2016.74/install-sh'
+
+    def test_original_path_openssl(self):
+        test_scan_new = self.get_test_loc('models/scan/openssl-1.1.0f-clip_scan.json')
+        test_scan_old = self.get_test_loc('models/scan/openssl-1.1.0e-clip_scan.json')
+
+        delta = DeltaCode(test_scan_new, test_scan_old)
+        data = delta.to_dict()
+
+        assert get_original_path(data, 'new', 'crypto/ec/ecdh_ossl.c') == \
+                                 'openssl-1.1.0f/crypto/ec/ecdh_ossl.c'
+        assert get_original_path(data, 'old', 'crypto/ec/ecdh_ossl.c') == \
+                                 'openssl-1.1.0e/crypto/ec/ecdh_ossl.c'
+
+        assert get_original_path(data, 'new', 'test/recipes/80-test_ssl_old.t') == \
+                                 'openssl-1.1.0f/test/recipes/80-test_ssl_old.t'
+        assert get_original_path(data, 'old', 'test/recipes/80-test_ssl_old.t') == \
+                                 'openssl-1.1.0e/test/recipes/80-test_ssl_old.t'
+
+        assert get_original_path(data, 'new', 'doc/apps/ts.pod') == \
+                                 'openssl-1.1.0f/doc/apps/ts.pod'
+        assert get_original_path(data, 'old', 'doc/apps/ts.pod') == \
+                                 'openssl-1.1.0e/doc/apps/ts.pod'
