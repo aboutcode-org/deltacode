@@ -19,6 +19,15 @@ class TestDeltacode(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
 
+    def test_DeltaCode_ecos_failed_counts_assertion(self):
+        new_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion-new.json')
+        old_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion-old.json')
+
+        result = DeltaCode(new_scan, old_scan)
+
+        assert result.new.files_count == 11408
+        assert result.old.files_count == 8631
+
     def test_DeltaCode_abcm_aligned(self):
         new_scan = self.get_test_loc('deltacode/abcm-aligned-new.json')
         old_scan = self.get_test_loc('deltacode/abcm-aligned-old.json')
