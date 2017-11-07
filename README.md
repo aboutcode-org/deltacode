@@ -50,3 +50,5 @@ Open an [issue](https://www.github.com/nexb/deltacode/issues).
 ### Future TODOs/additions:
 * Use `license` information from scan to determine deltas as well (As opposed to strictly fileinfo)
 * Use `copyright` information from scan to determine deltas
+* Determine 'moved' files
+* Detect package/file version changes
