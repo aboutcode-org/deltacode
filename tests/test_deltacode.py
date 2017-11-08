@@ -24,9 +24,21 @@ class TestDeltacode(FileBasedTesting):
         old_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion-old.json')
 
         result = DeltaCode(new_scan, old_scan)
-
+        
         assert result.new.files_count == 11408
         assert result.old.files_count == 8631
+    
+    def test_DeltaCode_ecos_same_version(self):
+        new_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion-new.json')
+        old_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion-old.json')
+
+        result_new = DeltaCode(new_scan, new_scan)
+        result_old = DeltaCode(old_scan, old_scan)
+
+        assert result_new.new.files_count == 11408
+        assert result_new.old.files_count == 11408 
+        assert result_old.new.files_count == 8631
+        assert result_old.old.files_count == 8631
 
     def test_DeltaCode_abcm_aligned(self):
         new_scan = self.get_test_loc('deltacode/abcm-aligned-new.json')
