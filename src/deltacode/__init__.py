@@ -46,11 +46,12 @@ class DeltaCode:
         if self.new.files is None or self.old.files is None:
             return None
 
-        deltaDict = OrderedDict()
-        added_list = []
-        modified_list = []
-        removed_list = []
-        unmodified_list = []
+        deltas = OrderedDict([
+            ('added', []),
+            ('modified', []),
+            ('removed', []),
+            ('unmodified', [])
+        ])
 
         # align scan and create our index
         self.align_scan()
@@ -74,7 +75,8 @@ class DeltaCode:
                 delta_old_file = old_index[path]
             except KeyError:
                 added = Delta(new_file, None, 'added')
-                added_list.append(added)
+                # added_list.append(added)
+                deltas['added'].append(added)
                 continue
 
             # at this point, we have a delta_old_file.
@@ -82,12 +84,12 @@ class DeltaCode:
             # or a modification.
             if new_file.sha1 == delta_old_file.sha1:
                 delta = Delta(new_file, delta_old_file, 'unmodified')
-                unmodified_list.append(delta)
+                deltas['unmodified'].append(delta)
                 unmodified += 1
                 continue
             else:
                 delta = Delta(new_file, delta_old_file, 'modified')
-                modified_list.append(delta)
+                deltas['modified'].append(delta)
                 modified += 1
 
         # now time to find the added.
@@ -100,22 +102,15 @@ class DeltaCode:
                 new_index[path]
             except KeyError:
                 removed = Delta(None, old_file, 'removed')
-                removed_list.append(removed)
+                deltas['removed'].append(removed)
                 continue
 
-        deltaDict['added'] = added_list
-        deltaDict['modified'] = modified_list
-        deltaDict['removed'] = removed_list
-        deltaDict['unmodified'] = unmodified_list
-
         # make sure everything is accounted for
-        deltaCount = len(deltaDict['added']) + len(deltaDict['modified']) + len(deltaDict['removed']) + len(deltaDict['unmodified'])
+        deltaCount = len(deltas['added']) + len(deltas['modified']) + len(deltas['removed']) + len(deltas['unmodified'])
         assert deltaCount == ((self.new.files_count - new_nonfiles) +
                               (self.old.files_count - old_nonfiles) - modified - unmodified)
-        assert deltaCount == ((self.new.files_count - new_nonfiles) +
-                              (self.old.files_count - old_nonfiles) - len(modified_list) - len(unmodified_list))
 
-        return deltaDict
+        return deltas
 
     def get_stats(self):
         """
