@@ -14,15 +14,18 @@ from deltacode import models
 
 def get_to_dict_original_path(data, scan, path):
     """
-    Takes an OrderedDict of Delta objects, the identifier of which of a pair
-    of scans is being queried ('old' or 'new'), and the value of the 'path'
-    key, and returns the value of the related 'original_path' key, which is
-    then compared below in the set of assertions testing that the
-    'original_path' key/value pair is present and that the value is correct.
+    Takes (1) an OrderedDict that contains a nested OrderedDict of Delta
+    objects, (2) the identifier of which of a pair of scans is being queried
+    (i.e., 'old' or 'new'), and (3) the value of the 'path' key, and returns
+    the value of the related 'original_path' key, which is then compared below
+    in the set of assertions testing that the 'original_path' key/value pair
+    is present and that the value is correct.
     """
-    for deltaObjects in data['deltas']:
-        if deltaObjects[scan] and deltaObjects[scan]['path'] == path:
-            return deltaObjects[scan]['original_path']
+    for categories in data['deltas']:
+        for deltaObjects in data['deltas'][categories]:
+            if deltaObjects[scan] and deltaObjects[scan]['path'] == path:
+                return deltaObjects[scan]['original_path']
+
 
 class TestModels(FileBasedTesting):
 

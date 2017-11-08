@@ -1,9 +1,9 @@
 Type of delta,New scan path,Old scan path,new_filename,old_filename,new_sha1,old_sha1,new_size,old_size,new_type,old_type,new_original_path,old_original_path
+modified,a/a4.py,a/a4.py,a4.py,a4.py,56aacf4e8ebcd7d8365e68cf11df933a237d33eb,6f71666c46446c29d3f45feef5419ae76fb86a5b,246,200,file,file,codebase_01_1_file_modified_not_renamed/a/a4.py,codebase_01/a/a4.py
 unmodified,a/a3.py,a/a3.py,a3.py,a3.py,fd5d3589c825f448546d7dcec36da3e567d35fe9,fd5d3589c825f448546d7dcec36da3e567d35fe9,200,200,file,file,codebase_01_1_file_modified_not_renamed/a/a3.py,codebase_01/a/a3.py
 unmodified,b/b4.py,b/b4.py,b4.py,b4.py,98c9e6bed78b1513c28e666016cb35a50708c36e,98c9e6bed78b1513c28e666016cb35a50708c36e,200,200,file,file,codebase_01_1_file_modified_not_renamed/b/b4.py,codebase_01/b/b4.py
 unmodified,b/b1.py,b/b1.py,b1.py,b1.py,70f6ce80985578b5104db0abc578cf5a05e78f4b,70f6ce80985578b5104db0abc578cf5a05e78f4b,200,200,file,file,codebase_01_1_file_modified_not_renamed/b/b1.py,codebase_01/b/b1.py
 unmodified,a/a2.py,a/a2.py,a2.py,a2.py,310797523e47db8481aeb06f1634317285115091,310797523e47db8481aeb06f1634317285115091,200,200,file,file,codebase_01_1_file_modified_not_renamed/a/a2.py,codebase_01/a/a2.py
 unmodified,b/b2.py,b/b2.py,b2.py,b2.py,3340d86b1da9323067db8022f86dc97cfccee1d0,3340d86b1da9323067db8022f86dc97cfccee1d0,200,200,file,file,codebase_01_1_file_modified_not_renamed/b/b2.py,codebase_01/b/b2.py
 unmodified,b/b3.py,b/b3.py,b3.py,b3.py,e49d4463662414bee5ad2d2e5c1fbd704f33b84e,e49d4463662414bee5ad2d2e5c1fbd704f33b84e,200,200,file,file,codebase_01_1_file_modified_not_renamed/b/b3.py,codebase_01/b/b3.py
-modified,a/a4.py,a/a4.py,a4.py,a4.py,56aacf4e8ebcd7d8365e68cf11df933a237d33eb,6f71666c46446c29d3f45feef5419ae76fb86a5b,246,200,file,file,codebase_01_1_file_modified_not_renamed/a/a4.py,codebase_01/a/a4.py
 unmodified,a/a1.py,a/a1.py,a1.py,a1.py,84b647771481d39dd3a53f6dc210c26abac37748,84b647771481d39dd3a53f6dc210c26abac37748,200,200,file,file,codebase_01_1_file_modified_not_renamed/a/a1.py,codebase_01/a/a1.py
