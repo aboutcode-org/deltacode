@@ -59,8 +59,6 @@ class DeltaCode:
         old_nonfiles = 0
         modified = 0
         unchanged = 0
-        a = 0
-        r = 0
 
         # perform the deltas
         for path, new_file in new_index.items():
@@ -73,7 +71,6 @@ class DeltaCode:
             except KeyError:
                 added = Delta(new_file, None, 'added')
                 deltas.append(added)
-                a += 1
                 continue
 
             # at this point, we have a delta_old_file.
@@ -100,7 +97,6 @@ class DeltaCode:
             except KeyError:
                 removed = Delta(None, old_file, 'removed')
                 deltas.append(removed)
-                r += 1
                 continue
 
         # make sure everything is accounted for
