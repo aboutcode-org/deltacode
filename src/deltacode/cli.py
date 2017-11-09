@@ -24,23 +24,24 @@ def generate_csv(data, result_file):
     deltas = data['deltas']
 
     for delta in deltas:
-        category = delta['category']
-        new = '' if delta['category'] == 'removed' else delta['new']['path']
-        new_filename = '' if delta['category'] == 'removed' else delta['new']['name']
-        new_sha1 = '' if delta['category'] == 'removed' else delta['new']['sha1']
-        new_size = '' if delta['category'] == 'removed' else delta['new']['size']
-        new_type = '' if delta['category'] == 'removed' else delta['new']['type']
-        new_orig = '' if delta['category'] == 'removed' else delta['new']['original_path']
-        old = '' if delta['category'] == 'added' else delta['old']['path']
-        old_filename = '' if delta['category'] == 'added' else delta['old']['name']
-        old_sha1 = '' if delta['category'] == 'added' else delta['old']['sha1']
-        old_size = '' if delta['category'] == 'added' else delta['old']['size']
-        old_type = '' if delta['category'] == 'added' else delta['old']['type']
-        old_orig = '' if delta['category'] == 'added' else delta['old']['original_path']
+        category = delta
+        for f in deltas[delta]:
+            new = '' if delta == 'removed' else f['new']['path']
+            new_filename = '' if delta == 'removed' else f['new']['name']
+            new_sha1 = '' if delta == 'removed' else f['new']['sha1']
+            new_size = '' if delta == 'removed' else f['new']['size']
+            new_type = '' if delta == 'removed' else f['new']['type']
+            new_orig = '' if delta == 'removed' else f['new']['original_path']
+            old = '' if delta == 'added' else f['old']['path']
+            old_filename = '' if delta == 'added' else f['old']['name']
+            old_sha1 = '' if delta == 'added' else f['old']['sha1']
+            old_size = '' if delta == 'added' else f['old']['size']
+            old_type = '' if delta == 'added' else f['old']['type']
+            old_orig = '' if delta == 'added' else f['old']['original_path']
 
-        tuple = (category, new, old, new_filename, old_filename, new_sha1,
-                 old_sha1, new_size, old_size, new_type, old_type, new_orig, old_orig)
-        tuple_list.append(tuple)
+            tuple = (category, new, old, new_filename, old_filename, new_sha1,
+                     old_sha1, new_size, old_size, new_type, old_type, new_orig, old_orig)
+            tuple_list.append(tuple)
 
     with open(result_file, 'wb') as out:
         csv_out = csv.writer(out)
