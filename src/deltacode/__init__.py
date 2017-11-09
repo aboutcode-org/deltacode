@@ -48,8 +48,8 @@ class DeltaCode:
 
         deltas = OrderedDict([
             ('added', []),
-            ('modified', []),
             ('removed', []),
+            ('modified', []),
             ('unmodified', [])
         ])
 
@@ -75,7 +75,6 @@ class DeltaCode:
                 delta_old_file = old_index[path]
             except KeyError:
                 added = Delta(new_file, None, 'added')
-                # added_list.append(added)
                 deltas['added'].append(added)
                 continue
 
