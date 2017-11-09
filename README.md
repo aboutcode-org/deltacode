@@ -48,7 +48,7 @@ Open an [issue](https://www.github.com/nexb/deltacode/issues).
 * `deltacode` also collects statistical information, like # of files and other percentages. Currently, this output is not present in the `csv` output
 
 ### Future TODOs/additions:
-* Use `license` information from scan to determine deltas as well (As opposed to strictly fileinfo)
-* Use `copyright` information from scan to determine deltas
-* Determine 'moved' files
-* Detect package/file version changes
+* Use `license` information from scans to identify license changes between two versions of a package or codebase. This would be most important for modified files or packages to determine whether the modifications affected the license.
+* Use `copyright` information from scans to identify changes in copyright holders or dates for attribution.
+* Detect package or file changes that are only a version change for the same package or file.
+* Determine whether some added/removed files or packages are actually cases where the files or packages were moved.

@@ -64,9 +64,9 @@ def fix_trees(a_files, b_files):
     """
     a_offset, b_offset = align_trees(a_files, b_files)
     for a_file in a_files:
-        setattr(a_file, 'original_path', a_file.path)
+        a_file.original_path = a_file.path
         a_file.path = '/'.join(paths.split(a_file.path)[a_offset:])
 
     for b_file in b_files:
-        setattr(b_file, 'original_path', b_file.path)
+        b_file.original_path = b_file.path
         b_file.path = '/'.join(paths.split(b_file.path)[b_offset:])
