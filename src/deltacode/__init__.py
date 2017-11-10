@@ -195,22 +195,22 @@ class Delta:
         if self.new_file is None or self.old_file is None:
             return False
 
-        new_file_keys = []
-        old_file_keys = []
         cutoff_score = 50
+
         if self.new_file.licenses is not None:
-            for l in self.new_file.licenses:
-                if l.score >= cutoff_score:
-                    new_file_keys.append(l.key)
+            new_file_keys = [l.key for l in self.new_file.licenses if l.score >= cutoff_score]
+        else:
+            new_file_keys = []
+
         if self.old_file.licenses is not None:
-            for l in self.old_file.licenses:
-                if l.score >= cutoff_score:
-                    old_file_keys.append(l.key)
+            old_file_keys = [l.key for l in self.old_file.licenses if l.score >= cutoff_score]
+        else:
+            old_file_keys = []
 
-        deduped_new_file_keys = list(set(new_file_keys))
-        deduped_old_file_keys = list(set(old_file_keys))
+        new_file_keys = list(set(new_file_keys))
+        old_file_keys = list(set(old_file_keys))
 
-        if deduped_new_file_keys != deduped_old_file_keys:
+        if new_file_keys != old_file_keys:
             return True
         else:
             return False

@@ -217,6 +217,22 @@ class TestDeltacode(FileBasedTesting):
 
         assert result.deltas == None
 
+    def test_Delta_license_diff_new_no_license_info(self):
+        new_file = models.File({'path': 'new/path.txt'})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 50.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified').license_diff()
+
+        assert result == True
+
+    def test_Delta_license_diff_old_no_license_info(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 50.0}]})
+        old_file = models.File({'path': 'old/path.txt'})
+
+        result = deltacode.Delta(new_file, old_file, 'modified').license_diff()
+
+        assert result == True
+
     def test_Delta_license_diff_single_diff_multiple_keys(self):
         new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'gpl-2.0', 'score': 100.0}, {'key': 'mit', 'score':30.0}]})
         old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 50.0}]})
