@@ -13,6 +13,7 @@ import pytest
 from commoncode.testcase import FileBasedTesting
 import deltacode
 from deltacode import DeltaCode
+from deltacode import models
 
 
 class TestDeltacode(FileBasedTesting):
@@ -215,3 +216,86 @@ class TestDeltacode(FileBasedTesting):
         assert result.old.files == None
 
         assert result.deltas == None
+
+    def test_Delta_license_diff_single_diff_multiple_keys(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'gpl-2.0', 'score': 100.0}, {'key': 'mit', 'score':30.0}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 50.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified').license_diff()
+
+        assert result == True
+
+    def test_Delta_license_diff_no_diff_multiple_keys(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 75.0}, {'key': 'mit', 'score': 90.0}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 100.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified').license_diff()
+
+        assert result == False
+
+    def test_Delta_license_diff_no_diff_multiple_keys_low_score_new(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 75.0}, {'key': 'mit', 'score': 90.0}, {'key': 'gpl-2.0', 'score': 49.9}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 100.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified').license_diff()
+
+        assert result == False
+
+    def test_Delta_license_diff_no_diff_multiple_keys_low_score_old(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 75.0}, {'key': 'mit', 'score': 90.0}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 100.0}, {'key': 'gpl-2.0', 'score': 49.9}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified').license_diff()
+
+        assert result == False
+
+    def test_Delta_license_diff_single_diff(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'gpl-2.0', 'score': 70.0}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 80.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified').license_diff()
+
+        assert result == True
+
+    def test_Delta_license_diff_no_diff(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 95.0}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 95.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified').license_diff()
+
+        assert result == False
+
+    def test_Delta_license_diff_missing_diff_low_score_new(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 45.0}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 95.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified').license_diff()
+
+        assert result == True
+
+    def test_Delta_license_diff_missing_diff_low_score_old(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 95.0}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 45.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified').license_diff()
+
+        assert result == True
+
+    def test_Delta_license_diff_one_None(self):
+        file_obj = models.File({'path': 'fake/path.txt'})
+
+        first_None = deltacode.Delta(None, file_obj, 'removed')
+        second_None = deltacode.Delta(file_obj, None, 'added')
+
+        result1 = first_None.license_diff()
+        result2 = second_None.license_diff()
+
+        assert result1 == False
+        assert result2 == False
+
+    def test_Delta_license_diff_None_files(self):
+        delta = deltacode.Delta(None, None, None)
+
+        result = delta.license_diff()
+
+        assert result == False

@@ -190,3 +190,27 @@ class Delta:
         self.new_file = new_file
         self.old_file = old_file
         self.category = delta_type
+
+    def license_diff(self):
+        if self.new_file is None or self.old_file is None:
+            return False
+
+        new_file_keys = []
+        old_file_keys = []
+        cutoff_score = 50
+        if self.new_file.licenses is not None:
+            for l in self.new_file.licenses:
+                if l.score >= cutoff_score:
+                    new_file_keys.append(l.key)
+        if self.old_file.licenses is not None:
+            for l in self.old_file.licenses:
+                if l.score >= cutoff_score:
+                    old_file_keys.append(l.key)
+
+        deduped_new_file_keys = list(set(new_file_keys))
+        deduped_old_file_keys = list(set(old_file_keys))
+
+        if deduped_new_file_keys != deduped_old_file_keys:
+            return True
+        else:
+            return False
