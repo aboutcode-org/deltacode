@@ -24,13 +24,16 @@ def get_license_keys(deltas, age, path):
     key/value pair to the OrderedDict.  See, e.g.,
     test_DeltaCode_license_modified().
     """
-    for lic_diff in deltas['license_changes']:
-        if age == 'new_file' and lic_diff.new_file.path == path:
-            new_key_list = [license.key for license in lic_diff.new_file.licenses]
-            return sorted(new_key_list)
-        elif age == 'old_file' and lic_diff.old_file.path == path:
-            old_key_list = [license.key for license in lic_diff.old_file.licenses]
-            return sorted(old_key_list)
+    if deltas['license_changes']:
+        for lic_diff in deltas['license_changes']:
+            if age == 'new_file' and lic_diff.new_file.path == path:
+                new_key_list = [license.key for license in lic_diff.new_file.licenses]
+                return sorted(new_key_list)
+            elif age == 'old_file' and lic_diff.old_file.path == path:
+                old_key_list = [license.key for license in lic_diff.old_file.licenses]
+                return sorted(old_key_list)
+    else:
+        return []
 
 
 class TestDeltacode(FileBasedTesting):
@@ -360,3 +363,31 @@ class TestDeltacode(FileBasedTesting):
         assert get_license_keys(deltas, 'old_file', 'some/path/b/b1.py') != sorted([u'public-domain', u'bsd-simplified', u'mpl-4.01'])
         assert get_license_keys(deltas, 'old_file', 'some/path/b/b1.py') != sorted([u'public-domain', u'bsd-simplified', u'mpl-2.00'])
         assert get_license_keys(deltas, 'old_file', 'some/path/b/b1.py') == sorted([u'public-domain', u'bsd-simplified', u'mpl-2.0'])
+
+    def test_DeltaCode_no_license_key_value(self):
+        new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
+        old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_key.json')
+
+        result = DeltaCode(new_scan, old_scan)
+
+        deltas = result.deltas
+
+        assert len(deltas['license_changes']) == 0
+        assert get_license_keys(deltas, 'new_file', 'some/path/a/a1.py') == sorted([])
+        assert get_license_keys(deltas, 'old_file', 'some/path/a/a1.py') == sorted([])
+        assert get_license_keys(deltas, 'new_file', 'some/path/b/b1.py') == sorted([])
+        assert get_license_keys(deltas, 'old_file', 'some/path/b/b1.py') == sorted([])
+
+    def test_DeltaCode_no_license_changes(self):
+        new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_changes.json')
+        old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_changes.json')
+
+        result = DeltaCode(new_scan, old_scan)
+
+        deltas = result.deltas
+
+        assert len(deltas['license_changes']) == 0
+        assert get_license_keys(deltas, 'new_file', 'some/path/a/a1.py') == sorted([])
+        assert get_license_keys(deltas, 'old_file', 'some/path/a/a1.py') == sorted([])
+        assert get_license_keys(deltas, 'new_file', 'some/path/b/b1.py') == sorted([])
+        assert get_license_keys(deltas, 'old_file', 'some/path/b/b1.py') == sorted([])
