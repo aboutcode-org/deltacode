@@ -50,7 +50,8 @@ class DeltaCode:
             ('added', []),
             ('removed', []),
             ('modified', []),
-            ('unmodified', [])
+            ('unmodified', []),
+            ('license_changes', [])
         ])
 
         # align scan and create our index
@@ -103,6 +104,9 @@ class DeltaCode:
                 removed = Delta(None, old_file, 'removed')
                 deltas['removed'].append(removed)
                 continue
+
+        deltas_modified = deltas['modified']
+        deltas['license_changes'] = self.modified_lic_diff(deltas_modified)
 
         # make sure everything is accounted for
         deltaCount = len(deltas['added']) + len(deltas['modified']) + len(deltas['removed']) + len(deltas['unmodified'])
@@ -178,6 +182,17 @@ class DeltaCode:
 
         return dict
 
+    def modified_lic_diff(self, modified):
+        """
+        Accept a list of 'modified' Delta objects passed by
+        DeltaCode.determine_delta() from the OrderedDict of Delta objects
+        and return a list of Delta objects with license changes
+        that satisfy the test in Delta.license_diff().
+        """
+        license_diff_list = [modified_delta for modified_delta in modified if modified_delta.license_diff()]
+
+        return license_diff_list
+
 
 class Delta:
     """
@@ -192,17 +207,22 @@ class Delta:
         self.category = delta_type
 
     def license_diff(self):
+        """
+        Compare the license details for a pair of 'new' and 'old' File objects
+        in a Delta object,  return True if those details differ, and otherwise
+        return False.
+        """
         if self.new_file is None or self.old_file is None:
             return False
 
         cutoff_score = 50
 
-        if self.new_file.licenses is not None:
+        if self.new_file.licenses:
             new_file_keys = [l.key for l in self.new_file.licenses if l.score >= cutoff_score]
         else:
             new_file_keys = []
 
-        if self.old_file.licenses is not None:
+        if self.old_file.licenses:
             old_file_keys = [l.key for l in self.old_file.licenses if l.score >= cutoff_score]
         else:
             old_file_keys = []
