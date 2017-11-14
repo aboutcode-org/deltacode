@@ -60,6 +60,8 @@ class DeltaCode:
 
         # TODO: handle this better, maybe a counts object or something.
         # gathering counts to ensure no files lost or missing from our 'deltas' set
+        new_files = self.new.files_count
+        old_files = self.old.files_count
         new_nonfiles = 0
         old_nonfiles = 0
         modified = 0
@@ -69,6 +71,7 @@ class DeltaCode:
         for path, new_file in new_index.items():
             if new_file.type != 'file':
                 new_nonfiles += 1
+                new_files -= 1
                 continue
 
             try:
@@ -76,6 +79,7 @@ class DeltaCode:
             except KeyError:
                 added = Delta(new_file, None, 'added')
                 deltas['added'].append(added)
+                new_files -= 1
                 continue
 
             # at this point, we have a delta_old_file.
@@ -85,16 +89,21 @@ class DeltaCode:
                 delta = Delta(new_file, delta_old_file, 'unmodified')
                 deltas['unmodified'].append(delta)
                 unmodified += 1
+                new_files -= 1
+                old_files -= 1
                 continue
             else:
                 delta = Delta(new_file, delta_old_file, 'modified')
                 deltas['modified'].append(delta)
                 modified += 1
+                new_files -= 1
+                old_files -= 1
 
         # now time to find the added.
         for path, old_file in old_index.items():
             if old_file.type != 'file':
                 old_nonfiles += 1
+                old_files -= 1
                 continue
 
             try:
@@ -102,7 +111,11 @@ class DeltaCode:
             except KeyError:
                 removed = Delta(None, old_file, 'removed')
                 deltas['removed'].append(removed)
+                old_files -= 1
                 continue
+
+        print(new_files)
+        print(old_files)
 
         # make sure everything is accounted for
         deltaCount = len(deltas['added']) + len(deltas['modified']) + len(deltas['removed']) + len(deltas['unmodified'])
