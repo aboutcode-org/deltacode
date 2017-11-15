@@ -98,9 +98,8 @@ class Scan:
         return files
 
     def index_files(self, index_key='path'):
-        # TODO: fix docstring
         """
-        Return a dictionary of File objects indexed by the key passed via
+        Return a dictionary of a list of File objects indexed by the key passed via
         the 'key' variable.  If no 'key' variable is passed, the dict is
         keyed by the File object's 'path' variable.  This function does not
         currently catch the AttributeError exception.

@@ -63,51 +63,44 @@ class DeltaCode:
         old_files_to_visit = self.old.files_count
 
         # perform the deltas
-        for path, new_file in new_index.items():
-            new_files_to_visit -= 1
+        for path, new_files in new_index.items():
+            for new_file in new_files:
+                new_files_to_visit -= 1
 
-            if new_file.type != 'file':
-                continue
+                if new_file.type != 'file':
+                    continue
 
-            try:
-                delta_old_file = old_index[path]
-            except KeyError:
-                deltas['added'].append(Delta(new_file, None, 'added'))
-                continue
+                try:
+                    delta_old_files = old_index[path]
+                except KeyError:
+                    deltas['added'].append(Delta(new_file, None, 'added'))
+                    continue
 
-            # at this point, we have a delta_old_file.
-            # we need to determine wheather this is identical,
-            # or a modification.
-            if new_file.sha1 == delta_old_file.sha1:
-                deltas['unmodified'].append(Delta(new_file, delta_old_file, 'unmodified'))
-                continue
-            else:
-                deltas['modified'].append(Delta(new_file, delta_old_file, 'modified'))
+                # at this point, we have a delta_old_file.
+                # we need to determine wheather this is identical,
+                # or a modification.
+                for f in delta_old_files:
+                    if new_file.sha1 == f.sha1:
+                        deltas['unmodified'].append(Delta(new_file, f, 'unmodified'))
+                        continue
+                    else:
+                        deltas['modified'].append(Delta(new_file, f, 'modified'))
 
         # now time to find the added.
-        for path, old_file in old_index.items():
-            old_files_to_visit -= 1
+        for path, old_files in old_index.items():
+            for old_file in old_files:
+                old_files_to_visit -= 1
+                
+                if old_file.type != 'file':
+                    continue
+
+                try:
+                    # This file already classified as 'modified' or 'unmodified' so do nothing
+                    new_index[path]
+                except KeyError:
+                    deltas['removed'].append(Delta(None, old_file, 'removed'))
+                    continue
             
-            if old_file.type != 'file':
-                continue
-
-            try:
-                # This file already classified as 'modified' or 'unmodified' so do nothing
-                new_index[path]
-            except KeyError:
-                deltas['removed'].append(Delta(None, old_file, 'removed'))
-                continue
-            
-
-        print(self.new.files_count)
-        print(self.old.files_count)
-
-        print(new_index)
-        print(old_index)
-
-        print(new_files_to_visit)
-        print(old_files_to_visit)
-
         # make sure everything is accounted for
         assert new_files_to_visit == 0
         assert old_files_to_visit == 0

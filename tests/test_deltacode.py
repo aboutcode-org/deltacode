@@ -36,20 +36,17 @@ class TestDeltacode(FileBasedTesting):
         new_index = delta.new.index_files()
         old_index = delta.old.index_files()
 
-        assert delta.new.files_count == len(new_index.keys())
-        assert delta.old.files_count == len(old_index.keys())
-        
+        new_index_length = 0
+        for k,v in new_index.items():
+            new_index_length += len(v)
+
+        old_index_length = 0
+        for k,v in old_index.items():
+            old_index_length += len(v)
+
+        assert delta.new.files_count == new_index_length
+        assert delta.old.files_count == old_index_length
     
-    #FIXME: move this
-    def test_DeltaCode_ecos_failed_counts_assertion2(self):
-        new_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion2-new.json')
-        old_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion2-old.json')
-
-        result = DeltaCode(new_scan, old_scan)
-        
-        assert result.new.files_count == 8
-        assert result.old.files_count == 8
-
     def test_DeltaCode_ecos_failed_counts_assertion(self):
         new_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion-new.json')
         old_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion-old.json')
@@ -59,18 +56,6 @@ class TestDeltacode(FileBasedTesting):
         assert result.new.files_count == 11408
         assert result.old.files_count == 8631
     
-    def test_DeltaCode_ecos_same_version(self):
-        new_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion-new.json')
-        old_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion-old.json')
-
-        result_new = DeltaCode(new_scan, new_scan)
-        result_old = DeltaCode(old_scan, old_scan)
-
-        assert result_new.new.files_count == 11408
-        assert result_new.old.files_count == 11408 
-        assert result_old.new.files_count == 8631
-        assert result_old.old.files_count == 8631
-
     def test_DeltaCode_abcm_aligned(self):
         new_scan = self.get_test_loc('deltacode/abcm-aligned-new.json')
         old_scan = self.get_test_loc('deltacode/abcm-aligned-old.json')
