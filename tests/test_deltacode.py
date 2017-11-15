@@ -13,12 +13,34 @@ import pytest
 from commoncode.testcase import FileBasedTesting
 import deltacode
 from deltacode import DeltaCode
+from deltacode import models
 
 
 class TestDeltacode(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
+
+    def test_align_and_index_scans(self):
+        new_scan = self.get_test_loc('deltacode/ecos-align-index-new.json')
+        old_scan = self.get_test_loc('deltacode/ecos-align-index-old.json')
+
+        new = models.Scan(new_scan)
+        old = models.Scan(old_scan)
+
+        delta = DeltaCode(None, None)
+        delta.new = new
+        delta.old = old
+
+        delta.align_scan()
+
+        new_index = delta.new.index_files()
+        old_index = delta.old.index_files()
+
+        assert delta.new.files_count == len(new_index.keys())
+        assert delta.old.files_count == len(old_index.keys())
+        
     
+    #FIXME: move this
     def test_DeltaCode_ecos_failed_counts_assertion2(self):
         new_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion2-new.json')
         old_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion2-old.json')

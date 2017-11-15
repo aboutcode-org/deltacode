@@ -31,6 +31,28 @@ class TestModels(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
 
+    def test_Scan_ecos_failing2(self):
+        new_scan = self.get_test_loc('models/ecos-failed-counts-assertion2-new.json')
+        old_scan = self.get_test_loc('models/ecos-failed-counts-assertion2-old.json')
+        
+        new = models.Scan(new_scan)
+        old = models.Scan(old_scan)
+
+        assert new.files_count == 8
+        assert old.files_count == 8
+
+        new_index = new.index_files()
+        old_index = old.index_files()
+
+        assert len(new_index.keys()) == new.files_count
+        assert len(old_index.keys()) == old.files_count
+
+        for f in new.files:
+            assert f.type == 'file' or f.type == 'directory'
+        
+        for f in old.files:
+            assert f.type == 'file' or f.type == 'directory'
+
     def test_Scan_ecos_failing_scans(self):
         new_scan = self.get_test_loc('models/ecos-failed-counts-assertion-new.json')
         old_scan = self.get_test_loc('models/ecos-failed-counts-assertion-old.json')
