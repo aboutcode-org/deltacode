@@ -97,7 +97,8 @@ class Scan:
 
         return files
 
-    def index_files(self, key='path'):
+    def index_files(self, index_key='path'):
+        # TODO: fix docstring
         """
         Return a dictionary of File objects indexed by the key passed via
         the 'key' variable.  If no 'key' variable is passed, the dict is
@@ -107,8 +108,13 @@ class Scan:
         index = {}
 
         for f in self.files:
-            index_key = getattr(f, key)
-            index[index_key] = f
+            key = getattr(f, index_key)
+
+            if index.get(key) == None:
+                index[key] = []
+                index[key].append(f)
+            else:
+                index[key].append(f)
 
         return index
 
