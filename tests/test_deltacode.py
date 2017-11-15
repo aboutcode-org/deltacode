@@ -18,11 +18,11 @@ from deltacode import DeltaCode
 class TestDeltacode(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
-
-    def test_DeltaCode_ecos_failed_counts_assertion_2(self):
+    
+    def test_DeltaCode_ecos_failed_counts_assertion2(self):
         new_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion2-new.json')
         old_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion2-old.json')
-        
+
         result = DeltaCode(new_scan, old_scan)
         
         assert result.new.files_count == 8
