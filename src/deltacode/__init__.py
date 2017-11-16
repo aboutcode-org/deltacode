@@ -130,17 +130,7 @@ class DeltaCode:
         """
         if self.deltas == None:
             return
-
-#        dict = OrderedDict()
-#        dict['deltacode_version'] = __version__
-#        dict['deltacode_stats'] = self.get_stats()
-#
-#        added = len(self.deltas['added'])
-#        modified = len(self.deltas['modified'])
-#        removed = len(self.deltas['removed'])
-#        unmodified = len(self.deltas['unmodified'])
-#        dict['deltas_count'] = added + modified + removed + unmodified
-
+        
         return OrderedDict([
             ('added', [d.to_dict() for d in self.deltas.get('added')]),
             ('removed', [d.to_dict() for d in self.deltas.get('removed')]),

@@ -21,7 +21,7 @@ def generate_csv(data, result_file):
         '', '', '', '', '', '', '', '', ''
     tuple = ()
     tuple_list = []
-    deltas = data['deltas']
+    deltas = data
 
     for delta in deltas:
         category = delta

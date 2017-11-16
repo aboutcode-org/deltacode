@@ -59,8 +59,10 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan)
         data = delta.to_dict()
+
         result_file = self.get_temp_file('.csv')
         cli.generate_csv(data, result_file)
+
         expected_file = self.get_test_loc('cli/added1.csv')
         check_csvs(result_file, expected_file)
 
