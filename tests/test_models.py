@@ -11,22 +11,6 @@ from commoncode.testcase import FileBasedTesting
 from deltacode import DeltaCode
 from deltacode import models
 
-
-def get_to_dict_original_path(data, scan, path):
-    """
-    Takes (1) an OrderedDict that contains a nested OrderedDict of Delta
-    objects, (2) the identifier of which of a pair of scans is being queried
-    (i.e., 'old' or 'new'), and (3) the value of the 'path' key, and returns
-    the value of the related 'original_path' key, which is then compared below
-    in the set of assertions testing that the 'original_path' key/value pair
-    is present and that the value is correct.
-    """
-    for categories in data['deltas']:
-        for deltaObjects in data['deltas'][categories]:
-            if deltaObjects[scan] and deltaObjects[scan]['path'] == path:
-                return deltaObjects[scan]['original_path']
-
-
 class TestModels(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
@@ -356,6 +340,262 @@ class TestModels(FileBasedTesting):
         assert result.files == None
         assert result.options == None
 
+    def test_License_to_dict_simple(self):
+        data = {
+            "key": "apache-2.0",
+            "score": 80.0,
+            "short_name": "Apache 2.0",
+            "category": "Permissive",
+            "owner": "Apache Software Foundation",
+            "homepage_url": "http://www.apache.org/licenses/",
+            "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
+            "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
+            "spdx_license_key": "Apache-2.0",
+            "spdx_url": "https://spdx.org/licenses/Apache-2.0",
+            "start_line": 3,
+            "end_line": 3,
+            "matched_rule": {
+                "identifier": "apache-2.0_57.RULE",
+                "license_choice": False,
+                "licenses": [
+                    "apache-2.0"
+                ]
+            }
+        }     
+
+        expected = {
+            'key': 'apache-2.0',
+            'score': 80.0,
+            'short_name': 'Apache 2.0',
+            'category': 'Permissive',
+            'owner': 'Apache Software Foundation',
+            'homepage_url': 'http://www.apache.org/licenses/',
+            'text_url': 'http://www.apache.org/licenses/LICENSE-2.0',
+            'reference_url': 'https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0',
+            'spdx_license_key': 'Apache-2.0',
+            'spdx_url': 'https://spdx.org/licenses/Apache-2.0',
+            'start_line': 3,
+            'end_line': 3,
+            'matched_rule': {
+                'identifier': 'apache-2.0_57.RULE',
+                'license_choice': False,
+                'licenses': [
+                    'apache-2.0',
+                ]
+            },
+        }
+
+        result = models.License(data).to_dict()
+
+        assert result == expected
+
+    def test_License_to_dict_empty(self):
+        result = models.License().to_dict()
+
+        for k,v in result.items():
+            assert v == None
+
+    def test_License_object_simple(self):
+        data = {
+            "key": "apache-2.0",
+            "score": 80.0,
+            "short_name": "Apache 2.0",
+            "category": "Permissive",
+            "owner": "Apache Software Foundation",
+            "homepage_url": "http://www.apache.org/licenses/",
+            "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
+            "dejacode_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
+            "spdx_license_key": "Apache-2.0",
+            "spdx_url": "https://spdx.org/licenses/Apache-2.0",
+            "start_line": 3,
+            "end_line": 3,
+            "matched_rule": {
+                "identifier": "apache-2.0_57.RULE",
+                "license_choice": False,
+                "licenses": [
+                    "apache-2.0"
+                ]
+            }
+        }     
+
+        result = models.License(data)
+
+        assert result.key == 'apache-2.0'
+        assert result.score == 80
+        assert result.category == 'Permissive'
+
+    def test_License_object_empty(self):
+        result = models.License()
+
+        for attr, value in vars(result).items():
+            assert value == None
+
+    def test_File_to_dict_simple_w_license(self):
+        data = {
+            'path': 'a/b/file1.txt',
+            'type': 'file',
+            'name': 'file1.txt',
+            'size': 20,
+            'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'licenses': [
+                {
+                    "key": "apache-2.0",
+                    "score": 80.0,
+                    "short_name": "Apache 2.0",
+                    "category": "Permissive",
+                    "owner": "Apache Software Foundation",
+                    "homepage_url": "http://www.apache.org/licenses/",
+                    "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
+                    "spdx_license_key": "Apache-2.0",
+                    "spdx_url": "https://spdx.org/licenses/Apache-2.0",
+                    "start_line": 3,
+                    "end_line": 3,
+                    "matched_rule": {
+                        "identifier": "apache-2.0_57.RULE",
+                        "license_choice": False,
+                        "licenses": [
+                            "apache-2.0"
+                        ]
+                    }
+                }
+            ],
+        }
+
+        expected = {
+            'path': 'a/b/file1.txt',
+            'type': 'file',
+            'name': 'file1.txt',
+            'size': 20,
+            'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'original_path': '',
+#            'licenses': [
+#                {
+#                    "key": "apache-2.0",
+#                    "score": 80.0,
+#                    "short_name": "Apache 2.0",
+#                    "category": "Permissive",
+#                    "owner": "Apache Software Foundation",
+#                    "homepage_url": "http://www.apache.org/licenses/",
+#                    "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
+#                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
+#                    "spdx_license_key": "Apache-2.0",
+#                    "spdx_url": "https://spdx.org/licenses/Apache-2.0",
+#                    "start_line": 3,
+#                    "end_line": 3,
+#                    "matched_rule": {
+#                        "identifier": "apache-2.0_57.RULE",
+#                        "license_choice": False,
+#                        "licenses": [
+#                            "apache-2.0"
+#                        ]
+#                    }
+#                }
+#            ]
+        }
+
+        result = models.File(data).to_dict()
+
+        assert result == expected
+
+    def test_File_to_dict_simple(self):
+        data = {
+            'path': 'a/b/file1.txt',
+            'type': 'file',
+            'name': 'file1.txt',
+            'size': 20,
+            'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+        }
+
+        expected = {
+            'path': 'a/b/file1.txt',
+            'type': 'file',
+            'name': 'file1.txt',
+            'size': 20,
+            'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'original_path': ''
+        }
+
+        result = models.File(data).to_dict()
+
+        assert result == expected
+    
+    def test_File_to_dict_empty(self):
+        empty_file = models.File()
+
+        expected = {
+            'path': None,
+            'type': None,
+            'name': None,
+            'size': None,
+            'sha1': None,
+            'original_path': ''
+        }
+
+        result = empty_file.to_dict()
+        assert result == expected
+
+    def test_File_create_object_license_one(self):
+        data = {
+            'path': 'a/b/file1.txt',
+            'type': 'file',
+            'name': 'file1.txt',
+            'size': 20,
+            'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'licenses': [
+                {
+                    "key": "apache-2.0",
+                    "score": 80.0,
+                    "short_name": "Apache 2.0",
+                    "category": "Permissive",
+                    "owner": "Apache Software Foundation",
+                    "homepage_url": "http://www.apache.org/licenses/",
+                    "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
+                    "spdx_license_key": "Apache-2.0",
+                    "spdx_url": "https://spdx.org/licenses/Apache-2.0",
+                    "start_line": 3,
+                    "end_line": 3,
+                    "matched_rule": {
+                        "identifier": "apache-2.0_57.RULE",
+                        "license_choice": False,
+                        "licenses": [
+                            "apache-2.0"
+                        ]
+                    }
+                }
+            ],
+        }
+
+        result = models.File(data)
+
+        assert 'a/b/file1.txt' == result.path
+        assert 'file' == result.type
+        assert 'file1.txt' == result.name
+        assert 20 == result.size
+        assert '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b' == result.sha1
+        assert len(result.licenses) == 1
+        assert result.licenses[0].key == 'apache-2.0'
+
+    def test_File_create_object_license_none(self):
+        data = {
+            'path': 'a/b/file1.txt',
+            'type': 'file',
+            'name': 'file1.txt',
+            'size': 20,
+            'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'licenses': [],
+        }
+
+        result = models.File(data)
+
+        assert 'a/b/file1.txt' == result.path
+        assert 'file' == result.type
+        assert 'file1.txt' == result.name
+        assert 20 == result.size
+        assert '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b' == result.sha1
+        assert [] == result.licenses
+
     def test_File_create_object(self):
         data = {
             'path': 'a/b/file1.txt',
@@ -385,109 +625,3 @@ class TestModels(FileBasedTesting):
         b['size'] = 8192
         b_file = models.File(b)
         assert -4096 == a_file.size_difference(b_file)
-
-    def test_to_dict_original_path_full_root(self):
-        test_scan_new = self.get_test_loc('models/scan/align-trees-simple-new.json')
-        # Our old scan uses --full-root option in scancode
-        test_scan_old = self.get_test_loc('models/scan/align-trees-simple-old.json')
-
-        delta = DeltaCode(test_scan_new, test_scan_old)
-        data = delta.to_dict()
-
-        assert get_to_dict_original_path(data, 'new', 'samples/JGroups/EULA') == \
-                                 'samples/JGroups/EULA'
-        assert get_to_dict_original_path(data, 'old', 'samples/JGroups/EULA') == \
-                                 '/Users/sesser/code/nexb/scancode-toolkit/samples/JGroups/EULA'
-
-        assert get_to_dict_original_path(data, 'new', 'samples/zlib/dotzlib/LICENSE_1_0.txt') == \
-                                 'samples/zlib/dotzlib/LICENSE_1_0.txt'
-        assert get_to_dict_original_path(data, 'old', 'samples/zlib/dotzlib/LICENSE_1_0.txt') == \
-                                 '/Users/sesser/code/nexb/scancode-toolkit/samples/zlib/dotzlib/LICENSE_1_0.txt'
-
-    def test_to_dict_original_path_added1(self):
-        test_scan_new = self.get_test_loc('models/scan/new_added1.json')
-        test_scan_old = self.get_test_loc('models/scan/old_added1.json')
-
-        delta = DeltaCode(test_scan_new, test_scan_old)
-        data = delta.to_dict()
-
-        assert get_to_dict_original_path(data, 'new', 'a/a3.py') == \
-                                 'codebase_01_1_file_added/a/a3.py'
-        assert get_to_dict_original_path(data, 'old', 'a/a3.py') == \
-                                 'codebase_01/a/a3.py'
-
-        assert get_to_dict_original_path(data, 'new', 'b/b4.py') == \
-                                 'codebase_01_1_file_added/b/b4.py'
-        assert get_to_dict_original_path(data, 'old', 'b/b4.py') == \
-                                 'codebase_01/b/b4.py'
-
-        assert get_to_dict_original_path(data, 'new', 'a/a2.py') == \
-                                 'codebase_01_1_file_added/a/a2.py'
-        assert get_to_dict_original_path(data, 'old', 'a/a2.py') == \
-                                 'codebase_01/a/a2.py'
-
-    def test_to_dict_original_path_zlib(self):
-        test_scan_new = self.get_test_loc('models/scan/zlib-1.2.11-clip_scan.json')
-        test_scan_old = self.get_test_loc('models/scan/zlib-1.2.9-clip_scan.json')
-
-        delta = DeltaCode(test_scan_new, test_scan_old)
-        data = delta.to_dict()
-
-        assert get_to_dict_original_path(data, 'new', 'contrib/ada/read.adb') == \
-                                 'zlib-1.2.11/contrib/ada/read.adb'
-        assert get_to_dict_original_path(data, 'old', 'contrib/ada/read.adb') == \
-                                 'zlib-1.2.9/contrib/ada/read.adb'
-
-        assert get_to_dict_original_path(data, 'new', 'contrib/masmx86/bld_ml32.bat') == \
-                                 'zlib-1.2.11/contrib/masmx86/bld_ml32.bat'
-        assert get_to_dict_original_path(data, 'old', 'contrib/masmx86/bld_ml32.bat') == \
-                                 'zlib-1.2.9/contrib/masmx86/bld_ml32.bat'
-
-        assert get_to_dict_original_path(data, 'new', 'contrib/masmx64/readme.txt') == \
-                                 'zlib-1.2.11/contrib/masmx64/readme.txt'
-        assert get_to_dict_original_path(data, 'old', 'contrib/masmx64/readme.txt') == \
-                                 'zlib-1.2.9/contrib/masmx64/readme.txt'
-
-    def test_to_dict_original_path_dropbear(self):
-        test_scan_new = self.get_test_loc('models/scan/dropbear-2017.75-clip_scan.json')
-        test_scan_old = self.get_test_loc('models/scan/dropbear-2016.74-clip_scan.json')
-
-        delta = DeltaCode(test_scan_new, test_scan_old)
-        data = delta.to_dict()
-
-        assert get_to_dict_original_path(data, 'new', 'dbutil.h') == \
-                                 'dropbear-2017.75/dbutil.h'
-        assert get_to_dict_original_path(data, 'old', 'dbutil.h') == \
-                                 'dropbear-2016.74/dbutil.h'
-
-        assert get_to_dict_original_path(data, 'new', 'libtomcrypt/src/encauth/gcm/gcm_reset.c') == \
-                                 'dropbear-2017.75/libtomcrypt/src/encauth/gcm/gcm_reset.c'
-        assert get_to_dict_original_path(data, 'old', 'libtomcrypt/src/encauth/gcm/gcm_reset.c') == \
-                                 'dropbear-2016.74/libtomcrypt/src/encauth/gcm/gcm_reset.c'
-
-        assert get_to_dict_original_path(data, 'new', 'install-sh') == \
-                                 'dropbear-2017.75/install-sh'
-        assert get_to_dict_original_path(data, 'old', 'install-sh') == \
-                                 'dropbear-2016.74/install-sh'
-
-    def test_to_dict_original_path_openssl(self):
-        test_scan_new = self.get_test_loc('models/scan/openssl-1.1.0f-clip_scan.json')
-        test_scan_old = self.get_test_loc('models/scan/openssl-1.1.0e-clip_scan.json')
-
-        delta = DeltaCode(test_scan_new, test_scan_old)
-        data = delta.to_dict()
-
-        assert get_to_dict_original_path(data, 'new', 'crypto/ec/ecdh_ossl.c') == \
-                                 'openssl-1.1.0f/crypto/ec/ecdh_ossl.c'
-        assert get_to_dict_original_path(data, 'old', 'crypto/ec/ecdh_ossl.c') == \
-                                 'openssl-1.1.0e/crypto/ec/ecdh_ossl.c'
-
-        assert get_to_dict_original_path(data, 'new', 'test/recipes/80-test_ssl_old.t') == \
-                                 'openssl-1.1.0f/test/recipes/80-test_ssl_old.t'
-        assert get_to_dict_original_path(data, 'old', 'test/recipes/80-test_ssl_old.t') == \
-                                 'openssl-1.1.0e/test/recipes/80-test_ssl_old.t'
-
-        assert get_to_dict_original_path(data, 'new', 'doc/apps/ts.pod') == \
-                                 'openssl-1.1.0f/doc/apps/ts.pod'
-        assert get_to_dict_original_path(data, 'old', 'doc/apps/ts.pod') == \
-                                 'openssl-1.1.0e/doc/apps/ts.pod'
