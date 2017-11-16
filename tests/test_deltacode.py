@@ -185,6 +185,88 @@ class TestDeltacode(FileBasedTesting):
         with pytest.raises(AssertionError):
             result.determine_delta()
     
+    def test_DeltaCode_to_dict_original_path_openssl(self):
+        test_scan_new = self.get_test_loc('deltacode/to-dict-openssl-new.json')
+        test_scan_old = self.get_test_loc('deltacode/to-dict-openssl-old.json')
+
+        deltacode = DeltaCode(test_scan_new, test_scan_old)
+        result = deltacode.to_dict()
+        
+        assert (len(result.get('added')) + len(result.get('removed')) 
+                + len(result.get('modified')) + len(result.get('unmodified'))) == 2459
+
+        assert len(result.get('added')) == 76
+        assert len(result.get('removed')) == 10
+        assert len(result.get('modified')) == 291
+        assert len(result.get('unmodified')) == 2082
+
+    def test_DeltaCode_to_dict_original_path_dropbear(self):
+        test_scan_new = self.get_test_loc('deltacode/to-dict-dropbear-new.json')
+        test_scan_old = self.get_test_loc('deltacode/to-dict-dropbear-old.json')
+
+        delta = DeltaCode(test_scan_new, test_scan_old)
+        data = delta.to_dict()
+
+        deltacode = DeltaCode(test_scan_new, test_scan_old)
+        result = deltacode.to_dict()
+        
+        assert (len(result.get('added')) + len(result.get('removed')) 
+                + len(result.get('modified')) + len(result.get('unmodified'))) == 733
+
+        assert len(result.get('added')) == 0
+        assert len(result.get('removed')) == 0
+        assert len(result.get('modified')) == 17
+        assert len(result.get('unmodified')) == 716 
+
+    def test_DeltaCode_to_dict_original_path_zlib(self):
+        test_scan_new = self.get_test_loc('deltacode/to-dict-zlib-new.json')
+        test_scan_old = self.get_test_loc('deltacode/to-dict-zlib-old.json')
+
+        delta = DeltaCode(test_scan_new, test_scan_old)
+        data = delta.to_dict()
+
+        deltacode = DeltaCode(test_scan_new, test_scan_old)
+        result = deltacode.to_dict()
+        
+        assert (len(result.get('added')) + len(result.get('removed')) 
+                + len(result.get('modified')) + len(result.get('unmodified'))) == 259
+
+        assert len(result.get('added')) == 0
+        assert len(result.get('removed')) == 6
+        assert len(result.get('modified')) == 34
+        assert len(result.get('unmodified')) == 219
+    
+    def test_DeltaCode_to_dict_original_path_added1(self):
+        test_scan_new = self.get_test_loc('deltacode/to-dict-new-added1.json')
+        test_scan_old = self.get_test_loc('deltacode/to-dict-old-added1.json')
+
+        deltacode = DeltaCode(test_scan_new, test_scan_old)
+        result = deltacode.to_dict()
+        
+        assert (len(result.get('added')) + len(result.get('removed')) 
+                + len(result.get('modified')) + len(result.get('unmodified'))) == 9
+
+        assert len(result.get('added')) == 1
+        assert len(result.get('removed')) == 0
+        assert len(result.get('modified')) == 0
+        assert len(result.get('unmodified')) == 8
+    
+    def test_DeltaCode_to_dict_original_path_full_root(self):
+        test_scan_new = self.get_test_loc('deltacode/to-dict-align-trees-simple-new.json')
+        # Our old scan uses --full-root option in scancode
+        test_scan_old = self.get_test_loc('deltacode/to-dict-align-trees-simple-old.json')
+
+        deltacode = DeltaCode(test_scan_new, test_scan_old)
+        result = deltacode.to_dict()
+
+        assert (len(result.get('added')) + len(result.get('removed')) 
+                + len(result.get('modified')) + len(result.get('unmodified'))) == 33
+
+        assert len(result.get('added')) == 0
+        assert len(result.get('removed')) == 0
+        assert len(result.get('modified')) == 0
+        assert len(result.get('unmodified')) == 33
+    
     def test_DeltaCode_to_dict_simple_file_added(self):
         new_scan = self.get_test_loc('deltacode/new_added1.json')
         old_scan = self.get_test_loc('deltacode/old_added1.json')
