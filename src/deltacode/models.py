@@ -150,8 +150,9 @@ class File:
             ('original_path', self.original_path),
         ])
 
-        if self.licenses:
-            d['licenses'] = [l.to_dict() for l in self.licenses]
+        # TODO: disable this for now due to high memory usage
+        #if self.licenses:
+        #    d['licenses'] = [l.to_dict() for l in self.licenses]
 
         return d
 

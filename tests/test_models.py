@@ -469,29 +469,29 @@ class TestModels(FileBasedTesting):
             'size': 20,
             'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
             'original_path': '',
-            'licenses': [
-                {
-                    "key": "apache-2.0",
-                    "score": 80.0,
-                    "short_name": "Apache 2.0",
-                    "category": "Permissive",
-                    "owner": "Apache Software Foundation",
-                    "homepage_url": "http://www.apache.org/licenses/",
-                    "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
-                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
-                    "spdx_license_key": "Apache-2.0",
-                    "spdx_url": "https://spdx.org/licenses/Apache-2.0",
-                    "start_line": 3,
-                    "end_line": 3,
-                    "matched_rule": {
-                        "identifier": "apache-2.0_57.RULE",
-                        "license_choice": False,
-                        "licenses": [
-                            "apache-2.0"
-                        ]
-                    }
-                }
-            ]
+#            'licenses': [
+#                {
+#                    "key": "apache-2.0",
+#                    "score": 80.0,
+#                    "short_name": "Apache 2.0",
+#                    "category": "Permissive",
+#                    "owner": "Apache Software Foundation",
+#                    "homepage_url": "http://www.apache.org/licenses/",
+#                    "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
+#                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
+#                    "spdx_license_key": "Apache-2.0",
+#                    "spdx_url": "https://spdx.org/licenses/Apache-2.0",
+#                    "start_line": 3,
+#                    "end_line": 3,
+#                    "matched_rule": {
+#                        "identifier": "apache-2.0_57.RULE",
+#                        "license_choice": False,
+#                        "licenses": [
+#                            "apache-2.0"
+#                        ]
+#                    }
+#                }
+#            ]
         }
 
         result = models.File(data).to_dict()
