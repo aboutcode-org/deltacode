@@ -171,7 +171,7 @@ class License:
     """
     License object created from the 'license' field in an ABCD formatted 'file' dictionary.
     """
-    def __init__(self, dictionary):
+    def __init__(self, dictionary={}):
         self.key = dictionary.get('key')
         self.score = dictionary.get('score')
         self.short_name = dictionary.get('short_name')

@@ -356,6 +356,41 @@ class TestModels(FileBasedTesting):
         assert result.files == None
         assert result.options == None
 
+    def test_License_object_simple(self):
+        data = {
+            "key": "apache-2.0",
+            "score": 80.0,
+            "short_name": "Apache 2.0",
+            "category": "Permissive",
+            "owner": "Apache Software Foundation",
+            "homepage_url": "http://www.apache.org/licenses/",
+            "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
+            "dejacode_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
+            "spdx_license_key": "Apache-2.0",
+            "spdx_url": "https://spdx.org/licenses/Apache-2.0",
+            "start_line": 3,
+            "end_line": 3,
+            "matched_rule": {
+                "identifier": "apache-2.0_57.RULE",
+                "license_choice": False,
+                "licenses": [
+                    "apache-2.0"
+                ]
+            }
+        }     
+
+        result = models.License(data)
+
+        assert result.key == 'apache-2.0'
+        assert result.score == 80
+        assert result.category == 'Permissive'
+
+    def test_License_object_empty(self):
+        result = models.License()
+
+        for attr, value in vars(result).items():
+            assert value == None
+
     def test_File_to_dict_simple(self):
         data = {
             'path': 'a/b/file1.txt',
