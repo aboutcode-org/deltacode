@@ -141,17 +141,19 @@ class File:
             return [License(l) for l in dictionary.get('licenses')]
 
     def to_dict(self):
-        dict = {}
-        dict['path'] = self.path
-        dict['type'] = self.type
-        dict['name'] = self.name
-        dict['size'] = self.size
-        dict['sha1'] = self.sha1
-        dict['original_path'] = self.original_path
-        if self.licenses:
-            dict['licenses'] = [l.to_dict() for l in self.licenses]
+        d = OrderedDict([
+            ('path', self.path),
+            ('type', self.type),
+            ('name', self.name),
+            ('size', self.size),
+            ('sha1', self.sha1),
+            ('original_path', self.original_path),
+        ])
 
-        return dict
+        if self.licenses:
+            d['licenses'] = [l.to_dict() for l in self.licenses]
+
+        return d
 
     def size_difference(self, other_file):
         """
