@@ -186,3 +186,23 @@ class Delta:
         self.new_file = new_file
         self.old_file = old_file
         self.category = delta_type
+
+    def to_dict(self):
+        if self.new_file == None and self.old_file == None:
+            return
+
+        if self.new_file == None:
+            return OrderedDict([
+                ('new', None),
+                ('old', self.old_file.to_dict()),
+            ])
+        elif self.old_file == None:
+            return OrderedDict([
+                ('new', self.new_file.to_dict()),
+                ('old', None),
+            ])
+        else:
+            return OrderedDict([
+                ('new', self.new_file.to_dict()),
+                ('old', self.old_file.to_dict()),
+            ])

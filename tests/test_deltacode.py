@@ -253,6 +253,143 @@ class TestDeltacode(FileBasedTesting):
 
         assert result.deltas == None
     
+    def test_Delta_to_dict_removed(self):
+        old = models.File({
+            'path': 'path/removed.txt',
+            'type': 'file',
+            'name': 'removed.txt',
+            'size': 20,
+            'sha1': 'a',
+            'original_path': ''
+        })
+        expected = {
+            'new': None,
+            'old': {
+                'path': 'path/removed.txt',
+                'type': 'file',
+                'name': 'removed.txt',
+                'size': 20,
+                'sha1': 'a',
+                'original_path': ''
+            },
+        }
+        
+        delta = deltacode.Delta(None, old, 'removed')
+
+        assert delta.to_dict() == expected
+    
+    def test_Delta_to_dict_added(self):
+        new = models.File({
+            'path': 'path/added.txt',
+            'type': 'file',
+            'name': 'added.txt',
+            'size': 20,
+            'sha1': 'a',
+            'original_path': ''
+        })
+        expected = {
+            'new': {
+                'path': 'path/added.txt',
+                'type': 'file',
+                'name': 'added.txt',
+                'size': 20,
+                'sha1': 'a',
+                'original_path': ''
+            },
+            'old': None
+        }
+        
+        delta = deltacode.Delta(new, None, 'added')
+
+        assert delta.to_dict() == expected
+    
+    def test_Delta_to_dict_modified(self):
+        new = models.File({
+            'path': 'path/modified.txt',
+            'type': 'file',
+            'name': 'modified.txt',
+            'size': 20,
+            'sha1': 'a',
+            'original_path': ''
+        })
+        old = models.File({
+            'path': 'path/modified.txt',
+            'type': 'file',
+            'name': 'modified.txt',
+            'size': 21,
+            'sha1': 'b',
+            'original_path': ''
+        })
+
+        expected = {
+            'new': {
+                'path': 'path/modified.txt',
+                'type': 'file',
+                'name': 'modified.txt',
+                'size': 20,
+                'sha1': 'a',
+                'original_path': ''
+            },
+            'old': {
+                'path': 'path/modified.txt',
+                'type': 'file',
+                'name': 'modified.txt',
+                'size': 21,
+                'sha1': 'b',
+                'original_path': ''
+            }
+        }
+
+        delta = deltacode.Delta(new, old, 'modified')
+
+        assert delta.to_dict() == expected
+
+    def test_Delta_to_dict_unmodified(self):
+        new = models.File({
+            'path': 'path/unmodified.txt',
+            'type': 'file',
+            'name': 'unmodified.txt',
+            'size': 20,
+            'sha1': 'a',
+            'original_path': ''
+        })
+        old = models.File({
+            'path': 'path/unmodified.txt',
+            'type': 'file',
+            'name': 'unmodified.txt',
+            'size': 20,
+            'sha1': 'a',
+            'original_path': ''
+        })
+
+        expected = {
+            'new': {
+                'path': 'path/unmodified.txt',
+                'type': 'file',
+                'name': 'unmodified.txt',
+                'size': 20,
+                'sha1': 'a',
+                'original_path': ''
+            },
+            'old': {
+                'path': 'path/unmodified.txt',
+                'type': 'file',
+                'name': 'unmodified.txt',
+                'size': 20,
+                'sha1': 'a',
+                'original_path': ''
+            }
+        }
+
+        delta = deltacode.Delta(new, old, 'unmodified')
+
+        assert delta.to_dict() == expected
+
+    def test_Delta_to_dict_empty(self):
+        delta = deltacode.Delta()
+
+        assert delta.to_dict() == None
+    
     def test_Delta_create_object_removed(self):
         new = None
         old = models.File({'path': 'path/removed.txt'})
