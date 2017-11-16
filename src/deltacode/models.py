@@ -132,7 +132,7 @@ class File:
         self.licenses = self.get_licenses(dictionary)
 
     def get_licenses(self, dictionary):
-        if not dictionary.get('licenses'):
+        if dictionary.get('licenses') == None:
             return None
 
         if dictionary.get('licenses') == []:

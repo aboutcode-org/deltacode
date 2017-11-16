@@ -391,8 +391,68 @@ class TestModels(FileBasedTesting):
         }
 
         result = empty_file.to_dict()
-
         assert result == expected
+
+    def test_File_create_object_license_one(self):
+        data = {
+            'path': 'a/b/file1.txt',
+            'type': 'file',
+            'name': 'file1.txt',
+            'size': 20,
+            'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'licenses': [
+                {
+                    "key": "apache-2.0",
+                    "score": 80.0,
+                    "short_name": "Apache 2.0",
+                    "category": "Permissive",
+                    "owner": "Apache Software Foundation",
+                    "homepage_url": "http://www.apache.org/licenses/",
+                    "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
+                    "dejacode_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
+                    "spdx_license_key": "Apache-2.0",
+                    "spdx_url": "https://spdx.org/licenses/Apache-2.0",
+                    "start_line": 3,
+                    "end_line": 3,
+                    "matched_rule": {
+                        "identifier": "apache-2.0_57.RULE",
+                        "license_choice": False,
+                        "licenses": [
+                            "apache-2.0"
+                        ]
+                    }
+                }
+            ],
+        }
+
+        result = models.File(data)
+
+        assert 'a/b/file1.txt' == result.path
+        assert 'file' == result.type
+        assert 'file1.txt' == result.name
+        assert 20 == result.size
+        assert '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b' == result.sha1
+        assert len(result.licenses) == 1
+        assert result.licenses[0].key == 'apache-2.0'
+
+    def test_File_create_object_license_none(self):
+        data = {
+            'path': 'a/b/file1.txt',
+            'type': 'file',
+            'name': 'file1.txt',
+            'size': 20,
+            'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'licenses': [],
+        }
+
+        result = models.File(data)
+
+        assert 'a/b/file1.txt' == result.path
+        assert 'file' == result.type
+        assert 'file1.txt' == result.name
+        assert 20 == result.size
+        assert '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b' == result.sha1
+        assert [] == result.licenses
 
     def test_File_create_object(self):
         data = {
