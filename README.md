@@ -41,10 +41,14 @@ Options:
 (deltacode) $ deltacode -n ~/psql-10.0-fileinfo.json -o ~/psql-9.6-fileinfo.json -j ~/psql-10.0-psql-9.6.5-delta.json
 ```
 
+# Problems?
+Open an [issue](https://www.github.com/nexb/deltacode/issues).
+
 ### Notes:
 * `deltacode` also collects statistical information, like # of files and other percentages. Currently, this output is not present in the `csv` output
-* json output will be consumable by other utilities. There will also be a json -> csv converter in the future as well. 
 
 ### Future TODOs/additions:
-* Use `license` information from scan to determine deltas as well (As opposed to strictly fileinfo)
-* Use `copyright` information from scan to determine deltas
+* Use `license` information from scans to identify license changes between two versions of a package or codebase. This would be most important for modified files or packages to determine whether the modifications affected the license.
+* Use `copyright` information from scans to identify changes in copyright holders or dates for attribution.
+* Detect package or file changes that are only a version change for the same package or file.
+* Determine whether some added/removed files or packages are actually cases where the files or packages were moved.

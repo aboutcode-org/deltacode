@@ -36,9 +36,46 @@ def get_license_keys(deltas, age, path):
         return []
 
 
+
 class TestDeltacode(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
+
+    def test_align_and_index_scans(self):
+        new_scan = self.get_test_loc('deltacode/ecos-align-index-new.json')
+        old_scan = self.get_test_loc('deltacode/ecos-align-index-old.json')
+
+        new = models.Scan(new_scan)
+        old = models.Scan(old_scan)
+
+        delta = DeltaCode(None, None)
+        delta.new = new
+        delta.old = old
+
+        delta.align_scan()
+
+        new_index = delta.new.index_files()
+        old_index = delta.old.index_files()
+
+        new_index_length = 0
+        for k,v in new_index.items():
+            new_index_length += len(v)
+
+        old_index_length = 0
+        for k,v in old_index.items():
+            old_index_length += len(v)
+
+        assert delta.new.files_count == new_index_length
+        assert delta.old.files_count == old_index_length
+
+    def test_DeltaCode_ecos_failed_counts_assertion(self):
+        new_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion-new.json')
+        old_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion-old.json')
+
+        result = DeltaCode(new_scan, old_scan)
+
+        assert result.new.files_count == 11408
+        assert result.old.files_count == 8631
 
     def test_DeltaCode_abcm_aligned(self):
         new_scan = self.get_test_loc('deltacode/abcm-aligned-new.json')
