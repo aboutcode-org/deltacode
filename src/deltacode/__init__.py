@@ -128,51 +128,25 @@ class DeltaCode:
         'deltacode_version' field, a 'deltacode_stats' field, a 'deltas_count'
         field, and a 'deltas' field containing a list of our Delta objects.
         """
-        dict = OrderedDict()
-        dict['deltacode_version'] = __version__
-        dict['deltacode_stats'] = self.get_stats()
+        if self.deltas == None:
+            return
 
-        added = len(self.deltas['added'])
-        modified = len(self.deltas['modified'])
-        removed = len(self.deltas['removed'])
-        unmodified = len(self.deltas['unmodified'])
-        dict['deltas_count'] = added + modified + removed + unmodified
+#        dict = OrderedDict()
+#        dict['deltacode_version'] = __version__
+#        dict['deltacode_stats'] = self.get_stats()
+#
+#        added = len(self.deltas['added'])
+#        modified = len(self.deltas['modified'])
+#        removed = len(self.deltas['removed'])
+#        unmodified = len(self.deltas['unmodified'])
+#        dict['deltas_count'] = added + modified + removed + unmodified
 
-        category_dict = OrderedDict()
-        added_list = []
-        modified_list = []
-        removed_list = []
-        unmodified_list = []
-
-        for category in self.deltas:
-            for deltaObject in self.deltas[category]:
-                deltas_dict = {}
-                if deltaObject.new_file is None:
-                    deltas_dict['new'] = deltaObject.new_file
-                else:
-                    deltas_dict['new'] = deltaObject.new_file.to_dict()
-                if deltaObject.old_file is None:
-                    deltas_dict['old'] = deltaObject.old_file
-                else:
-                    deltas_dict['old'] = deltaObject.old_file.to_dict()
-
-                if category == 'added':
-                    added_list.append(deltas_dict)
-                elif category == 'modified':
-                    modified_list.append(deltas_dict)
-                elif category == 'removed':
-                    removed_list.append(deltas_dict)
-                elif category == 'unmodified':
-                    unmodified_list.append(deltas_dict)
-
-            category_dict['added'] = added_list
-            category_dict['modified'] = modified_list
-            category_dict['removed'] = removed_list
-            category_dict['unmodified'] = unmodified_list
-
-        dict['deltas'] = category_dict
-
-        return dict
+        return OrderedDict([
+            ('added', [d.to_dict() for d in self.deltas.get('added')]),
+            ('removed', [d.to_dict() for d in self.deltas.get('removed')]),
+            ('modified', [d.to_dict() for d in self.deltas.get('modified')]),
+            ('unmodified', [d.to_dict() for d in self.deltas.get('unmodified')]),
+        ])
 
 
 class Delta:

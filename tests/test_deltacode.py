@@ -152,32 +152,6 @@ class TestDeltacode(FileBasedTesting):
         assert counts.get('removed') == 0
         assert counts.get('unmodified') == 7
 
-    def test_DeltaCode_json_file_added(self):
-        new_scan = self.get_test_loc('deltacode/new_added1.json')
-        old_scan = self.get_test_loc('deltacode/old_added1.json')
-
-        result = DeltaCode(new_scan, old_scan)
-        loaded_json = result.to_dict()
-
-        assert loaded_json['deltas_count'] == 9
-        assert loaded_json['deltacode_stats']['added'] == 1
-        assert loaded_json['deltacode_stats']['modified'] == 0
-        assert loaded_json['deltacode_stats']['removed'] == 0
-        assert loaded_json['deltacode_stats']['unmodified'] == 8
-
-    def test_DeltaCode_json_file_modified(self):
-        new_scan = self.get_test_loc('deltacode/new_modified1.json')
-        old_scan = self.get_test_loc('deltacode/old_modified1.json')
-
-        result = DeltaCode(new_scan, old_scan)
-        loaded_json = result.to_dict()
-
-        assert loaded_json['deltas_count'] == 8
-        assert loaded_json['deltacode_stats']['added'] == 0
-        assert loaded_json['deltacode_stats']['modified'] == 1
-        assert loaded_json['deltacode_stats']['removed'] == 0
-        assert loaded_json['deltacode_stats']['unmodified'] == 7
-
     def test_DeltaCode_align_scan_zlib_alignment_exception(self):
         new_scan = self.get_test_loc('deltacode/align-scan-zlib-alignment-exception-new.json')
         # Our old scan uses --full-root option in scancode
@@ -210,6 +184,78 @@ class TestDeltacode(FileBasedTesting):
 
         with pytest.raises(AssertionError):
             result.determine_delta()
+    
+    def test_DeltaCode_to_dict_simple_file_added(self):
+        new_scan = self.get_test_loc('deltacode/new_added1.json')
+        old_scan = self.get_test_loc('deltacode/old_added1.json')
+
+        deltacode = DeltaCode(new_scan, old_scan)
+        result = deltacode.to_dict()
+
+        assert (len(result.get('added')) + len(result.get('removed')) 
+                + len(result.get('modified')) + len(result.get('unmodified'))) == 9
+
+        assert len(result.get('added')) == 1
+        assert len(result.get('removed')) == 0
+        assert len(result.get('modified')) == 0
+        assert len(result.get('unmodified')) == 8
+
+    def test_DeltaCode_to_dict_simple_file_modified(self):
+        new_scan = self.get_test_loc('deltacode/new_modified1.json')
+        old_scan = self.get_test_loc('deltacode/old_modified1.json')
+
+        deltacode = DeltaCode(new_scan, old_scan)
+        result = deltacode.to_dict()
+
+        assert (len(result.get('added')) + len(result.get('removed')) 
+                + len(result.get('modified')) + len(result.get('unmodified'))) == 8
+
+        assert len(result.get('added')) == 0
+        assert len(result.get('removed')) == 0
+        assert len(result.get('modified')) == 1
+        assert len(result.get('unmodified')) == 7
+    
+    def test_DeltaCode_to_dict_simple_unmodified(self):
+        test_file = self.get_test_loc('deltacode/to-dict-unmodified.json')
+
+        deltacode = DeltaCode(test_file, test_file)
+
+        expected = OrderedDict([
+            ('added', []),
+            ('removed', []),
+            ('modified', []),
+            ('unmodified',[
+                OrderedDict([
+                    ('new', OrderedDict([
+                        ('path', 'test/unmodified.txt'),
+                        ('type', 'file',), 
+                        ('name', 'unmodified.txt'),
+                        ('size', 11),
+                        ('sha1', '4f499c82f79e5372c293010f931ad2798ddf3e8e'),
+                        ('original_path', 'test/unmodified.txt'),
+                    ])),
+                    ('old', OrderedDict([
+                        ('path', 'test/unmodified.txt'),
+                        ('type', 'file',), 
+                        ('name', 'unmodified.txt'),
+                        ('size', 11),
+                        ('sha1', '4f499c82f79e5372c293010f931ad2798ddf3e8e'),
+                        ('original_path', 'test/unmodified.txt'),
+                    ]))
+                ])
+            ]),
+        ])
+
+        result = deltacode.to_dict()
+        
+        assert result == expected
+
+    def test_DeltaCode_to_dict_empty(self):
+        delta = DeltaCode(None, None)
+
+        result = delta.to_dict()
+
+        assert result == None
 
     def test_DeltaCode_invalid_paths(self):
         test_path_1 = '/some/invalid/path/1.json'
