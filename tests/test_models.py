@@ -356,6 +356,61 @@ class TestModels(FileBasedTesting):
         assert result.files == None
         assert result.options == None
 
+    def test_License_to_dict_simple(self):
+        data = {
+            "key": "apache-2.0",
+            "score": 80.0,
+            "short_name": "Apache 2.0",
+            "category": "Permissive",
+            "owner": "Apache Software Foundation",
+            "homepage_url": "http://www.apache.org/licenses/",
+            "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
+            "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
+            "spdx_license_key": "Apache-2.0",
+            "spdx_url": "https://spdx.org/licenses/Apache-2.0",
+            "start_line": 3,
+            "end_line": 3,
+            "matched_rule": {
+                "identifier": "apache-2.0_57.RULE",
+                "license_choice": False,
+                "licenses": [
+                    "apache-2.0"
+                ]
+            }
+        }     
+
+        expected = {
+            'key': 'apache-2.0',
+            'score': 80.0,
+            'short_name': 'Apache 2.0',
+            'category': 'Permissive',
+            'owner': 'Apache Software Foundation',
+            'homepage_url': 'http://www.apache.org/licenses/',
+            'text_url': 'http://www.apache.org/licenses/LICENSE-2.0',
+            'reference_url': 'https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0',
+            'spdx_license_key': 'Apache-2.0',
+            'spdx_url': 'https://spdx.org/licenses/Apache-2.0',
+            'start_line': 3,
+            'end_line': 3,
+            'matched_rule': {
+                'identifier': 'apache-2.0_57.RULE',
+                'license_choice': False,
+                'licenses': [
+                    'apache-2.0',
+                ]
+            },
+        }
+
+        result = models.License(data).to_dict()
+
+        assert result == expected
+
+    def test_License_to_dict_empty(self):
+        result = models.License().to_dict()
+
+        for k,v in result.items():
+            assert v == None
+
     def test_License_object_simple(self):
         data = {
             "key": "apache-2.0",
@@ -444,7 +499,7 @@ class TestModels(FileBasedTesting):
                     "owner": "Apache Software Foundation",
                     "homepage_url": "http://www.apache.org/licenses/",
                     "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
-                    "dejacode_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
                     "spdx_license_key": "Apache-2.0",
                     "spdx_url": "https://spdx.org/licenses/Apache-2.0",
                     "start_line": 3,

@@ -188,25 +188,26 @@ class License:
 
     def to_dict(self):
         """
-        Given a list of License objects, return an OrderedDict with the full
+        Given a License object, return an OrderedDict with the full
         set of fields from the ScanCode 'license' value.
         """
-        dict = OrderedDict()
-        dict['key'] = self.key
-        dict['score'] = self.score
-        dict['short_name'] = self.short_name
-        dict['category'] = self.category
-        dict['owner'] = self.owner
-        dict['homepage_url'] = self.homepage_url
-        dict['text_url'] = self.text_url
-        dict['reference_url'] = self.reference_url
-        dict['spdx_license_key'] = self.spdx_license_key
-        dict['spdx_url'] = self.spdx_url
-        dict['start_line'] = self.start_line
-        dict['end_line'] = self.end_line
-        dict['matched_rule'] = self.matched_rule
+        d = OrderedDict([
+            ('key', self.key),
+            ('score', self.score),
+            ('short_name', self.short_name),
+            ('category', self.category),
+            ('owner', self.owner),
+            ('homepage_url', self.homepage_url),
+            ('text_url', self.text_url),
+            ('reference_url', self.reference_url),
+            ('spdx_license_key', self.spdx_license_key),
+            ('spdx_url', self.spdx_url),
+            ('start_line', self.start_line),
+            ('end_line', self.end_line),
+            ('matched_rule', self.matched_rule),
+        ])
 
-        return dict
+        return d
 
     def __repr__(self):
         """
