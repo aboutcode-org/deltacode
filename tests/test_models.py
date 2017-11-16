@@ -356,6 +356,44 @@ class TestModels(FileBasedTesting):
         assert result.files == None
         assert result.options == None
 
+    def test_File_to_dict_simple(self):
+        data = {
+            'path': 'a/b/file1.txt',
+            'type': 'file',
+            'name': 'file1.txt',
+            'size': 20,
+            'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+        }
+
+        expected = {
+            'path': 'a/b/file1.txt',
+            'type': 'file',
+            'name': 'file1.txt',
+            'size': 20,
+            'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'original_path': ''
+        }
+
+        result = models.File(data).to_dict()
+
+        assert result == expected
+    
+    def test_File_to_dict_empty(self):
+        empty_file = models.File()
+
+        expected = {
+            'path': None,
+            'type': None,
+            'name': None,
+            'size': None,
+            'sha1': None,
+            'original_path': ''
+        }
+
+        result = empty_file.to_dict()
+
+        assert result == expected
+
     def test_File_create_object(self):
         data = {
             'path': 'a/b/file1.txt',

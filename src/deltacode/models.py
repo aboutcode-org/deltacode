@@ -122,7 +122,7 @@ class File:
     """
     File object created from an ABCD formatted 'file' dictionary.
     """
-    def __init__(self, dictionary):
+    def __init__(self, dictionary={}):
         self.path = dictionary.get('path')
         self.type = dictionary.get('type')
         self.name = dictionary.get('name')
