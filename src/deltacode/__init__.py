@@ -181,7 +181,7 @@ class Delta:
     object -- and the category that characterizes the comparison:
     'added', 'modified', 'removed' or 'unmodified'.
     """
-    def __init__(self, new_file, old_file, delta_type):
+    def __init__(self, new_file=None, old_file=None, delta_type=None):
         # TODO: add check to ensure both are File objects
         self.new_file = new_file
         self.old_file = old_file

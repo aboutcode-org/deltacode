@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2015 nexB Inc. and others. All rights reserved.
+#  Copyright (c) 2017 nexB Inc. and others. All rights reserved.
 #
 from __future__ import absolute_import, print_function
 
@@ -252,3 +252,54 @@ class TestDeltacode(FileBasedTesting):
         assert result.old.files == None
 
         assert result.deltas == None
+    
+    def test_Delta_create_object_removed(self):
+        new = None
+        old = models.File({'path': 'path/removed.txt'})
+
+        delta = deltacode.Delta(new, old, 'removed')
+
+        assert delta.new_file == None
+        assert delta.old_file.path == 'path/removed.txt'
+        assert delta.category == 'removed'
+
+    def test_Delta_create_object_added(self):
+        new = models.File({'path': 'path/added.txt'})
+        old = None
+
+        delta = deltacode.Delta(new, old, 'added')
+
+        assert delta.new_file.path == 'path/added.txt'
+        assert delta.old_file == None
+        assert delta.category == 'added'
+    
+    def test_Delta_create_object_modified(self):
+        new = models.File({'path': 'path/modified.txt', 'sha1': 'a'})
+        old = models.File({'path': 'path/modified.txt', 'sha1': 'b'})
+
+        delta = deltacode.Delta(new, old, 'modified')
+
+        assert delta.new_file.path == 'path/modified.txt'
+        assert delta.new_file.sha1 == 'a'
+        assert delta.old_file.path == 'path/modified.txt'
+        assert delta.old_file.sha1 == 'b'
+        assert delta.category == 'modified'
+    
+    def test_Delta_create_object_unmodified(self):
+        new = models.File({'path': 'path/unmodified.txt', 'sha1': 'a'})
+        old = models.File({'path': 'path/unmodified.txt', 'sha1': 'a'})
+
+        delta = deltacode.Delta(new, old, 'unmodified')
+
+        assert delta.new_file.path == 'path/unmodified.txt'
+        assert delta.new_file.sha1 == 'a'
+        assert delta.old_file.path == 'path/unmodified.txt'
+        assert delta.old_file.sha1 == 'a'
+        assert delta.category == 'unmodified'
+
+    def test_Delta_create_object_empty(self):
+        delta = deltacode.Delta()
+
+        assert delta.new_file == None
+        assert delta.old_file == None
+        assert delta.category == None
