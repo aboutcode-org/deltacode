@@ -90,7 +90,7 @@ class DeltaCode:
         for path, old_files in old_index.items():
             for old_file in old_files:
                 old_files_to_visit -= 1
-                
+
                 if old_file.type != 'file':
                     continue
 
@@ -100,7 +100,7 @@ class DeltaCode:
                 except KeyError:
                     deltas['removed'].append(Delta(None, old_file, 'removed'))
                     continue
-            
+
         # make sure everything is accounted for
         assert new_files_to_visit == 0
         assert old_files_to_visit == 0
@@ -130,7 +130,7 @@ class DeltaCode:
         """
         if self.deltas == None:
             return
-        
+
         return OrderedDict([
             ('added', [d.to_dict() for d in self.deltas.get('added')]),
             ('removed', [d.to_dict() for d in self.deltas.get('removed')]),
@@ -155,18 +155,23 @@ class Delta:
         if self.new_file == None and self.old_file == None:
             return
 
-        if self.new_file == None:
+        if self.category == 'added':
             return OrderedDict([
-                ('new', None),
-                ('old', self.old_file.to_dict()),
+                ('category', 'added'),
+                ('path', self.new_file.path)
             ])
-        elif self.old_file == None:
+        elif self.category == 'removed':
             return OrderedDict([
-                ('new', self.new_file.to_dict()),
-                ('old', None),
+                ('category', 'removed'),
+                ('path', self.old_file.path)
+            ])
+        elif self.category == 'modified':
+            return OrderedDict([
+                ('category', 'modified'),
+                ('path', self.old_file.path)
             ])
         else:
             return OrderedDict([
-                ('new', self.new_file.to_dict()),
-                ('old', self.old_file.to_dict()),
+                ('category', 'unmodified'),
+                ('path', self.old_file.path)
             ])
