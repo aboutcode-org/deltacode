@@ -58,9 +58,8 @@ class TestCLI(FileBasedTesting):
         old_scan = self.get_test_loc('cli/old_added1.json')
 
         delta = DeltaCode(new_scan, old_scan)
-        data = delta.to_dict()
         result_file = self.get_temp_file('.csv')
-        cli.generate_csv(data, result_file)
+        cli.generate_csv(delta, result_file)
         expected_file = self.get_test_loc('cli/added1.csv')
         check_csvs(result_file, expected_file)
 
@@ -69,9 +68,8 @@ class TestCLI(FileBasedTesting):
         old_scan = self.get_test_loc('cli/old_modified1.json')
 
         delta = DeltaCode(new_scan, old_scan)
-        data = delta.to_dict()
         result_file = self.get_temp_file('.csv')
-        cli.generate_csv(data, result_file)
+        cli.generate_csv(delta, result_file)
         expected_file = self.get_test_loc('cli/modified1.csv')
         check_csvs(result_file, expected_file)
 
@@ -80,9 +78,8 @@ class TestCLI(FileBasedTesting):
         old_scan = self.get_test_loc('cli/old_removed1.json')
 
         delta = DeltaCode(new_scan, old_scan)
-        data = delta.to_dict()
         result_file = self.get_temp_file('.csv')
-        cli.generate_csv(data, result_file)
+        cli.generate_csv(delta, result_file)
         expected_file = self.get_test_loc('cli/removed1.csv')
         check_csvs(result_file, expected_file)
 
@@ -91,8 +88,7 @@ class TestCLI(FileBasedTesting):
         old_scan = self.get_test_loc('cli/old_renamed1.json')
 
         delta = DeltaCode(new_scan, old_scan)
-        data = delta.to_dict()
         result_file = self.get_temp_file('.csv')
-        cli.generate_csv(data, result_file)
+        cli.generate_csv(delta, result_file)
         expected_file = self.get_test_loc('cli/renamed1.csv')
         check_csvs(result_file, expected_file)

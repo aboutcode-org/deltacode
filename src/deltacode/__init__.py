@@ -91,7 +91,7 @@ class DeltaCode:
         for path, old_files in old_index.items():
             for old_file in old_files:
                 old_files_to_visit -= 1
-                
+
                 if old_file.type != 'file':
                     continue
 
@@ -101,7 +101,7 @@ class DeltaCode:
                 except KeyError:
                     deltas['removed'].append(Delta(None, old_file, 'removed'))
                     continue
-            
+
         # make sure everything is accounted for
         assert new_files_to_visit == 0
         assert old_files_to_visit == 0
@@ -132,51 +132,15 @@ class DeltaCode:
         'deltacode_version' field, a 'deltacode_stats' field, a 'deltas_count'
         field, and a 'deltas' field containing a list of our Delta objects.
         """
-        dict = OrderedDict()
-        dict['deltacode_version'] = __version__
-        dict['deltacode_stats'] = self.get_stats()
+        if self.deltas == None:
+            return
 
-        added = len(self.deltas['added'])
-        modified = len(self.deltas['modified'])
-        removed = len(self.deltas['removed'])
-        unmodified = len(self.deltas['unmodified'])
-        dict['deltas_count'] = added + modified + removed + unmodified
-
-        category_dict = OrderedDict()
-        added_list = []
-        modified_list = []
-        removed_list = []
-        unmodified_list = []
-
-        for category in self.deltas:
-            for deltaObject in self.deltas[category]:
-                deltas_dict = {}
-                if deltaObject.new_file is None:
-                    deltas_dict['new'] = deltaObject.new_file
-                else:
-                    deltas_dict['new'] = deltaObject.new_file.to_dict()
-                if deltaObject.old_file is None:
-                    deltas_dict['old'] = deltaObject.old_file
-                else:
-                    deltas_dict['old'] = deltaObject.old_file.to_dict()
-
-                if category == 'added':
-                    added_list.append(deltas_dict)
-                elif category == 'modified':
-                    modified_list.append(deltas_dict)
-                elif category == 'removed':
-                    removed_list.append(deltas_dict)
-                elif category == 'unmodified':
-                    unmodified_list.append(deltas_dict)
-
-            category_dict['added'] = added_list
-            category_dict['modified'] = modified_list
-            category_dict['removed'] = removed_list
-            category_dict['unmodified'] = unmodified_list
-
-        dict['deltas'] = category_dict
-
-        return dict
+        return OrderedDict([
+            ('added', [d.to_dict() for d in self.deltas.get('added')]),
+            ('removed', [d.to_dict() for d in self.deltas.get('removed')]),
+            ('modified', [d.to_dict() for d in self.deltas.get('modified')]),
+            ('unmodified', [d.to_dict() for d in self.deltas.get('unmodified')]),
+        ])
 
     def modified_lic_diff(self, modified):
         """
@@ -194,7 +158,7 @@ class Delta:
     object -- and the category that characterizes the comparison:
     'added', 'modified', 'removed' or 'unmodified'.
     """
-    def __init__(self, new_file, old_file, delta_type):
+    def __init__(self, new_file=None, old_file=None, delta_type=None):
         # TODO: add check to ensure both are File objects
         self.new_file = new_file
         self.old_file = old_file
@@ -228,3 +192,28 @@ class Delta:
             return True
         else:
             return False
+
+    def to_dict(self):
+        if self.new_file == None and self.old_file == None:
+            return
+
+        if self.category == 'added':
+            return OrderedDict([
+                ('category', 'added'),
+                ('path', self.new_file.path)
+            ])
+        elif self.category == 'removed':
+            return OrderedDict([
+                ('category', 'removed'),
+                ('path', self.old_file.path)
+            ])
+        elif self.category == 'modified':
+            return OrderedDict([
+                ('category', 'modified'),
+                ('path', self.old_file.path)
+            ])
+        else:
+            return OrderedDict([
+                ('category', 'unmodified'),
+                ('path', self.old_file.path)
+            ])
