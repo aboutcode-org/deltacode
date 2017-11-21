@@ -16,15 +16,13 @@ from deltacode import __version__
 
 def generate_csv(delta, result_file):
     """
-    Using the DeltaCode object and its to_dict() method, create a .csv file
+    Using the DeltaCode object, create a .csv file
     containing the primary information from the Delta objects.
     """
-    output = delta.to_dict()
-
     with open(result_file, 'wb') as out:
         csv_out = csv.writer(out)
         csv_out.writerow(['Type of delta', 'Path'])
-        for row in [(f.get('category'), f.get('path')) for d in output for f in output.get(d)]:
+        for row in [(f.category, f.old_file.path if f.category == 'removed' else f.new_file.path) for d in delta.deltas for f in delta.deltas.get(d)]:
             csv_out.writerow(row)
 
 
