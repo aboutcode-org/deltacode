@@ -1,0 +1,4 @@
+Type of delta,Path
+modified,some/path/c/c1.py
+license change,some/path/a/a1.py
+license change,some/path/b/b1.py

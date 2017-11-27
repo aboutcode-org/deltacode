@@ -50,8 +50,7 @@ class DeltaCode:
             ('added', []),
             ('removed', []),
             ('modified', []),
-            ('unmodified', []),
-            ('license_changes', [])
+            ('unmodified', [])
         ])
 
         # align scan and create our index
@@ -85,7 +84,9 @@ class DeltaCode:
                         deltas['unmodified'].append(Delta(new_file, f, 'unmodified'))
                         continue
                     else:
-                        deltas['modified'].append(Delta(new_file, f, 'modified'))
+                        delta = Delta(new_file, f, 'modified')
+                        delta.license_diff()
+                        deltas['modified'].append(delta)
 
         # now time to find the added.
         for path, old_files in old_index.items():
@@ -106,9 +107,6 @@ class DeltaCode:
         assert new_files_to_visit == 0
         assert old_files_to_visit == 0
 
-        deltas_modified = deltas['modified']
-        deltas['license_changes'] = self.modified_lic_diff(deltas_modified)
-
         return deltas
 
     def get_stats(self):
@@ -128,11 +126,11 @@ class DeltaCode:
 
     def to_dict(self):
         """
-        Given an OrderedDict of Delta objects, return an OrderedDict with a
-        'deltacode_version' field, a 'deltacode_stats' field, a 'deltas_count'
-        field, and a 'deltas' field containing a list of our Delta objects.
+        Given an OrderedDict of Delta objects, return an OrderedDict of Delta
+        objects grouping the objects under the keys 'added', 'removed',
+        'modified' or 'unmodified'.
         """
-        if self.deltas == None:
+        if self.deltas is None:
             return
 
         return OrderedDict([
@@ -141,15 +139,6 @@ class DeltaCode:
             ('modified', [d.to_dict() for d in self.deltas.get('modified')]),
             ('unmodified', [d.to_dict() for d in self.deltas.get('unmodified')]),
         ])
-
-    def modified_lic_diff(self, modified):
-        """
-        Accept a list of 'modified' Delta objects passed by
-        DeltaCode.determine_delta() from the OrderedDict of Delta objects
-        and return a list of Delta objects with license changes
-        that satisfy the test in Delta.license_diff().
-        """
-        return [modified_delta for modified_delta in modified if modified_delta.license_diff()]
 
 
 class Delta:
@@ -167,11 +156,12 @@ class Delta:
     def license_diff(self):
         """
         Compare the license details for a pair of 'new' and 'old' File objects
-        in a Delta object,  return True if those details differ, and otherwise
-        return False.
+        in a Delta object and change the Delta object's 'category' attribute to
+        'license change' if those details differ and the cutoff score test is
+        satisfied.
         """
         if self.new_file is None or self.old_file is None:
-            return False
+            return
 
         cutoff_score = 50
 
@@ -189,12 +179,14 @@ class Delta:
         old_file_keys = list(set(old_file_keys))
 
         if new_file_keys != old_file_keys:
-            return True
-        else:
-            return False
+            self.category = 'license change'
 
     def to_dict(self):
-        if self.new_file == None and self.old_file == None:
+        """
+        Check the 'category' attribute of the Delta object and return an
+        OrderedDict comprising the 'category' and 'path' of the object.
+        """
+        if self.new_file is None and self.old_file is None:
             return
 
         if self.category == 'added':
@@ -210,6 +202,11 @@ class Delta:
         elif self.category == 'modified':
             return OrderedDict([
                 ('category', 'modified'),
+                ('path', self.old_file.path)
+            ])
+        elif self.category == 'license change':
+            return OrderedDict([
+                ('category', 'license change'),
                 ('path', self.old_file.path)
             ])
         else:
