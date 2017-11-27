@@ -16,29 +16,6 @@ from deltacode import DeltaCode
 from deltacode import models
 
 
-def get_license_keys(deltas, age, path):
-    """
-    This helper function constructs a list of license keys from the
-    DeltaCode.deltas OrderedDict passed from DeltaCode.determine_delta() to
-    DeltaCode.modified_lic_diff() in order to add the 'license_changes'
-    key/value pair to the OrderedDict.  See, e.g.,
-    test_DeltaCode_license_modified().
-    """
-    if deltas['modified']:
-        for lic_diff in deltas['modified']:
-            if age == 'new_file' and lic_diff.new_file.path == path and lic_diff.category == 'license change':
-                new_key_list = [license.key for license in lic_diff.new_file.licenses]
-                return sorted(new_key_list)
-            elif age == 'old_file' and lic_diff.old_file.path == path and lic_diff.category == 'license change':
-                old_key_list = [license.key for license in lic_diff.old_file.licenses]
-                return sorted(old_key_list)
-            elif (lic_diff.new_file.path == path or lic_diff.old_file.path == path) and lic_diff.category == 'modified':
-                return []
-    else:
-        return []
-
-
-
 class TestDeltacode(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
@@ -518,14 +495,7 @@ class TestDeltacode(FileBasedTesting):
         deltas = result.deltas
 
         assert len([i for i in deltas.get('modified') if i.category == 'license change']) == 2
-        assert get_license_keys(deltas, 'new_file', 'some/path/a/a1.py') == sorted([u'apache-2.0', u'agpl-2.0', u'bsd-simplified', u'mit'])
-        assert get_license_keys(deltas, 'old_file', 'some/path/a/a1.py') == sorted([u'apache-2.0', u'public-domain', u'bsd-simplified'])
-        assert get_license_keys(deltas, 'new_file', 'some/path/b/b1.py') == sorted([u'apache-2.0', u'gpl-2.0', u'bsd-simplified', u'mit'])
-        assert get_license_keys(deltas, 'old_file', 'some/path/b/b1.py') == sorted([u'mpl-2.0', u'public-domain', u'bsd-simplified'])
-        assert get_license_keys(deltas, 'old_file', 'some/path/b/b1.py') == sorted(['mpl-2.0', 'public-domain', 'bsd-simplified'])
-        assert get_license_keys(deltas, 'old_file', 'some/path/b/b1.py') != sorted([u'public-domain', u'bsd-simplified', u'mpl-4.01'])
-        assert get_license_keys(deltas, 'old_file', 'some/path/b/b1.py') != sorted([u'public-domain', u'bsd-simplified', u'mpl-2.00'])
-        assert get_license_keys(deltas, 'old_file', 'some/path/b/b1.py') == sorted([u'public-domain', u'bsd-simplified', u'mpl-2.0'])
+        assert len([i for i in deltas.get('modified') if i.category == 'modified']) == 1
 
     def test_DeltaCode_no_license_key_value(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
@@ -536,10 +506,7 @@ class TestDeltacode(FileBasedTesting):
         deltas = result.deltas
 
         assert len([i for i in deltas.get('modified') if i.category == 'license change']) == 0
-        assert get_license_keys(deltas, 'new_file', 'some/path/a/a1.py') == sorted([])
-        assert get_license_keys(deltas, 'old_file', 'some/path/a/a1.py') == sorted([])
-        assert get_license_keys(deltas, 'new_file', 'some/path/b/b1.py') == sorted([])
-        assert get_license_keys(deltas, 'old_file', 'some/path/b/b1.py') == sorted([])
+        assert len([i for i in deltas.get('modified') if i.category == 'modified']) == 2
 
     def test_DeltaCode_no_license_changes(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_changes.json')
@@ -550,10 +517,7 @@ class TestDeltacode(FileBasedTesting):
         deltas = result.deltas
 
         assert len([i for i in deltas.get('modified') if i.category == 'license change']) == 0
-        assert get_license_keys(deltas, 'new_file', 'some/path/a/a1.py') == sorted([])
-        assert get_license_keys(deltas, 'old_file', 'some/path/a/a1.py') == sorted([])
-        assert get_license_keys(deltas, 'new_file', 'some/path/b/b1.py') == sorted([])
-        assert get_license_keys(deltas, 'old_file', 'some/path/b/b1.py') == sorted([])
+        assert len([i for i in deltas.get('modified') if i.category == 'modified']) == 2
 
     def test_Delta_to_dict_modified_license_added(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')

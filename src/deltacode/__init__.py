@@ -85,6 +85,8 @@ class DeltaCode:
                         continue
                     else:
                         delta = Delta(new_file, f, 'modified')
+                        # Change the Delta object's 'category' attribute to
+                        # 'license change' if a substantial license change has been detected.
                         delta.license_diff()
                         deltas['modified'].append(delta)
 
@@ -202,15 +204,15 @@ class Delta:
         elif self.category == 'modified':
             return OrderedDict([
                 ('category', 'modified'),
-                ('path', self.old_file.path)
+                ('path', self.new_file.path)
             ])
         elif self.category == 'license change':
             return OrderedDict([
                 ('category', 'license change'),
-                ('path', self.old_file.path)
+                ('path', self.new_file.path)
             ])
         else:
             return OrderedDict([
                 ('category', 'unmodified'),
-                ('path', self.old_file.path)
+                ('path', self.new_file.path)
             ])
