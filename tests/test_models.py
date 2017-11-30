@@ -1,3 +1,28 @@
+#
+# Copyright (c) 2017 nexB Inc. and others. All rights reserved.
+# http://nexb.com and https://github.com/nexB/deltacode/
+# The DeltaCode software is licensed under the Apache License version 2.0.
+# Data generated with DeltaCode require an acknowledgment.
+# DeltaCode is a trademark of nexB Inc.
+#
+# You may not use this software except in compliance with the License.
+# You may obtain a copy of the License at: http://apache.org/licenses/LICENSE-2.0
+# Unless required by applicable law or agreed to in writing, software distributed
+# under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+# CONDITIONS OF ANY KIND, either express or implied. See the License for the
+# specific language governing permissions and limitations under the License.
+#
+# When you publish or redistribute any data created with DeltaCode or any DeltaCode
+# derivative work, you must accompany this data with the following acknowledgment:
+#
+#  Generated with DeltaCode and provided on an "AS IS" BASIS, WITHOUT WARRANTIES
+#  OR CONDITIONS OF ANY KIND, either express or implied. No content created from
+#  DeltaCode should be considered or used as legal advice. Consult an Attorney
+#  for any legal advice.
+#  DeltaCode is a free and open source software analysis tool from nexB Inc. and others.
+#  Visit https://github.com/nexB/deltacode/ for support and download.
+#
+
 from __future__ import absolute_import, print_function, unicode_literals, division
 
 import json
@@ -69,7 +94,7 @@ class TestModels(FileBasedTesting):
 
         result = test_files
 
-        assert len(index.get('3340d86b1da9323067db8022f86dc97cfccee1d0')) == 2 
+        assert len(index.get('3340d86b1da9323067db8022f86dc97cfccee1d0')) == 2
         assert index.get('3340d86b1da9323067db8022f86dc97cfccee1d0') == result
 
     def test_Scan_index_files_key_sha1_multiple_copies(self):
@@ -127,7 +152,7 @@ class TestModels(FileBasedTesting):
 
         index = scan.index_files('path')
         assert len(index.get('openssl-1.1.0f/crypto/rc2')) == 1
-        assert len(index.get('openssl-1.1.0f/crypto/include/internal/x509_int.h')) == 1 
+        assert len(index.get('openssl-1.1.0f/crypto/include/internal/x509_int.h')) == 1
         assert len(index.get('openssl-1.1.0f/crypto/ec/asm/ecp_nistz256-armv4.pl')) == 1
         assert len(index.get('openssl-1.1.0f/test/testreq2.pem')) == 1
 
@@ -185,7 +210,7 @@ class TestModels(FileBasedTesting):
         for each in index.get(None):
             assert each.sha1 == None
 
-        assert len(index.get('71cb8d2a576df3157730d5353eb81f6d6feb328c')) == 1 
+        assert len(index.get('71cb8d2a576df3157730d5353eb81f6d6feb328c')) == 1
         for each in index.get('71cb8d2a576df3157730d5353eb81f6d6feb328c'):
             assert each.sha1 == '71cb8d2a576df3157730d5353eb81f6d6feb328c'
 
@@ -361,7 +386,7 @@ class TestModels(FileBasedTesting):
                     "apache-2.0"
                 ]
             }
-        }     
+        }
 
         expected = {
             'key': 'apache-2.0',
@@ -416,7 +441,7 @@ class TestModels(FileBasedTesting):
                     "apache-2.0"
                 ]
             }
-        }     
+        }
 
         result = models.License(data)
 
@@ -519,7 +544,7 @@ class TestModels(FileBasedTesting):
         result = models.File(data).to_dict()
 
         assert result == expected
-    
+
     def test_File_to_dict_empty(self):
         empty_file = models.File()
 
