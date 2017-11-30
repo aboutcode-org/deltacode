@@ -1,0 +1,47 @@
+{
+    "scancode_notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/nexB/scancode-toolkit/ for support and download.",
+    "scancode_version": "2.1.0",
+    "scancode_options": {
+        "--license": true,
+        "--info": true
+    },
+    "files_count": 2,
+    "files": [
+      {
+        "path": "some/path/a/a1.py",
+        "type": "file",
+        "name": "a1.py",
+        "size": 400,
+        "sha1": "222647771481d39dd3a53f6dc210c26abac37748",
+        "licenses": [
+          {
+            "key": "apache-2.0",
+            "score": 80.0,
+            "short_name": "Apache 2.0",
+            "category": "Permissive"
+          },
+          {
+            "key": "agpl-2.0",
+            "score": 70.0,
+            "short_name": "AGPL 2.0",
+            "category": "Copyleft"
+          }
+        ]
+      },
+      {
+        "path": "some/path/b/b1.py",
+        "type": "file",
+        "name": "b1.py",
+        "size": 350,
+        "sha1": "333647771481d39dd3a53f6dc210c26abac37748",
+        "licenses": [
+          {
+            "key": "mit",
+            "score": 100.0,
+            "short_name": "MIT License",
+            "category": "Permissive"
+          }
+        ]
+      }
+    ]
+  }

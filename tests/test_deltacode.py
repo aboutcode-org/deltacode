@@ -367,6 +367,203 @@ class TestDeltacode(FileBasedTesting):
 
         assert result.deltas == None
 
+    def test_Delta_license_diff_new_no_license_info(self):
+        new_file = models.File({'path': 'new/path.txt'})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 50.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified')
+        result.license_diff()
+
+        assert result.category == 'license change'
+
+    def test_Delta_license_diff_old_no_license_info(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 50.0}]})
+        old_file = models.File({'path': 'old/path.txt'})
+
+        result = deltacode.Delta(new_file, old_file, 'modified')
+        result.license_diff()
+
+        assert result.category == 'license change'
+
+    def test_Delta_license_diff_single_diff_multiple_keys(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'gpl-2.0', 'score': 100.0}, {'key': 'mit', 'score':30.0}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 50.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified')
+        result.license_diff()
+
+        assert result.category == 'license change'
+
+    def test_Delta_license_diff_no_diff_multiple_keys(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 75.0}, {'key': 'mit', 'score': 90.0}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 100.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified')
+        result.license_diff()
+
+        assert result.category == 'modified'
+
+    def test_Delta_license_diff_no_diff_multiple_keys_low_score_new(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 75.0}, {'key': 'mit', 'score': 90.0}, {'key': 'gpl-2.0', 'score': 49.9}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 100.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified')
+        result.license_diff()
+
+        assert result.category == 'modified'
+
+    def test_Delta_license_diff_no_diff_multiple_keys_low_score_old(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 75.0}, {'key': 'mit', 'score': 90.0}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 100.0}, {'key': 'gpl-2.0', 'score': 49.9}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified')
+        result.license_diff()
+
+        assert result.category == 'modified'
+
+    def test_Delta_license_diff_single_diff(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'gpl-2.0', 'score': 70.0}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 80.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified')
+        result.license_diff()
+
+        assert result.category == 'license change'
+
+    def test_Delta_license_diff_no_diff(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 95.0}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 95.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified')
+        result.license_diff()
+
+        assert result.category == 'modified'
+
+    def test_Delta_license_diff_missing_diff_low_score_new(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 45.0}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 95.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified')
+        result.license_diff()
+
+        assert result.category == 'license change'
+
+    def test_Delta_license_diff_missing_diff_low_score_old(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 95.0}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 45.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified')
+        result.license_diff()
+
+        assert result.category == 'license change'
+
+    def test_Delta_license_diff_one_None(self):
+        file_obj = models.File({'path': 'fake/path.txt'})
+
+        first_None = deltacode.Delta(None, file_obj, 'removed')
+        second_None = deltacode.Delta(file_obj, None, 'added')
+
+        first_None.license_diff()
+        second_None.license_diff()
+
+        assert first_None.category == 'removed'
+        assert second_None.category == 'added'
+
+    def test_Delta_license_diff_None_files(self):
+        delta = deltacode.Delta(None, None, None)
+
+        result = delta.license_diff()
+
+        assert result == None
+
+    def test_DeltaCode_license_modified_low_score(self):
+        new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added_low_score.json')
+        old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added_low_score.json')
+
+        result = DeltaCode(new_scan, old_scan)
+
+        deltas = result.deltas
+
+        assert len([i for i in deltas.get('modified') if i.category == 'license change']) == 0
+
+    def test_DeltaCode_license_modified(self):
+        new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')
+        old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added.json')
+
+        result = DeltaCode(new_scan, old_scan)
+
+        deltas = result.deltas
+
+        assert len([i for i in deltas.get('modified') if i.category == 'license change']) == 2
+        assert len([i for i in deltas.get('modified') if i.category == 'modified']) == 1
+
+    def test_DeltaCode_no_license_key_value(self):
+        new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
+        old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_key.json')
+
+        result = DeltaCode(new_scan, old_scan)
+
+        deltas = result.deltas
+
+        assert len([i for i in deltas.get('modified') if i.category == 'license change']) == 0
+        assert len([i for i in deltas.get('modified') if i.category == 'modified']) == 2
+
+    def test_DeltaCode_no_license_changes(self):
+        new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_changes.json')
+        old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_changes.json')
+
+        result = DeltaCode(new_scan, old_scan)
+
+        deltas = result.deltas
+
+        assert len([i for i in deltas.get('modified') if i.category == 'license change']) == 0
+        assert len([i for i in deltas.get('modified') if i.category == 'modified']) == 2
+
+    def test_Delta_to_dict_modified_license_added(self):
+        new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')
+        old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added.json')
+
+        result = DeltaCode(new_scan, old_scan)
+
+        deltas = result.deltas
+
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/a/a1.py'] == ['license change']
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/b/b1.py'] == ['license change']
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/c/c1.py'] == ['modified']
+
+    def test_Delta_to_dict_modified_license_added_low_score(self):
+        new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added_low_score.json')
+        old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added_low_score.json')
+
+        result = DeltaCode(new_scan, old_scan)
+
+        deltas = result.deltas
+
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/a/a1.py'] == ['modified']
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/b/b1.py'] == ['modified']
+
+    def test_Delta_to_dict_modified_no_license_changes(self):
+        new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_changes.json')
+        old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_changes.json')
+
+        result = DeltaCode(new_scan, old_scan)
+
+        deltas = result.deltas
+
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/a/a1.py'] == ['modified']
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/b/b1.py'] == ['modified']
+
+    def test_Delta_to_dict_modified_no_license_key(self):
+        new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
+        old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_key.json')
+
+        result = DeltaCode(new_scan, old_scan)
+
+        deltas = result.deltas
+
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/a/a1.py'] == ['modified']
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/b/b1.py'] == ['modified']
+
     def test_Delta_to_dict_removed(self):
         old = models.File({
             'path': 'path/removed.txt',

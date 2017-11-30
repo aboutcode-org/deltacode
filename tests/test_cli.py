@@ -92,3 +92,23 @@ class TestCLI(FileBasedTesting):
         cli.generate_csv(delta, result_file)
         expected_file = self.get_test_loc('cli/renamed1.csv')
         check_csvs(result_file, expected_file)
+
+    def test_generate_csv_modified_new_license_added(self):
+        new_scan = self.get_test_loc('cli/scan_modified_new_license_added.json')
+        old_scan = self.get_test_loc('cli/scan_modified_old_license_added.json')
+
+        delta = DeltaCode(new_scan, old_scan)
+        result_file = self.get_temp_file('.csv')
+        cli.generate_csv(delta, result_file)
+        expected_file = self.get_test_loc('cli/modified_new_license_added.csv')
+        check_csvs(result_file, expected_file)
+
+    def test_generate_csv_modified_new_license_added_low_score(self):
+        new_scan = self.get_test_loc('cli/scan_modified_new_license_added_low_score.json')
+        old_scan = self.get_test_loc('cli/scan_modified_old_license_added_low_score.json')
+
+        delta = DeltaCode(new_scan, old_scan)
+        result_file = self.get_temp_file('.csv')
+        cli.generate_csv(delta, result_file)
+        expected_file = self.get_test_loc('cli/modified_new_license_added_low_score.csv')
+        check_csvs(result_file, expected_file)

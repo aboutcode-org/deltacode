@@ -84,7 +84,11 @@ class DeltaCode:
                         deltas['unmodified'].append(Delta(new_file, f, 'unmodified'))
                         continue
                     else:
-                        deltas['modified'].append(Delta(new_file, f, 'modified'))
+                        delta = Delta(new_file, f, 'modified')
+                        # Change the Delta object's 'category' attribute to
+                        # 'license change' if a substantial license change has been detected.
+                        delta.license_diff()
+                        deltas['modified'].append(delta)
 
         # now time to find the added.
         for path, old_files in old_index.items():
@@ -124,11 +128,11 @@ class DeltaCode:
 
     def to_dict(self):
         """
-        Given an OrderedDict of Delta objects, return an OrderedDict with a
-        'deltacode_version' field, a 'deltacode_stats' field, a 'deltas_count'
-        field, and a 'deltas' field containing a list of our Delta objects.
+        Given an OrderedDict of Delta objects, return an OrderedDict of Delta
+        objects grouping the objects under the keys 'added', 'removed',
+        'modified' or 'unmodified'.
         """
-        if self.deltas == None:
+        if self.deltas is None:
             return
 
         return OrderedDict([
@@ -151,8 +155,40 @@ class Delta:
         self.old_file = old_file
         self.category = delta_type
 
+    def license_diff(self):
+        """
+        Compare the license details for a pair of 'new' and 'old' File objects
+        in a Delta object and change the Delta object's 'category' attribute to
+        'license change' if those details differ and the cutoff score test is
+        satisfied.
+        """
+        if self.new_file is None or self.old_file is None:
+            return
+
+        cutoff_score = 50
+
+        if self.new_file.licenses:
+            new_keys = [l.key for l in self.new_file.licenses if l.score >= cutoff_score]
+        else:
+            new_keys = []
+
+        if self.old_file.licenses:
+            old_keys = [l.key for l in self.old_file.licenses if l.score >= cutoff_score]
+        else:
+            old_keys = []
+
+        new_keys = list(set(new_keys))
+        old_keys = list(set(old_keys))
+
+        if new_keys != old_keys:
+            self.category = 'license change'
+
     def to_dict(self):
-        if self.new_file == None and self.old_file == None:
+        """
+        Check the 'category' attribute of the Delta object and return an
+        OrderedDict comprising the 'category' and 'path' of the object.
+        """
+        if self.new_file is None and self.old_file is None:
             return
 
         if self.category == 'added':
@@ -168,10 +204,15 @@ class Delta:
         elif self.category == 'modified':
             return OrderedDict([
                 ('category', 'modified'),
-                ('path', self.old_file.path)
+                ('path', self.new_file.path)
+            ])
+        elif self.category == 'license change':
+            return OrderedDict([
+                ('category', 'license change'),
+                ('path', self.new_file.path)
             ])
         else:
             return OrderedDict([
                 ('category', 'unmodified'),
-                ('path', self.old_file.path)
+                ('path', self.new_file.path)
             ])
