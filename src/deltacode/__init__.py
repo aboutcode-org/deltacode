@@ -168,19 +168,19 @@ class Delta:
         cutoff_score = 50
 
         if self.new_file.licenses:
-            new_file_keys = [l.key for l in self.new_file.licenses if l.score >= cutoff_score]
+            new_keys = [l.key for l in self.new_file.licenses if l.score >= cutoff_score]
         else:
-            new_file_keys = []
+            new_keys = []
 
         if self.old_file.licenses:
-            old_file_keys = [l.key for l in self.old_file.licenses if l.score >= cutoff_score]
+            old_keys = [l.key for l in self.old_file.licenses if l.score >= cutoff_score]
         else:
-            old_file_keys = []
+            old_keys = []
 
-        new_file_keys = list(set(new_file_keys))
-        old_file_keys = list(set(old_file_keys))
+        new_keys = list(set(new_keys))
+        old_keys = list(set(old_keys))
 
-        if new_file_keys != old_file_keys:
+        if new_keys != old_keys:
             self.category = 'license change'
 
     def to_dict(self):
