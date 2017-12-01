@@ -102,14 +102,12 @@ class DeltaCode:
                 # we need to determine wheather this is identical,
                 # or a modification.
                 for f in delta_old_files:
+                    # TODO: make sure sha1 is NOT empty
                     if new_file.sha1 == f.sha1:
                         deltas['unmodified'].append(Delta(new_file, f, 'unmodified'))
                         continue
                     else:
                         delta = Delta(new_file, f, 'modified')
-                        # Change the Delta object's 'category' attribute to
-                        # 'license change' if a substantial license change has been detected.
-                        delta.license_diff()
                         deltas['modified'].append(delta)
 
         # now time to find the added.
@@ -176,31 +174,27 @@ class Delta:
         self.new_file = new_file
         self.old_file = old_file
         self.category = delta_type
+        
+        # Change the Delta object's 'category' attribute to
+        # 'license change' if a substantial license change has been detected.
+        if self.category == 'modified': 
+            self._license_diff()
 
-    def license_diff(self):
+    def _license_diff(self, cutoff_score=50):
         """
         Compare the license details for a pair of 'new' and 'old' File objects
         in a Delta object and change the Delta object's 'category' attribute to
         'license change' if those details differ and the cutoff score test is
         satisfied.
         """
-        if self.new_file is None or self.old_file is None:
+        if not self.new_file or not self.old_file:
             return
 
-        cutoff_score = 50
+        new_licenses = self.new_file.licenses or []
+        new_keys = set(l.key for l in new_licenses if l.score >= cutoff_score)
 
-        if self.new_file.licenses:
-            new_keys = [l.key for l in self.new_file.licenses if l.score >= cutoff_score]
-        else:
-            new_keys = []
-
-        if self.old_file.licenses:
-            old_keys = [l.key for l in self.old_file.licenses if l.score >= cutoff_score]
-        else:
-            old_keys = []
-
-        new_keys = list(set(new_keys))
-        old_keys = list(set(old_keys))
+        old_licenses = self.old_file.licenses or []
+        old_keys = set(l.key for l in old_licenses if l.score >= cutoff_score)
 
         if new_keys != old_keys:
             self.category = 'license change'
