@@ -33,7 +33,7 @@ from deltacode import utils
 __version__ = '0.0.1.beta'
 
 
-class DeltaCode:
+class DeltaCode(object):
     """
     Handles the basic operations on a pair of incoming ScanCode scans (in JSON
     format) and the Delta objects created from a comparison of the files (in
@@ -163,7 +163,7 @@ class DeltaCode:
         ])
 
 
-class Delta:
+class Delta(object):
     """
     A tuple reflecting a comparison of two files -- each of which is a File
     object -- and the category that characterizes the comparison:
@@ -174,10 +174,10 @@ class Delta:
         self.new_file = new_file
         self.old_file = old_file
         self.category = delta_type
-        
+
         # Change the Delta object's 'category' attribute to
         # 'license change' if a substantial license change has been detected.
-        if self.category == 'modified': 
+        if self.category == 'modified':
             self._license_diff()
 
     def _license_diff(self, cutoff_score=50):
