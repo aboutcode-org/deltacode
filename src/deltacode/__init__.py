@@ -27,6 +27,7 @@ from __future__ import absolute_import
 
 from collections import OrderedDict
 
+from deltacode.models import File
 from deltacode.models import Scan
 from deltacode import utils
 
@@ -171,8 +172,8 @@ class Delta(object):
     """
     def __init__(self, new_file=None, old_file=None, delta_type=None):
         # TODO: add check to ensure both are File objects
-        self.new_file = new_file
-        self.old_file = old_file
+        self.new_file = new_file if new_file else File()
+        self.old_file = old_file if old_file else File()
         self.category = delta_type
 
         # Change the Delta object's 'category' attribute to
@@ -187,9 +188,6 @@ class Delta(object):
         'license change' if those details differ and the cutoff score test is
         satisfied.
         """
-        if not self.new_file or not self.old_file:
-            return
-
         new_licenses = self.new_file.licenses or []
         new_keys = set(l.key for l in new_licenses if l.score >= cutoff_score)
 
@@ -204,9 +202,6 @@ class Delta(object):
         Check the 'category' attribute of the Delta object and return an
         OrderedDict comprising the 'category' and 'path' of the object.
         """
-        if self.new_file is None and self.old_file is None:
-            return
-
         if self.category == 'added':
             return OrderedDict([
                 ('category', 'added'),

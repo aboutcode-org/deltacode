@@ -493,8 +493,8 @@ class TestDeltacode(FileBasedTesting):
     def test_Delta_license_diff_None_files(self):
         delta = deltacode.Delta(None, None, None)
 
-        assert delta.new_file == None
-        assert delta.old_file == None
+        assert type(delta.new_file) == type(models.File())
+        assert type(delta.old_file) == type(models.File())
         assert delta.category == None
 
     def test_DeltaCode_license_modified_low_score(self):
@@ -678,7 +678,7 @@ class TestDeltacode(FileBasedTesting):
     def test_Delta_to_dict_empty(self):
         delta = deltacode.Delta()
 
-        assert delta.to_dict() == None
+        assert delta.to_dict() == OrderedDict([('category', 'unmodified'), ('path', None)])
 
     def test_Delta_create_object_removed(self):
         new = None
@@ -686,7 +686,7 @@ class TestDeltacode(FileBasedTesting):
 
         delta = deltacode.Delta(new, old, 'removed')
 
-        assert delta.new_file == None
+        assert type(delta.new_file) == type(models.File())
         assert delta.old_file.path == 'path/removed.txt'
         assert delta.category == 'removed'
 
@@ -697,7 +697,7 @@ class TestDeltacode(FileBasedTesting):
         delta = deltacode.Delta(new, old, 'added')
 
         assert delta.new_file.path == 'path/added.txt'
-        assert delta.old_file == None
+        assert type(delta.old_file) == type(models.File())
         assert delta.category == 'added'
 
     def test_Delta_create_object_modified(self):
@@ -727,6 +727,6 @@ class TestDeltacode(FileBasedTesting):
     def test_Delta_create_object_empty(self):
         delta = deltacode.Delta()
 
-        assert delta.new_file == None
-        assert delta.old_file == None
+        assert type(delta.new_file) == type(models.File())
+        assert type(delta.old_file) == type(models.File())
         assert delta.category == None
