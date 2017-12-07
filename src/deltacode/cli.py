@@ -71,11 +71,11 @@ def generate_json(delta, result_file):
 @click.option('-j', '--json-file', prompt=False, type=click.Path(exists=False), help='Identify the path to the .json output file')
 def cli(new, old, csv_file, json_file):
     """
-    This script identifies the changes that need to be made to the 'old'
+    Identify the changes that need to be made to the 'old'
     scan file (-o or -old) in order to generate the 'new' scan file (-n or
-    -new).  The results are written to a .csv file (-c or -csv-file) or a
+    -new).  Write the results to a .csv file (-c or -csv-file) or a
     .json file (-j or -json-file) at a user-designated location.  If no file
-    option is selected, the JSON results are printed to the console.
+    option is selected, print the JSON results to the console.
     """
     # do the delta
     delta = DeltaCode(new, old)
