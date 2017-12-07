@@ -345,7 +345,7 @@ class TestDeltacode(FileBasedTesting):
 
         result = delta.to_dict()
 
-        assert result == None
+        assert result == OrderedDict([('added', []), ('removed', []), ('modified', []), ('unmodified', [])])
 
     def test_DeltaCode_invalid_paths(self):
         test_path_1 = '/some/invalid/path/1.json'
@@ -353,41 +353,40 @@ class TestDeltacode(FileBasedTesting):
 
         result = DeltaCode(test_path_1, test_path_2)
 
-        assert result.new.path == '/some/invalid/path/1.json'
-        assert result.new.files_count == None
-        assert result.new.files == None
+        assert result.new.path == ''
+        assert result.new.files_count == 0
+        assert result.new.files == []
 
-        assert result.old.path == '/some/invalid/path/2.json'
-        assert result.new.files_count == None
-        assert result.old.files == None
+        assert result.old.path == ''
+        assert result.old.files_count == 0
+        assert result.old.files == []
 
-        assert result.deltas == None
+        assert result.deltas == OrderedDict([('added', []), ('removed', []), ('modified', []), ('unmodified', [])])
 
     def test_DeltaCode_empty_paths(self):
         result = DeltaCode('', '')
 
         assert result.new.path == ''
-        assert result.new.files_count == None
-        assert result.new.files == None
+        assert result.new.files_count == 0
+        assert result.new.files == []
 
         assert result.old.path == ''
-        assert result.new.files_count == None
-        assert result.old.files == None
+        assert result.old.files_count == 0
+        assert result.old.files == []
 
-        assert result.deltas == None
+        assert result.deltas == OrderedDict([('added', []), ('removed', []), ('modified', []), ('unmodified', [])])
 
     def test_DeltaCode_None_paths(self):
         result = DeltaCode(None, None)
 
         assert result.new.path == ''
-        assert result.new.files_count == None
-        assert result.new.files == None
+        assert result.new.files_count == 0
+        assert result.new.files == []
 
         assert result.old.path == ''
-        assert result.new.files_count == None
-        assert result.old.files == None
-
-        assert result.deltas == None
+        assert result.old.files_count == 0
+        assert result.old.files == []
+        assert result.deltas == OrderedDict([('added', []), ('removed', []), ('modified', []), ('unmodified', [])])
 
     def test_Delta_license_diff_new_no_license_info(self):
         new_file = models.File({'path': 'new/path.txt'})
@@ -495,7 +494,7 @@ class TestDeltacode(FileBasedTesting):
 
         assert type(delta.new_file) == type(models.File())
         assert type(delta.old_file) == type(models.File())
-        assert delta.category == None
+        assert delta.category == ''
 
     def test_DeltaCode_license_modified_low_score(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added_low_score.json')
@@ -678,7 +677,7 @@ class TestDeltacode(FileBasedTesting):
     def test_Delta_to_dict_empty(self):
         delta = deltacode.Delta()
 
-        assert delta.to_dict() == OrderedDict([('category', 'unmodified'), ('path', None)])
+        assert delta.to_dict() == OrderedDict([('category', 'unmodified'), ('path', '')])
 
     def test_Delta_create_object_removed(self):
         new = None
@@ -729,4 +728,4 @@ class TestDeltacode(FileBasedTesting):
 
         assert type(delta.new_file) == type(models.File())
         assert type(delta.old_file) == type(models.File())
-        assert delta.category == None
+        assert delta.category == ''

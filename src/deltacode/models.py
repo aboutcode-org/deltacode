@@ -38,10 +38,19 @@ class Scan(object):
     selected key.
     """
     def __init__(self, path=''):
-        self.path = '' if path is None else path
-        self.files_count = self.get_files_count(self.path)
-        self.files = self.load_files(self.path)
-        self.options = self.get_options(self.path)
+        if path is None:
+            path = ''
+
+        if not self.is_valid_scan(path):
+            self.path = ''
+            self.files_count = 0
+            self.files = []
+            self.options = {}
+        else:
+            self.path = path
+            self.files_count = self.get_files_count(path)
+            self.files = self.load_files(path)
+            self.options = self.get_options(path)
 
     def get_options(self, path):
         """
@@ -145,18 +154,15 @@ class File(object):
     File object created from an ABCD formatted 'file' dictionary.
     """
     def __init__(self, dictionary={}):
-        self.path = dictionary.get('path')
-        self.type = dictionary.get('type')
-        self.name = dictionary.get('name')
-        self.size = dictionary.get('size')
-        self.sha1 = dictionary.get('sha1')
+        self.path = dictionary.get('path', '')
+        self.type = dictionary.get('type', '')
+        self.name = dictionary.get('name', '')
+        self.size = dictionary.get('size', '')
+        self.sha1 = dictionary.get('sha1', '')
         self.original_path = ''
-        self.licenses = self.get_licenses(dictionary)
+        self.licenses = self.get_licenses(dictionary) if dictionary.get('licenses') else []
 
     def get_licenses(self, dictionary):
-        if dictionary.get('licenses') == None:
-            return None
-
         if dictionary.get('licenses') == []:
             return []
         else:
@@ -173,7 +179,7 @@ class File(object):
         ])
 
         # TODO: disable this for now due to high memory usage
-        #if self.licenses:
+        # if self.licenses:
         #    d['licenses'] = [l.to_dict() for l in self.licenses]
 
         return d

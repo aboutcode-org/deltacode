@@ -344,26 +344,26 @@ class TestModels(FileBasedTesting):
 
         result = models.Scan(test_path)
 
-        assert result.path == '/some/invalid/path.json'
-        assert result.files_count == None
-        assert result.files == None
-        assert result.options == None
+        assert result.path == ''
+        assert result.files_count == 0
+        assert result.files == []
+        assert result.options == {}
 
     def test_Scan_empty_path(self):
         result = models.Scan('')
 
         assert result.path == ''
-        assert result.files_count == None
-        assert result.files == None
-        assert result.options == None
+        assert result.files_count == 0
+        assert result.files == []
+        assert result.options == {}
 
     def test_Scan_None_path(self):
         result = models.Scan(None)
 
         assert result.path == ''
-        assert result.files_count == None
-        assert result.files == None
-        assert result.options == None
+        assert result.files_count == 0
+        assert result.files == []
+        assert result.options == {}
 
     def test_License_to_dict_simple(self):
         data = {
@@ -549,11 +549,11 @@ class TestModels(FileBasedTesting):
         empty_file = models.File()
 
         expected = {
-            'path': None,
-            'type': None,
-            'name': None,
-            'size': None,
-            'sha1': None,
+            'path': '',
+            'type': '',
+            'name': '',
+            'size': '',
+            'sha1': '',
             'original_path': ''
         }
 
@@ -620,6 +620,29 @@ class TestModels(FileBasedTesting):
         assert 20 == result.size
         assert '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b' == result.sha1
         assert [] == result.licenses
+
+    def test_File_create_object_license_missing(self):
+        data = {
+            'path': 'a/b/file1.txt',
+            'type': 'file',
+            'name': 'file1.txt',
+            'size': 20,
+            'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+        }
+
+        result = models.File(data)
+
+        assert [] == result.licenses
+
+    def test_File_empty(self):
+        empty_file = models.File()
+
+        assert empty_file.path == ''
+        assert empty_file.type == ''
+        assert empty_file.name == ''
+        assert empty_file.size == ''
+        assert empty_file.sha1 == ''
+        assert empty_file.licenses == []
 
     def test_File_create_object(self):
         data = {

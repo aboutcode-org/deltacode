@@ -43,7 +43,15 @@ class DeltaCode(object):
     def __init__(self, new_path, old_path):
         self.new = Scan(new_path)
         self.old = Scan(old_path)
-        self.deltas = self.determine_delta()
+        self.deltas = OrderedDict([
+            ('added', []),
+            ('removed', []),
+            ('modified', []),
+            ('unmodified', [])
+        ])
+
+        if self.new.path != '' and self.old.path != '':
+            self.determine_delta()
 
     def align_scan(self):
         """
@@ -66,16 +74,6 @@ class DeltaCode(object):
         the objects under the keys 'added', 'modified', 'removed' or 'unmodified'.
         Returns None if no File objects can be loaded from either scan.
         """
-        if self.new.files is None or self.old.files is None:
-            return None
-
-        deltas = OrderedDict([
-            ('added', []),
-            ('removed', []),
-            ('modified', []),
-            ('unmodified', [])
-        ])
-
         # align scan and create our index
         self.align_scan()
         new_index = self.new.index_files()
@@ -96,7 +94,7 @@ class DeltaCode(object):
                 try:
                     delta_old_files = old_index[path]
                 except KeyError:
-                    deltas['added'].append(Delta(new_file, None, 'added'))
+                    self.deltas['added'].append(Delta(new_file, None, 'added'))
                     continue
 
                 # at this point, we have a delta_old_file.
@@ -105,11 +103,11 @@ class DeltaCode(object):
                 for f in delta_old_files:
                     # TODO: make sure sha1 is NOT empty
                     if new_file.sha1 == f.sha1:
-                        deltas['unmodified'].append(Delta(new_file, f, 'unmodified'))
+                        self.deltas['unmodified'].append(Delta(new_file, f, 'unmodified'))
                         continue
                     else:
                         delta = Delta(new_file, f, 'modified')
-                        deltas['modified'].append(delta)
+                        self.deltas['modified'].append(delta)
 
         # now time to find the added.
         for path, old_files in old_index.items():
@@ -123,14 +121,12 @@ class DeltaCode(object):
                     # This file already classified as 'modified' or 'unmodified' so do nothing
                     new_index[path]
                 except KeyError:
-                    deltas['removed'].append(Delta(None, old_file, 'removed'))
+                    self.deltas['removed'].append(Delta(None, old_file, 'removed'))
                     continue
 
         # make sure everything is accounted for
         assert new_files_to_visit == 0
         assert old_files_to_visit == 0
-
-        return deltas
 
     def get_stats(self):
         """
@@ -153,9 +149,6 @@ class DeltaCode(object):
         objects grouping the objects under the keys 'added', 'removed',
         'modified' or 'unmodified'.
         """
-        if self.deltas is None:
-            return
-
         return OrderedDict([
             ('added', [d.to_dict() for d in self.deltas.get('added')]),
             ('removed', [d.to_dict() for d in self.deltas.get('removed')]),
@@ -174,7 +167,7 @@ class Delta(object):
         # TODO: add check to ensure both are File objects
         self.new_file = new_file if new_file else File()
         self.old_file = old_file if old_file else File()
-        self.category = delta_type
+        self.category = delta_type if delta_type else ''
 
         # Change the Delta object's 'category' attribute to
         # 'license change' if a substantial license change has been detected.
