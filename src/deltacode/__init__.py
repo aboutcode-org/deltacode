@@ -36,7 +36,7 @@ __version__ = '0.0.1.beta'
 
 class DeltaCode(object):
     """
-    Handles the basic operations on a pair of incoming ScanCode scans (in JSON
+    Handle the basic operations on a pair of incoming ScanCode scans (in JSON
     format) and the Delta objects created from a comparison of the files (in
     the form of File objects) contained in those scans.
     """
@@ -55,9 +55,9 @@ class DeltaCode(object):
 
     def align_scan(self):
         """
-        Seeks to align the paths of a pair of files (File objects) in the pair
+        Seek to align the paths of a pair of files (File objects) in the pair
         of incoming scans so that the attributes and other characteristics of
-        the files can be compared with one another.  Calls utils.fix_trees(),
+        the files can be compared with one another.  Call utils.fix_trees(),
         which calls utils.align_trees().
         """
         try:
@@ -72,7 +72,7 @@ class DeltaCode(object):
         """
         Given new and old scans, return an OrderedDict of Delta objects grouping
         the objects under the keys 'added', 'modified', 'removed' or 'unmodified'.
-        Returns None if no File objects can be loaded from either scan.
+        Return None if no File objects can be loaded from either scan.
         """
         # align scan and create our index
         self.align_scan()

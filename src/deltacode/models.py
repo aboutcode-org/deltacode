@@ -32,7 +32,7 @@ import json
 
 class Scan(object):
     """
-    Processes the files contained in an incoming ScanCode scan to test whether
+    Process the files contained in an incoming ScanCode scan to test whether
     they are valid, retrieve the scan's 'files_count' value, create a list of
     File objects, and generate a dictionary of File objects indexed by a
     selected key.
