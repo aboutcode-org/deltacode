@@ -164,7 +164,6 @@ class Delta(object):
     'added', 'modified', 'removed' or 'unmodified'.
     """
     def __init__(self, new_file=None, old_file=None, delta_type=None):
-        # TODO: add check to ensure both are File objects
         self.new_file = new_file if new_file else File()
         self.old_file = old_file if old_file else File()
         self.category = delta_type if delta_type else ''
