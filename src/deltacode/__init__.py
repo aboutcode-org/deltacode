@@ -125,8 +125,8 @@ class DeltaCode(object):
                     continue
 
         # make sure everything is accounted for
-        assert new_files_visited == self.new.files_count
-        assert old_files_visited == self.old.files_count
+        assert new_files_visited == self.new.files_count, "Number of visited files({})) does not match total_files({}) in the new scan".format(new_files_visited, self.new.files_count)
+        assert old_files_visited == self.old.files_count, "Number of visited files({})) does not match total_files({}) in the old scan".format(old_files_visited, self.old.files_count)
 
     def get_stats(self):
         """
