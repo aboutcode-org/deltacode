@@ -80,13 +80,13 @@ class DeltaCode(object):
         old_index = self.old.index_files()
 
         # gathering counts to ensure no files lost or missing from our 'deltas' set
-        new_files_to_visit = self.new.files_count
-        old_files_to_visit = self.old.files_count
+        new_files_visited = 0
+        old_files_visited = 0
 
         # perform the deltas
         for path, new_files in new_index.items():
             for new_file in new_files:
-                new_files_to_visit -= 1
+                new_files_visited += 1
 
                 if new_file.type != 'file':
                     continue
@@ -112,7 +112,7 @@ class DeltaCode(object):
         # now time to find the added.
         for path, old_files in old_index.items():
             for old_file in old_files:
-                old_files_to_visit -= 1
+                old_files_visited += 1
 
                 if old_file.type != 'file':
                     continue
@@ -125,8 +125,8 @@ class DeltaCode(object):
                     continue
 
         # make sure everything is accounted for
-        assert new_files_to_visit == 0
-        assert old_files_to_visit == 0
+        assert new_files_visited == self.new.files_count, "Number of visited files({})) does not match total_files({}) in the new scan".format(new_files_visited, self.new.files_count)
+        assert old_files_visited == self.old.files_count, "Number of visited files({})) does not match total_files({}) in the old scan".format(old_files_visited, self.old.files_count)
 
     def get_stats(self):
         """
