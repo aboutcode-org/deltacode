@@ -78,7 +78,7 @@ def cli(new, old, csv_file, json_file):
     option is selected, print the JSON results to the console.
     """
     # do the delta
-    delta = DeltaCode(new, old).determine_delta()
+    delta = DeltaCode(new, old)
 
     # output to csv
     if csv_file:
