@@ -331,7 +331,10 @@ class TestDeltacode(FileBasedTesting):
             ('unmodified', [
                 OrderedDict([
                     ('category', 'unmodified'),
-                    ('path', u'test/unmodified.txt')
+                    ('path', u'test/unmodified.txt'),
+                    ('name', u'unmodified.txt'),
+                    ('type', u'file'),
+                    ('size', 11)
                 ])
             ])
         ])
@@ -593,9 +596,13 @@ class TestDeltacode(FileBasedTesting):
             'sha1': 'a',
             'original_path': ''
         })
+
         expected = {
             'category': 'removed',
-            'path': 'path/removed.txt'
+            'path': 'path/removed.txt',
+            'name': 'removed.txt',
+            'type': 'file',
+            'size': 20
         }
 
         delta = deltacode.Delta(None, old, 'removed')
@@ -611,9 +618,13 @@ class TestDeltacode(FileBasedTesting):
             'sha1': 'a',
             'original_path': ''
         })
+
         expected = {
             'category': 'added',
-            'path': 'path/added.txt'
+            'path': 'path/added.txt',
+            'name': 'added.txt',
+            'type': 'file',
+            'size': 20
         }
 
         delta = deltacode.Delta(new, None, 'added')
@@ -640,7 +651,10 @@ class TestDeltacode(FileBasedTesting):
 
         expected = {
             'category': 'modified',
-            'path': 'path/modified.txt'
+            'path': 'path/modified.txt',
+            'name': 'modified.txt',
+            'type': 'file',
+            'size': 20
         }
 
         delta = deltacode.Delta(new, old, 'modified')
@@ -667,7 +681,10 @@ class TestDeltacode(FileBasedTesting):
 
         expected = {
             'category': 'unmodified',
-            'path': 'path/unmodified.txt'
+            'path': 'path/unmodified.txt',
+            'name': 'unmodified.txt',
+            'type': 'file',
+            'size': 20
         }
 
         delta = deltacode.Delta(new, old, 'unmodified')
@@ -677,7 +694,74 @@ class TestDeltacode(FileBasedTesting):
     def test_Delta_to_dict_empty(self):
         delta = deltacode.Delta()
 
-        assert delta.to_dict() == OrderedDict([('category', 'unmodified'), ('path', '')])
+        assert delta.to_dict() == OrderedDict([('category', 'unmodified'), ('path', ''), ('name', ''), ('type', ''), ('size', '')])
+
+    def test_Delta_to_dict_license_modified(self):
+        new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')
+        old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added.json')
+
+        result = DeltaCode(new_scan, old_scan)
+
+        expected = OrderedDict([
+            ('added', []),
+            ('removed', []),
+            ('modified', [
+                OrderedDict([
+                    ('category', 'modified'),
+                    ('path', u'some/path/c/c1.py'),
+                    ('name', u'c1.py'),
+                    ('type', u'file'),
+                    ('size', 300)
+                ]),
+                OrderedDict([
+                    ('category', 'license change'),
+                    ('path', u'some/path/a/a1.py'),
+                    ('name', u'a1.py'),
+                    ('type', u'file'),
+                    ('size', 300)
+                ]),
+                OrderedDict([
+                    ('category', 'license change'),
+                    ('path', u'some/path/b/b1.py'),
+                    ('name', u'b1.py'),
+                    ('type', u'file'),
+                    ('size', 300)
+                ])
+            ]),
+            ('unmodified', [])
+        ])
+
+        assert result.to_dict() == expected
+
+    def test_Delta_to_dict_no_license_key_value(self):
+        new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
+        old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_key.json')
+
+        result = DeltaCode(new_scan, old_scan)
+
+        expected = OrderedDict([
+            ('added', []),
+            ('removed', []),
+            ('modified', [
+                OrderedDict([
+                    ('category', 'modified'),
+                    ('path', u'some/path/a/a1.py'),
+                    ('name', u'a1.py'),
+                    ('type', u'file'),
+                    ('size', 250)
+                ]),
+                OrderedDict([
+                    ('category', 'modified'),
+                    ('path', u'some/path/b/b1.py'),
+                    ('name', u'b1.py'),
+                    ('type', u'file'),
+                    ('size', 310)
+                ])
+            ]),
+            ('unmodified', [])
+        ])
+
+        assert result.to_dict() == expected
 
     def test_Delta_create_object_removed(self):
         new = None

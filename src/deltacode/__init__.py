@@ -197,25 +197,40 @@ class Delta(object):
         if self.category == 'added':
             return OrderedDict([
                 ('category', 'added'),
-                ('path', self.new_file.path)
+                ('path', self.new_file.path),
+                ('name', self.new_file.name),
+                ('type', self.new_file.type),
+                ('size', self.new_file.size)
             ])
         elif self.category == 'removed':
             return OrderedDict([
                 ('category', 'removed'),
-                ('path', self.old_file.path)
+                ('path', self.old_file.path),
+                ('name', self.old_file.name),
+                ('type', self.old_file.type),
+                ('size', self.old_file.size)
             ])
         elif self.category == 'modified':
             return OrderedDict([
                 ('category', 'modified'),
-                ('path', self.new_file.path)
+                ('path', self.new_file.path),
+                ('name', self.new_file.name),
+                ('type', self.new_file.type),
+                ('size', self.new_file.size)
             ])
         elif self.category == 'license change':
             return OrderedDict([
                 ('category', 'license change'),
-                ('path', self.new_file.path)
+                ('path', self.new_file.path),
+                ('name', self.new_file.name),
+                ('type', self.new_file.type),
+                ('size', self.new_file.size)
             ])
         else:
             return OrderedDict([
                 ('category', 'unmodified'),
-                ('path', self.new_file.path)
+                ('path', self.new_file.path),
+                ('name', self.new_file.name),
+                ('type', self.new_file.type),
+                ('size', self.new_file.size)
             ])
