@@ -182,12 +182,16 @@ class Delta(object):
         there has been a license change and depending on the nature of that change.
         """
         new_licenses = self.new_file.licenses or []
-        new_keys = set(l.key for l in new_licenses if l.score >= cutoff_score)
-        new_keys_all = set(l.key for l in new_licenses)
-
         old_licenses = self.old_file.licenses or []
+
+        if len(new_licenses) != len(old_licenses):
+            if len(new_licenses) == 0:
+                self.category = 'license info removed'
+            elif len(old_licenses) == 0:
+                self.category = 'license info added'
+
+        new_keys = set(l.key for l in new_licenses if l.score >= cutoff_score)
         old_keys = set(l.key for l in old_licenses if l.score >= cutoff_score)
-        old_keys_all = set(l.key for l in old_licenses)
 
         if new_keys != old_keys:
             if len(new_keys) == 0:
@@ -196,12 +200,6 @@ class Delta(object):
                 self.category = 'license info added'
             else:
                 self.category = 'license change'
-
-        if new_keys_all != old_keys_all:
-            if len(new_keys_all) == 0:
-                self.category = 'license info removed'
-            elif len(old_keys_all) == 0:
-                self.category = 'license info added'
 
     def to_dict(self):
         """
