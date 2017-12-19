@@ -181,12 +181,12 @@ class Delta(object):
         'license info removed', 'license info added' or 'license change' if
         there has been a license change and depending on the nature of that change.
         """
-        new_licenses = self.new_file.licenses
-        old_licenses = self.old_file.licenses
+        new_licenses = self.new_file.licenses or []
+        old_licenses = self.old_file.licenses or []
 
-        if new_licenses and not old_licenses:
+        if self.new_file.licenses and not self.old_file.licenses:
             self.category = 'license info added'
-        if not new_licenses and old_licenses:
+        if not self.new_file.licenses and self.old_file.licenses:
             self.category = 'license info removed'
 
         new_keys = set(l.key for l in new_licenses if l.score >= cutoff_score)
