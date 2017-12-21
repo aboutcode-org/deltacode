@@ -38,7 +38,8 @@ from deltacode import __version__
 from deltacode.utils import deltas
 
 
-def generate_csv(delta, result_file):
+# FIXME: update the function argument delta to deltacode
+def write_csv(delta, result_file):
     """
     Using the DeltaCode object, create a .csv file
     containing the primary information from the Delta objects.
@@ -91,7 +92,7 @@ def cli(new, old, csv_file, json_file):
 
     # output to csv
     if csv_file:
-        generate_csv(deltacode, csv_file)
+        write_csv(deltacode, csv_file)
     # generate JSON output
     else:
         write_json(deltacode, json_file)

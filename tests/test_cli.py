@@ -75,62 +75,62 @@ class TestCLI(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
 
-    def test_generate_csv_added(self):
+    def test_write_csv_added(self):
         new_scan = self.get_test_loc('cli/new_added1.json')
         old_scan = self.get_test_loc('cli/old_added1.json')
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.generate_csv(delta, result_file)
+        cli.write_csv(delta, result_file)
         expected_file = self.get_test_loc('cli/added1.csv')
         check_csvs(result_file, expected_file)
 
-    def test_generate_csv_modified(self):
+    def test_write_csv_modified(self):
         new_scan = self.get_test_loc('cli/new_modified1.json')
         old_scan = self.get_test_loc('cli/old_modified1.json')
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.generate_csv(delta, result_file)
+        cli.write_csv(delta, result_file)
         expected_file = self.get_test_loc('cli/modified1.csv')
         check_csvs(result_file, expected_file)
 
-    def test_generate_csv_removed(self):
+    def test_write_csv_removed(self):
         new_scan = self.get_test_loc('cli/new_removed1.json')
         old_scan = self.get_test_loc('cli/old_removed1.json')
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.generate_csv(delta, result_file)
+        cli.write_csv(delta, result_file)
         expected_file = self.get_test_loc('cli/removed1.csv')
         check_csvs(result_file, expected_file)
 
-    def test_generate_csv_renamed(self):
+    def test_write_csv_renamed(self):
         new_scan = self.get_test_loc('cli/new_renamed1.json')
         old_scan = self.get_test_loc('cli/old_renamed1.json')
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.generate_csv(delta, result_file)
+        cli.write_csv(delta, result_file)
         expected_file = self.get_test_loc('cli/renamed1.csv')
         check_csvs(result_file, expected_file)
 
-    def test_generate_csv_modified_new_license_added(self):
+    def test_write_csv_modified_new_license_added(self):
         new_scan = self.get_test_loc('cli/scan_modified_new_license_added.json')
         old_scan = self.get_test_loc('cli/scan_modified_old_license_added.json')
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.generate_csv(delta, result_file)
+        cli.write_csv(delta, result_file)
         expected_file = self.get_test_loc('cli/modified_new_license_added.csv')
         check_csvs(result_file, expected_file)
 
-    def test_generate_csv_modified_new_license_added_low_score(self):
+    def test_write_csv_modified_new_license_added_low_score(self):
         new_scan = self.get_test_loc('cli/scan_modified_new_license_added_low_score.json')
         old_scan = self.get_test_loc('cli/scan_modified_old_license_added_low_score.json')
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.generate_csv(delta, result_file)
+        cli.write_csv(delta, result_file)
         expected_file = self.get_test_loc('cli/modified_new_license_added_low_score.csv')
         check_csvs(result_file, expected_file)
