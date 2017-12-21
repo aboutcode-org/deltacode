@@ -168,8 +168,9 @@ class Delta(object):
         self.old_file = old_file if old_file else File()
         self.category = delta_type if delta_type else ''
 
-        # Change the Delta object's 'category' attribute to
-        # 'license change' if a substantial license change has been detected.
+        # If a license change is detected, and depending on the nature of that change,
+        # change the Delta object's 'category' attribute from 'modified' to
+        # 'license change', 'license info removed' or 'license info added'.
         if self.category == 'modified':
             self._license_diff()
 
@@ -177,13 +178,21 @@ class Delta(object):
         """
         Compare the license details for a pair of 'new' and 'old' File objects
         in a Delta object and change the Delta object's 'category' attribute to
-        'license change' if those details differ and the cutoff score test is
-        satisfied.
+        'license info removed', 'license info added' or 'license change' if
+        there has been a license change and depending on the nature of that change.
         """
         new_licenses = self.new_file.licenses or []
-        new_keys = set(l.key for l in new_licenses if l.score >= cutoff_score)
-
         old_licenses = self.old_file.licenses or []
+
+        if len(self.new_file.licenses) > 0 and self.old_file.licenses == []:
+            self.category = 'license info added'
+            return
+
+        if self.new_file.licenses == [] and len(self.old_file.licenses) > 0:
+            self.category = 'license info removed'
+            return
+
+        new_keys = set(l.key for l in new_licenses if l.score >= cutoff_score)
         old_keys = set(l.key for l in old_licenses if l.score >= cutoff_score)
 
         if new_keys != old_keys:
@@ -221,6 +230,22 @@ class Delta(object):
         elif self.category == 'license change':
             return OrderedDict([
                 ('category', 'license change'),
+                ('path', self.new_file.path),
+                ('name', self.new_file.name),
+                ('type', self.new_file.type),
+                ('size', self.new_file.size)
+            ])
+        elif self.category == 'license info added':
+            return OrderedDict([
+                ('category', 'license info added'),
+                ('path', self.new_file.path),
+                ('name', self.new_file.name),
+                ('type', self.new_file.type),
+                ('size', self.new_file.size)
+            ])
+        elif self.category == 'license info removed':
+            return OrderedDict([
+                ('category', 'license info removed'),
                 ('path', self.new_file.path),
                 ('name', self.new_file.name),
                 ('type', self.new_file.type),

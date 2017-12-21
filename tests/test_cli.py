@@ -134,3 +134,43 @@ class TestCLI(FileBasedTesting):
         cli.generate_csv(delta, result_file)
         expected_file = self.get_test_loc('cli/modified_new_license_added_low_score.csv')
         check_csvs(result_file, expected_file)
+
+    def test_generate_csv_license_info_removed(self):
+        new_scan = self.get_test_loc('cli/scan_new_license_info_removed.json')
+        old_scan = self.get_test_loc('cli/scan_old_license_info_removed.json')
+
+        delta = DeltaCode(new_scan, old_scan)
+        result_file = self.get_temp_file('.csv')
+        cli.generate_csv(delta, result_file)
+        expected_file = self.get_test_loc('cli/license_info_removed.csv')
+        check_csvs(result_file, expected_file)
+
+    def test_generate_csv_license_info_added(self):
+        new_scan = self.get_test_loc('cli/scan_new_license_info_added.json')
+        old_scan = self.get_test_loc('cli/scan_old_license_info_added.json')
+
+        delta = DeltaCode(new_scan, old_scan)
+        result_file = self.get_temp_file('.csv')
+        cli.generate_csv(delta, result_file)
+        expected_file = self.get_test_loc('cli/license_info_added.csv')
+        check_csvs(result_file, expected_file)
+
+    def test_generate_csv_license_info_removed_below_cutoff_score(self):
+        new_scan = self.get_test_loc('cli/scan_new_license_info_removed_below_cutoff_score.json')
+        old_scan = self.get_test_loc('cli/scan_old_license_info_removed_below_cutoff_score.json')
+
+        delta = DeltaCode(new_scan, old_scan)
+        result_file = self.get_temp_file('.csv')
+        cli.generate_csv(delta, result_file)
+        expected_file = self.get_test_loc('cli/license_info_removed_below_cutoff_score.csv')
+        check_csvs(result_file, expected_file)
+
+    def test_generate_csv_license_info_added_below_cutoff_score(self):
+        new_scan = self.get_test_loc('cli/scan_new_license_info_added_below_cutoff_score.json')
+        old_scan = self.get_test_loc('cli/scan_old_license_info_added_below_cutoff_score.json')
+
+        delta = DeltaCode(new_scan, old_scan)
+        result_file = self.get_temp_file('.csv')
+        cli.generate_csv(delta, result_file)
+        expected_file = self.get_test_loc('cli/license_info_added_below_cutoff_score.csv')
+        check_csvs(result_file, expected_file)
