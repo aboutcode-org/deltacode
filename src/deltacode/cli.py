@@ -31,9 +31,11 @@ import csv
 import json
 
 import click
+import simplejson
 
 from deltacode import DeltaCode
 from deltacode import __version__
+from deltacode.utils import deltas
 
 
 def generate_csv(delta, result_file):
@@ -54,19 +56,20 @@ def generate_csv(delta, result_file):
                     csv_out.writerow(row)
 
 
-def generate_json(delta, result_file):
+def write_json(deltacode, outfile):
     """
     Using the DeltaCode object, create a .json file
     containing the primary information from the Delta objects.
     """
-    output = OrderedDict([
+    results = OrderedDict([
         ('deltacode_version', __version__),
-        ('deltacode_stats', delta.get_stats()),
-        ('deltas', delta.to_dict())
+        ('deltacode_stats', deltacode.get_stats()),
+        ('deltas', deltas(deltacode)),
     ])
 
-    with open(result_file, 'w') as outfile:
-        json.dump(output, outfile, indent=4)
+    # TODO: add toggle for pretty printing
+    simplejson.dump(results, outfile, iterable_as_array=True, indent=2)
+    outfile.write('\n')
 
 
 @click.command()
@@ -74,7 +77,7 @@ def generate_json(delta, result_file):
 @click.option('-n', '--new', required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Identify the path to the "new" scan file')
 @click.option('-o', '--old', required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Identify the path to the "old" scan file')
 @click.option('-c', '--csv-file', prompt=False, type=click.Path(exists=False), help='Identify the path to the .csv output file')
-@click.option('-j', '--json-file', prompt=False, type=click.Path(exists=False), help='Identify the path to the .json output file')
+@click.option('-j', '--json-file', prompt=False, default='-', type=click.File(mode='wb', lazy=False), help='Identify the path to the .json output file')
 def cli(new, old, csv_file, json_file):
     """
     Identify the changes that need to be made to the 'old'
@@ -84,14 +87,11 @@ def cli(new, old, csv_file, json_file):
     option is selected, print the JSON results to the console.
     """
     # do the delta
-    delta = DeltaCode(new, old)
+    deltacode = DeltaCode(new, old)
 
     # output to csv
     if csv_file:
-        generate_csv(delta, csv_file)
+        generate_csv(deltacode, csv_file)
     # generate JSON output
-    elif json_file:
-        generate_json(delta, json_file)
-    # print to stdout
     else:
-        print(json.dumps(delta.to_dict()))
+        write_json(deltacode, json_file)
