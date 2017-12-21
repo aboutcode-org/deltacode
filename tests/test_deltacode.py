@@ -414,7 +414,6 @@ class TestDeltacode(FileBasedTesting):
         old_file = models.File({'path': 'old/path.txt'})
 
         result = deltacode.Delta(new_file, old_file, 'modified')
-        #result.license_diff()
 
         assert result.category == 'license info added'
         assert result.to_dict().get('category') == 'license info added'
@@ -424,7 +423,6 @@ class TestDeltacode(FileBasedTesting):
         old_file = models.File({'path': 'old/path.txt'})
 
         result = deltacode.Delta(new_file, old_file, 'modified')
-        #result.license_diff()
 
         assert result.category == 'license info added'
         assert result.to_dict().get('category') == 'license info added'
@@ -434,7 +432,6 @@ class TestDeltacode(FileBasedTesting):
         old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 50.0}]})
 
         result = deltacode.Delta(new_file, old_file, 'modified')
-        #result.license_diff()
 
         assert result.category == 'license change'
 
@@ -443,7 +440,6 @@ class TestDeltacode(FileBasedTesting):
         old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 100.0}]})
 
         result = deltacode.Delta(new_file, old_file, 'modified')
-        #result.license_diff()
 
         assert result.category == 'modified'
 
@@ -452,7 +448,6 @@ class TestDeltacode(FileBasedTesting):
         old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 100.0}]})
 
         result = deltacode.Delta(new_file, old_file, 'modified')
-        #result.license_diff()
 
         assert result.category == 'modified'
 
@@ -461,7 +456,6 @@ class TestDeltacode(FileBasedTesting):
         old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 100.0}, {'key': 'gpl-2.0', 'score': 49.9}]})
 
         result = deltacode.Delta(new_file, old_file, 'modified')
-        #result.license_diff()
 
         assert result.category == 'modified'
 
@@ -470,7 +464,6 @@ class TestDeltacode(FileBasedTesting):
         old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 80.0}]})
 
         result = deltacode.Delta(new_file, old_file, 'modified')
-        #result.license_diff()
 
         assert result.category == 'license change'
 
@@ -479,7 +472,6 @@ class TestDeltacode(FileBasedTesting):
         old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 95.0}]})
 
         result = deltacode.Delta(new_file, old_file, 'modified')
-        #result.license_diff()
 
         assert result.category == 'modified'
 
@@ -488,27 +480,22 @@ class TestDeltacode(FileBasedTesting):
         old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 95.0}]})
 
         result = deltacode.Delta(new_file, old_file, 'modified')
-        #result.license_diff()
 
-        assert result.category == 'license info removed'
+        assert result.category == 'license change'
 
     def test_Delta_license_diff_missing_diff_low_score_old(self):
         new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 95.0}]})
         old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 45.0}]})
 
         result = deltacode.Delta(new_file, old_file, 'modified')
-        #result.license_diff()
 
-        assert result.category == 'license info added'
+        assert result.category == 'license change'
 
     def test_Delta_license_diff_one_None(self):
         file_obj = models.File({'path': 'fake/path.txt'})
 
         first_None = deltacode.Delta(None, file_obj, 'removed')
         second_None = deltacode.Delta(file_obj, None, 'added')
-
-        #first_None.license_diff()
-        #second_None.license_diff()
 
         assert first_None.category == 'removed'
         assert second_None.category == 'added'

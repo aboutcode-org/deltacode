@@ -184,21 +184,19 @@ class Delta(object):
         new_licenses = self.new_file.licenses or []
         old_licenses = self.old_file.licenses or []
 
-        if self.new_file.licenses and not self.old_file.licenses:
+        if len(self.new_file.licenses) > 0 and self.old_file.licenses == []:
             self.category = 'license info added'
-        if not self.new_file.licenses and self.old_file.licenses:
+            return
+
+        if self.new_file.licenses == [] and len(self.old_file.licenses) > 0:
             self.category = 'license info removed'
+            return
 
         new_keys = set(l.key for l in new_licenses if l.score >= cutoff_score)
         old_keys = set(l.key for l in old_licenses if l.score >= cutoff_score)
 
         if new_keys != old_keys:
-            if len(new_keys) == 0:
-                self.category = 'license info removed'
-            elif len(old_keys) == 0:
-                self.category = 'license info added'
-            else:
-                self.category = 'license change'
+            self.category = 'license change'
 
     def to_dict(self):
         """
