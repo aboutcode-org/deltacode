@@ -31,6 +31,15 @@ from collections import defaultdict
 from commoncode import paths
 
 
+def deltas(deltacode):
+    """
+    Return a generator of Delta dictionaries for JSON serialized ouput.
+    """
+    for category, deltas in deltacode.deltas.iteritems():
+        for delta in deltas:
+            yield delta.to_dict()
+
+
 class AlignmentException(Exception):
     """
     Named exception for alignment errors.
