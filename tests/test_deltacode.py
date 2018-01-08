@@ -174,6 +174,45 @@ class TestDeltacode(FileBasedTesting):
         assert counts.get('removed') == 0
         assert counts.get('unmodified') == 7
 
+    def test_DeltaCode_1_file_moved(self):
+        new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
+        old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
+
+        result = DeltaCode(new_scan, old_scan)
+        counts = result.get_stats()
+
+        assert counts.get('added') == 0
+        assert counts.get('modified') == 0
+        assert counts.get('moved') == 2
+        assert counts.get('removed') == 0
+        assert counts.get('unmodified') == 7
+
+    def test_DeltaCode_1_file_moved_and_1_copy(self):
+        new_scan = self.get_test_loc('deltacode/scan_1_file_moved_and_1_copy_new.json')
+        old_scan = self.get_test_loc('deltacode/scan_1_file_moved_and_1_copy_old.json')
+
+        result = DeltaCode(new_scan, old_scan)
+        counts = result.get_stats()
+
+        assert counts.get('added') == 1
+        assert counts.get('modified') == 0
+        assert counts.get('moved') == 2
+        assert counts.get('removed') == 0
+        assert counts.get('unmodified') == 7
+
+    def test_DeltaCode_1_file_moved_and_added(self):
+        new_scan = self.get_test_loc('deltacode/scan_1_file_moved_and_added_new.json')
+        old_scan = self.get_test_loc('deltacode/scan_1_file_moved_and_added_old.json')
+
+        result = DeltaCode(new_scan, old_scan)
+        counts = result.get_stats()
+
+        assert counts.get('added') == 0
+        assert counts.get('modified') == 0
+        assert counts.get('moved') == 3
+        assert counts.get('removed') == 0
+        assert counts.get('unmodified') == 7
+
     def test_DeltaCode_align_scan_zlib_alignment_exception(self):
         new_scan = self.get_test_loc('deltacode/align-scan-zlib-alignment-exception-new.json')
         # Our old scan uses --full-root option in scancode
@@ -327,6 +366,7 @@ class TestDeltacode(FileBasedTesting):
         expected = OrderedDict([
             ('added', []),
             ('removed', []),
+            ('moved', []),
             ('modified', []),
             ('unmodified', [
                 OrderedDict([
@@ -348,7 +388,7 @@ class TestDeltacode(FileBasedTesting):
 
         result = delta.to_dict()
 
-        assert result == OrderedDict([('added', []), ('removed', []), ('modified', []), ('unmodified', [])])
+        assert result == OrderedDict([('added', []), ('removed', []), ('moved', []), ('modified', []), ('unmodified', [])])
 
     def test_DeltaCode_invalid_paths(self):
         test_path_1 = '/some/invalid/path/1.json'
@@ -364,7 +404,7 @@ class TestDeltacode(FileBasedTesting):
         assert result.old.files_count == 0
         assert result.old.files == []
 
-        assert result.deltas == OrderedDict([('added', []), ('removed', []), ('modified', []), ('unmodified', [])])
+        assert result.deltas == OrderedDict([('added', []), ('removed', []), ('moved', []), ('modified', []), ('unmodified', [])])
 
     def test_DeltaCode_empty_paths(self):
         result = DeltaCode('', '')
@@ -377,7 +417,7 @@ class TestDeltacode(FileBasedTesting):
         assert result.old.files_count == 0
         assert result.old.files == []
 
-        assert result.deltas == OrderedDict([('added', []), ('removed', []), ('modified', []), ('unmodified', [])])
+        assert result.deltas == OrderedDict([('added', []), ('removed', []), ('moved', []), ('modified', []), ('unmodified', [])])
 
     def test_DeltaCode_None_paths(self):
         result = DeltaCode(None, None)
@@ -389,7 +429,7 @@ class TestDeltacode(FileBasedTesting):
         assert result.old.path == ''
         assert result.old.files_count == 0
         assert result.old.files == []
-        assert result.deltas == OrderedDict([('added', []), ('removed', []), ('modified', []), ('unmodified', [])])
+        assert result.deltas == OrderedDict([('added', []), ('removed', []), ('moved', []), ('modified', []), ('unmodified', [])])
 
     def test_Delta_license_diff_new_no_license_info(self):
         new_file = models.File({'path': 'new/path.txt'})
@@ -713,6 +753,7 @@ class TestDeltacode(FileBasedTesting):
         expected = OrderedDict([
             ('added', []),
             ('removed', []),
+            ('moved', []),
             ('modified', [
                 OrderedDict([
                     ('category', 'modified'),
@@ -750,6 +791,7 @@ class TestDeltacode(FileBasedTesting):
         expected = OrderedDict([
             ('added', []),
             ('removed', []),
+            ('moved', []),
             ('modified', [
                 OrderedDict([
                     ('category', 'modified'),

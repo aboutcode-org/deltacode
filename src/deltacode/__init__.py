@@ -46,12 +46,14 @@ class DeltaCode(object):
         self.deltas = OrderedDict([
             ('added', []),
             ('removed', []),
+            ('moved', []),
             ('modified', []),
             ('unmodified', [])
         ])
 
         if self.new.path != '' and self.old.path != '':
             self.determine_delta()
+            self.determine_moved()
 
     def align_scan(self):
         """
@@ -128,30 +130,68 @@ class DeltaCode(object):
         assert new_files_visited == self.new.files_count, "Number of visited files({})) does not match total_files({}) in the new scan".format(new_files_visited, self.new.files_count)
         assert old_files_visited == self.old.files_count, "Number of visited files({})) does not match total_files({}) in the old scan".format(old_files_visited, self.old.files_count)
 
+    def determine_moved(self):
+        """
+        Modify the OrderedDict of Delta objects by comparing the 'sha1', 'name'
+        and 'size' attributes of the 'removed' and 'added' files.  Using a
+        dictionary of 'removed' files keyed by their 'sha1' attribute, iterate
+        through the 'added' category and populate a list ('matchList') with a
+        collection of dictionaries representing the 'added' files that match
+        the files in the 'removed' dictionary.  Next, use that list of matched
+        'added' files to iterate through (1) the 'added' category and (2) the
+        'removed' category to add the matching files in each category to the
+        'moved' category and remove them from the 'added' or 'removed'
+        categories, respectively.
+        """
+        list_old_removed_files = [i.old_file for i in self.deltas['removed']]
+
+        old_removed_index = utils.index_delta_files(list_old_removed_files, 'sha1')
+
+        matchList = []
+
+        for i in self.deltas['added']:
+            if old_removed_index.get(i.new_file.sha1):
+                for file in old_removed_index.get(i.new_file.sha1):
+                    if file.name == i.new_file.name and file.size == i.new_file.size and i.new_file.sha1 not in matchList:
+                        matchList.append({'sha1': i.new_file.sha1, 'name': i.new_file.name, 'size': i.new_file.size})
+
+        for match in matchList:
+            # Use a copy to avoid problems with the '.remove' method:
+            for delta in self.deltas['added'][:]:
+                if match['sha1'] == delta.new_file.sha1 and match['name'] == delta.new_file.name and match['size'] == delta.new_file.size:
+                    self.deltas['moved'].append(Delta(delta.new_file, None, 'moved'))
+                    self.deltas['added'].remove(delta)
+            for delta in self.deltas['removed'][:]:
+                if match['sha1'] == delta.old_file.sha1 and match['name'] == delta.old_file.name and match['size'] == delta.old_file.size:
+                    self.deltas['moved'].append(Delta(None, delta.old_file, 'moved'))
+                    self.deltas['removed'].remove(delta)
+
     def get_stats(self):
         """
         Given a list of Delta objects, return a 'counts' dictionary keyed by
         category -- i.e., the keys of the determine_delta() OrderedDict of
         Delta objects -- that contains the count as a value for each category.
         """
-        added, modified, removed, unmodified = 0, 0, 0, 0
+        added, modified, moved, removed, unmodified = 0, 0, 0, 0, 0
 
         added = len(self.deltas['added'])
         modified = len(self.deltas['modified'])
+        moved = len(self.deltas['moved'])
         removed = len(self.deltas['removed'])
         unmodified = len(self.deltas['unmodified'])
 
-        return OrderedDict([('added', added), ('modified', modified), ('removed', removed), ('unmodified', unmodified)])
+        return OrderedDict([('added', added), ('modified', modified), ('moved', moved), ('removed', removed), ('unmodified', unmodified)])
 
     def to_dict(self):
         """
         Given an OrderedDict of Delta objects, return an OrderedDict of Delta
-        objects grouping the objects under the keys 'added', 'removed',
+        objects grouping the objects under the keys 'added', 'removed', 'moved',
         'modified' or 'unmodified'.
         """
         return OrderedDict([
             ('added', [d.to_dict() for d in self.deltas.get('added')]),
             ('removed', [d.to_dict() for d in self.deltas.get('removed')]),
+            ('moved', [d.to_dict() for d in self.deltas.get('moved')]),
             ('modified', [d.to_dict() for d in self.deltas.get('modified')]),
             ('unmodified', [d.to_dict() for d in self.deltas.get('unmodified')]),
         ])
@@ -161,7 +201,7 @@ class Delta(object):
     """
     A tuple reflecting a comparison of two files -- each of which is a File
     object -- and the category that characterizes the comparison:
-    'added', 'modified', 'removed' or 'unmodified'.
+    'added', 'modified', 'moved', 'removed' or 'unmodified'.
     """
     def __init__(self, new_file=None, old_file=None, delta_type=None):
         self.new_file = new_file if new_file else File()
@@ -218,6 +258,20 @@ class Delta(object):
                 ('name', self.old_file.name),
                 ('type', self.old_file.type),
                 ('size', self.old_file.size)
+            ])
+        elif self.category == 'moved':
+            return OrderedDict([
+                ('category', 'moved'),
+                ('new_sha1', self.new_file.sha1),
+                ('old_sha1', self.old_file.sha1),
+                ('new_path', self.new_file.path),
+                ('old_path', self.old_file.path),
+                ('new_name', self.new_file.name),
+                ('old_name', self.old_file.name),
+                ('new_type', self.new_file.type),
+                ('old_type', self.old_file.type),
+                ('new_size', self.new_file.size),
+                ('old_size', self.old_file.size)
             ])
         elif self.category == 'modified':
             return OrderedDict([
