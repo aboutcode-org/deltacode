@@ -1,4 +1,4 @@
-Type of delta,Path,Name,Type,Size
-modified,some/path/c/c1.py,c1.py,file,300
-license change,some/path/a/a1.py,a1.py,file,300
-license change,some/path/b/b1.py,b1.py,file,300
+Type of delta,Path,Name,Type,Size,Old Path
+modified,some/path/c/c1.py,c1.py,file,300,
+license change,some/path/a/a1.py,a1.py,file,300,
+license change,some/path/b/b1.py,b1.py,file,300,

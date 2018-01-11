@@ -133,38 +133,48 @@ class DeltaCode(object):
     def determine_moved(self):
         """
         Modify the OrderedDict of Delta objects by comparing the 'sha1', 'name'
-        and 'size' attributes of the 'removed' and 'added' files.  Using a
-        dictionary of 'removed' files keyed by their 'sha1' attribute, iterate
-        through the 'added' category and populate a list ('matchList') with a
-        collection of dictionaries representing the 'added' files that match
-        the files in the 'removed' dictionary.  Next, use that list of matched
-        'added' files to iterate through (1) the 'added' category and (2) the
-        'removed' category to add the matching files in each category to the
-        'moved' category and remove them from the 'added' or 'removed'
-        categories, respectively.
+        and 'size' attributes of the 'removed' and 'added' files and converting
+        each unique matching pair to a Delta object with the category attribute
+        'moved'.  This method currently excludes groups of matching 'removed'
+        and 'added' files comprising more than one 'removed' and one 'added' file.
         """
         list_old_removed_files = [i.old_file for i in self.deltas['removed']]
-
         old_removed_index = utils.index_delta_files(list_old_removed_files, 'sha1')
 
-        matchList = []
+        list_new_added_files = [i.new_file for i in self.deltas['added']]
+        new_added_index = utils.index_delta_files(list_new_added_files, 'sha1')
 
-        for i in self.deltas['added']:
-            if old_removed_index.get(i.new_file.sha1):
-                for file in old_removed_index.get(i.new_file.sha1):
-                    if file.name == i.new_file.name and file.size == i.new_file.size and i.new_file.sha1 not in matchList:
-                        matchList.append({'sha1': i.new_file.sha1, 'name': i.new_file.name, 'size': i.new_file.size})
+        unique_removed_sha1 = []
+        unique_added_sha1 = []
 
-        for match in matchList:
-            # Use a copy to avoid problems with the '.remove' method:
-            for delta in self.deltas['added'][:]:
-                if match['sha1'] == delta.new_file.sha1 and match['name'] == delta.new_file.name and match['size'] == delta.new_file.size:
-                    self.deltas['moved'].append(Delta(delta.new_file, None, 'moved'))
-                    self.deltas['added'].remove(delta)
-            for delta in self.deltas['removed'][:]:
-                if match['sha1'] == delta.old_file.sha1 and match['name'] == delta.old_file.name and match['size'] == delta.old_file.size:
-                    self.deltas['moved'].append(Delta(None, delta.old_file, 'moved'))
-                    self.deltas['removed'].remove(delta)
+        for key, value in old_removed_index.iteritems():
+            if len(value) == 1:
+                for file in value:
+                    unique_removed_sha1.append({'sha1': file.sha1, 'name': file.name, 'size': file.size})
+
+        for key, value in new_added_index.iteritems():
+            if len(value) == 1:
+                for file in value:
+                    unique_added_sha1.append({'sha1': file.sha1, 'name': file.name, 'size': file.size})
+
+        for added_dict in unique_added_sha1:
+            for removed_dict in unique_removed_sha1:
+                if added_dict['sha1'] == removed_dict['sha1'] and \
+                   added_dict['name'] == removed_dict['name'] and \
+                   added_dict['size'] == removed_dict['size']:
+
+                    for delta_added in self.deltas['added'][:]:
+                        if added_dict['sha1'] == delta_added.new_file.sha1 and \
+                           added_dict['name'] == delta_added.new_file.name and \
+                           added_dict['size'] == delta_added.new_file.size:
+                            self.deltas['moved'].append(Delta(delta_added.new_file, None, 'moved'))
+                            self.deltas['added'].remove(delta_added)
+
+                    for delta_removed in self.deltas['removed'][:]:
+                        for delta_moved in self.deltas['moved']:
+                            if added_dict['sha1'] == delta_removed.old_file.sha1 and added_dict['sha1'] == delta_moved.new_file.sha1:
+                                delta_moved.old_file = delta_removed.old_file
+                            self.deltas['removed'].remove(delta_removed)
 
     def get_stats(self):
         """
@@ -262,16 +272,11 @@ class Delta(object):
         elif self.category == 'moved':
             return OrderedDict([
                 ('category', 'moved'),
-                ('new_sha1', self.new_file.sha1),
-                ('old_sha1', self.old_file.sha1),
-                ('new_path', self.new_file.path),
+                ('path', self.new_file.path),
                 ('old_path', self.old_file.path),
-                ('new_name', self.new_file.name),
-                ('old_name', self.old_file.name),
-                ('new_type', self.new_file.type),
-                ('old_type', self.old_file.type),
-                ('new_size', self.new_file.size),
-                ('old_size', self.old_file.size)
+                ('name', self.new_file.name),
+                ('type', self.new_file.type),
+                ('size', self.new_file.size)
             ])
         elif self.category == 'modified':
             return OrderedDict([

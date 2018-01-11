@@ -183,7 +183,7 @@ class TestDeltacode(FileBasedTesting):
 
         assert counts.get('added') == 0
         assert counts.get('modified') == 0
-        assert counts.get('moved') == 2
+        assert counts.get('moved') == 1
         assert counts.get('removed') == 0
         assert counts.get('unmodified') == 7
 
@@ -194,10 +194,10 @@ class TestDeltacode(FileBasedTesting):
         result = DeltaCode(new_scan, old_scan)
         counts = result.get_stats()
 
-        assert counts.get('added') == 1
+        assert counts.get('added') == 2
         assert counts.get('modified') == 0
-        assert counts.get('moved') == 2
-        assert counts.get('removed') == 0
+        assert counts.get('moved') == 0
+        assert counts.get('removed') == 1
         assert counts.get('unmodified') == 7
 
     def test_DeltaCode_1_file_moved_and_added(self):
@@ -207,11 +207,24 @@ class TestDeltacode(FileBasedTesting):
         result = DeltaCode(new_scan, old_scan)
         counts = result.get_stats()
 
-        assert counts.get('added') == 0
+        assert counts.get('added') == 2
         assert counts.get('modified') == 0
-        assert counts.get('moved') == 3
-        assert counts.get('removed') == 0
+        assert counts.get('moved') == 0
+        assert counts.get('removed') == 1
         assert counts.get('unmodified') == 7
+
+    def test_DeltaCode_2_dupes_removed_1_copy_added(self):
+        new_scan = self.get_test_loc('deltacode/2_dupes_removed_1_copy_added_new.json')
+        old_scan = self.get_test_loc('deltacode/2_dupes_removed_1_copy_added_old.json')
+
+        result = DeltaCode(new_scan, old_scan)
+        counts = result.get_stats()
+
+        assert counts.get('added') == 1
+        assert counts.get('modified') == 0
+        assert counts.get('moved') == 0
+        assert counts.get('removed') == 2
+        assert counts.get('unmodified') == 10
 
     def test_DeltaCode_align_scan_zlib_alignment_exception(self):
         new_scan = self.get_test_loc('deltacode/align-scan-zlib-alignment-exception-new.json')

@@ -46,13 +46,14 @@ def write_csv(delta, result_file):
     """
     with open(result_file, 'wb') as out:
         csv_out = csv.writer(out)
-        csv_out.writerow(['Type of delta', 'Path', 'Name', 'Type', 'Size'])
+        csv_out.writerow(['Type of delta', 'Path', 'Name', 'Type', 'Size', 'Old Path'])
         for row in [(
             f.category,
             f.old_file.path if f.category == 'removed' else f.new_file.path,
             f.old_file.name if f.category == 'removed' else f.new_file.name,
             f.old_file.type if f.category == 'removed' else f.new_file.type,
-            f.old_file.size if f.category == 'removed' else f.new_file.size)
+            f.old_file.size if f.category == 'removed' else f.new_file.size,
+            f.old_file.path if f.category == 'moved' else '')
                 for d in delta.deltas for f in delta.deltas.get(d)]:
                     csv_out.writerow(row)
 
