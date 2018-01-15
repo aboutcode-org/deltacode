@@ -101,24 +101,3 @@ def fix_trees(a_files, b_files):
     for b_file in b_files:
         b_file.original_path = b_file.path
         b_file.path = '/'.join(paths.split(b_file.path)[b_offset:])
-
-
-def index_delta_files(self, index_key='path'):
-    """
-    Return a dictionary of a list of File objects indexed by the key passed via
-    the 'key' variable.  If no 'key' variable is passed, the dict is
-    keyed by the File object's 'path' variable.  This function does not
-    currently catch the AttributeError exception.
-    """
-    index = {}
-
-    for f in self:
-        key = getattr(f, index_key)
-
-        if index.get(key) is None:
-            index[key] = []
-            index[key].append(f)
-        else:
-            index[key].append(f)
-
-    return index
