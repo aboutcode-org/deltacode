@@ -142,16 +142,36 @@ class DeltaCode(object):
         removed = self.index_deltas([i for i in self.deltas['removed']], 'sha1')
         added = self.index_deltas([i for i in self.deltas['added']], 'sha1')
 
-        for k, v in removed.iteritems():
-            if (k in added and
-                    len(removed[k]) == 1 and
-                    len(added[k]) == 1 and
-                    removed[k][0].old_file.name == added[k][0].new_file.name):
-                self.deltas['moved'].append(Delta(added[k][0].new_file, removed[k][0].old_file, 'moved'))
-                self.deltas['added'].remove(added[k][0])
-                self.deltas['removed'].remove(removed[k][0])
+        # for k, v in removed.iteritems():
+        #     if (k in added and
+        #             len(removed[k]) == 1 and
+        #             len(added[k]) == 1 and
+        #             removed[k][0].old_file.name == added[k][0].new_file.name):
+        #         self.deltas['moved'].append(Delta(added[k][0].new_file, removed[k][0].old_file, 'moved'))
+        #         self.deltas['added'].remove(added[k][0])
+        #         self.deltas['removed'].remove(removed[k][0])
 
-    def index_deltas(self, delta_list, index_key='path'):
+        for sha1, delta in removed.iteritems():
+            if self.check_delta_index(sha1, removed, added):
+                added_file = added[sha1][0]
+                removed_file = removed[sha1][0]
+                self.deltas['moved'].append(Delta(added_file.new_file, removed_file.old_file, 'moved'))
+                self.deltas['added'].remove(added_file)
+                self.deltas['removed'].remove(removed_file)
+
+    def check_delta_index(self, sha1, removed, added):
+        """
+        Return True if there is only one pair of matching 'added' and 'removed'
+        Delta objects and their respective File objects have the same 'name' attribute.
+        """
+        if (sha1 in added and
+                len(removed[sha1]) == 1 and
+                len(added[sha1]) == 1 and
+                removed[sha1][0].old_file.name == added[sha1][0].new_file.name):
+            return True
+
+    # def index_deltas(self, delta_list, index_key='path'):
+    def index_deltas(self, index_key='path', delta_list=[]):  # Throws error -- SyntaxError: non-default argument follows default argument
         """
         Return a dictionary of a list of Delta objects indexed by the key
         passed via the 'index_key' variable.  If no 'index_key' variable is
