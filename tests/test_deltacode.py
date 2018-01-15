@@ -87,6 +87,7 @@ class TestDeltacode(FileBasedTesting):
 
         assert counts.get('added') == 25
         assert counts.get('modified') == 16
+        assert counts.get('moved') == 0
         assert counts.get('removed') == 5
         assert counts.get('unmodified') == 280
 
@@ -99,6 +100,7 @@ class TestDeltacode(FileBasedTesting):
 
         assert counts.get('added') == 232
         assert counts.get('modified') == 22
+        assert counts.get('moved') == 0
         assert counts.get('removed') == 18
         assert counts.get('unmodified') == 0
 
@@ -111,6 +113,7 @@ class TestDeltacode(FileBasedTesting):
 
         assert counts.get('added') == 254
         assert counts.get('modified') == 0
+        assert counts.get('moved') == 0
         assert counts.get('removed') == 40
         assert counts.get('unmodified') == 0
 
@@ -123,6 +126,7 @@ class TestDeltacode(FileBasedTesting):
 
         assert counts.get('added') == 0
         assert counts.get('modified') == 0
+        assert counts.get('moved') == 0
         assert counts.get('removed') == 0
         assert counts.get('unmodified') == 8
 
@@ -135,6 +139,7 @@ class TestDeltacode(FileBasedTesting):
 
         assert counts.get('added') == 1
         assert counts.get('modified') == 0
+        assert counts.get('moved') == 0
         assert counts.get('removed') == 0
         assert counts.get('unmodified') == 8
 
@@ -147,6 +152,7 @@ class TestDeltacode(FileBasedTesting):
 
         assert counts.get('added') == 0
         assert counts.get('modified') == 0
+        assert counts.get('moved') == 0
         assert counts.get('removed') == 1
         assert counts.get('unmodified') == 7
 
@@ -159,6 +165,7 @@ class TestDeltacode(FileBasedTesting):
 
         assert counts.get('added') == 1
         assert counts.get('modified') == 0
+        assert counts.get('moved') == 0
         assert counts.get('removed') == 1
         assert counts.get('unmodified') == 7
 
@@ -171,6 +178,7 @@ class TestDeltacode(FileBasedTesting):
 
         assert counts.get('added') == 0
         assert counts.get('modified') == 1
+        assert counts.get('moved') == 0
         assert counts.get('removed') == 0
         assert counts.get('unmodified') == 7
 
@@ -226,6 +234,45 @@ class TestDeltacode(FileBasedTesting):
         assert counts.get('removed') == 2
         assert counts.get('unmodified') == 10
 
+    def test_DeltaCode_2_moved(self):
+        new_scan = self.get_test_loc('deltacode/2_moved_new.json')
+        old_scan = self.get_test_loc('deltacode/2_moved_old.json')
+
+        result = DeltaCode(new_scan, old_scan)
+        counts = result.get_stats()
+
+        assert counts.get('added') == 0
+        assert counts.get('modified') == 0
+        assert counts.get('moved') == 2
+        assert counts.get('removed') == 0
+        assert counts.get('unmodified') == 6
+
+    def test_DeltaCode_2_removed_3_added_1_moved(self):
+        new_scan = self.get_test_loc('deltacode/2_removed_3_added_1_moved_new.json')
+        old_scan = self.get_test_loc('deltacode/2_removed_3_added_1_moved_old.json')
+
+        result = DeltaCode(new_scan, old_scan)
+        counts = result.get_stats()
+
+        assert counts.get('added') == 3
+        assert counts.get('modified') == 0
+        assert counts.get('moved') == 1
+        assert counts.get('removed') == 2
+        assert counts.get('unmodified') == 5
+
+    def test_DeltaCode_1_directory_moved(self):
+        new_scan = self.get_test_loc('deltacode/1_directory_moved_new.json')
+        old_scan = self.get_test_loc('deltacode/1_directory_moved_old.json')
+
+        result = DeltaCode(new_scan, old_scan)
+        counts = result.get_stats()
+
+        assert counts.get('added') == 0
+        assert counts.get('modified') == 0
+        assert counts.get('moved') == 3
+        assert counts.get('removed') == 0
+        assert counts.get('unmodified') == 8
+
     def test_DeltaCode_align_scan_zlib_alignment_exception(self):
         new_scan = self.get_test_loc('deltacode/align-scan-zlib-alignment-exception-new.json')
         # Our old scan uses --full-root option in scancode
@@ -267,10 +314,12 @@ class TestDeltacode(FileBasedTesting):
         result = deltacode.to_dict()
 
         assert (len(result.get('added')) + len(result.get('removed'))
-                + len(result.get('modified')) + len(result.get('unmodified'))) == 2459
+                + len(result.get('moved')) + len(result.get('modified'))
+                + len(result.get('unmodified'))) == 2459
 
         assert len(result.get('added')) == 76
         assert len(result.get('removed')) == 10
+        assert len(result.get('moved')) == 0
         assert len(result.get('modified')) == 291
         assert len(result.get('unmodified')) == 2082
 
@@ -285,10 +334,12 @@ class TestDeltacode(FileBasedTesting):
         result = deltacode.to_dict()
 
         assert (len(result.get('added')) + len(result.get('removed'))
-                + len(result.get('modified')) + len(result.get('unmodified'))) == 733
+                + len(result.get('moved')) + len(result.get('modified'))
+                + len(result.get('unmodified'))) == 733
 
         assert len(result.get('added')) == 0
         assert len(result.get('removed')) == 0
+        assert len(result.get('moved')) == 0
         assert len(result.get('modified')) == 17
         assert len(result.get('unmodified')) == 716
 
@@ -303,10 +354,12 @@ class TestDeltacode(FileBasedTesting):
         result = deltacode.to_dict()
 
         assert (len(result.get('added')) + len(result.get('removed'))
-                + len(result.get('modified')) + len(result.get('unmodified'))) == 259
+                + len(result.get('moved')) + len(result.get('modified'))
+                + len(result.get('unmodified'))) == 259
 
         assert len(result.get('added')) == 0
         assert len(result.get('removed')) == 6
+        assert len(result.get('moved')) == 0
         assert len(result.get('modified')) == 34
         assert len(result.get('unmodified')) == 219
 
@@ -318,10 +371,12 @@ class TestDeltacode(FileBasedTesting):
         result = deltacode.to_dict()
 
         assert (len(result.get('added')) + len(result.get('removed'))
-                + len(result.get('modified')) + len(result.get('unmodified'))) == 9
+                + len(result.get('moved')) + len(result.get('modified'))
+                + len(result.get('unmodified'))) == 9
 
         assert len(result.get('added')) == 1
         assert len(result.get('removed')) == 0
+        assert len(result.get('moved')) == 0
         assert len(result.get('modified')) == 0
         assert len(result.get('unmodified')) == 8
 
@@ -334,10 +389,12 @@ class TestDeltacode(FileBasedTesting):
         result = deltacode.to_dict()
 
         assert (len(result.get('added')) + len(result.get('removed'))
-                + len(result.get('modified')) + len(result.get('unmodified'))) == 33
+                + len(result.get('moved')) + len(result.get('modified'))
+                + len(result.get('unmodified'))) == 33
 
         assert len(result.get('added')) == 0
         assert len(result.get('removed')) == 0
+        assert len(result.get('moved')) == 0
         assert len(result.get('modified')) == 0
         assert len(result.get('unmodified')) == 33
 
@@ -349,10 +406,12 @@ class TestDeltacode(FileBasedTesting):
         result = deltacode.to_dict()
 
         assert (len(result.get('added')) + len(result.get('removed'))
-                + len(result.get('modified')) + len(result.get('unmodified'))) == 9
+                + len(result.get('moved')) + len(result.get('modified'))
+                + len(result.get('unmodified'))) == 9
 
         assert len(result.get('added')) == 1
         assert len(result.get('removed')) == 0
+        assert len(result.get('moved')) == 0
         assert len(result.get('modified')) == 0
         assert len(result.get('unmodified')) == 8
 
@@ -364,10 +423,12 @@ class TestDeltacode(FileBasedTesting):
         result = deltacode.to_dict()
 
         assert (len(result.get('added')) + len(result.get('removed'))
-                + len(result.get('modified')) + len(result.get('unmodified'))) == 8
+                + len(result.get('moved')) + len(result.get('modified'))
+                + len(result.get('unmodified'))) == 8
 
         assert len(result.get('added')) == 0
         assert len(result.get('removed')) == 0
+        assert len(result.get('moved')) == 0
         assert len(result.get('modified')) == 1
         assert len(result.get('unmodified')) == 7
 
@@ -752,6 +813,37 @@ class TestDeltacode(FileBasedTesting):
 
         assert delta.to_dict() == expected
 
+    def test_Delta_to_dict_moved(self):
+        new = models.File({
+            'path': 'path_new/moved.txt',
+            'type': 'file',
+            'name': 'moved.txt',
+            'size': 20,
+            'sha1': 'a',
+            'original_path': ''
+        })
+        old = models.File({
+            'path': 'path_old/moved.txt',
+            'type': 'file',
+            'name': 'moved.txt',
+            'size': 20,
+            'sha1': 'a',
+            'original_path': ''
+        })
+
+        expected = {
+            'category': 'moved',
+            'path': 'path_new/moved.txt',
+            'old_path': 'path_old/moved.txt',
+            'name': 'moved.txt',
+            'type': 'file',
+            'size': 20
+        }
+
+        delta = deltacode.Delta(new, old, 'moved')
+
+        assert delta.to_dict() == expected
+
     def test_Delta_to_dict_empty(self):
         delta = deltacode.Delta()
 
@@ -869,6 +961,18 @@ class TestDeltacode(FileBasedTesting):
         assert delta.old_file.path == 'path/unmodified.txt'
         assert delta.old_file.sha1 == 'a'
         assert delta.category == 'unmodified'
+
+    def test_Delta_create_object_moved(self):
+        new = models.File({'path': 'path_new/moved.txt', 'sha1': 'a'})
+        old = models.File({'path': 'path_old/moved.txt', 'sha1': 'a'})
+
+        delta = deltacode.Delta(new, old, 'moved')
+
+        assert delta.new_file.path == 'path_new/moved.txt'
+        assert delta.new_file.sha1 == 'a'
+        assert delta.old_file.path == 'path_old/moved.txt'
+        assert delta.old_file.sha1 == 'a'
+        assert delta.category == 'moved'
 
     def test_Delta_create_object_empty(self):
         delta = deltacode.Delta()
