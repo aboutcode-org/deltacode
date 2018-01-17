@@ -70,3 +70,77 @@ class TestUtils(FileBasedTesting):
         # test that the exception is raised
         with pytest.raises(utils.AlignmentException):
             result_seg_new, result_seg_old = utils.align_trees(new_scan.files, old_scan.files)
+
+    def test_DeltaCode_check_moved_no_sha1_match(self):
+        added_sha1 = 'a'
+        removed_sha1 = 'b'
+
+        new_added = models.File({'path': 'path/same.txt', 'sha1': 'a', 'name': 'same.txt'})
+
+        added_delta = deltacode.Delta(new_added, None, 'added')
+        added_deltas = [added_delta]
+
+        old_removed = models.File({'path': 'path/different.txt', 'sha1': 'b', 'name': 'different.txt'})
+
+        removed_delta = deltacode.Delta(None, old_removed, 'removed')
+        removed_deltas = [removed_delta]
+
+        result = utils.check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas)
+
+        assert result == False
+
+    def test_DeltaCode_check_moved_1_sha1_match(self):
+        added_sha1 = 'a'
+        removed_sha1 = 'a'
+
+        new_added = models.File({'path': 'path/same.txt', 'sha1': 'a', 'name': 'same.txt'})
+
+        added_delta = deltacode.Delta(new_added, None, 'added')
+        added_deltas = [added_delta]
+
+        old_removed = models.File({'path': 'path/same.txt', 'sha1': 'a', 'name': 'same.txt'})
+
+        removed_delta = deltacode.Delta(None, old_removed, 'removed')
+        removed_deltas = [removed_delta]
+
+        result = utils.check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas)
+
+        assert result == True
+
+    def test_DeltaCode_check_moved_1_sha1_match_different_names(self):
+        added_sha1 = 'a'
+        removed_sha1 = 'a'
+
+        new_added = models.File({'path': 'path/same.txt', 'sha1': 'a', 'name': 'same.txt'})
+
+        added_delta = deltacode.Delta(new_added, None, 'added')
+        added_deltas = [added_delta]
+
+        old_removed = models.File({'path': 'path/different.txt', 'sha1': 'a', 'name': 'different.txt'})
+
+        removed_delta = deltacode.Delta(None, old_removed, 'removed')
+        removed_deltas = [removed_delta]
+
+        result = utils.check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas)
+
+        assert result == None
+
+    def test_DeltaCode_check_moved_2_sha1_matches(self):
+        added_sha1 = 'a'
+        removed_sha1 = 'a'
+
+        new_added_01 = models.File({'path': 'pathA/same.txt', 'sha1': 'a', 'name': 'same.txt'})
+        new_added_02 = models.File({'path': 'pathB/same.txt', 'sha1': 'a', 'name': 'same.txt'})
+
+        added_delta_01 = deltacode.Delta(new_added_01, None, 'added')
+        added_delta_02 = deltacode.Delta(new_added_02, None, 'added')
+        added_deltas = [added_delta_01, added_delta_02]
+
+        old_removed = models.File({'path': 'path/same.txt', 'sha1': 'a', 'name': 'same.txt'})
+
+        removed_delta = deltacode.Delta(None, old_removed, 'removed')
+        removed_deltas = [removed_delta]
+
+        result = utils.check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas)
+
+        assert result == False

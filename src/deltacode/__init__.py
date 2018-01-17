@@ -46,12 +46,14 @@ class DeltaCode(object):
         self.deltas = OrderedDict([
             ('added', []),
             ('removed', []),
+            ('moved', []),
             ('modified', []),
             ('unmodified', [])
         ])
 
         if self.new.path != '' and self.old.path != '':
             self.determine_delta()
+            self.determine_moved()
 
     def align_scan(self):
         """
@@ -128,30 +130,86 @@ class DeltaCode(object):
         assert new_files_visited == self.new.files_count, "Number of visited files({})) does not match total_files({}) in the new scan".format(new_files_visited, self.new.files_count)
         assert old_files_visited == self.old.files_count, "Number of visited files({})) does not match total_files({}) in the old scan".format(old_files_visited, self.old.files_count)
 
+    def determine_moved(self):
+        """
+        Modify the OrderedDict of Delta objects by creating an index of
+        'removed' Delta objects and an index of 'added' Delta objects indexed
+        by their 'sha1' attribute, identifying any unique pairs of Deltas in
+        both indices with the same 'sha1' and File 'name' attributes, and
+        converting each such pair of 'added' and 'removed' Delta objects to a
+        'moved' Delta object.
+        """
+        added = self.index_deltas('sha1', [i for i in self.deltas['added']])
+        removed = self.index_deltas('sha1', [i for i in self.deltas['removed']])
+
+        # TODO: should it be iteritems() or items()
+        for added_sha1, added_deltas in added.iteritems():
+            for removed_sha1, removed_deltas in removed.iteritems():
+
+                # check for matching sha1s on both sides
+                if utils.check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas):
+                    self.update_deltas(added_deltas.pop(), removed_deltas.pop())
+
+    def update_deltas(self, added, removed):
+        """
+        Convert the matched 'added' and 'removed' Delta objects to a combined
+        'moved' Delta object and delete the 'added' and 'removed' objects.
+        """
+        self.deltas.get('moved').append(Delta(added.new_file, removed.old_file, 'moved'))
+        self.deltas.get('added').remove(added)
+        self.deltas.get('removed').remove(removed)
+
+    def index_deltas(self, index_key='path', delta_list=[]):
+        """
+        Return a dictionary of a list of Delta objects indexed by the key
+        passed via the 'index_key' variable.  If no 'index_key' variable is
+        passed, the dict is keyed by the Delta object's 'path' variable.  For a
+        'removed' Delta object, use the variable from the 'old_file'; for all
+        other Delta objects (e.g., 'added'), use the 'new_file'.  This function
+        does not currently catch the AttributeError exception.
+        """
+        index = {}
+
+        for delta in delta_list:
+            if delta.category == 'removed':
+                key = getattr(delta.old_file, index_key)
+            else:
+                key = getattr(delta.new_file, index_key)
+
+            if index.get(key) is None:
+                index[key] = []
+                index[key].append(delta)
+            else:
+                index[key].append(delta)
+
+        return index
+
     def get_stats(self):
         """
         Given a list of Delta objects, return a 'counts' dictionary keyed by
         category -- i.e., the keys of the determine_delta() OrderedDict of
         Delta objects -- that contains the count as a value for each category.
         """
-        added, modified, removed, unmodified = 0, 0, 0, 0
+        added, modified, moved, removed, unmodified = 0, 0, 0, 0, 0
 
         added = len(self.deltas['added'])
         modified = len(self.deltas['modified'])
+        moved = len(self.deltas['moved'])
         removed = len(self.deltas['removed'])
         unmodified = len(self.deltas['unmodified'])
 
-        return OrderedDict([('added', added), ('modified', modified), ('removed', removed), ('unmodified', unmodified)])
+        return OrderedDict([('added', added), ('modified', modified), ('moved', moved), ('removed', removed), ('unmodified', unmodified)])
 
     def to_dict(self):
         """
         Given an OrderedDict of Delta objects, return an OrderedDict of Delta
-        objects grouping the objects under the keys 'added', 'removed',
+        objects grouping the objects under the keys 'added', 'removed', 'moved',
         'modified' or 'unmodified'.
         """
         return OrderedDict([
             ('added', [d.to_dict() for d in self.deltas.get('added')]),
             ('removed', [d.to_dict() for d in self.deltas.get('removed')]),
+            ('moved', [d.to_dict() for d in self.deltas.get('moved')]),
             ('modified', [d.to_dict() for d in self.deltas.get('modified')]),
             ('unmodified', [d.to_dict() for d in self.deltas.get('unmodified')]),
         ])
@@ -161,7 +219,7 @@ class Delta(object):
     """
     A tuple reflecting a comparison of two files -- each of which is a File
     object -- and the category that characterizes the comparison:
-    'added', 'modified', 'removed' or 'unmodified'.
+    'added', 'modified', 'moved', 'removed' or 'unmodified'.
     """
     def __init__(self, new_file=None, old_file=None, delta_type=None):
         self.new_file = new_file if new_file else File()
@@ -218,6 +276,15 @@ class Delta(object):
                 ('name', self.old_file.name),
                 ('type', self.old_file.type),
                 ('size', self.old_file.size)
+            ])
+        elif self.category == 'moved':
+            return OrderedDict([
+                ('category', 'moved'),
+                ('path', self.new_file.path),
+                ('old_path', self.old_file.path),
+                ('name', self.new_file.name),
+                ('type', self.new_file.type),
+                ('size', self.new_file.size)
             ])
         elif self.category == 'modified':
             return OrderedDict([

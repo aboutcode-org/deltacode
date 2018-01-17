@@ -1,9 +1,9 @@
 Type of delta,Path,Name,Type,Size,Old Path
-removed,a/a4.py,a4.py,file,200,
+moved,b/a4.py,a4.py,file,200,a/a4.py
 unmodified,a/a3.py,a3.py,file,200,
 unmodified,b/b4.py,b4.py,file,200,
-unmodified,b/b1.py,b1.py,file,200,
 unmodified,a/a2.py,a2.py,file,200,
 unmodified,b/b2.py,b2.py,file,200,
+unmodified,b/b1.py,b1.py,file,200,
 unmodified,b/b3.py,b3.py,file,200,
 unmodified,a/a1.py,a1.py,file,200,
