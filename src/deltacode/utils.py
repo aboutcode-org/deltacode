@@ -101,3 +101,16 @@ def fix_trees(a_files, b_files):
     for b_file in b_files:
         b_file.original_path = b_file.path
         b_file.path = '/'.join(paths.split(b_file.path)[b_offset:])
+
+
+def check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas):
+    """
+    Return True if there is only one pair of matching 'added' and 'removed'
+    Delta objects and their respective File objects have the same 'name' attribute.
+    """
+    if added_sha1 != removed_sha1:
+        return False
+    if len(added_deltas) != 1 or len(removed_deltas) != 1:
+        return False
+    if added_deltas[0].new_file.name == removed_deltas[0].old_file.name:
+        return True

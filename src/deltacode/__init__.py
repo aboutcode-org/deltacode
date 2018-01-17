@@ -134,10 +134,10 @@ class DeltaCode(object):
         """
         Modify the OrderedDict of Delta objects by creating an index of
         'removed' Delta objects and an index of 'added' Delta objects indexed
-        by their 'sha1' attribute, finding Deltas in both indices with the same
-        'sha1', and converting the 'added' and 'removed' Deltas to a 'moved'
-        Delta if (1) there is only one such 'added' and one such 'moved'
-        Delta and (2) these two Deltas have the same 'name' attribute.
+        by their 'sha1' attribute, identifying any unique pairs of Deltas in
+        both indices with the same 'sha1' and File 'name' attributes, and
+        converting each such pair of 'added' and 'removed' Delta objects to a
+        'moved' Delta object.
         """
         added = self.index_deltas('sha1', [i for i in self.deltas['added']])
         removed = self.index_deltas('sha1', [i for i in self.deltas['removed']])
@@ -147,28 +147,17 @@ class DeltaCode(object):
             for removed_sha1, removed_deltas in removed.iteritems():
 
                 # check for matching sha1s on both sides
-                if self.check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas):
+                if utils.check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas):
                     self.update_deltas(added_deltas.pop(), removed_deltas.pop())
 
-
     def update_deltas(self, added, removed):
+        """
+        Convert the matched 'added' and 'removed' Delta objects to a combined
+        'moved' Delta object and delete the 'added' and 'removed' objects.
+        """
         self.deltas.get('moved').append(Delta(added.new_file, removed.old_file, 'moved'))
         self.deltas.get('added').remove(added)
         self.deltas.get('removed').remove(removed)
-
-
-    def check_moved(self, added_sha1, added_deltas, removed_sha1, removed_deltas):
-        """
-        Return True if there is only one pair of matching 'added' and 'removed'
-        Delta objects and their respective File objects have the same 'name' attribute.
-        """
-        if added_sha1 != removed_sha1:
-            return False
-        if len(added_deltas) != 1 or len(removed_deltas) != 1:
-            return False
-        if added_deltas[0].new_file.name == removed_deltas[0].old_file.name:
-            return True
-
 
     def index_deltas(self, index_key='path', delta_list=[]):
         """
