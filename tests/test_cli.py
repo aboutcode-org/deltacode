@@ -32,12 +32,81 @@ import os
 
 import unicodecsv
 
+import click
 from click.testing import CliRunner
 
 from commoncode.testcase import FileBasedTesting
 from deltacode import cli
 from deltacode import DeltaCode
 from deltacode import utils
+
+# NOTE: From https://github.com/nexB/scancode-toolkit/blob/develop/src/scancode/cli_test_utils.py#L96
+# NOTE: Do we need the references to monkeypatch or can we delete?
+# NOTE: We'll need to revise the docstring.
+def run_scan_click(options, monkeypatch=None, catch_exceptions=False):
+    """
+    Run a scan as a Click-controlled subprocess
+    If monkeypatch is provided, a tty with a size (80, 43) is mocked.
+    Return a click.testing.Result object.
+    """
+    # import click
+    # from click.testing import CliRunner
+    # from scancode import cli
+
+    # NOTE: I don't think we need to use monkeypatch, do we?
+    # if monkeypatch:
+    #     monkeypatch.setattr(click._termui_impl, 'isatty', lambda _: True)
+    #     monkeypatch.setattr(click , 'get_terminal_size', lambda : (80, 43,))
+    runner = CliRunner()
+
+    return runner.invoke(cli.cli, options, catch_exceptions=catch_exceptions)
+
+
+# NOTE: Based on https://github.com/nexB/scancode-toolkit/blob/develop/src/scancode/cli_test_utils.py#L46
+# NOTE: We'll need to revise the docstring.
+# NOTE: I don't think we need to pass/use the 'strip_dates' parameter.
+def check_json_scan(expected_file, result_file, regen=False, strip_dates=False):
+    """
+    Check the scan result_file JSON results against the expected_file expected JSON
+    results. Removes references to test_dir for the comparison. If regen is True the
+    expected_file WILL BE overwritten with the results. This is convenient for
+    updating tests expectations. But use with caution.
+    """
+    result = _load_json_result(result_file)
+    if strip_dates:
+        remove_dates(result)
+    if regen:
+        with open(expected_file, 'wb') as reg:
+            json.dump(result, reg, indent=2, separators=(',', ': '))
+    expected = _load_json_result(expected_file)
+    if strip_dates:
+        remove_dates(expected)
+
+    # NOTE: The following note comes from the original ScanCode code.
+    # NOTE we redump the JSON as a string for a more efficient comparison of
+    # failures
+    expected = json.dumps(expected, indent=2, sort_keys=True, separators=(',', ': '))
+    result = json.dumps(result, indent=2, sort_keys=True, separators=(',', ': '))
+    assert expected == result
+
+
+# NOTE: Based on https://github.com/nexB/scancode-toolkit/blob/develop/src/scancode/cli_test_utils.py#L70
+# NOTE: We'll need to revise the docstring.
+def _load_json_result(result_file):
+    """
+    Load the result file as utf-8 JSON
+    Sort the results by location.  [1/19/18 This line applies to the ScanCode test and should be deleted from this DeltaCode file.]
+    """
+    with codecs.open(result_file, encoding='utf-8') as res:
+        scan_result = json.load(res, object_pairs_hook=OrderedDict)
+
+    # NOTE: 1/19/18  Following used for ScanCode testing but not applicable to DeltaCode?
+    # if scan_result.get('scancode_version'):
+    #     del scan_result['scancode_version']
+
+    # NOTE: 1/19/18 Is this line only for ScanCode output?
+    # scan_result['files'].sort(key=lambda x: x['path'])
+    return scan_result
 
 
 def load_csv(location):
@@ -204,3 +273,40 @@ class TestCLI(FileBasedTesting):
         cli.write_csv(delta, result_file)
         expected_file = self.get_test_loc('cli/1_file_moved_and_added.csv')
         check_csvs(result_file, expected_file)
+
+    def test_json_output_option_selected(self):
+        new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
+        old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
+
+        result_file = self.get_temp_file('json')
+
+        result = run_scan_click(['-n', new_scan, '-o',  old_scan, '-j', result_file])
+
+        expected_file = self.get_test_loc('cli/1_file_moved.json')
+
+        assert result.exit_code == 0
+        check_json_scan(result_file, expected_file)
+
+    def test_csv_output_option_selected(self):
+        new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
+        old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
+
+        result_file = self.get_temp_file('.csv')
+
+        result = run_scan_click(['-n', new_scan, '-o',  old_scan, '-c', result_file])
+
+        expected_file = self.get_test_loc('cli/1_file_moved.csv')
+
+        assert result.exit_code == 0
+        check_csvs(result_file, expected_file)
+
+    # NOTE: Based on https://github.com/nexB/scancode-toolkit/blob/develop/tests/scancode/test_cli.py#L233
+    def test_usage_and_help(self):
+        result = run_scan_click(['--help'])
+        assert 'Usage: cli [OPTIONS]' in result.output
+
+        result = run_scan_click([])
+        assert 'Usage: cli [OPTIONS]' in result.output
+
+        result = run_scan_click(['-xyz'])
+        assert 'Error: no such option: -x' in result.output

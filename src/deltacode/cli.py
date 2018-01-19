@@ -75,6 +75,8 @@ def write_json(deltacode, outfile):
 
 
 @click.command()
+# See https://github.com/nexB/scancode-toolkit/blob/develop/src/scancode/cli.py#L345
+# @click.command(name='broccoli')
 @click.help_option('-h', '--help')
 @click.option('-n', '--new', required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Identify the path to the "new" scan file')
 @click.option('-o', '--old', required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Identify the path to the "old" scan file')
