@@ -223,7 +223,7 @@ class TestCLI(FileBasedTesting):
         assert json_result.get('deltacode_stats') == stats
 
         moved_expected = {'category': 'moved', 'name': 'a4.py', 'path': 'b/a4.py', 'old_path': 'a/a4.py', 'type': 'file', 'size': 200}
-        moved_result = [i for i in json_result.get('deltas') if i.get('category') == 'moved'][0]
+        moved_result = [d for d in json_result.get('deltas') if d.get('category') == 'moved'].pop()
 
         assert moved_result == moved_expected
 
@@ -239,6 +239,28 @@ class TestCLI(FileBasedTesting):
 
         assert result.exit_code == 0
         check_csvs(result_file, expected_file)
+
+    def test_no_output_option_selected(self):
+        new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
+        old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
+
+        runner = CliRunner()
+        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan])
+
+        assert result.exit_code == 0
+
+        assert '"added": 0' in result.output
+        assert '"modified": 0' in result.output
+        assert '"moved": 1' in result.output
+        assert '"removed": 0' in result.output
+        assert '"unmodified": 7' in result.output
+
+        assert '"category": "moved"' in result.output
+        assert '"path": "b/a4.py"' in result.output
+        assert '"old_path": "a/a4.py"' in result.output
+        assert '"name": "a4.py"' in result.output
+        assert '"type": "file"' in result.output
+        assert '"size": 200' in result.output
 
     def test_help(self):
         runner = CliRunner()
