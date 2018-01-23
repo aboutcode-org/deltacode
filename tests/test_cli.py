@@ -81,7 +81,7 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file)
+        cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/added1.csv')
         check_csvs(result_file, expected_file)
 
@@ -91,7 +91,7 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file)
+        cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/modified1.csv')
         check_csvs(result_file, expected_file)
 
@@ -101,7 +101,7 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file)
+        cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/removed1.csv')
         check_csvs(result_file, expected_file)
 
@@ -111,7 +111,7 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file)
+        cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/renamed1.csv')
         check_csvs(result_file, expected_file)
 
@@ -121,7 +121,7 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file)
+        cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/modified_new_license_added.csv')
         check_csvs(result_file, expected_file)
 
@@ -131,7 +131,7 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file)
+        cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/modified_new_license_added_low_score.csv')
         check_csvs(result_file, expected_file)
 
@@ -141,7 +141,7 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file)
+        cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/license_info_removed.csv')
         check_csvs(result_file, expected_file)
 
@@ -151,7 +151,7 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file)
+        cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/license_info_added.csv')
         check_csvs(result_file, expected_file)
 
@@ -161,7 +161,7 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file)
+        cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/license_info_removed_below_cutoff_score.csv')
         check_csvs(result_file, expected_file)
 
@@ -171,7 +171,7 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file)
+        cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/license_info_added_below_cutoff_score.csv')
         check_csvs(result_file, expected_file)
 
@@ -181,7 +181,7 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file)
+        cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/1_file_moved.csv')
         check_csvs(result_file, expected_file)
 
@@ -191,7 +191,7 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file)
+        cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/1_file_moved_and_1_copy.csv')
         check_csvs(result_file, expected_file)
 
@@ -201,16 +201,41 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan)
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file)
+        cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/1_file_moved_and_added.csv')
         check_csvs(result_file, expected_file)
 
-    def test_json_output_option_selected(self):
+    def test_json_output_option_selected_all_selected(self):
         new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
         old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
 
         result_file = self.get_temp_file('json')
-        expected_file = self.get_test_loc('cli/1_file_moved.json')
+
+        runner = CliRunner()
+        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file, '-a'])
+
+        assert result.exit_code == 0
+
+        json_result = json.load(open(result_file))
+        stats = {'unmodified': 7, 'removed': 0, 'added': 0, 'moved': 1, 'modified': 0}
+
+        assert json_result.get('deltacode_stats') == stats
+
+        moved_expected = {'category': 'moved', 'name': 'a4.py', 'path': 'b/a4.py', 'old_path': 'a/a4.py', 'type': 'file', 'size': 200}
+        moved_result = [d for d in json_result.get('deltas') if d.get('category') == 'moved'].pop()
+
+        assert moved_result == moved_expected
+
+        unmodified_expected = {'category': 'unmodified', 'name': 'a3.py', 'path': 'a/a3.py', 'type': 'file', 'size': 200}
+        unmodified_result = [d for d in json_result.get('deltas') if d.get('category') == 'unmodified' and d.get('path') == 'a/a3.py'].pop()
+
+        assert unmodified_result == unmodified_expected
+
+    def test_json_output_option_selected_all_not_selected(self):
+        new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
+        old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
+
+        result_file = self.get_temp_file('json')
 
         runner = CliRunner()
         result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file])
@@ -227,7 +252,11 @@ class TestCLI(FileBasedTesting):
 
         assert moved_result == moved_expected
 
-    def test_csv_output_option_selected(self):
+        unmodified_result = [d for d in json_result.get('deltas') if d.get('category') == 'unmodified']
+
+        assert len(unmodified_result) == 0
+
+    def test_csv_output_option_selected_all_selected(self):
         new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
         old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
 
@@ -235,12 +264,53 @@ class TestCLI(FileBasedTesting):
         expected_file = self.get_test_loc('cli/1_file_moved.csv')
 
         runner = CliRunner()
+        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-c', result_file, '-a'])
+
+        assert result.exit_code == 0
+        check_csvs(result_file, expected_file)
+
+    def test_csv_output_option_selected_all_not_selected(self):
+        new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
+        old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
+
+        result_file = self.get_temp_file('.csv')
+        expected_file = self.get_test_loc('cli/1_file_moved_all_not_selected.csv')
+
+        runner = CliRunner()
         result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-c', result_file])
 
         assert result.exit_code == 0
         check_csvs(result_file, expected_file)
 
-    def test_no_output_option_selected(self):
+    def test_no_output_option_selected_all_selected(self):
+        new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
+        old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
+
+        runner = CliRunner()
+        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-a'])
+
+        assert result.exit_code == 0
+
+        assert '"added": 0' in result.output
+        assert '"modified": 0' in result.output
+        assert '"moved": 1' in result.output
+        assert '"removed": 0' in result.output
+        assert '"unmodified": 7' in result.output
+
+        assert '"category": "moved"' in result.output
+        assert '"path": "b/a4.py"' in result.output
+        assert '"old_path": "a/a4.py"' in result.output
+        assert '"name": "a4.py"' in result.output
+        assert '"type": "file"' in result.output
+        assert '"size": 200' in result.output
+
+        assert '"category": "unmodified"' in result.output
+        assert '"path": "a/a3.py"' in result.output
+        assert '"name": "a3.py"' in result.output
+        assert '"type": "file"' in result.output
+        assert '"size": 200' in result.output
+
+    def test_no_output_option_selected_all_not_selected(self):
         new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
         old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
 
@@ -262,6 +332,10 @@ class TestCLI(FileBasedTesting):
         assert '"type": "file"' in result.output
         assert '"size": 200' in result.output
 
+        assert '"category": "unmodified"' not in result.output
+        assert '"path": "a/a3.py"' not in result.output
+        assert '"name": "a3.py"' not in result.output
+
     def test_help(self):
         runner = CliRunner()
         result = runner.invoke(cli.cli, ['--help'])
@@ -269,6 +343,7 @@ class TestCLI(FileBasedTesting):
         assert 'Usage: cli [OPTIONS]' in result.output
         assert 'Identify the changes that need to be made' in result.output
         assert 'If no file option is selected' in result.output
+        assert 'Include unmodified files' in result.output
 
     def test_empty(self):
         runner = CliRunner()

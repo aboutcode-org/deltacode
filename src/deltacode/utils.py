@@ -31,13 +31,18 @@ from collections import defaultdict
 from commoncode import paths
 
 
-def deltas(deltacode):
+def deltas(deltacode, all_delta_types=False):
     """
-    Return a generator of Delta dictionaries for JSON serialized ouput.
+    Return a generator of Delta dictionaries for JSON serialized ouput.  Omit
+    all Delta objects whose 'category' is 'unmodified' unless the user selects
+    the '-a'/'--all' option.
     """
     for category, deltas in deltacode.deltas.iteritems():
         for delta in deltas:
-            yield delta.to_dict()
+            if all_delta_types is True:
+                yield delta.to_dict()
+            elif delta.category != 'unmodified':
+                yield delta.to_dict()
 
 
 class AlignmentException(Exception):
