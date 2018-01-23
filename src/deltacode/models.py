@@ -178,7 +178,7 @@ class File(object):
             ('original_path', self.original_path),
         ])
 
-        # TODO: disable this for now due to high memory usage
+        # TODO: re-enable this once changes to License object are made
         # if self.licenses:
         #    d['licenses'] = [l.to_dict() for l in self.licenses]
 
@@ -202,6 +202,8 @@ class License(object):
     """
     License object created from the 'license' field in an ABCD formatted 'file' dictionary.
     """
+    # TODO: remove some of these un-needed fields. 
+    # We want to only keep: 'key', 'score', 'short_name', 'category', 'owner'
     def __init__(self, dictionary={}):
         self.key = dictionary.get('key')
         self.score = dictionary.get('score')

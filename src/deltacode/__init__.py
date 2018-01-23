@@ -261,6 +261,44 @@ class Delta(object):
         Check the 'category' attribute of the Delta object and return an
         OrderedDict comprising the 'category' and 'path' of the object.
         """
+        delta = OrderedDict([('category', self.category)])
+
+        if self.category == 'added':
+            delta.update(OrderedDict([
+                ('new', self.new_file.to_dict()),
+                ('old', None),
+            ]))
+
+        elif self.category == 'removed':
+            delta.update(OrderedDict([
+                ('new', None),
+                ('old', self.old_file.to_dict()),
+            ]))
+
+        else:
+            delta.update(OrderedDict([
+                ('new', self.new_file.to_dict()),
+                ('old', self.old_file.to_dict()),
+            ]))
+        
+        return delta
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if self.category == 'added':
             return OrderedDict([
                 ('category', 'added'),
