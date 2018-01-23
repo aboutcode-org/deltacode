@@ -39,10 +39,12 @@ from deltacode.utils import deltas
 
 
 # FIXME: update the function argument delta to deltacode
-def write_csv(delta, result_file):
+def write_csv(delta, result_file, all):
     """
     Using the DeltaCode object, create a .csv file
-    containing the primary information from the Delta objects.
+    containing the primary information from the Delta objects.  Omit all Delta
+    objects whose 'category' is 'unmodified' unless the user selects the
+    '-a'/'--all' option.
     """
     with open(result_file, 'wb') as out:
         csv_out = csv.writer(out)
@@ -55,18 +57,23 @@ def write_csv(delta, result_file):
             f.old_file.size if f.category == 'removed' else f.new_file.size,
             f.old_file.path if f.category == 'moved' else '')
                 for d in delta.deltas for f in delta.deltas.get(d)]:
-                    csv_out.writerow(row)
+                    if all is True:
+                        csv_out.writerow(row)
+                    elif row[0] != 'unmodified':
+                        csv_out.writerow(row)
 
 
-def write_json(deltacode, outfile):
+def write_json(deltacode, outfile, all):
     """
     Using the DeltaCode object, create a .json file
-    containing the primary information from the Delta objects.
+    containing the primary information from the Delta objects.  Omit all Delta
+    objects whose 'category' is 'unmodified' unless the user selects the
+    '-a'/'--all' option.
     """
     results = OrderedDict([
         ('deltacode_version', __version__),
         ('deltacode_stats', deltacode.get_stats()),
-        ('deltas', deltas(deltacode)),
+        ('deltas', deltas(deltacode, all)),
     ])
 
     # TODO: add toggle for pretty printing
@@ -80,7 +87,8 @@ def write_json(deltacode, outfile):
 @click.option('-o', '--old', required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Identify the path to the "old" scan file')
 @click.option('-c', '--csv-file', prompt=False, type=click.Path(exists=False), help='Identify the path to the .csv output file')
 @click.option('-j', '--json-file', prompt=False, default='-', type=click.File(mode='wb', lazy=False), help='Identify the path to the .json output file')
-def cli(new, old, csv_file, json_file):
+@click.option('-a', '--all', is_flag=True, help="Include unmodified files as well as all changed files in the .json or .csv output.  If not selected, only changed files are included.")
+def cli(new, old, csv_file, json_file, all):
     """
     Identify the changes that need to be made to the 'old'
     scan file (-o or -old) in order to generate the 'new' scan file (-n or
@@ -93,7 +101,7 @@ def cli(new, old, csv_file, json_file):
 
     # output to csv
     if csv_file:
-        write_csv(deltacode, csv_file)
+        write_csv(deltacode, csv_file, all)
     # generate JSON output
     else:
-        write_json(deltacode, json_file)
+        write_json(deltacode, json_file, all)
