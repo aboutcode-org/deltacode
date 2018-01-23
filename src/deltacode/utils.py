@@ -31,7 +31,7 @@ from collections import defaultdict
 from commoncode import paths
 
 
-def deltas(deltacode, all):
+def deltas(deltacode, all_delta_types=False):
     """
     Return a generator of Delta dictionaries for JSON serialized ouput.  Omit
     all Delta objects whose 'category' is 'unmodified' unless the user selects
@@ -39,7 +39,7 @@ def deltas(deltacode, all):
     """
     for category, deltas in deltacode.deltas.iteritems():
         for delta in deltas:
-            if all is True:
+            if all_delta_types is True:
                 yield delta.to_dict()
             elif delta.category != 'unmodified':
                 yield delta.to_dict()
