@@ -221,13 +221,49 @@ class TestCLI(FileBasedTesting):
 
         assert json_result.get('deltacode_stats') == stats
 
-        moved_expected = {'category': 'moved', 'name': 'a4.py', 'path': 'b/a4.py', 'old_path': 'a/a4.py', 'type': 'file', 'size': 200}
+        moved_expected = {
+            "category": "moved",
+            "new": {
+                "path": "b/a4.py",
+                "type": "file",
+                "name": "a4.py",
+                "size": 200,
+                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
+                "original_path": "1_file_moved_new/b/a4.py"
+            },
+            "old": {
+                "path": "a/a4.py",
+                "type": "file",
+                "name": "a4.py",
+                "size": 200,
+                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
+                "original_path": "1_file_moved_old/a/a4.py"
+            }
+        }
         moved_result = [d for d in json_result.get('deltas') if d.get('category') == 'moved'].pop()
 
         assert moved_result == moved_expected
 
-        unmodified_expected = {'category': 'unmodified', 'name': 'a3.py', 'path': 'a/a3.py', 'type': 'file', 'size': 200}
-        unmodified_result = [d for d in json_result.get('deltas') if d.get('category') == 'unmodified' and d.get('path') == 'a/a3.py'].pop()
+        unmodified_expected = {
+            "category": "unmodified",
+            "new": {
+                "path": "a/a3.py",
+                "type": "file",
+                "name": "a3.py",
+                "size": 200,
+                "sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9",
+                "original_path": "1_file_moved_new/a/a3.py"
+            },
+            "old": {
+                "path": "a/a3.py",
+                "type": "file",
+                "name": "a3.py",
+                "size": 200,
+                "sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9",
+                "original_path": "1_file_moved_old/a/a3.py"
+            }
+        }
+        unmodified_result = [d for d in json_result.get('deltas') if d.get('category') == 'unmodified' and d.get('new').get('path') == 'a/a3.py'].pop()
 
         assert unmodified_result == unmodified_expected
 
@@ -247,7 +283,26 @@ class TestCLI(FileBasedTesting):
 
         assert json_result.get('deltacode_stats') == stats
 
-        moved_expected = {'category': 'moved', 'name': 'a4.py', 'path': 'b/a4.py', 'old_path': 'a/a4.py', 'type': 'file', 'size': 200}
+        moved_expected = {
+            "category": "moved",
+            "new": {
+                "path": "b/a4.py",
+                "type": "file",
+                "name": "a4.py",
+                "size": 200,
+                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
+                "original_path": "1_file_moved_new/b/a4.py"
+            },
+            "old": {
+                "path": "a/a4.py",
+                "type": "file",
+                "name": "a4.py",
+                "size": 200,
+                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
+                "original_path": "1_file_moved_old/a/a4.py"
+            }
+        }
+
         moved_result = [d for d in json_result.get('deltas') if d.get('category') == 'moved'].pop()
 
         assert moved_result == moved_expected
@@ -299,7 +354,6 @@ class TestCLI(FileBasedTesting):
 
         assert '"category": "moved"' in result.output
         assert '"path": "b/a4.py"' in result.output
-        assert '"old_path": "a/a4.py"' in result.output
         assert '"name": "a4.py"' in result.output
         assert '"type": "file"' in result.output
         assert '"size": 200' in result.output
@@ -327,7 +381,6 @@ class TestCLI(FileBasedTesting):
 
         assert '"category": "moved"' in result.output
         assert '"path": "b/a4.py"' in result.output
-        assert '"old_path": "a/a4.py"' in result.output
         assert '"name": "a4.py"' in result.output
         assert '"type": "file"' in result.output
         assert '"size": 200' in result.output
