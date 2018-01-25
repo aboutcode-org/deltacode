@@ -178,9 +178,8 @@ class File(object):
             ('original_path', self.original_path),
         ])
 
-        # TODO: re-enable this once changes to License object are made
-        # if self.licenses:
-        #    d['licenses'] = [l.to_dict() for l in self.licenses]
+        if self.licenses:
+            d['licenses'] = [l.to_dict() for l in self.licenses]
 
         return d
 
@@ -202,22 +201,12 @@ class License(object):
     """
     License object created from the 'license' field in an ABCD formatted 'file' dictionary.
     """
-    # TODO: remove some of these un-needed fields. 
-    # We want to only keep: 'key', 'score', 'short_name', 'category', 'owner'
     def __init__(self, dictionary={}):
         self.key = dictionary.get('key')
         self.score = dictionary.get('score')
         self.short_name = dictionary.get('short_name')
         self.category = dictionary.get('category')
         self.owner = dictionary.get('owner')
-        self.homepage_url = dictionary.get('homepage_url')
-        self.text_url = dictionary.get('text_url')
-        self.reference_url = dictionary.get('reference_url')
-        self.spdx_license_key = dictionary.get('spdx_license_key')
-        self.spdx_url = dictionary.get('spdx_url')
-        self.start_line = dictionary.get('start_line')
-        self.end_line = dictionary.get('end_line')
-        self.matched_rule = dictionary.get('matched_rule')
 
     def to_dict(self):
         """
@@ -229,22 +218,14 @@ class License(object):
             ('score', self.score),
             ('short_name', self.short_name),
             ('category', self.category),
-            ('owner', self.owner),
-            ('homepage_url', self.homepage_url),
-            ('text_url', self.text_url),
-            ('reference_url', self.reference_url),
-            ('spdx_license_key', self.spdx_license_key),
-            ('spdx_url', self.spdx_url),
-            ('start_line', self.start_line),
-            ('end_line', self.end_line),
-            ('matched_rule', self.matched_rule),
+            ('owner', self.owner)
         ])
 
         return d
 
     def __repr__(self):
         """
-        Return string containing a printable representation of the File object.
+        Return string containing a printable representation of the License object.
         """
         return "%s" % self.__dict__
 
