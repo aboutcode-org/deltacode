@@ -261,68 +261,24 @@ class Delta(object):
         Check the 'category' attribute of the Delta object and return an
         OrderedDict comprising the 'category' and 'path' of the object.
         """
+        delta = OrderedDict([('category', self.category)])
+
         if self.category == 'added':
-            return OrderedDict([
-                ('category', 'added'),
-                ('path', self.new_file.path),
-                ('name', self.new_file.name),
-                ('type', self.new_file.type),
-                ('size', self.new_file.size)
-            ])
+            delta.update(OrderedDict([
+                ('new', self.new_file.to_dict()),
+                ('old', None),
+            ]))
+
         elif self.category == 'removed':
-            return OrderedDict([
-                ('category', 'removed'),
-                ('path', self.old_file.path),
-                ('name', self.old_file.name),
-                ('type', self.old_file.type),
-                ('size', self.old_file.size)
-            ])
-        elif self.category == 'moved':
-            return OrderedDict([
-                ('category', 'moved'),
-                ('path', self.new_file.path),
-                ('old_path', self.old_file.path),
-                ('name', self.new_file.name),
-                ('type', self.new_file.type),
-                ('size', self.new_file.size)
-            ])
-        elif self.category == 'modified':
-            return OrderedDict([
-                ('category', 'modified'),
-                ('path', self.new_file.path),
-                ('name', self.new_file.name),
-                ('type', self.new_file.type),
-                ('size', self.new_file.size)
-            ])
-        elif self.category == 'license change':
-            return OrderedDict([
-                ('category', 'license change'),
-                ('path', self.new_file.path),
-                ('name', self.new_file.name),
-                ('type', self.new_file.type),
-                ('size', self.new_file.size)
-            ])
-        elif self.category == 'license info added':
-            return OrderedDict([
-                ('category', 'license info added'),
-                ('path', self.new_file.path),
-                ('name', self.new_file.name),
-                ('type', self.new_file.type),
-                ('size', self.new_file.size)
-            ])
-        elif self.category == 'license info removed':
-            return OrderedDict([
-                ('category', 'license info removed'),
-                ('path', self.new_file.path),
-                ('name', self.new_file.name),
-                ('type', self.new_file.type),
-                ('size', self.new_file.size)
-            ])
+            delta.update(OrderedDict([
+                ('new', None),
+                ('old', self.old_file.to_dict()),
+            ]))
+
         else:
-            return OrderedDict([
-                ('category', 'unmodified'),
-                ('path', self.new_file.path),
-                ('name', self.new_file.name),
-                ('type', self.new_file.type),
-                ('size', self.new_file.size)
-            ])
+            delta.update(OrderedDict([
+                ('new', self.new_file.to_dict()),
+                ('old', self.old_file.to_dict()),
+            ]))
+
+        return delta

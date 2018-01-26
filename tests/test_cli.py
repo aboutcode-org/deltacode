@@ -221,13 +221,85 @@ class TestCLI(FileBasedTesting):
 
         assert json_result.get('deltacode_stats') == stats
 
-        moved_expected = {'category': 'moved', 'name': 'a4.py', 'path': 'b/a4.py', 'old_path': 'a/a4.py', 'type': 'file', 'size': 200}
+        moved_expected = {
+            "category": "moved",
+            "new": {
+                "path": "b/a4.py",
+                "type": "file",
+                "name": "a4.py",
+                "size": 200,
+                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
+                "original_path": "1_file_moved_new/b/a4.py",
+                "licenses": [
+                    {
+                        "key": "apache-2.0",
+                        "score": 40.0,
+                        "short_name": "Apache 2.0",
+                        "category": "Permissive",
+                        "owner": "Apache Software Foundation"
+                    }
+                ]
+            },
+            "old": {
+                "path": "a/a4.py",
+                "type": "file",
+                "name": "a4.py",
+                "size": 200,
+                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
+                "original_path": "1_file_moved_old/a/a4.py",
+                "licenses": [
+                    {
+                        "key": "apache-2.0",
+                        "score": 40.0,
+                        "short_name": "Apache 2.0",
+                        "category": "Permissive",
+                        "owner": "Apache Software Foundation"
+                    }
+                ]
+            }
+        }
         moved_result = [d for d in json_result.get('deltas') if d.get('category') == 'moved'].pop()
 
         assert moved_result == moved_expected
 
-        unmodified_expected = {'category': 'unmodified', 'name': 'a3.py', 'path': 'a/a3.py', 'type': 'file', 'size': 200}
-        unmodified_result = [d for d in json_result.get('deltas') if d.get('category') == 'unmodified' and d.get('path') == 'a/a3.py'].pop()
+        unmodified_expected = {
+            "category": "unmodified",
+            "new": {
+                "path": "a/a3.py",
+                "type": "file",
+                "name": "a3.py",
+                "size": 200,
+                "sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9",
+                "original_path": "1_file_moved_new/a/a3.py",
+                "licenses": [
+                    {
+                        "key": "apache-2.0",
+                        "score": 40.0,
+                        "short_name": "Apache 2.0",
+                        "category": "Permissive",
+                        "owner": "Apache Software Foundation"
+                    }
+                ]
+            },
+            "old": {
+                "path": "a/a3.py",
+                "type": "file",
+                "name": "a3.py",
+                "size": 200,
+                "sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9",
+                "original_path": "1_file_moved_old/a/a3.py",
+                "licenses": [
+                    {
+                        "key": "apache-2.0",
+                        "score": 40.0,
+                        "short_name": "Apache 2.0",
+                        "category": "Permissive",
+                        "owner": "Apache Software Foundation"
+                    }
+                ]
+            }
+        }
+        unmodified_result = [d for d in json_result.get('deltas') if d.get('category') == 'unmodified' and d.get('new').get('path') == 'a/a3.py'].pop()
 
         assert unmodified_result == unmodified_expected
 
@@ -247,7 +319,44 @@ class TestCLI(FileBasedTesting):
 
         assert json_result.get('deltacode_stats') == stats
 
-        moved_expected = {'category': 'moved', 'name': 'a4.py', 'path': 'b/a4.py', 'old_path': 'a/a4.py', 'type': 'file', 'size': 200}
+        moved_expected = {
+            "category": "moved",
+            "new": {
+                "path": "b/a4.py",
+                "type": "file",
+                "name": "a4.py",
+                "size": 200,
+                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
+                "original_path": "1_file_moved_new/b/a4.py",
+                "licenses": [
+                    {
+                        "key": "apache-2.0",
+                        "score": 40.0,
+                        "short_name": "Apache 2.0",
+                        "category": "Permissive",
+                        "owner": "Apache Software Foundation"
+                    }
+                ]
+            },
+            "old": {
+                "path": "a/a4.py",
+                "type": "file",
+                "name": "a4.py",
+                "size": 200,
+                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
+                "original_path": "1_file_moved_old/a/a4.py",
+                "licenses": [
+                    {
+                        "key": "apache-2.0",
+                        "score": 40.0,
+                        "short_name": "Apache 2.0",
+                        "category": "Permissive",
+                        "owner": "Apache Software Foundation"
+                    }
+                ]
+            }
+        }
+
         moved_result = [d for d in json_result.get('deltas') if d.get('category') == 'moved'].pop()
 
         assert moved_result == moved_expected
@@ -298,17 +407,29 @@ class TestCLI(FileBasedTesting):
         assert '"unmodified": 7' in result.output
 
         assert '"category": "moved"' in result.output
+
+        assert '"new"' in result.output
         assert '"path": "b/a4.py"' in result.output
-        assert '"old_path": "a/a4.py"' in result.output
         assert '"name": "a4.py"' in result.output
         assert '"type": "file"' in result.output
         assert '"size": 200' in result.output
+        assert '"sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b"' in result.output
+        assert '"original_path": "1_file_moved_new/b/a4.py"' in result.output
+        assert '"key": "apache-2.0"' in result.output
+
+        assert '"old"' in result.output
+        assert '"path": "a/a4.py"' in result.output
+        assert '"original_path": "1_file_moved_old/a/a4.py"' in result.output
+        assert '"key": "apache-2.0"' in result.output
 
         assert '"category": "unmodified"' in result.output
+
         assert '"path": "a/a3.py"' in result.output
         assert '"name": "a3.py"' in result.output
         assert '"type": "file"' in result.output
         assert '"size": 200' in result.output
+        assert '"sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9"' in result.output
+        assert '"original_path": "1_file_moved_new/a/a3.py"' in result .output
 
     def test_no_output_option_selected_all_not_selected(self):
         new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
@@ -326,15 +447,27 @@ class TestCLI(FileBasedTesting):
         assert '"unmodified": 7' in result.output
 
         assert '"category": "moved"' in result.output
+
+        assert '"new"' in result.output
         assert '"path": "b/a4.py"' in result.output
-        assert '"old_path": "a/a4.py"' in result.output
         assert '"name": "a4.py"' in result.output
         assert '"type": "file"' in result.output
         assert '"size": 200' in result.output
+        assert '"sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b"' in result.output
+        assert '"original_path": "1_file_moved_new/b/a4.py"' in result.output
+        assert '"key": "apache-2.0"' in result.output
+
+        assert '"old"' in result.output
+        assert '"path": "a/a4.py"' in result.output
+        assert '"original_path": "1_file_moved_old/a/a4.py"' in result.output
+        assert '"key": "apache-2.0"' in result.output
 
         assert '"category": "unmodified"' not in result.output
+
         assert '"path": "a/a3.py"' not in result.output
         assert '"name": "a3.py"' not in result.output
+        assert '"sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9"' not in result.output
+        assert '"original_path": "1_file_moved_new/a/a3.py"' not in result .output
 
     def test_help(self):
         runner = CliRunner()

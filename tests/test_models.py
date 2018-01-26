@@ -393,26 +393,14 @@ class TestModels(FileBasedTesting):
             'score': 80.0,
             'short_name': 'Apache 2.0',
             'category': 'Permissive',
-            'owner': 'Apache Software Foundation',
-            'homepage_url': 'http://www.apache.org/licenses/',
-            'text_url': 'http://www.apache.org/licenses/LICENSE-2.0',
-            'reference_url': 'https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0',
-            'spdx_license_key': 'Apache-2.0',
-            'spdx_url': 'https://spdx.org/licenses/Apache-2.0',
-            'start_line': 3,
-            'end_line': 3,
-            'matched_rule': {
-                'identifier': 'apache-2.0_57.RULE',
-                'license_choice': False,
-                'licenses': [
-                    'apache-2.0',
-                ]
-            },
+            'owner': 'Apache Software Foundation'
         }
 
         result = models.License(data).to_dict()
 
         assert result == expected
+        with pytest.raises(AttributeError):
+            assert result.spdx_license_key == "Apache-2.0"
 
     def test_License_to_dict_empty(self):
         result = models.License().to_dict()
@@ -448,6 +436,8 @@ class TestModels(FileBasedTesting):
         assert result.key == 'apache-2.0'
         assert result.score == 80
         assert result.category == 'Permissive'
+        with pytest.raises(AttributeError):
+            assert result.spdx_license_key == "Apache-2.0"
 
     def test_License_object_empty(self):
         result = models.License()
@@ -494,34 +484,22 @@ class TestModels(FileBasedTesting):
             'size': 20,
             'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
             'original_path': '',
-#            'licenses': [
-#                {
-#                    "key": "apache-2.0",
-#                    "score": 80.0,
-#                    "short_name": "Apache 2.0",
-#                    "category": "Permissive",
-#                    "owner": "Apache Software Foundation",
-#                    "homepage_url": "http://www.apache.org/licenses/",
-#                    "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
-#                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
-#                    "spdx_license_key": "Apache-2.0",
-#                    "spdx_url": "https://spdx.org/licenses/Apache-2.0",
-#                    "start_line": 3,
-#                    "end_line": 3,
-#                    "matched_rule": {
-#                        "identifier": "apache-2.0_57.RULE",
-#                        "license_choice": False,
-#                        "licenses": [
-#                            "apache-2.0"
-#                        ]
-#                    }
-#                }
-#            ]
+           'licenses': [
+               {
+                   "key": "apache-2.0",
+                   "score": 80.0,
+                   "short_name": "Apache 2.0",
+                   "category": "Permissive",
+                   "owner": "Apache Software Foundation"
+               }
+           ]
         }
 
         result = models.File(data).to_dict()
 
         assert result == expected
+        with pytest.raises(AttributeError):
+            assert result.spdx_license_key == "Apache-2.0"
 
     def test_File_to_dict_simple(self):
         data = {
@@ -601,6 +579,8 @@ class TestModels(FileBasedTesting):
         assert '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b' == result.sha1
         assert len(result.licenses) == 1
         assert result.licenses[0].key == 'apache-2.0'
+        with pytest.raises(AttributeError):
+            assert result.spdx_license_key == "Apache-2.0"
 
     def test_File_create_object_license_none(self):
         data = {

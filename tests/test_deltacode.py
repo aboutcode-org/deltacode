@@ -445,10 +445,22 @@ class TestDeltacode(FileBasedTesting):
             ('unmodified', [
                 OrderedDict([
                     ('category', 'unmodified'),
-                    ('path', u'test/unmodified.txt'),
-                    ('name', u'unmodified.txt'),
-                    ('type', u'file'),
-                    ('size', 11)
+                    ('new', OrderedDict([
+                        ('path', u'test/unmodified.txt'),
+                        ('type', u'file'),
+                        ('name', u'unmodified.txt'),
+                        ('size', 11),
+                        ('sha1', u'4f499c82f79e5372c293010f931ad2798ddf3e8e'),
+                        ('original_path', u'test/unmodified.txt')
+                    ])),
+                    ('old', OrderedDict([
+                        ('path', u'test/unmodified.txt'),
+                        ('type', u'file'),
+                        ('name', u'unmodified.txt'),
+                        ('size', 11),
+                        ('sha1', u'4f499c82f79e5372c293010f931ad2798ddf3e8e'),
+                        ('original_path', u'test/unmodified.txt')
+                    ]))
                 ])
             ])
         ])
@@ -513,6 +525,15 @@ class TestDeltacode(FileBasedTesting):
 
         assert result.category == 'license info removed'
         assert result.to_dict().get('category') == 'license info removed'
+        assert result.to_dict().get('old').get('licenses') == [
+            OrderedDict([
+                ('key', 'mit'),
+                ('score', 50.0),
+                ('short_name', None),
+                ('category', None),
+                ('owner', None)
+            ])
+        ]
 
     def test_Delta_license_diff_new_no_license_info_below_cutoff_score(self):
         new_file = models.File({'path': 'new/path.txt'})
@@ -522,6 +543,15 @@ class TestDeltacode(FileBasedTesting):
 
         assert result.category == 'license info removed'
         assert result.to_dict().get('category') == 'license info removed'
+        assert result.to_dict().get('old').get('licenses') == [
+            OrderedDict([
+                ('key', 'mit'),
+                ('score', 49.0),
+                ('short_name', None),
+                ('category', None),
+                ('owner', None)
+            ])
+        ]
 
     def test_Delta_license_diff_old_no_license_info(self):
         new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 50.0}]})
@@ -531,6 +561,15 @@ class TestDeltacode(FileBasedTesting):
 
         assert result.category == 'license info added'
         assert result.to_dict().get('category') == 'license info added'
+        assert result.to_dict().get('new').get('licenses') == [
+            OrderedDict([
+                ('key', 'mit'),
+                ('score', 50.0),
+                ('short_name', None),
+                ('category', None),
+                ('owner', None)
+            ])
+        ]
 
     def test_Delta_license_diff_old_no_license_info_below_cutoff_score(self):
         new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 49.0}]})
@@ -540,6 +579,15 @@ class TestDeltacode(FileBasedTesting):
 
         assert result.category == 'license info added'
         assert result.to_dict().get('category') == 'license info added'
+        assert result.to_dict().get('new').get('licenses') == [
+            OrderedDict([
+                ('key', 'mit'),
+                ('score', 49.0),
+                ('short_name', None),
+                ('category', None),
+                ('owner', None)
+            ])
+        ]
 
     def test_Delta_license_diff_single_diff_multiple_keys(self):
         new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'gpl-2.0', 'score': 100.0}, {'key': 'mit', 'score':30.0}]})
@@ -548,6 +596,22 @@ class TestDeltacode(FileBasedTesting):
         result = deltacode.Delta(new_file, old_file, 'modified')
 
         assert result.category == 'license change'
+        assert result.to_dict().get('new').get('licenses') == [
+            OrderedDict([
+                ('key', 'gpl-2.0'),
+                ('score', 100.0),
+                ('short_name', None),
+                ('category', None),
+                ('owner', None)
+            ]),
+            OrderedDict([
+                ('key', 'mit'),
+                ('score', 30.0),
+                ('short_name', None),
+                ('category', None),
+                ('owner', None)
+            ])
+        ]
 
     def test_Delta_license_diff_no_diff_multiple_keys(self):
         new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 75.0}, {'key': 'mit', 'score': 90.0}]})
@@ -556,6 +620,22 @@ class TestDeltacode(FileBasedTesting):
         result = deltacode.Delta(new_file, old_file, 'modified')
 
         assert result.category == 'modified'
+        assert result.to_dict().get('new').get('licenses') == [
+            OrderedDict([
+                ('key', 'mit'),
+                ('score', 75.0),
+                ('short_name', None),
+                ('category', None),
+                ('owner', None)
+            ]),
+            OrderedDict([
+                ('key', 'mit'),
+                ('score', 90.0),
+                ('short_name', None),
+                ('category', None),
+                ('owner', None)
+            ])
+        ]
 
     def test_Delta_license_diff_no_diff_multiple_keys_low_score_new(self):
         new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 75.0}, {'key': 'mit', 'score': 90.0}, {'key': 'gpl-2.0', 'score': 49.9}]})
@@ -564,6 +644,29 @@ class TestDeltacode(FileBasedTesting):
         result = deltacode.Delta(new_file, old_file, 'modified')
 
         assert result.category == 'modified'
+        assert result.to_dict().get('new').get('licenses') == [
+            OrderedDict([
+                ('key', 'mit'),
+                ('score', 75.0),
+                ('short_name', None),
+                ('category', None),
+                ('owner', None)
+            ]),
+            OrderedDict([
+                ('key', 'mit'),
+                ('score', 90.0),
+                ('short_name', None),
+                ('category', None),
+                ('owner', None)
+            ]),
+            OrderedDict([
+                ('key', 'gpl-2.0'),
+                ('score', 49.9),
+                ('short_name', None),
+                ('category', None),
+                ('owner', None)
+            ])
+        ]
 
     def test_Delta_license_diff_no_diff_multiple_keys_low_score_old(self):
         new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 75.0}, {'key': 'mit', 'score': 90.0}]})
@@ -672,9 +775,9 @@ class TestDeltacode(FileBasedTesting):
 
         deltas = result.deltas
 
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/a/a1.py'] == ['license change']
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/b/b1.py'] == ['license change']
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/c/c1.py'] == ['modified']
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/a/a1.py'] == ['license change']
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/b/b1.py'] == ['license change']
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/c/c1.py'] == ['modified']
 
     def test_Delta_to_dict_modified_license_added_low_score(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added_low_score.json')
@@ -684,8 +787,8 @@ class TestDeltacode(FileBasedTesting):
 
         deltas = result.deltas
 
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/a/a1.py'] == ['modified']
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/b/b1.py'] == ['modified']
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/a/a1.py'] == ['modified']
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/b/b1.py'] == ['modified']
 
     def test_Delta_to_dict_modified_no_license_changes(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_changes.json')
@@ -695,8 +798,8 @@ class TestDeltacode(FileBasedTesting):
 
         deltas = result.deltas
 
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/a/a1.py'] == ['modified']
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/b/b1.py'] == ['modified']
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/a/a1.py'] == ['modified']
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/b/b1.py'] == ['modified']
 
     def test_Delta_to_dict_modified_no_license_key(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
@@ -706,8 +809,8 @@ class TestDeltacode(FileBasedTesting):
 
         deltas = result.deltas
 
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/a/a1.py'] == ['modified']
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('path') == 'some/path/b/b1.py'] == ['modified']
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/a/a1.py'] == ['modified']
+        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/b/b1.py'] == ['modified']
 
     def test_Delta_to_dict_removed(self):
         old = models.File({
@@ -719,13 +822,18 @@ class TestDeltacode(FileBasedTesting):
             'original_path': ''
         })
 
-        expected = {
-            'category': 'removed',
-            'path': 'path/removed.txt',
-            'name': 'removed.txt',
-            'type': 'file',
-            'size': 20
-        }
+        expected = OrderedDict([
+            ('category', 'removed'),
+            ('new', None),
+            ('old', OrderedDict([
+                ('path', 'path/removed.txt'),
+                ('type', 'file'),
+                ('name', 'removed.txt'),
+                ('size', 20),
+                ('sha1', 'a'),
+                ('original_path', '')
+            ]))
+        ])
 
         delta = deltacode.Delta(None, old, 'removed')
 
@@ -741,13 +849,18 @@ class TestDeltacode(FileBasedTesting):
             'original_path': ''
         })
 
-        expected = {
-            'category': 'added',
-            'path': 'path/added.txt',
-            'name': 'added.txt',
-            'type': 'file',
-            'size': 20
-        }
+        expected = OrderedDict([
+            ('category', 'added'),
+            ('new', OrderedDict([
+                ('path', 'path/added.txt'),
+                ('type', 'file'),
+                ('name', 'added.txt'),
+                ('size', 20),
+                ('sha1', 'a'),
+                ('original_path', '')
+            ])),
+            ('old', None)
+        ])
 
         delta = deltacode.Delta(new, None, 'added')
 
@@ -771,13 +884,25 @@ class TestDeltacode(FileBasedTesting):
             'original_path': ''
         })
 
-        expected = {
-            'category': 'modified',
-            'path': 'path/modified.txt',
-            'name': 'modified.txt',
-            'type': 'file',
-            'size': 20
-        }
+        expected = OrderedDict([
+            ('category', 'modified'),
+            ('new', OrderedDict([
+                ('path', 'path/modified.txt'),
+                ('type', 'file'),
+                ('name', 'modified.txt'),
+                ('size', 20),
+                ('sha1', 'a'),
+                ('original_path', '')
+            ])),
+            ('old', OrderedDict([
+                ('path', 'path/modified.txt'),
+                ('type', 'file'),
+                ('name', 'modified.txt'),
+                ('size', 21),
+                ('sha1', 'b'),
+                ('original_path', '')
+            ]))
+        ])
 
         delta = deltacode.Delta(new, old, 'modified')
 
@@ -801,13 +926,25 @@ class TestDeltacode(FileBasedTesting):
             'original_path': ''
         })
 
-        expected = {
-            'category': 'unmodified',
-            'path': 'path/unmodified.txt',
-            'name': 'unmodified.txt',
-            'type': 'file',
-            'size': 20
-        }
+        expected = OrderedDict([
+            ('category', 'unmodified'),
+            ('new', OrderedDict([
+                ('path', 'path/unmodified.txt'),
+                ('type', 'file'),
+                ('name', 'unmodified.txt'),
+                ('size', 20),
+                ('sha1', 'a'),
+                ('original_path', '')
+            ])),
+            ('old', OrderedDict([
+                ('path', 'path/unmodified.txt'),
+                ('type', 'file'),
+                ('name', 'unmodified.txt'),
+                ('size', 20),
+                ('sha1', 'a'),
+                ('original_path', '')
+            ]))
+        ])
 
         delta = deltacode.Delta(new, old, 'unmodified')
 
@@ -831,14 +968,25 @@ class TestDeltacode(FileBasedTesting):
             'original_path': ''
         })
 
-        expected = {
-            'category': 'moved',
-            'path': 'path_new/moved.txt',
-            'old_path': 'path_old/moved.txt',
-            'name': 'moved.txt',
-            'type': 'file',
-            'size': 20
-        }
+        expected = OrderedDict([
+            ('category', 'moved'),
+            ('new', OrderedDict([
+                ('path', 'path_new/moved.txt'),
+                ('type', 'file'),
+                ('name', 'moved.txt'),
+                ('size', 20),
+                ('sha1', 'a'),
+                ('original_path', '')
+            ])),
+            ('old', OrderedDict([
+                ('path', 'path_old/moved.txt'),
+                ('type', 'file'),
+                ('name', 'moved.txt'),
+                ('size', 20),
+                ('sha1', 'a'),
+                ('original_path', '')
+            ]))
+        ])
 
         delta = deltacode.Delta(new, old, 'moved')
 
@@ -847,7 +995,26 @@ class TestDeltacode(FileBasedTesting):
     def test_Delta_to_dict_empty(self):
         delta = deltacode.Delta()
 
-        assert delta.to_dict() == OrderedDict([('category', 'unmodified'), ('path', ''), ('name', ''), ('type', ''), ('size', '')])
+        assert delta.to_dict() == OrderedDict([
+            ('category', ''),
+            ('new', OrderedDict([
+                ('path', ''),
+                ('type', ''),
+                ('name', ''),
+                ('size', ''),
+                ('sha1', ''),
+                ('original_path', '')
+            ])),
+            ('old', OrderedDict([
+                ('path', ''),
+                ('type', ''),
+                ('name', ''),
+                ('size', ''),
+                ('sha1', ''),
+                ('original_path', '')
+            ]))
+        ])
+
 
     def test_Delta_to_dict_license_modified(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')
@@ -862,24 +1029,184 @@ class TestDeltacode(FileBasedTesting):
             ('modified', [
                 OrderedDict([
                     ('category', 'modified'),
-                    ('path', u'some/path/c/c1.py'),
-                    ('name', u'c1.py'),
-                    ('type', u'file'),
-                    ('size', 300)
+                    ('new', OrderedDict([
+                        ('path', u'some/path/c/c1.py'),
+                        ('type', u'file'),
+                        ('name', u'c1.py'),
+                        ('size', 300),
+                        ('sha1', u'333647771481d39dd3a53f6dc210c26abac37748'),
+                        ('original_path', u'some/path/c/c1.py'),
+                        ('licenses', [
+                            OrderedDict([
+                                ('key', u'mit'),
+                                ('score', 100.0),
+                                ('short_name', u'MIT License'),
+                                ('category', u'Permissive'),
+                                ('owner', None)
+                            ])
+                        ])
+                    ])),
+                    ('old', OrderedDict([
+                        ('path', u'some/path/c/c1.py'),
+                        ('type', u'file'),
+                        ('name', u'c1.py'),
+                        ('size', 300),
+                        ('sha1', u'222647771481d39dd3a53f6dc210c26abac37748'),
+                        ('original_path', u'some/path/c/c1.py'),
+                        ('licenses', [
+                            OrderedDict([
+                                ('key', u'mit'),
+                                ('score', 100.0),
+                                ('short_name', u'MIT License'),
+                                ('category', u'Permissive'),
+                                ('owner', None)
+                            ])
+                        ])
+                    ]))
                 ]),
                 OrderedDict([
                     ('category', 'license change'),
-                    ('path', u'some/path/a/a1.py'),
-                    ('name', u'a1.py'),
-                    ('type', u'file'),
-                    ('size', 300)
+                    ('new', OrderedDict([
+                        ('path', u'some/path/a/a1.py'),
+                        ('type', u'file'),
+                        ('name', u'a1.py'),
+                        ('size', 300),
+                        ('sha1', u'000647771481d39dd3a53f6dc210c26abac37748'),
+                        ('original_path', u'some/path/a/a1.py'),
+                        ('licenses', [
+                            OrderedDict([
+                                ('key', u'apache-2.0'),
+                                ('score', 80.0),
+                                ('short_name', u'Apache 2.0'),
+                                ('category', u'Permissive'),
+                                ('owner', None)
+                            ]),
+                            OrderedDict([
+                                ('key', u'agpl-2.0'),
+                                ('score', 70.0),
+                                ('short_name', u'AGPL 2.0'),
+                                ('category', u'Copyleft'),
+                                ('owner', None)
+                            ]),
+                            OrderedDict([
+                                ('key', u'bsd-simplified'),
+                                ('score', 100.0),
+                                ('short_name', u'BSD-Simplified'),
+                                ('category', u'Permissive'),
+                                ('owner', None)
+                            ]),
+                            OrderedDict([
+                                ('key', u'mit'),
+                                ('score', 100.0),
+                                ('short_name', u'MIT License'),
+                                ('category', u'Permissive'),
+                                ('owner', None)
+                            ])
+                        ])
+                    ])),
+                    ('old', OrderedDict([
+                        ('path', u'some/path/a/a1.py'),
+                        ('type', u'file'),
+                        ('name', u'a1.py'),
+                        ('size', 200),
+                        ('sha1', u'84b647771481d39dd3a53f6dc210c26abac37748'),
+                        ('original_path', u'some/path/a/a1.py'),
+                        ('licenses', [
+                            OrderedDict([
+                                ('key', u'apache-2.0'),
+                                ('score', 80.0),
+                                ('short_name', u'Apache 2.0'),
+                                ('category', u'Permissive'),
+                                ('owner', None)
+                            ]),
+                            OrderedDict([
+                                ('key', u'public-domain'),
+                                ('score', 10.0),
+                                ('short_name', u'Public Domain'),
+                                ('category', u'Public Domain'),
+                                ('owner', None)
+                            ]),
+                            OrderedDict([
+                                ('key', u'bsd-simplified'),
+                                ('score', 100.0),
+                                ('short_name', u'BSD-Simplified'),
+                                ('category', u'Permissive'),
+                                ('owner', None)
+                            ])
+                        ])
+                    ]))
                 ]),
                 OrderedDict([
                     ('category', 'license change'),
-                    ('path', u'some/path/b/b1.py'),
-                    ('name', u'b1.py'),
-                    ('type', u'file'),
-                    ('size', 300)
+                    ('new', OrderedDict([
+                        ('path', u'some/path/b/b1.py'),
+                        ('type', u'file'),
+                        ('name', u'b1.py'),
+                        ('size', 300),
+                        ('sha1', u'111647771481d39dd3a53f6dc210c26abac37748'),
+                        ('original_path', u'some/path/b/b1.py'),
+                        ('licenses', [
+                            OrderedDict([
+                                ('key', u'apache-2.0'),
+                                ('score', 80.0),
+                                ('short_name', u'Apache 2.0'),
+                                ('category', u'Permissive'),
+                                ('owner', None)
+                            ]),
+                            OrderedDict([
+                                ('key', u'gpl-2.0'),
+                                ('score', 60.0),
+                                ('short_name', u'GPL 2.0'),
+                                ('category', u'Copyleft'),
+                                ('owner', None)
+                            ]),
+                            OrderedDict([
+                                ('key', u'bsd-simplified'),
+                                ('score', 100.0),
+                                ('short_name', u'BSD-Simplified'),
+                                ('category', u'Permissive'),
+                                ('owner', None)
+                            ]),
+                            OrderedDict([
+                                ('key', u'mit'),
+                                ('score', 100.0),
+                                ('short_name', u'MIT License'),
+                                ('category', u'Permissive'),
+                                ('owner', None)
+                            ])
+                        ])
+                    ])),
+                    ('old', OrderedDict([
+                        ('path', u'some/path/b/b1.py'),
+                        ('type', u'file'),
+                        ('name', u'b2.py'),
+                        ('size', 200),
+                        ('sha1', u'333647771481d39dd3a53f6dc210c26abac37748'),
+                        ('original_path', u'some/path/b/b1.py'),
+                        ('licenses', [
+                            OrderedDict([
+                                ('key', u'mpl-2.0'),
+                                ('score', 90.0),
+                                ('short_name', u'MPL 2.0'),
+                                ('category', u'Copyleft Limited'),
+                                ('owner', None)
+                            ]),
+                            OrderedDict([
+                                ('key', u'public-domain'),
+                                ('score', 10.0),
+                                ('short_name', u'Public Domain'),
+                                ('category', u'Public Domain'),
+                                ('owner', None)
+                            ]),
+                            OrderedDict([
+                                ('key', u'bsd-simplified'),
+                                ('score', 100.0),
+                                ('short_name', u'BSD-Simplified'),
+                                ('category', u'Permissive'),
+                                ('owner', None)
+                            ])
+                        ])
+                    ]))
                 ])
             ]),
             ('unmodified', [])
@@ -900,17 +1227,41 @@ class TestDeltacode(FileBasedTesting):
             ('modified', [
                 OrderedDict([
                     ('category', 'modified'),
-                    ('path', u'some/path/a/a1.py'),
-                    ('name', u'a1.py'),
-                    ('type', u'file'),
-                    ('size', 250)
+                    ('new', OrderedDict([
+                        ('path', u'some/path/a/a1.py'),
+                        ('type', u'file'),
+                        ('name', u'a1.py'),
+                        ('size', 250),
+                        ('sha1', u'000647771481d39dd3a53f6dc210c26abac37748'),
+                        ('original_path', u'some/path/a/a1.py')
+                    ])),
+                    ('old', OrderedDict([
+                        ('path', u'some/path/a/a1.py'),
+                        ('type', u'file'),
+                        ('name', u'a1.py'),
+                        ('size', 350),
+                        ('sha1', u'222647771481d39dd3a53f6dc210c26abac37748'),
+                        ('original_path', u'some/path/a/a1.py')
+                    ]))
                 ]),
                 OrderedDict([
                     ('category', 'modified'),
-                    ('path', u'some/path/b/b1.py'),
-                    ('name', u'b1.py'),
-                    ('type', u'file'),
-                    ('size', 310)
+                    ('new', OrderedDict([
+                        ('path', u'some/path/b/b1.py'),
+                        ('type', u'file'),
+                        ('name', u'b1.py'),
+                        ('size', 310),
+                        ('sha1', u'111647771481d39dd3a53f6dc210c26abac37748'),
+                        ('original_path', u'some/path/b/b1.py')
+                    ])),
+                    ('old', OrderedDict([
+                        ('path', u'some/path/b/b1.py'),
+                        ('type', u'file'),
+                        ('name', u'b1.py'),
+                        ('size', 290),
+                        ('sha1', u'333647771481d39dd3a53f6dc210c26abac37748'),
+                        ('original_path', u'some/path/b/b1.py')
+                    ]))
                 ])
             ]),
             ('unmodified', [])
