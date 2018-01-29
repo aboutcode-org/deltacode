@@ -33,6 +33,15 @@ from deltacode import utils
 
 __version__ = '0.0.1.beta'
 
+from pkg_resources import get_distribution, DistributionNotFound
+
+
+try:
+    __version__ = get_distribution('deltacode').version
+except DistributionNotFound:
+    # package is not installed ??
+    __version__ = '0.0.1.beta'
+
 
 class DeltaCode(object):
     """

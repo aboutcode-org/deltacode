@@ -29,6 +29,7 @@ from collections import OrderedDict
 
 import csv
 import json
+import os
 
 import click
 import simplejson
@@ -36,6 +37,20 @@ import simplejson
 from deltacode import DeltaCode
 from deltacode import __version__
 from deltacode.utils import deltas
+
+
+notice_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'NOTICE')
+notice_text = open(notice_path).read()
+
+delimiter = '\n\n\n'
+[notice_text, extra_notice_text] = notice_text.split(delimiter, 1)
+extra_notice_text = delimiter + extra_notice_text
+
+delimiter = '\n\n  '
+[notice_text, acknowledgment_text] = notice_text.split(delimiter, 1)
+acknowledgment_text = delimiter + acknowledgment_text
+
+notice = acknowledgment_text.strip().replace('  ', '')
 
 
 # FIXME: update the function argument delta to deltacode
@@ -63,14 +78,16 @@ def write_csv(delta, result_file, all_delta_types=False):
                         csv_out.writerow(row)
 
 
-def write_json(deltacode, outfile, all_delta_types=False):
+def write_json(deltacode, outfile, options, all_delta_types=False):
     """
-    Using the DeltaCode object, create a .json file
-    containing the primary information from the Delta objects.  Omit all Delta
-    objects whose 'category' is 'unmodified' unless the user selects the
-    '-a'/'--all' option.
+    Using the DeltaCode object, create a .json file containing the primary
+    information from the Delta objects.  Omit all Delta objects whose
+    'category' is 'unmodified' unless the user selects the
+    '-a'/'--all-delta-types' option.
     """
     results = OrderedDict([
+        ('deltacode_notice', notice),
+        ('deltacode_options', options),
         ('deltacode_version', __version__),
         ('deltacode_stats', deltacode.get_stats()),
         ('deltas', deltas(deltacode, all_delta_types)),
@@ -99,9 +116,14 @@ def cli(new, old, csv_file, json_file, all_delta_types):
     # do the delta
     deltacode = DeltaCode(new, old)
 
+    # retrieve the option selections
+    options = OrderedDict([
+        ('--all-delta-types', all_delta_types)
+    ])
+
     # output to csv
     if csv_file:
         write_csv(deltacode, csv_file, all_delta_types)
     # generate JSON output
     else:
-        write_json(deltacode, json_file, all_delta_types)
+        write_json(deltacode, json_file, options, all_delta_types)

@@ -217,6 +217,20 @@ class TestCLI(FileBasedTesting):
         assert result.exit_code == 0
 
         json_result = json.load(open(result_file))
+
+        notice = ('Generated with DeltaCode and provided on an "AS IS" BASIS, WITHOUT WARRANTIES\n'
+                  'OR CONDITIONS OF ANY KIND, either express or implied. No content created from\n'
+                  'DeltaCode should be considered or used as legal advice. Consult an Attorney\n'
+                  'for any legal advice.\n'
+                  'DeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\n'
+                  'Visit https://github.com/nexB/deltacode/ for support and download.')
+
+        assert json_result.get('deltacode_notice') == notice
+
+        options =  {'--all-delta-types': True}
+
+        assert json_result.get('deltacode_options') == options
+
         stats = {'unmodified': 7, 'removed': 0, 'added': 0, 'moved': 1, 'modified': 0}
 
         assert json_result.get('deltacode_stats') == stats
@@ -315,6 +329,20 @@ class TestCLI(FileBasedTesting):
         assert result.exit_code == 0
 
         json_result = json.load(open(result_file))
+
+        notice = ('Generated with DeltaCode and provided on an "AS IS" BASIS, WITHOUT WARRANTIES\n'
+                  'OR CONDITIONS OF ANY KIND, either express or implied. No content created from\n'
+                  'DeltaCode should be considered or used as legal advice. Consult an Attorney\n'
+                  'for any legal advice.\n'
+                  'DeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\n'
+                  'Visit https://github.com/nexB/deltacode/ for support and download.')
+
+        assert json_result.get('deltacode_notice') == notice
+
+        options =  {'--all-delta-types': False}
+
+        assert json_result.get('deltacode_options') == options
+
         stats = {'unmodified': 7, 'removed': 0, 'added': 0, 'moved': 1, 'modified': 0}
 
         assert json_result.get('deltacode_stats') == stats
@@ -400,6 +428,12 @@ class TestCLI(FileBasedTesting):
 
         assert result.exit_code == 0
 
+        assert 'deltacode_notice' in result.output
+        assert 'Generated with DeltaCode and provided on an \\"AS IS\\" BASIS, WITHOUT WARRANTIES\\n' in result.output
+
+        assert 'deltacode_options' in result.output
+        assert '"--all-delta-types": true' in result.output
+
         assert '"added": 0' in result.output
         assert '"modified": 0' in result.output
         assert '"moved": 1' in result.output
@@ -439,6 +473,12 @@ class TestCLI(FileBasedTesting):
         result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan])
 
         assert result.exit_code == 0
+
+        assert 'deltacode_notice' in result.output
+        assert 'Generated with DeltaCode and provided on an \\"AS IS\\" BASIS, WITHOUT WARRANTIES\\n' in result.output
+
+        assert 'deltacode_options' in result.output
+        assert '"--all-delta-types": false' in result.output
 
         assert '"added": 0' in result.output
         assert '"modified": 0' in result.output
