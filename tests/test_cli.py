@@ -79,7 +79,12 @@ class TestCLI(FileBasedTesting):
         new_scan = self.get_test_loc('cli/new_added1.json')
         old_scan = self.get_test_loc('cli/old_added1.json')
 
-        delta = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+
         result_file = self.get_temp_file('.csv')
         cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/added1.csv')
@@ -89,7 +94,12 @@ class TestCLI(FileBasedTesting):
         new_scan = self.get_test_loc('cli/new_modified1.json')
         old_scan = self.get_test_loc('cli/old_modified1.json')
 
-        delta = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+
         result_file = self.get_temp_file('.csv')
         cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/modified1.csv')
@@ -99,7 +109,12 @@ class TestCLI(FileBasedTesting):
         new_scan = self.get_test_loc('cli/new_removed1.json')
         old_scan = self.get_test_loc('cli/old_removed1.json')
 
-        delta = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+
         result_file = self.get_temp_file('.csv')
         cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/removed1.csv')
@@ -109,7 +124,12 @@ class TestCLI(FileBasedTesting):
         new_scan = self.get_test_loc('cli/new_renamed1.json')
         old_scan = self.get_test_loc('cli/old_renamed1.json')
 
-        delta = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+
         result_file = self.get_temp_file('.csv')
         cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/renamed1.csv')
@@ -119,7 +139,12 @@ class TestCLI(FileBasedTesting):
         new_scan = self.get_test_loc('cli/scan_modified_new_license_added.json')
         old_scan = self.get_test_loc('cli/scan_modified_old_license_added.json')
 
-        delta = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+
         result_file = self.get_temp_file('.csv')
         cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/modified_new_license_added.csv')
@@ -129,7 +154,12 @@ class TestCLI(FileBasedTesting):
         new_scan = self.get_test_loc('cli/scan_modified_new_license_added_low_score.json')
         old_scan = self.get_test_loc('cli/scan_modified_old_license_added_low_score.json')
 
-        delta = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+
         result_file = self.get_temp_file('.csv')
         cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/modified_new_license_added_low_score.csv')
@@ -139,7 +169,12 @@ class TestCLI(FileBasedTesting):
         new_scan = self.get_test_loc('cli/scan_new_license_info_removed.json')
         old_scan = self.get_test_loc('cli/scan_old_license_info_removed.json')
 
-        delta = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+
         result_file = self.get_temp_file('.csv')
         cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/license_info_removed.csv')
@@ -149,7 +184,12 @@ class TestCLI(FileBasedTesting):
         new_scan = self.get_test_loc('cli/scan_new_license_info_added.json')
         old_scan = self.get_test_loc('cli/scan_old_license_info_added.json')
 
-        delta = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+
         result_file = self.get_temp_file('.csv')
         cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/license_info_added.csv')
@@ -159,7 +199,12 @@ class TestCLI(FileBasedTesting):
         new_scan = self.get_test_loc('cli/scan_new_license_info_removed_below_cutoff_score.json')
         old_scan = self.get_test_loc('cli/scan_old_license_info_removed_below_cutoff_score.json')
 
-        delta = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+
         result_file = self.get_temp_file('.csv')
         cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/license_info_removed_below_cutoff_score.csv')
@@ -169,7 +214,12 @@ class TestCLI(FileBasedTesting):
         new_scan = self.get_test_loc('cli/scan_new_license_info_added_below_cutoff_score.json')
         old_scan = self.get_test_loc('cli/scan_old_license_info_added_below_cutoff_score.json')
 
-        delta = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+
         result_file = self.get_temp_file('.csv')
         cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/license_info_added_below_cutoff_score.csv')
@@ -179,7 +229,11 @@ class TestCLI(FileBasedTesting):
         new_scan = self.get_test_loc('cli/scan_1_file_moved_new.json')
         old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
 
-        delta = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
         result_file = self.get_temp_file('.csv')
         cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/1_file_moved.csv')
@@ -189,7 +243,11 @@ class TestCLI(FileBasedTesting):
         new_scan = self.get_test_loc('cli/scan_1_file_moved_and_1_copy_new.json')
         old_scan = self.get_test_loc('cli/scan_1_file_moved_and_1_copy_old.json')
 
-        delta = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
         result_file = self.get_temp_file('.csv')
         cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/1_file_moved_and_1_copy.csv')
@@ -199,7 +257,11 @@ class TestCLI(FileBasedTesting):
         new_scan = self.get_test_loc('cli/scan_1_file_moved_and_added_new.json')
         old_scan = self.get_test_loc('cli/scan_1_file_moved_and_added_old.json')
 
-        delta = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
         result_file = self.get_temp_file('.csv')
         cli.write_csv(delta, result_file, True)
         expected_file = self.get_test_loc('cli/1_file_moved_and_added.csv')

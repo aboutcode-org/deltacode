@@ -49,9 +49,10 @@ class DeltaCode(object):
     format) and the Delta objects created from a comparison of the files (in
     the form of File objects) contained in those scans.
     """
-    def __init__(self, new_path, old_path):
+    def __init__(self, new_path, old_path, options):
         self.new = Scan(new_path)
         self.old = Scan(old_path)
+        self.options = options
         self.deltas = OrderedDict([
             ('added', []),
             ('removed', []),
