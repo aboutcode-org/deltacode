@@ -327,7 +327,7 @@ class TestModels(FileBasedTesting):
         with pytest.raises(models.ScancodeException) as e:
             invalid_result = models.Scan(invalid_path)
 
-        assert str(e.value) == 'ScancodeException: JSON file is missing the \'scancode_version\' attribute.'
+        assert str(e.value) == 'JSON file \'empty.json\' is missing the \'scancode_version\' attribute.'
 
     def test_Scan_old_version(self):
         invalid_path = self.get_test_loc('models/scan/old-version.json')
@@ -335,7 +335,7 @@ class TestModels(FileBasedTesting):
         with pytest.raises(models.ScancodeException) as e:
             invalid_result = models.Scan(invalid_path)
 
-        assert str(e.value) == 'ScancodeException: JSON file was created with an old version of ScanCode.'
+        assert str(e.value) == 'JSON file \'old-version.json\' was created with an old version of ScanCode.'
 
     def test_Scan_info_not_selected(self):
         invalid_path = self.get_test_loc('models/scan/info-not-selected.json')
@@ -343,7 +343,7 @@ class TestModels(FileBasedTesting):
         with pytest.raises(models.ScancodeException) as e:
             invalid_result = models.Scan(invalid_path)
 
-        assert str(e.value) == 'ScancodeException: JSON file is missing the \'scancode_options/--info\' attribute.'
+        assert str(e.value) == 'JSON file \'info-not-selected.json\' is missing the \'scancode_options/--info\' attribute.'
 
     def test_Scan_invalid_path(self):
         test_path = '/some/invalid/path.json'

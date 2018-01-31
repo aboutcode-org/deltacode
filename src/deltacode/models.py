@@ -26,6 +26,7 @@
 from __future__ import absolute_import
 
 from collections import OrderedDict
+from os.path import basename
 
 import json
 
@@ -83,16 +84,18 @@ class Scan(object):
 
         scan = json.loads(open(location).read())
 
+        fileName = basename(location)
+
         if not scan.get('scancode_version'):
-            msg = ('ScancodeException: JSON file is missing the \'scancode_version\' attribute.')
+            msg = ('JSON file \'' + fileName + '\' is missing the \'scancode_version\' attribute.')
             raise ScancodeException(msg)
 
         if int(scan.get('scancode_version').split('.').pop(0)) < 2:
-            msg = ('ScancodeException: JSON file was created with an old version of ScanCode.')
+            msg = ('JSON file \'' + fileName + '\' was created with an old version of ScanCode.')
             raise ScancodeException(msg)
 
         if not scan.get('scancode_options').get('--info'):
-            msg = ('ScancodeException: JSON file is missing the \'scancode_options/--info\' attribute.')
+            msg = ('JSON file \'' + fileName + '\' is missing the \'scancode_options/--info\' attribute.')
             raise ScancodeException(msg)
 
         return True
