@@ -84,13 +84,16 @@ class Scan(object):
         scan = json.loads(open(location).read())
 
         if not scan.get('scancode_version'):
-            raise ScancodeVersionAttributeException
+            msg = ('JSON file \'' + location + '\' is missing the \'scancode_version\' attribute.')
+            raise ScanException(msg)
 
         if int(scan.get('scancode_version').split('.').pop(0)) < 2:
-            raise ScancodeOldVersionException
+            msg = ('JSON file \'' + location + '\' was created with an old version of ScanCode.')
+            raise ScanException(msg)
 
         if not scan.get('scancode_options').get('--info'):
-            raise ScancodeInfoAttributeException
+            msg = ('JSON file \'' + location + '\' is missing the \'scancode_options/--info\' attribute.')
+            raise ScanException(msg)
 
         return True
 
@@ -230,23 +233,10 @@ class License(object):
         return "%s" % self.__dict__
 
 
-class ScancodeVersionAttributeException(Exception):
+class ScanException(Exception):
     """
-    Named exception for JSON file containing no 'scancode_version' attribute.
-    """
-    pass
-
-
-class ScancodeOldVersionException(Exception):
-    """
-    Named exception for JSON file containing old version of ScanCode.
-    """
-    pass
-
-
-class ScancodeInfoAttributeException(Exception):
-    """
-    Named exception for JSON file containing no 'scancode_options'/'--info'
-    attribute.
+    Named exception for JSON file (1) containing no 'scancode_version'
+    attribute, (2) containing old version of ScanCode, or (3) containing no
+    'scancode_options'/'--info' attribute.
     """
     pass

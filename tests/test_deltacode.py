@@ -49,7 +49,12 @@ class TestDeltacode(FileBasedTesting):
         new = models.Scan(new_scan)
         old = models.Scan(old_scan)
 
-        delta = DeltaCode(None, None)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(None, None, options)
+
         delta.new = new
         delta.old = old
 
@@ -73,7 +78,11 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion-new.json')
         old_scan = self.get_test_loc('deltacode/ecos-failed-counts-assertion-old.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
 
         assert result.new.files_count == 11408
         assert result.old.files_count == 8631
@@ -82,7 +91,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/abcm-aligned-new.json')
         old_scan = self.get_test_loc('deltacode/abcm-aligned-old.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
+
         counts = result.get_stats()
 
         assert counts.get('added') == 25
@@ -95,7 +109,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/zlib-unaligned-same-base-path-new.json')
         old_scan = self.get_test_loc('deltacode/zlib-unaligned-same-base-path-old.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
+
         counts = result.get_stats()
 
         assert counts.get('added') == 232
@@ -108,7 +127,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/zlib-unaligned-new.json')
         old_scan = self.get_test_loc('deltacode/zlib-unaligned-old.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
+
         counts = result.get_stats()
 
         assert counts.get('added') == 254
@@ -121,7 +145,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/identical.json')
         old_scan = self.get_test_loc('deltacode/identical.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
+
         counts = result.get_stats()
 
         assert counts.get('added') == 0
@@ -134,7 +163,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/new_added1.json')
         old_scan = self.get_test_loc('deltacode/old_added1.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
+
         counts = result.get_stats()
 
         assert counts.get('added') == 1
@@ -147,7 +181,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/new_removed1.json')
         old_scan = self.get_test_loc('deltacode/old_removed1.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
+
         counts = result.get_stats()
 
         assert counts.get('added') == 0
@@ -160,7 +199,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/new_renamed1.json')
         old_scan = self.get_test_loc('deltacode/old_renamed1.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
+
         counts = result.get_stats()
 
         assert counts.get('added') == 1
@@ -173,7 +217,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/new_modified1.json')
         old_scan = self.get_test_loc('deltacode/old_modified1.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
+
         counts = result.get_stats()
 
         assert counts.get('added') == 0
@@ -186,7 +235,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
         old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
+
         counts = result.get_stats()
 
         assert counts.get('added') == 0
@@ -199,7 +253,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/scan_1_file_moved_and_1_copy_new.json')
         old_scan = self.get_test_loc('deltacode/scan_1_file_moved_and_1_copy_old.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
+
         counts = result.get_stats()
 
         assert counts.get('added') == 2
@@ -212,7 +271,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/scan_1_file_moved_and_added_new.json')
         old_scan = self.get_test_loc('deltacode/scan_1_file_moved_and_added_old.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
+
         counts = result.get_stats()
 
         assert counts.get('added') == 2
@@ -225,7 +289,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/2_dupes_removed_1_copy_added_new.json')
         old_scan = self.get_test_loc('deltacode/2_dupes_removed_1_copy_added_old.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
+
         counts = result.get_stats()
 
         assert counts.get('added') == 1
@@ -238,7 +307,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/2_moved_new.json')
         old_scan = self.get_test_loc('deltacode/2_moved_old.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
+
         counts = result.get_stats()
 
         assert counts.get('added') == 0
@@ -251,7 +325,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/2_removed_3_added_1_moved_new.json')
         old_scan = self.get_test_loc('deltacode/2_removed_3_added_1_moved_old.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
+
         counts = result.get_stats()
 
         assert counts.get('added') == 3
@@ -264,7 +343,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/1_directory_moved_new.json')
         old_scan = self.get_test_loc('deltacode/1_directory_moved_old.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
+
         counts = result.get_stats()
 
         assert counts.get('added') == 0
@@ -278,7 +362,11 @@ class TestDeltacode(FileBasedTesting):
         # Our old scan uses --full-root option in scancode
         old_scan = self.get_test_loc('deltacode/align-scan-zlib-alignment-exception-old.json')
 
-        results = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        results = DeltaCode(new_scan, old_scan, options)
 
         assert results.new.files_count == 293
         assert results.old.files_count == 40
@@ -297,7 +385,11 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/delta-len-error-new.json')
         old_scan = self.get_test_loc('deltacode/delta-len-error-old.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
 
         # Modifiy files_count value to raise the error.
         # This should never happen in reality.
@@ -310,7 +402,12 @@ class TestDeltacode(FileBasedTesting):
         test_scan_new = self.get_test_loc('deltacode/to-dict-openssl-new.json')
         test_scan_old = self.get_test_loc('deltacode/to-dict-openssl-old.json')
 
-        deltacode = DeltaCode(test_scan_new, test_scan_old)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        deltacode = DeltaCode(test_scan_new, test_scan_old, options)
+
         result = deltacode.to_dict()
 
         assert (len(result.get('added')) + len(result.get('removed'))
@@ -327,10 +424,11 @@ class TestDeltacode(FileBasedTesting):
         test_scan_new = self.get_test_loc('deltacode/to-dict-dropbear-new.json')
         test_scan_old = self.get_test_loc('deltacode/to-dict-dropbear-old.json')
 
-        delta = DeltaCode(test_scan_new, test_scan_old)
-        data = delta.to_dict()
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
 
-        deltacode = DeltaCode(test_scan_new, test_scan_old)
+        deltacode = DeltaCode(test_scan_new, test_scan_old, options)
         result = deltacode.to_dict()
 
         assert (len(result.get('added')) + len(result.get('removed'))
@@ -347,10 +445,11 @@ class TestDeltacode(FileBasedTesting):
         test_scan_new = self.get_test_loc('deltacode/to-dict-zlib-new.json')
         test_scan_old = self.get_test_loc('deltacode/to-dict-zlib-old.json')
 
-        delta = DeltaCode(test_scan_new, test_scan_old)
-        data = delta.to_dict()
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
 
-        deltacode = DeltaCode(test_scan_new, test_scan_old)
+        deltacode = DeltaCode(test_scan_new, test_scan_old, options)
         result = deltacode.to_dict()
 
         assert (len(result.get('added')) + len(result.get('removed'))
@@ -367,7 +466,11 @@ class TestDeltacode(FileBasedTesting):
         test_scan_new = self.get_test_loc('deltacode/to-dict-new-added1.json')
         test_scan_old = self.get_test_loc('deltacode/to-dict-old-added1.json')
 
-        deltacode = DeltaCode(test_scan_new, test_scan_old)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        deltacode = DeltaCode(test_scan_new, test_scan_old, options)
         result = deltacode.to_dict()
 
         assert (len(result.get('added')) + len(result.get('removed'))
@@ -385,7 +488,11 @@ class TestDeltacode(FileBasedTesting):
         # Our old scan uses --full-root option in scancode
         test_scan_old = self.get_test_loc('deltacode/to-dict-align-trees-simple-old.json')
 
-        deltacode = DeltaCode(test_scan_new, test_scan_old)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        deltacode = DeltaCode(test_scan_new, test_scan_old, options)
         result = deltacode.to_dict()
 
         assert (len(result.get('added')) + len(result.get('removed'))
@@ -402,7 +509,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/new_added1.json')
         old_scan = self.get_test_loc('deltacode/old_added1.json')
 
-        deltacode = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        deltacode = DeltaCode(new_scan, old_scan, options)
+
         result = deltacode.to_dict()
 
         assert (len(result.get('added')) + len(result.get('removed'))
@@ -419,7 +531,12 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/new_modified1.json')
         old_scan = self.get_test_loc('deltacode/old_modified1.json')
 
-        deltacode = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        deltacode = DeltaCode(new_scan, old_scan, options)
+
         result = deltacode.to_dict()
 
         assert (len(result.get('added')) + len(result.get('removed'))
@@ -435,7 +552,11 @@ class TestDeltacode(FileBasedTesting):
     def test_DeltaCode_to_dict_simple_unmodified(self):
         test_file = self.get_test_loc('deltacode/to-dict-unmodified.json')
 
-        deltacode = DeltaCode(test_file, test_file)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        deltacode = DeltaCode(test_file, test_file, options)
 
         expected = OrderedDict([
             ('added', []),
@@ -470,7 +591,11 @@ class TestDeltacode(FileBasedTesting):
         assert result == expected
 
     def test_DeltaCode_to_dict_empty(self):
-        delta = DeltaCode(None, None)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(None, None, options)
 
         result = delta.to_dict()
 
@@ -480,7 +605,11 @@ class TestDeltacode(FileBasedTesting):
         test_path_1 = '/some/invalid/path/1.json'
         test_path_2 = '/some/invalid/path/2.json'
 
-        result = DeltaCode(test_path_1, test_path_2)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(test_path_1, test_path_2, options)
 
         assert result.new.path == ''
         assert result.new.files_count == 0
@@ -493,7 +622,11 @@ class TestDeltacode(FileBasedTesting):
         assert result.deltas == OrderedDict([('added', []), ('removed', []), ('moved', []), ('modified', []), ('unmodified', [])])
 
     def test_DeltaCode_empty_paths(self):
-        result = DeltaCode('', '')
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode('', '', options)
 
         assert result.new.path == ''
         assert result.new.files_count == 0
@@ -506,7 +639,11 @@ class TestDeltacode(FileBasedTesting):
         assert result.deltas == OrderedDict([('added', []), ('removed', []), ('moved', []), ('modified', []), ('unmodified', [])])
 
     def test_DeltaCode_None_paths(self):
-        result = DeltaCode(None, None)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(None, None, options)
 
         assert result.new.path == ''
         assert result.new.files_count == 0
@@ -728,7 +865,11 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added_low_score.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added_low_score.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
 
         deltas = result.deltas
 
@@ -738,7 +879,11 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
 
         deltas = result.deltas
 
@@ -749,7 +894,11 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_key.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
 
         deltas = result.deltas
 
@@ -760,7 +909,11 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_changes.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_changes.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
 
         deltas = result.deltas
 
@@ -771,7 +924,11 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
 
         deltas = result.deltas
 
@@ -783,7 +940,11 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added_low_score.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added_low_score.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
 
         deltas = result.deltas
 
@@ -794,7 +955,11 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_changes.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_changes.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
 
         deltas = result.deltas
 
@@ -805,7 +970,11 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_key.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
 
         deltas = result.deltas
 
@@ -1020,7 +1189,11 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
 
         expected = OrderedDict([
             ('added', []),
@@ -1218,7 +1391,11 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_key.json')
 
-        result = DeltaCode(new_scan, old_scan)
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
 
         expected = OrderedDict([
             ('added', []),

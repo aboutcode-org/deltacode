@@ -28,14 +28,13 @@ from __future__ import absolute_import
 from collections import OrderedDict
 
 import csv
-import json
 
 import click
 import simplejson
 
 from deltacode import DeltaCode
 from deltacode import __version__
-from deltacode.utils import deltas
+from deltacode.utils import deltas, get_notice
 
 
 # FIXME: update the function argument delta to deltacode
@@ -65,12 +64,14 @@ def write_csv(delta, result_file, all_delta_types=False):
 
 def write_json(deltacode, outfile, all_delta_types=False):
     """
-    Using the DeltaCode object, create a .json file
-    containing the primary information from the Delta objects.  Omit all Delta
-    objects whose 'category' is 'unmodified' unless the user selects the
-    '-a'/'--all' option.
+    Using the DeltaCode object, create a .json file containing the primary
+    information from the Delta objects.  Omit all Delta objects whose
+    'category' is 'unmodified' unless the user selects the
+    '-a'/'--all-delta-types' option.
     """
     results = OrderedDict([
+        ('deltacode_notice', get_notice()),
+        ('deltacode_options', deltacode.options),
         ('deltacode_version', __version__),
         ('deltacode_stats', deltacode.get_stats()),
         ('deltas', deltas(deltacode, all_delta_types)),
@@ -96,8 +97,13 @@ def cli(new, old, csv_file, json_file, all_delta_types):
     .json file (-j or -json-file) at a user-designated location.  If no file
     option is selected, print the JSON results to the console.
     """
+    # retrieve the option selections
+    options = OrderedDict([
+        ('--all-delta-types', all_delta_types)
+    ])
+
     # do the delta
-    deltacode = DeltaCode(new, old)
+    deltacode = DeltaCode(new, old, options)
 
     # output to csv
     if csv_file:

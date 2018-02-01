@@ -31,7 +31,13 @@ from deltacode.models import File
 from deltacode.models import Scan
 from deltacode import utils
 
-__version__ = '0.0.1.beta'
+
+from pkg_resources import get_distribution, DistributionNotFound
+try:
+    __version__ = get_distribution('deltacode').version
+except DistributionNotFound:
+    # package is not installed ??
+    __version__ = '0.0.1.beta'
 
 
 class DeltaCode(object):
@@ -40,9 +46,10 @@ class DeltaCode(object):
     format) and the Delta objects created from a comparison of the files (in
     the form of File objects) contained in those scans.
     """
-    def __init__(self, new_path, old_path):
+    def __init__(self, new_path, old_path, options):
         self.new = Scan(new_path)
         self.old = Scan(old_path)
+        self.options = options
         self.deltas = OrderedDict([
             ('added', []),
             ('removed', []),
