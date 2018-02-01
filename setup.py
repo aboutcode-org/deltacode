@@ -42,7 +42,9 @@ def get_version(default=version, template='{commit}',
         return default
 
     try:
+        # TODO: When we add git tags, we will need to adjust this code
         commit = get_git_version()
+        commit = '{}-{}'.format(version, commit)
 
         return template.format(**locals())
     except:
@@ -56,6 +58,7 @@ def get_git_version():
     """
     from subprocess import check_output, STDOUT
     cmd = 'git', 'describe', '--tags', '--long', '--dirty', '--always'
+    # TODO: When we add git tags, we will need to adjust this code
     version = check_output(cmd, stderr=STDOUT).strip()
 
     return version
