@@ -41,9 +41,13 @@ def get_version(default=version, template='{commit}',
     if use_default:
         return default
 
-    commit = get_git_version()
-    print(commit)
-    return template.format(**locals())
+    try:
+        commit = get_git_version()
+
+        return template.format(**locals())
+    except:
+        # no git data: use default version
+        return default
 
 
 def get_git_version():
