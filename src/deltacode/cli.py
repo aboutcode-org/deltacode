@@ -28,29 +28,13 @@ from __future__ import absolute_import
 from collections import OrderedDict
 
 import csv
-import json
-import os
 
 import click
 import simplejson
 
 from deltacode import DeltaCode
 from deltacode import __version__
-from deltacode.utils import deltas
-
-
-notice_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'NOTICE')
-notice_text = open(notice_path).read()
-
-delimiter = '\n\n\n'
-[notice_text, extra_notice_text] = notice_text.split(delimiter, 1)
-extra_notice_text = delimiter + extra_notice_text
-
-delimiter = '\n\n  '
-[notice_text, acknowledgment_text] = notice_text.split(delimiter, 1)
-acknowledgment_text = delimiter + acknowledgment_text
-
-notice = acknowledgment_text.strip().replace('  ', '')
+from deltacode.utils import deltas, get_notice
 
 
 # FIXME: update the function argument delta to deltacode
@@ -86,7 +70,7 @@ def write_json(deltacode, outfile, all_delta_types=False):
     '-a'/'--all-delta-types' option.
     """
     results = OrderedDict([
-        ('deltacode_notice', notice),
+        ('deltacode_notice', get_notice()),
         ('deltacode_options', deltacode.options),
         ('deltacode_version', __version__),
         ('deltacode_stats', deltacode.get_stats()),

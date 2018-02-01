@@ -27,6 +27,8 @@ from __future__ import absolute_import
 
 from collections import defaultdict
 
+import os
+
 
 from commoncode import paths
 
@@ -119,3 +121,23 @@ def check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas):
         return False
     if added_deltas[0].new_file.name == removed_deltas[0].old_file.name:
         return True
+
+
+def get_notice():
+    """
+    Retrieve the notice text from the NOTICE file for display in the JSON output.
+    """
+    notice_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'NOTICE')
+    notice_text = open(notice_path).read()
+
+    delimiter = '\n\n\n'
+    [notice_text, extra_notice_text] = notice_text.split(delimiter, 1)
+    extra_notice_text = delimiter + extra_notice_text
+
+    delimiter = '\n\n  '
+    [notice_text, acknowledgment_text] = notice_text.split(delimiter, 1)
+    acknowledgment_text = delimiter + acknowledgment_text
+
+    notice = acknowledgment_text.strip().replace('  ', '')
+
+    return notice
