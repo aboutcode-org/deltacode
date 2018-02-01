@@ -26,6 +26,7 @@
 from __future__ import absolute_import
 
 from collections import OrderedDict
+from os.path import basename
 
 import json
 
@@ -83,14 +84,19 @@ class Scan(object):
 
         scan = json.loads(open(location).read())
 
+        fileName = basename(location)
+
         if not scan.get('scancode_version'):
-            raise ScancodeVersionAttributeException
+            msg = ('JSON file \'' + fileName + '\' is missing the \'scancode_version\' attribute.')
+            raise ScancodeException(msg)
 
         if int(scan.get('scancode_version').split('.').pop(0)) < 2:
-            raise ScancodeOldVersionException
+            msg = ('JSON file \'' + fileName + '\' was created with an old version of ScanCode.')
+            raise ScancodeException(msg)
 
         if not scan.get('scancode_options').get('--info'):
-            raise ScancodeInfoAttributeException
+            msg = ('JSON file \'' + fileName + '\' is missing the \'scancode_options/--info\' attribute.')
+            raise ScancodeException(msg)
 
         return True
 
@@ -230,23 +236,10 @@ class License(object):
         return "%s" % self.__dict__
 
 
-class ScancodeVersionAttributeException(Exception):
+class ScancodeException(Exception):
     """
-    Named exception for JSON file containing no 'scancode_version' attribute.
-    """
-    pass
-
-
-class ScancodeOldVersionException(Exception):
-    """
-    Named exception for JSON file containing old version of ScanCode.
-    """
-    pass
-
-
-class ScancodeInfoAttributeException(Exception):
-    """
-    Named exception for JSON file containing no 'scancode_options'/'--info'
-    attribute.
+    Named exception for JSON file (1) containing no 'scancode_version'
+    attribute, (2) containing old version of ScanCode, or (3) containing no
+    'scancode_options'/'--info' attribute.
     """
     pass
