@@ -55,7 +55,7 @@ def get_git_version():
     Return version parts from Git or raise an exception.
     """
     from subprocess import check_output, STDOUT
-    cmd = 'git describe --tags --long --dirty --always'
+    cmd = 'git', 'describe', '--tags', '--long', '--dirty', '--always'
     version = check_output(cmd, stderr=STDOUT).strip()
 
     return version
