@@ -1,12 +1,10 @@
 graft src
 graft etc
-graft tests
 graft thirdparty
 
 recursive-exclude thirdparty/dev *
 prune tests
 
-include .bumpversion.cfg
 
 include deltacode.ABOUT
 
