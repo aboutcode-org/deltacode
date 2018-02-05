@@ -26,21 +26,13 @@ cp etc/release/setup.cfg.release setup.cfg
 
 ./configure --clean
 export CONFIGURE_QUIET=1
-# ./configure etc/conf --no-reindex-licenses
+./configure etc/conf
 
 echo "  RELEASE: Building release archives..."
 
 # build a zip and tar.bz2
 bin/python setup.py --quiet release --use-default-version
-# try this
-# bin/python setup.py --quiet release
-# bin/python setup.py release --use-default-version
-# bin/python setup.py release
-# 2/4/2018 10:51:38 PM Looks like 'release' forces me to register with PyPI, so try w/o
-# bin/python setup.py --use-default-version
-# bin/python setup.py
 
-echo "  reached step 1..."
 
 # restore dev manifests
 mv MANIFEST.in.dev MANIFEST.in
@@ -57,27 +49,11 @@ function test_scan {
             $($extract_command $archive)
             extract_dir=$(ls -d */)
             cd $extract_dir
+            
+            ./configure etc/conf
 
-            # this is needed for the zip
-            chmod o+x scancode extractcode
-            # Try this:
-            # chmod o+x deltacode extractcode
-
-            # # minimal test: update when new scans are available
-            # ./scancode --quiet -lcip apache-2.0.LICENSE test_scan.json
-            # echo "TEST JSON passed: ./scancode --quiet -lcip apache-2.0.LICENSE test_scan.json"
-            # ./scancode --quiet -lcip --format json-pp apache-2.0.LICENSE test_scan.json
-            # echo "TEST JSON-PP passed: ./scancode --quiet -lcip --format json-pp apache-2.0.LICENSE test_scan.json"
-            # ./scancode --quiet -lcip --format html apache-2.0.LICENSE test_scan.html
-            # echo "TEST HTML passed: ./scancode --quiet -lcip --format html apache-2.0.LICENSE test_scan.html"
-            # ./scancode --quiet -lcip --format html-app apache-2.0.LICENSE test_scan_app.html
-            # echo "TEST HTML-APP passed: ./scancode --quiet -lcip --format html-app apache-2.0.LICENSE test_scan_app.html"
-            # ./extractcode --quiet samples/arch
-            # echo "TEST EXTRACTCODE passed: ./extractcode --quiet samples/arch"
-
-            # 2/4/2018 10:51:38 PM  Throws an error?  Try w/o
-            ./deltacode --help
-            echo "TEST JSON passed: ./deltacode --help"
+            ./bin/deltacode --help
+            echo "TEST help passed: ./deltacode --help"
 
             # cleanup
             cd ..
@@ -86,8 +62,6 @@ function test_scan {
         done
 }
 
-# 2/4/2018 10:57:49 PM  Don't we need to create the dist directory?
-mkdir dist
 
 cd dist
 if [ "$1" != "--no-tests" ]; then

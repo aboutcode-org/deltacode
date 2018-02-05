@@ -1,9 +1,0 @@
-graft src
-graft tests
-
-include .bumpversion.cfg
-
-include CHANGELOG.rst
-include deltacode.ABOUT
-
-include .travis.yml
