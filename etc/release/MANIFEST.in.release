@@ -1,16 +1,18 @@
 graft src
 graft etc
+graft tests
 graft thirdparty
 
-graft tests
+recursive-exclude thirdparty/dev *
+prune tests
 
-prune src/deltacode.egg-info
+include .bumpversion.cfg
 
+include deltacode.ABOUT
 
 include CHANGELOG.rst
 include README.md
 include apache-2.0.LICENSE
-include deltacode.ABOUT
 include NOTICE.txt
 include MANIFEST.in
 include setup.py
