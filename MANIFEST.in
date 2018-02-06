@@ -6,12 +6,12 @@ graft tests
 
 prune src/deltacode.egg-info
 
-
+include AUTHORS.rst
 include CHANGELOG.rst
 include README.md
 include apache-2.0.LICENSE
 include deltacode.ABOUT
-include NOTICE.txt
+include NOTICE
 include MANIFEST.in
 include setup.py
 include setup.cfg

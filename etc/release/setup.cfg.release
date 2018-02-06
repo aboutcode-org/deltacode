@@ -2,7 +2,7 @@
 universal = 1
 
 [metadata]
-license_file = NOTICE.txt
+license_file = NOTICE
 
 [aliases]
 release = clean --all sdist --formats=bztar,zip bdist_wheel
