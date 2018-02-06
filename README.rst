@@ -33,41 +33,27 @@ For example::
 Once you have the two codebase scans, simply install/configure
 deltacode, and run it on the two scans::
 
-    $ source configure
     (deltacode) $ deltacode --help
-
     Usage: deltacode [OPTIONS]
 
-        Identify the changes that need to be made to
-        the 'old' scan file (-o or --old) in order to
-        generate the 'new' scan file (-n or --new).
-        Write the results to a .csv file (-c or --csv-
-        file) or a .json file (-j or --json-file) at a
-        user-designated location.  If no file option
-        is selected, print the JSON results to the
-        console.
+      Identify the changes that need to be made to the 'old' scan file (-o or
+      --old) in order to generate the 'new' scan file (-n or --new).  Write the
+      results to a .csv file (-c or --csv-file) or a .json file (-j or --json-
+      file) at a user-designated location.  If no file option is selected, print
+      the JSON results to the console.
 
     Options:
-        -h, --help                Show this message and
-                                  exit.
-        -n, --new PATH            Identify the path to
-                                  the "new" scan file
-                                  [required]
-        -o, --old PATH            Identify the path to
-                                  the "old" scan file
-                                  [required]
-        -c, --csv-file PATH       Identify the path to
-                                  the .csv output file
-        -j, --json-file FILENAME  Identify the path to
-                                  the .json output file
-        -a, --all-delta-types     Include unmodified
-                                  files as well as all
-                                  changed files in the
-                                  .json or .csv output.
-                                  If not selected, only
-                                  changed files are
-                                  included.
-
+      -h, --help                Show this message and exit.
+      -n, --new PATH            Identify the path to the "new" scan file
+                                [required]
+      -o, --old PATH            Identify the path to the "old" scan file
+                                [required]
+      -c, --csv-file PATH       Identify the path to the .csv output file
+      -j, --json-file FILENAME  Identify the path to the .json output file
+      -a, --all-delta-types     Include unmodified files as well as all changed
+                                files in the .json or .csv output.  If not
+                                selected, only changed files are included.
+    
     (deltacode) $ deltacode -n ~/psql-10.0-fileinfo.json -o ~/psql-9.6-fileinfo.json -j ~/psql-10.0-psql-9.6-delta.json
 
 =========
