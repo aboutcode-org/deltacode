@@ -92,9 +92,9 @@ def write_json(deltacode, outfile, all_delta_types=False):
 def cli(new, old, csv_file, json_file, all_delta_types):
     """
     Identify the changes that need to be made to the 'old'
-    scan file (-o or -old) in order to generate the 'new' scan file (-n or
-    -new).  Write the results to a .csv file (-c or -csv-file) or a
-    .json file (-j or -json-file) at a user-designated location.  If no file
+    scan file (-o or --old) in order to generate the 'new' scan file (-n or
+    --new).  Write the results to a .csv file (-c or --csv-file) or a
+    .json file (-j or --json-file) at a user-designated location.  If no file
     option is selected, print the JSON results to the console.
     """
     # retrieve the option selections

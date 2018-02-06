@@ -9,7 +9,7 @@ prune tests
 include deltacode.ABOUT
 include AUTHORS.rst
 include CHANGELOG.rst
-include README.md
+include README.rst
 include apache-2.0.LICENSE
 include NOTICE
 include MANIFEST.in
