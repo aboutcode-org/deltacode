@@ -74,6 +74,7 @@ def write_json(deltacode, outfile, all_delta_types=False):
         ('deltacode_options', deltacode.options),
         ('deltacode_version', __version__),
         ('deltacode_stats', deltacode.get_stats()),
+        ('deltacode_errors', deltacode.errors),
         ('deltas', deltas(deltacode, all_delta_types)),
     ])
 
