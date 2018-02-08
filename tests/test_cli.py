@@ -297,6 +297,8 @@ class TestCLI(FileBasedTesting):
 
         assert json_result.get('deltacode_stats') == stats
 
+        assert json_result.get('deltacode_errors') == []
+
         moved_expected = {
             "category": "moved",
             "new": {
@@ -409,6 +411,8 @@ class TestCLI(FileBasedTesting):
 
         assert json_result.get('deltacode_stats') == stats
 
+        assert json_result.get('deltacode_errors') == []
+
         moved_expected = {
             "category": "moved",
             "new": {
@@ -496,6 +500,8 @@ class TestCLI(FileBasedTesting):
         assert 'deltacode_options' in result.output
         assert '"--all-delta-types": true' in result.output
 
+        assert '"deltacode_errors": []' in result.output
+
         assert '"added": 0' in result.output
         assert '"modified": 0' in result.output
         assert '"moved": 1' in result.output
@@ -541,6 +547,8 @@ class TestCLI(FileBasedTesting):
 
         assert 'deltacode_options' in result.output
         assert '"--all-delta-types": false' in result.output
+
+        assert '"deltacode_errors": []' in result.output
 
         assert '"added": 0' in result.output
         assert '"modified": 0' in result.output

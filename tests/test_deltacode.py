@@ -394,9 +394,13 @@ class TestDeltacode(FileBasedTesting):
         # Modifiy files_count value to raise the error.
         # This should never happen in reality.
         result.new.files_count = 42
+        result.old.files_count = 40
 
-        with pytest.raises(AssertionError):
-            result.determine_delta()
+        result.determine_delta()
+        assert result.errors == [
+            'Deltacode Error: Number of visited files(43) does not match total_files(42) in the new scan',
+            'Deltacode Error: Number of visited files(43) does not match total_files(40) in the old scan'
+        ]
 
     def test_DeltaCode_to_dict_original_path_openssl(self):
         test_scan_new = self.get_test_loc('deltacode/to-dict-openssl-new.json')
@@ -919,6 +923,18 @@ class TestDeltacode(FileBasedTesting):
 
         assert len([i for i in deltas.get('modified') if i.category == 'license change']) == 0
         assert len([i for i in deltas.get('modified') if i.category == 'modified']) == 2
+
+    def test_DeltaCode_errors_empty(self):
+        new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
+        old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
+
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        result = DeltaCode(new_scan, old_scan, options)
+
+        assert result.errors == []
 
     def test_Delta_to_dict_modified_license_added(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')

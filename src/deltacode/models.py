@@ -41,6 +41,8 @@ class Scan(object):
         if path is None:
             path = ''
 
+        self.errors = []
+
         if not self.is_valid_scan(path):
             self.path = ''
             self.files_count = 0
@@ -127,7 +129,8 @@ class Scan(object):
         files = [File(f) for f in json.loads(scan).get('files')]
 
         # make sure we have same number of File objects as in the scan.
-        assert len(files) == self.files_count
+        if len(files) != self.files_count:
+            self.errors.append('Scan Error: The number of files calculated with \'len(files)\' does not equal the ScanCode \'files_count\' value for the scan with path = ' + path + '.')
 
         return files
 

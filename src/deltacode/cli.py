@@ -34,7 +34,7 @@ import simplejson
 
 from deltacode import DeltaCode
 from deltacode import __version__
-from deltacode.utils import deltas, get_notice
+from deltacode.utils import deltas, get_notice, collect_errors
 
 
 # FIXME: update the function argument delta to deltacode
@@ -74,7 +74,8 @@ def write_json(deltacode, outfile, all_delta_types=False):
         ('deltacode_options', deltacode.options),
         ('deltacode_version', __version__),
         ('deltacode_stats', deltacode.get_stats()),
-        ('deltas', deltas(deltacode, all_delta_types)),
+        ('deltacode_errors', collect_errors(deltacode)),
+        ('deltas', deltas(deltacode, all_delta_types))
     ])
 
     # TODO: add toggle for pretty printing
