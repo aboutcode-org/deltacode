@@ -398,8 +398,8 @@ class TestDeltacode(FileBasedTesting):
 
         result.determine_delta()
         assert result.errors == [
-            'Scan Error: Number of visited files(43) does not match total_files(42) in the new scan',
-            'Scan Error: Number of visited files(43) does not match total_files(40) in the old scan'
+            'Deltacode Error: Number of visited files(43) does not match total_files(42) in the new scan',
+            'Deltacode Error: Number of visited files(43) does not match total_files(40) in the old scan'
         ]
 
     def test_DeltaCode_to_dict_original_path_openssl(self):
