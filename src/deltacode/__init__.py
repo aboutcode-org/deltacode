@@ -136,9 +136,9 @@ class DeltaCode(object):
 
         # make sure everything is accounted for
         if new_files_visited != self.new.files_count:
-            self.errors.append("Number of visited files({}) does not match total_files({}) in the new scan".format(new_files_visited, self.new.files_count))
+            self.errors.append("Scan Error: Number of visited files({}) does not match total_files({}) in the new scan".format(new_files_visited, self.new.files_count))
         if old_files_visited != self.old.files_count:
-            self.errors.append("Number of visited files({}) does not match total_files({}) in the old scan".format(old_files_visited, self.old.files_count))
+            self.errors.append("Scan Error: Number of visited files({}) does not match total_files({}) in the old scan".format(old_files_visited, self.old.files_count))
 
     def determine_moved(self):
         """

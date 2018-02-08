@@ -45,7 +45,7 @@ class TestModels(FileBasedTesting):
 
         result = models.Scan(test_file)
 
-        expected_result = ["The number of files calculated with 'len(files)' does not equal the ScanCode 'files_count' value for the scan with path = " + test_file + "."]
+        expected_result = ["Scan Error: The number of files calculated with 'len(files)' does not equal the ScanCode 'files_count' value for the scan with path = " + test_file + "."]
 
         assert result.errors == expected_result
 
@@ -54,7 +54,7 @@ class TestModels(FileBasedTesting):
 
         result = models.Scan(test_file)
 
-        expected_result = ["The number of files calculated with 'len(files)' does not equal the ScanCode 'files_count' value for the scan with path = " + test_file + "."]
+        expected_result = ["Scan Error: The number of files calculated with 'len(files)' does not equal the ScanCode 'files_count' value for the scan with path = " + test_file + "."]
 
         assert result.errors == expected_result
 

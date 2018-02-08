@@ -35,9 +35,9 @@ from commoncode import paths
 
 def collect_errors(deltacode):
     errors = []
-    errors.extend(deltacode.errors)
     errors.extend(deltacode.new.errors)
     errors.extend(deltacode.old.errors)
+    errors.extend(deltacode.errors)
 
     return errors
 
