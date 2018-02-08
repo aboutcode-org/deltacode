@@ -33,6 +33,15 @@ import os
 from commoncode import paths
 
 
+def collect_errors(deltacode):
+    errors = []
+    errors.extend(deltacode.errors)
+    errors.extend(deltacode.new.errors)
+    errors.extend(deltacode.old.errors)
+
+    return errors
+
+
 def deltas(deltacode, all_delta_types=False):
     """
     Return a generator of Delta dictionaries for JSON serialized ouput.  Omit

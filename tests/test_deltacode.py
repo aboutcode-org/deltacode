@@ -879,8 +879,6 @@ class TestDeltacode(FileBasedTesting):
 
         assert len([i for i in deltas.get('modified') if i.category == 'license change']) == 0
 
-        assert result.errors == []
-
     def test_DeltaCode_license_modified(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added.json')
@@ -895,8 +893,6 @@ class TestDeltacode(FileBasedTesting):
 
         assert len([i for i in deltas.get('modified') if i.category == 'license change']) == 2
         assert len([i for i in deltas.get('modified') if i.category == 'modified']) == 1
-
-        assert result.errors == []
 
     def test_DeltaCode_no_license_key_value(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
@@ -913,8 +909,6 @@ class TestDeltacode(FileBasedTesting):
         assert len([i for i in deltas.get('modified') if i.category == 'license change']) == 0
         assert len([i for i in deltas.get('modified') if i.category == 'modified']) == 2
 
-        assert result.errors == []
-
     def test_DeltaCode_no_license_changes(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_changes.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_changes.json')
@@ -929,8 +923,6 @@ class TestDeltacode(FileBasedTesting):
 
         assert len([i for i in deltas.get('modified') if i.category == 'license change']) == 0
         assert len([i for i in deltas.get('modified') if i.category == 'modified']) == 2
-
-        assert result.errors == []
 
     def test_DeltaCode_errors_empty(self):
         new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
@@ -960,8 +952,6 @@ class TestDeltacode(FileBasedTesting):
         assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/b/b1.py'] == ['license change']
         assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/c/c1.py'] == ['modified']
 
-        assert result.errors == []
-
     def test_Delta_to_dict_modified_license_added_low_score(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added_low_score.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added_low_score.json')
@@ -976,8 +966,6 @@ class TestDeltacode(FileBasedTesting):
 
         assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/a/a1.py'] == ['modified']
         assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/b/b1.py'] == ['modified']
-
-        assert result.errors == []
 
     def test_Delta_to_dict_modified_no_license_changes(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_changes.json')
@@ -994,8 +982,6 @@ class TestDeltacode(FileBasedTesting):
         assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/a/a1.py'] == ['modified']
         assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/b/b1.py'] == ['modified']
 
-        assert result.errors == []
-
     def test_Delta_to_dict_modified_no_license_key(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_key.json')
@@ -1010,8 +996,6 @@ class TestDeltacode(FileBasedTesting):
 
         assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/a/a1.py'] == ['modified']
         assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/b/b1.py'] == ['modified']
-
-        assert result.errors == []
 
     def test_Delta_to_dict_removed(self):
         old = models.File({
@@ -1419,8 +1403,6 @@ class TestDeltacode(FileBasedTesting):
 
         assert result.to_dict() == expected
 
-        assert result.errors == []
-
     def test_Delta_to_dict_no_license_key_value(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_key.json')
@@ -1479,8 +1461,6 @@ class TestDeltacode(FileBasedTesting):
         ])
 
         assert result.to_dict() == expected
-
-        assert result.errors == []
 
     def test_Delta_create_object_removed(self):
         new = None
