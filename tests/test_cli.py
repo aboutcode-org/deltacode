@@ -301,6 +301,7 @@ class TestCLI(FileBasedTesting):
 
         moved_expected = {
             "category": "moved",
+            "score": 0,
             "new": {
                 "path": "b/a4.py",
                 "type": "file",
@@ -342,6 +343,7 @@ class TestCLI(FileBasedTesting):
 
         unmodified_expected = {
             "category": "unmodified",
+            "score": 0,
             "new": {
                 "path": "a/a3.py",
                 "type": "file",
@@ -415,6 +417,7 @@ class TestCLI(FileBasedTesting):
 
         moved_expected = {
             "category": "moved",
+            "score": 0,
             "new": {
                 "path": "b/a4.py",
                 "type": "file",

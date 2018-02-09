@@ -570,6 +570,7 @@ class TestDeltacode(FileBasedTesting):
             ('unmodified', [
                 OrderedDict([
                     ('category', 'unmodified'),
+                    ('score', 0),
                     ('new', OrderedDict([
                         ('path', u'test/unmodified.txt'),
                         ('type', u'file'),
@@ -1009,6 +1010,7 @@ class TestDeltacode(FileBasedTesting):
 
         expected = OrderedDict([
             ('category', 'removed'),
+            ('score', 25),
             ('new', None),
             ('old', OrderedDict([
                 ('path', 'path/removed.txt'),
@@ -1020,7 +1022,8 @@ class TestDeltacode(FileBasedTesting):
             ]))
         ])
 
-        delta = deltacode.Delta(None, old, 'removed')
+        # delta = deltacode.Delta(None, old, 'removed')
+        delta = deltacode.Delta(None, old, 'removed', 25)
 
         assert delta.to_dict() == expected
 
@@ -1036,6 +1039,7 @@ class TestDeltacode(FileBasedTesting):
 
         expected = OrderedDict([
             ('category', 'added'),
+            ('score', 75),
             ('new', OrderedDict([
                 ('path', 'path/added.txt'),
                 ('type', 'file'),
@@ -1047,7 +1051,8 @@ class TestDeltacode(FileBasedTesting):
             ('old', None)
         ])
 
-        delta = deltacode.Delta(new, None, 'added')
+        # delta = deltacode.Delta(new, None, 'added')
+        delta = deltacode.Delta(new, None, 'added', 75)
 
         assert delta.to_dict() == expected
 
@@ -1071,6 +1076,7 @@ class TestDeltacode(FileBasedTesting):
 
         expected = OrderedDict([
             ('category', 'modified'),
+            ('score', 50),
             ('new', OrderedDict([
                 ('path', 'path/modified.txt'),
                 ('type', 'file'),
@@ -1089,7 +1095,8 @@ class TestDeltacode(FileBasedTesting):
             ]))
         ])
 
-        delta = deltacode.Delta(new, old, 'modified')
+        # delta = deltacode.Delta(new, old, 'modified')
+        delta = deltacode.Delta(new, old, 'modified', 50)
 
         assert delta.to_dict() == expected
 
@@ -1113,6 +1120,7 @@ class TestDeltacode(FileBasedTesting):
 
         expected = OrderedDict([
             ('category', 'unmodified'),
+            ('score', 0),
             ('new', OrderedDict([
                 ('path', 'path/unmodified.txt'),
                 ('type', 'file'),
@@ -1131,7 +1139,8 @@ class TestDeltacode(FileBasedTesting):
             ]))
         ])
 
-        delta = deltacode.Delta(new, old, 'unmodified')
+        # delta = deltacode.Delta(new, old, 'unmodified')
+        delta = deltacode.Delta(new, old, 'unmodified', 0)
 
         assert delta.to_dict() == expected
 
@@ -1155,6 +1164,7 @@ class TestDeltacode(FileBasedTesting):
 
         expected = OrderedDict([
             ('category', 'moved'),
+            ('score', 0),
             ('new', OrderedDict([
                 ('path', 'path_new/moved.txt'),
                 ('type', 'file'),
@@ -1173,7 +1183,8 @@ class TestDeltacode(FileBasedTesting):
             ]))
         ])
 
-        delta = deltacode.Delta(new, old, 'moved')
+        # delta = deltacode.Delta(new, old, 'moved')
+        delta = deltacode.Delta(new, old, 'moved', 0)
 
         assert delta.to_dict() == expected
 
@@ -1182,6 +1193,7 @@ class TestDeltacode(FileBasedTesting):
 
         assert delta.to_dict() == OrderedDict([
             ('category', ''),
+            ('score', 0),
             ('new', OrderedDict([
                 ('path', ''),
                 ('type', ''),
@@ -1218,6 +1230,7 @@ class TestDeltacode(FileBasedTesting):
             ('modified', [
                 OrderedDict([
                     ('category', 'modified'),
+                    ('score', 50),
                     ('new', OrderedDict([
                         ('path', u'some/path/c/c1.py'),
                         ('type', u'file'),
@@ -1255,6 +1268,7 @@ class TestDeltacode(FileBasedTesting):
                 ]),
                 OrderedDict([
                     ('category', 'license change'),
+                    ('score', 60),
                     ('new', OrderedDict([
                         ('path', u'some/path/a/a1.py'),
                         ('type', u'file'),
@@ -1327,6 +1341,7 @@ class TestDeltacode(FileBasedTesting):
                 ]),
                 OrderedDict([
                     ('category', 'license change'),
+                    ('score', 60),
                     ('new', OrderedDict([
                         ('path', u'some/path/b/b1.py'),
                         ('type', u'file'),
@@ -1420,6 +1435,7 @@ class TestDeltacode(FileBasedTesting):
             ('modified', [
                 OrderedDict([
                     ('category', 'modified'),
+                    ('score', 50),
                     ('new', OrderedDict([
                         ('path', u'some/path/a/a1.py'),
                         ('type', u'file'),
@@ -1439,6 +1455,7 @@ class TestDeltacode(FileBasedTesting):
                 ]),
                 OrderedDict([
                     ('category', 'modified'),
+                    ('score', 50),
                     ('new', OrderedDict([
                         ('path', u'some/path/b/b1.py'),
                         ('type', u'file'),
