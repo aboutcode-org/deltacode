@@ -86,7 +86,7 @@ class TestCLI(FileBasedTesting):
         delta = DeltaCode(new_scan, old_scan, options)
 
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file, True)
+        cli.write_csv(delta, result_file, False)
         expected_file = self.get_test_loc('cli/added1.csv')
         check_csvs(result_file, expected_file)
 
@@ -101,7 +101,7 @@ class TestCLI(FileBasedTesting):
         delta = DeltaCode(new_scan, old_scan, options)
 
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file, True)
+        cli.write_csv(delta, result_file, False)
         expected_file = self.get_test_loc('cli/modified1.csv')
         check_csvs(result_file, expected_file)
 
@@ -116,7 +116,7 @@ class TestCLI(FileBasedTesting):
         delta = DeltaCode(new_scan, old_scan, options)
 
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file, True)
+        cli.write_csv(delta, result_file, False)
         expected_file = self.get_test_loc('cli/removed1.csv')
         check_csvs(result_file, expected_file)
 
@@ -131,7 +131,7 @@ class TestCLI(FileBasedTesting):
         delta = DeltaCode(new_scan, old_scan, options)
 
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file, True)
+        cli.write_csv(delta, result_file, False)
         expected_file = self.get_test_loc('cli/renamed1.csv')
         check_csvs(result_file, expected_file)
 
@@ -146,7 +146,7 @@ class TestCLI(FileBasedTesting):
         delta = DeltaCode(new_scan, old_scan, options)
 
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file, True)
+        cli.write_csv(delta, result_file, False)
         expected_file = self.get_test_loc('cli/modified_new_license_added.csv')
         check_csvs(result_file, expected_file)
 
@@ -161,7 +161,7 @@ class TestCLI(FileBasedTesting):
         delta = DeltaCode(new_scan, old_scan, options)
 
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file, True)
+        cli.write_csv(delta, result_file, False)
         expected_file = self.get_test_loc('cli/modified_new_license_added_low_score.csv')
         check_csvs(result_file, expected_file)
 
@@ -176,7 +176,7 @@ class TestCLI(FileBasedTesting):
         delta = DeltaCode(new_scan, old_scan, options)
 
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file, True)
+        cli.write_csv(delta, result_file, False)
         expected_file = self.get_test_loc('cli/license_info_removed.csv')
         check_csvs(result_file, expected_file)
 
@@ -191,7 +191,7 @@ class TestCLI(FileBasedTesting):
         delta = DeltaCode(new_scan, old_scan, options)
 
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file, True)
+        cli.write_csv(delta, result_file, False)
         expected_file = self.get_test_loc('cli/license_info_added.csv')
         check_csvs(result_file, expected_file)
 
@@ -206,7 +206,7 @@ class TestCLI(FileBasedTesting):
         delta = DeltaCode(new_scan, old_scan, options)
 
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file, True)
+        cli.write_csv(delta, result_file, False)
         expected_file = self.get_test_loc('cli/license_info_removed_below_cutoff_score.csv')
         check_csvs(result_file, expected_file)
 
@@ -221,7 +221,7 @@ class TestCLI(FileBasedTesting):
         delta = DeltaCode(new_scan, old_scan, options)
 
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file, True)
+        cli.write_csv(delta, result_file, False)
         expected_file = self.get_test_loc('cli/license_info_added_below_cutoff_score.csv')
         check_csvs(result_file, expected_file)
 
@@ -235,8 +235,8 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan, options)
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file, True)
-        expected_file = self.get_test_loc('cli/1_file_moved.csv')
+        cli.write_csv(delta, result_file, False)
+        expected_file = self.get_test_loc('cli/1_file_moved_all_not_selected.csv')
         check_csvs(result_file, expected_file)
 
     def test_write_csv_1_file_moved_and_1_copy(self):
@@ -249,7 +249,7 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan, options)
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file, True)
+        cli.write_csv(delta, result_file, False)
         expected_file = self.get_test_loc('cli/1_file_moved_and_1_copy.csv')
         check_csvs(result_file, expected_file)
 
@@ -263,7 +263,7 @@ class TestCLI(FileBasedTesting):
 
         delta = DeltaCode(new_scan, old_scan, options)
         result_file = self.get_temp_file('.csv')
-        cli.write_csv(delta, result_file, True)
+        cli.write_csv(delta, result_file, False)
         expected_file = self.get_test_loc('cli/1_file_moved_and_added.csv')
         check_csvs(result_file, expected_file)
 
