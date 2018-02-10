@@ -104,7 +104,6 @@ class DeltaCode(object):
                 try:
                     delta_old_files = old_index[path]
                 except KeyError:
-                    # self.deltas['added'].append(Delta(new_file, None, 'added'))
                     self.deltas['added'].append(Delta(new_file, None, 'added', 75))
                     continue
 
@@ -114,11 +113,9 @@ class DeltaCode(object):
                 for f in delta_old_files:
                     # TODO: make sure sha1 is NOT empty
                     if new_file.sha1 == f.sha1:
-                        # self.deltas['unmodified'].append(Delta(new_file, f, 'unmodified'))
                         self.deltas['unmodified'].append(Delta(new_file, f, 'unmodified', 0))
                         continue
                     else:
-                        # delta = Delta(new_file, f, 'modified')
                         delta = Delta(new_file, f, 'modified', 50)
                         self.deltas['modified'].append(delta)
 
@@ -134,7 +131,6 @@ class DeltaCode(object):
                     # This file already classified as 'modified' or 'unmodified' so do nothing
                     new_index[path]
                 except KeyError:
-                    # self.deltas['removed'].append(Delta(None, old_file, 'removed'))
                     self.deltas['removed'].append(Delta(None, old_file, 'removed', 25))
                     continue
 
@@ -169,7 +165,6 @@ class DeltaCode(object):
         Convert the matched 'added' and 'removed' Delta objects to a combined
         'moved' Delta object and delete the 'added' and 'removed' objects.
         """
-        # self.deltas.get('moved').append(Delta(added.new_file, removed.old_file, 'moved'))
         self.deltas.get('moved').append(Delta(added.new_file, removed.old_file, 'moved', 0))
         self.deltas.get('added').remove(added)
         self.deltas.get('removed').remove(removed)
@@ -236,8 +231,6 @@ class Delta(object):
     object -- and the category that characterizes the comparison:
     'added', 'modified', 'moved', 'removed' or 'unmodified'.
     """
-    # def __init__(self, new_file=None, old_file=None, delta_type=None):
-    # TODO: Should the default score be 0 or None?  I've used 0 in the tests, e.g., test_Delta_to_dict_unmodified().
     def __init__(self, new_file=None, old_file=None, delta_type=None, score=0):
         self.new_file = new_file if new_file else File()
         self.old_file = old_file if old_file else File()
@@ -282,7 +275,6 @@ class Delta(object):
         Check the 'category' attribute of the Delta object and return an
         OrderedDict comprising the 'category' and 'path' of the object.
         """
-        # delta = OrderedDict([('category', self.category)])
         delta = OrderedDict([
             ('category', self.category),
             ('score', self.score)

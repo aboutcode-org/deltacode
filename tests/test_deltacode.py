@@ -1022,7 +1022,6 @@ class TestDeltacode(FileBasedTesting):
             ]))
         ])
 
-        # delta = deltacode.Delta(None, old, 'removed')
         delta = deltacode.Delta(None, old, 'removed', 25)
 
         assert delta.to_dict() == expected
@@ -1051,7 +1050,6 @@ class TestDeltacode(FileBasedTesting):
             ('old', None)
         ])
 
-        # delta = deltacode.Delta(new, None, 'added')
         delta = deltacode.Delta(new, None, 'added', 75)
 
         assert delta.to_dict() == expected
@@ -1095,7 +1093,6 @@ class TestDeltacode(FileBasedTesting):
             ]))
         ])
 
-        # delta = deltacode.Delta(new, old, 'modified')
         delta = deltacode.Delta(new, old, 'modified', 50)
 
         assert delta.to_dict() == expected
@@ -1139,7 +1136,6 @@ class TestDeltacode(FileBasedTesting):
             ]))
         ])
 
-        # delta = deltacode.Delta(new, old, 'unmodified')
         delta = deltacode.Delta(new, old, 'unmodified', 0)
 
         assert delta.to_dict() == expected
@@ -1183,7 +1179,6 @@ class TestDeltacode(FileBasedTesting):
             ]))
         ])
 
-        # delta = deltacode.Delta(new, old, 'moved')
         delta = deltacode.Delta(new, old, 'moved', 0)
 
         assert delta.to_dict() == expected
