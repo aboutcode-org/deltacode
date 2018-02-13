@@ -1483,6 +1483,7 @@ class TestDeltacode(FileBasedTesting):
         assert type(delta.new_file) == type(models.File())
         assert delta.old_file.path == 'path/removed.txt'
         assert delta.category == 'removed'
+        assert delta.score == 25
 
     def test_Delta_create_object_added(self):
         new = models.File({'path': 'path/added.txt'})
@@ -1493,6 +1494,7 @@ class TestDeltacode(FileBasedTesting):
         assert delta.new_file.path == 'path/added.txt'
         assert type(delta.old_file) == type(models.File())
         assert delta.category == 'added'
+        assert delta.score == 75
 
     def test_Delta_create_object_modified(self):
         new = models.File({'path': 'path/modified.txt', 'sha1': 'a'})
@@ -1505,6 +1507,7 @@ class TestDeltacode(FileBasedTesting):
         assert delta.old_file.path == 'path/modified.txt'
         assert delta.old_file.sha1 == 'b'
         assert delta.category == 'modified'
+        assert delta.score == 50
 
     def test_Delta_create_object_unmodified(self):
         new = models.File({'path': 'path/unmodified.txt', 'sha1': 'a'})
@@ -1517,6 +1520,7 @@ class TestDeltacode(FileBasedTesting):
         assert delta.old_file.path == 'path/unmodified.txt'
         assert delta.old_file.sha1 == 'a'
         assert delta.category == 'unmodified'
+        assert delta.score == 0
 
     def test_Delta_create_object_moved(self):
         new = models.File({'path': 'path_new/moved.txt', 'sha1': 'a'})
@@ -1529,6 +1533,7 @@ class TestDeltacode(FileBasedTesting):
         assert delta.old_file.path == 'path_old/moved.txt'
         assert delta.old_file.sha1 == 'a'
         assert delta.category == 'moved'
+        assert delta.score == 0
 
     def test_Delta_create_object_empty(self):
         delta = deltacode.Delta()
@@ -1536,3 +1541,48 @@ class TestDeltacode(FileBasedTesting):
         assert type(delta.new_file) == type(models.File())
         assert type(delta.old_file) == type(models.File())
         assert delta.category == ''
+
+    def test_Delta_determine_score_new_no_license_info(self):
+        new_file = models.File({'path': 'new/path.txt'})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 50.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified')
+
+        assert result.category == 'license info removed'
+        assert result.score == 65
+
+    def test_Delta_determine_score_new_no_license_info_below_cutoff_score(self):
+        new_file = models.File({'path': 'new/path.txt'})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 49.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified')
+
+        assert result.category == 'license info removed'
+        assert result.score == 65
+
+    def test_Delta_determine_score_old_no_license_info(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 50.0}]})
+        old_file = models.File({'path': 'old/path.txt'})
+
+        result = deltacode.Delta(new_file, old_file, 'modified')
+
+        assert result.category == 'license info added'
+        assert result.score == 70
+
+    def test_Delta_determine_score_old_no_license_info_below_cutoff_score(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'mit', 'score': 49.0}]})
+        old_file = models.File({'path': 'old/path.txt'})
+
+        result = deltacode.Delta(new_file, old_file, 'modified')
+
+        assert result.category == 'license info added'
+        assert result.score == 70
+
+    def test_Delta_determine_score_single_diff_multiple_keys(self):
+        new_file = models.File({'path': 'new/path.txt', 'licenses': [{'key': 'gpl-2.0', 'score': 100.0}, {'key': 'mit', 'score':30.0}]})
+        old_file = models.File({'path': 'old/path.txt', 'licenses': [{'key': 'mit', 'score': 50.0}]})
+
+        result = deltacode.Delta(new_file, old_file, 'modified')
+
+        assert result.category == 'license change'
+        assert result.score == 60
