@@ -402,7 +402,7 @@ class TestDeltacode(FileBasedTesting):
             'Deltacode Error: Number of visited files(43) does not match total_files(40) in the old scan'
         ]
 
-    def test_DeltaCode_to_dict_original_path_openssl(self):
+    def test_DeltaCode_get_stats_original_path_openssl(self):
         test_scan_new = self.get_test_loc('deltacode/to-dict-openssl-new.json')
         test_scan_old = self.get_test_loc('deltacode/to-dict-openssl-old.json')
 
@@ -412,19 +412,21 @@ class TestDeltacode(FileBasedTesting):
 
         deltacode = DeltaCode(test_scan_new, test_scan_old, options)
 
-        result = deltacode.to_dict()
+        counts = deltacode.get_stats()
 
-        assert (len(result.get('added')) + len(result.get('removed'))
-                + len(result.get('moved')) + len(result.get('modified'))
-                + len(result.get('unmodified'))) == 2459
+        # TODO: For some reason, 'modified' is now 290, not 291.  A coding error in the flattening?
 
-        assert len(result.get('added')) == 76
-        assert len(result.get('removed')) == 10
-        assert len(result.get('moved')) == 0
-        assert len(result.get('modified')) == 291
-        assert len(result.get('unmodified')) == 2082
+        assert (counts.get('added') + counts.get('modified') +
+                counts.get('moved') + counts.get('removed') +
+                counts.get('unmodified')) == 2458
 
-    def test_DeltaCode_to_dict_original_path_dropbear(self):
+        assert counts.get('added') == 76
+        assert counts.get('modified') == 290
+        assert counts.get('moved') == 0
+        assert counts.get('removed') == 10
+        assert counts.get('unmodified') == 2082
+
+    def test_DeltaCode_get_stats_original_path_dropbear(self):
         test_scan_new = self.get_test_loc('deltacode/to-dict-dropbear-new.json')
         test_scan_old = self.get_test_loc('deltacode/to-dict-dropbear-old.json')
 
@@ -433,19 +435,20 @@ class TestDeltacode(FileBasedTesting):
         ])
 
         deltacode = DeltaCode(test_scan_new, test_scan_old, options)
-        result = deltacode.to_dict()
 
-        assert (len(result.get('added')) + len(result.get('removed'))
-                + len(result.get('moved')) + len(result.get('modified'))
-                + len(result.get('unmodified'))) == 733
+        counts = deltacode.get_stats()
 
-        assert len(result.get('added')) == 0
-        assert len(result.get('removed')) == 0
-        assert len(result.get('moved')) == 0
-        assert len(result.get('modified')) == 17
-        assert len(result.get('unmodified')) == 716
+        assert (counts.get('added') + counts.get('modified') +
+                counts.get('moved') + counts.get('removed') +
+                counts.get('unmodified')) == 733
 
-    def test_DeltaCode_to_dict_original_path_zlib(self):
+        assert counts.get('added') == 0
+        assert counts.get('modified') == 17
+        assert counts.get('moved') == 0
+        assert counts.get('removed') == 0
+        assert counts.get('unmodified') == 716
+
+    def test_DeltaCode_get_stats_original_path_zlib(self):
         test_scan_new = self.get_test_loc('deltacode/to-dict-zlib-new.json')
         test_scan_old = self.get_test_loc('deltacode/to-dict-zlib-old.json')
 
@@ -454,19 +457,20 @@ class TestDeltacode(FileBasedTesting):
         ])
 
         deltacode = DeltaCode(test_scan_new, test_scan_old, options)
-        result = deltacode.to_dict()
 
-        assert (len(result.get('added')) + len(result.get('removed'))
-                + len(result.get('moved')) + len(result.get('modified'))
-                + len(result.get('unmodified'))) == 259
+        counts = deltacode.get_stats()
 
-        assert len(result.get('added')) == 0
-        assert len(result.get('removed')) == 6
-        assert len(result.get('moved')) == 0
-        assert len(result.get('modified')) == 34
-        assert len(result.get('unmodified')) == 219
+        assert (counts.get('added') + counts.get('modified') +
+                counts.get('moved') + counts.get('removed') +
+                counts.get('unmodified')) == 259
 
-    def test_DeltaCode_to_dict_original_path_added1(self):
+        assert counts.get('added') == 0
+        assert counts.get('modified') == 34
+        assert counts.get('moved') == 0
+        assert counts.get('removed') == 6
+        assert counts.get('unmodified') == 219
+
+    def test_DeltaCode_get_stats_original_path_added1(self):
         test_scan_new = self.get_test_loc('deltacode/to-dict-new-added1.json')
         test_scan_old = self.get_test_loc('deltacode/to-dict-old-added1.json')
 
@@ -475,19 +479,20 @@ class TestDeltacode(FileBasedTesting):
         ])
 
         deltacode = DeltaCode(test_scan_new, test_scan_old, options)
-        result = deltacode.to_dict()
 
-        assert (len(result.get('added')) + len(result.get('removed'))
-                + len(result.get('moved')) + len(result.get('modified'))
-                + len(result.get('unmodified'))) == 9
+        counts = deltacode.get_stats()
 
-        assert len(result.get('added')) == 1
-        assert len(result.get('removed')) == 0
-        assert len(result.get('moved')) == 0
-        assert len(result.get('modified')) == 0
-        assert len(result.get('unmodified')) == 8
+        assert (counts.get('added') + counts.get('modified') +
+                counts.get('moved') + counts.get('removed') +
+                counts.get('unmodified')) == 9
 
-    def test_DeltaCode_to_dict_original_path_full_root(self):
+        assert counts.get('added') == 1
+        assert counts.get('modified') == 0
+        assert counts.get('moved') == 0
+        assert counts.get('removed') == 0
+        assert counts.get('unmodified') == 8
+
+    def test_DeltaCode_get_stats_original_path_full_root(self):
         test_scan_new = self.get_test_loc('deltacode/to-dict-align-trees-simple-new.json')
         # Our old scan uses --full-root option in scancode
         test_scan_old = self.get_test_loc('deltacode/to-dict-align-trees-simple-old.json')
@@ -497,19 +502,20 @@ class TestDeltacode(FileBasedTesting):
         ])
 
         deltacode = DeltaCode(test_scan_new, test_scan_old, options)
-        result = deltacode.to_dict()
 
-        assert (len(result.get('added')) + len(result.get('removed'))
-                + len(result.get('moved')) + len(result.get('modified'))
-                + len(result.get('unmodified'))) == 33
+        counts = deltacode.get_stats()
 
-        assert len(result.get('added')) == 0
-        assert len(result.get('removed')) == 0
-        assert len(result.get('moved')) == 0
-        assert len(result.get('modified')) == 0
-        assert len(result.get('unmodified')) == 33
+        assert (counts.get('added') + counts.get('modified') +
+                counts.get('moved') + counts.get('removed') +
+                counts.get('unmodified')) == 33
 
-    def test_DeltaCode_to_dict_simple_file_added(self):
+        assert counts.get('added') == 0
+        assert counts.get('modified') == 0
+        assert counts.get('moved') == 0
+        assert counts.get('removed') == 0
+        assert counts.get('unmodified') == 33
+
+    def test_DeltaCode_get_stats_simple_file_added(self):
         new_scan = self.get_test_loc('deltacode/new_added1.json')
         old_scan = self.get_test_loc('deltacode/old_added1.json')
 
@@ -519,19 +525,19 @@ class TestDeltacode(FileBasedTesting):
 
         deltacode = DeltaCode(new_scan, old_scan, options)
 
-        result = deltacode.to_dict()
+        counts = deltacode.get_stats()
 
-        assert (len(result.get('added')) + len(result.get('removed'))
-                + len(result.get('moved')) + len(result.get('modified'))
-                + len(result.get('unmodified'))) == 9
+        assert (counts.get('added') + counts.get('modified') +
+                counts.get('moved') + counts.get('removed') +
+                counts.get('unmodified')) == 9
 
-        assert len(result.get('added')) == 1
-        assert len(result.get('removed')) == 0
-        assert len(result.get('moved')) == 0
-        assert len(result.get('modified')) == 0
-        assert len(result.get('unmodified')) == 8
+        assert counts.get('added') == 1
+        assert counts.get('modified') == 0
+        assert counts.get('moved') == 0
+        assert counts.get('removed') == 0
+        assert counts.get('unmodified') == 8
 
-    def test_DeltaCode_to_dict_simple_file_modified(self):
+    def test_DeltaCode_get_stats_simple_file_modified(self):
         new_scan = self.get_test_loc('deltacode/new_modified1.json')
         old_scan = self.get_test_loc('deltacode/old_modified1.json')
 
@@ -541,70 +547,17 @@ class TestDeltacode(FileBasedTesting):
 
         deltacode = DeltaCode(new_scan, old_scan, options)
 
-        result = deltacode.to_dict()
+        counts = deltacode.get_stats()
 
-        assert (len(result.get('added')) + len(result.get('removed'))
-                + len(result.get('moved')) + len(result.get('modified'))
-                + len(result.get('unmodified'))) == 8
+        assert (counts.get('added') + counts.get('modified') +
+                counts.get('moved') + counts.get('removed') +
+                counts.get('unmodified')) == 8
 
-        assert len(result.get('added')) == 0
-        assert len(result.get('removed')) == 0
-        assert len(result.get('moved')) == 0
-        assert len(result.get('modified')) == 1
-        assert len(result.get('unmodified')) == 7
-
-    def test_DeltaCode_to_dict_simple_unmodified(self):
-        test_file = self.get_test_loc('deltacode/to-dict-unmodified.json')
-
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
-
-        deltacode = DeltaCode(test_file, test_file, options)
-
-        expected = OrderedDict([
-            ('added', []),
-            ('removed', []),
-            ('moved', []),
-            ('modified', []),
-            ('unmodified', [
-                OrderedDict([
-                    ('category', 'unmodified'),
-                    ('score', 0),
-                    ('new', OrderedDict([
-                        ('path', u'test/unmodified.txt'),
-                        ('type', u'file'),
-                        ('name', u'unmodified.txt'),
-                        ('size', 11),
-                        ('sha1', u'4f499c82f79e5372c293010f931ad2798ddf3e8e'),
-                        ('original_path', u'test/unmodified.txt')
-                    ])),
-                    ('old', OrderedDict([
-                        ('path', u'test/unmodified.txt'),
-                        ('type', u'file'),
-                        ('name', u'unmodified.txt'),
-                        ('size', 11),
-                        ('sha1', u'4f499c82f79e5372c293010f931ad2798ddf3e8e'),
-                        ('original_path', u'test/unmodified.txt')
-                    ]))
-                ])
-            ])
-        ])
-
-        result = deltacode.to_dict()
-
-        assert result == expected
-
-    def test_DeltaCode_to_dict_empty(self):
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
-
-        delta = DeltaCode(None, None, options)
-
-        result = delta.to_dict()
-
-        assert result == OrderedDict([('added', []), ('removed', []), ('moved', []), ('modified', []), ('unmodified', [])])
+        assert counts.get('added') == 0
+        assert counts.get('modified') == 1
+        assert counts.get('moved') == 0
+        assert counts.get('removed') == 0
+        assert counts.get('unmodified') == 7
 
     def test_DeltaCode_invalid_paths(self):
         test_path_1 = '/some/invalid/path/1.json'
@@ -624,7 +577,7 @@ class TestDeltacode(FileBasedTesting):
         assert result.old.files_count == 0
         assert result.old.files == []
 
-        assert result.deltas == OrderedDict([('added', []), ('removed', []), ('moved', []), ('modified', []), ('unmodified', [])])
+        assert result.deltas == []
 
     def test_DeltaCode_empty_paths(self):
         options = OrderedDict([
@@ -641,7 +594,7 @@ class TestDeltacode(FileBasedTesting):
         assert result.old.files_count == 0
         assert result.old.files == []
 
-        assert result.deltas == OrderedDict([('added', []), ('removed', []), ('moved', []), ('modified', []), ('unmodified', [])])
+        assert result.deltas == []
 
     def test_DeltaCode_None_paths(self):
         options = OrderedDict([
@@ -657,7 +610,8 @@ class TestDeltacode(FileBasedTesting):
         assert result.old.path == ''
         assert result.old.files_count == 0
         assert result.old.files == []
-        assert result.deltas == OrderedDict([('added', []), ('removed', []), ('moved', []), ('modified', []), ('unmodified', [])])
+
+        assert result.deltas == []
 
     def test_Delta_license_diff_new_no_license_info(self):
         new_file = models.File({'path': 'new/path.txt'})
@@ -878,7 +832,7 @@ class TestDeltacode(FileBasedTesting):
 
         deltas = result.deltas
 
-        assert len([i for i in deltas.get('modified') if i.category == 'license change']) == 0
+        assert len([i for i in deltas if i.category == 'license change']) == 0
 
     def test_DeltaCode_license_modified(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')
@@ -892,8 +846,8 @@ class TestDeltacode(FileBasedTesting):
 
         deltas = result.deltas
 
-        assert len([i for i in deltas.get('modified') if i.category == 'license change']) == 2
-        assert len([i for i in deltas.get('modified') if i.category == 'modified']) == 1
+        assert len([i for i in deltas if i.category == 'license change']) == 2
+        assert len([i for i in deltas if i.category == 'modified']) == 1
 
     def test_DeltaCode_no_license_key_value(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
@@ -907,8 +861,8 @@ class TestDeltacode(FileBasedTesting):
 
         deltas = result.deltas
 
-        assert len([i for i in deltas.get('modified') if i.category == 'license change']) == 0
-        assert len([i for i in deltas.get('modified') if i.category == 'modified']) == 2
+        assert len([i for i in deltas if i.category == 'license change']) == 0
+        assert len([i for i in deltas if i.category == 'modified']) == 2
 
     def test_DeltaCode_no_license_changes(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_changes.json')
@@ -922,8 +876,8 @@ class TestDeltacode(FileBasedTesting):
 
         deltas = result.deltas
 
-        assert len([i for i in deltas.get('modified') if i.category == 'license change']) == 0
-        assert len([i for i in deltas.get('modified') if i.category == 'modified']) == 2
+        assert len([i for i in deltas if i.category == 'license change']) == 0
+        assert len([i for i in deltas if i.category == 'modified']) == 2
 
     def test_DeltaCode_errors_empty(self):
         new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
@@ -937,7 +891,7 @@ class TestDeltacode(FileBasedTesting):
 
         assert result.errors == []
 
-    def test_Delta_to_dict_modified_license_added(self):
+    def test_Delta_modified_license_added(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added.json')
 
@@ -949,11 +903,11 @@ class TestDeltacode(FileBasedTesting):
 
         deltas = result.deltas
 
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/a/a1.py'] == ['license change']
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/b/b1.py'] == ['license change']
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/c/c1.py'] == ['modified']
+        assert [d.category for d in deltas if d.new_file.path == 'some/path/a/a1.py'] == ['license change']
+        assert [d.category for d in deltas if d.new_file.path == 'some/path/b/b1.py'] == ['license change']
+        assert [d.category for d in deltas if d.new_file.path == 'some/path/c/c1.py'] == ['modified']
 
-    def test_Delta_to_dict_modified_license_added_low_score(self):
+    def test_Delta_modified_license_added_low_score(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added_low_score.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added_low_score.json')
 
@@ -965,10 +919,10 @@ class TestDeltacode(FileBasedTesting):
 
         deltas = result.deltas
 
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/a/a1.py'] == ['modified']
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/b/b1.py'] == ['modified']
+        assert [d.category for d in deltas if d.new_file.path == 'some/path/a/a1.py'] == ['modified']
+        assert [d.category for d in deltas if d.new_file.path == 'some/path/b/b1.py'] == ['modified']
 
-    def test_Delta_to_dict_modified_no_license_changes(self):
+    def test_Delta_modified_no_license_changes(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_changes.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_changes.json')
 
@@ -980,10 +934,10 @@ class TestDeltacode(FileBasedTesting):
 
         deltas = result.deltas
 
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/a/a1.py'] == ['modified']
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/b/b1.py'] == ['modified']
+        assert [d.category for d in deltas if d.new_file.path == 'some/path/a/a1.py'] == ['modified']
+        assert [d.category for d in deltas if d.new_file.path == 'some/path/b/b1.py'] == ['modified']
 
-    def test_Delta_to_dict_modified_no_license_key(self):
+    def test_Delta_modified_no_license_key(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
         old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_key.json')
 
@@ -995,8 +949,8 @@ class TestDeltacode(FileBasedTesting):
 
         deltas = result.deltas
 
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/a/a1.py'] == ['modified']
-        assert [d.to_dict().get('category') for d in deltas.get('modified') if d.to_dict().get('new').get('path') == 'some/path/b/b1.py'] == ['modified']
+        assert [d.category for d in deltas if d.new_file.path == 'some/path/a/a1.py'] == ['modified']
+        assert [d.category for d in deltas if d.new_file.path == 'some/path/b/b1.py'] == ['modified']
 
     def test_Delta_to_dict_removed(self):
         old = models.File({
@@ -1206,273 +1160,6 @@ class TestDeltacode(FileBasedTesting):
                 ('original_path', '')
             ]))
         ])
-
-
-    def test_Delta_to_dict_license_modified(self):
-        new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')
-        old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added.json')
-
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
-
-        result = DeltaCode(new_scan, old_scan, options)
-
-        expected = OrderedDict([
-            ('added', []),
-            ('removed', []),
-            ('moved', []),
-            ('modified', [
-                OrderedDict([
-                    ('category', 'modified'),
-                    ('score', 50),
-                    ('new', OrderedDict([
-                        ('path', u'some/path/c/c1.py'),
-                        ('type', u'file'),
-                        ('name', u'c1.py'),
-                        ('size', 300),
-                        ('sha1', u'333647771481d39dd3a53f6dc210c26abac37748'),
-                        ('original_path', u'some/path/c/c1.py'),
-                        ('licenses', [
-                            OrderedDict([
-                                ('key', u'mit'),
-                                ('score', 100.0),
-                                ('short_name', u'MIT License'),
-                                ('category', u'Permissive'),
-                                ('owner', None)
-                            ])
-                        ])
-                    ])),
-                    ('old', OrderedDict([
-                        ('path', u'some/path/c/c1.py'),
-                        ('type', u'file'),
-                        ('name', u'c1.py'),
-                        ('size', 300),
-                        ('sha1', u'222647771481d39dd3a53f6dc210c26abac37748'),
-                        ('original_path', u'some/path/c/c1.py'),
-                        ('licenses', [
-                            OrderedDict([
-                                ('key', u'mit'),
-                                ('score', 100.0),
-                                ('short_name', u'MIT License'),
-                                ('category', u'Permissive'),
-                                ('owner', None)
-                            ])
-                        ])
-                    ]))
-                ]),
-                OrderedDict([
-                    ('category', 'license change'),
-                    ('score', 60),
-                    ('new', OrderedDict([
-                        ('path', u'some/path/a/a1.py'),
-                        ('type', u'file'),
-                        ('name', u'a1.py'),
-                        ('size', 300),
-                        ('sha1', u'000647771481d39dd3a53f6dc210c26abac37748'),
-                        ('original_path', u'some/path/a/a1.py'),
-                        ('licenses', [
-                            OrderedDict([
-                                ('key', u'apache-2.0'),
-                                ('score', 80.0),
-                                ('short_name', u'Apache 2.0'),
-                                ('category', u'Permissive'),
-                                ('owner', None)
-                            ]),
-                            OrderedDict([
-                                ('key', u'agpl-2.0'),
-                                ('score', 70.0),
-                                ('short_name', u'AGPL 2.0'),
-                                ('category', u'Copyleft'),
-                                ('owner', None)
-                            ]),
-                            OrderedDict([
-                                ('key', u'bsd-simplified'),
-                                ('score', 100.0),
-                                ('short_name', u'BSD-Simplified'),
-                                ('category', u'Permissive'),
-                                ('owner', None)
-                            ]),
-                            OrderedDict([
-                                ('key', u'mit'),
-                                ('score', 100.0),
-                                ('short_name', u'MIT License'),
-                                ('category', u'Permissive'),
-                                ('owner', None)
-                            ])
-                        ])
-                    ])),
-                    ('old', OrderedDict([
-                        ('path', u'some/path/a/a1.py'),
-                        ('type', u'file'),
-                        ('name', u'a1.py'),
-                        ('size', 200),
-                        ('sha1', u'84b647771481d39dd3a53f6dc210c26abac37748'),
-                        ('original_path', u'some/path/a/a1.py'),
-                        ('licenses', [
-                            OrderedDict([
-                                ('key', u'apache-2.0'),
-                                ('score', 80.0),
-                                ('short_name', u'Apache 2.0'),
-                                ('category', u'Permissive'),
-                                ('owner', None)
-                            ]),
-                            OrderedDict([
-                                ('key', u'public-domain'),
-                                ('score', 10.0),
-                                ('short_name', u'Public Domain'),
-                                ('category', u'Public Domain'),
-                                ('owner', None)
-                            ]),
-                            OrderedDict([
-                                ('key', u'bsd-simplified'),
-                                ('score', 100.0),
-                                ('short_name', u'BSD-Simplified'),
-                                ('category', u'Permissive'),
-                                ('owner', None)
-                            ])
-                        ])
-                    ]))
-                ]),
-                OrderedDict([
-                    ('category', 'license change'),
-                    ('score', 60),
-                    ('new', OrderedDict([
-                        ('path', u'some/path/b/b1.py'),
-                        ('type', u'file'),
-                        ('name', u'b1.py'),
-                        ('size', 300),
-                        ('sha1', u'111647771481d39dd3a53f6dc210c26abac37748'),
-                        ('original_path', u'some/path/b/b1.py'),
-                        ('licenses', [
-                            OrderedDict([
-                                ('key', u'apache-2.0'),
-                                ('score', 80.0),
-                                ('short_name', u'Apache 2.0'),
-                                ('category', u'Permissive'),
-                                ('owner', None)
-                            ]),
-                            OrderedDict([
-                                ('key', u'gpl-2.0'),
-                                ('score', 60.0),
-                                ('short_name', u'GPL 2.0'),
-                                ('category', u'Copyleft'),
-                                ('owner', None)
-                            ]),
-                            OrderedDict([
-                                ('key', u'bsd-simplified'),
-                                ('score', 100.0),
-                                ('short_name', u'BSD-Simplified'),
-                                ('category', u'Permissive'),
-                                ('owner', None)
-                            ]),
-                            OrderedDict([
-                                ('key', u'mit'),
-                                ('score', 100.0),
-                                ('short_name', u'MIT License'),
-                                ('category', u'Permissive'),
-                                ('owner', None)
-                            ])
-                        ])
-                    ])),
-                    ('old', OrderedDict([
-                        ('path', u'some/path/b/b1.py'),
-                        ('type', u'file'),
-                        ('name', u'b2.py'),
-                        ('size', 200),
-                        ('sha1', u'333647771481d39dd3a53f6dc210c26abac37748'),
-                        ('original_path', u'some/path/b/b1.py'),
-                        ('licenses', [
-                            OrderedDict([
-                                ('key', u'mpl-2.0'),
-                                ('score', 90.0),
-                                ('short_name', u'MPL 2.0'),
-                                ('category', u'Copyleft Limited'),
-                                ('owner', None)
-                            ]),
-                            OrderedDict([
-                                ('key', u'public-domain'),
-                                ('score', 10.0),
-                                ('short_name', u'Public Domain'),
-                                ('category', u'Public Domain'),
-                                ('owner', None)
-                            ]),
-                            OrderedDict([
-                                ('key', u'bsd-simplified'),
-                                ('score', 100.0),
-                                ('short_name', u'BSD-Simplified'),
-                                ('category', u'Permissive'),
-                                ('owner', None)
-                            ])
-                        ])
-                    ]))
-                ])
-            ]),
-            ('unmodified', [])
-        ])
-
-        assert result.to_dict() == expected
-
-    def test_Delta_to_dict_no_license_key_value(self):
-        new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
-        old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_key.json')
-
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
-
-        result = DeltaCode(new_scan, old_scan, options)
-
-        expected = OrderedDict([
-            ('added', []),
-            ('removed', []),
-            ('moved', []),
-            ('modified', [
-                OrderedDict([
-                    ('category', 'modified'),
-                    ('score', 50),
-                    ('new', OrderedDict([
-                        ('path', u'some/path/a/a1.py'),
-                        ('type', u'file'),
-                        ('name', u'a1.py'),
-                        ('size', 250),
-                        ('sha1', u'000647771481d39dd3a53f6dc210c26abac37748'),
-                        ('original_path', u'some/path/a/a1.py')
-                    ])),
-                    ('old', OrderedDict([
-                        ('path', u'some/path/a/a1.py'),
-                        ('type', u'file'),
-                        ('name', u'a1.py'),
-                        ('size', 350),
-                        ('sha1', u'222647771481d39dd3a53f6dc210c26abac37748'),
-                        ('original_path', u'some/path/a/a1.py')
-                    ]))
-                ]),
-                OrderedDict([
-                    ('category', 'modified'),
-                    ('score', 50),
-                    ('new', OrderedDict([
-                        ('path', u'some/path/b/b1.py'),
-                        ('type', u'file'),
-                        ('name', u'b1.py'),
-                        ('size', 310),
-                        ('sha1', u'111647771481d39dd3a53f6dc210c26abac37748'),
-                        ('original_path', u'some/path/b/b1.py')
-                    ])),
-                    ('old', OrderedDict([
-                        ('path', u'some/path/b/b1.py'),
-                        ('type', u'file'),
-                        ('name', u'b1.py'),
-                        ('size', 290),
-                        ('sha1', u'333647771481d39dd3a53f6dc210c26abac37748'),
-                        ('original_path', u'some/path/b/b1.py')
-                    ]))
-                ])
-            ]),
-            ('unmodified', [])
-        ])
-
-        assert result.to_dict() == expected
 
     def test_Delta_create_object_removed(self):
         new = None

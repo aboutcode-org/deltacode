@@ -56,7 +56,7 @@ def write_csv(delta, result_file, all_delta_types=False):
             f.old_file.type if f.category == 'removed' else f.new_file.type,
             f.old_file.size if f.category == 'removed' else f.new_file.size,
             f.old_file.path if f.category == 'moved' else '')
-                for d in delta.deltas for f in delta.deltas.get(d)]:
+                for f in delta.deltas]:
                     if all_delta_types is True:
                         csv_out.writerow(row)
                     elif row[0] != 'unmodified':
