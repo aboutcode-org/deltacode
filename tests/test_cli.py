@@ -268,8 +268,8 @@ class TestCLI(FileBasedTesting):
         check_csvs(result_file, expected_file)
 
     def test_json_output_option_selected_all_selected(self):
-        new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
-        old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
+        new_scan = self.get_test_loc('cli/scan_1_file_moved_new.json')
+        old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
 
         result_file = self.get_temp_file('json')
 
@@ -384,8 +384,8 @@ class TestCLI(FileBasedTesting):
         assert unmodified_result == unmodified_expected
 
     def test_json_output_option_selected_all_not_selected(self):
-        new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
-        old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
+        new_scan = self.get_test_loc('cli/scan_1_file_moved_new.json')
+        old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
 
         result_file = self.get_temp_file('json')
 
@@ -463,8 +463,8 @@ class TestCLI(FileBasedTesting):
         assert len(unmodified_result) == 0
 
     def test_csv_output_option_selected_all_selected(self):
-        new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
-        old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
+        new_scan = self.get_test_loc('cli/scan_1_file_moved_new.json')
+        old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
 
         result_file = self.get_temp_file('.csv')
         expected_file = self.get_test_loc('cli/1_file_moved.csv')
@@ -476,8 +476,8 @@ class TestCLI(FileBasedTesting):
         check_csvs(result_file, expected_file)
 
     def test_csv_output_option_selected_all_not_selected(self):
-        new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
-        old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
+        new_scan = self.get_test_loc('cli/scan_1_file_moved_new.json')
+        old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
 
         result_file = self.get_temp_file('.csv')
         expected_file = self.get_test_loc('cli/1_file_moved_all_not_selected.csv')
@@ -489,8 +489,8 @@ class TestCLI(FileBasedTesting):
         check_csvs(result_file, expected_file)
 
     def test_no_output_option_selected_all_selected(self):
-        new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
-        old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
+        new_scan = self.get_test_loc('cli/scan_1_file_moved_new.json')
+        old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
 
         runner = CliRunner()
         result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-a'])
@@ -537,8 +537,8 @@ class TestCLI(FileBasedTesting):
         assert '"original_path": "1_file_moved_new/a/a3.py"' in result .output
 
     def test_no_output_option_selected_all_not_selected(self):
-        new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
-        old_scan = self.get_test_loc('deltacode/scan_1_file_moved_old.json')
+        new_scan = self.get_test_loc('cli/scan_1_file_moved_new.json')
+        old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
 
         runner = CliRunner()
         result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan])
