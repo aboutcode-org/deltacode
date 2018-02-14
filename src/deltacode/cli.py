@@ -47,15 +47,16 @@ def write_csv(delta, result_file, all_delta_types=False):
     """
     with open(result_file, 'wb') as out:
         csv_out = csv.writer(out)
-        csv_out.writerow(['Type of delta', 'Path', 'Name', 'Type', 'Size', 'Old Path'])
+        csv_out.writerow(['Type of delta', 'Score', 'Path', 'Name', 'Type', 'Size', 'Old Path'])
         for row in [(
             f.category,
+            f.score,
             f.old_file.path if f.category == 'removed' else f.new_file.path,
             f.old_file.name if f.category == 'removed' else f.new_file.name,
             f.old_file.type if f.category == 'removed' else f.new_file.type,
             f.old_file.size if f.category == 'removed' else f.new_file.size,
             f.old_file.path if f.category == 'moved' else '')
-                for d in delta.deltas for f in delta.deltas.get(d)]:
+                for f in delta.deltas]:
                     if all_delta_types is True:
                         csv_out.writerow(row)
                     elif row[0] != 'unmodified':

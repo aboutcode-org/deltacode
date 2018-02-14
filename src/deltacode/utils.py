@@ -48,12 +48,11 @@ def deltas(deltacode, all_delta_types=False):
     all Delta objects whose 'category' is 'unmodified' unless the user selects
     the '-a'/'--all' option.
     """
-    for category, deltas in deltacode.deltas.iteritems():
-        for delta in deltas:
-            if all_delta_types is True:
-                yield delta.to_dict()
-            elif delta.category != 'unmodified':
-                yield delta.to_dict()
+    for delta in deltacode.deltas:
+        if all_delta_types is True:
+            yield delta.to_dict()
+        elif delta.category != 'unmodified':
+            yield delta.to_dict()
 
 
 class AlignmentException(Exception):
