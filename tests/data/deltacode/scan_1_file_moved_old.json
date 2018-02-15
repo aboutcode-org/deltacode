@@ -9,7 +9,7 @@
     "--license-score": 0,
     "--format": "json-pp"
   },
-  "files_count": 10,
+  "files_count": 8,
   "files": [
     {
       "path": "1_file_moved_old/a",

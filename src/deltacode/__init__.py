@@ -60,7 +60,7 @@ class DeltaCode(object):
             # Sort deltas by score, descending, i.e., high > low.
             self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
 
-    def align_scan(self):
+    def align_scans(self):
         """
         Seek to align the paths of a pair of files (File objects) in the pair
         of incoming scans so that the attributes and other characteristics of
@@ -77,26 +77,26 @@ class DeltaCode(object):
 
     def determine_delta(self):
         """
-        Given new and old scans, return an list of Delta objects that can be
-        sorted by their attributes, e.g., by Delta.score.  Return None if no
-        File objects can be loaded from either scan.
+        Add to a list of Delta objects that can be sorted by their attributes, 
+        e.g., by Delta.score.  Return None if no File objects can be loaded 
+        from either scan.
         """
         # align scan and create our index
-        self.align_scan()
+        self.align_scans()
         new_index = self.new.index_files()
         old_index = self.old.index_files()
 
         # gathering counts to ensure no files lost or missing from our 'deltas' set
-        new_files_visited = 0
-        old_files_visited = 0
+        new_visited, old_visited = 0, 0
 
         # perform the deltas
         for path, new_files in new_index.items():
             for new_file in new_files:
-                new_files_visited += 1
 
                 if new_file.type != 'file':
                     continue
+                
+                new_visited += 1
 
                 try:
                     delta_old_files = old_index[path]
@@ -119,23 +119,28 @@ class DeltaCode(object):
         # now time to find the added.
         for path, old_files in old_index.items():
             for old_file in old_files:
-                old_files_visited += 1
-
                 if old_file.type != 'file':
                     continue
+                
+                old_visited += 1
 
                 try:
-                    # This file already classified as 'modified' or 'unmodified' so do nothing
+                    # This file already classified so do nothing
                     new_index[path]
                 except KeyError:
                     self.deltas.append(Delta(None, old_file, 'removed'))
                     continue
 
         # make sure everything is accounted for
-        if new_files_visited != self.new.files_count:
-            self.errors.append("Deltacode Error: Number of visited files({}) does not match total_files({}) in the new scan".format(new_files_visited, self.new.files_count))
-        if old_files_visited != self.old.files_count:
-            self.errors.append("Deltacode Error: Number of visited files({}) does not match total_files({}) in the old scan".format(old_files_visited, self.old.files_count))
+        if new_visited != self.new.files_count:
+            self.errors.append(
+                'DeltaCode Warning: new_visited({}) != new_total({}). Assuming old scancode format.'.format(new_visited, self.new.files_count)
+            )
+
+        if old_visited != self.old.files_count:
+            self.errors.append(
+                'DeltaCode Warning: old_visited({}) != old_total({}). Assuming old scancode format.'.format(old_visited, self.old.files_count)
+            )
 
     def determine_moved(self):
         """
