@@ -1,8 +1,0 @@
-{
-    "path": "some/path/file1.txt",
-    "type": "file",
-    "name": "file1.txt",
-    "size": "256",
-    "sha1": "abcd",
-    "md5": "efgh"
-}
