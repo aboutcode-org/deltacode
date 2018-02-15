@@ -40,24 +40,6 @@ class TestModels(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
 
-    def test_Scan_load_files_fails_when_files_not_equal(self):
-        test_file = self.get_test_loc('models/scan/files-mismatch.json')
-
-        result = models.Scan(test_file)
-
-        expected_result = ["Scan Error: The number of files calculated with 'len(files)' does not equal the ScanCode 'files_count' value for the scan with path = " + test_file + "."]
-
-        assert result.errors == expected_result
-
-    def test_Scan_load_files_fails_when_counts_not_equal(self):
-        test_file = self.get_test_loc('models/scan/files-count-mismatch.json')
-
-        result = models.Scan(test_file)
-
-        expected_result = ["Scan Error: The number of files calculated with 'len(files)' does not equal the ScanCode 'files_count' value for the scan with path = " + test_file + "."]
-
-        assert result.errors == expected_result
-
     def test_Scan_index_files_simple(self):
         test_files = [models.File({'path': 'path1/a'}), models.File({'path': 'path1/b'})]
 
