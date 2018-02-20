@@ -1,2 +1,2 @@
-Type of delta,Score,Path,Name,Type,Size,Old Path
-license info added,70,some/path/a/a1.py,a1.py,file,350,
+Factors,Score,Path,Name,Type,Size,Old Path
+modified license info added,40,some/path/a/a1.py,a1.py,file,350,

@@ -40,22 +40,22 @@ from deltacode.utils import deltas, get_notice, collect_errors
 # FIXME: update the function argument delta to deltacode
 def write_csv(delta, result_file, all_delta_types=False):
     """
-    Using the DeltaCode object, create a .csv file
-    containing the primary information from the Delta objects.  Omit all Delta
-    objects whose 'category' is 'unmodified' unless the user selects the
-    '-a'/'--all' option.
+    Using the DeltaCode object, create a .csv file containing the primary
+    information from the Delta objects.  Omit all unmodified Delta objects --
+    identified by a 'score' of 0 -- unless the user selects the '-a'/'--all'
+    option.
     """
     with open(result_file, 'wb') as out:
         csv_out = csv.writer(out)
-        csv_out.writerow(['Type of delta', 'Score', 'Path', 'Name', 'Type', 'Size', 'Old Path'])
+        csv_out.writerow(['Factors', 'Score', 'Path', 'Name', 'Type', 'Size', 'Old Path'])
         for row in [(
-            f.category,
+            ' '.join(f.factors),
             f.score,
-            f.old_file.path if f.category == 'removed' else f.new_file.path,
-            f.old_file.name if f.category == 'removed' else f.new_file.name,
-            f.old_file.type if f.category == 'removed' else f.new_file.type,
-            f.old_file.size if f.category == 'removed' else f.new_file.size,
-            f.old_file.path if f.category == 'moved' else '')
+            f.old_file.path if 'removed' in f.factors else f.new_file.path,
+            f.old_file.name if 'removed' in f.factors else f.new_file.name,
+            f.old_file.type if 'removed' in f.factors else f.new_file.type,
+            f.old_file.size if 'removed' in f.factors else f.new_file.size,
+            f.old_file.path if 'moved' in f.factors else '')
                 for f in delta.deltas]:
                     if all_delta_types is True:
                         csv_out.writerow(row)
@@ -66,15 +66,14 @@ def write_csv(delta, result_file, all_delta_types=False):
 def write_json(deltacode, outfile, all_delta_types=False):
     """
     Using the DeltaCode object, create a .json file containing the primary
-    information from the Delta objects.  Omit all Delta objects whose
-    'category' is 'unmodified' unless the user selects the
-    '-a'/'--all-delta-types' option.
+    information from the Delta objects.  Through a call to utils.deltas(), omit
+    all unmodified Delta objects -- identified by a 'score' of 0 -- unless the
+    user selects the '-a'/'--all-delta-types' option.
     """
     results = OrderedDict([
         ('deltacode_notice', get_notice()),
         ('deltacode_options', deltacode.options),
         ('deltacode_version', __version__),
-        ('deltacode_stats', deltacode.get_stats()),
         ('deltacode_errors', collect_errors(deltacode)),
         ('deltas', deltas(deltacode, all_delta_types))
     ])

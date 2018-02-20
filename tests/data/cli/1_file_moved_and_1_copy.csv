@@ -1,4 +1,4 @@
-Type of delta,Score,Path,Name,Type,Size,Old Path
-added,75,b/a4.py,a4.py,file,200,
-added,75,b/a4_copy.py,a4_copy.py,file,200,
-removed,25,a/a4.py,a4.py,file,200,
+Factors,Score,Path,Name,Type,Size,Old Path
+added,100,b/a4.py,a4.py,file,200,
+added,100,b/a4_copy.py,a4_copy.py,file,200,
+removed,10,a/a4.py,a4.py,file,200,

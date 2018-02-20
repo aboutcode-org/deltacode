@@ -56,7 +56,8 @@ class DeltaCode(object):
         if self.new.path != '' and self.old.path != '':
             self.determine_delta()
             self.determine_moved()
-            # TODO: how can we test the sort order?
+            # TODO: Need to account for possibly passing in a 'cutoff_score'.
+            self.license_diff()
             # Sort deltas by score, descending, i.e., high > low.
             self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
 
@@ -77,9 +78,11 @@ class DeltaCode(object):
 
     def determine_delta(self):
         """
-        Given new and old scans, return an list of Delta objects that can be
+        Given new and old scans, return a list of Delta objects that can be
         sorted by their attributes, e.g., by Delta.score.  Return None if no
-        File objects can be loaded from either scan.
+        File objects can be loaded from either scan.  Pass a 'score' when
+        creating a Delta object, and add the appropriate category (e.g.,
+        'added') to the Delta object's 'factors' attribute.
         """
         # align scan and create our index
         self.align_scan()
@@ -101,7 +104,9 @@ class DeltaCode(object):
                 try:
                     delta_old_files = old_index[path]
                 except KeyError:
-                    self.deltas.append(Delta(new_file, None, 'added'))
+                    delta = Delta(100, new_file, None)
+                    delta.factors.append('added')
+                    self.deltas.append(delta)
                     continue
 
                 # at this point, we have a delta_old_file.
@@ -110,10 +115,13 @@ class DeltaCode(object):
                 for f in delta_old_files:
                     # TODO: make sure sha1 is NOT empty
                     if new_file.sha1 == f.sha1:
-                        self.deltas.append(Delta(new_file, f, 'unmodified'))
+                        delta = Delta(0, new_file, f)
+                        delta.factors.append('unmodified')
+                        self.deltas.append(delta)
                         continue
                     else:
-                        delta = Delta(new_file, f, 'modified')
+                        delta = Delta(20, new_file, f)
+                        delta.factors.append('modified')
                         self.deltas.append(delta)
 
         # now time to find the added.
@@ -128,7 +136,9 @@ class DeltaCode(object):
                     # This file already classified as 'modified' or 'unmodified' so do nothing
                     new_index[path]
                 except KeyError:
-                    self.deltas.append(Delta(None, old_file, 'removed'))
+                    delta = Delta(10, None, old_file)
+                    delta.factors.append('removed')
+                    self.deltas.append(delta)
                     continue
 
         # make sure everything is accounted for
@@ -144,10 +154,11 @@ class DeltaCode(object):
         by their 'sha1' attribute, identifying any unique pairs of Deltas in
         both indices with the same 'sha1' and File 'name' attributes, and
         converting each such pair of 'added' and 'removed' Delta objects to a
-        'moved' Delta object.
+        'moved' Delta object.  The 'added' and 'removed' indices are defined by
+        the 'score' attribute of the Delta objects.
         """
-        added = self.index_deltas('sha1', [i for i in self.deltas if i.category == 'added'])
-        removed = self.index_deltas('sha1', [i for i in self.deltas if i.category == 'removed'])
+        added = self.index_deltas('sha1', [i for i in self.deltas if i.score == 100])
+        removed = self.index_deltas('sha1', [i for i in self.deltas if i.score == 10])
 
         # TODO: should it be iteritems() or items()
         for added_sha1, added_deltas in added.iteritems():
@@ -160,25 +171,61 @@ class DeltaCode(object):
     def update_deltas(self, added, removed):
         """
         Convert the matched 'added' and 'removed' Delta objects to a combined
-        'moved' Delta object and delete the 'added' and 'removed' objects.
+        'moved' Delta object -- passing the appropriate 'score' during object
+        creation -- and delete the 'added' and 'removed' objects.
         """
-        self.deltas.append(Delta(added.new_file, removed.old_file, 'moved'))
+        delta = Delta(5, added.new_file, removed.old_file)
+        delta.factors.append('moved')
+        self.deltas.append(delta)
         self.deltas.remove(added)
         self.deltas.remove(removed)
+
+    def license_diff(self, cutoff_score=50):
+        """
+        Compare the license details for a pair of 'new' and 'old' File objects
+        in a Delta object and change the Delta object's 'score' attribute --
+        and add an appropriate category (e.g., 'license info removed', 'license
+        info added' or 'license change') to the Delta object's 'factors'
+        attribute -- if there has been a license change and depending on the
+        nature of that change.
+        """
+        for i in self.deltas:
+            if 20 <= i.score < 100:
+
+                new_licenses = i.new_file.licenses or []
+                old_licenses = i.old_file.licenses or []
+
+                if len(i.new_file.licenses) > 0 and i.old_file.licenses == []:
+                    i.factors.append('license info added')
+                    i.score += 20
+                    return
+
+                if i.new_file.licenses == [] and len(i.old_file.licenses) > 0:
+                    i.factors.append('license info removed')
+                    i.score += 15
+                    return
+
+                new_keys = set(l.key for l in new_licenses if l.score >= cutoff_score)
+                old_keys = set(l.key for l in old_licenses if l.score >= cutoff_score)
+
+                if new_keys != old_keys:
+                    i.factors.append('license change')
+                    i.score += 10
 
     def index_deltas(self, index_key='path', delta_list=[]):
         """
         Return a dictionary of a list of Delta objects indexed by the key
         passed via the 'index_key' variable.  If no 'index_key' variable is
         passed, the dict is keyed by the Delta object's 'path' variable.  For a
-        'removed' Delta object, use the variable from the 'old_file'; for all
-        other Delta objects (e.g., 'added'), use the 'new_file'.  This function
-        does not currently catch the AttributeError exception.
+        'removed' Delta object -- identified by its 'score' attribute -- use
+        the variable from the 'old_file'; for all other Delta objects (e.g.,
+        'added'), use the 'new_file'.  This function does not currently catch
+        the AttributeError exception.
         """
         index = {}
 
         for delta in delta_list:
-            if delta.category == 'removed':
+            if delta.score == 10:
                 key = getattr(delta.old_file, index_key)
             else:
                 key = getattr(delta.new_file, index_key)
@@ -191,111 +238,37 @@ class DeltaCode(object):
 
         return index
 
-    def get_stats(self):
-        """
-        Given a list of Delta objects, return a 'counts' dictionary keyed by
-        the Delta object's 'category' attribute that contains the count as a
-        value for each category.
-        """
-        added, modified, moved, removed, unmodified = 0, 0, 0, 0, 0
-
-        added = len([i for i in self.deltas if i.category == 'added'])
-        modified = len([i for i in self.deltas if i.category == 'modified'])
-        moved = len([i for i in self.deltas if i.category == 'moved'])
-        removed = len([i for i in self.deltas if i.category == 'removed'])
-        unmodified = len([i for i in self.deltas if i.category == 'unmodified'])
-
-        return OrderedDict([('added', added), ('modified', modified), ('moved', moved), ('removed', removed), ('unmodified', unmodified)])
-
 
 class Delta(object):
     """
     A tuple reflecting a comparison of two files -- each of which is a File
-    object -- and the category that characterizes the comparison:
-    'added', 'modified', 'moved', 'removed' or 'unmodified'.
+    object -- and the 'factors' (e.g., 'added', 'modified' etc.) and related
+    'score' that characterize that comparison.
     """
-    def __init__(self, new_file=None, old_file=None, delta_type=None, score=0):
-        self.new_file = new_file if new_file else File()
-        self.old_file = old_file if old_file else File()
-        self.category = delta_type if delta_type else ''
+    def __init__(self, score=0, new_file=None, old_file=None):
+        self.new_file = new_file if new_file else None
+        self.old_file = old_file if old_file else None
+        self.factors = []
         self.score = score
-
-        # If a license change is detected, and depending on the nature of that change,
-        # change the Delta object's 'category' attribute from 'modified' to
-        # 'license change', 'license info removed' or 'license info added'.
-        if self.category == 'modified':
-            self._license_diff()
-
-        self.determine_score()
-
-    def _license_diff(self, cutoff_score=50):
-        """
-        Compare the license details for a pair of 'new' and 'old' File objects
-        in a Delta object and change the Delta object's 'category' attribute to
-        'license info removed', 'license info added' or 'license change' if
-        there has been a license change and depending on the nature of that change.
-        """
-        new_licenses = self.new_file.licenses or []
-        old_licenses = self.old_file.licenses or []
-
-        if len(self.new_file.licenses) > 0 and self.old_file.licenses == []:
-            self.category = 'license info added'
-            return
-
-        if self.new_file.licenses == [] and len(self.old_file.licenses) > 0:
-            self.category = 'license info removed'
-            return
-
-        new_keys = set(l.key for l in new_licenses if l.score >= cutoff_score)
-        old_keys = set(l.key for l in old_licenses if l.score >= cutoff_score)
-
-        if new_keys != old_keys:
-            self.category = 'license change'
-
-    def determine_score(self):
-        """
-        Assign a score to each 'Delta' object by modifying the object's 'score'
-        attribute based on the object's 'category' attribute.
-        """
-        scores = {
-            'added': 75,
-            'license info added': 70,
-            'license info removed': 65,
-            'license change': 60,
-            'modified': 50,
-            'removed': 25,
-            'moved': 0,
-            'unmodified': 0
-        }
-
-        self.score = scores.get(self.category, 0)
 
     def to_dict(self):
         """
-        Check the 'category' attribute of the Delta object and return an
-        OrderedDict comprising the 'category', 'score' and 'path' of the object.
+        Return an OrderedDict comprising the 'factors', 'score' and new and old
+        'path' attributes of the object.
         """
-        delta = OrderedDict([
-            ('category', self.category),
-            ('score', self.score)
-        ])
-
-        if self.category == 'added':
-            delta.update(OrderedDict([
-                ('new', self.new_file.to_dict()),
-                ('old', None),
-            ]))
-
-        elif self.category == 'removed':
-            delta.update(OrderedDict([
-                ('new', None),
-                ('old', self.old_file.to_dict()),
-            ]))
-
+        if self.new_file:
+            new_file = self.new_file.to_dict()
         else:
-            delta.update(OrderedDict([
-                ('new', self.new_file.to_dict()),
-                ('old', self.old_file.to_dict()),
-            ]))
+            new_file = None
 
-        return delta
+        if self.old_file:
+            old_file = self.old_file.to_dict()
+        else:
+            old_file = None
+
+        return OrderedDict([
+            ('factors', self.factors),
+            ('score', self.score),
+            ('new', new_file),
+            ('old', old_file),
+        ])
