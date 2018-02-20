@@ -56,7 +56,6 @@ class DeltaCode(object):
         if self.new.path != '' and self.old.path != '':
             self.determine_delta()
             self.determine_moved()
-            # TODO: Need to account for possibly passing in a 'cutoff_score'.
             self.license_diff()
             # Sort deltas by score, descending, i.e., high > low.
             self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
@@ -180,7 +179,7 @@ class DeltaCode(object):
         self.deltas.remove(added)
         self.deltas.remove(removed)
 
-    def license_diff(self, cutoff_score=50):
+    def license_diff(self):
         """
         Compare the license details for a pair of 'new' and 'old' File objects
         in a Delta object and change the Delta object's 'score' attribute --
@@ -205,8 +204,8 @@ class DeltaCode(object):
                     i.score += 15
                     return
 
-                new_keys = set(l.key for l in new_licenses if l.score >= cutoff_score)
-                old_keys = set(l.key for l in old_licenses if l.score >= cutoff_score)
+                new_keys = set(l.key for l in new_licenses)
+                old_keys = set(l.key for l in old_licenses)
 
                 if new_keys != old_keys:
                     i.factors.append('license change')
@@ -225,6 +224,7 @@ class DeltaCode(object):
         index = {}
 
         for delta in delta_list:
+            # FIXME: This is an ugly way to do this.
             if delta.score == 10:
                 key = getattr(delta.old_file, index_key)
             else:
