@@ -1,6 +1,9 @@
 Changelog
 =========
 
-0.0.1.beta (2018-02-05)
+1.0.0 (2018-02-21)
 ------------------
-This is the initial beta release.
+* Initial release of DeltaCode
+
+  * support for finding codebase differences from two scancode output files
+  * simple command line with JSON and csv output formats
