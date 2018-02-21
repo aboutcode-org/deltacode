@@ -32,19 +32,31 @@ except ValueError:
 ####
 
 
-def get_version(default=version, template='{commit}',
+def get_version(default=version, template='{tag}.{distance}.{commit}{dirty}',
                 use_default=USE_DEFAULT_VERSION):
+    """
+    Return a version collected from git if possible or fall back to an
+    hard-coded default version otherwise. If `use_default` is True,
+    always use the default version.
+    """
     """
     Return a version collected from git. If `use_default` is True,
     always use the default version.
     """
     if use_default:
         return default
-
     try:
-        # TODO: When we add git tags, we will need to adjust this code
-        commit = get_git_version()
-        commit = '{}-{}'.format(version, commit)
+        tag, distance, commit, dirty = get_git_version()
+        if not distance and not dirty:
+            # we are from a clean Git tag: use tag
+            return tag
+
+        distance = 'post{}'.format(distance)
+        if dirty:
+            time_stamp = get_time_stamp()
+            dirty = '.dirty.' + get_time_stamp()
+        else:
+            dirty = ''
 
         return template.format(**locals())
     except:
@@ -52,16 +64,30 @@ def get_version(default=version, template='{commit}',
         return default
 
 
+def get_time_stamp():
+    """
+    Return a numeric UTC time stamp without microseconds.
+    """
+    from datetime import datetime
+    return (datetime.isoformat(datetime.utcnow()).split('.')[0]
+            .replace('T', '').replace(':', '').replace('-', ''))
+
+
 def get_git_version():
     """
     Return version parts from Git or raise an exception.
     """
     from subprocess import check_output, STDOUT
-    cmd = 'git', 'describe', '--tags', '--long', '--dirty', '--always'
-    # TODO: When we add git tags, we will need to adjust this code
+    # this may fail with exceptions
+    cmd = 'git', 'describe', '--tags', '--long', '--dirty',
     version = check_output(cmd, stderr=STDOUT).strip()
-
-    return version
+    dirty = version.endswith('-dirty')
+    tag, distance, commit = version.split('-')[:3]
+    # lower tag and strip V prefix in tags
+    tag = tag.lower().lstrip('v ').strip()
+    # strip leading g from git describe commit
+    commit = commit.lstrip('g').strip()
+    return tag, int(distance), commit, dirty
 
 
 def read(*names, **kwargs):
