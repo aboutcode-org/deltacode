@@ -30,10 +30,9 @@ For example::
 
 
 
-Once you have the two codebase scans, simply install/configure
-deltacode, and run it on the two scans::
+Once you have the two codebase scans, simply run deltacode on the two scans::
 
-    (deltacode) $ deltacode --help
+    $ ./deltacode --help
     Usage: deltacode [OPTIONS]
 
       Identify the changes that need to be made to the 'old' scan file (-o or
@@ -54,7 +53,7 @@ deltacode, and run it on the two scans::
                                 files in the .json or .csv output.  If not
                                 selected, only changed files are included.
     
-    (deltacode) $ deltacode -n ~/psql-10.0-fileinfo.json -o ~/psql-9.6-fileinfo.json -j ~/psql-10.0-psql-9.6-delta.json
+    $ ./deltacode -n ~/psql-10.0-fileinfo.json -o ~/psql-9.6-fileinfo.json -j ~/psql-10.0-psql-9.6-delta.json
 
 =========
 Problems?

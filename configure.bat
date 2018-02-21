@@ -1,6 +1,6 @@
 @echo OFF
 
-@rem Copyright (c) 2015 nexB Inc. http://www.nexb.com/ - All rights reserved.
+@rem Copyright (c) 2015-2018 nexB Inc. http://www.nexb.com/ - All rights reserved.
 
 @rem ################################
 @rem # change these variables to customize this script locally
