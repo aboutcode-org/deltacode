@@ -55,7 +55,7 @@ Run a sample delta
 
 Run a simple delta saved to the `output.csv` file::
 
-    ./deltacode -n samples/samples.json -o samples/samples,json -c output.csv
+    ./deltacode -n samples/samples.json -o samples/samples.json -c output.csv
 
 Then open `output.csv` to view the delta results.
 
