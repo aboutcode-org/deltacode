@@ -32,6 +32,9 @@ and detecting package version changes.
 
 Quick Start
 ===========
+For more comprehensive installation instructions and development instructions, see:
+`Comprehensive Installation <https://github.com/nexB/deltacode/wiki/Comprehensive-Installation>`_
+
 Make sure you have Python 2.7 installed:
   * Download and install Python 2.7 32 bits for Windows
     https://www.python.org/ftp/python/2.7.14/python-2.7.14.msi
