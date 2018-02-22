@@ -293,15 +293,11 @@ class TestCLI(FileBasedTesting):
 
         assert json_result.get('deltacode_options') == options
 
-        stats = {'unmodified': 7, 'removed': 0, 'added': 0, 'moved': 1, 'modified': 0}
-
-        assert json_result.get('deltacode_stats') == stats
-
         assert json_result.get('deltacode_errors') == []
 
         moved_expected = {
-            "category": "moved",
-            "score": 0,
+            "factors": ['moved'],
+            "score": 5,
             "new": {
                 "path": "b/a4.py",
                 "type": "file",
@@ -337,12 +333,13 @@ class TestCLI(FileBasedTesting):
                 ]
             }
         }
-        moved_result = [d for d in json_result.get('deltas') if d.get('category') == 'moved'].pop()
+
+        moved_result = [d for d in json_result.get('deltas') if d.get('score') == 5].pop()
 
         assert moved_result == moved_expected
 
         unmodified_expected = {
-            "category": "unmodified",
+            "factors": ['unmodified'],
             "score": 0,
             "new": {
                 "path": "a/a3.py",
@@ -379,7 +376,8 @@ class TestCLI(FileBasedTesting):
                 ]
             }
         }
-        unmodified_result = [d for d in json_result.get('deltas') if d.get('category') == 'unmodified' and d.get('new').get('path') == 'a/a3.py'].pop()
+
+        unmodified_result = [d for d in json_result.get('deltas') if d.get('score') == 0 and d.get('new').get('path') == 'a/a3.py'].pop()
 
         assert unmodified_result == unmodified_expected
 
@@ -409,15 +407,11 @@ class TestCLI(FileBasedTesting):
 
         assert json_result.get('deltacode_options') == options
 
-        stats = {'unmodified': 7, 'removed': 0, 'added': 0, 'moved': 1, 'modified': 0}
-
-        assert json_result.get('deltacode_stats') == stats
-
         assert json_result.get('deltacode_errors') == []
 
         moved_expected = {
-            "category": "moved",
-            "score": 0,
+            "factors": ["moved"],
+            "score": 5,
             "new": {
                 "path": "b/a4.py",
                 "type": "file",
@@ -454,11 +448,11 @@ class TestCLI(FileBasedTesting):
             }
         }
 
-        moved_result = [d for d in json_result.get('deltas') if d.get('category') == 'moved'].pop()
+        moved_result = [d for d in json_result.get('deltas') if d.get('score') == 5].pop()
 
         assert moved_result == moved_expected
 
-        unmodified_result = [d for d in json_result.get('deltas') if d.get('category') == 'unmodified']
+        unmodified_result = [d for d in json_result.get('deltas') if d.get('score') == 0]
 
         assert len(unmodified_result) == 0
 
@@ -505,13 +499,9 @@ class TestCLI(FileBasedTesting):
 
         assert '"deltacode_errors": []' in result.output
 
-        assert '"added": 0' in result.output
-        assert '"modified": 0' in result.output
-        assert '"moved": 1' in result.output
-        assert '"removed": 0' in result.output
-        assert '"unmodified": 7' in result.output
+        assert '"factors"' in result.output
 
-        assert '"category": "moved"' in result.output
+        assert '"score": 5' in result.output
 
         assert '"new"' in result.output
         assert '"path": "b/a4.py"' in result.output
@@ -526,8 +516,6 @@ class TestCLI(FileBasedTesting):
         assert '"path": "a/a4.py"' in result.output
         assert '"original_path": "1_file_moved_old/a/a4.py"' in result.output
         assert '"key": "apache-2.0"' in result.output
-
-        assert '"category": "unmodified"' in result.output
 
         assert '"path": "a/a3.py"' in result.output
         assert '"name": "a3.py"' in result.output
@@ -553,13 +541,9 @@ class TestCLI(FileBasedTesting):
 
         assert '"deltacode_errors": []' in result.output
 
-        assert '"added": 0' in result.output
-        assert '"modified": 0' in result.output
-        assert '"moved": 1' in result.output
-        assert '"removed": 0' in result.output
-        assert '"unmodified": 7' in result.output
+        assert '"factors":' in result.output
 
-        assert '"category": "moved"' in result.output
+        assert '"score": 5' in result.output
 
         assert '"new"' in result.output
         assert '"path": "b/a4.py"' in result.output
@@ -574,8 +558,6 @@ class TestCLI(FileBasedTesting):
         assert '"path": "a/a4.py"' in result.output
         assert '"original_path": "1_file_moved_old/a/a4.py"' in result.output
         assert '"key": "apache-2.0"' in result.output
-
-        assert '"category": "unmodified"' not in result.output
 
         assert '"path": "a/a3.py"' not in result.output
         assert '"name": "a3.py"' not in result.output

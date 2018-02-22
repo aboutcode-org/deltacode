@@ -77,12 +77,12 @@ class TestUtils(FileBasedTesting):
 
         new_added = models.File({'path': 'path/same.txt', 'sha1': 'a', 'name': 'same.txt'})
 
-        added_delta = deltacode.Delta(new_added, None, 'added')
+        added_delta = deltacode.Delta(100, new_added, None)
         added_deltas = [added_delta]
 
         old_removed = models.File({'path': 'path/different.txt', 'sha1': 'b', 'name': 'different.txt'})
 
-        removed_delta = deltacode.Delta(None, old_removed, 'removed')
+        removed_delta = deltacode.Delta(10, None, old_removed)
         removed_deltas = [removed_delta]
 
         result = utils.check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas)
@@ -95,12 +95,12 @@ class TestUtils(FileBasedTesting):
 
         new_added = models.File({'path': 'path/same.txt', 'sha1': 'a', 'name': 'same.txt'})
 
-        added_delta = deltacode.Delta(new_added, None, 'added')
+        added_delta = deltacode.Delta(100, new_added, None)
         added_deltas = [added_delta]
 
         old_removed = models.File({'path': 'path/same.txt', 'sha1': 'a', 'name': 'same.txt'})
 
-        removed_delta = deltacode.Delta(None, old_removed, 'removed')
+        removed_delta = deltacode.Delta(10, None, old_removed)
         removed_deltas = [removed_delta]
 
         result = utils.check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas)
@@ -113,12 +113,12 @@ class TestUtils(FileBasedTesting):
 
         new_added = models.File({'path': 'path/same.txt', 'sha1': 'a', 'name': 'same.txt'})
 
-        added_delta = deltacode.Delta(new_added, None, 'added')
+        added_delta = deltacode.Delta(100, new_added, None)
         added_deltas = [added_delta]
 
         old_removed = models.File({'path': 'path/different.txt', 'sha1': 'a', 'name': 'different.txt'})
 
-        removed_delta = deltacode.Delta(None, old_removed, 'removed')
+        removed_delta = deltacode.Delta(10, None, old_removed)
         removed_deltas = [removed_delta]
 
         result = utils.check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas)
@@ -132,13 +132,13 @@ class TestUtils(FileBasedTesting):
         new_added_01 = models.File({'path': 'pathA/same.txt', 'sha1': 'a', 'name': 'same.txt'})
         new_added_02 = models.File({'path': 'pathB/same.txt', 'sha1': 'a', 'name': 'same.txt'})
 
-        added_delta_01 = deltacode.Delta(new_added_01, None, 'added')
-        added_delta_02 = deltacode.Delta(new_added_02, None, 'added')
+        added_delta_01 = deltacode.Delta(100, new_added_01, None)
+        added_delta_02 = deltacode.Delta(100, new_added_02, None)
         added_deltas = [added_delta_01, added_delta_02]
 
         old_removed = models.File({'path': 'path/same.txt', 'sha1': 'a', 'name': 'same.txt'})
 
-        removed_delta = deltacode.Delta(None, old_removed, 'removed')
+        removed_delta = deltacode.Delta(10, None, old_removed)
         removed_deltas = [removed_delta]
 
         result = utils.check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas)
