@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2017 nexB Inc. and others. All rights reserved.
+# Copyright (c) 2017-2018 nexB Inc. and others. All rights reserved.
 # http://nexb.com and https://github.com/nexB/deltacode/
 # The DeltaCode software is licensed under the Apache License version 2.0.
 # Data generated with DeltaCode require an acknowledgment.
@@ -58,7 +58,7 @@ class TestDeltacode(FileBasedTesting):
         delta.new = new
         delta.old = old
 
-        delta.align_scan()
+        delta.align_scans()
 
         new_index = delta.new.index_files()
         old_index = delta.old.index_files()
@@ -128,8 +128,8 @@ class TestDeltacode(FileBasedTesting):
 
         result.determine_delta()
         assert result.errors == [
-            'Deltacode Error: Number of visited files(43) does not match total_files(42) in the new scan',
-            'Deltacode Error: Number of visited files(43) does not match total_files(40) in the old scan'
+            'DeltaCode Warning: new_visited(33) != new_total(42). Assuming old scancode format.',
+            'DeltaCode Warning: old_visited(33) != old_total(40). Assuming old scancode format.',
         ]
 
     def test_DeltaCode_invalid_paths(self):

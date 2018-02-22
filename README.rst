@@ -9,68 +9,94 @@ Deltacode
  |              |   :target: https://travis-ci.com/nexB/deltacode                                              |
  +--------------+----------------------------------------------------------------------------------------------+
 
-About:
-======
 
-``deltacode`` is a simple command line utility that leverages the power
-of `scancode-toolkit <https://github.com/nexB/scancode-toolkit>`_ to determine file-level differences between two
-codebases.
+DeltaCode is a simple command line utility that leverages the power
+of `scancode-toolkit <https://github.com/nexB/scancode-toolkit>`_
+to determine file-level differences between two codebases.
 
-How to use:
+During a typical software release cycle, development teams and software
+compliance experts want insight into how a codebase has changed during each
+release iteration. Specifically, these users need a utility that can point out
+places in a codebase where material license and other provenance changes have
+occurred. This is where DeltaCode comes in.
+
+DeltaCode provides an accurate means of comparing two ScanCode result files,
+and returning any possible changes that have occurred between the two given
+scanned codebases. DeltaCode currently has the ability to detect file size and
+license changes, as well as means to detect when files have been moved to new
+locations.
+
+We are continuously working on new features, such as detecting copyright changes
+and detecting package version changes.
+
+
+Quick Start
+===========
+Make sure you have Python 2.7 installed:
+  * Download and install Python 2.7 32 bits for Windows
+    https://www.python.org/ftp/python/2.7.14/python-2.7.14.msi
+  * Download and install Python 2.7 for Mac
+    https://www.python.org/ftp/python/2.7.14/python-2.7.14-macosx10.6.pkg
+  * Download and install Python 2.7 for Linux via distro package manager
+
+Next, download and extract the latest DeltaCode release from::
+
+    https://github.com/nexB/deltacode/releases/
+
+Open a terminal, extract the downloaded release archive, then `cd` to
+the extracted directory and run this command to display the command
+help. DeltaCode will self-configure if needed::
+
+    ./deltacode --help
+
+Run a sample delta
+
+    ./deltacode -n samples/samples.json -o samples/samples.json
+
+Run a simple delta saved to the `output.csv` file::
+
+    ./deltacode -n samples/samples.json -o samples/samples.json -c output.csv
+
+Then open `output.csv` to view the delta results.
+
+To get DeltaCode results for your codebase, install
+`scancode-toolkit <https://github.com/nexB/scancode-toolkit>`_ and generate a
+scan for each of the codebases you wish to 'Delta'
+
+
+Support
+=======
+
+If you have a problem, a suggestion or found a bug, please enter a ticket at:
+https://github.com/nexB/deltacode/issues
+
+For other questions, discussions, and chats, we have:
+
+- an official Gitter channel at https://gitter.im/aboutcode-org/discuss
+  Gitter also has an IRC bridge at https://irc.gitter.im/
+
+- an official #aboutcode IRC channel on freenode (server chat.freenode.net)
+  for DeltaCode and other related tools. Note that this receives
+  notifications from repos so it can be a tad noisy. You can use your
+  favorite IRC client or use the web chat at
+  https://webchat.freenode.net/
+
+
+Source code
 ===========
 
-In order to calculate these differences (i.e. 'deltas'), the user must have two individual
-scancode scan files, with the ``--info`` scan option at minimum.
-
-For example::
-
-    $ pip install scancode-toolkit
-    $ scancode --info ~/postgresql-9.6/ ~/psql-9.6-fileinfo.json
-    $ scancode --info ~/postgresql-10.0/ ~/psql-10.0-fileinfo.json
+* https://github.com/nexB/deltacode.git
 
 
+License
+=======
 
-Once you have the two codebase scans, simply install/configure
-deltacode, and run it on the two scans::
+* Apache-2.0 with an acknowledgement required to accompany the delta output.
 
-    (deltacode) $ deltacode --help
-    Usage: deltacode [OPTIONS]
+See the NOTICE file for more details.
 
-      Identify the changes that need to be made to the 'old' scan file (-o or
-      --old) in order to generate the 'new' scan file (-n or --new).  Write the
-      results to a .csv file (-c or --csv-file) or a .json file (-j or --json-
-      file) at a user-designated location.  If no file option is selected, print
-      the JSON results to the console.
 
-    Options:
-      -h, --help                Show this message and exit.
-      -n, --new PATH            Identify the path to the "new" scan file
-                                [required]
-      -o, --old PATH            Identify the path to the "old" scan file
-                                [required]
-      -c, --csv-file PATH       Identify the path to the .csv output file
-      -j, --json-file FILENAME  Identify the path to the .json output file
-      -a, --all-delta-types     Include unmodified files as well as all changed
-                                files in the .json or .csv output.  If not
-                                selected, only changed files are included.
-    
-    (deltacode) $ deltacode -n ~/psql-10.0-fileinfo.json -o ~/psql-9.6-fileinfo.json -j ~/psql-10.0-psql-9.6-delta.json
+Documentation & FAQ
+===================
 
-=========
-Problems?
-=========
-
-Open an `issue <https://www.github.com/nexb/deltacode/issues>`_.
-
-Notes:
-======
-
-- ``deltacode`` also collects statistical information, like # of files and other percentages. Currently, this output is not present in the ``csv`` output
-
-Future TODOs/additions:
-=======================
-
-- Use ``copyright`` information from scans to identify changes in copyright holders or dates for attribution.
-- Detect package or file changes that are only a version change for the same package or file.
-- Determine whether some added/removed files or packages are actually cases where the files or packages were moved.
-
+https://github.com/nexB/deltacode/wiki

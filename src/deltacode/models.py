@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2017 nexB Inc. and others. All rights reserved.
+# Copyright (c) 2017-2018 nexB Inc. and others. All rights reserved.
 # http://nexb.com and https://github.com/nexB/deltacode/
 # The DeltaCode software is licensed under the Apache License version 2.0.
 # Data generated with DeltaCode require an acknowledgment.
@@ -126,13 +126,7 @@ class Scan(object):
         with open(path) as jsonf:
             scan = jsonf.read()
 
-        files = [File(f) for f in json.loads(scan).get('files')]
-
-        # make sure we have same number of File objects as in the scan.
-        if len(files) != self.files_count:
-            self.errors.append('Scan Error: The number of files calculated with \'len(files)\' does not equal the ScanCode \'files_count\' value for the scan with path = ' + path + '.')
-
-        return files
+        return [File(f) for f in json.loads(scan).get('files')]
 
     def index_files(self, index_key='path'):
         """

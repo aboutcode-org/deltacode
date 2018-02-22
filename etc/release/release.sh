@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2017 nexB Inc. http://www.nexb.com/ - All rights reserved.
+# Copyright (c) 2018 nexB Inc. http://www.nexb.com/ - All rights reserved.
 #
 
 # ScanCode release script
@@ -50,10 +50,11 @@ function test_scan {
             extract_dir=$(ls -d */)
             cd $extract_dir
             
-            ./configure etc/conf
-
-            ./bin/deltacode --help
+            ./deltacode --help
             echo "TEST help passed: ./deltacode --help"
+
+            ./deltacode -n samples/samples.json -o samples/samples.json
+            echo "TEST sample delta passed: ./deltacode -n samples/samples.json -o samples/samples.json"
 
             # cleanup
             cd ..

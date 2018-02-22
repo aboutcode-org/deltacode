@@ -1,6 +1,7 @@
 graft src
 graft etc
 graft thirdparty
+graft samples
 
 recursive-exclude thirdparty/dev *
 prune tests
@@ -18,6 +19,8 @@ include setup.cfg
 include .gitignore
 include configure
 include configure.bat
+include deltacode
+include deltacode.bat
 include .travis.yml
 
 global-exclude *.py[co] __pycache__ *.*~

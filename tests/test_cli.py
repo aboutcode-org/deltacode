@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2017 nexB Inc. and others. All rights reserved.
+# Copyright (c) 2017-2018 nexB Inc. and others. All rights reserved.
 # http://nexb.com and https://github.com/nexB/deltacode/
 # The DeltaCode software is licensed under the Apache License version 2.0.
 # Data generated with DeltaCode require an acknowledgment.
@@ -42,7 +42,7 @@ from deltacode import utils
 
 def load_csv(location):
     """
-    Copied from https://github.com/nexB/scancode-toolkit/blob/848de9fa4aaa1bd487b1cb36a8559a473e6459af/etc/scripts/test_json2csv.py
+    Copied from https://github.com/nexB/scancode-toolkit/blob/develop/etc/scripts/test_json2csv.py
     Load a CSV file at location and return a tuple of (field names, list of rows as
     mappings field->value).
     """
@@ -56,7 +56,7 @@ def check_csvs(
         result_file, expected_file,
         regen=False):
     """
-    Copied from https://github.com/nexB/scancode-toolkit/blob/848de9fa4aaa1bd487b1cb36a8559a473e6459af/etc/scripts/test_json2csv.py
+    Copied from https://github.com/nexB/scancode-toolkit/blob/develop/etc/scripts/test_json2csv.py
     Load and compare two CSVs.
     `ignore_keys`, a tuple of keys that will be ignored in the comparisons,
     has been removed from this function as unnecessary.
