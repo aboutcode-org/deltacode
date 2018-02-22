@@ -224,11 +224,7 @@ class DeltaCode(object):
         index = {}
 
         for delta in delta_list:
-            # FIXME: This is an ugly way to do this.
-            if delta.score == 10:
-                key = getattr(delta.old_file, index_key)
-            else:
-                key = getattr(delta.new_file, index_key)
+            key = getattr(delta.new_file if delta.new_file else delta.old_file, index_key)
 
             if index.get(key) is None:
                 index[key] = []
