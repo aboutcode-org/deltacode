@@ -313,6 +313,17 @@ class TestCLI(FileBasedTesting):
                         "category": "Permissive",
                         "owner": "Apache Software Foundation"
                     }
+                ],
+                "copyrights": [
+                    {
+                    "statements": [
+                        "Copyright (c) 2017 Acme Software Inc. and others."
+                    ],
+                    "holders": [
+                        "Acme Software Inc. and others."
+                    ],
+                    "authors": []
+                    }
                 ]
             },
             "old": {
@@ -329,6 +340,17 @@ class TestCLI(FileBasedTesting):
                         "short_name": "Apache 2.0",
                         "category": "Permissive",
                         "owner": "Apache Software Foundation"
+                    }
+                ],
+                "copyrights": [
+                    {
+                    "statements": [
+                        "Copyright (c) 2017 Acme Software Inc. and others."
+                    ],
+                    "holders": [
+                        "Acme Software Inc. and others."
+                    ],
+                    "authors": []
                     }
                 ]
             }
@@ -356,6 +378,17 @@ class TestCLI(FileBasedTesting):
                         "category": "Permissive",
                         "owner": "Apache Software Foundation"
                     }
+                ],
+                "copyrights": [
+                    {
+                    "statements": [
+                        "Copyright (c) 2017 Acme Software Inc. and others."
+                    ],
+                    "holders": [
+                        "Acme Software Inc. and others."
+                    ],
+                    "authors": []
+                    }
                 ]
             },
             "old": {
@@ -372,6 +405,17 @@ class TestCLI(FileBasedTesting):
                         "short_name": "Apache 2.0",
                         "category": "Permissive",
                         "owner": "Apache Software Foundation"
+                    }
+                ],
+                "copyrights": [
+                    {
+                    "statements": [
+                        "Copyright (c) 2017 Acme Software Inc. and others."
+                    ],
+                    "holders": [
+                        "Acme Software Inc. and others."
+                    ],
+                    "authors": []
                     }
                 ]
             }
@@ -427,6 +471,17 @@ class TestCLI(FileBasedTesting):
                         "category": "Permissive",
                         "owner": "Apache Software Foundation"
                     }
+                ],
+                "copyrights": [
+                    {
+                    "statements": [
+                        "Copyright (c) 2017 Acme Software Inc. and others."
+                    ],
+                    "holders": [
+                        "Acme Software Inc. and others."
+                    ],
+                    "authors": []
+                    }
                 ]
             },
             "old": {
@@ -443,6 +498,17 @@ class TestCLI(FileBasedTesting):
                         "short_name": "Apache 2.0",
                         "category": "Permissive",
                         "owner": "Apache Software Foundation"
+                    }
+                ],
+                "copyrights": [
+                    {
+                    "statements": [
+                        "Copyright (c) 2017 Acme Software Inc. and others."
+                    ],
+                    "holders": [
+                        "Acme Software Inc. and others."
+                    ],
+                    "authors": []
                     }
                 ]
             }

@@ -161,12 +161,19 @@ class File(object):
         self.sha1 = dictionary.get('sha1', '')
         self.original_path = ''
         self.licenses = self.get_licenses(dictionary) if dictionary.get('licenses') else []
+        self.copyrights = self.get_copyrights(dictionary) if dictionary.get('copyrights') else []
 
     def get_licenses(self, dictionary):
         if dictionary.get('licenses') == []:
             return []
         else:
             return [License(l) for l in dictionary.get('licenses')]
+
+    def get_copyrights(self, dictionary):
+        if dictionary.get('copyrights') == []:
+            return []
+        else:
+            return [Copyright(l) for l in dictionary.get('copyrights')]
 
     def to_dict(self):
         d = OrderedDict([
@@ -180,6 +187,13 @@ class File(object):
 
         if self.licenses:
             d['licenses'] = [l.to_dict() for l in self.licenses]
+        else:
+            d['licenses'] = []
+
+        if self.copyrights:
+            d['copyrights'] = [l.to_dict() for l in self.copyrights]
+        else:
+            d['copyrights'] = []
 
         return d
 
@@ -199,7 +213,8 @@ class File(object):
 
 class License(object):
     """
-    License object created from the 'license' field in an ABCD formatted 'file' dictionary.
+    License object created from the 'license' field in an ABCD formatted 'file'
+    dictionary.
     """
     def __init__(self, dictionary={}):
         self.key = dictionary.get('key')
@@ -225,7 +240,39 @@ class License(object):
 
     def __repr__(self):
         """
-        Return string containing a printable representation of the License object.
+        Return string containing a printable representation of the License
+        object.
+        """
+        return "%s" % self.__dict__
+
+
+class Copyright(object):
+    """
+    Copyright object created from the 'copyrights' field in an ABCD formatted
+    'file' dictionary.
+    """
+    def __init__(self, dictionary={}):
+        self.statements = dictionary.get('statements')
+        self.holders = dictionary.get('holders')
+        self.authors = dictionary.get('authors')
+
+    def to_dict(self):
+        """
+        Given a Copyright object, return an OrderedDict with the full
+        set of fields from the ScanCode 'copyrights' value.
+        """
+        d = OrderedDict([
+            ('statements', self.statements),
+            ('holders', self.holders),
+            ('authors', self.authors)
+        ])
+
+        return d
+
+    def __repr__(self):
+        """
+        Return string containing a printable representation of the Copyright
+        object.
         """
         return "%s" % self.__dict__
 
