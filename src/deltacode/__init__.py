@@ -57,6 +57,7 @@ class DeltaCode(object):
             self.determine_delta()
             self.determine_moved()
             self.license_diff()
+            self.copyright_diff()
             # Sort deltas by score, descending, i.e., high > low.
             self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
 
@@ -191,28 +192,68 @@ class DeltaCode(object):
         attribute -- if there has been a license change and depending on the
         nature of that change.
         """
-        for i in self.deltas:
-            if 20 <= i.score < 100:
+        for delta in self.deltas:
+            if 20 <= delta.score < 100:
 
-                new_licenses = i.new_file.licenses or []
-                old_licenses = i.old_file.licenses or []
+                new_licenses = delta.new_file.licenses or []
+                old_licenses = delta.old_file.licenses or []
 
-                if len(i.new_file.licenses) > 0 and i.old_file.licenses == []:
-                    i.factors.append('license info added')
-                    i.score += 20
+                if len(delta.new_file.licenses) > 0 and delta.old_file.licenses == []:
+                    delta.factors.append('license info added')
+                    delta.score += 20
                     return
 
-                if i.new_file.licenses == [] and len(i.old_file.licenses) > 0:
-                    i.factors.append('license info removed')
-                    i.score += 15
+                if delta.new_file.licenses == [] and len(delta.old_file.licenses) > 0:
+                    delta.factors.append('license info removed')
+                    delta.score += 15
                     return
 
-                new_keys = set(l.key for l in new_licenses)
-                old_keys = set(l.key for l in old_licenses)
+                new_keys = set(license.key for license in new_licenses)
+                old_keys = set(license.key for license in old_licenses)
 
                 if new_keys != old_keys:
-                    i.factors.append('license change')
-                    i.score += 10
+                    delta.factors.append('license change')
+                    delta.score += 10
+
+    def copyright_diff(self):
+        """
+        Compare the copyright details for a pair of 'new' and 'old' File objects
+        in a Delta object and change the Delta object's 'score' attribute --
+        and add an appropriate category (e.g., 'copyright info removed', 'copyright
+        info added' or 'copyright change') to the Delta object's 'factors'
+        attribute -- if there has been a copyright change and depending on the
+        nature of that change.
+        """
+        for delta in self.deltas:
+            if 20 <= delta.score < 100:
+
+                new_copyrights = delta.new_file.copyrights or []
+                old_copyrights = delta.old_file.copyrights or []
+
+                if len(delta.new_file.copyrights) > 0 and delta.old_file.copyrights == []:
+                    delta.factors.append('copyright info added')
+                    delta.score += 15
+                    return
+
+                if delta.new_file.copyrights == [] and len(delta.old_file.copyrights) > 0:
+                    delta.factors.append('copyright info removed')
+                    delta.score += 10
+                    return
+
+                new_statements = set(statement for copyright in new_copyrights for statement in copyright.statements)
+                old_statements = set(statement for copyright in old_copyrights for statement in copyright.statements)
+
+                new_holders = set(holder for copyright in new_copyrights for holder in copyright.holders)
+                old_holders = set(holder for copyright in old_copyrights for holder in copyright.holders)
+
+                new_authors = set(author for copyright in new_copyrights for author in copyright.authors)
+                old_authors = set(author for copyright in old_copyrights for author in copyright.authors)
+
+                if ((new_statements != old_statements) or
+                        (new_holders != old_holders) or
+                        (new_authors != old_authors)):
+                    delta.factors.append('copyright change')
+                    delta.score += 5
 
     def index_deltas(self, index_key='path', delta_list=[]):
         """
