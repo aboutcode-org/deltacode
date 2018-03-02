@@ -1544,3 +1544,121 @@ class TestDeltacode(FileBasedTesting):
         assert len([i for i in deltas_object if i.score == 45]) == 0
         assert len([i for i in deltas_object if i.score == 30]) == 0
         assert len([i for i in deltas_object if i.score == 20]) == 0
+
+    def test_score_copyright_change_no_license_change(self):
+        new_scan = self.get_test_loc('deltacode/score_copyright_change_no_license_change_new.json')
+        old_scan = self.get_test_loc('deltacode/score_copyright_change_no_license_change_old.json')
+
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        deltacode_object = DeltaCode(new_scan, old_scan, options)
+
+        deltas_object = deltacode_object.deltas
+
+        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
+        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
+        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
+        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
+
+        assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
+        assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
+
+        assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [25]
+        assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['modified', 'copyright change']
+        assert [d.to_dict().get('old').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+            OrderedDict([
+                ('statements', ['Copyright (c) 2016 Mark Adler']),
+                ('holders', ['Mark Adler']),
+                ('authors', [])
+            ])
+        ]
+        assert [d.to_dict().get('new').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+            OrderedDict([
+                ('statements', ['Copyright (c) 2016 Alfred E. Neuman']),
+                ('holders', ['Alfred E. Neuman']),
+                ('authors', [])
+            ])
+        ]
+        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+            OrderedDict([
+                ('key', 'gpl-3.0-plus'),
+                ('score', 100.0),
+                ('short_name', 'GPL 3.0 or later'),
+                ('category', 'Copyleft'),
+                ('owner', "Free Software Foundation (FSF)")
+            ])
+        ]
+        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+            OrderedDict([
+                ('key', 'gpl-3.0-plus'),
+                ('score', 100.0),
+                ('short_name', 'GPL 3.0 or later'),
+                ('category', 'Copyleft'),
+                ('owner', "Free Software Foundation (FSF)")
+            ])
+        ]
+
+        assert len([i for i in deltas_object if i.score == 30]) == 0
+        assert len([i for i in deltas_object if i.score == 25]) == 1
+        assert len([i for i in deltas_object if i.score == 20]) == 0
+
+    def test_score_license_change_no_copyright_change(self):
+        new_scan = self.get_test_loc('deltacode/score_license_change_no_copyright_change_new.json')
+        old_scan = self.get_test_loc('deltacode/score_license_change_no_copyright_change_old.json')
+
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        deltacode_object = DeltaCode(new_scan, old_scan, options)
+
+        deltas_object = deltacode_object.deltas
+
+        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
+        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
+        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
+        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
+
+        assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
+        assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
+
+        assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [30]
+        assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['modified', 'license change']
+        assert [d.to_dict().get('old').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+            OrderedDict([
+                ('statements', ['Copyright (c) 2016 Mark Adler']),
+                ('holders', ['Mark Adler']),
+                ('authors', [])
+            ])
+        ]
+        assert [d.to_dict().get('new').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+            OrderedDict([
+                ('statements', ['Copyright (c) 2016 Mark Adler']),
+                ('holders', ['Mark Adler']),
+                ('authors', [])
+            ])
+        ]
+        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+            OrderedDict([
+                ('key', 'gpl-3.0-plus'),
+                ('score', 100.0),
+                ('short_name', 'GPL 3.0 or later'),
+                ('category', 'Copyleft'),
+                ('owner', "Free Software Foundation (FSF)")
+            ])
+        ]
+        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+            OrderedDict([
+                ('key', 'gpl-1.0-plus'),
+                ('score', 20.0),
+                ('short_name', 'GPL 1.0 or later'),
+                ('category', 'Copyleft'),
+                ('owner', "Free Software Foundation (FSF)")
+            ])
+        ]
+
+        assert len([i for i in deltas_object if i.score == 30]) == 1
+        assert len([i for i in deltas_object if i.score == 25]) == 0
+        assert len([i for i in deltas_object if i.score == 20]) == 0
