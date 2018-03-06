@@ -1661,7 +1661,7 @@ class TestDeltacode(FileBasedTesting):
 
         delta = deltacode.Delta(100, new, None)
 
-        delta.add_score(25, 'This is a test of an added file')
+        delta.update(25, 'This is a test of an added file')
 
         assert delta.score == 125
         assert delta.factors == ['This is a test of an added file']
@@ -1686,7 +1686,7 @@ class TestDeltacode(FileBasedTesting):
 
         delta = deltacode.Delta(20, new, old)
 
-        delta.add_score(25, 'This is a test of a modified file')
+        delta.update(25, 'This is a test of a modified file')
 
         assert delta.score == 45
         assert delta.factors == ['This is a test of a modified file']
@@ -1708,7 +1708,7 @@ class TestDeltacode(FileBasedTesting):
 
         for d in deltas_object:
             if d.new_file.path == 'path.txt':
-                d.add_score(25, 'This is a test of a license change')
+                d.update(25, 'This is a test of a license change')
 
         assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [55]
         assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['modified', 'license change', 'This is a test of a license change']
