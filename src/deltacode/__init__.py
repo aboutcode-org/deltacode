@@ -199,21 +199,18 @@ class DeltaCode(object):
                 old_licenses = delta.old_file.licenses or []
 
                 if len(delta.new_file.licenses) > 0 and delta.old_file.licenses == []:
-                    delta.factors.append('license info added')
-                    delta.score += 20
+                    delta.add_score(20, 'license info added')
                     return
 
                 if delta.new_file.licenses == [] and len(delta.old_file.licenses) > 0:
-                    delta.factors.append('license info removed')
-                    delta.score += 15
+                    delta.add_score(15, 'license info removed')
                     return
 
                 new_keys = set(license.key for license in new_licenses)
                 old_keys = set(license.key for license in old_licenses)
 
                 if new_keys != old_keys:
-                    delta.factors.append('license change')
-                    delta.score += 10
+                    delta.add_score(10, 'license change')
 
     def copyright_diff(self):
         """
@@ -231,13 +228,10 @@ class DeltaCode(object):
                 old_copyrights = delta.old_file.copyrights or []
 
                 if len(delta.new_file.copyrights) > 0 and delta.old_file.copyrights == []:
-                    delta.factors.append('copyright info added')
-                    delta.score += 15
+                    delta.add_score(10, 'copyright info added')
                     return
-
-                if delta.new_file.copyrights == [] and len(delta.old_file.copyrights) > 0:
-                    delta.factors.append('copyright info removed')
-                    delta.score += 10
+                elif delta.new_file.copyrights == [] and len(delta.old_file.copyrights) > 0:
+                    delta.add_score(10, 'copyright info removed')
                     return
 
                 new_statements = set(statement for copyright in new_copyrights for statement in copyright.statements)
@@ -246,14 +240,9 @@ class DeltaCode(object):
                 new_holders = set(holder for copyright in new_copyrights for holder in copyright.holders)
                 old_holders = set(holder for copyright in old_copyrights for holder in copyright.holders)
 
-                new_authors = set(author for copyright in new_copyrights for author in copyright.authors)
-                old_authors = set(author for copyright in old_copyrights for author in copyright.authors)
-
                 if ((new_statements != old_statements) or
-                        (new_holders != old_holders) or
-                        (new_authors != old_authors)):
-                    delta.factors.append('copyright change')
-                    delta.score += 5
+                        (new_holders != old_holders)):
+                    delta.add_score(5, 'copyright change')
 
     def index_deltas(self, index_key='path', delta_list=[]):
         """
@@ -290,6 +279,16 @@ class Delta(object):
         self.old_file = old_file if old_file else None
         self.factors = []
         self.score = score
+
+    def add_score(self, score=0, factor=''):
+        """
+        For each Delta object identified in DeltaCode.license_diff() or
+        DeltaCode.copyright_diff(), add the score to the object's 'score'
+        attribute and add a string, summarizing the factor associated with the
+        score, to the object's 'factors' attribute (a list).
+        """
+        self.factors.append(factor)
+        self.score += score
 
     def to_dict(self):
         """

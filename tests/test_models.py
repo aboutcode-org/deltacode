@@ -678,8 +678,7 @@ class TestModels(FileBasedTesting):
             ],
             'holders': [
                 "Jean-loup Gailly, Mark Adler"
-            ],
-            'authors': []
+            ]
         }
 
         result = models.Copyright(data).to_dict()
@@ -715,7 +714,6 @@ class TestModels(FileBasedTesting):
         assert result.holders == [
                 "Jean-loup Gailly, Mark Adler"
             ]
-        assert result.authors == []
         with pytest.raises(AttributeError):
             assert result.made_up_key == "a_string"
 
@@ -763,8 +761,7 @@ class TestModels(FileBasedTesting):
                     ],
                     "holders": [
                         "Jean-loup Gailly, Mark Adler"
-                    ],
-                    "authors": []
+                    ]
                 }
             ]
         }
@@ -843,3 +840,234 @@ class TestModels(FileBasedTesting):
         result = models.File(data)
 
         assert [] == result.copyrights
+
+    def test_Copyright_multiple_statements_and_holders(self):
+        new = {
+            'path': 'path/modified.txt',
+            'type': 'file',
+            'name': 'modified.txt',
+            'size': 20,
+            'sha1': 'a',
+            'original_path': '',
+            'licenses': [],
+            'copyrights': [
+                {
+                    "statements": [
+                        "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler",
+                        "Copyright (c) 1998 by Andreas R. Kleinert",
+                        "Copyright (c) 2002-2004 Dmitriy Anisimkov",
+                        "Copyright (c) 1998, 2007 Brian Raiter",
+                        "Copyright (c) 1997,99 Borland Corp.",
+                        "(c) Copyright Henrik Ravn 2004",
+                        "Copyright (c) 1995-2010 Jean-loup Gailly, Brian Raiter and Gilles Vollant.",
+                        "Copyright (c) 2003 Chris Anderson",
+                        "Copyright (c) 1997 Christian Michelsen Research as Advanced Computing",
+                        "Copyright (c) 2009-2010 Mathias Svensson http://result42.com",
+                        "Copyright (c) 1990-2000 Info-ZIP.",
+                        "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler",
+                        "Copyright (c) 1998 by Andreas R. Kleinert",
+                        "Copyright (c) 2002-2004 Dmitriy Anisimkov",
+                        "Copyright (c) 1998, 2007 Brian Raiter",
+                        "Copyright (c) 1997,99 Borland Corp.",
+                        "(c) Copyright Henrik Ravn 2004",
+                        "Copyright (c) 1995-2010 Jean-loup Gailly, Brian Raiter and Gilles Vollant.",
+                        "Copyright (c) 2003 Chris Anderson",
+                        "Copyright (c) 1997 Christian Michelsen Research as Advanced Computing",
+                        "Copyright (c) 2009-2010 Mathias Svensson http://result42.com",
+                        "Copyright (c) 1990-2000 Info-ZIP."
+                    ],
+                    "holders": [
+                        "Jean-loup Gailly, Mark Adler",
+                        "Andreas R. Kleinert",
+                        "Dmitriy Anisimkov",
+                        "Brian Raiter",
+                        "Borland Corp.",
+                        "Henrik Ravn",
+                        "Jean-loup Gailly, Brian Raiter, Gilles Vollant",
+                        "Chris Anderson",
+                        "Christian Michelsen Research as Advanced Computing",
+                        "Mathias Svensson",
+                        "Info-ZIP",
+                        "Jean-loup Gailly, Mark Adler",
+                        "Andreas R. Kleinert",
+                        "Dmitriy Anisimkov",
+                        "Brian Raiter",
+                        "Borland Corp.",
+                        "Henrik Ravn",
+                        "Jean-loup Gailly, Brian Raiter, Gilles Vollant",
+                        "Chris Anderson",
+                        "Christian Michelsen Research as Advanced Computing",
+                        "Mathias Svensson",
+                        "Info-ZIP"
+                    ],
+                    "authors": []
+                }
+            ]
+        }
+
+        result_new = models.File(new)
+        new_copyrights =  result_new.copyrights.pop()
+
+        assert new_copyrights.statements == [
+            "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler",
+            "Copyright (c) 1998 by Andreas R. Kleinert",
+            "Copyright (c) 2002-2004 Dmitriy Anisimkov",
+            "Copyright (c) 1998, 2007 Brian Raiter",
+            "Copyright (c) 1997,99 Borland Corp.",
+            "(c) Copyright Henrik Ravn 2004",
+            "Copyright (c) 1995-2010 Jean-loup Gailly, Brian Raiter and Gilles Vollant.",
+            "Copyright (c) 2003 Chris Anderson",
+            "Copyright (c) 1997 Christian Michelsen Research as Advanced Computing",
+            "Copyright (c) 2009-2010 Mathias Svensson http://result42.com",
+            "Copyright (c) 1990-2000 Info-ZIP.",
+            "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler",
+            "Copyright (c) 1998 by Andreas R. Kleinert",
+            "Copyright (c) 2002-2004 Dmitriy Anisimkov",
+            "Copyright (c) 1998, 2007 Brian Raiter",
+            "Copyright (c) 1997,99 Borland Corp.",
+            "(c) Copyright Henrik Ravn 2004",
+            "Copyright (c) 1995-2010 Jean-loup Gailly, Brian Raiter and Gilles Vollant.",
+            "Copyright (c) 2003 Chris Anderson",
+            "Copyright (c) 1997 Christian Michelsen Research as Advanced Computing",
+            "Copyright (c) 2009-2010 Mathias Svensson http://result42.com",
+            "Copyright (c) 1990-2000 Info-ZIP."
+        ]
+
+        assert new_copyrights.holders == [
+            "Jean-loup Gailly, Mark Adler",
+            "Andreas R. Kleinert",
+            "Dmitriy Anisimkov",
+            "Brian Raiter",
+            "Borland Corp.",
+            "Henrik Ravn",
+            "Jean-loup Gailly, Brian Raiter, Gilles Vollant",
+            "Chris Anderson",
+            "Christian Michelsen Research as Advanced Computing",
+            "Mathias Svensson",
+            "Info-ZIP",
+            "Jean-loup Gailly, Mark Adler",
+            "Andreas R. Kleinert",
+            "Dmitriy Anisimkov",
+            "Brian Raiter",
+            "Borland Corp.",
+            "Henrik Ravn",
+            "Jean-loup Gailly, Brian Raiter, Gilles Vollant",
+            "Chris Anderson",
+            "Christian Michelsen Research as Advanced Computing",
+            "Mathias Svensson",
+            "Info-ZIP"
+        ]
+
+    def test_Copyright_unusual_characters(self):
+        new = {
+            'path': 'path/modified.txt',
+            'type': 'file',
+            'name': 'modified.txt',
+            'size': 20,
+            'sha1': 'a',
+            'original_path': '',
+            'licenses': [],
+            'copyrights': [
+                {
+                    "statements": [
+                        "~@ \n \r",
+                        "&nbsp;",
+                        "\x80abc",
+                        "\xc3",
+                        "\xa0",
+                        "\xaa",
+                        "\xb9",
+                        "\xa9",
+                        "\xa8",
+                        "\xb4",
+                        "\xae",
+                        "-",
+                        "\xe2",
+                        "\x80",
+                        "\x99",
+                        "\xa2",
+                        "\xa7",
+                        "\xbb",
+                        "\xaf",
+                        "U+00E9",
+                        "\xc3\xa9"
+
+                    ],
+                    "holders": [
+                        "~@ \n \r",
+                        "&nbsp;",
+                        "\x80abc",
+                        "\xc3",
+                        "\xa0",
+                        "\xaa",
+                        "\xb9",
+                        "\xa9",
+                        "\xa8",
+                        "\xb4",
+                        "\xae",
+                        "-",
+                        "\xe2",
+                        "\x80",
+                        "\x99",
+                        "\xa2",
+                        "\xa7",
+                        "\xbb",
+                        "\xaf",
+                        "U+00E9",
+                        "\xc3\xa9"
+                    ],
+                    "authors": []
+                }
+            ]
+        }
+
+        result_new = models.File(new)
+        new_copyrights =  result_new.copyrights.pop()
+
+        assert new_copyrights.statements == [
+            "~@ \n \r",
+            "&nbsp;",
+            "\x80abc",
+            "\xc3",
+            "\xa0",
+            "\xaa",
+            "\xb9",
+            "\xa9",
+            "\xa8",
+            "\xb4",
+            "\xae",
+            "-",
+            "\xe2",
+            "\x80",
+            "\x99",
+            "\xa2",
+            "\xa7",
+            "\xbb",
+            "\xaf",
+            "U+00E9",
+            "\xc3\xa9"
+        ]
+
+        assert new_copyrights.holders == [
+            "~@ \n \r",
+            "&nbsp;",
+            "\x80abc",
+            "\xc3",
+            "\xa0",
+            "\xaa",
+            "\xb9",
+            "\xa9",
+            "\xa8",
+            "\xb4",
+            "\xae",
+            "-",
+            "\xe2",
+            "\x80",
+            "\x99",
+            "\xa2",
+            "\xa7",
+            "\xbb",
+            "\xaf",
+            "U+00E9",
+            "\xc3\xa9"
+        ]

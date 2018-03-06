@@ -254,7 +254,6 @@ class Copyright(object):
     def __init__(self, dictionary={}):
         self.statements = dictionary.get('statements')
         self.holders = dictionary.get('holders')
-        self.authors = dictionary.get('authors')
 
     def to_dict(self):
         """
@@ -263,8 +262,7 @@ class Copyright(object):
         """
         d = OrderedDict([
             ('statements', self.statements),
-            ('holders', self.holders),
-            ('authors', self.authors)
+            ('holders', self.holders)
         ])
 
         return d

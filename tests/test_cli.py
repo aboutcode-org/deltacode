@@ -442,13 +442,12 @@ class TestCLI(FileBasedTesting):
                 ],
                 "copyrights": [
                     {
-                    "statements": [
-                        "Copyright (c) 2017 Acme Software Inc. and others."
-                    ],
-                    "holders": [
-                        "Acme Software Inc. and others."
-                    ],
-                    "authors": []
+                        "statements": [
+                            "Copyright (c) 2017 Acme Software Inc. and others."
+                        ],
+                        "holders": [
+                            "Acme Software Inc. and others."
+                        ]
                     }
                 ]
             },
@@ -470,13 +469,12 @@ class TestCLI(FileBasedTesting):
                 ],
                 "copyrights": [
                     {
-                    "statements": [
-                        "Copyright (c) 2017 Acme Software Inc. and others."
-                    ],
-                    "holders": [
-                        "Acme Software Inc. and others."
-                    ],
-                    "authors": []
+                        "statements": [
+                            "Copyright (c) 2017 Acme Software Inc. and others."
+                        ],
+                        "holders": [
+                            "Acme Software Inc. and others."
+                        ]
                     }
                 ]
             }
@@ -507,13 +505,12 @@ class TestCLI(FileBasedTesting):
                 ],
                 "copyrights": [
                     {
-                    "statements": [
-                        "Copyright (c) 2017 Acme Software Inc. and others."
-                    ],
-                    "holders": [
-                        "Acme Software Inc. and others."
-                    ],
-                    "authors": []
+                        "statements": [
+                            "Copyright (c) 2017 Acme Software Inc. and others."
+                        ],
+                        "holders": [
+                            "Acme Software Inc. and others."
+                        ]
                     }
                 ]
             },
@@ -535,13 +532,12 @@ class TestCLI(FileBasedTesting):
                 ],
                 "copyrights": [
                     {
-                    "statements": [
-                        "Copyright (c) 2017 Acme Software Inc. and others."
-                    ],
-                    "holders": [
-                        "Acme Software Inc. and others."
-                    ],
-                    "authors": []
+                        "statements": [
+                            "Copyright (c) 2017 Acme Software Inc. and others."
+                        ],
+                        "holders": [
+                            "Acme Software Inc. and others."
+                        ]
                     }
                 ]
             }
@@ -600,13 +596,12 @@ class TestCLI(FileBasedTesting):
                 ],
                 "copyrights": [
                     {
-                    "statements": [
-                        "Copyright (c) 2017 Acme Software Inc. and others."
-                    ],
-                    "holders": [
-                        "Acme Software Inc. and others."
-                    ],
-                    "authors": []
+                        "statements": [
+                            "Copyright (c) 2017 Acme Software Inc. and others."
+                        ],
+                        "holders": [
+                            "Acme Software Inc. and others."
+                        ]
                     }
                 ]
             },
@@ -628,13 +623,12 @@ class TestCLI(FileBasedTesting):
                 ],
                 "copyrights": [
                     {
-                    "statements": [
-                        "Copyright (c) 2017 Acme Software Inc. and others."
-                    ],
-                    "holders": [
-                        "Acme Software Inc. and others."
-                    ],
-                    "authors": []
+                        "statements": [
+                            "Copyright (c) 2017 Acme Software Inc. and others."
+                        ],
+                        "holders": [
+                            "Acme Software Inc. and others."
+                        ]
                     }
                 ]
             }
