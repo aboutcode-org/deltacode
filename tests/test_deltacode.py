@@ -1649,7 +1649,7 @@ class TestDeltacode(FileBasedTesting):
         assert len([i for i in deltas_object if i.score == 25]) == 0
         assert len([i for i in deltas_object if i.score == 20]) == 0
 
-    def test_Delta_add_score_added(self):
+    def test_Delta_update_added(self):
         new = models.File({
             'path': 'path/added.txt',
             'type': 'file',
@@ -1666,7 +1666,7 @@ class TestDeltacode(FileBasedTesting):
         assert delta.score == 125
         assert delta.factors == ['This is a test of an added file']
 
-    def test_Delta_add_score_modified(self):
+    def test_Delta_update_modified(self):
         new = models.File({
             'path': 'path/modified.txt',
             'type': 'file',
@@ -1691,7 +1691,7 @@ class TestDeltacode(FileBasedTesting):
         assert delta.score == 45
         assert delta.factors == ['This is a test of a modified file']
 
-    def test_Delta_add_score_license_change_no_copyright_change(self):
+    def test_Delta_update_license_change_no_copyright_change(self):
         new_scan = self.get_test_loc('deltacode/score_license_change_no_copyright_change_new.json')
         old_scan = self.get_test_loc('deltacode/score_license_change_no_copyright_change_old.json')
 
@@ -1886,4 +1886,33 @@ class TestDeltacode(FileBasedTesting):
         delta.factors.append('modified')
 
         assert delta.to_dict() == expected
-        # print('\n\ndelta.to_dict() = {}\n'.format(delta.to_dict()))
+
+    def test_Delta_to_dict_Copyright_unusual_characters(self):
+        new_scan = self.get_test_loc('deltacode/scan_unusual_characters_new.json')
+        old_scan = self.get_test_loc('deltacode/scan_unusual_characters_old.json')
+
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        deltacode_object = DeltaCode(new_scan, old_scan, options)
+
+        deltas_object = deltacode_object.deltas
+
+        assert [d.factors for d in deltas_object if d.new_file.path == 'a1.py'].pop() == ['modified', 'license change', 'copyright change']
+
+        holders_list = [zzz.holders.pop() for d in deltas_object if d.new_file.path == 'a1.py' for zzz in d.new_file.copyrights]
+        print('\n\nholders_list_02 = {}\n'.format(holders_list))
+
+        assert 'Francois Hennebique and others.' in holders_list
+        assert 'Ottomar Anschutz.' in holders_list
+        assert 'Christiane Nusslein-Volhard.' in holders_list
+        assert 'Behram Kursunoglu.' in holders_list
+
+        statements_list = [zzz.statements.pop() for d in deltas_object if d.new_file.path == 'a1.py' for zzz in d.new_file.copyrights]
+        print('\n\nstatements_list = {}\n'.format(statements_list))
+
+        assert 'Copyright (c) 2017-2018 Francois Hennebique and others.' in statements_list
+        assert 'Copyright (c) 1999 Ottomar Anschutz.' in statements_list
+        assert 'Copyright (c) 2015-18 Christiane Nusslein-Volhard.' in statements_list
+        assert 'Copyright (c) 1999 Behram Kursunoglu.' in statements_list
