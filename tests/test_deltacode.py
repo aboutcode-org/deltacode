@@ -1901,16 +1901,14 @@ class TestDeltacode(FileBasedTesting):
 
         assert [d.factors for d in deltas_object if d.new_file.path == 'a1.py'].pop() == ['modified', 'license change', 'copyright change']
 
-        holders_list = [zzz.holders.pop() for d in deltas_object if d.new_file.path == 'a1.py' for zzz in d.new_file.copyrights]
-        print('\n\nholders_list_02 = {}\n'.format(holders_list))
+        holders_list = [c.holders.pop() for d in deltas_object if d.new_file.path == 'a1.py' for c in d.new_file.copyrights]
 
         assert 'Francois Hennebique and others.' in holders_list
         assert 'Ottomar Anschutz.' in holders_list
         assert 'Christiane Nusslein-Volhard.' in holders_list
         assert 'Behram Kursunoglu.' in holders_list
 
-        statements_list = [zzz.statements.pop() for d in deltas_object if d.new_file.path == 'a1.py' for zzz in d.new_file.copyrights]
-        print('\n\nstatements_list = {}\n'.format(statements_list))
+        statements_list = [c.statements.pop() for d in deltas_object if d.new_file.path == 'a1.py' for c in d.new_file.copyrights]
 
         assert 'Copyright (c) 2017-2018 Francois Hennebique and others.' in statements_list
         assert 'Copyright (c) 1999 Ottomar Anschutz.' in statements_list
