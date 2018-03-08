@@ -481,15 +481,16 @@ class TestModels(FileBasedTesting):
             'size': 20,
             'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
             'original_path': '',
-           'licenses': [
-               {
-                   "key": "apache-2.0",
-                   "score": 80.0,
-                   "short_name": "Apache 2.0",
-                   "category": "Permissive",
-                   "owner": "Apache Software Foundation"
-               }
-           ]
+            'licenses': [
+                {
+                    "key": "apache-2.0",
+                    "score": 80.0,
+                    "short_name": "Apache 2.0",
+                    "category": "Permissive",
+                    "owner": "Apache Software Foundation"
+                }
+            ],
+            'copyrights': []
         }
 
         result = models.File(data).to_dict()
@@ -513,7 +514,9 @@ class TestModels(FileBasedTesting):
             'name': 'file1.txt',
             'size': 20,
             'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
-            'original_path': ''
+            'original_path': '',
+            'licenses': [],
+            'copyrights': []
         }
 
         result = models.File(data).to_dict()
@@ -529,7 +532,9 @@ class TestModels(FileBasedTesting):
             'name': '',
             'size': '',
             'sha1': '',
-            'original_path': ''
+            'original_path': '',
+            'licenses': [],
+            'copyrights': []
         }
 
         result = empty_file.to_dict()
@@ -574,6 +579,7 @@ class TestModels(FileBasedTesting):
         assert 'file1.txt' == result.name
         assert 20 == result.size
         assert '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b' == result.sha1
+        assert [] == result.copyrights
         assert len(result.licenses) == 1
         assert result.licenses[0].key == 'apache-2.0'
         with pytest.raises(AttributeError):
@@ -597,6 +603,7 @@ class TestModels(FileBasedTesting):
         assert 20 == result.size
         assert '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b' == result.sha1
         assert [] == result.licenses
+        assert [] == result.copyrights
 
     def test_File_create_object_license_missing(self):
         data = {
@@ -620,6 +627,7 @@ class TestModels(FileBasedTesting):
         assert empty_file.size == ''
         assert empty_file.sha1 == ''
         assert empty_file.licenses == []
+        assert empty_file.copyrights == []
 
     def test_File_create_object(self):
         data = {
@@ -650,3 +658,416 @@ class TestModels(FileBasedTesting):
         b['size'] = 8192
         b_file = models.File(b)
         assert -4096 == a_file.size_difference(b_file)
+
+    def test_Copyright_to_dict_simple(self):
+        data = {
+            "statements": [
+                "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler"
+            ],
+            "holders": [
+                "Jean-loup Gailly, Mark Adler"
+            ],
+            "authors": [],
+            "start_line": 1,
+            "end_line": 3
+        }
+
+        expected = {
+            'statements': [
+                "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler"
+            ],
+            'holders': [
+                "Jean-loup Gailly, Mark Adler"
+            ]
+        }
+
+        result = models.Copyright(data).to_dict()
+
+        assert result == expected
+        with pytest.raises(AttributeError):
+            assert result.made_up_key == "a_string"
+
+    def test_Copyright_to_dict_empty(self):
+        result = models.Copyright().to_dict()
+
+        for k,v in result.items():
+            assert v == None
+
+    def test_Copyright_object_simple(self):
+        data = {
+            "statements": [
+                "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler"
+            ],
+            "holders": [
+                "Jean-loup Gailly, Mark Adler"
+            ],
+            "authors": [],
+            "start_line": 1,
+            "end_line": 3
+        }
+
+        result = models.Copyright(data)
+
+        assert result.statements == [
+                "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler"
+            ]
+        assert result.holders == [
+                "Jean-loup Gailly, Mark Adler"
+            ]
+        with pytest.raises(AttributeError):
+            assert result.made_up_key == "a_string"
+
+    def test_Copyright_object_empty(self):
+        result = models.Copyright()
+
+        for attr, value in vars(result).items():
+            assert value == None
+
+    def test_File_to_dict_simple_w_copyright(self):
+        data = {
+            'path': 'a/b/file1.txt',
+            'type': 'file',
+            'name': 'file1.txt',
+            'size': 20,
+            'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'licenses': [],
+            'copyrights': [
+                {
+                    "statements": [
+                        "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler"
+                    ],
+                    "holders": [
+                        "Jean-loup Gailly, Mark Adler"
+                    ],
+                    "authors": [],
+                    "start_line": 1,
+                    "end_line": 3
+                }
+            ]
+        }
+
+        expected = {
+            'path': 'a/b/file1.txt',
+            'type': 'file',
+            'name': 'file1.txt',
+            'size': 20,
+            'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'original_path': '',
+            'licenses': [],
+            'copyrights': [
+                {
+                    "statements": [
+                        "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler"
+                    ],
+                    "holders": [
+                        "Jean-loup Gailly, Mark Adler"
+                    ]
+                }
+            ]
+        }
+
+        result = models.File(data).to_dict()
+
+        assert result == expected
+        with pytest.raises(AttributeError):
+            assert result.made_up_key == "a_string"
+
+    def test_File_create_object_copyright_one(self):
+        data = {
+            'path': 'a/b/file1.txt',
+            'type': 'file',
+            'name': 'file1.txt',
+            'size': 20,
+            'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'licenses': [],
+            'copyrights': [
+                {
+                    "statements": [
+                        "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler"
+                    ],
+                    "holders": [
+                        "Jean-loup Gailly, Mark Adler"
+                    ],
+                    "authors": []
+                }
+            ]
+        }
+
+        result = models.File(data)
+
+        assert 'a/b/file1.txt' == result.path
+        assert 'file' == result.type
+        assert 'file1.txt' == result.name
+        assert 20 == result.size
+        assert '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b' == result.sha1
+        assert [] == result.licenses
+        assert len(result.copyrights) == 1
+        assert result.copyrights[0].statements == [
+            "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler"
+        ]
+        with pytest.raises(AttributeError):
+            assert result.made_up_key == "a_string"
+
+    def test_File_create_object_copyright_none(self):
+        data = {
+            'path': 'a/b/file1.txt',
+            'type': 'file',
+            'name': 'file1.txt',
+            'size': 20,
+            'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'copyrights': []
+        }
+
+        result = models.File(data)
+
+        assert 'a/b/file1.txt' == result.path
+        assert 'file' == result.type
+        assert 'file1.txt' == result.name
+        assert 20 == result.size
+        assert '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b' == result.sha1
+        assert [] == result.licenses
+        assert [] == result.copyrights
+
+    def test_File_create_object_copyright_missing(self):
+        data = {
+            'path': 'a/b/file1.txt',
+            'type': 'file',
+            'name': 'file1.txt',
+            'size': 20,
+            'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+        }
+
+        result = models.File(data)
+
+        assert [] == result.copyrights
+
+    def test_Copyright_multiple_statements_and_holders(self):
+        new = {
+            'path': 'path/modified.txt',
+            'type': 'file',
+            'name': 'modified.txt',
+            'size': 20,
+            'sha1': 'a',
+            'original_path': '',
+            'licenses': [],
+            'copyrights': [
+                {
+                    "statements": [
+                        "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler",
+                        "Copyright (c) 1998 by Andreas R. Kleinert",
+                        "Copyright (c) 2002-2004 Dmitriy Anisimkov",
+                        "Copyright (c) 1998, 2007 Brian Raiter",
+                        "Copyright (c) 1997,99 Borland Corp.",
+                        "(c) Copyright Henrik Ravn 2004",
+                        "Copyright (c) 1995-2010 Jean-loup Gailly, Brian Raiter and Gilles Vollant.",
+                        "Copyright (c) 2003 Chris Anderson",
+                        "Copyright (c) 1997 Christian Michelsen Research as Advanced Computing",
+                        "Copyright (c) 2009-2010 Mathias Svensson http://result42.com",
+                        "Copyright (c) 1990-2000 Info-ZIP.",
+                        "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler",
+                        "Copyright (c) 1998 by Andreas R. Kleinert",
+                        "Copyright (c) 2002-2004 Dmitriy Anisimkov",
+                        "Copyright (c) 1998, 2007 Brian Raiter",
+                        "Copyright (c) 1997,99 Borland Corp.",
+                        "(c) Copyright Henrik Ravn 2004",
+                        "Copyright (c) 1995-2010 Jean-loup Gailly, Brian Raiter and Gilles Vollant.",
+                        "Copyright (c) 2003 Chris Anderson",
+                        "Copyright (c) 1997 Christian Michelsen Research as Advanced Computing",
+                        "Copyright (c) 2009-2010 Mathias Svensson http://result42.com",
+                        "Copyright (c) 1990-2000 Info-ZIP."
+                    ],
+                    "holders": [
+                        "Jean-loup Gailly, Mark Adler",
+                        "Andreas R. Kleinert",
+                        "Dmitriy Anisimkov",
+                        "Brian Raiter",
+                        "Borland Corp.",
+                        "Henrik Ravn",
+                        "Jean-loup Gailly, Brian Raiter, Gilles Vollant",
+                        "Chris Anderson",
+                        "Christian Michelsen Research as Advanced Computing",
+                        "Mathias Svensson",
+                        "Info-ZIP",
+                        "Jean-loup Gailly, Mark Adler",
+                        "Andreas R. Kleinert",
+                        "Dmitriy Anisimkov",
+                        "Brian Raiter",
+                        "Borland Corp.",
+                        "Henrik Ravn",
+                        "Jean-loup Gailly, Brian Raiter, Gilles Vollant",
+                        "Chris Anderson",
+                        "Christian Michelsen Research as Advanced Computing",
+                        "Mathias Svensson",
+                        "Info-ZIP"
+                    ],
+                    "authors": []
+                }
+            ]
+        }
+
+        result_new = models.File(new)
+        new_copyrights =  result_new.copyrights.pop()
+
+        assert new_copyrights.statements == [
+            "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler",
+            "Copyright (c) 1998 by Andreas R. Kleinert",
+            "Copyright (c) 2002-2004 Dmitriy Anisimkov",
+            "Copyright (c) 1998, 2007 Brian Raiter",
+            "Copyright (c) 1997,99 Borland Corp.",
+            "(c) Copyright Henrik Ravn 2004",
+            "Copyright (c) 1995-2010 Jean-loup Gailly, Brian Raiter and Gilles Vollant.",
+            "Copyright (c) 2003 Chris Anderson",
+            "Copyright (c) 1997 Christian Michelsen Research as Advanced Computing",
+            "Copyright (c) 2009-2010 Mathias Svensson http://result42.com",
+            "Copyright (c) 1990-2000 Info-ZIP.",
+            "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler",
+            "Copyright (c) 1998 by Andreas R. Kleinert",
+            "Copyright (c) 2002-2004 Dmitriy Anisimkov",
+            "Copyright (c) 1998, 2007 Brian Raiter",
+            "Copyright (c) 1997,99 Borland Corp.",
+            "(c) Copyright Henrik Ravn 2004",
+            "Copyright (c) 1995-2010 Jean-loup Gailly, Brian Raiter and Gilles Vollant.",
+            "Copyright (c) 2003 Chris Anderson",
+            "Copyright (c) 1997 Christian Michelsen Research as Advanced Computing",
+            "Copyright (c) 2009-2010 Mathias Svensson http://result42.com",
+            "Copyright (c) 1990-2000 Info-ZIP."
+        ]
+
+        assert new_copyrights.holders == [
+            "Jean-loup Gailly, Mark Adler",
+            "Andreas R. Kleinert",
+            "Dmitriy Anisimkov",
+            "Brian Raiter",
+            "Borland Corp.",
+            "Henrik Ravn",
+            "Jean-loup Gailly, Brian Raiter, Gilles Vollant",
+            "Chris Anderson",
+            "Christian Michelsen Research as Advanced Computing",
+            "Mathias Svensson",
+            "Info-ZIP",
+            "Jean-loup Gailly, Mark Adler",
+            "Andreas R. Kleinert",
+            "Dmitriy Anisimkov",
+            "Brian Raiter",
+            "Borland Corp.",
+            "Henrik Ravn",
+            "Jean-loup Gailly, Brian Raiter, Gilles Vollant",
+            "Chris Anderson",
+            "Christian Michelsen Research as Advanced Computing",
+            "Mathias Svensson",
+            "Info-ZIP"
+        ]
+
+    def test_Copyright_unusual_characters(self):
+        new = {
+            'path': 'path/modified.txt',
+            'type': 'file',
+            'name': 'modified.txt',
+            'size': 20,
+            'sha1': 'a',
+            'original_path': '',
+            'licenses': [],
+            'copyrights': [
+                {
+                    "statements": [
+                        "~@ \n \r",
+                        "&nbsp;",
+                        "\x80abc",
+                        "\xc3",
+                        "\xa0",
+                        "\xaa",
+                        "\xb9",
+                        "\xa9",
+                        "\xa8",
+                        "\xb4",
+                        "\xae",
+                        "-",
+                        "\xe2",
+                        "\x80",
+                        "\x99",
+                        "\xa2",
+                        "\xa7",
+                        "\xbb",
+                        "\xaf",
+                        "U+00E9",
+                        "\xc3\xa9"
+
+                    ],
+                    "holders": [
+                        "~@ \n \r",
+                        "&nbsp;",
+                        "\x80abc",
+                        "\xc3",
+                        "\xa0",
+                        "\xaa",
+                        "\xb9",
+                        "\xa9",
+                        "\xa8",
+                        "\xb4",
+                        "\xae",
+                        "-",
+                        "\xe2",
+                        "\x80",
+                        "\x99",
+                        "\xa2",
+                        "\xa7",
+                        "\xbb",
+                        "\xaf",
+                        "U+00E9",
+                        "\xc3\xa9"
+                    ],
+                    "authors": []
+                }
+            ]
+        }
+
+        result_new = models.File(new)
+        new_copyrights =  result_new.copyrights.pop()
+
+        assert new_copyrights.statements == [
+            "~@ \n \r",
+            "&nbsp;",
+            "\x80abc",
+            "\xc3",
+            "\xa0",
+            "\xaa",
+            "\xb9",
+            "\xa9",
+            "\xa8",
+            "\xb4",
+            "\xae",
+            "-",
+            "\xe2",
+            "\x80",
+            "\x99",
+            "\xa2",
+            "\xa7",
+            "\xbb",
+            "\xaf",
+            "U+00E9",
+            "\xc3\xa9"
+        ]
+
+        assert new_copyrights.holders == [
+            "~@ \n \r",
+            "&nbsp;",
+            "\x80abc",
+            "\xc3",
+            "\xa0",
+            "\xaa",
+            "\xb9",
+            "\xa9",
+            "\xa8",
+            "\xb4",
+            "\xae",
+            "-",
+            "\xe2",
+            "\x80",
+            "\x99",
+            "\xa2",
+            "\xa7",
+            "\xbb",
+            "\xaf",
+            "U+00E9",
+            "\xc3\xa9"
+        ]

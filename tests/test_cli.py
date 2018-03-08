@@ -267,6 +267,132 @@ class TestCLI(FileBasedTesting):
         expected_file = self.get_test_loc('cli/1_file_moved_and_added.csv')
         check_csvs(result_file, expected_file)
 
+    def test_write_csv_single_copyright_change(self):
+        new_scan = self.get_test_loc('cli/single_copyright_change_new.json')
+        old_scan = self.get_test_loc('cli/single_copyright_change_old.json')
+
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+        result_file = self.get_temp_file('.csv')
+        cli.write_csv(delta, result_file, False)
+        expected_file = self.get_test_loc('cli/single_copyright_change.csv')
+        check_csvs(result_file, expected_file)
+
+    def test_write_csv_copyright_info_added(self):
+        new_scan = self.get_test_loc('cli/copyright_info_added_new.json')
+        old_scan = self.get_test_loc('cli/copyright_info_added_old.json')
+
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+        result_file = self.get_temp_file('.csv')
+        cli.write_csv(delta, result_file, False)
+        expected_file = self.get_test_loc('cli/copyright_info_added.csv')
+        check_csvs(result_file, expected_file)
+
+    def test_write_csv_copyright_info_removed(self):
+        new_scan = self.get_test_loc('cli/copyright_info_removed_new.json')
+        old_scan = self.get_test_loc('cli/copyright_info_removed_old.json')
+
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+        result_file = self.get_temp_file('.csv')
+        cli.write_csv(delta, result_file, False)
+        expected_file = self.get_test_loc('cli/copyright_info_removed.csv')
+        check_csvs(result_file, expected_file)
+
+    def test_write_csv_copyright_and_license_info_added(self):
+        new_scan = self.get_test_loc('cli/copyright_and_license_info_added_new.json')
+        old_scan = self.get_test_loc('cli/copyright_and_license_info_added_old.json')
+
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+        result_file = self.get_temp_file('.csv')
+        cli.write_csv(delta, result_file, False)
+        expected_file = self.get_test_loc('cli/copyright_and_license_info_added.csv')
+        check_csvs(result_file, expected_file)
+
+    def test_write_csv_copyright_and_license_info_removed(self):
+        new_scan = self.get_test_loc('cli/copyright_and_license_info_removed_new.json')
+        old_scan = self.get_test_loc('cli/copyright_and_license_info_removed_old.json')
+
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+        result_file = self.get_temp_file('.csv')
+        cli.write_csv(delta, result_file, False)
+        expected_file = self.get_test_loc('cli/copyright_and_license_info_removed.csv')
+        check_csvs(result_file, expected_file)
+
+    def test_write_csv_copyright_info_added_license_info_removed(self):
+        new_scan = self.get_test_loc('cli/copyright_info_added_license_info_removed_new.json')
+        old_scan = self.get_test_loc('cli/copyright_info_added_license_info_removed_old.json')
+
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+        result_file = self.get_temp_file('.csv')
+        cli.write_csv(delta, result_file, False)
+        expected_file = self.get_test_loc('cli/copyright_info_added_license_info_removed.csv')
+        check_csvs(result_file, expected_file)
+
+    def test_write_csv_license_info_added_copyright_info_removed(self):
+        new_scan = self.get_test_loc('cli/license_info_added_copyright_info_removed_new.json')
+        old_scan = self.get_test_loc('cli/license_info_added_copyright_info_removed_old.json')
+
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+        result_file = self.get_temp_file('.csv')
+        cli.write_csv(delta, result_file, False)
+        expected_file = self.get_test_loc('cli/license_info_added_copyright_info_removed.csv')
+        check_csvs(result_file, expected_file)
+
+    def test_write_csv_copyright_change_no_license_change(self):
+        new_scan = self.get_test_loc('cli/copyright_change_no_license_change_new.json')
+        old_scan = self.get_test_loc('cli/copyright_change_no_license_change_old.json')
+
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+        result_file = self.get_temp_file('.csv')
+        cli.write_csv(delta, result_file, False)
+        expected_file = self.get_test_loc('cli/copyright_change_no_license_change.csv')
+        check_csvs(result_file, expected_file)
+
+    def test_write_csv_license_change_no_copyright_change(self):
+        new_scan = self.get_test_loc('cli/license_change_no_copyright_change_new.json')
+        old_scan = self.get_test_loc('cli/license_change_no_copyright_change_old.json')
+
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+
+        delta = DeltaCode(new_scan, old_scan, options)
+        result_file = self.get_temp_file('.csv')
+        cli.write_csv(delta, result_file, False)
+        expected_file = self.get_test_loc('cli/license_change_no_copyright_change.csv')
+        check_csvs(result_file, expected_file)
+
     def test_json_output_option_selected_all_selected(self):
         new_scan = self.get_test_loc('cli/scan_1_file_moved_new.json')
         old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
@@ -313,6 +439,16 @@ class TestCLI(FileBasedTesting):
                         "category": "Permissive",
                         "owner": "Apache Software Foundation"
                     }
+                ],
+                "copyrights": [
+                    {
+                        "statements": [
+                            "Copyright (c) 2017 Acme Software Inc. and others."
+                        ],
+                        "holders": [
+                            "Acme Software Inc. and others."
+                        ]
+                    }
                 ]
             },
             "old": {
@@ -329,6 +465,16 @@ class TestCLI(FileBasedTesting):
                         "short_name": "Apache 2.0",
                         "category": "Permissive",
                         "owner": "Apache Software Foundation"
+                    }
+                ],
+                "copyrights": [
+                    {
+                        "statements": [
+                            "Copyright (c) 2017 Acme Software Inc. and others."
+                        ],
+                        "holders": [
+                            "Acme Software Inc. and others."
+                        ]
                     }
                 ]
             }
@@ -356,6 +502,16 @@ class TestCLI(FileBasedTesting):
                         "category": "Permissive",
                         "owner": "Apache Software Foundation"
                     }
+                ],
+                "copyrights": [
+                    {
+                        "statements": [
+                            "Copyright (c) 2017 Acme Software Inc. and others."
+                        ],
+                        "holders": [
+                            "Acme Software Inc. and others."
+                        ]
+                    }
                 ]
             },
             "old": {
@@ -372,6 +528,16 @@ class TestCLI(FileBasedTesting):
                         "short_name": "Apache 2.0",
                         "category": "Permissive",
                         "owner": "Apache Software Foundation"
+                    }
+                ],
+                "copyrights": [
+                    {
+                        "statements": [
+                            "Copyright (c) 2017 Acme Software Inc. and others."
+                        ],
+                        "holders": [
+                            "Acme Software Inc. and others."
+                        ]
                     }
                 ]
             }
@@ -427,6 +593,16 @@ class TestCLI(FileBasedTesting):
                         "category": "Permissive",
                         "owner": "Apache Software Foundation"
                     }
+                ],
+                "copyrights": [
+                    {
+                        "statements": [
+                            "Copyright (c) 2017 Acme Software Inc. and others."
+                        ],
+                        "holders": [
+                            "Acme Software Inc. and others."
+                        ]
+                    }
                 ]
             },
             "old": {
@@ -443,6 +619,16 @@ class TestCLI(FileBasedTesting):
                         "short_name": "Apache 2.0",
                         "category": "Permissive",
                         "owner": "Apache Software Foundation"
+                    }
+                ],
+                "copyrights": [
+                    {
+                        "statements": [
+                            "Copyright (c) 2017 Acme Software Inc. and others."
+                        ],
+                        "holders": [
+                            "Acme Software Inc. and others."
+                        ]
                     }
                 ]
             }
