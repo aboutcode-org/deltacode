@@ -58,8 +58,9 @@ class DeltaCode(object):
             self.determine_moved()
             self.license_diff()
             self.copyright_diff()
-            # Sort deltas by score, descending, i.e., high > low.
-            self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
+            # Sort deltas by score, descending, i.e., high > low, and factors, ascending, i.e., alphabetically.
+            s = self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
+            self.deltas.sort(s, key=lambda Delta: Delta.factors, reverse=False)
 
     def align_scans(self):
         """
@@ -134,7 +135,7 @@ class DeltaCode(object):
                     # This file already classified so do nothing
                     new_index[path]
                 except KeyError:
-                    delta = Delta(10, None, old_file)
+                    delta = Delta(0, None, old_file)
                     delta.factors.append('removed')
                     self.deltas.append(delta)
                     continue
@@ -158,10 +159,10 @@ class DeltaCode(object):
         both indices with the same 'sha1' and File 'name' attributes, and
         converting each such pair of 'added' and 'removed' Delta objects to a
         'moved' Delta object.  The 'added' and 'removed' indices are defined by
-        the 'score' attribute of the Delta objects.
+        the presence/absence of the object's 'old_file' and 'new_file'.
         """
-        added = self.index_deltas('sha1', [i for i in self.deltas if i.score == 100])
-        removed = self.index_deltas('sha1', [i for i in self.deltas if i.score == 10])
+        added = self.index_deltas('sha1', [i for i in self.deltas if i.old_file is None and i.new_file])
+        removed = self.index_deltas('sha1', [i for i in self.deltas if i.old_file and i.new_file is None])
 
         # TODO: should it be iteritems() or items()
         for added_sha1, added_deltas in added.iteritems():
@@ -177,7 +178,7 @@ class DeltaCode(object):
         'moved' Delta object -- passing the appropriate 'score' during object
         creation -- and delete the 'added' and 'removed' objects.
         """
-        delta = Delta(5, added.new_file, removed.old_file)
+        delta = Delta(0, added.new_file, removed.old_file)
         delta.factors.append('moved')
         self.deltas.append(delta)
         self.deltas.remove(added)
@@ -187,30 +188,64 @@ class DeltaCode(object):
         """
         Compare the license details for a pair of 'new' and 'old' File objects
         in a Delta object and change the Delta object's 'score' attribute --
-        and add an appropriate category (e.g., 'license info removed', 'license
-        info added' or 'license change') to the Delta object's 'factors'
-        attribute -- if there has been a license change and depending on the
-        nature of that change.
+        and add an appropriate category (e.g., 'license info removed') to the
+        Delta object's 'factors' attribute -- if there has been a license
+        change and depending on the nature of that change.
         """
         for delta in self.deltas:
-            if 20 <= delta.score < 100:
+            if delta.is_modified():
+
+                flagged = [
+                    'Commercial',
+                    'Copyleft',
+                    'Copyleft Limited',
+                    'Free Restricted',
+                    'Patent License',
+                    'Proprietary Free'
+                ]
+                set_flagged = set(flagged)
+
+                flagged_commercial = [
+                    'Commercial',
+                    'Proprietary Free'
+                ]
+                set_flagged_commercial = set(flagged_commercial)
 
                 new_licenses = delta.new_file.licenses or []
                 old_licenses = delta.old_file.licenses or []
 
-                if len(delta.new_file.licenses) > 0 and delta.old_file.licenses == []:
+                new_categories = set(license.category for license in new_licenses)
+                old_categories = set(license.category for license in old_licenses)
+
+                if not delta.new_file.licenses_is_empty() and delta.old_file.licenses_is_empty():
                     delta.update(20, 'license info added')
+                    for item in flagged:
+                        if item in new_categories:
+                            delta.update(20, item.lower() + ' added')
                     return
 
-                if delta.new_file.licenses == [] and len(delta.old_file.licenses) > 0:
+                if delta.new_file.licenses_is_empty() and not delta.old_file.licenses_is_empty():
                     delta.update(15, 'license info removed')
                     return
 
                 new_keys = set(license.key for license in new_licenses)
                 old_keys = set(license.key for license in old_licenses)
 
+                added_license = []
+
                 if new_keys != old_keys:
                     delta.update(10, 'license change')
+                    for item in flagged:
+                        if item in new_categories.difference(old_categories):
+                            if (len(old_categories.intersection(set_flagged)) == 0 and
+                                    item not in added_license):
+                                delta.update(20, item.lower() + ' added')
+                                added_license.append(item)
+
+                            if (len(set_flagged_commercial.intersection(old_categories.difference(new_categories))) > 0 and
+                                    item in flagged_commercial and item not in added_license):
+                                delta.update(20, item.lower() + ' added')
+                                added_license.append(item)
 
     def copyright_diff(self):
         """
@@ -222,15 +257,14 @@ class DeltaCode(object):
         nature of that change.
         """
         for delta in self.deltas:
-            if 20 <= delta.score < 100:
-
+            if delta.is_modified():
                 new_copyrights = delta.new_file.copyrights or []
                 old_copyrights = delta.old_file.copyrights or []
 
-                if len(delta.new_file.copyrights) > 0 and delta.old_file.copyrights == []:
+                if not delta.new_file.copyrights_is_empty() and delta.old_file.copyrights_is_empty():
                     delta.update(10, 'copyright info added')
                     return
-                elif delta.new_file.copyrights == [] and len(delta.old_file.copyrights) > 0:
+                if delta.new_file.copyrights_is_empty() and not delta.old_file.copyrights_is_empty():
                     delta.update(10, 'copyright info removed')
                     return
 
@@ -288,6 +322,30 @@ class Delta(object):
         """
         self.factors.append(factor)
         self.score += score
+
+    def is_modified(self):
+        """
+        Identify a Delta object meriting attention to possible changes in its
+        license or copyright content because the File object has been modified.
+        """
+        if self.score > 0 and self.old_file:
+            return True
+        else:
+            return False
+
+    def is_unmodified(self):
+        """
+        Since 'unmodified' is no longer the only category/factor with a
+        score = 0, test the Delta object's attributes for categories/factors
+        other than 'unmodified' and return True if all but 'unmodified' are
+        ruled out.
+        """
+        if (self.old_file and self.new_file and
+                self.old_file.sha1 == self.new_file.sha1 and
+                self.old_file.path == self.new_file.path):
+            return True
+        else:
+            return False
 
     def to_dict(self):
         """

@@ -45,13 +45,13 @@ def collect_errors(deltacode):
 def deltas(deltacode, all_delta_types=False):
     """
     Return a generator of Delta dictionaries for JSON serialized ouput.  Omit
-    all unmodified Delta objects -- identified by a 'score' of 0 -- unless the
-    user selects the '-a'/'--all' option.
+    all unmodified Delta objects unless the user selects the '-a'/'--all'
+    option.
     """
     for delta in deltacode.deltas:
         if all_delta_types is True:
             yield delta.to_dict()
-        elif delta.score != 0:
+        elif not delta.is_unmodified():
             yield delta.to_dict()
 
 

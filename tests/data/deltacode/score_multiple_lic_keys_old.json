@@ -25,7 +25,9 @@
             "licenses": [
                 {
                     "key": "mit",
-                    "score": 50.0
+                    "score": 50.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
                 }
             ]
         }
