@@ -140,7 +140,7 @@ class Scan(object):
         for f in self.files:
             key = getattr(f, index_key)
 
-            if index.get(key) == None:
+            if index.get(key) is None:
                 index[key] = []
                 index[key].append(f)
             else:
@@ -169,11 +169,19 @@ class File(object):
         else:
             return [License(l) for l in dictionary.get('licenses')]
 
+    def has_licenses(self):
+        if len(self.licenses) > 0:
+            return True
+
     def get_copyrights(self, dictionary):
         if dictionary.get('copyrights') == []:
             return []
         else:
             return [Copyright(l) for l in dictionary.get('copyrights')]
+
+    def has_copyrights(self):
+        if len(self.copyrights) > 0:
+            return True
 
     def to_dict(self):
         d = OrderedDict([

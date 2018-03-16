@@ -423,7 +423,7 @@ class TestCLI(FileBasedTesting):
 
         moved_expected = {
             "factors": ['moved'],
-            "score": 5,
+            "score": 0,
             "new": {
                 "path": "b/a4.py",
                 "type": "file",
@@ -480,7 +480,7 @@ class TestCLI(FileBasedTesting):
             }
         }
 
-        moved_result = [d for d in json_result.get('deltas') if d.get('score') == 5].pop()
+        moved_result = [d for d in json_result.get('deltas') if d.get('factors') == ['moved']].pop()
 
         assert moved_result == moved_expected
 
@@ -577,7 +577,7 @@ class TestCLI(FileBasedTesting):
 
         moved_expected = {
             "factors": ["moved"],
-            "score": 5,
+            "score": 0,
             "new": {
                 "path": "b/a4.py",
                 "type": "file",
@@ -634,11 +634,11 @@ class TestCLI(FileBasedTesting):
             }
         }
 
-        moved_result = [d for d in json_result.get('deltas') if d.get('score') == 5].pop()
+        moved_result = [d for d in json_result.get('deltas') if d.get('factors') == ['moved']].pop()
 
         assert moved_result == moved_expected
 
-        unmodified_result = [d for d in json_result.get('deltas') if d.get('score') == 0]
+        unmodified_result = [d for d in json_result.get('deltas') if d.get('factors') == ['unmodified']]
 
         assert len(unmodified_result) == 0
 
@@ -687,7 +687,7 @@ class TestCLI(FileBasedTesting):
 
         assert '"factors"' in result.output
 
-        assert '"score": 5' in result.output
+        assert '"score": 0' in result.output
 
         assert '"new"' in result.output
         assert '"path": "b/a4.py"' in result.output
@@ -729,7 +729,7 @@ class TestCLI(FileBasedTesting):
 
         assert '"factors":' in result.output
 
-        assert '"score": 5' in result.output
+        assert '"score": 0' in result.output
 
         assert '"new"' in result.output
         assert '"path": "b/a4.py"' in result.output

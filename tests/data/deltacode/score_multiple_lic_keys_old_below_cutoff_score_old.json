@@ -25,11 +25,15 @@
             "licenses": [
                 {
                     "key": "gpl-2.0",
-                    "score": 49.9
+                    "score": 49.9,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
                 },
                 {
                     "key": "mit",
-                    "score": 100.0
+                    "score": 100.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
                 }
             ]
         }

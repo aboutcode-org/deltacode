@@ -1,0 +1,461 @@
+{
+  "scancode_notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/nexB/scancode-toolkit/ for support and download.",
+  "scancode_version": "2.9.0b1.post32.fea65d35a",
+  "scancode_options": {
+    "input": "C:\\code\\nexb\\dev\\codebase01\\licenses\\no_lic_to_all_notable_lic\\no_lic_to_all_notable_lic_new",
+    "--copyright": true,
+    "--info": true,
+    "--json-pp": "C:\\code\\nexb\\dev\\deltacode\\tests\\data\\deltacode\\no_lic_to_all_notable_lic_new.json",
+    "--license": true,
+    "--package": true
+  },
+  "files_count": 2,
+  "files": [
+    {
+      "path": "no_lic_to_all_notable_lic_new",
+      "type": "directory",
+      "name": "no_lic_to_all_notable_lic_new",
+      "base_name": "no_lic_to_all_notable_lic_new",
+      "extension": "",
+      "size": 0,
+      "date": null,
+      "sha1": null,
+      "md5": null,
+      "mime_type": null,
+      "file_type": null,
+      "programming_language": null,
+      "is_binary": false,
+      "is_text": false,
+      "is_archive": false,
+      "is_media": false,
+      "is_source": false,
+      "is_script": false,
+      "licenses": [],
+      "copyrights": [],
+      "packages": [],
+      "files_count": 2,
+      "dirs_count": 0,
+      "size_count": 16471,
+      "scan_errors": []
+    },
+    {
+      "path": "no_lic_to_all_notable_lic_new/a1.py",
+      "type": "file",
+      "name": "a1.py",
+      "base_name": "a1",
+      "extension": ".py",
+      "size": 16271,
+      "date": "2018-03-16",
+      "sha1": "535b9966048ad50a9d5eb2f167c0a3013ee5cc6f",
+      "md5": "e5658fe520bbebaf6f3d4be2e2525ab6",
+      "mime_type": "text/plain",
+      "file_type": "UTF-8 Unicode text, with very long lines, with CRLF line terminators",
+      "programming_language": "Python",
+      "is_binary": false,
+      "is_text": true,
+      "is_archive": false,
+      "is_media": false,
+      "is_source": true,
+      "is_script": false,
+      "licenses": [
+        {
+          "key": "apache-2.0",
+          "score": 40.0,
+          "short_name": "Apache 2.0",
+          "category": "Permissive",
+          "owner": "Apache Software Foundation",
+          "homepage_url": "http://www.apache.org/licenses/",
+          "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
+          "spdx_license_key": "Apache-2.0",
+          "spdx_url": "https://spdx.org/licenses/Apache-2.0",
+          "start_line": 3,
+          "end_line": 3,
+          "matched_rule": {
+            "identifier": "apache-2.0_63.RULE",
+            "license_choice": false,
+            "licenses": [
+              "apache-2.0"
+            ]
+          }
+        },
+        {
+          "key": "adapt-1.0",
+          "score": 15.0,
+          "short_name": "APL 1.0",
+          "category": "Copyleft",
+          "owner": "OSI - Open Source Initiative",
+          "homepage_url": "http://www.opensource.org/licenses/apl1.0.php",
+          "text_url": "http://www.opensource.org/licenses/apl1.0.php",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:adapt-1.0",
+          "spdx_license_key": "APL-1.0",
+          "spdx_url": "https://spdx.org/licenses/APL-1.0",
+          "start_line": 8,
+          "end_line": 8,
+          "matched_rule": {
+            "identifier": "adapt-1.0_2.RULE",
+            "license_choice": false,
+            "licenses": [
+              "adapt-1.0"
+            ]
+          }
+        },
+        {
+          "key": "adapt-1.0",
+          "score": 15.0,
+          "short_name": "APL 1.0",
+          "category": "Copyleft",
+          "owner": "OSI - Open Source Initiative",
+          "homepage_url": "http://www.opensource.org/licenses/apl1.0.php",
+          "text_url": "http://www.opensource.org/licenses/apl1.0.php",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:adapt-1.0",
+          "spdx_license_key": "APL-1.0",
+          "spdx_url": "https://spdx.org/licenses/APL-1.0",
+          "start_line": 9,
+          "end_line": 9,
+          "matched_rule": {
+            "identifier": "adapt-1.0_2.RULE",
+            "license_choice": false,
+            "licenses": [
+              "adapt-1.0"
+            ]
+          }
+        },
+        {
+          "key": "carnegie-mellon",
+          "score": 100.0,
+          "short_name": "Carnegie Mellon License",
+          "category": "Permissive",
+          "owner": "Carnegie Mellon University",
+          "homepage_url": "",
+          "text_url": "",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:carnegie-mellon",
+          "spdx_license_key": "",
+          "spdx_url": "",
+          "start_line": 35,
+          "end_line": 43,
+          "matched_rule": {
+            "identifier": "carnegie-mellon.LICENSE",
+            "license_choice": false,
+            "licenses": [
+              "carnegie-mellon"
+            ]
+          }
+        },
+        {
+          "key": "cc-by-sa-4.0",
+          "score": 30.0,
+          "short_name": "CC-BY-SA-4.0",
+          "category": "Copyleft",
+          "owner": "Creative Commons",
+          "homepage_url": "http://creativecommons.org/licenses/by-sa/4.0/",
+          "text_url": "http://creativecommons.org/licenses/by-sa/4.0/legalcode",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:cc-by-sa-4.0",
+          "spdx_license_key": "CC-BY-SA-4.0",
+          "spdx_url": "https://spdx.org/licenses/CC-BY-SA-4.0",
+          "start_line": 48,
+          "end_line": 48,
+          "matched_rule": {
+            "identifier": "cc-by-sa-4.0_5.RULE",
+            "license_choice": false,
+            "licenses": [
+              "cc-by-sa-4.0"
+            ]
+          }
+        },
+        {
+          "key": "bittorrent-1.0",
+          "score": 100.0,
+          "short_name": "BitTorrent 1.0",
+          "category": "Copyleft Limited",
+          "owner": "BitTorrent, Inc.",
+          "homepage_url": "http://www.bittorrent.com/license/",
+          "text_url": "http://web.archive.org/web/20050209224501/http://www.bittorrent.com/license/",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:bittorrent-1.0",
+          "spdx_license_key": "BitTorrent-1.0",
+          "spdx_url": "https://spdx.org/licenses/BitTorrent-1.0",
+          "start_line": 65,
+          "end_line": 69,
+          "matched_rule": {
+            "identifier": "bittorrent-1.0_1.RULE",
+            "license_choice": false,
+            "licenses": [
+              "bittorrent-1.0"
+            ]
+          }
+        },
+        {
+          "key": "bloomberg-blpapi",
+          "score": 100.0,
+          "short_name": "Bloomberg BLPAPI License",
+          "category": "Proprietary Free",
+          "owner": "Bloomberg Labs",
+          "homepage_url": "",
+          "text_url": "",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:bloomberg-blpapi",
+          "spdx_license_key": "",
+          "spdx_url": "",
+          "start_line": 71,
+          "end_line": 88,
+          "matched_rule": {
+            "identifier": "bloomberg-blpapi.LICENSE",
+            "license_choice": false,
+            "licenses": [
+              "bloomberg-blpapi"
+            ]
+          }
+        },
+        {
+          "key": "bsd-3-clause-no-nuclear-warranty",
+          "score": 100.0,
+          "short_name": "Oracle BSD-Style with Nuclear Warranty",
+          "category": "Permissive",
+          "owner": "Oracle Corporation",
+          "homepage_url": "",
+          "text_url": "",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:bsd-3-clause-no-nuclear-warranty",
+          "spdx_license_key": "BSD-3-Clause-No-Nuclear-Warranty",
+          "spdx_url": "https://spdx.org/licenses/BSD-3-Clause-No-Nuclear-Warranty",
+          "start_line": 91,
+          "end_line": 100,
+          "matched_rule": {
+            "identifier": "bsd-3-clause-no-nuclear-warranty.LICENSE",
+            "license_choice": false,
+            "licenses": [
+              "bsd-3-clause-no-nuclear-warranty"
+            ]
+          }
+        },
+        {
+          "key": "commercial-license",
+          "score": 55.0,
+          "short_name": "Commercial License",
+          "category": "Commercial",
+          "owner": "Unspecified",
+          "homepage_url": "",
+          "text_url": "",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:commercial-license",
+          "spdx_license_key": "",
+          "spdx_url": "",
+          "start_line": 103,
+          "end_line": 103,
+          "matched_rule": {
+            "identifier": "commercial-license.LICENSE",
+            "license_choice": false,
+            "licenses": [
+              "commercial-license"
+            ]
+          }
+        },
+        {
+          "key": "wrox-download",
+          "score": 100.0,
+          "short_name": "Wrox Download Terms and Conditions",
+          "category": "Free Restricted",
+          "owner": "Wiley",
+          "homepage_url": "http://web.archive.org/web/20030421055623/http://wrox.com/dynamic/books/download-info.aspx?ISBN=1861004257&email=&mode=#terms",
+          "text_url": "",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:wrox-download",
+          "spdx_license_key": "",
+          "spdx_url": "",
+          "start_line": 107,
+          "end_line": 115,
+          "matched_rule": {
+            "identifier": "wrox-download.LICENSE",
+            "license_choice": false,
+            "licenses": [
+              "wrox-download"
+            ]
+          }
+        },
+        {
+          "key": "facebook-patent-rights-2",
+          "score": 100.0,
+          "short_name": "Facebook Patent Rights 2",
+          "category": "Permissive",
+          "owner": "Facebook",
+          "homepage_url": "https://code.facebook.com/",
+          "text_url": "https://github.com/facebook/osquery/blob/f1d6686735c4582c8ccbcbb3f7c8bc9825247965/PATENTS",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:facebook-patent-rights-2",
+          "spdx_license_key": "",
+          "spdx_url": "",
+          "start_line": 118,
+          "end_line": 150,
+          "matched_rule": {
+            "identifier": "facebook-patent-rights-2.LICENSE",
+            "license_choice": false,
+            "licenses": [
+              "facebook-patent-rights-2"
+            ]
+          }
+        },
+        {
+          "key": "mozilla-ospl-1.0",
+          "score": 99.93,
+          "short_name": "Mozilla Open Software Patent License 1.0",
+          "category": "Patent License",
+          "owner": "Mozilla",
+          "homepage_url": "https://www.mozilla.org/en-US/about/patents/license/",
+          "text_url": "",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:mozilla-ospl-1.0",
+          "spdx_license_key": "",
+          "spdx_url": "",
+          "start_line": 153,
+          "end_line": 188,
+          "matched_rule": {
+            "identifier": "mozilla-ospl-1.0.LICENSE",
+            "license_choice": false,
+            "licenses": [
+              "mozilla-ospl-1.0"
+            ]
+          }
+        }
+      ],
+      "copyrights": [
+        {
+          "statements": [
+            "Copyright (c) 2017-2018 Francois Hennebique and others."
+          ],
+          "holders": [
+            "Francois Hennebique and others."
+          ],
+          "authors": [],
+          "start_line": 2,
+          "end_line": 2
+        },
+        {
+          "statements": [
+            "Copyright (c) 1996 Hercules Florence and others."
+          ],
+          "holders": [
+            "Hercules Florence and others."
+          ],
+          "authors": [],
+          "start_line": 7,
+          "end_line": 7
+        },
+        {
+          "statements": [
+            "Copyright (c) 2001-2004 Barthelemy Thimonnier."
+          ],
+          "holders": [
+            "Barthelemy Thimonnier."
+          ],
+          "authors": [],
+          "start_line": 14,
+          "end_line": 14
+        },
+        {
+          "statements": [
+            "Copyright (c) 2015 Edouard-Leon Scott de Martinville."
+          ],
+          "holders": [
+            "Edouard-Leon Scott de Martinville."
+          ],
+          "authors": [],
+          "start_line": 22,
+          "end_line": 22
+        },
+        {
+          "statements": [
+            "Copyright (c) 2012-2014 Henri Dupuy de Lome."
+          ],
+          "holders": [
+            "Henri Dupuy de Lome."
+          ],
+          "authors": [],
+          "start_line": 28,
+          "end_line": 28
+        },
+        {
+          "statements": [
+            "Copyright (c) 2018 Nicolas Grollier de Serviere."
+          ],
+          "holders": [
+            "Nicolas Grollier de Serviere."
+          ],
+          "authors": [],
+          "start_line": 34,
+          "end_line": 34
+        },
+        {
+          "statements": [
+            "Copyright (c) 1999 Ottomar Anschutz."
+          ],
+          "holders": [
+            "Ottomar Anschutz."
+          ],
+          "authors": [],
+          "start_line": 47,
+          "end_line": 47
+        }
+      ],
+      "packages": [],
+      "files_count": 0,
+      "dirs_count": 0,
+      "size_count": 0,
+      "scan_errors": []
+    },
+    {
+      "path": "no_lic_to_all_notable_lic_new/a2.py",
+      "type": "file",
+      "name": "a2.py",
+      "base_name": "a2",
+      "extension": ".py",
+      "size": 200,
+      "date": "2017-09-26",
+      "sha1": "310797523e47db8481aeb06f1634317285115091",
+      "md5": "19efdad483f68bc9997a5c1f7ba41b26",
+      "mime_type": "text/plain",
+      "file_type": "ASCII text, with CRLF line terminators",
+      "programming_language": "Python",
+      "is_binary": false,
+      "is_text": true,
+      "is_archive": false,
+      "is_media": false,
+      "is_source": true,
+      "is_script": false,
+      "licenses": [
+        {
+          "key": "apache-2.0",
+          "score": 40.0,
+          "short_name": "Apache 2.0",
+          "category": "Permissive",
+          "owner": "Apache Software Foundation",
+          "homepage_url": "http://www.apache.org/licenses/",
+          "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
+          "spdx_license_key": "Apache-2.0",
+          "spdx_url": "https://spdx.org/licenses/Apache-2.0",
+          "start_line": 3,
+          "end_line": 3,
+          "matched_rule": {
+            "identifier": "apache-2.0_57.RULE",
+            "license_choice": false,
+            "licenses": [
+              "apache-2.0"
+            ]
+          }
+        }
+      ],
+      "copyrights": [
+        {
+          "statements": [
+            "Copyright (c) 2017 Acme Software Inc. and others."
+          ],
+          "holders": [
+            "Acme Software Inc. and others."
+          ],
+          "authors": [],
+          "start_line": 2,
+          "end_line": 2
+        }
+      ],
+      "packages": [],
+      "files_count": 0,
+      "dirs_count": 0,
+      "size_count": 0,
+      "scan_errors": []
+    }
+  ]
+}
