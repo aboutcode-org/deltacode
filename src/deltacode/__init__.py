@@ -202,13 +202,12 @@ class DeltaCode(object):
             'Proprietary Free'
         ])
 
-        unique_commercial_categories = set([
-            'Commercial',
-            'Proprietary Free'
-        ])
-
         for delta in self.deltas:
             if delta.is_modified():
+                if not delta.new_file.has_licenses() and delta.old_file.has_licenses():
+                    delta.update(15, 'license info removed')
+                    return
+
                 new_licenses = delta.new_file.licenses or []
                 old_licenses = delta.old_file.licenses or []
 
@@ -218,13 +217,9 @@ class DeltaCode(object):
                 if delta.new_file.has_licenses() and not delta.old_file.has_licenses():
                     delta.update(20, 'license info added')
                     # no license ==> 'Copyleft Limited'or higher
-                    for item in sorted(unique_categories):
-                        if item in new_categories:
-                            delta.update(20, item.lower() + ' added')
-                    return
-
-                if not delta.new_file.has_licenses() and delta.old_file.has_licenses():
-                    delta.update(15, 'license info removed')
+                    for category in new_categories:
+                        if category in unique_categories:
+                            delta.update(20, category.lower() + ' added')
                     return
 
                 new_keys = set(license.key for license in new_licenses)
@@ -232,13 +227,10 @@ class DeltaCode(object):
 
                 if new_keys != old_keys:
                     delta.update(10, 'license change')
-                    for item in sorted(new_categories - old_categories):
+                    for category in new_categories - old_categories:
                         # 'Permissive' or 'Public Domain' ==> 'Copyleft Limited' or higher
-                        if len(old_categories & unique_categories) == 0 and item in unique_categories:
-                            delta.update(20, item.lower() + ' added')
-                        # anything ==> 'Proprietary Free' or 'Commercial'
-                        elif item in unique_commercial_categories:
-                            delta.update(20, item.lower() + ' added')
+                        if len(old_categories & unique_categories) == 0 and category in unique_categories:
+                            delta.update(20, category.lower() + ' added')
 
     def copyright_diff(self):
         """

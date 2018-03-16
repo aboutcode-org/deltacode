@@ -1987,7 +1987,7 @@ class TestDeltacode(FileBasedTesting):
         assert [d.score for d in deltas_object if d.new_file.path == 'a1.py'] == [170]
         assert [d.score for d in deltas_object if d.new_file.path == 'a2.py'] == [0]
 
-        assert [d.factors for d in deltas_object if d.new_file.path == 'a1.py'].pop() == ['modified', 'license info added', 'commercial added', 'copyleft added', 'copyleft limited added', 'free restricted added', 'patent license added', 'proprietary free added', 'copyright info added']
+        assert sorted([d.factors for d in deltas_object if d.new_file.path == 'a1.py'].pop()) == sorted(['modified', 'license info added', 'commercial added', 'copyleft added', 'copyleft limited added', 'free restricted added', 'patent license added', 'proprietary free added', 'copyright info added'])
         assert [d.factors for d in deltas_object if d.new_file.path == 'a2.py'].pop() == ['unmodified']
 
     def test_DeltaCode_apache_to_all_notable_lic(self):
@@ -2005,7 +2005,7 @@ class TestDeltacode(FileBasedTesting):
         assert [d.score for d in deltas_object if d.new_file.path == 'a1.py'] == [155]
         assert [d.score for d in deltas_object if d.new_file.path == 'a2.py'] == [0]
 
-        assert [d.factors for d in deltas_object if d.new_file.path == 'a1.py'].pop() == ['modified', 'license change', 'commercial added', 'copyleft added', 'copyleft limited added', 'free restricted added', 'patent license added', 'proprietary free added', 'copyright change']
+        assert sorted([d.factors for d in deltas_object if d.new_file.path == 'a1.py'].pop()) == sorted(['modified', 'license change', 'commercial added', 'copyleft added', 'copyleft limited added', 'free restricted added', 'patent license added', 'proprietary free added', 'copyright change'])
         assert [d.factors for d in deltas_object if d.new_file.path == 'a2.py'].pop() == ['unmodified']
 
     def test_DeltaCode_copyleft_etc_to_prop_free_and_commercial(self):
@@ -2020,10 +2020,10 @@ class TestDeltacode(FileBasedTesting):
 
         deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'a1.py'] == [70]
+        assert [d.score for d in deltas_object if d.new_file.path == 'a1.py'] == [30]
         assert [d.score for d in deltas_object if d.new_file.path == 'a2.py'] == [0]
 
-        assert [d.factors for d in deltas_object if d.new_file.path == 'a1.py'].pop() == ['modified', 'license change', 'commercial added', 'proprietary free added']
+        assert [d.factors for d in deltas_object if d.new_file.path == 'a1.py'].pop() == ['modified', 'license change']
         assert [d.factors for d in deltas_object if d.new_file.path == 'a2.py'].pop() == ['unmodified']
 
     def test_DeltaCode_permissive_add_public_domain(self):
