@@ -1,21 +1,21 @@
 {
   "scancode_notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/nexB/scancode-toolkit/ for support and download.",
-  "scancode_version": "2.9.0b1.post8.2a658c314",
+  "scancode_version": "2.9.0b1.post32.fea65d35a",
   "scancode_options": {
-    "input": "C:\\code\\nexb\\dev\\codebase01\\licenses\\problematic_licenses\\problematic_licenses_old",
+    "input": "C:\\code\\nexb\\dev\\codebase01\\licenses\\permissive_add_public_domain\\permissive_add_public_domain_old",
     "--copyright": true,
     "--info": true,
-    "--json-pp": "C:\\code\\nexb\\dev\\deltacode\\tests\\data\\deltacode\\problematic_licenses_old.json",
+    "--json-pp": "C:\\code\\nexb\\dev\\deltacode\\tests\\data\\deltacode\\permissive_add_public_domain_old.json",
     "--license": true,
     "--package": true
   },
   "files_count": 2,
   "files": [
     {
-      "path": "problematic_licenses_old",
+      "path": "permissive_add_public_domain_old",
       "type": "directory",
-      "name": "problematic_licenses_old",
-      "base_name": "problematic_licenses_old",
+      "name": "permissive_add_public_domain_old",
+      "base_name": "permissive_add_public_domain_old",
       "extension": "",
       "size": 0,
       "date": null,
@@ -39,13 +39,13 @@
       "scan_errors": []
     },
     {
-      "path": "problematic_licenses_old/a1.py",
+      "path": "permissive_add_public_domain_old/a1.py",
       "type": "file",
       "name": "a1.py",
       "base_name": "a1",
       "extension": ".py",
       "size": 200,
-      "date": "2017-09-26",
+      "date": "2018-03-16",
       "sha1": "84b647771481d39dd3a53f6dc210c26abac37748",
       "md5": "3cb56efa7140478458dbaa2b30239845",
       "mime_type": "text/plain",
@@ -100,7 +100,7 @@
       "scan_errors": []
     },
     {
-      "path": "problematic_licenses_old/a2.py",
+      "path": "permissive_add_public_domain_old/a2.py",
       "type": "file",
       "name": "a2.py",
       "base_name": "a2",

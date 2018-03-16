@@ -1,21 +1,21 @@
 {
   "scancode_notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/nexB/scancode-toolkit/ for support and download.",
-  "scancode_version": "2.9.0b1.post8.2a658c314",
+  "scancode_version": "2.9.0b1.post32.fea65d35a",
   "scancode_options": {
-    "input": "C:\\code\\nexb\\dev\\codebase01\\licenses\\problematic_licenses\\problematic_licenses_new",
+    "input": "C:\\code\\nexb\\dev\\codebase01\\licenses\\apache_to_all_notable_lic\\apache_to_all_notable_lic_new",
     "--copyright": true,
     "--info": true,
-    "--json-pp": "C:\\code\\nexb\\dev\\deltacode\\tests\\data\\deltacode\\problematic_licenses_new.json",
+    "--json-pp": "C:\\code\\nexb\\dev\\deltacode\\tests\\data\\deltacode\\apache_to_all_notable_lic_new.json",
     "--license": true,
     "--package": true
   },
   "files_count": 2,
   "files": [
     {
-      "path": "problematic_licenses_new",
+      "path": "apache_to_all_notable_lic_new",
       "type": "directory",
-      "name": "problematic_licenses_new",
-      "base_name": "problematic_licenses_new",
+      "name": "apache_to_all_notable_lic_new",
+      "base_name": "apache_to_all_notable_lic_new",
       "extension": "",
       "size": 0,
       "date": null,
@@ -35,19 +35,19 @@
       "packages": [],
       "files_count": 2,
       "dirs_count": 0,
-      "size_count": 5365,
+      "size_count": 16471,
       "scan_errors": []
     },
     {
-      "path": "problematic_licenses_new/a1.py",
+      "path": "apache_to_all_notable_lic_new/a1.py",
       "type": "file",
       "name": "a1.py",
       "base_name": "a1",
       "extension": ".py",
-      "size": 5165,
-      "date": "2018-03-11",
-      "sha1": "ce6ea386c68d220f787e225d113cbf7e36a418c0",
-      "md5": "acee5f4cfd572fd8fd2e4d14a573ee44",
+      "size": 16271,
+      "date": "2018-03-16",
+      "sha1": "535b9966048ad50a9d5eb2f167c0a3013ee5cc6f",
+      "md5": "e5658fe520bbebaf6f3d4be2e2525ab6",
       "mime_type": "text/plain",
       "file_type": "UTF-8 Unicode text, with very long lines, with CRLF line terminators",
       "programming_language": "Python",
@@ -246,6 +246,69 @@
               "commercial-license"
             ]
           }
+        },
+        {
+          "key": "wrox-download",
+          "score": 100.0,
+          "short_name": "Wrox Download Terms and Conditions",
+          "category": "Free Restricted",
+          "owner": "Wiley",
+          "homepage_url": "http://web.archive.org/web/20030421055623/http://wrox.com/dynamic/books/download-info.aspx?ISBN=1861004257&email=&mode=#terms",
+          "text_url": "",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:wrox-download",
+          "spdx_license_key": "",
+          "spdx_url": "",
+          "start_line": 107,
+          "end_line": 115,
+          "matched_rule": {
+            "identifier": "wrox-download.LICENSE",
+            "license_choice": false,
+            "licenses": [
+              "wrox-download"
+            ]
+          }
+        },
+        {
+          "key": "facebook-patent-rights-2",
+          "score": 100.0,
+          "short_name": "Facebook Patent Rights 2",
+          "category": "Permissive",
+          "owner": "Facebook",
+          "homepage_url": "https://code.facebook.com/",
+          "text_url": "https://github.com/facebook/osquery/blob/f1d6686735c4582c8ccbcbb3f7c8bc9825247965/PATENTS",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:facebook-patent-rights-2",
+          "spdx_license_key": "",
+          "spdx_url": "",
+          "start_line": 118,
+          "end_line": 150,
+          "matched_rule": {
+            "identifier": "facebook-patent-rights-2.LICENSE",
+            "license_choice": false,
+            "licenses": [
+              "facebook-patent-rights-2"
+            ]
+          }
+        },
+        {
+          "key": "mozilla-ospl-1.0",
+          "score": 99.93,
+          "short_name": "Mozilla Open Software Patent License 1.0",
+          "category": "Patent License",
+          "owner": "Mozilla",
+          "homepage_url": "https://www.mozilla.org/en-US/about/patents/license/",
+          "text_url": "",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:mozilla-ospl-1.0",
+          "spdx_license_key": "",
+          "spdx_url": "",
+          "start_line": 153,
+          "end_line": 188,
+          "matched_rule": {
+            "identifier": "mozilla-ospl-1.0.LICENSE",
+            "license_choice": false,
+            "licenses": [
+              "mozilla-ospl-1.0"
+            ]
+          }
         }
       ],
       "copyrights": [
@@ -334,7 +397,7 @@
       "scan_errors": []
     },
     {
-      "path": "problematic_licenses_new/a2.py",
+      "path": "apache_to_all_notable_lic_new/a2.py",
       "type": "file",
       "name": "a2.py",
       "base_name": "a2",

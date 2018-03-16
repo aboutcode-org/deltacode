@@ -169,11 +169,9 @@ class File(object):
         else:
             return [License(l) for l in dictionary.get('licenses')]
 
-    def licenses_is_empty(self):
-        if self.licenses == []:
+    def has_licenses(self):
+        if len(self.licenses) > 0:
             return True
-        else:
-            return False
 
     def get_copyrights(self, dictionary):
         if dictionary.get('copyrights') == []:
@@ -181,11 +179,9 @@ class File(object):
         else:
             return [Copyright(l) for l in dictionary.get('copyrights')]
 
-    def copyrights_is_empty(self):
-        if self.copyrights == []:
+    def has_copyrights(self):
+        if len(self.copyrights) > 0:
             return True
-        else:
-            return False
 
     def to_dict(self):
         d = OrderedDict([
