@@ -45,6 +45,123 @@ class TestUtils(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
 
+    def test_determine_license_diff_empty(self):
+        test_delta = deltacode.Delta()
+
+        utils.determine_license_diff(test_delta, set())
+
+        assert test_delta.score == 0
+
+    def test_determine_license_diff_non_modified(self):
+        test_file = models.File({'path':'/test/path.txt', 'name': 'path.txt'})
+        test_delta = deltacode.Delta(old_file=test_file)
+
+        utils.determine_license_diff(test_delta, set())
+
+        assert test_delta.score == 0
+        assert len(test_delta.factors) == 0
+
+    # To replace test_score_single_lic_change(self):
+    def test_determine_license_diff_single_license_change(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, set())
+
+        assert test_delta.score == 30
+        assert len(test_delta.factors) == 1
+        assert 'license change' in test_delta.factors
+
+    def test_determine_license_diff_license_info_added(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": []
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, set())
+
+        assert test_delta.score == 40
+        assert len(test_delta.factors) == 1
+        assert 'license info added' in test_delta.factors
+
+    def test_determine_license_diff_license_info_removed(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": []
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, set())
+
+        assert test_delta.score == 35
+        assert len(test_delta.factors) == 1
+        assert 'license info removed' in test_delta.factors
+
     def test_align_trees_simple(self):
         test_scan_new = self.get_test_loc('utils/align-trees-simple-new.json')
         # Our old scan uses --full-root option in scancode

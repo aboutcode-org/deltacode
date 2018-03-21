@@ -218,7 +218,6 @@ class DeltaCode(object):
         for delta in self.deltas:
             utils.determine_copyright_diff(delta)
 
-
     def index_deltas(self, index_key='path', delta_list=[]):
         """
         Return a dictionary of a list of Delta objects indexed by the key
