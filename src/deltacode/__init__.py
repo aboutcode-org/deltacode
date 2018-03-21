@@ -216,26 +216,8 @@ class DeltaCode(object):
         nature of that change.
         """
         for delta in self.deltas:
-            if delta.is_modified():
-                new_copyrights = delta.new_file.copyrights or []
-                old_copyrights = delta.old_file.copyrights or []
+            utils.determine_copyright_diff(delta)
 
-                if delta.new_file.has_copyrights() and not delta.old_file.has_copyrights():
-                    delta.update(10, 'copyright info added')
-                    return
-                if not delta.new_file.has_copyrights() and delta.old_file.has_copyrights():
-                    delta.update(10, 'copyright info removed')
-                    return
-
-                new_statements = set(statement for copyright in new_copyrights for statement in copyright.statements)
-                old_statements = set(statement for copyright in old_copyrights for statement in copyright.statements)
-
-                new_holders = set(holder for copyright in new_copyrights for holder in copyright.holders)
-                old_holders = set(holder for copyright in old_copyrights for holder in copyright.holders)
-
-                if ((new_statements != old_statements) or
-                        (new_holders != old_holders)):
-                    delta.update(5, 'copyright change')
 
     def index_deltas(self, index_key='path', delta_list=[]):
         """

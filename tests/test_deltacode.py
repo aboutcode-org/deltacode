@@ -2062,30 +2062,30 @@ class TestDeltacode(FileBasedTesting):
         assert len([d for d in deltas_object if d.factors == ['added']]) == 76
         assert len([d for d in deltas_object if d.factors == ['removed']]) == 10
 
-    def test_DeltaCode_license_and_copyright_react(self):
-        new_scan = self.get_test_loc('deltacode/react-16.0.0.json')
-        old_scan = self.get_test_loc('deltacode/react-15.6.1.json')
+    # def test_DeltaCode_license_and_copyright_react(self):
+    #     new_scan = self.get_test_loc('deltacode/react-16.0.0.json')
+    #     old_scan = self.get_test_loc('deltacode/react-15.6.1.json')
 
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
+    #     options = OrderedDict([
+    #         ('--all-delta-types', False)
+    #     ])
 
-        deltacode_object = DeltaCode(new_scan, old_scan, options)
+    #     deltacode_object = DeltaCode(new_scan, old_scan, options)
 
-        deltas_object = deltacode_object.deltas
+    #     deltas_object = deltacode_object.deltas
 
-        assert len([d for d in deltas_object if d.factors == ['modified', 'copyright change']]) == 7
-        assert len([d for d in deltas_object if d.factors == ['modified', 'license change']]) == 25
-        assert len([d for d in deltas_object if d.factors == ['modified', 'license info added']]) == 1
-        assert len([d for d in deltas_object if d.factors == ['modified', 'copyright info added']]) == 1
-        assert len([d for d in deltas_object if d.factors == ['modified', 'license change', 'copyright change']]) == 111
-        assert len([d for d in deltas_object if d.factors == ['moved']]) == 0
-        assert len([d for d in deltas_object if d.factors == ['added']]) == 540
-        assert len([d for d in deltas_object if d.factors == ['removed']]) == 395
+    #     assert len([d for d in deltas_object if d.factors == ['modified', 'copyright change']]) == 7
+    #     assert len([d for d in deltas_object if d.factors == ['modified', 'license change']]) == 25
+    #     assert len([d for d in deltas_object if d.factors == ['modified', 'license info added']]) == 1
+    #     assert len([d for d in deltas_object if d.factors == ['modified', 'copyright info added']]) == 1
+    #     assert len([d for d in deltas_object if d.factors == ['modified', 'license change', 'copyright change']]) == 111
+    #     assert len([d for d in deltas_object if d.factors == ['moved']]) == 0
+    #     assert len([d for d in deltas_object if d.factors == ['added']]) == 540
+    #     assert len([d for d in deltas_object if d.factors == ['removed']]) == 395
 
-        assert len([d for d in deltas_object if 'copyleft added' in d.factors]) == 0
-        assert len([d for d in deltas_object if 'copyleft limited added' in d.factors]) == 0
-        assert len([d for d in deltas_object if 'commercial added' in d.factors]) == 0
-        assert len([d for d in deltas_object if 'free restricted added' in d.factors]) == 0
-        assert len([d for d in deltas_object if 'patent license added' in d.factors]) == 0
-        assert len([d for d in deltas_object if 'proprietary free added' in d.factors]) == 0
+    #     assert len([d for d in deltas_object if 'copyleft added' in d.factors]) == 0
+    #     assert len([d for d in deltas_object if 'copyleft limited added' in d.factors]) == 0
+    #     assert len([d for d in deltas_object if 'commercial added' in d.factors]) == 0
+    #     assert len([d for d in deltas_object if 'free restricted added' in d.factors]) == 0
+    #     assert len([d for d in deltas_object if 'patent license added' in d.factors]) == 0
+    #     assert len([d for d in deltas_object if 'proprietary free added' in d.factors]) == 0
