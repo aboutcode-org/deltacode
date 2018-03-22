@@ -242,26 +242,26 @@ class TestDeltacode(FileBasedTesting):
         assert delta.factors == []
         assert delta.to_dict() == OrderedDict([('factors', []), ('score', None), ('new', None), ('old', None)])
 
-    def test_DeltaCode_license_modified_low_score(self):
-        new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added_low_score.json')
-        old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added_low_score.json')
+    # def test_DeltaCode_license_modified_low_score(self):
+    #     new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added_low_score.json')
+    #     old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added_low_score.json')
 
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
+    #     options = OrderedDict([
+    #         ('--all-delta-types', False)
+    #     ])
 
-        result = DeltaCode(new_scan, old_scan, options)
+    #     result = DeltaCode(new_scan, old_scan, options)
 
-        deltas = result.deltas
+    #     deltas = result.deltas
 
-        assert len([i for i in deltas if i.score == 30]) == 2
-        assert len([i for i in deltas if i.score == 20]) == 0
+    #     assert len([i for i in deltas if i.score == 30]) == 2
+    #     assert len([i for i in deltas if i.score == 20]) == 0
 
-        assert [d.score for d in deltas if d.new_file.path == 'some/path/a/a1.py'] == [30]
-        assert [d.score for d in deltas if d.new_file.path == 'some/path/b/b1.py'] == [30]
+    #     assert [d.score for d in deltas if d.new_file.path == 'some/path/a/a1.py'] == [30]
+    #     assert [d.score for d in deltas if d.new_file.path == 'some/path/b/b1.py'] == [30]
 
-        assert [d.factors for d in deltas if d.new_file.path == 'some/path/a/a1.py'].pop() == ['modified', 'license change']
-        assert [d.factors for d in deltas if d.new_file.path == 'some/path/b/b1.py'].pop() == ['modified', 'license change']
+    #     assert [d.factors for d in deltas if d.new_file.path == 'some/path/a/a1.py'].pop() == ['modified', 'license change']
+    #     assert [d.factors for d in deltas if d.new_file.path == 'some/path/b/b1.py'].pop() == ['modified', 'license change']
 
     def test_DeltaCode_license_modified(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')
@@ -287,35 +287,35 @@ class TestDeltacode(FileBasedTesting):
         assert [d.factors for d in deltas if d.new_file.path == 'some/path/b/b1.py'].pop() == ['modified', 'license change']
         assert [d.factors for d in deltas if d.new_file.path == 'some/path/c/c1.py'].pop() == ['modified']
 
-    def test_DeltaCode_no_license_key_value(self):
-        new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
-        old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_key.json')
+    # def test_DeltaCode_no_license_key_value(self):
+    #     new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
+    #     old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_key.json')
 
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
+    #     options = OrderedDict([
+    #         ('--all-delta-types', False)
+    #     ])
 
-        result = DeltaCode(new_scan, old_scan, options)
+    #     result = DeltaCode(new_scan, old_scan, options)
 
-        deltas = result.deltas
+    #     deltas = result.deltas
 
-        assert len([i for i in deltas if i.score == 30]) == 0
-        assert len([i for i in deltas if i.score == 20]) == 2
+    #     assert len([i for i in deltas if i.score == 30]) == 0
+    #     assert len([i for i in deltas if i.score == 20]) == 2
 
-    def test_DeltaCode_no_license_changes(self):
-        new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_changes.json')
-        old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_changes.json')
+    # def test_DeltaCode_no_license_changes(self):
+    #     new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_changes.json')
+    #     old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_changes.json')
 
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
+    #     options = OrderedDict([
+    #         ('--all-delta-types', False)
+    #     ])
 
-        result = DeltaCode(new_scan, old_scan, options)
+    #     result = DeltaCode(new_scan, old_scan, options)
 
-        deltas = result.deltas
+    #     deltas = result.deltas
 
-        assert len([i for i in deltas if i.score == 30]) == 0
-        assert len([i for i in deltas if i.score == 20]) == 2
+    #     assert len([i for i in deltas if i.score == 30]) == 0
+    #     assert len([i for i in deltas if i.score == 20]) == 2
 
     def test_DeltaCode_errors_empty(self):
         new_scan = self.get_test_loc('deltacode/scan_1_file_moved_new.json')
@@ -329,55 +329,55 @@ class TestDeltacode(FileBasedTesting):
 
         assert result.errors == []
 
-    def test_Delta_modified_license_added(self):
-        new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')
-        old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added.json')
+    # def test_Delta_modified_license_added(self):
+    #     new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')
+    #     old_scan = self.get_test_loc('deltacode/scan_modified_old_license_added.json')
 
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
+    #     options = OrderedDict([
+    #         ('--all-delta-types', False)
+    #     ])
 
-        result = DeltaCode(new_scan, old_scan, options)
+    #     result = DeltaCode(new_scan, old_scan, options)
 
-        deltas = result.deltas
+    #     deltas = result.deltas
 
-        assert [d.score for d in deltas if d.new_file.path == 'some/path/a/a1.py'] == [50]
-        assert [d.score for d in deltas if d.new_file.path == 'some/path/b/b1.py'] == [30]
-        assert [d.score for d in deltas if d.new_file.path == 'some/path/c/c1.py'] == [20]
+    #     assert [d.score for d in deltas if d.new_file.path == 'some/path/a/a1.py'] == [50]
+    #     assert [d.score for d in deltas if d.new_file.path == 'some/path/b/b1.py'] == [30]
+    #     assert [d.score for d in deltas if d.new_file.path == 'some/path/c/c1.py'] == [20]
 
-        assert [d.factors for d in deltas if d.new_file.path == 'some/path/a/a1.py'].pop() == ['modified', 'license change', 'copyleft added']
-        assert [d.factors for d in deltas if d.new_file.path == 'some/path/b/b1.py'].pop() == ['modified', 'license change']
-        assert [d.factors for d in deltas if d.new_file.path == 'some/path/c/c1.py'].pop() == ['modified']
+    #     assert [d.factors for d in deltas if d.new_file.path == 'some/path/a/a1.py'].pop() == ['modified', 'license change', 'copyleft added']
+    #     assert [d.factors for d in deltas if d.new_file.path == 'some/path/b/b1.py'].pop() == ['modified', 'license change']
+    #     assert [d.factors for d in deltas if d.new_file.path == 'some/path/c/c1.py'].pop() == ['modified']
 
-    def test_Delta_modified_no_license_changes(self):
-        new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_changes.json')
-        old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_changes.json')
+    # def test_Delta_modified_no_license_changes(self):
+    #     new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_changes.json')
+    #     old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_changes.json')
 
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
+    #     options = OrderedDict([
+    #         ('--all-delta-types', False)
+    #     ])
 
-        result = DeltaCode(new_scan, old_scan, options)
+    #     result = DeltaCode(new_scan, old_scan, options)
 
-        deltas = result.deltas
+    #     deltas = result.deltas
 
-        assert [d.score for d in deltas if d.new_file.path == 'some/path/a/a1.py'] == [20]
-        assert [d.score for d in deltas if d.new_file.path == 'some/path/b/b1.py'] == [20]
+    #     assert [d.score for d in deltas if d.new_file.path == 'some/path/a/a1.py'] == [20]
+    #     assert [d.score for d in deltas if d.new_file.path == 'some/path/b/b1.py'] == [20]
 
-    def test_Delta_modified_no_license_key(self):
-        new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
-        old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_key.json')
+    # def test_Delta_modified_no_license_key(self):
+    #     new_scan = self.get_test_loc('deltacode/scan_modified_new_no_license_key.json')
+    #     old_scan = self.get_test_loc('deltacode/scan_modified_old_no_license_key.json')
 
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
+    #     options = OrderedDict([
+    #         ('--all-delta-types', False)
+    #     ])
 
-        result = DeltaCode(new_scan, old_scan, options)
+    #     result = DeltaCode(new_scan, old_scan, options)
 
-        deltas = result.deltas
+    #     deltas = result.deltas
 
-        assert [d.score for d in deltas if d.new_file.path == 'some/path/a/a1.py'] == [20]
-        assert [d.score for d in deltas if d.new_file.path == 'some/path/b/b1.py'] == [20]
+    #     assert [d.score for d in deltas if d.new_file.path == 'some/path/a/a1.py'] == [20]
+    #     assert [d.score for d in deltas if d.new_file.path == 'some/path/b/b1.py'] == [20]
 
     def test_Delta_to_dict_removed(self):
         old = models.File({
@@ -391,7 +391,7 @@ class TestDeltacode(FileBasedTesting):
 
         expected = OrderedDict([
             ('factors', ['removed']),
-            ('score', 10),
+            ('score', 0),
             ('new', None),
             ('old', OrderedDict([
                 ('path', 'path/removed.txt'),
@@ -405,7 +405,7 @@ class TestDeltacode(FileBasedTesting):
             ]))
         ])
 
-        delta = deltacode.Delta(10, None, old)
+        delta = deltacode.Delta(0, None, old)
         delta.factors.append('removed')
 
         assert delta.to_dict() == expected
@@ -599,13 +599,13 @@ class TestDeltacode(FileBasedTesting):
         new = None
         old = models.File({'path': 'path/removed.txt'})
 
-        delta = deltacode.Delta(10, new, old)
+        delta = deltacode.Delta(0, new, old)
         delta.factors.append('removed')
 
         assert type(delta.new_file) == type(None)
         assert delta.old_file.path == 'path/removed.txt'
         assert 'removed' in delta.factors
-        assert delta.score == 10
+        assert delta.score == 0
 
     def test_Delta_create_object_added(self):
         new = models.File({'path': 'path/added.txt'})
@@ -680,11 +680,6 @@ class TestDeltacode(FileBasedTesting):
 
         deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
 
@@ -701,38 +696,38 @@ class TestDeltacode(FileBasedTesting):
         ]
         assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
 
-    def test_score_new_no_lic_info_below_cutoff_score(self):
-        new_scan = self.get_test_loc('deltacode/score_new_no_lic_info_below_cutoff_score_new.json')
-        old_scan = self.get_test_loc('deltacode/score_new_no_lic_info_below_cutoff_score_old.json')
+    # def test_score_new_no_lic_info_below_cutoff_score(self):
+    #     new_scan = self.get_test_loc('deltacode/score_new_no_lic_info_below_cutoff_score_new.json')
+    #     old_scan = self.get_test_loc('deltacode/score_new_no_lic_info_below_cutoff_score_old.json')
 
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
+    #     options = OrderedDict([
+    #         ('--all-delta-types', False)
+    #     ])
 
-        deltacode_object = DeltaCode(new_scan, old_scan, options)
+    #     deltacode_object = DeltaCode(new_scan, old_scan, options)
 
-        deltas_object = deltacode_object.deltas
+    #     deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
+    #     assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
+    #     assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
+    #     assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
+    #     assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
 
-        assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
-        assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
+    #     assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
+    #     assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [35]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['modified', 'license info removed']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
-            OrderedDict([
-                ('key', 'mit'),
-                ('score', 49.0),
-                ('short_name', None),
-                ('category', None),
-                ('owner', None)
-            ])
-        ]
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
+    #     assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [35]
+    #     assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['modified', 'license info removed']
+    #     assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+    #         OrderedDict([
+    #             ('key', 'mit'),
+    #             ('score', 49.0),
+    #             ('short_name', None),
+    #             ('category', None),
+    #             ('owner', None)
+    #         ])
+    #     ]
+    #     assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
 
     def test_score_old_no_lic_info(self):
         new_scan = self.get_test_loc('deltacode/score_old_no_lic_info_new.json')
@@ -746,11 +741,6 @@ class TestDeltacode(FileBasedTesting):
 
         deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
 
@@ -767,38 +757,38 @@ class TestDeltacode(FileBasedTesting):
             ])
         ]
 
-    def test_score_old_no_lic_info_below_cutoff_score(self):
-        new_scan = self.get_test_loc('deltacode/score_old_no_lic_info_below_cutoff_score_new.json')
-        old_scan = self.get_test_loc('deltacode/score_old_no_lic_info_below_cutoff_score_old.json')
+    # def test_score_old_no_lic_info_below_cutoff_score(self):
+    #     new_scan = self.get_test_loc('deltacode/score_old_no_lic_info_below_cutoff_score_new.json')
+    #     old_scan = self.get_test_loc('deltacode/score_old_no_lic_info_below_cutoff_score_old.json')
 
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
+    #     options = OrderedDict([
+    #         ('--all-delta-types', False)
+    #     ])
 
-        deltacode_object = DeltaCode(new_scan, old_scan, options)
+    #     deltacode_object = DeltaCode(new_scan, old_scan, options)
 
-        deltas_object = deltacode_object.deltas
+    #     deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
+    #     assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
+    #     assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
+    #     assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
+    #     assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
 
-        assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
-        assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
+    #     assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
+    #     assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [40]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['modified', 'license info added']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
-            OrderedDict([
-                ('key', 'mit'),
-                ('score', 49.0),
-                ('short_name', None),
-                ('category', None),
-                ('owner', None)
-            ])
-        ]
+    #     assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [40]
+    #     assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['modified', 'license info added']
+    #     assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
+    #     assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+    #         OrderedDict([
+    #             ('key', 'mit'),
+    #             ('score', 49.0),
+    #             ('short_name', None),
+    #             ('category', None),
+    #             ('owner', None)
+    #         ])
+    #     ]
 
     def test_score_multiple_lic_keys(self):
         new_scan = self.get_test_loc('deltacode/score_multiple_lic_keys_new.json')
@@ -811,11 +801,6 @@ class TestDeltacode(FileBasedTesting):
         deltacode_object = DeltaCode(new_scan, old_scan, options)
 
         deltas_object = deltacode_object.deltas
-
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
 
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
@@ -848,87 +833,87 @@ class TestDeltacode(FileBasedTesting):
             ])
         ]
 
-    def test_score_new_lic_below_cutoff_score(self):
-        new_scan = self.get_test_loc('deltacode/score_new_lic_below_cutoff_score_new.json')
-        old_scan = self.get_test_loc('deltacode/score_new_lic_below_cutoff_score_old.json')
+    # def test_score_new_lic_below_cutoff_score(self):
+    #     new_scan = self.get_test_loc('deltacode/score_new_lic_below_cutoff_score_new.json')
+    #     old_scan = self.get_test_loc('deltacode/score_new_lic_below_cutoff_score_old.json')
 
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
+    #     options = OrderedDict([
+    #         ('--all-delta-types', False)
+    #     ])
 
-        deltacode_object = DeltaCode(new_scan, old_scan, options)
+    #     deltacode_object = DeltaCode(new_scan, old_scan, options)
 
-        deltas_object = deltacode_object.deltas
+    #     deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
+    #     assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
+    #     assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
+    #     assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
+    #     assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
 
-        assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
-        assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
+    #     assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
+    #     assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [20]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['modified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
-            OrderedDict([
-                ('key', 'mit'),
-                ('score', 95.0),
-                ('short_name', None),
-                ('category', None),
-                ('owner', None)
-            ])
-        ]
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
-            OrderedDict([
-                ('key', 'mit'),
-                ('score', 45.0),
-                ('short_name', None),
-                ('category', None),
-                ('owner', None)
-            ])
-        ]
+    #     assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [20]
+    #     assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['modified']
+    #     assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+    #         OrderedDict([
+    #             ('key', 'mit'),
+    #             ('score', 95.0),
+    #             ('short_name', None),
+    #             ('category', None),
+    #             ('owner', None)
+    #         ])
+    #     ]
+    #     assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+    #         OrderedDict([
+    #             ('key', 'mit'),
+    #             ('score', 45.0),
+    #             ('short_name', None),
+    #             ('category', None),
+    #             ('owner', None)
+    #         ])
+    #     ]
 
-    def test_score_old_lic_below_cutoff_score(self):
-        new_scan = self.get_test_loc('deltacode/score_old_lic_below_cutoff_score_new.json')
-        old_scan = self.get_test_loc('deltacode/score_old_lic_below_cutoff_score_old.json')
+    # def test_score_old_lic_below_cutoff_score(self):
+    #     new_scan = self.get_test_loc('deltacode/score_old_lic_below_cutoff_score_new.json')
+    #     old_scan = self.get_test_loc('deltacode/score_old_lic_below_cutoff_score_old.json')
 
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
+    #     options = OrderedDict([
+    #         ('--all-delta-types', False)
+    #     ])
 
-        deltacode_object = DeltaCode(new_scan, old_scan, options)
+    #     deltacode_object = DeltaCode(new_scan, old_scan, options)
 
-        deltas_object = deltacode_object.deltas
+    #     deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
+    #     assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
+    #     assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
+    #     assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
+    #     assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
 
-        assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
-        assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
+    #     assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
+    #     assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [20]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['modified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
-            OrderedDict([
-                ('key', 'mit'),
-                ('score', 45.0),
-                ('short_name', None),
-                ('category', None),
-                ('owner', None)
-            ])
-        ]
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
-            OrderedDict([
-                ('key', 'mit'),
-                ('score', 95.0),
-                ('short_name', None),
-                ('category', None),
-                ('owner', None)
-            ])
-        ]
+    #     assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [20]
+    #     assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['modified']
+    #     assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+    #         OrderedDict([
+    #             ('key', 'mit'),
+    #             ('score', 45.0),
+    #             ('short_name', None),
+    #             ('category', None),
+    #             ('owner', None)
+    #         ])
+    #     ]
+    #     assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+    #         OrderedDict([
+    #             ('key', 'mit'),
+    #             ('score', 95.0),
+    #             ('short_name', None),
+    #             ('category', None),
+    #             ('owner', None)
+    #         ])
+    #     ]
 
     def test_score_no_lic_change(self):
         new_scan = self.get_test_loc('deltacode/score_no_lic_change_new.json')
@@ -941,11 +926,6 @@ class TestDeltacode(FileBasedTesting):
         deltacode_object = DeltaCode(new_scan, old_scan, options)
 
         deltas_object = deltacode_object.deltas
-
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
 
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
@@ -983,11 +963,6 @@ class TestDeltacode(FileBasedTesting):
 
         deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
 
@@ -1019,115 +994,115 @@ class TestDeltacode(FileBasedTesting):
             ])
         ]
 
-    def test_score_multiple_lic_keys_new_below_cutoff_score(self):
-        new_scan = self.get_test_loc('deltacode/score_multiple_lic_keys_new_below_cutoff_score_new.json')
-        old_scan = self.get_test_loc('deltacode/score_multiple_lic_keys_new_below_cutoff_score_old.json')
+    # def test_score_multiple_lic_keys_new_below_cutoff_score(self):
+    #     new_scan = self.get_test_loc('deltacode/score_multiple_lic_keys_new_below_cutoff_score_new.json')
+    #     old_scan = self.get_test_loc('deltacode/score_multiple_lic_keys_new_below_cutoff_score_old.json')
 
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
+    #     options = OrderedDict([
+    #         ('--all-delta-types', False)
+    #     ])
 
-        deltacode_object = DeltaCode(new_scan, old_scan, options)
+    #     deltacode_object = DeltaCode(new_scan, old_scan, options)
 
-        deltas_object = deltacode_object.deltas
+    #     deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
+    #     assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
+    #     assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
+    #     assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
+    #     assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
 
-        assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
-        assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
+    #     assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
+    #     assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [50]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['modified', 'license change', 'copyleft added']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
-            OrderedDict([
-                ('key', 'mit'),
-                ('score', 100.0),
-                ('short_name', 'MIT License'),
-                ('category', 'Permissive'),
-                ('owner', None)
-            ])
-        ]
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
-            OrderedDict([
-                ('key', 'gpl-2.0'),
-                ('score', 49.9),
-                ('short_name', 'GPL 2.0'),
-                ('category', 'Copyleft'),
-                ('owner', None)
-            ]),
-            OrderedDict([
-                ('key', 'mit'),
-                ('score', 75.0),
-                ('short_name', 'MIT License'),
-                ('category', 'Permissive'),
-                ('owner', None)
-            ]),
-            OrderedDict([
-                ('key', 'mit'),
-                ('score', 90.0),
-                ('short_name', 'MIT License'),
-                ('category', 'Permissive'),
-                ('owner', None)
-            ])
-        ]
+    #     assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [50]
+    #     assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['modified', 'license change', 'copyleft added']
+    #     assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+    #         OrderedDict([
+    #             ('key', 'mit'),
+    #             ('score', 100.0),
+    #             ('short_name', 'MIT License'),
+    #             ('category', 'Permissive'),
+    #             ('owner', None)
+    #         ])
+    #     ]
+    #     assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+    #         OrderedDict([
+    #             ('key', 'gpl-2.0'),
+    #             ('score', 49.9),
+    #             ('short_name', 'GPL 2.0'),
+    #             ('category', 'Copyleft'),
+    #             ('owner', None)
+    #         ]),
+    #         OrderedDict([
+    #             ('key', 'mit'),
+    #             ('score', 75.0),
+    #             ('short_name', 'MIT License'),
+    #             ('category', 'Permissive'),
+    #             ('owner', None)
+    #         ]),
+    #         OrderedDict([
+    #             ('key', 'mit'),
+    #             ('score', 90.0),
+    #             ('short_name', 'MIT License'),
+    #             ('category', 'Permissive'),
+    #             ('owner', None)
+    #         ])
+    #     ]
 
-    def test_score_multiple_lic_keys_old_below_cutoff_score(self):
-        new_scan = self.get_test_loc('deltacode/score_multiple_lic_keys_old_below_cutoff_score_new.json')
-        old_scan = self.get_test_loc('deltacode/score_multiple_lic_keys_old_below_cutoff_score_old.json')
+    # def test_score_multiple_lic_keys_old_below_cutoff_score(self):
+    #     new_scan = self.get_test_loc('deltacode/score_multiple_lic_keys_old_below_cutoff_score_new.json')
+    #     old_scan = self.get_test_loc('deltacode/score_multiple_lic_keys_old_below_cutoff_score_old.json')
 
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
+    #     options = OrderedDict([
+    #         ('--all-delta-types', False)
+    #     ])
 
-        deltacode_object = DeltaCode(new_scan, old_scan, options)
+    #     deltacode_object = DeltaCode(new_scan, old_scan, options)
 
-        deltas_object = deltacode_object.deltas
+    #     deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
+    #     assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
+    #     assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
+    #     assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
+    #     assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
 
-        assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
-        assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
+    #     assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
+    #     assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [30]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['modified', 'license change']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
-            OrderedDict([
-                ('key', 'gpl-2.0'),
-                ('score', 49.9),
-                ('short_name', 'GPL 2.0'),
-                ('category', 'Copyleft'),
-                ('owner', None)
-            ]),
-            OrderedDict([
-                ('key', 'mit'),
-                ('score', 100.0),
-                ('short_name', 'MIT License'),
-                ('category', 'Permissive'),
-                ('owner', None)
-            ])
-        ]
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
-            OrderedDict([
-                ('key', 'mit'),
-                ('score', 75.0),
-                ('short_name', 'MIT License'),
-                ('category', 'Permissive'),
-                ('owner', None)
-            ]),
-            OrderedDict([
-                ('key', 'mit'),
-                ('score', 90.0),
-                ('short_name', 'MIT License'),
-                ('category', 'Permissive'),
-                ('owner', None)
-            ])
-        ]
+    #     assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [30]
+    #     assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['modified', 'license change']
+    #     assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+    #         OrderedDict([
+    #             ('key', 'gpl-2.0'),
+    #             ('score', 49.9),
+    #             ('short_name', 'GPL 2.0'),
+    #             ('category', 'Copyleft'),
+    #             ('owner', None)
+    #         ]),
+    #         OrderedDict([
+    #             ('key', 'mit'),
+    #             ('score', 100.0),
+    #             ('short_name', 'MIT License'),
+    #             ('category', 'Permissive'),
+    #             ('owner', None)
+    #         ])
+    #     ]
+    #     assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+    #         OrderedDict([
+    #             ('key', 'mit'),
+    #             ('score', 75.0),
+    #             ('short_name', 'MIT License'),
+    #             ('category', 'Permissive'),
+    #             ('owner', None)
+    #         ]),
+    #         OrderedDict([
+    #             ('key', 'mit'),
+    #             ('score', 90.0),
+    #             ('short_name', 'MIT License'),
+    #             ('category', 'Permissive'),
+    #             ('owner', None)
+    #         ])
+    #     ]
 
     # def test_score_single_lic_change(self):
     #     new_scan = self.get_test_loc('deltacode/score_single_lic_change_new.json')
@@ -1182,11 +1157,6 @@ class TestDeltacode(FileBasedTesting):
 
         deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
 
@@ -1221,11 +1191,6 @@ class TestDeltacode(FileBasedTesting):
 
         deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
 
@@ -1255,11 +1220,6 @@ class TestDeltacode(FileBasedTesting):
 
         deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
 
@@ -1288,11 +1248,6 @@ class TestDeltacode(FileBasedTesting):
 
         deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
 
@@ -1315,11 +1270,6 @@ class TestDeltacode(FileBasedTesting):
         deltacode_object = DeltaCode(new_scan, old_scan, options)
 
         deltas_object = deltacode_object.deltas
-
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
 
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
@@ -1354,11 +1304,6 @@ class TestDeltacode(FileBasedTesting):
 
         deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
 
@@ -1381,11 +1326,6 @@ class TestDeltacode(FileBasedTesting):
         deltacode_object = DeltaCode(new_scan, old_scan, options)
 
         deltas_object = deltacode_object.deltas
-
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
 
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
@@ -1427,11 +1367,6 @@ class TestDeltacode(FileBasedTesting):
 
         deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
 
@@ -1471,11 +1406,6 @@ class TestDeltacode(FileBasedTesting):
         deltacode_object = DeltaCode(new_scan, old_scan, options)
 
         deltas_object = deltacode_object.deltas
-
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
 
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
@@ -1518,11 +1448,6 @@ class TestDeltacode(FileBasedTesting):
 
         deltas_object = deltacode_object.deltas
 
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
 
@@ -1563,11 +1488,6 @@ class TestDeltacode(FileBasedTesting):
         deltacode_object = DeltaCode(new_scan, old_scan, options)
 
         deltas_object = deltacode_object.deltas
-
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
 
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
@@ -1620,11 +1540,6 @@ class TestDeltacode(FileBasedTesting):
         deltacode_object = DeltaCode(new_scan, old_scan, options)
 
         deltas_object = deltacode_object.deltas
-
-        assert [d.score for d in deltas_object if d.new_file.path == 'default.txt'] == [0]
-        assert [d.factors for d in deltas_object if d.new_file.path == 'default.txt'].pop() == ['unmodified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'default.txt'].pop() == []
 
         assert [d.old_file.sha1 for d in deltas_object if d.old_file.path == 'path.txt'] == ['b']
         assert [d.new_file.sha1 for d in deltas_object if d.new_file.path == 'path.txt'] == ['b_modified']
