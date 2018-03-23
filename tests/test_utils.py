@@ -774,6 +774,82 @@ class TestUtils(FileBasedTesting):
         assert len(test_delta.factors) == 1
         assert 'copyright change' in test_delta.factors
 
+    def test_determine_copyright_diff_single_copyright_change_holders_only(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [],
+                    "holders": [
+                        "Edouard-Leon Scott de Martinville."
+                    ]
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_copyright_diff(test_delta)
+
+        assert test_delta.score == 25
+        assert len(test_delta.factors) == 1
+        assert 'copyright change' in test_delta.factors
+
+    def test_determine_copyright_diff_single_copyright_change_statements_only(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2015 Edouard-Leon Scott de Martinville."
+                    ],
+                    "holders": []
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": []
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_copyright_diff(test_delta)
+
+        assert test_delta.score == 20
+        assert len(test_delta.factors) == 0
+        assert 'copyright change' not in test_delta.factors
+
     def test_determine_copyright_diff_copyright_info_added(self):
         test_file_new = models.File({
             'path':'/test/path.txt',

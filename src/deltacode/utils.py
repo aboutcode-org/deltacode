@@ -80,13 +80,10 @@ def determine_copyright_diff(delta):
         delta.update(10, 'copyright info removed')
         return
 
-    new_statements = set(statement for copyright in new_copyrights for statement in copyright.statements)
-    old_statements = set(statement for copyright in old_copyrights for statement in copyright.statements)
-
     new_holders = set(holder for copyright in new_copyrights for holder in copyright.holders)
     old_holders = set(holder for copyright in old_copyrights for holder in copyright.holders)
 
-    if ((new_statements != old_statements) or (new_holders != old_holders)):
+    if new_holders != old_holders:
         delta.update(5, 'copyright change')
 
 
