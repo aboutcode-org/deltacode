@@ -163,9 +163,14 @@ class TestUtils(FileBasedTesting):
 
         utils.determine_license_diff(test_delta, unique_categories)
 
+        expected_factors = [
+            'license change',
+            'copyleft added'
+        ]
+
         assert test_delta.score == 50
         assert len(test_delta.factors) == 2
-        for factor in ['license change', 'copyleft added']:
+        for factor in expected_factors:
             assert factor in test_delta.factors
 
     def test_determine_license_diff_copyleft_license_info_added(self):
@@ -195,9 +200,14 @@ class TestUtils(FileBasedTesting):
 
         utils.determine_license_diff(test_delta, unique_categories)
 
+        expected_factors = [
+            'license info added',
+            'copyleft added'
+        ]
+
         assert test_delta.score == 60
         assert len(test_delta.factors) == 2
-        for factor in ['license info added', 'copyleft added']:
+        for factor in expected_factors:
             assert factor in test_delta.factors
 
     def test_determine_license_diff_permissive_license_info_added(self):
@@ -229,8 +239,7 @@ class TestUtils(FileBasedTesting):
 
         assert test_delta.score == 40
         assert len(test_delta.factors) == 1
-        for factor in ['license info added']:
-            assert factor in test_delta.factors
+        assert 'license info added' in test_delta.factors
 
     def test_determine_license_diff_permissive_license_info_removed(self):
         test_file_new = models.File({
@@ -334,9 +343,14 @@ class TestUtils(FileBasedTesting):
 
         utils.determine_license_diff(test_delta, unique_categories)
 
+        expected_factors = [
+            'license change',
+            'copyleft added'
+        ]
+
         assert test_delta.score == 50
         assert len(test_delta.factors) == 2
-        for factor in ['license change', 'copyleft added']:
+        for factor in expected_factors:
             assert factor in test_delta.factors
 
     def test_determine_license_diff_one_license_removed(self):
@@ -425,8 +439,7 @@ class TestUtils(FileBasedTesting):
 
         assert test_delta.score == 30
         assert len(test_delta.factors) == 1
-        for factor in ['license change']:
-            assert factor in test_delta.factors
+        assert 'license change' in test_delta.factors
 
     def test_determine_license_diff_two_permissives_to_one_permissive(self):
         test_file_new = models.File({
@@ -470,8 +483,7 @@ class TestUtils(FileBasedTesting):
 
         assert test_delta.score == 30
         assert len(test_delta.factors) == 1
-        for factor in ['license change']:
-            assert factor in test_delta.factors
+        assert 'license change' in test_delta.factors
 
     def test_determine_license_diff_one_permissive_to_six_copyleft_or_higher(self):
         test_file_new = models.File({
@@ -561,6 +573,7 @@ class TestUtils(FileBasedTesting):
             'patent license added',
             'proprietary free added'
         ]
+
         for factor in expected_factors:
             assert factor in test_delta.factors
 
@@ -639,8 +652,7 @@ class TestUtils(FileBasedTesting):
 
         assert test_delta.score == 30
         assert len(test_delta.factors) == 1
-        for factor in ['license change']:
-            assert factor in test_delta.factors
+        assert 'license change' in test_delta.factors
 
     def test_determine_copyright_diff_empty(self):
         test_delta = deltacode.Delta()
@@ -760,8 +772,7 @@ class TestUtils(FileBasedTesting):
 
         assert test_delta.score == 25
         assert len(test_delta.factors) == 1
-        for factor in ['copyright change']:
-            assert factor in test_delta.factors
+        assert 'copyright change' in test_delta.factors
 
     def test_determine_copyright_diff_copyright_info_added(self):
         test_file_new = models.File({
@@ -794,8 +805,7 @@ class TestUtils(FileBasedTesting):
 
         assert test_delta.score == 30
         assert len(test_delta.factors) == 1
-        for factor in ['copyright info added']:
-            assert factor in test_delta.factors
+        assert 'copyright info added' in test_delta.factors
 
     def test_determine_copyright_diff_copyright_info_removed(self):
         test_file_new = models.File({
@@ -878,8 +888,7 @@ class TestUtils(FileBasedTesting):
 
         assert test_delta.score == 25
         assert len(test_delta.factors) == 1
-        for factor in ['copyright change']:
-            assert factor in test_delta.factors
+        assert 'copyright change' in test_delta.factors
 
     def test_determine_copyright_diff_one_copyright_removed(self):
         test_file_new = models.File({
@@ -929,8 +938,7 @@ class TestUtils(FileBasedTesting):
 
         assert test_delta.score == 25
         assert len(test_delta.factors) == 1
-        for factor in ['copyright change']:
-            assert factor in test_delta.factors
+        assert 'copyright change' in test_delta.factors
 
     # xxx license/copyright tests to resume here.
 
