@@ -41,9 +41,1316 @@ from deltacode import utils
 from deltacode import models
 
 
+unique_categories = set([
+    'Commercial',
+    'Copyleft',
+    'Copyleft Limited',
+    'Free Restricted',
+    'Patent License',
+    'Proprietary Free'
+])
+
+
 class TestUtils(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
+
+    def test_determine_license_diff_empty(self):
+        test_delta = deltacode.Delta()
+
+        utils.determine_license_diff(test_delta, set())
+
+        assert test_delta.score == 0
+
+    def test_determine_license_diff_non_modified(self):
+        test_file = models.File({'path':'/test/path.txt', 'name': 'path.txt'})
+        test_delta = deltacode.Delta(old_file=test_file)
+
+        utils.determine_license_diff(test_delta, set())
+
+        assert test_delta.score == 0
+        assert len(test_delta.factors) == 0
+
+    def test_determine_license_diff_no_license_key_value(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': ''
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': ''
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+
+        assert test_delta.score == 20
+        assert len(test_delta.factors) == 0
+
+    def test_determine_license_diff_no_license_changes(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+
+        assert test_delta.score == 20
+        assert len(test_delta.factors) == 0
+
+    def test_determine_license_diff_single_license_change(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+
+        expected_factors = [
+            'license change',
+            'copyleft added'
+        ]
+
+        assert test_delta.score == 50
+        assert len(test_delta.factors) == 2
+        for factor in expected_factors:
+            assert factor in test_delta.factors
+
+    def test_determine_license_diff_copyleft_license_info_added(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": []
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+
+        expected_factors = [
+            'license info added',
+            'copyleft added'
+        ]
+
+        assert test_delta.score == 60
+        assert len(test_delta.factors) == 2
+        for factor in expected_factors:
+            assert factor in test_delta.factors
+
+    def test_determine_license_diff_permissive_license_info_added(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": []
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+
+        assert test_delta.score == 40
+        assert len(test_delta.factors) == 1
+        assert 'license info added' in test_delta.factors
+
+    def test_determine_license_diff_permissive_license_info_removed(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": []
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, set())
+
+        assert test_delta.score == 35
+        assert len(test_delta.factors) == 1
+        assert 'license info removed' in test_delta.factors
+
+    def test_determine_license_diff_copyleft_license_info_removed(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": []
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, set())
+
+        assert test_delta.score == 35
+        assert len(test_delta.factors) == 1
+        assert 'license info removed' in test_delta.factors
+
+    def test_determine_license_diff_one_license_added(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                },
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+
+        expected_factors = [
+            'license change',
+            'copyleft added'
+        ]
+
+        assert test_delta.score == 50
+        assert len(test_delta.factors) == 2
+        for factor in expected_factors:
+            assert factor in test_delta.factors
+
+    def test_determine_license_diff_one_license_removed(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                },
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+
+        assert test_delta.score == 30
+        assert len(test_delta.factors) == 1
+        assert 'license change' in test_delta.factors
+
+    def test_determine_license_diff_one_permissive_to_two_permissives(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                },
+                {
+                    "key": "apache-2.0",
+                    "score": 40.0,
+                    "short_name": "Apache 2.0",
+                    "category": "Permissive"
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+
+        assert test_delta.score == 30
+        assert len(test_delta.factors) == 1
+        assert 'license change' in test_delta.factors
+
+    def test_determine_license_diff_two_permissives_to_one_permissive(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                },
+                {
+                    "key": "apache-2.0",
+                    "score": 40.0,
+                    "short_name": "Apache 2.0",
+                    "category": "Permissive"
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+
+        assert test_delta.score == 30
+        assert len(test_delta.factors) == 1
+        assert 'license change' in test_delta.factors
+
+    def test_determine_license_diff_one_permissive_to_six_copyleft_or_higher(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                },
+                {
+                    "key": "adapt-1.0",
+                    "score": 15.0,
+                    "short_name": "APL 1.0",
+                    "category": "Copyleft",
+                    "owner": "OSI - Open Source Initiative"
+                },
+                {
+                    "key": "bittorrent-1.0",
+                    "score": 100.0,
+                    "short_name": "BitTorrent 1.0",
+                    "category": "Copyleft Limited",
+                    "owner": "BitTorrent, Inc."
+                },
+                {
+                    "key": "bloomberg-blpapi",
+                    "score": 100.0,
+                    "short_name": "Bloomberg BLPAPI License",
+                    "category": "Proprietary Free",
+                    "owner": "Bloomberg Labs"
+                },
+                {
+                    "key": "commercial-license",
+                    "score": 55.0,
+                    "short_name": "Commercial License",
+                    "category": "Commercial",
+                    "owner": "Unspecified"
+                },
+                {
+                    "key": "wrox-download",
+                    "score": 100.0,
+                    "short_name": "Wrox Download Terms and Conditions",
+                    "category": "Free Restricted",
+                    "owner": "Wiley"
+                },
+                {
+                    "key": "mozilla-ospl-1.0",
+                    "score": 99.93,
+                    "short_name": "Mozilla Open Software Patent License 1.0",
+                    "category": "Patent License",
+                    "owner": "Mozilla"
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+
+        assert test_delta.score == 150
+        assert len(test_delta.factors) == 7
+
+        expected_factors = [
+            'license change',
+            'commercial added',
+            'copyleft added',
+            'copyleft limited added',
+            'free restricted added',
+            'patent license added',
+            'proprietary free added'
+        ]
+
+        for factor in expected_factors:
+            assert factor in test_delta.factors
+
+    def test_determine_license_diff_copyleft_to_different_copyleft(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "adapt-1.0",
+                    "score": 15.0,
+                    "short_name": "APL 1.0",
+                    "category": "Copyleft",
+                    "owner": "OSI - Open Source Initiative"
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+
+        assert test_delta.score == 30
+        assert len(test_delta.factors) == 1
+        assert 'license change' in test_delta.factors
+
+    def test_determine_license_diff_copyleft_to_copyleft_limited(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "bittorrent-1.0",
+                    "score": 100.0,
+                    "short_name": "BitTorrent 1.0",
+                    "category": "Copyleft Limited"
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+
+        assert test_delta.score == 30
+        assert len(test_delta.factors) == 1
+        assert 'license change' in test_delta.factors
+
+    def test_determine_copyright_diff_empty(self):
+        test_delta = deltacode.Delta()
+
+        utils.determine_copyright_diff(test_delta)
+
+        assert test_delta.score == 0
+
+    def test_determine_copyright_diff_non_modified(self):
+        test_file = models.File({'path':'/test/path.txt', 'name': 'path.txt'})
+        test_delta = deltacode.Delta(old_file=test_file)
+
+        utils.determine_copyright_diff(test_delta)
+
+        assert test_delta.score == 0
+        assert len(test_delta.factors) == 0
+
+    def test_determine_copyright_diff_no_copyright_key_value(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': ''
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': ''
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_copyright_diff(test_delta)
+
+        assert test_delta.score == 20
+        assert len(test_delta.factors) == 0
+
+    def test_determine_copyright_diff_no_copyright_changes(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_copyright_diff(test_delta)
+
+        assert test_delta.score == 20
+        assert len(test_delta.factors) == 0
+
+    def test_determine_copyright_diff_single_copyright_change(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2015 Edouard-Leon Scott de Martinville."
+                    ],
+                    "holders": [
+                        "Edouard-Leon Scott de Martinville."
+                    ]
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_copyright_diff(test_delta)
+
+        assert test_delta.score == 25
+        assert len(test_delta.factors) == 1
+        assert 'copyright change' in test_delta.factors
+
+    def test_determine_copyright_diff_single_copyright_change_holders_only(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [],
+                    "holders": [
+                        "Edouard-Leon Scott de Martinville."
+                    ]
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_copyright_diff(test_delta)
+
+        assert test_delta.score == 25
+        assert len(test_delta.factors) == 1
+        assert 'copyright change' in test_delta.factors
+
+    def test_determine_copyright_diff_single_copyright_change_statements_only(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2015 Edouard-Leon Scott de Martinville."
+                    ],
+                    "holders": []
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": []
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_copyright_diff(test_delta)
+
+        assert test_delta.score == 20
+        assert len(test_delta.factors) == 0
+        assert 'copyright change' not in test_delta.factors
+
+    def test_determine_copyright_diff_copyright_info_added(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "copyrights": []
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_copyright_diff(test_delta)
+
+        assert test_delta.score == 30
+        assert len(test_delta.factors) == 1
+        assert 'copyright info added' in test_delta.factors
+
+    def test_determine_copyright_diff_copyright_info_removed(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "copyrights": []
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_copyright_diff(test_delta)
+
+        assert test_delta.score == 30
+        assert len(test_delta.factors) == 1
+        assert 'copyright info removed' in test_delta.factors
+
+    def test_determine_copyright_diff_one_copyright_added(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                },
+                {
+                    "statements": [
+                        "Copyright (c) 2015 Edouard-Leon Scott de Martinville."
+                    ],
+                    "holders": [
+                        "Edouard-Leon Scott de Martinville."
+                    ]
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_copyright_diff(test_delta)
+
+        assert test_delta.score == 25
+        assert len(test_delta.factors) == 1
+        assert 'copyright change' in test_delta.factors
+
+    def test_determine_copyright_diff_one_copyright_removed(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                },
+                {
+                    "statements": [
+                        "Copyright (c) 2015 Edouard-Leon Scott de Martinville."
+                    ],
+                    "holders": [
+                        "Edouard-Leon Scott de Martinville."
+                    ]
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_copyright_diff(test_delta)
+
+        assert test_delta.score == 25
+        assert len(test_delta.factors) == 1
+        assert 'copyright change' in test_delta.factors
+
+    def test_determine_lic_copy_diffs_copyright_and_license_info_added(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [],
+            "copyrights": []
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+        utils.determine_copyright_diff(test_delta)
+
+        expected_factors = [
+            'license info added',
+            'copyleft added',
+            'copyright info added'
+        ]
+
+        assert test_delta.score == 70
+        assert len(test_delta.factors) == 3
+        for factor in expected_factors:
+            assert factor in test_delta.factors
+
+    def test_determine_lic_copy_diffs_copyright_and_license_info_removed(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [],
+            "copyrights": []
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+        utils.determine_copyright_diff(test_delta)
+
+        expected_factors = [
+            'license info removed',
+            'copyright info removed'
+        ]
+
+        assert test_delta.score == 45
+        assert len(test_delta.factors) == 2
+        for factor in expected_factors:
+            assert factor in test_delta.factors
+
+    def test_determine_lic_copy_diffs_copyright_info_added_license_info_removed(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ],
+            "copyrights": []
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+        utils.determine_copyright_diff(test_delta)
+
+        expected_factors = [
+            'license info removed',
+            'copyright info added'
+        ]
+
+        assert test_delta.score == 45
+        assert len(test_delta.factors) == 2
+        for factor in expected_factors:
+            assert factor in test_delta.factors
+
+    def test_determine_lic_copy_diffs_license_info_added_copyright_info_removed(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ],
+            "copyrights": []
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+        utils.determine_copyright_diff(test_delta)
+
+        expected_factors = [
+            'license info added',
+            'copyleft added',
+            'copyright info removed'
+        ]
+
+        assert test_delta.score == 70
+        assert len(test_delta.factors) == 3
+        for factor in expected_factors:
+            assert factor in test_delta.factors
+
+    def test_determine_lic_copy_diffs_copyright_change_no_license_change(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                },
+                {
+                    "statements": [
+                        "Copyright (c) 2015 Edouard-Leon Scott de Martinville."
+                    ],
+                    "holders": [
+                        "Edouard-Leon Scott de Martinville."
+                    ]
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+        utils.determine_copyright_diff(test_delta)
+
+        assert test_delta.score == 25
+        assert len(test_delta.factors) == 1
+        assert 'copyright change' in test_delta.factors
+
+    def test_determine_lic_copy_diffs_license_change_no_copyright_change(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                },
+                {
+                    "key": "gpl-2.0",
+                    "score": 70.0,
+                    "short_name": "GPL 2.0",
+                    "category": "Copyleft"
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+        test_file_old = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a_modified',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+        utils.determine_copyright_diff(test_delta)
+
+        expected_factors = [
+            'license change',
+            'copyleft added'
+        ]
+
+        assert test_delta.score == 50
+        assert len(test_delta.factors) == 2
+        for factor in expected_factors:
+            assert factor in test_delta.factors
 
     def test_align_trees_simple(self):
         test_scan_new = self.get_test_loc('utils/align-trees-simple-new.json')

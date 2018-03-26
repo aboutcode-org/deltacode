@@ -33,6 +33,70 @@ import os
 from commoncode import paths
 
 
+def determine_license_diff(delta, unique_categories):
+    """
+    Increase the Delta object's 'score' attribute and add one or more
+    appropriate categories to its 'factors' attribute if there has been a
+    license change and depending on the nature of that change.
+    """
+    if not delta.is_modified():
+        return
+
+    if not delta.new_file.has_licenses() and delta.old_file.has_licenses():
+        delta.update(15, 'license info removed')
+        return
+
+    new_licenses = delta.new_file.licenses or []
+    old_licenses = delta.old_file.licenses or []
+
+    new_categories = set(license.category for license in new_licenses)
+    old_categories = set(license.category for license in old_licenses)
+
+    if delta.new_file.has_licenses() and not delta.old_file.has_licenses():
+        delta.update(20, 'license info added')
+        # no license ==> 'Copyleft Limited'or higher
+        for category in new_categories:
+            if category in unique_categories:
+                delta.update(20, category.lower() + ' added')
+        return
+
+    new_keys = set(license.key for license in new_licenses)
+    old_keys = set(license.key for license in old_licenses)
+
+    if new_keys != old_keys:
+        delta.update(10, 'license change')
+        for category in new_categories - old_categories:
+            # 'Permissive' or 'Public Domain' ==> 'Copyleft Limited' or higher
+            if len(old_categories & unique_categories) == 0 and category in unique_categories:
+                delta.update(20, category.lower() + ' added')
+
+
+def determine_copyright_diff(delta):
+    """
+    Increase the Delta object's 'score' attribute and add one or more
+    appropriate categories to its 'factors' attribute if there has been a
+    copyright change and depending on the nature of that change.
+    """
+    if not delta.is_modified():
+        return
+
+    new_copyrights = delta.new_file.copyrights or []
+    old_copyrights = delta.old_file.copyrights or []
+
+    if delta.new_file.has_copyrights() and not delta.old_file.has_copyrights():
+        delta.update(10, 'copyright info added')
+        return
+    if not delta.new_file.has_copyrights() and delta.old_file.has_copyrights():
+        delta.update(10, 'copyright info removed')
+        return
+
+    new_holders = set(holder for copyright in new_copyrights for holder in copyright.holders)
+    old_holders = set(holder for copyright in old_copyrights for holder in copyright.holders)
+
+    if new_holders != old_holders:
+        delta.update(5, 'copyright change')
+
+
 def collect_errors(deltacode):
     errors = []
     errors.extend(deltacode.new.errors)
