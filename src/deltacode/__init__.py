@@ -191,7 +191,7 @@ class DeltaCode(object):
         in a Delta object and change the Delta object's 'score' attribute --
         and add one or more appropriate categories (e.g., 'license change',
         'copyleft added') to the Delta object's 'factors' attribute -- if there
-        has been a license change and depending on the nature of that change.
+        has been a license change.
         """
         # TODO: Figure out the best way to handle this.
         unique_categories = set([
@@ -212,8 +212,7 @@ class DeltaCode(object):
         in a Delta object and change the Delta object's 'score' attribute --
         and add an appropriate category (e.g., 'copyright info removed', 'copyright
         info added' or 'copyright change') to the Delta object's 'factors'
-        attribute -- if there has been a copyright change and depending on the
-        nature of that change.
+        attribute -- if there has been a copyright change.
         """
         for delta in self.deltas:
             utils.determine_copyright_diff(delta)

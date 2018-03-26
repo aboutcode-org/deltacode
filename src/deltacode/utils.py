@@ -34,6 +34,11 @@ from commoncode import paths
 
 
 def determine_license_diff(delta, unique_categories):
+    """
+    Increase the Delta object's 'score' attribute and add one or more
+    appropriate categories to its 'factors' attribute if there has been a
+    license change and depending on the nature of that change.
+    """
     if not delta.is_modified():
         return
 
@@ -67,6 +72,11 @@ def determine_license_diff(delta, unique_categories):
 
 
 def determine_copyright_diff(delta):
+    """
+    Increase the Delta object's 'score' attribute and add one or more
+    appropriate categories to its 'factors' attribute if there has been a
+    copyright change and depending on the nature of that change.
+    """
     if not delta.is_modified():
         return
 
