@@ -415,7 +415,11 @@ class TestCLI(FileBasedTesting):
 
         assert json_result.get('deltacode_notice') == notice
 
-        options =  {'--all-delta-types': True}
+        options =  {
+            'new_scan_path': new_scan,
+            'old_scan_path': old_scan,
+            '--all-delta-types': True
+        }
 
         assert json_result.get('deltacode_options') == options
 
@@ -569,7 +573,11 @@ class TestCLI(FileBasedTesting):
 
         assert json_result.get('deltacode_notice') == notice
 
-        options =  {'--all-delta-types': False}
+        options =  {
+            'new_scan_path': new_scan,
+            'old_scan_path': old_scan,
+            '--all-delta-types': False
+        }
 
         assert json_result.get('deltacode_options') == options
 

@@ -100,6 +100,8 @@ def cli(new, old, csv_file, json_file, all_delta_types):
     """
     # retrieve the option selections
     options = OrderedDict([
+        ('new_scan_path', new),
+        ('old_scan_path', old),
         ('--all-delta-types', all_delta_types)
     ])
 
