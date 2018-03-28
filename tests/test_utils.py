@@ -654,6 +654,73 @@ class TestUtils(FileBasedTesting):
         assert len(test_delta.factors) == 1
         assert 'license change' in test_delta.factors
 
+    def test_determine_license_diff_file_added_permissive_license(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(100, test_file_new, None)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+
+        assert test_delta.score == 120
+        assert len(test_delta.factors) == 1
+
+        assert 'license info added' in test_delta.factors
+
+    def test_determine_license_diff_file_added_commercial_and_copyleft_licenses(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "commercial-license",
+                    "score": 55.0,
+                    "short_name": "Commercial License",
+                    "category": "Commercial",
+                    "owner": "Unspecified"
+                },
+                {
+                    "key": "adapt-1.0",
+                    "score": 15.0,
+                    "short_name": "APL 1.0",
+                    "category": "Copyleft",
+                    "owner": "OSI - Open Source Initiative"
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(100, test_file_new, None)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+
+        assert test_delta.score == 160
+        assert len(test_delta.factors) == 3
+
+        assert 'license info added' in test_delta.factors
+
+        expected_factors = [
+            'license info added',
+            'commercial added',
+            'copyleft added'
+        ]
+
+        for factor in expected_factors:
+            assert factor in test_delta.factors
+
     def test_determine_copyright_diff_empty(self):
         test_delta = deltacode.Delta()
 
@@ -1016,6 +1083,32 @@ class TestUtils(FileBasedTesting):
         assert len(test_delta.factors) == 1
         assert 'copyright change' in test_delta.factors
 
+    def test_determine_copyright_diff_file_added_one_copyright(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(100, test_file_new, None)
+
+        utils.determine_copyright_diff(test_delta)
+
+        assert test_delta.score == 110
+        assert len(test_delta.factors) == 1
+        assert 'copyright info added' in test_delta.factors
+
     def test_determine_lic_copy_diffs_copyright_and_license_info_added(self):
         test_file_new = models.File({
             'path':'/test/path.txt',
@@ -1349,6 +1442,98 @@ class TestUtils(FileBasedTesting):
 
         assert test_delta.score == 50
         assert len(test_delta.factors) == 2
+        for factor in expected_factors:
+            assert factor in test_delta.factors
+
+    def test_determine_lic_copy_diffs_file_added_copyright_and_permissive_license(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(100, test_file_new, None)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+        utils.determine_copyright_diff(test_delta)
+
+        expected_factors = [
+            'license info added',
+            'copyright info added'
+        ]
+
+        assert test_delta.score == 130
+        assert len(test_delta.factors) == 2
+        for factor in expected_factors:
+            assert factor in test_delta.factors
+
+    def test_determine_lic_copy_diffs_file_added_copyright_and_commercial_and_copyleft_licenses(self):
+        test_file_new = models.File({
+            'path':'/test/path.txt',
+            'name': 'path.txt',
+            'sha1': 'a',
+            'original_path': '',
+            "licenses": [
+                {
+                    "key": "commercial-license",
+                    "score": 55.0,
+                    "short_name": "Commercial License",
+                    "category": "Commercial",
+                    "owner": "Unspecified"
+                },
+                {
+                    "key": "adapt-1.0",
+                    "score": 15.0,
+                    "short_name": "APL 1.0",
+                    "category": "Copyleft",
+                    "owner": "OSI - Open Source Initiative"
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017-2018 Francois Hennebique and others."
+                    ],
+                    "holders": [
+                        "Francois Hennebique and others."
+                    ]
+                }
+            ]
+        })
+
+        test_delta = deltacode.Delta(100, test_file_new, None)
+
+        utils.determine_license_diff(test_delta, unique_categories)
+        utils.determine_copyright_diff(test_delta)
+
+        expected_factors = [
+            'license info added',
+            'commercial added',
+            'copyleft added',
+            'copyright info added'
+        ]
+
+        assert test_delta.score == 170
+        assert len(test_delta.factors) == 4
         for factor in expected_factors:
             assert factor in test_delta.factors
 

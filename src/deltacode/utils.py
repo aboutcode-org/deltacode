@@ -35,10 +35,22 @@ from commoncode import paths
 
 def determine_license_diff(delta, unique_categories):
     """
-    Increase the Delta object's 'score' attribute and add one or more
-    appropriate categories to its 'factors' attribute if there has been a
-    license change and depending on the nature of that change.
+    Increase an 'added' or 'modified' Delta object's 'score' attribute and add
+    one or more appropriate categories to its 'factors' attribute if there has
+    been a license change and depending on the nature of that change.
     """
+    if delta.is_added():
+        new_licenses = delta.new_file.licenses or []
+        new_categories = set(license.category for license in new_licenses)
+
+        if delta.new_file.has_licenses():
+            delta.update(20, 'license info added')
+            # no license ==> 'Copyleft Limited'or higher
+            for category in new_categories:
+                if category in unique_categories:
+                    delta.update(20, category.lower() + ' added')
+            return
+
     if not delta.is_modified():
         return
 
@@ -73,10 +85,15 @@ def determine_license_diff(delta, unique_categories):
 
 def determine_copyright_diff(delta):
     """
-    Increase the Delta object's 'score' attribute and add one or more
-    appropriate categories to its 'factors' attribute if there has been a
-    copyright change and depending on the nature of that change.
+    Increase an 'added' or 'modified' Delta object's 'score' attribute and add
+    one or more appropriate categories to its 'factors' attribute if there has
+    been a copyright change and depending on the nature of that change.
     """
+    if delta.is_added():
+        if delta.new_file.has_copyrights():
+            delta.update(10, 'copyright info added')
+            return
+
     if not delta.is_modified():
         return
 

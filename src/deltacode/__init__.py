@@ -282,6 +282,13 @@ class Delta(object):
                 self.old_file.path == self.new_file.path):
             return True
 
+    def is_added(self):
+        """
+        Identify a Delta object reflecting the addition of a File.
+        """
+        if not self.old_file and self.new_file:
+            return True
+
     def to_dict(self):
         """
         Return an OrderedDict comprising the 'factors', 'score' and new and old

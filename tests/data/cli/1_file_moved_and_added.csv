@@ -1,4 +1,4 @@
 Factors,Score,Path,Name,Type,Size,Old Path
-added,100,b/a4.py,a4.py,file,200,
-added,100,c/a4.py,a4.py,file,200,
+added license info added copyright info added,130,b/a4.py,a4.py,file,200,
+added license info added copyright info added,130,c/a4.py,a4.py,file,200,
 removed,0,a/a4.py,a4.py,file,200,
