@@ -204,7 +204,7 @@ class DeltaCode(object):
         ])
 
         for delta in self.deltas:
-            utils.determine_license_diff(delta, unique_categories)
+            utils.update_from_license_info(delta, unique_categories)
 
     def copyright_diff(self):
         """
@@ -215,7 +215,7 @@ class DeltaCode(object):
         attribute -- if there has been a copyright change.
         """
         for delta in self.deltas:
-            utils.determine_copyright_diff(delta)
+            utils.update_from_copyright_info(delta)
 
     def index_deltas(self, index_key='path', delta_list=[]):
         """
@@ -277,9 +277,16 @@ class Delta(object):
         other than 'unmodified' and return True if all but 'unmodified' are
         ruled out.
         """
-        if (self.old_file and self.new_file and
-                self.old_file.sha1 == self.new_file.sha1 and
-                self.old_file.path == self.new_file.path):
+        if (self.new_file and self.old_file and
+                self.new_file.sha1 == self.old_file.sha1 and
+                self.new_file.path == self.old_file.path):
+            return True
+
+    def is_added(self):
+        """
+        Identify a Delta object reflecting the addition of a File.
+        """
+        if self.new_file and not self.old_file:
             return True
 
     def to_dict(self):

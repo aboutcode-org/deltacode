@@ -33,15 +33,43 @@ import os
 from commoncode import paths
 
 
-def determine_license_diff(delta, unique_categories):
+def update_from_license_info(delta, unique_categories):
     """
-    Increase the Delta object's 'score' attribute and add one or more
-    appropriate categories to its 'factors' attribute if there has been a
-    license change and depending on the nature of that change.
+    Increase an 'added' or 'modified' Delta object's 'score' attribute and add
+    one or more appropriate categories to its 'factors' attribute if there has
+    been a license change and depending on the nature of that change.
     """
-    if not delta.is_modified():
+    if delta.is_added():
+        update_added_from_license_info(delta, unique_categories)
+
+    if delta.is_modified():
+        update_modified_from_license_info(delta, unique_categories)
+
+
+def update_added_from_license_info(delta, unique_categories):
+    """
+    Increase an 'added' Delta object's 'score' attribute and add
+    one or more categories to its 'factors' attribute if there has
+    been a license change.
+    """
+    new_licenses = delta.new_file.licenses or []
+    new_categories = set(license.category for license in new_licenses)
+
+    if delta.new_file.has_licenses():
+        delta.update(20, 'license info added')
+        # no license ==> 'Copyleft Limited'or higher
+        for category in new_categories:
+            if category in unique_categories:
+                delta.update(20, category.lower() + ' added')
         return
 
+
+def update_modified_from_license_info(delta, unique_categories):
+    """
+    Increase a 'modified' Delta object's 'score' attribute and add
+    one or more categories to its 'factors' attribute if there has
+    been a license change.
+    """
     if not delta.new_file.has_licenses() and delta.old_file.has_licenses():
         delta.update(15, 'license info removed')
         return
@@ -71,15 +99,36 @@ def determine_license_diff(delta, unique_categories):
                 delta.update(20, category.lower() + ' added')
 
 
-def determine_copyright_diff(delta):
+def update_from_copyright_info(delta):
     """
-    Increase the Delta object's 'score' attribute and add one or more
-    appropriate categories to its 'factors' attribute if there has been a
-    copyright change and depending on the nature of that change.
+    Increase an 'added' or 'modified' Delta object's 'score' attribute and add
+    one or more appropriate categories to its 'factors' attribute if there has
+    been a copyright change and depending on the nature of that change.
     """
-    if not delta.is_modified():
+    if delta.is_added():
+        update_added_from_copyright_info(delta)
+
+    if delta.is_modified():
+        update_modified_from_copyright_info(delta)
+
+
+def update_added_from_copyright_info(delta):
+    """
+    Increase an 'added' Delta object's 'score' attribute and add
+    one or more categories to its 'factors' attribute if there has
+    been a copyright change.
+    """
+    if delta.new_file.has_copyrights():
+        delta.update(10, 'copyright info added')
         return
 
+
+def update_modified_from_copyright_info(delta):
+    """
+    Increase a 'modified' Delta object's 'score' attribute and add
+    one or more categories to its 'factors' attribute if there has
+    been a copyright change.
+    """
     new_copyrights = delta.new_file.copyrights or []
     old_copyrights = delta.old_file.copyrights or []
 

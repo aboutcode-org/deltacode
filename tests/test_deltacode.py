@@ -1463,7 +1463,7 @@ class TestDeltacode(FileBasedTesting):
         deltas_object = deltacode_object.deltas
 
         expected = [
-            ['added'],
+            ['added', 'license info added', 'copyright info added'],
             ['modified'],
             ['moved'],
             ['removed'],
