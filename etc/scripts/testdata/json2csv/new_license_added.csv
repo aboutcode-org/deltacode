@@ -1,0 +1,4 @@
+Score,Factors,Path,Name,Type,Size,Old Path
+20,modified,some/path/c/c1.py,c1.py,file,300,
+30,modified license change,some/path/b/b1.py,b1.py,file,300,
+50,modified license change copyleft added,some/path/a/a1.py,a1.py,file,300,

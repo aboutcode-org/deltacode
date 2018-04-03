@@ -1,8 +1,11 @@
 [
     {
-        "score": "",
-        "factors": "",
-        "new": "",
-        "old": ""
+        "Score": "",
+        "Factors": "",
+        "Path": "",
+        "Name": "",
+        "Type": "",
+        "Size": "",
+        "Old Path": ""
     }
 ]

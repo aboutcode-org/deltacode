@@ -63,11 +63,15 @@ def json_delta_to_csv(json_input, csv_output):
     Convert a DeltaCode JSON output file to a CSV.
     """
     delta_results = load_deltas(json_input)
+
     headers = OrderedDict([
-        ('score', []),
-        ('factors', []),
-        ('new', []),
-        ('old', []),
+        ('Score', []),
+        ('Factors', []),
+        ('Path', []),
+        ('Name', []),
+        ('Type', []),
+        ('Size', []),
+        ('Old Path', []),
     ])
 
     rows = list(flatten_deltas(delta_results, headers))
@@ -82,36 +86,36 @@ def json_delta_to_csv(json_input, csv_output):
 def flatten_deltas(deltas, headers):
     if len(deltas) < 1:
         yield OrderedDict([
-            ('score', ''),
-            ('factors', ''),
-            ('new', ''),
-            ('old', ''),
+            ('Score', ''),
+            ('Factors', ''),
+            ('Path', ''),
+            ('Name', ''),
+            ('Type', ''),
+            ('Size', ''),
+            ('Old Path', ''),
         ])
 
     for d in deltas:
-        score = d.get('score')
-        factors = d.get('factors')
-
-        if d.get('new'):
-            new = d.get('new').get('path')
-        else:
-            new = ''
-        if d.get('old'):
-            old = d.get('old').get('path')
-        else:
-            old = ''
+        delta_score = d.get('score')
+        delta_factors = d.get('factors')
+        delta_path = d.get('old').get('path') if 'removed' in delta_factors else d.get('new').get('path')
+        delta_name = d.get('old').get('name') if 'removed' in delta_factors else d.get('new').get('name')
+        delta_type = d.get('old').get('type') if 'removed' in delta_factors else d.get('new').get('type')
+        delta_size = d.get('old').get('size') if 'removed' in delta_factors else d.get('new').get('size')
+        delta_old_path = d.get('old').get('path') if 'moved' in delta_factors else ''
 
         yield OrderedDict([
-            ('score', score),
-            ('factors', ' '.join(factors)),
-            # ('factors', factors),
-            ('new', new),
-            ('old', old),
+            ('Score', delta_score),
+            ('Factors', ' '.join(delta_factors)),
+            ('Path', delta_path),
+            ('Name', delta_name),
+            ('Type', delta_type),
+            ('Size', delta_size),
+            ('Old Path', delta_old_path),
         ])
 
 
 @click.command()
-# @click.argument('json_input', type=click.Path(exists=True, readable=True))
 @click.argument('json_input', type=click.Path(exists=True, readable=True))
 @click.argument('csv_output', type=click.File('wb', lazy=False))
 @click.help_option('-h', '--help')

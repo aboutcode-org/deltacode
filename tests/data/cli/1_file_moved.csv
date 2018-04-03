@@ -1,9 +1,0 @@
-Factors,Score,Path,Name,Type,Size,Old Path
-moved,0,b/a4.py,a4.py,file,200,a/a4.py
-unmodified,0,a/a3.py,a3.py,file,200,
-unmodified,0,b/b4.py,b4.py,file,200,
-unmodified,0,a/a2.py,a2.py,file,200,
-unmodified,0,b/b2.py,b2.py,file,200,
-unmodified,0,b/b1.py,b1.py,file,200,
-unmodified,0,b/b3.py,b3.py,file,200,
-unmodified,0,a/a1.py,a1.py,file,200,
