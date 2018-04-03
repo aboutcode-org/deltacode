@@ -27,40 +27,12 @@ from __future__ import absolute_import
 
 from collections import OrderedDict
 
-import csv
-
 import click
 import simplejson
 
 from deltacode import DeltaCode
 from deltacode import __version__
 from deltacode.utils import deltas, get_notice, collect_errors
-
-
-# FIXME: update the function argument delta to deltacode
-def write_csv(delta, result_file, all_delta_types=False):
-    """
-    Using the DeltaCode object, create a .csv file containing the primary
-    information from the Delta objects.  Omit all unmodified Delta objects --
-    identified by a 'score' of 0 -- unless the user selects the '-a'/'--all'
-    option.
-    """
-    with open(result_file, 'wb') as out:
-        csv_out = csv.writer(out)
-        csv_out.writerow(['Factors', 'Score', 'Path', 'Name', 'Type', 'Size', 'Old Path'])
-        for row in [(
-            ' '.join(f.factors),
-            f.score,
-            f.old_file.path if 'removed' in f.factors else f.new_file.path,
-            f.old_file.name if 'removed' in f.factors else f.new_file.name,
-            f.old_file.type if 'removed' in f.factors else f.new_file.type,
-            f.old_file.size if 'removed' in f.factors else f.new_file.size,
-            f.old_file.path if 'moved' in f.factors else '')
-                for f in delta.deltas]:
-                    if all_delta_types is True:
-                        csv_out.writerow(row)
-                    elif row[0] != 'unmodified':
-                        csv_out.writerow(row)
 
 
 def write_json(deltacode, outfile, all_delta_types=False):
@@ -87,16 +59,15 @@ def write_json(deltacode, outfile, all_delta_types=False):
 @click.help_option('-h', '--help')
 @click.option('-n', '--new', required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Identify the path to the "new" scan file')
 @click.option('-o', '--old', required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Identify the path to the "old" scan file')
-@click.option('-c', '--csv-file', prompt=False, type=click.Path(exists=False), help='Identify the path to the .csv output file')
 @click.option('-j', '--json-file', prompt=False, default='-', type=click.File(mode='wb', lazy=False), help='Identify the path to the .json output file')
 @click.option('-a', '--all-delta-types', is_flag=True, help="Include unmodified files as well as all changed files in the .json or .csv output.  If not selected, only changed files are included.")
-def cli(new, old, csv_file, json_file, all_delta_types):
+def cli(new, old, json_file, all_delta_types):
     """
     Identify the changes that need to be made to the 'old'
     scan file (-o or --old) in order to generate the 'new' scan file (-n or
-    --new).  Write the results to a .csv file (-c or --csv-file) or a
-    .json file (-j or --json-file) at a user-designated location.  If no file
-    option is selected, print the JSON results to the console.
+    --new).  Write the results to a .json file (-j or --json-file) at a
+    user-designated location.  If no file option is selected, print the JSON
+    results to the console.
     """
     # retrieve the option selections
     options = OrderedDict([
@@ -108,9 +79,5 @@ def cli(new, old, csv_file, json_file, all_delta_types):
     # do the delta
     deltacode = DeltaCode(new, old, options)
 
-    # output to csv
-    if csv_file:
-        write_csv(deltacode, csv_file, all_delta_types)
     # generate JSON output
-    else:
-        write_json(deltacode, json_file, all_delta_types)
+    write_json(deltacode, json_file, all_delta_types)

@@ -59,9 +59,9 @@ class DeltaCode(object):
             self.license_diff()
             self.copyright_diff()
             # Sort deltas by score, descending, i.e., high > low, and then by
-            # factors, alphabetically.
-            self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
+            # factors, alphabetically.  Run the least significant sort first.
             self.deltas.sort(key=lambda Delta: Delta.factors, reverse=False)
+            self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
 
     def align_scans(self):
         """
