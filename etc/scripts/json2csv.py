@@ -95,23 +95,22 @@ def flatten_deltas(deltas, headers):
             ('Old Path', ''),
         ])
 
-    for d in deltas:
-        delta_score = d.get('score')
-        delta_factors = d.get('factors')
-        delta_path = d.get('old').get('path') if 'removed' in delta_factors else d.get('new').get('path')
-        delta_name = d.get('old').get('name') if 'removed' in delta_factors else d.get('new').get('name')
-        delta_type = d.get('old').get('type') if 'removed' in delta_factors else d.get('new').get('type')
-        delta_size = d.get('old').get('size') if 'removed' in delta_factors else d.get('new').get('size')
-        delta_old_path = d.get('old').get('path') if 'moved' in delta_factors else ''
+    for delta in deltas:
+        new, old = delta.get('new'), delta.get('old')
+        if new is None:
+            new = {}
+        if old is None:
+            old = {}
 
         yield OrderedDict([
-            ('Score', delta_score),
-            ('Factors', ' '.join(delta_factors)),
-            ('Path', delta_path),
-            ('Name', delta_name),
-            ('Type', delta_type),
-            ('Size', delta_size),
-            ('Old Path', delta_old_path),
+            ('Score', delta.get('score')),
+            ('Factors', ' '.join(delta.get('factors'))),
+            ('Path', new.get('path', old.get('path'))),
+            ('Name', new.get('name', old.get('name'))),
+            ('Type', new.get('type', old.get('type'))),
+            ('Size', new.get('size', old.get('size'))),
+            # TODO: Need better way to ID 'moved' deltas.
+            ('Old Path', old.get('path') if 'moved' in delta.get('factors') else ''),
         ])
 
 
