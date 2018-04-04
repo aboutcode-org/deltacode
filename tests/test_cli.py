@@ -107,6 +107,8 @@ class TestCLI(FileBasedTesting):
 
         assert json_result.get('deltacode_errors') == []
 
+        assert json_result.get('deltas_count') == 8
+
         moved_expected = {
             "factors": ['moved'],
             "score": 0,
@@ -265,6 +267,8 @@ class TestCLI(FileBasedTesting):
 
         assert json_result.get('deltacode_errors') == []
 
+        assert json_result.get('deltas_count') == 1
+
         moved_expected = {
             "factors": ["moved"],
             "score": 0,
@@ -413,6 +417,32 @@ class TestCLI(FileBasedTesting):
         assert '"name": "a3.py"' not in result.output
         assert '"sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9"' not in result.output
         assert '"original_path": "1_file_moved_new/a/a3.py"' not in result .output
+
+    def test_json_deltas_count_all_selected(self):
+        new_scan = self.get_test_loc('cli/scan_sorted01_new.json')
+        old_scan = self.get_test_loc('cli/scan_sorted01_old.json')
+
+        result_file = self.get_temp_file('json')
+
+        runner = CliRunner()
+        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file, '-a'])
+
+        json_result = json.load(open(result_file))
+
+        assert json_result.get('deltas_count') == 7
+
+    def test_json_deltas_count_all_not_selected(self):
+        new_scan = self.get_test_loc('cli/scan_sorted01_new.json')
+        old_scan = self.get_test_loc('cli/scan_sorted01_old.json')
+
+        result_file = self.get_temp_file('json')
+
+        runner = CliRunner()
+        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file])
+
+        json_result = json.load(open(result_file))
+
+        assert json_result.get('deltas_count') == 4
 
     def test_help(self):
         runner = CliRunner()
