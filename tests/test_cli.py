@@ -422,6 +422,13 @@ class TestCLI(FileBasedTesting):
         assert 'Identify the changes that need to be made' in result.output
         assert 'If no file option is selected' in result.output
         assert 'Include unmodified files' in result.output
+        assert '--version' in result.output
+
+    def test_version(self):
+        runner = CliRunner()
+        result = runner.invoke(cli.cli, ['--version'])
+
+        assert 'DeltaCode version' in result.output
 
     def test_empty(self):
         runner = CliRunner()

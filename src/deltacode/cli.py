@@ -55,8 +55,16 @@ def write_json(deltacode, outfile, all_delta_types=False):
     outfile.write('\n')
 
 
+def print_version(ctx, param, value):
+    if not value or ctx.resilient_parsing:
+        return
+    click.echo('DeltaCode version ' + __version__)
+    ctx.exit()
+
+
 @click.command()
 @click.help_option('-h', '--help')
+@click.option('--version', is_flag=True, is_eager=True, expose_value=False, callback=print_version, help='Show the version and exit.')
 @click.option('-n', '--new', required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Identify the path to the "new" scan file')
 @click.option('-o', '--old', required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Identify the path to the "old" scan file')
 @click.option('-j', '--json-file', prompt=False, default='-', type=click.File(mode='wb', lazy=False), help='Identify the path to the .json output file')
