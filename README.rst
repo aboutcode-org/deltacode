@@ -59,11 +59,11 @@ Run a sample delta
 
     ./deltacode -n samples/samples.json -o samples/samples.json
 
-Run a simple delta saved to the `output.csv` file::
+Run a simple delta saved to the `output.json` file::
 
-    ./deltacode -n samples/samples.json -o samples/samples.json -c output.csv
+    ./deltacode -n samples/samples.json -o samples/samples.json -j output.json
 
-Then open `output.csv` to view the delta results.
+Then open `output.json` to view the delta results.
 
 To get DeltaCode results for your codebase, install
 `scancode-toolkit <https://github.com/nexB/scancode-toolkit>`_ and generate a
