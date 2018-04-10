@@ -69,7 +69,7 @@ def print_version(ctx, param, value):
 @click.option('-n', '--new', required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Identify the path to the "new" scan file')
 @click.option('-o', '--old', required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Identify the path to the "old" scan file')
 @click.option('-j', '--json-file', prompt=False, default='-', type=click.File(mode='wb', lazy=False), help='Identify the path to the .json output file')
-@click.option('-a', '--all-delta-types', is_flag=True, help="Include unmodified files as well as all changed files in the .json or .csv output.  If not selected, only changed files are included.")
+@click.option('-a', '--all-delta-types', is_flag=True, help="Include unmodified files as well as all changed files in the .json output.  If not selected, only changed files are included.")
 def cli(new, old, json_file, all_delta_types):
     """
     Identify the changes that need to be made to the 'old'
@@ -80,8 +80,8 @@ def cli(new, old, json_file, all_delta_types):
     """
     # retrieve the option selections
     options = OrderedDict([
-        ('new_scan_path', new),
-        ('old_scan_path', old),
+        ('--new', new),
+        ('--old', old),
         ('--all-delta-types', all_delta_types)
     ])
 
