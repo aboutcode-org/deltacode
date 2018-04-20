@@ -31,6 +31,8 @@ import click
 import simplejson
 
 from deltacode import DeltaCode
+# Test the VirtualCodebase
+from deltacode.virtualcodebase import DeltaCode_VC
 from deltacode import __version__
 from deltacode.utils import deltas, get_notice, collect_errors
 
@@ -86,7 +88,9 @@ def cli(new, old, json_file, all_delta_types):
     ])
 
     # do the delta
-    deltacode = DeltaCode(new, old, options)
+    # deltacode = DeltaCode(new, old, options)
+    # Test the VirtualCodebase:
+    deltacode = DeltaCode_VC(new, old, options)
 
     # generate JSON output
     write_json(deltacode, json_file, all_delta_types)
