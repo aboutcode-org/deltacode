@@ -50,6 +50,9 @@ class DeltaCode_VC(object):
         # self.new_codebase = VirtualCodebase(new_path, {})
         # self.old_codebase = VirtualCodebase(old_path, {})
 
+        self.new_codebase = None
+        self.old_codebase = None
+
         try:
             self.new_codebase = VirtualCodebase(new_path, {})
             self.old_codebase = VirtualCodebase(old_path, {})
@@ -57,14 +60,14 @@ class DeltaCode_VC(object):
             self.errors.append('KeyError: legacy ScanCode version')
             print('\n\nOOPS -- KeyError!!!\n')
 
-        print('\n\nself.new_codebase = {}\n'.format(self.new_codebase))
+        # print('\n\nself.new_codebase = {}\n'.format(self.new_codebase))
 
         # if self.new.path != '' and self.old.path != '':
         if self.new_codebase is not None and self.old_codebase is not None:
             self.determine_delta()
-            self.determine_moved()
-            self.license_diff()
-            self.copyright_diff()
+            # self.determine_moved()
+            # self.license_diff()
+            # self.copyright_diff()
             # Sort deltas by score, descending, i.e., high > low, and then by
             # factors, alphabetically.  Run the least significant sort first.
             # self.deltas.sort(key=lambda Delta: Delta.factors, reverse=False)
@@ -88,166 +91,175 @@ class DeltaCode_VC(object):
     #             f.original_path = f.path
 
     def determine_delta(self):
-        """
-        Add to a list of Delta objects that can be sorted by their attributes,
-        e.g., by Delta.score.  Return None if no File objects can be loaded
-        from either scan.
-        """
-        print('\n\nINSIDE DETERMINE_DELTA()\n')
-        # align scan and create our index
-        # 4/12/18  TODO: test whether we want or need this.  For the time being, don't use -- comment out.
-        # self.align_scans()
+        # new_codebase = list(self.new_codebase.walk(topdown=True))
+        # old_codebase = list(self.old_codebase.walk(topdown=True))
+        # print(new_codebase == old_codebase)
 
-        # new_index = self.new.index_files()
-        # old_index = self.old.index_files()
+        # need to look at ways of comparing 2 trees at once, esp for determine_delta
+        # storing deltas preserving uniqueness of Resources -- in our list(s) -- make sure Resource being added is not already in another Delta object in the list, i.e., no duplicate Delta objects
+        # >> or way of comparing 2 directories quickly or 2 Resource objects quickly.
+        # a directory of all unmodified might be returned as a single Delta object at the root level.
 
-        new_index = index_resources(self.new_codebase)
-        old_index = index_resources(self.old_codebase)
+    #     """
+    #     Add to a list of Delta objects that can be sorted by their attributes,
+    #     e.g., by Delta.score.  Return None if no File objects can be loaded
+    #     from either scan.
+    #     """
+    #     print('\n\nINSIDE DETERMINE_DELTA()\n')
+    #     # align scan and create our index
+    #     # 4/12/18  TODO: test whether we want or need this.  For the time being, don't use -- comment out.
+    #     # self.align_scans()
 
-        # print('\n\nnew_index = {}\n'.format(new_index))
-        for resource in new_index:
-            print('\n\nfor resource in new_index, print resource = {}\n'.format(resource))
-            print('\n\nnew_index.get(resource) = {}\n'.format(new_index.get(resource)))
-            print('\n\nself.new_codebase.compute_counts() = {}\n'.format(self.new_codebase.compute_counts()))
-            # print('\n\nresource.compute_counts() = {}\n'.format(resource.compute_counts()))  #  no attribute etc.
+    #     # new_index = self.new.index_files()
+    #     # old_index = self.old.index_files()
 
-        results_new = list(self.new_codebase.walk())
-        print('\n\nself.new_codebase.walk() = {}\n'.format(results_new))
-        resource_index = 0
-        for resource in results_new:
-            print('----------------------------\n')
-            print('for resource in self.new_codebase.walk(), resource = \n\n{}  \n'.format(resource))
-            # print(self.new_codebase.compute_counts()[resource_index])
+    #     new_index = index_resources(self.new_codebase)
+    #     old_index = index_resources(self.old_codebase)
 
-            print('resource_index = {}'.format(resource_index))
-            print('resource.pid = {}'.format(resource.pid))
-            print('resource.rid = {}'.format(resource.rid))
-            print('resource.path = {}'.format(resource.path))
-            print('resource.name = {}'.format(resource.name))
-            print('resource.has_children() = {}'.format(resource.has_children()))
-            print('resource.children_rids = {}'.format(resource.children_rids))
-            print('resource.has_siblings(self.new_codebase) = {}\n'.format(resource.has_siblings(self.new_codebase)))
-            # print('resource.siblings(self.new_codebase) = {}'.format(resource.siblings(self.new_codebase)))
-            resource_has_siblings = resource.has_siblings(self.new_codebase)
-            if resource_has_siblings:
-                resource_siblings = resource.siblings(self.new_codebase)
-                for sibling in resource_siblings:
-                    print('\tsibling.pid = {}'.format(sibling.pid))
-                    print('\tsibling.rid = {}'.format(sibling.rid))
-                    print('\tsibling.path = {}'.format(sibling.path))
-                    print('\tsibling.name = {}\n'.format(sibling.name))
-            else:
-                print('\t==no siblings==\n')
-            print('resource.location = {}'.format(resource.location))
-            print('resource.cache_location = {}'.format(resource.cache_location))
-            print('resource.files_count = {}'.format(resource.files_count))
-            print('resource.dirs_count = {}'.format(resource.dirs_count))
-            print('resource.size_count = {}'.format(resource.size_count))
-            print('resource.is_file = {}'.format(resource.is_file))
-            print('resource.is_filtered = {}'.format(resource.is_filtered))
-            print('resource.date = {}'.format(resource.date))
-            print('resource.size = {}'.format(resource.size))
-            print('len(resource.licenses) = {}'.format(len(resource.licenses)))
-            # TODO: explore the copyrights
-            for license in resource.licenses:
-                print('for license in resource.licenses, license.get(\'key\') = {}'.format(license.get('key')))
-            resource_index += 1  # xxx
-            print('\n----------------------------\n')
+    #     # print('\n\nnew_index = {}\n'.format(new_index))
+    #     for resource in new_index:
+    #         print('\n\nfor resource in new_index, print resource = {}\n'.format(resource))
+    #         print('\n\nnew_index.get(resource) = {}\n'.format(new_index.get(resource)))
+    #         print('\n\nself.new_codebase.compute_counts() = {}\n'.format(self.new_codebase.compute_counts()))
+    #         # print('\n\nresource.compute_counts() = {}\n'.format(resource.compute_counts()))  #  no attribute etc.
 
-        # gathering counts to ensure no files lost or missing from our 'deltas' set
-        new_visited, old_visited = 0, 0
+    #     results_new = list(self.new_codebase.walk())
+    #     print('\n\nself.new_codebase.walk() = {}\n'.format(results_new))
+    #     resource_index = 0
+    #     for resource in results_new:
+    #         print('----------------------------\n')
+    #         print('for resource in self.new_codebase.walk(), resource = \n\n{}  \n'.format(resource))
+    #         # print(self.new_codebase.compute_counts()[resource_index])
 
-        # perform the deltas
-        for path, new_files in new_index.items():
-            for new_file in new_files:
+    #         print('resource_index = {}'.format(resource_index))
+    #         print('resource.pid = {}'.format(resource.pid))
+    #         print('resource.rid = {}'.format(resource.rid))
+    #         print('resource.path = {}'.format(resource.path))
+    #         print('resource.name = {}'.format(resource.name))
+    #         print('resource.has_children() = {}'.format(resource.has_children()))
+    #         print('resource.children_rids = {}'.format(resource.children_rids))
+    #         print('resource.has_siblings(self.new_codebase) = {}\n'.format(resource.has_siblings(self.new_codebase)))
+    #         # print('resource.siblings(self.new_codebase) = {}'.format(resource.siblings(self.new_codebase)))
+    #         resource_has_siblings = resource.has_siblings(self.new_codebase)
+    #         if resource_has_siblings:
+    #             resource_siblings = resource.siblings(self.new_codebase)
+    #             for sibling in resource_siblings:
+    #                 print('\tsibling.pid = {}'.format(sibling.pid))
+    #                 print('\tsibling.rid = {}'.format(sibling.rid))
+    #                 print('\tsibling.path = {}'.format(sibling.path))
+    #                 print('\tsibling.name = {}\n'.format(sibling.name))
+    #         else:
+    #             print('\t==no siblings==\n')
+    #         print('resource.location = {}'.format(resource.location))
+    #         print('resource.cache_location = {}'.format(resource.cache_location))
+    #         print('resource.files_count = {}'.format(resource.files_count))
+    #         print('resource.dirs_count = {}'.format(resource.dirs_count))
+    #         print('resource.size_count = {}'.format(resource.size_count))
+    #         print('resource.is_file = {}'.format(resource.is_file))
+    #         print('resource.is_filtered = {}'.format(resource.is_filtered))
+    #         print('resource.date = {}'.format(resource.date))
+    #         print('resource.size = {}'.format(resource.size))
+    #         print('len(resource.licenses) = {}'.format(len(resource.licenses)))
+    #         # TODO: explore the copyrights
+    #         for license in resource.licenses:
+    #             print('for license in resource.licenses, license.get(\'key\') = {}'.format(license.get('key')))
+    #         resource_index += 1  # xxx
+    #         print('\n----------------------------\n')
 
-                if new_file.type != 'file':
-                    continue
+    #     # gathering counts to ensure no files lost or missing from our 'deltas' set
+    #     new_visited, old_visited = 0, 0
 
-                new_visited += 1
+    #     # perform the deltas
+    #     for path, new_files in new_index.items():
+    #         for new_file in new_files:
 
-                try:
-                    delta_old_files = old_index[path]
-                except KeyError:
-                    # delta = Delta(100, new_file, None)
-                    delta = Delta_VC(100, new_file, None)
-                    delta.factors.append('added')
-                    self.deltas.append(delta)
-                    continue
+    #             if new_file.type != 'file':
+    #                 continue
 
-                # at this point, we have a delta_old_file.
-                # we need to determine wheather this is identical,
-                # or a modification.
-                for f in delta_old_files:
-                    # TODO: make sure sha1 is NOT empty
-                    if new_file.sha1 == f.sha1:
-                        # delta = Delta(0, new_file, f)
-                        delta = Delta_VC(0, new_file, f)
-                        delta.factors.append('unmodified')
-                        self.deltas.append(delta)
-                        continue
-                    else:
-                        # delta = Delta(20, new_file, f)
-                        delta = Delta_VC(20, new_file, f)
-                        delta.factors.append('modified')
-                        self.deltas.append(delta)
+    #             new_visited += 1
 
-        # now time to find the added.
-        for path, old_files in old_index.items():
-            for old_file in old_files:
-                if old_file.type != 'file':
-                    continue
+    #             try:
+    #                 delta_old_files = old_index[path]
+    #             except KeyError:
+    #                 # delta = Delta(100, new_file, None)
+    #                 delta = Delta_VC(100, new_file, None)
+    #                 delta.factors.append('added')
+    #                 self.deltas.append(delta)
+    #                 continue
 
-                old_visited += 1
+    #             # at this point, we have a delta_old_file.
+    #             # we need to determine wheather this is identical,
+    #             # or a modification.
+    #             for f in delta_old_files:
+    #                 # TODO: make sure sha1 is NOT empty
+    #                 if new_file.sha1 == f.sha1:
+    #                     # delta = Delta(0, new_file, f)
+    #                     delta = Delta_VC(0, new_file, f)
+    #                     delta.factors.append('unmodified')
+    #                     self.deltas.append(delta)
+    #                     continue
+    #                 else:
+    #                     # delta = Delta(20, new_file, f)
+    #                     delta = Delta_VC(20, new_file, f)
+    #                     delta.factors.append('modified')
+    #                     self.deltas.append(delta)
 
-                try:
-                    # This file already classified so do nothing
-                    new_index[path]
-                except KeyError:
-                    # delta = Delta(0, None, old_file)
-                    delta = Delta_VC(0, None, old_file)
-                    delta.factors.append('removed')
-                    self.deltas.append(delta)
-                    continue
+    #     # now time to find the added.
+    #     for path, old_files in old_index.items():
+    #         for old_file in old_files:
+    #             if old_file.type != 'file':
+    #                 continue
 
-        # print('\n\nGETTING READY TO CHECK FILES_COUNT\n')
-        # print('\n\ntype(self.new_codebase) = {}\n'.format(type(self.new_codebase)))
-        # results_new = list(self.new_codebase.walk())
-        # print('\n\nresults_new = {}\n'.format(results_new))
+    #             old_visited += 1
 
-        # results_new = list(self.new_codebase.walk())[0]
-        # # print(results_new)
-        # print(help(results_new))
+    #             try:
+    #                 # This file already classified so do nothing
+    #                 new_index[path]
+    #             except KeyError:
+    #                 # delta = Delta(0, None, old_file)
+    #                 delta = Delta_VC(0, None, old_file)
+    #                 delta.factors.append('removed')
+    #                 self.deltas.append(delta)
+    #                 continue
 
-        # print(help(self.new_codebase))
+    #     # print('\n\nGETTING READY TO CHECK FILES_COUNT\n')
+    #     # print('\n\ntype(self.new_codebase) = {}\n'.format(type(self.new_codebase)))
+    #     # results_new = list(self.new_codebase.walk())
+    #     # print('\n\nresults_new = {}\n'.format(results_new))
 
-        test = self.new_codebase.compute_counts()
-        print('test = {}'.format(test))
+    #     # results_new = list(self.new_codebase.walk())[0]
+    #     # # print(results_new)
+    #     # print(help(results_new))
+
+    #     # print(help(self.new_codebase))
+
+    #     test = self.new_codebase.compute_counts()
+    #     print('test = {}'.format(test))
 
 
-        # make sure everything is accounted for
-        # if new_visited != self.new.files_count:
-        # if new_visited != self.new_codebase.files_count:
-            # self.errors.append(
-            #     'DeltaCode Warning: new_visited({}) != new_total({}). Assuming old scancode format.'.format(new_visited, self.new.files_count)
-            # )
+    #     # make sure everything is accounted for
+    #     # if new_visited != self.new.files_count:
+    #     # if new_visited != self.new_codebase.files_count:
+    #         # self.errors.append(
+    #         #     'DeltaCode Warning: new_visited({}) != new_total({}). Assuming old scancode format.'.format(new_visited, self.new.files_count)
+    #         # )
 
-        new_files_count = self.new_codebase.compute_counts()[0]
-        old_files_count = self.old_codebase.compute_counts()[0]
+    #     new_files_count = self.new_codebase.compute_counts()[0]
+    #     old_files_count = self.old_codebase.compute_counts()[0]
 
-        if new_visited != new_files_count:
-            self.errors.append(
-                'DeltaCode Warning: new_visited({}) != new_total({}). Assuming old scancode format.'.format(new_visited, new_files_count)
-            )
+    #     if new_visited != new_files_count:
+    #         self.errors.append(
+    #             'DeltaCode Warning: new_visited({}) != new_total({}). Assuming old scancode format.'.format(new_visited, new_files_count)
+    #         )
 
-        # if old_visited != self.old.files_count:
-            # self.errors.append(
-            #     'DeltaCode Warning: old_visited({}) != old_total({}). Assuming old scancode format.'.format(old_visited, self.old.files_count)
-            # )
-        if old_visited != old_files_count:
-            self.errors.append(
-                'DeltaCode Warning: old_visited({}) != old_total({}). Assuming old scancode format.'.format(old_visited, old_files_count)
-            )
+    #     # if old_visited != self.old.files_count:
+    #         # self.errors.append(
+    #         #     'DeltaCode Warning: old_visited({}) != old_total({}). Assuming old scancode format.'.format(old_visited, self.old.files_count)
+    #         # )
+    #     if old_visited != old_files_count:
+    #         self.errors.append(
+    #             'DeltaCode Warning: old_visited({}) != old_total({}). Assuming old scancode format.'.format(old_visited, old_files_count)
+    #         )
 
     def determine_moved(self):
         """

@@ -44,7 +44,7 @@ class TestVirtualCodebase(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
 
-    def test_vc_loading(self):
+    def test_loading(self):
         new_scan = self.get_test_loc('virtualcodebase/vc_load.json')
         old_scan = self.get_test_loc('virtualcodebase/vc_load.json')
 
@@ -53,7 +53,13 @@ class TestVirtualCodebase(FileBasedTesting):
         assert expected.new_codebase is not None
         print(list(expected.new_codebase.walk())[0])
 
-    def test_vc_1_file_moved(self):
+    def test_determine_delta_all_unmodified(self):
+        new_scan = self.get_test_loc('virtualcodebase/determine_delta_all_unmodified.json')
+        old_scan = self.get_test_loc('virtualcodebase/determine_delta_all_unmodified.json')
+
+        expected = DeltaCode_VC(new_scan, old_scan, {'--all-delta-types': True})
+
+    def test_1_file_moved(self):
         # New scans created 4/11/18 with latest ScanCode version:
         new_scan = self.get_test_loc('virtualcodebase/1_file_moved_new.json')
         old_scan = self.get_test_loc('virtualcodebase/1_file_moved_old.json')
