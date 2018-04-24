@@ -57,10 +57,14 @@ def update_added_from_license_info(delta, unique_categories):
 
     if delta.new_file.has_licenses():
         delta.update(20, 'license info added')
-        # no license ==> 'Copyleft Limited'or higher
+
         for category in new_categories:
+            # no license ==> 'Copyleft Limited'or higher
             if category in unique_categories:
                 delta.update(20, category.lower() + ' added')
+            # no license ==> 'Permissive' or 'Public Domain'
+            else:
+                delta.update(0, category.lower() + ' added')
         return
 
 
@@ -82,10 +86,14 @@ def update_modified_from_license_info(delta, unique_categories):
 
     if delta.new_file.has_licenses() and not delta.old_file.has_licenses():
         delta.update(20, 'license info added')
-        # no license ==> 'Copyleft Limited'or higher
+
         for category in new_categories:
+            # no license ==> 'Copyleft Limited'or higher
             if category in unique_categories:
                 delta.update(20, category.lower() + ' added')
+            # no license ==> 'Permissive' or 'Public Domain'
+            else:
+                delta.update(0, category.lower() + ' added')
         return
 
     new_keys = set(license.key for license in new_licenses)
@@ -94,9 +102,16 @@ def update_modified_from_license_info(delta, unique_categories):
     if new_keys != old_keys:
         delta.update(10, 'license change')
         for category in new_categories - old_categories:
+            unique_categories_in_old_file = len(old_categories & unique_categories)
             # 'Permissive' or 'Public Domain' ==> 'Copyleft Limited' or higher
-            if len(old_categories & unique_categories) == 0 and category in unique_categories:
+            if unique_categories_in_old_file == 0 and category in unique_categories:
                 delta.update(20, category.lower() + ' added')
+            # at least 1 category in the old file was 'Copyleft Limited' or higher ==> 'Copyleft Limited' or higher
+            elif unique_categories_in_old_file != 0 and category in unique_categories:
+                delta.update(10, category.lower() + ' added')
+            # 'Permissive' or 'Public Domain' ==> 'Permissive' or 'Public Domain' if not in old_categories
+            elif category not in unique_categories:
+                delta.update(0, category.lower() + ' added')
 
 
 def update_from_copyright_info(delta):
