@@ -1,26 +1,49 @@
 {
   "deltacode_notice": "Generated with DeltaCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nDeltaCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nDeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/nexB/deltacode/ for support and download.",
   "deltacode_options": {
-    "new_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/scan_modified_new_license_added.json",
-    "old_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/scan_modified_old_license_added.json",
+    "--new": "C:/Users/JMH/Dropbox/nexB_dropbox/DeltaCode_new_repo_03/scan_modified_new_license_added.json",
+    "--old": "C:/Users/JMH/Dropbox/nexB_dropbox/DeltaCode_new_repo_03/scan_modified_old_license_added.json",
     "--all-delta-types": false
   },
-  "deltacode_version": "1.0.0.post37.cba847f.dirty.20180402221516",
+  "deltacode_version": "1.0.0.post54.436fadd",
   "deltacode_errors": [],
+  "deltas_count": 3,
   "deltas": [
     {
       "factors": [
-        "modified"
+        "modified",
+        "license change"
       ],
-      "score": 20,
+      "score": 30,
       "new": {
-        "path": "some/path/c/c1.py",
+        "path": "some/path/a/a1.py",
         "type": "file",
-        "name": "c1.py",
+        "name": "a1.py",
         "size": 300,
-        "sha1": "333647771481d39dd3a53f6dc210c26abac37748",
-        "original_path": "some/path/c/c1.py",
+        "sha1": "000647771481d39dd3a53f6dc210c26abac37748",
+        "original_path": "some/path/a/a1.py",
         "licenses": [
+          {
+            "key": "apache-2.0",
+            "score": 80.0,
+            "short_name": "Apache 2.0",
+            "category": "Permissive",
+            "owner": null
+          },
+          {
+            "key": "agpl-2.0",
+            "score": 70.0,
+            "short_name": "AGPL 2.0",
+            "category": "Copyleft",
+            "owner": null
+          },
+          {
+            "key": "bsd-simplified",
+            "score": 100.0,
+            "short_name": "BSD-Simplified",
+            "category": "Permissive",
+            "owner": null
+          },
           {
             "key": "mit",
             "score": 100.0,
@@ -32,17 +55,31 @@
         "copyrights": []
       },
       "old": {
-        "path": "some/path/c/c1.py",
+        "path": "some/path/a/a1.py",
         "type": "file",
-        "name": "c1.py",
-        "size": 300,
-        "sha1": "222647771481d39dd3a53f6dc210c26abac37748",
-        "original_path": "some/path/c/c1.py",
+        "name": "a1.py",
+        "size": 200,
+        "sha1": "84b647771481d39dd3a53f6dc210c26abac37748",
+        "original_path": "some/path/a/a1.py",
         "licenses": [
           {
-            "key": "mit",
+            "key": "apache-2.0",
+            "score": 80.0,
+            "short_name": "Apache 2.0",
+            "category": "Permissive",
+            "owner": null
+          },
+          {
+            "key": "public-domain",
+            "score": 10.0,
+            "short_name": "Public Domain",
+            "category": "Public Domain",
+            "owner": null
+          },
+          {
+            "key": "bsd-simplified",
             "score": 100.0,
-            "short_name": "MIT License",
+            "short_name": "BSD-Simplified",
             "category": "Permissive",
             "owner": null
           }
@@ -130,40 +167,17 @@
     },
     {
       "factors": [
-        "modified",
-        "license change",
-        "copyleft added"
+        "modified"
       ],
-      "score": 50,
+      "score": 20,
       "new": {
-        "path": "some/path/a/a1.py",
+        "path": "some/path/c/c1.py",
         "type": "file",
-        "name": "a1.py",
+        "name": "c1.py",
         "size": 300,
-        "sha1": "000647771481d39dd3a53f6dc210c26abac37748",
-        "original_path": "some/path/a/a1.py",
+        "sha1": "333647771481d39dd3a53f6dc210c26abac37748",
+        "original_path": "some/path/c/c1.py",
         "licenses": [
-          {
-            "key": "apache-2.0",
-            "score": 80.0,
-            "short_name": "Apache 2.0",
-            "category": "Permissive",
-            "owner": null
-          },
-          {
-            "key": "agpl-2.0",
-            "score": 70.0,
-            "short_name": "AGPL 2.0",
-            "category": "Copyleft",
-            "owner": null
-          },
-          {
-            "key": "bsd-simplified",
-            "score": 100.0,
-            "short_name": "BSD-Simplified",
-            "category": "Permissive",
-            "owner": null
-          },
           {
             "key": "mit",
             "score": 100.0,
@@ -175,31 +189,17 @@
         "copyrights": []
       },
       "old": {
-        "path": "some/path/a/a1.py",
+        "path": "some/path/c/c1.py",
         "type": "file",
-        "name": "a1.py",
-        "size": 200,
-        "sha1": "84b647771481d39dd3a53f6dc210c26abac37748",
-        "original_path": "some/path/a/a1.py",
+        "name": "c1.py",
+        "size": 300,
+        "sha1": "222647771481d39dd3a53f6dc210c26abac37748",
+        "original_path": "some/path/c/c1.py",
         "licenses": [
           {
-            "key": "apache-2.0",
-            "score": 80.0,
-            "short_name": "Apache 2.0",
-            "category": "Permissive",
-            "owner": null
-          },
-          {
-            "key": "public-domain",
-            "score": 10.0,
-            "short_name": "Public Domain",
-            "category": "Public Domain",
-            "owner": null
-          },
-          {
-            "key": "bsd-simplified",
+            "key": "mit",
             "score": 100.0,
-            "short_name": "BSD-Simplified",
+            "short_name": "MIT License",
             "category": "Permissive",
             "owner": null
           }

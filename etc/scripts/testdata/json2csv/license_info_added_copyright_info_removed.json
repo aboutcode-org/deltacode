@@ -1,21 +1,21 @@
 {
   "deltacode_notice": "Generated with DeltaCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nDeltaCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nDeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/nexB/deltacode/ for support and download.",
   "deltacode_options": {
-    "new_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/license_info_added_copyright_info_removed_new.json",
-    "old_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/license_info_added_copyright_info_removed_old.json",
+    "--new": "C:/Users/JMH/Dropbox/nexB_dropbox/DeltaCode_new_repo_03/license_info_added_copyright_info_removed_new.json",
+    "--old": "C:/Users/JMH/Dropbox/nexB_dropbox/DeltaCode_new_repo_03/license_info_added_copyright_info_removed_old.json",
     "--all-delta-types": false
   },
-  "deltacode_version": "1.0.0.post37.cba847f.dirty.20180402221516",
+  "deltacode_version": "1.0.0.post54.436fadd",
   "deltacode_errors": [],
+  "deltas_count": 1,
   "deltas": [
     {
       "factors": [
         "modified",
         "license info added",
-        "copyleft added",
         "copyright info removed"
       ],
-      "score": 70,
+      "score": 50,
       "new": {
         "path": "path.txt",
         "type": "file",
