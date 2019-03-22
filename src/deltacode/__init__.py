@@ -252,6 +252,8 @@ class Delta(object):
         self.old_file = old_file if old_file else None
         self.factors = []
         self.score = score
+        self.has_license = False
+        self.has_copyright = False
 
     def update(self, score=0, factor=''):
         """

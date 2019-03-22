@@ -56,7 +56,7 @@ def update_added_from_license_info(delta, unique_categories):
     new_categories = set(license.category for license in new_licenses)
 
     if delta.new_file.has_licenses():
-        delta.update(20, 'license info added')
+        delta.has_license = True
 
         for category in new_categories:
             # no license ==> 'Copyleft Limited'or higher
@@ -75,7 +75,7 @@ def update_modified_from_license_info(delta, unique_categories):
     been a license change.
     """
     if not delta.new_file.has_licenses() and delta.old_file.has_licenses():
-        delta.update(15, 'license info removed')
+        delta.has_license = False
         return
 
     new_licenses = delta.new_file.licenses or []
@@ -85,7 +85,7 @@ def update_modified_from_license_info(delta, unique_categories):
     old_categories = set(license.category for license in old_licenses)
 
     if delta.new_file.has_licenses() and not delta.old_file.has_licenses():
-        delta.update(20, 'license info added')
+        delta.has_license = True
 
         for category in new_categories:
             # no license ==> 'Copyleft Limited'or higher
@@ -134,7 +134,7 @@ def update_added_from_copyright_info(delta):
     been a copyright change.
     """
     if delta.new_file.has_copyrights():
-        delta.update(10, 'copyright info added')
+        delta.has_copyright = True
         return
 
 
@@ -148,10 +148,10 @@ def update_modified_from_copyright_info(delta):
     old_copyrights = delta.old_file.copyrights or []
 
     if delta.new_file.has_copyrights() and not delta.old_file.has_copyrights():
-        delta.update(10, 'copyright info added')
+        delta.has_copyright = True
         return
     if not delta.new_file.has_copyrights() and delta.old_file.has_copyrights():
-        delta.update(10, 'copyright info removed')
+        delta.has_copyright = False
         return
 
     new_holders = set(holder for copyright in new_copyrights for holder in copyright.holders)
