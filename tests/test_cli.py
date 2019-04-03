@@ -110,7 +110,8 @@ class TestCLI(FileBasedTesting):
         assert json_result.get('deltas_count') == 8
 
         moved_expected = {
-            "factors": ['moved'],
+            "status": "moved",
+            "factors": [],
             "score": 0,
             "new": {
                 "path": "b/a4.py",
@@ -168,12 +169,13 @@ class TestCLI(FileBasedTesting):
             }
         }
 
-        moved_result = [d for d in json_result.get('deltas') if d.get('factors') == ['moved']].pop()
+        moved_result = [d for d in json_result.get('deltas') if d.get('status') == 'moved'].pop()
 
         assert moved_result == moved_expected
 
         unmodified_expected = {
-            "factors": ['unmodified'],
+            "status": "unmodified",
+            "factors": [],
             "score": 0,
             "new": {
                 "path": "a/a3.py",
@@ -270,7 +272,8 @@ class TestCLI(FileBasedTesting):
         assert json_result.get('deltas_count') == 1
 
         moved_expected = {
-            "factors": ["moved"],
+            "status" : "moved",
+            "factors": [],
             "score": 0,
             "new": {
                 "path": "b/a4.py",
@@ -328,11 +331,11 @@ class TestCLI(FileBasedTesting):
             }
         }
 
-        moved_result = [d for d in json_result.get('deltas') if d.get('factors') == ['moved']].pop()
+        moved_result = [d for d in json_result.get('deltas') if d.get('status') == 'moved'].pop()
 
         assert moved_result == moved_expected
 
-        unmodified_result = [d for d in json_result.get('deltas') if d.get('factors') == ['unmodified']]
+        unmodified_result = [d for d in json_result.get('deltas') if d.get('status') == 'unmodified']
 
         assert len(unmodified_result) == 0
 

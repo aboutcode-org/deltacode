@@ -105,7 +105,7 @@ class DeltaCode(object):
                     delta_old_files = old_index[path]
                 except KeyError:
                     delta = Delta(100, new_file, None)
-                    delta.factors.append('added')
+                    delta.status = 'added'
                     self.deltas.append(delta)
                     continue
 
@@ -116,12 +116,12 @@ class DeltaCode(object):
                     # TODO: make sure sha1 is NOT empty
                     if new_file.sha1 == f.sha1:
                         delta = Delta(0, new_file, f)
-                        delta.factors.append('unmodified')
+                        delta.status = 'unmodified'
                         self.deltas.append(delta)
                         continue
                     else:
                         delta = Delta(20, new_file, f)
-                        delta.factors.append('modified')
+                        delta.status = 'modified'
                         self.deltas.append(delta)
 
         # now time to find the added.
@@ -137,7 +137,7 @@ class DeltaCode(object):
                     new_index[path]
                 except KeyError:
                     delta = Delta(0, None, old_file)
-                    delta.factors.append('removed')
+                    delta.status = 'removed'
                     self.deltas.append(delta)
                     continue
 
@@ -180,7 +180,7 @@ class DeltaCode(object):
         creation -- and delete the 'added' and 'removed' objects.
         """
         delta = Delta(0, added.new_file, removed.old_file)
-        delta.factors.append('moved')
+        delta.status = 'moved'
         self.deltas.append(delta)
         self.deltas.remove(added)
         self.deltas.remove(removed)
@@ -252,6 +252,7 @@ class Delta(object):
         self.old_file = old_file if old_file else None
         self.factors = []
         self.score = score
+        self.status = ''
 
     def update(self, score=0, factor=''):
         """
@@ -305,6 +306,7 @@ class Delta(object):
             old_file = None
 
         return OrderedDict([
+            ('status', self.status),
             ('factors', self.factors),
             ('score', self.score),
             ('new', new_file),
