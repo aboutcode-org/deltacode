@@ -23,7 +23,7 @@
 #  Visit https://github.com/nexB/deltacode/ for support and download.
 #
 
-from __future__ import absolute_import
+from __future__ import absolute_import, division
 
 from collections import defaultdict
 
@@ -182,13 +182,18 @@ def deltas(deltacode, all_delta_types=False):
         elif not delta.is_unmodified():
             yield delta.to_dict()
 
+def calculate_percent(value, total):
+    """
+    Return the rounded value percentage of total.
+    """
+    ratio = (value / total) * 100
+    return round(ratio, 2)
 
 class AlignmentException(Exception):
     """
     Named exception for alignment errors.
     """
     pass
-
 
 def align_trees(a_files, b_files):
     """
