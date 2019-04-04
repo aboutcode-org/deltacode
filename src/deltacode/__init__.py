@@ -52,12 +52,14 @@ class DeltaCode(object):
         self.options = options
         self.deltas = []
         self.errors = []
+        self.stats = Stat(self.new.files_count, self.old.files_count)
 
         if self.new.path != '' and self.old.path != '':
             self.determine_delta()
             self.determine_moved()
             self.license_diff()
             self.copyright_diff()
+            self.stats.calculate_stats()
             # Sort deltas by score, descending, i.e., high > low, and then by
             # factors, alphabetically.  Run the least significant sort first.
             self.deltas.sort(key=lambda Delta: Delta.factors, reverse=False)
@@ -106,6 +108,7 @@ class DeltaCode(object):
                 except KeyError:
                     delta = Delta(100, new_file, None)
                     delta.status = 'added'
+                    self.stats.num_added += 1
                     self.deltas.append(delta)
                     continue
 
@@ -117,11 +120,13 @@ class DeltaCode(object):
                     if new_file.sha1 == f.sha1:
                         delta = Delta(0, new_file, f)
                         delta.status = 'unmodified'
+                        self.stats.num_unmodified += 1
                         self.deltas.append(delta)
                         continue
                     else:
                         delta = Delta(20, new_file, f)
                         delta.status = 'modified'
+                        self.stats.num_modified += 1
                         self.deltas.append(delta)
 
         # now time to find the added.
@@ -138,6 +143,7 @@ class DeltaCode(object):
                 except KeyError:
                     delta = Delta(0, None, old_file)
                     delta.status = 'removed'
+                    self.stats.num_removed += 1
                     self.deltas.append(delta)
                     continue
 
@@ -181,6 +187,9 @@ class DeltaCode(object):
         """
         delta = Delta(0, added.new_file, removed.old_file)
         delta.status = 'moved'
+        self.stats.num_moved += 1
+        self.stats.num_added -= 1
+        self.stats.num_removed -= 1
         self.deltas.append(delta)
         self.deltas.remove(added)
         self.deltas.remove(removed)
@@ -312,3 +321,48 @@ class Delta(object):
             ('new', new_file),
             ('old', old_file),
         ])
+
+class Stat(object):
+    """
+    Contains all the stats for the file changes in the new directory
+    with respect to the old directory.
+    """
+    def __init__(self, new_files_count, old_files_count):
+        self.new_files_count = new_files_count
+        self.old_files_count = old_files_count
+        self.num_added = 0
+        self.num_removed = 0
+        self.num_moved = 0
+        self.num_modified = 0
+        self.num_unmodified = 0
+        self.percent_added = 0
+        self.percent_removed = 0
+        self.percent_moved = 0
+        self.percent_modified = 0
+        self.percent_unmodified = 0
+
+    def calculate_stats(self):
+        """
+        Calculates the percentage change of new directory with respect to
+        the old directory.
+        """
+        self.percent_added = utils.calculate_percent(self.num_added, self.old_files_count)
+        self.percent_removed = utils.calculate_percent(self.num_removed, self.old_files_count)
+        self.percent_moved = utils.calculate_percent(self.num_moved, self.old_files_count)
+        self.percent_modified = utils.calculate_percent(self.num_modified, self.old_files_count)
+        self.percent_unmodified = utils.calculate_percent(self.num_unmodified, self.old_files_count)
+
+    def to_dict(self):
+        """
+        Return an OrderedDict comprising all the percent attributes of the object.
+        """
+        return OrderedDict([
+            ('old_files_count', self.old_files_count),
+            ('new_files_count', self.new_files_count),
+            ('percent_added', self.percent_added),
+            ('percent_removed', self.percent_removed),
+            ('percent_moved', self.percent_moved),
+            ('percent_modified', self.percent_modified),
+            ('percent_unmodified', self.percent_unmodified),
+        ])
+

@@ -1592,3 +1592,27 @@ class TestDeltacode(FileBasedTesting):
         assert [d.status for d in deltas_object if d.new_file.path == 'a1.py'] == ['modified']
         assert [d.factors for d in deltas_object if d.new_file.path == 'a2.py'].pop() == []
         assert [d.status for d in deltas_object if d.new_file.path == 'a2.py'] == ['unmodified']
+
+    def test_Stat_calculation_and_ordering(self):
+        new_scan = self.get_test_loc('deltacode/all_stat_order_check_new.json')
+        old_scan = self.get_test_loc('deltacode/all_stat_order_check_old.json')
+
+        options = OrderedDict([
+            ('--all-delta-types', True)
+        ])
+
+        expected = OrderedDict([
+            ('old_files_count', 7),
+            ('new_files_count', 6),
+            ('percent_added', 28.57),
+            ('percent_removed', 42.86),
+            ('percent_moved', 14.29),
+            ('percent_modified', 14.29),
+            ('percent_unmodified', 28.57)
+        ])
+
+        deltacode_object = DeltaCode(new_scan, old_scan, options)
+
+        stats_object = deltacode_object.stats.to_dict()
+
+        assert stats_object == expected
