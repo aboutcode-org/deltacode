@@ -1,0 +1,78 @@
+{
+  "scancode_notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/nexB/scancode-toolkit/ for support and download.",
+  "scancode_version": "2.9.0b1.post8.2a658c314",
+  "scancode_options": {
+    "input": "C:\\code\\nexb\\dev\\codebase01\\sorting\\sorted01_old",
+    "--copyright": true,
+    "--info": true,
+    "--json-pp": "C:\\code\\nexb\\dev\\deltacode\\tests\\data\\deltacode\\scan_sorted01_old.json",
+    "--license": true,
+    "--package": true
+  },
+  "files_count": 7,
+  "files": [
+    {
+      "path": "old/a.txt",
+      "type": "file",
+      "name": "a.txt",
+      "size": 100,
+      "sha1": "abtrbt",
+      "licenses": [
+      ]
+    },
+    {
+      "path": "old/b.txt",
+      "type": "file",
+      "name": "b.txt",
+      "size": 100,
+      "sha1": "dasdas",
+      "licenses": [
+      ]
+    },
+    {
+      "path": "old/c.txt",
+      "type": "file",
+      "name": "c.txt",
+      "size": 100,
+      "sha1": "awd",
+      "licenses": [
+      ]
+    },
+    {
+      "path": "old/a/d.txt",
+      "type": "file",
+      "name": "d.txt",
+      "size": 110,
+      "sha1": "avfvf",
+      "licenses": [
+      ]
+    },
+    {
+      "path": "old/e1.txt",
+      "type": "file",
+      "name": "e1.txt",
+      "size": 110,
+      "sha1": "cegr",
+      "licenses": [
+      ]
+    },
+    {
+      "path": "old/f1.txt",
+      "type": "file",
+      "name": "f1.txt",
+      "size": 310,
+      "sha1": "gkbme",
+      "licenses": [
+      ]
+    },
+    {
+      "path": "old/g.txt",
+      "type": "file",
+      "name": "g.txt",
+      "size": 410,
+      "sha1": "btbtg",
+      "licenses": [
+      ]
+    }
+  ]
+}
