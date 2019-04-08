@@ -286,6 +286,13 @@ class TestModels(FileBasedTesting):
         assert scan.options.get('--copyright', None) == None
         assert scan.options['--info'] == True
 
+    def test_Scan_valid_scanfile_new_scancode_header_format(self):
+        test_file = self.get_test_loc('models/scan/new-scancode-header-format.json')
+
+        result = models.Scan(test_file)
+
+        assert result.files_count == 33
+
     def test_Scan_valid_scanfile(self):
         valid_paths = [
             self.get_test_loc('models/scan/well-formed-scan.json'),
@@ -316,7 +323,7 @@ class TestModels(FileBasedTesting):
             invalid_result = models.Scan(invalid_path)
 
         normalized_path = os.path.abspath(invalid_path)
-        assert str(e.value) == 'JSON file \'' + normalized_path + '\' is missing the \'scancode_version\' attribute.'
+        assert str(e.value) == 'JSON file: {} is missing the ScanCode version.'.format(normalized_path)
 
     def test_Scan_old_version(self):
         invalid_path = self.get_test_loc('models/scan/old-version.json')
@@ -325,7 +332,7 @@ class TestModels(FileBasedTesting):
             invalid_result = models.Scan(invalid_path)
 
         normalized_path = os.path.abspath(invalid_path)
-        assert str(e.value) == 'JSON file \'' + normalized_path + '\' was created with an old version of ScanCode.'
+        assert str(e.value) == 'JSON file: {} was created with an old version of ScanCode.'.format(normalized_path)
 
     def test_Scan_info_not_selected(self):
         invalid_path = self.get_test_loc('models/scan/info-not-selected.json')
@@ -334,7 +341,7 @@ class TestModels(FileBasedTesting):
             invalid_result = models.Scan(invalid_path)
 
         normalized_path = os.path.abspath(invalid_path)
-        assert str(e.value) == 'JSON file \'' + normalized_path + '\' is missing the \'scancode_options/--info\' attribute.'
+        assert str(e.value) == 'JSON file: {} is missing the ScanCode --info attribute.'.format(normalized_path)
 
     def test_Scan_invalid_path(self):
         test_path = '/some/invalid/path.json'
