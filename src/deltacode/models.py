@@ -67,6 +67,11 @@ class Scan(object):
         scan = json.loads(open(path).read())
 
         options = scan.get('scancode_options')
+        if not options:
+            # Handle new(er) scancode options
+            headers = scan.get('headers')
+            if headers:
+                options = headers[0].get('options')
 
         return options
 
@@ -77,7 +82,6 @@ class Scan(object):
         requirements to be run in DeltaCode (e.g., ScanCode version, proper
         ScanCode options etc.).
         """
-        # TODO: handle this exception during #171
         try:
             scan = json.loads(open(location).read())
         except IOError:
@@ -85,17 +89,27 @@ class Scan(object):
 
         scan = json.loads(open(location).read())
 
-        if not scan.get('scancode_version'):
-            msg = ('JSON file \'' + location + '\' is missing the \'scancode_version\' attribute.')
-            raise ScanException(msg)
+        version = scan.get('scancode_version')
+        if not version:
+            # handle new(er) scancode version location
+            headers = scan.get('headers')
+            if headers:
+                version = headers[0].get('tool_version')
+        
+        options = scan.get('scancode_options')
+        if not options:
+            headers = scan.get('headers')
+            if headers:
+                options = headers[0].get('options')
 
-        if int(scan.get('scancode_version').split('.').pop(0)) < 2:
-            msg = ('JSON file \'' + location + '\' was created with an old version of ScanCode.')
-            raise ScanException(msg)
+        if not version:
+            raise ScanException('JSON file: {} is missing the ScanCode version.'.format(location))
 
-        if not scan.get('scancode_options').get('--info'):
-            msg = ('JSON file \'' + location + '\' is missing the \'scancode_options/--info\' attribute.')
-            raise ScanException(msg)
+        if int(version.split('.').pop(0)) < 2:
+            raise ScanException('JSON file: {} was created with an old version of ScanCode.'.format(location))
+
+        if not options.get('--info'):
+            raise ScanException('JSON file: {} is missing the ScanCode --info attribute.'.format(location))
 
         return True
 
@@ -112,7 +126,13 @@ class Scan(object):
 
         scan = json.loads(scan)
 
-        return scan.get('files_count')
+        files_count = scan.get('files_count')
+        if not files_count:
+            headers = scan.get('headers')
+            if headers:
+                files_count = headers[0].get('extra_data', {}).get('files_count')
+
+        return files_count
 
     def load_files(self, path):
         """
