@@ -65,6 +65,7 @@ def json_delta_to_csv(json_input, csv_output):
     delta_results = load_deltas(json_input)
 
     headers = OrderedDict([
+        ('Status', []),
         ('Score', []),
         ('Factors', []),
         ('Path', []),
@@ -86,6 +87,7 @@ def json_delta_to_csv(json_input, csv_output):
 def flatten_deltas(deltas, headers):
     if len(deltas) < 1:
         yield OrderedDict([
+            ('Status', ''),
             ('Score', ''),
             ('Factors', ''),
             ('Path', ''),
@@ -103,14 +105,15 @@ def flatten_deltas(deltas, headers):
             old = {}
 
         yield OrderedDict([
+            ('Status', delta.get('status')),
             ('Score', delta.get('score')),
             ('Factors', ' '.join(delta.get('factors'))),
-            ('Path', new.get('path', old.get('path'))),
+            ('Path', new.get('original_path', old.get('original_path'))),
             ('Name', new.get('name', old.get('name'))),
             ('Type', new.get('type', old.get('type'))),
             ('Size', new.get('size', old.get('size'))),
             # TODO: Need better way to ID 'moved' deltas.
-            ('Old Path', old.get('path') if 'moved' in delta.get('factors') else ''),
+            ('Old Path', old.get('original_path') if 'moved' == delta.get('status') else ''),
         ])
 
 
