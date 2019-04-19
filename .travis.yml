@@ -41,6 +41,24 @@ matrix:
       language: generic
       python:
       osx_image: xcode7.3
+    - os: windows
+      language: shell
+      before_install:
+        - choco install python2 -x86
+        - ln -s /c/Python27/python.exe /c/Python27/python2.7.exe
+      env:
+        - PATH="/c/Python27:/c/Python27/Scripts:$PATH"
+        - TEST_SUITE="$PYTEST"
+    - os: windows
+      language: shell
+      before_install:
+        - choco install python2 -x86
+        - ln -s /c/Python27/python.exe /c/Python27/python2.7.exe
+      env:
+        - PATH="/c/Python27:/c/Python27/Scripts:$PATH"
+        - TEST_SUITE="./etc/release/release.sh"
+
+
 
 install:
   - ./configure
