@@ -39,6 +39,7 @@ except DistributionNotFound:
     # package is not installed ??
     __version__ = '1.0.0'
 
+SIMILARITY_THRESHOLD = 30
 
 class DeltaCode(object):
     """
@@ -82,23 +83,16 @@ class DeltaCode(object):
                 f.original_path = f.path
 
     def similarity(self):
-        # new_index = self.new.index_files()
-        # old_index = self.old.index_files()
-        # for path, new_files in new_index.items():
-        #     for new_file in new_files:
-        #         for path, old_files in old_index.items():
-        #             for old_file in old_files:
         for delta in self.deltas:
             new_fingerprint = delta.new_file.fingerprint
             old_fingerprint = delta.old_file.fingerprint
-            if new_fingerprint != None and old_fingerprint != None:
-                new_fingerprint = utils.bitarray_from_hex(delta.new_file.fingerprint)
-                old_fingerprint = utils.bitarray_from_hex(delta.old_file.fingerprint)
-                hamming_distance = utils.hamming_distance(new_fingerprint, old_fingerprint)
-                if hamming_distance >= 0 :
-                    delta.factors.append('Similar with hamming distance : {}'.format(hamming_distance))
-                    print 1
-
+            if new_fingerprint != None or old_fingerprint != None:
+                continue
+            new_fingerprint = utils.bitarray_from_hex(delta.new_file.fingerprint)
+            old_fingerprint = utils.bitarray_from_hex(delta.old_file.fingerprint)
+            hamming_distance = utils.hamming_distance(new_fingerprint, old_fingerprint)
+            if hamming_distance <= SIMILARITY_THRESHOLD  :
+                delta.factors.append('Similar with hamming distance : {}'.format(hamming_distance))
 
 
 
