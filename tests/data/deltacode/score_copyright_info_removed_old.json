@@ -13,6 +13,7 @@
             "name": "default.txt",
             "size": 100,
             "sha1": "a",
+            "fingerprint": "e30cf09443e7878dfed3288886e97542",
             "licenses": [],
             "copyrights": []
         },
@@ -22,6 +23,7 @@
             "name": "path.txt",
             "size": 300,
             "sha1": "b",
+            "fingerprint": "e30cf09443e7878dfed3288745e97542",
             "licenses": [],
             "copyrights": [
                 {
