@@ -84,17 +84,18 @@ class DeltaCode(object):
 
     def similarity(self):
         for delta in self.deltas:
+            if delta.new_file == None or delta.old_file == None:
+                continue
             new_fingerprint = delta.new_file.fingerprint
             old_fingerprint = delta.old_file.fingerprint
-            if new_fingerprint != None or old_fingerprint != None:
+            if new_fingerprint == None or old_fingerprint == None:
                 continue
             new_fingerprint = utils.bitarray_from_hex(delta.new_file.fingerprint)
             old_fingerprint = utils.bitarray_from_hex(delta.old_file.fingerprint)
             hamming_distance = utils.hamming_distance(new_fingerprint, old_fingerprint)
-            if hamming_distance <= SIMILARITY_THRESHOLD  :
+            delta.score += hamming_distance
+            if hamming_distance <= SIMILARITY_THRESHOLD:
                 delta.factors.append('Similar with hamming distance : {}'.format(hamming_distance))
-
-
 
     def determine_delta(self):
         """
