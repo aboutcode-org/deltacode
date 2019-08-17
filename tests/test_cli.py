@@ -111,7 +111,7 @@ class TestCLI(FileBasedTesting):
 
         moved_expected = {
             "status": "moved",
-            "factors": [],
+            "factors": ["Similar with hamming distance : 0"],
             "score": 0,
             "new": {
                 "path": "b/a4.py",
@@ -119,6 +119,7 @@ class TestCLI(FileBasedTesting):
                 "name": "a4.py",
                 "size": 200,
                 "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
+                "fingerprint": "e30cf09443e7878dfed3288886e97542",
                 "original_path": "1_file_moved_new/b/a4.py",
                 "licenses": [
                     {
@@ -146,6 +147,7 @@ class TestCLI(FileBasedTesting):
                 "name": "a4.py",
                 "size": 200,
                 "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
+                "fingerprint": "e30cf09443e7878dfed3288886e97542",
                 "original_path": "1_file_moved_old/a/a4.py",
                 "licenses": [
                     {
@@ -175,7 +177,7 @@ class TestCLI(FileBasedTesting):
 
         unmodified_expected = {
             "status": "unmodified",
-            "factors": [],
+            "factors": ["Similar with hamming distance : 0"],
             "score": 0,
             "new": {
                 "path": "a/a3.py",
@@ -183,6 +185,7 @@ class TestCLI(FileBasedTesting):
                 "name": "a3.py",
                 "size": 200,
                 "sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9",
+                "fingerprint": "e30cf09443e7878dfed3288886e97533",
                 "original_path": "1_file_moved_new/a/a3.py",
                 "licenses": [
                     {
@@ -210,6 +213,7 @@ class TestCLI(FileBasedTesting):
                 "name": "a3.py",
                 "size": 200,
                 "sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9",
+                "fingerprint": "e30cf09443e7878dfed3288886e97533",
                 "original_path": "1_file_moved_old/a/a3.py",
                 "licenses": [
                     {
@@ -273,7 +277,7 @@ class TestCLI(FileBasedTesting):
 
         moved_expected = {
             "status" : "moved",
-            "factors": [],
+            "factors": ["Similar with hamming distance : 0"],
             "score": 0,
             "new": {
                 "path": "b/a4.py",
@@ -281,6 +285,7 @@ class TestCLI(FileBasedTesting):
                 "name": "a4.py",
                 "size": 200,
                 "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
+                "fingerprint": "e30cf09443e7878dfed3288886e97542",
                 "original_path": "1_file_moved_new/b/a4.py",
                 "licenses": [
                     {
@@ -308,6 +313,7 @@ class TestCLI(FileBasedTesting):
                 "name": "a4.py",
                 "size": 200,
                 "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
+                "fingerprint": "e30cf09443e7878dfed3288886e97542",
                 "original_path": "1_file_moved_old/a/a4.py",
                 "licenses": [
                     {
