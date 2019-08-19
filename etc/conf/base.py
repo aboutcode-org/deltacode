@@ -1,16 +1,23 @@
+from __future__ import absolute_import
 
 import sys
 
+"""
+This base config script gets automatically executed for all platforms via
+configure.
+"""
 
 """
 Check that we run a supported OS and architecture.
 """
 
-def unsupported():
-    print('Unsupported OS/platform.')
-    print('See https://github.com/nexB/deltacode/ for supported OS/platforms.')
-    print('Enter a ticket https://github.com/nexB/deltacode/issues asking for support of your OS/platform combo.')
+
+def unsupported(platform):
+    print('Unsupported OS/platform %r.' % platform)
+    print('See https://github.com/nexB/scancode-toolkit/ for supported OS/platforms.')
+    print('Enter a ticket https://github.com/nexB/scancode-toolkit/issues asking for support of your OS/platform combo.')
     sys.exit(1)
+
 
 if sys.maxsize > 2 ** 32:
     arch = '64'
@@ -18,15 +25,14 @@ else:
     arch = '32'
 
 sys_platform = str(sys.platform).lower()
-if 'linux' in sys_platform:
+if sys_platform.startswith('linux'):
     os = 'linux'
-elif'win32' in sys_platform:
+elif 'win32' in sys_platform:
     os = 'win'
 elif 'darwin' in sys_platform:
     os = 'mac'
 else:
-    unsupported()
-
+    unsupported(sys_platform)
 
 supported_combos = {
     'linux': ['32', '64'],
@@ -36,4 +42,4 @@ supported_combos = {
 
 arches = supported_combos[os]
 if arch not in arches:
-    unsupported()
+    unsupported(os + arch)
