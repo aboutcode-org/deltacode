@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-from __future__ import absolute_import, print_function
+
+from __future__ import absolute_import
+from __future__ import print_function
 
 import io
-import os
-import re
 from glob import glob
 from os.path import basename
 from os.path import dirname
 from os.path import join
-from os.path import relpath
 from os.path import splitext
+import re
 import sys
 
 from setuptools import find_packages
@@ -32,15 +32,16 @@ except ValueError:
 ####
 
 
+_sys_v0 = sys.version_info[0]
+py2 = _sys_v0 == 2
+py3 = _sys_v0 == 3
+
+
 def get_version(default=version, template='{tag}.{distance}.{commit}{dirty}',
                 use_default=USE_DEFAULT_VERSION):
     """
     Return a version collected from git if possible or fall back to an
     hard-coded default version otherwise. If `use_default` is True,
-    always use the default version.
-    """
-    """
-    Return a version collected from git. If `use_default` is True,
     always use the default version.
     """
     if use_default:
@@ -97,6 +98,15 @@ def read(*names, **kwargs):
     ).read()
 
 
+# Accept Python3, but only when running setup.py. Released wheels should be for
+# Python 2 only until we completed the Python3 port
+if py2:
+    python_requires= '>=2.7,<3'
+elif py3:
+    python_requires= '>=3.6'
+else:
+    raise Exception('Unsupported Python version.')
+
 setup(
     name='deltacode',
     version=get_version(),
@@ -123,7 +133,7 @@ setup(
     keywords=[],
     install_requires=[
         'click',
-        'scancode-toolkit',
+        'scancode-toolkit >= 3.0',
         'unicodecsv',
     ],
 
