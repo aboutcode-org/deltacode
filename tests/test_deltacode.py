@@ -36,7 +36,7 @@ from commoncode.testcase import FileBasedTesting
 import deltacode
 from deltacode import DeltaCode
 from deltacode import models
-
+from scancode import cli_test_utils
 
 class TestDeltacode(FileBasedTesting):
 
@@ -1638,3 +1638,11 @@ class TestDeltacode(FileBasedTesting):
         stats_object = deltacode_object.stats.to_dict()
 
         assert stats_object == expected
+    #
+    # def test_similarity_matching(self):
+    #     old_file = self.get_test_loc('deltacode/coala-0.7.0-old.json')
+    #     new_file = self.get_test_loc('deltacode/coala-0.10.0-new.json')
+    #     result_file = self.get_temp_file('json')
+    #     args = ['-n', old_file, '-0', new_file, '-j', result_file]
+    #     run_scan_click(args)
+    #     check_json_scan(test_env.get_test_loc('plugin_fingerprint/fingerprints.expected.json'), result_file)
