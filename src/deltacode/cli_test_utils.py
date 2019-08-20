@@ -206,4 +206,5 @@ def streamline_headers(headers):
     Modify the `headers` list of mappings in place to make it easier to test.
     """
     headers.pop('deltacode_version', None)
+    headers.pop('deltacode_options', None)
     streamline_errors(headers['deltacode_errors'])
