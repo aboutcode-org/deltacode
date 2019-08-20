@@ -3,13 +3,13 @@
   "deltacode_errors": [],
   "deltas_count": 141,
   "delta_stats": {
-    "old_files_count": 117,
-    "new_files_count": 115,
-    "percent_added": 20.51,
-    "percent_removed": 22.22,
-    "percent_moved": 0.85,
-    "percent_modified": 61.54,
-    "percent_unmodified": 15.38
+    "old_files_count": 115,
+    "new_files_count": 117,
+    "percent_added": 22.61,
+    "percent_removed": 20.87,
+    "percent_moved": 0.87,
+    "percent_modified": 62.61,
+    "percent_unmodified": 15.65
   },
   "deltas": [
     {
@@ -17,13 +17,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/bears/requirements/PipRequirement.py",
+        "path": "coalib/testing/LocalBearTestHelper.py",
         "type": "file",
-        "name": "PipRequirement.py",
-        "size": 847,
-        "sha1": "2de354930248f786449c8a1993af9f3564c6afd3",
-        "fingerprint": "1130f2506e1a4420c209dbc61a285300",
-        "original_path": "coalib/bears/requirements/PipRequirement.py",
+        "name": "LocalBearTestHelper.py",
+        "size": 9119,
+        "sha1": "f7cc9efd05776b92a048505af1742b173fff276d",
+        "fingerprint": "0b6d8e58410aa6f9b25e60ee66e6ffb3",
+        "original_path": "coalib/testing/LocalBearTestHelper.py",
         "licenses": [],
         "copyrights": []
       },
@@ -34,13 +34,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/coala_dbus.py",
+        "path": "coalib/bearlib/languages/definitions/C.py",
         "type": "file",
-        "name": "coala_dbus.py",
-        "size": 1515,
-        "sha1": "12ba867dde148a67cf9fd14c54530486ae6a6c67",
-        "fingerprint": "8ebbe7fa569dd7f2aabeede55593c9af",
-        "original_path": "coalib/coala_dbus.py",
+        "name": "C.py",
+        "size": 854,
+        "sha1": "0dc5ebcdde66051b9faa81cf0276ed27606f0af3",
+        "fingerprint": "8b87b1284ee299efc75b516b956ec8d9",
+        "original_path": "coalib/bearlib/languages/definitions/C.py",
         "licenses": [],
         "copyrights": []
       },
@@ -51,13 +51,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/bears/requirements/GemRequirement.py",
+        "path": "coalib/bearlib/languages/definitions/Vala.py",
         "type": "file",
-        "name": "GemRequirement.py",
-        "size": 1067,
-        "sha1": "08a908974533d406249839ccdbf8911fa531be26",
-        "fingerprint": "b164f4186f3e60358f39cacd0e4e536c",
-        "original_path": "coalib/bears/requirements/GemRequirement.py",
+        "name": "Vala.py",
+        "size": 345,
+        "sha1": "ffc71a5704f96d7762e830cf8f45efa5a99b9b30",
+        "fingerprint": "980fc93c6643e860828241a9b54678c0",
+        "original_path": "coalib/bearlib/languages/definitions/Vala.py",
         "licenses": [],
         "copyrights": []
       },
@@ -68,13 +68,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/bears/requirements/NpmRequirement.py",
+        "path": "coalib/bearlib/languages/definitions/CSS.py",
         "type": "file",
-        "name": "NpmRequirement.py",
-        "size": 841,
-        "sha1": "20fe9d0cfc4a9571bbf2c2ee91a40a4e107cb8e6",
-        "fingerprint": "1022f2d46d144438ea1cdbce2bd851c9",
-        "original_path": "coalib/bears/requirements/NpmRequirement.py",
+        "name": "CSS.py",
+        "size": 304,
+        "sha1": "d1b42eb998a77c50ee99c520ee3d8d51763c86ab",
+        "fingerprint": "9b8aca31be42bf589fc749a3854f700d",
+        "original_path": "coalib/bearlib/languages/definitions/CSS.py",
         "licenses": [],
         "copyrights": []
       },
@@ -85,13 +85,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/bearlib/languages/definitions/python3.coalang",
+        "path": "coalib/output/ConsoleInteraction.py",
         "type": "file",
-        "name": "python3.coalang",
-        "size": 197,
-        "sha1": "9d2b3693ee8ce866ce05f33132f9139d8effe113",
-        "fingerprint": "4e13ff2ee8b1291acebd8a25322f308a",
-        "original_path": "coalib/bearlib/languages/definitions/python3.coalang",
+        "name": "ConsoleInteraction.py",
+        "size": 32748,
+        "sha1": "32988a3281d1a91677bc145fc03db80c1ef62dc8",
+        "fingerprint": "8a607554abc1cb9c495354f5c9982d11",
+        "original_path": "coalib/output/ConsoleInteraction.py",
         "licenses": [],
         "copyrights": []
       },
@@ -102,13 +102,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/parsing/StringProcessing/Core.py",
+        "path": "coalib/bearlib/aspects/docs.py",
         "type": "file",
-        "name": "Core.py",
-        "size": 21420,
-        "sha1": "9bc4ee2efb4030a110eee77aa93340bcc523d142",
-        "fingerprint": "43722cfbf2f6d56ca294653b1e16af80",
-        "original_path": "coalib/parsing/StringProcessing/Core.py",
+        "name": "docs.py",
+        "size": 1522,
+        "sha1": "c89f1dbf730fd13e9146b0689716a4db658d04c6",
+        "fingerprint": "d84857523af1b851d4ccda77214482c5",
+        "original_path": "coalib/bearlib/aspects/docs.py",
         "licenses": [],
         "copyrights": []
       },
@@ -119,13 +119,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/parsing/StringProcessing/Match.py",
+        "path": "coalib/coala_modes.py",
         "type": "file",
-        "name": "Match.py",
-        "size": 1541,
-        "sha1": "a1a68427837dd34b3bc40e4c716238da4b206efa",
-        "fingerprint": "0c2a9e5e8470895acfa04d7607158532",
-        "original_path": "coalib/parsing/StringProcessing/Match.py",
+        "name": "coala_modes.py",
+        "size": 3383,
+        "sha1": "b787b12e95d46676df02b5a0d7ae740db8631c39",
+        "fingerprint": "e8e5e4a5c8873621333c8bc4d8f52d70",
+        "original_path": "coalib/coala_modes.py",
         "licenses": [],
         "copyrights": []
       },
@@ -136,13 +136,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/bearlib/languages/definitions/cpp.coalang",
+        "path": "coalib/results/result_actions/IgnoreResultAction.py",
         "type": "file",
-        "name": "cpp.coalang",
-        "size": 1057,
-        "sha1": "eeae9b0805d0a73ec9776ca22b167b4c35fbd9d4",
-        "fingerprint": "4c81f332400813355093b2419a3219a5",
-        "original_path": "coalib/bearlib/languages/definitions/cpp.coalang",
+        "name": "IgnoreResultAction.py",
+        "size": 4109,
+        "sha1": "b81b6ef019de45edc91a029c6ff65c4e0be8ac5c",
+        "fingerprint": "e72aa3e97698ed2562d12c65ee1c1182",
+        "original_path": "coalib/results/result_actions/IgnoreResultAction.py",
         "licenses": [],
         "copyrights": []
       },
@@ -153,13 +153,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/parsing/StringProcessing/InBetweenMatch.py",
+        "path": "coalib/bearlib/languages/definitions/Unknown.py",
         "type": "file",
-        "name": "InBetweenMatch.py",
-        "size": 2120,
-        "sha1": "8a30603a995eb98fdb520b6ea1c8ea87be369c59",
-        "fingerprint": "24530d0b9ff122277ff62d13250ecc8b",
-        "original_path": "coalib/parsing/StringProcessing/InBetweenMatch.py",
+        "name": "Unknown.py",
+        "size": 91,
+        "sha1": "bba9c1d0ba06944fd744a8b21c1f886278b2bcb4",
+        "fingerprint": "2e538a180c2a43e272605142c5463048",
+        "original_path": "coalib/bearlib/languages/definitions/Unknown.py",
         "licenses": [],
         "copyrights": []
       },
@@ -170,13 +170,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/output/dbus/DbusServer.py",
+        "path": "coalib/results/result_actions/PrintAspectAction.py",
         "type": "file",
-        "name": "DbusServer.py",
-        "size": 5769,
-        "sha1": "d16266087223a9556f6e4781e69de390068dfe06",
-        "fingerprint": "b000c2408994a39d58cfbd1d6344e536",
-        "original_path": "coalib/output/dbus/DbusServer.py",
+        "name": "PrintAspectAction.py",
+        "size": 704,
+        "sha1": "5807c6417acd936e207c4eb6a07a61a9b9338930",
+        "fingerprint": "755a2fcf9c448a802ef46009ba9c6846",
+        "original_path": "coalib/results/result_actions/PrintAspectAction.py",
         "licenses": [],
         "copyrights": []
       },
@@ -187,13 +187,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/bearlib/abstractions/Lint.py",
+        "path": "coalib/bearlib/languages/definitions/Java.py",
         "type": "file",
-        "name": "Lint.py",
-        "size": 15710,
-        "sha1": "b430f0c735ca261779204a76e88658c21a6e8210",
-        "fingerprint": "b0e3971ba8512f7e537c6ccf699b5ab2",
-        "original_path": "coalib/bearlib/abstractions/Lint.py",
+        "name": "Java.py",
+        "size": 325,
+        "sha1": "c5d25b7336a141c16d50dafedfbc5edd51a2f53b",
+        "fingerprint": "0a03c93c3e420ce897699029954e90e3",
+        "original_path": "coalib/bearlib/languages/definitions/Java.py",
         "licenses": [],
         "copyrights": []
       },
@@ -204,13 +204,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/misc/MutableValue.py",
+        "path": "coalib/bearlib/languages/definitions/JavaScript.py",
         "type": "file",
-        "name": "MutableValue.py",
-        "size": 80,
-        "sha1": "4897a234c35f97cc6782289bd289f7b79962d292",
-        "fingerprint": "2ea13e761002738040a4a408074e2143",
-        "original_path": "coalib/misc/MutableValue.py",
+        "name": "JavaScript.py",
+        "size": 372,
+        "sha1": "e02eef3e90b166486c99ee3d465e0f7d09635164",
+        "fingerprint": "8702c97436629cc896e1c1a9954e7c22",
+        "original_path": "coalib/bearlib/languages/definitions/JavaScript.py",
         "licenses": [],
         "copyrights": []
       },
@@ -221,13 +221,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/parsing/StringProcessing/__init__.py",
+        "path": "coalib/bearlib/aspects/base.py",
         "type": "file",
-        "name": "__init__.py",
-        "size": 1082,
-        "sha1": "fbd024543ce29cc0fedc6ad396a10d64a7a61128",
-        "fingerprint": "344d7f56111c282cbcde92929e63e141",
-        "original_path": "coalib/parsing/StringProcessing/__init__.py",
+        "name": "base.py",
+        "size": 2106,
+        "sha1": "8414faf1f7bc07d2dd73bef8e84d37d35e069604",
+        "fingerprint": "e8e295866ae7640e23bdb9c87f647fa9",
+        "original_path": "coalib/bearlib/aspects/base.py",
         "licenses": [],
         "copyrights": []
       },
@@ -238,13 +238,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/output/dbus/__init__.py",
+        "path": "coalib/bearlib/aspects/Metadata.py",
         "type": "file",
-        "name": "__init__.py",
-        "size": 561,
-        "sha1": "727f8b13d15f98f72c6dc45aaa76ce1d209a6b90",
-        "fingerprint": "13b5a7360a43dd189f681c5ea9a850ae",
-        "original_path": "coalib/output/dbus/__init__.py",
+        "name": "Metadata.py",
+        "size": 7125,
+        "sha1": "4c35889a667755c893fdb0c62ad35b87ca573bc9",
+        "fingerprint": "cb2eb69062c675d3eac07728a3ca77a7",
+        "original_path": "coalib/bearlib/aspects/Metadata.py",
         "licenses": [],
         "copyrights": []
       },
@@ -255,13 +255,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/bears/requirements/PackageRequirement.py",
+        "path": "coalib/bearlib/aspects/Redundancy.py",
         "type": "file",
-        "name": "PackageRequirement.py",
-        "size": 4261,
-        "sha1": "52be29490537645a298a16020c53c7fa8607b0e8",
-        "fingerprint": "8726332c80c5512cb636c877ebb9d1b1",
-        "original_path": "coalib/bears/requirements/PackageRequirement.py",
+        "name": "Redundancy.py",
+        "size": 6576,
+        "sha1": "e71489d0bc58b60b16a11e0504c72767171843fb",
+        "fingerprint": "d64ab4ea47375133ffdb7ee02b3a3dad",
+        "original_path": "coalib/bearlib/aspects/Redundancy.py",
         "licenses": [],
         "copyrights": []
       },
@@ -272,13 +272,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/misc/ContextManagers.py",
+        "path": "coalib/bearlib/languages/Language.py",
         "type": "file",
-        "name": "ContextManagers.py",
-        "size": 7320,
-        "sha1": "2f96b9fafe873fbf4fe728ec3bee297b76b23ad3",
-        "fingerprint": "59ae0f94aaf016681f9b4e334b93d871",
-        "original_path": "coalib/misc/ContextManagers.py",
+        "name": "Language.py",
+        "size": 14576,
+        "sha1": "8fffd2c27b093bd8d66b26a858dac0e96fba7712",
+        "fingerprint": "9e6e4bc338476535a06df21a38888ae0",
+        "original_path": "coalib/bearlib/languages/Language.py",
         "licenses": [],
         "copyrights": []
       },
@@ -289,13 +289,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/output/dbus/BuildDbusService.py",
+        "path": "coalib/bearlib/languages/definitions/Python.py",
         "type": "file",
-        "name": "BuildDbusService.py",
-        "size": 1411,
-        "sha1": "50d4a97f5b22a668fa6b32a5439d895395e35ed8",
-        "fingerprint": "f396d383c00c04c29308444c18fa4b61",
-        "original_path": "coalib/output/dbus/BuildDbusService.py",
+        "name": "Python.py",
+        "size": 414,
+        "sha1": "aac5bfe4aa4d2d8c6d8d4b37483c649e1cb60a92",
+        "fingerprint": "e8084b5abc4647568cbf49bb0deb7a28",
+        "original_path": "coalib/bearlib/languages/definitions/Python.py",
         "licenses": [],
         "copyrights": []
       },
@@ -306,13 +306,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/output/dbus/DbusDocument.py",
+        "path": "coalib/testing/BearTestHelper.py",
         "type": "file",
-        "name": "DbusDocument.py",
-        "size": 6938,
-        "sha1": "c785c58df4bb36e11204298b08fd11706fec0537",
-        "fingerprint": "76b6e667cc3be1d65dfbb3ce78a6708b",
-        "original_path": "coalib/output/dbus/DbusDocument.py",
+        "name": "BearTestHelper.py",
+        "size": 513,
+        "sha1": "ce929e54914605a8cb2c58c87235f8911d09d133",
+        "fingerprint": "3299c7c84ad4d0de3ea4617aa0e69ada",
+        "original_path": "coalib/testing/BearTestHelper.py",
         "licenses": [],
         "copyrights": []
       },
@@ -323,47 +323,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/misc/StringConverter.py",
-        "type": "file",
-        "name": "StringConverter.py",
-        "size": 5054,
-        "sha1": "c631950e218cab444d1493617a65a12b00364881",
-        "fingerprint": "ea9a8d1344c48ce23d4fb5e986e50a88",
-        "original_path": "coalib/misc/StringConverter.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": null
-    },
-    {
-      "status": "added",
-      "factors": [],
-      "score": 100,
-      "new": {
-        "path": "coalib/parsing/StringProcessing/Filters.py",
-        "type": "file",
-        "name": "Filters.py",
-        "size": 1331,
-        "sha1": "d6c829ce09c42b1f32c80427656ecc2571ba86a9",
-        "fingerprint": "a60f7b72ef38d44cb9ed9093571f9043",
-        "original_path": "coalib/parsing/StringProcessing/Filters.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": null
-    },
-    {
-      "status": "added",
-      "factors": [],
-      "score": 100,
-      "new": {
-        "path": "coalib/misc/Annotations.py",
+        "path": "coalib/settings/Annotations.py",
         "type": "file",
         "name": "Annotations.py",
         "size": 1580,
-        "sha1": "cdb9d2308606ad94a071ded80d13b94be0ad5edf",
-        "fingerprint": "70870fe418fa0945500072b73873eb0e",
-        "original_path": "coalib/misc/Annotations.py",
+        "sha1": "869f6eb810c52fb8a48a1d9f538ed379c42658f4",
+        "fingerprint": "b08707e21cfa0145500072973873e10c",
+        "original_path": "coalib/settings/Annotations.py",
         "licenses": [],
         "copyrights": []
       },
@@ -374,13 +340,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/output/dbus/DbusApp.py",
+        "path": "coalib/bearlib/languages/definitions/CSharp.py",
         "type": "file",
-        "name": "DbusApp.py",
-        "size": 1509,
-        "sha1": "3549f039b292fbefdf45c2c487b3695daaec594f",
-        "fingerprint": "3315270d0f17234d9838f3542645e550",
-        "original_path": "coalib/output/dbus/DbusApp.py",
+        "name": "CSharp.py",
+        "size": 261,
+        "sha1": "2303b6be2926902fce6e136af99557c30e02a886",
+        "fingerprint": "84d399bd3c4249e18722600b9141009a",
+        "original_path": "coalib/bearlib/languages/definitions/CSharp.py",
         "licenses": [],
         "copyrights": []
       },
@@ -391,13 +357,13 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/bearlib/languages/definitions/c.coalang",
+        "path": "coalib/bearlib/languages/definitions/CPP.py",
         "type": "file",
-        "name": "c.coalang",
-        "size": 568,
-        "sha1": "a6f2eeb3d4a7a983bdec457cf438bebc5e96d429",
-        "fingerprint": "8d91eb5c609d76bddaf1c2443983596c",
-        "original_path": "coalib/bearlib/languages/definitions/c.coalang",
+        "name": "CPP.py",
+        "size": 1580,
+        "sha1": "37e0d9cd25b2373d03f7c298a778b037bde75f00",
+        "fingerprint": "99a729324f45236806c3f1fb896cda9b",
+        "original_path": "coalib/bearlib/languages/definitions/CPP.py",
         "licenses": [],
         "copyrights": []
       },
@@ -408,13 +374,81 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "coalib/misc/Future.py",
+        "path": "coalib/bearlib/aspects/__init__.py",
         "type": "file",
-        "name": "Future.py",
-        "size": 3748,
-        "sha1": "c07134749c576cb2dbf33be37951e01f96763a25",
-        "fingerprint": "e124dbc2b4dbc3757b8bfab1722e8280",
-        "original_path": "coalib/misc/Future.py",
+        "name": "__init__.py",
+        "size": 3402,
+        "sha1": "0c7bd34da16043fc8213a78e3e1ce52d6cc56caa",
+        "fingerprint": "1f35f6b654088409c60432ef061586a0",
+        "original_path": "coalib/bearlib/aspects/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": null
+    },
+    {
+      "status": "added",
+      "factors": [],
+      "score": 100,
+      "new": {
+        "path": "coalib/misc/Compatibility.py",
+        "type": "file",
+        "name": "Compatibility.py",
+        "size": 144,
+        "sha1": "324f7c59d9681f99e00d92f4ccfe5aae46e3a17e",
+        "fingerprint": "68aa9e94638ec7282ddeff407a44bef2",
+        "original_path": "coalib/misc/Compatibility.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": null
+    },
+    {
+      "status": "added",
+      "factors": [],
+      "score": 100,
+      "new": {
+        "path": "coalib/output/Logging.py",
+        "type": "file",
+        "name": "Logging.py",
+        "size": 2097,
+        "sha1": "b6f2cc82c535f13ba5b4e904df10c325a88bf7cf",
+        "fingerprint": "d6097cab5c7d99204399e7a48cdd3dcd",
+        "original_path": "coalib/output/Logging.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": null
+    },
+    {
+      "status": "added",
+      "factors": [],
+      "score": 100,
+      "new": {
+        "path": "coalib/bearlib/aspects/meta.py",
+        "type": "file",
+        "name": "meta.py",
+        "size": 2121,
+        "sha1": "13c6ea613e56cdd0141fd91b99ba1371e7ed0ff0",
+        "fingerprint": "932d49723eb293bdb1f1f789d8cef62e",
+        "original_path": "coalib/bearlib/aspects/meta.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": null
+    },
+    {
+      "status": "added",
+      "factors": [],
+      "score": 100,
+      "new": {
+        "path": "coalib/bearlib/aspects/taste.py",
+        "type": "file",
+        "name": "taste.py",
+        "size": 2896,
+        "sha1": "68ad8f8efb4a57cd48c279f3f5d58948212cb1aa",
+        "fingerprint": "1fe3af3b2c9452658904f0767ebf5761",
+        "original_path": "coalib/bearlib/aspects/taste.py",
         "licenses": [],
         "copyrights": []
       },
@@ -427,17 +461,6 @@
       ],
       "score": 55,
       "new": {
-        "path": "coalib/parsing/LineParser.py",
-        "type": "file",
-        "name": "LineParser.py",
-        "size": 6440,
-        "sha1": "05418a678e5ffec3f04117abf2007acbde2be125",
-        "fingerprint": "4959f9ab0bdd2db376b0c37619fe41d6",
-        "original_path": "coalib/parsing/LineParser.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/parsing/LineParser.py",
         "type": "file",
         "name": "LineParser.py",
@@ -447,6 +470,17 @@
         "original_path": "coalib/parsing/LineParser.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/parsing/LineParser.py",
+        "type": "file",
+        "name": "LineParser.py",
+        "size": 6440,
+        "sha1": "05418a678e5ffec3f04117abf2007acbde2be125",
+        "fingerprint": "4959f9ab0bdd2db376b0c37619fe41d6",
+        "original_path": "coalib/parsing/LineParser.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -459,9 +493,9 @@
         "path": "coalib/processes/communication/LogMessage.py",
         "type": "file",
         "name": "LogMessage.py",
-        "size": 1620,
-        "sha1": "622d5ff6d91438c84665e33499fc57bc2350bdd1",
-        "fingerprint": "88ab42e33fb80649506f46ac63b4bdc0",
+        "size": 1643,
+        "sha1": "1cd8e795f4cca4f7894fabb7f458ea03631afdcb",
+        "fingerprint": "0aa35083751a0cc8d052012ce3f78dc8",
         "original_path": "coalib/processes/communication/LogMessage.py",
         "licenses": [],
         "copyrights": []
@@ -470,9 +504,9 @@
         "path": "coalib/processes/communication/LogMessage.py",
         "type": "file",
         "name": "LogMessage.py",
-        "size": 1643,
-        "sha1": "1cd8e795f4cca4f7894fabb7f458ea03631afdcb",
-        "fingerprint": "0aa35083751a0cc8d052012ce3f78dc8",
+        "size": 1620,
+        "sha1": "622d5ff6d91438c84665e33499fc57bc2350bdd1",
+        "fingerprint": "88ab42e33fb80649506f46ac63b4bdc0",
         "original_path": "coalib/processes/communication/LogMessage.py",
         "licenses": [],
         "copyrights": []
@@ -485,17 +519,6 @@
       ],
       "score": 54,
       "new": {
-        "path": "coalib/coala.py",
-        "type": "file",
-        "name": "coala.py",
-        "size": 2836,
-        "sha1": "2225cfa2e760261b02d5eb37a3d318c0b4fb2fb1",
-        "fingerprint": "38a5e5aa22cdc5e33276eda275afaf6d",
-        "original_path": "coalib/coala.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/coala.py",
         "type": "file",
         "name": "coala.py",
@@ -505,6 +528,17 @@
         "original_path": "coalib/coala.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/coala.py",
+        "type": "file",
+        "name": "coala.py",
+        "size": 2836,
+        "sha1": "2225cfa2e760261b02d5eb37a3d318c0b4fb2fb1",
+        "fingerprint": "38a5e5aa22cdc5e33276eda275afaf6d",
+        "original_path": "coalib/coala.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -517,9 +551,9 @@
         "path": "coalib/output/JSONEncoder.py",
         "type": "file",
         "name": "JSONEncoder.py",
-        "size": 1256,
-        "sha1": "26db9936440aa8422b581950c42d19f633c12923",
-        "fingerprint": "a62ae43d2cac7ee7dc5ea4b93b9ded21",
+        "size": 1348,
+        "sha1": "bcb9103186a69da9d245e29ae4c6fa0b97f081c6",
+        "fingerprint": "a6299d6d28a85207d497b4f893afec09",
         "original_path": "coalib/output/JSONEncoder.py",
         "licenses": [],
         "copyrights": []
@@ -528,9 +562,9 @@
         "path": "coalib/output/JSONEncoder.py",
         "type": "file",
         "name": "JSONEncoder.py",
-        "size": 1348,
-        "sha1": "bcb9103186a69da9d245e29ae4c6fa0b97f081c6",
-        "fingerprint": "a6299d6d28a85207d497b4f893afec09",
+        "size": 1256,
+        "sha1": "26db9936440aa8422b581950c42d19f633c12923",
+        "fingerprint": "a62ae43d2cac7ee7dc5ea4b93b9ded21",
         "original_path": "coalib/output/JSONEncoder.py",
         "licenses": [],
         "copyrights": []
@@ -543,17 +577,6 @@
       ],
       "score": 53,
       "new": {
-        "path": "coalib/bearlib/languages/documentation/DocumentationComment.py",
-        "type": "file",
-        "name": "DocumentationComment.py",
-        "size": 5150,
-        "sha1": "505a3cf1cff6b8550cc45f3bf8989c27c81e4415",
-        "fingerprint": "0a24c66a1c169d373491cfa93cd2ae10",
-        "original_path": "coalib/bearlib/languages/documentation/DocumentationComment.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/bearlib/languages/documentation/DocumentationComment.py",
         "type": "file",
         "name": "DocumentationComment.py",
@@ -563,6 +586,17 @@
         "original_path": "coalib/bearlib/languages/documentation/DocumentationComment.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/bearlib/languages/documentation/DocumentationComment.py",
+        "type": "file",
+        "name": "DocumentationComment.py",
+        "size": 5150,
+        "sha1": "505a3cf1cff6b8550cc45f3bf8989c27c81e4415",
+        "fingerprint": "0a24c66a1c169d373491cfa93cd2ae10",
+        "original_path": "coalib/bearlib/languages/documentation/DocumentationComment.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -572,17 +606,6 @@
       ],
       "score": 53,
       "new": {
-        "path": "coalib/parsing/ConfParser.py",
-        "type": "file",
-        "name": "ConfParser.py",
-        "size": 4972,
-        "sha1": "1d22cefa6947824fd1de7ebb24afc2e619b3a4e6",
-        "fingerprint": "2fb6e0b4edcbc8e4ab45ab6e88e8689c",
-        "original_path": "coalib/parsing/ConfParser.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/parsing/ConfParser.py",
         "type": "file",
         "name": "ConfParser.py",
@@ -592,6 +615,17 @@
         "original_path": "coalib/parsing/ConfParser.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/parsing/ConfParser.py",
+        "type": "file",
+        "name": "ConfParser.py",
+        "size": 4972,
+        "sha1": "1d22cefa6947824fd1de7ebb24afc2e619b3a4e6",
+        "fingerprint": "2fb6e0b4edcbc8e4ab45ab6e88e8689c",
+        "original_path": "coalib/parsing/ConfParser.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -604,9 +638,9 @@
         "path": "coalib/output/printers/LogPrinter.py",
         "type": "file",
         "name": "LogPrinter.py",
-        "size": 6235,
-        "sha1": "fff2eda4d8ce801ca15774fdd7c2a89e94875831",
-        "fingerprint": "1dc9da1fbef5854e79ed0aed89465b2a",
+        "size": 6096,
+        "sha1": "319f982d637c7ce94276edea46d9892497987d09",
+        "fingerprint": "1fc9df1e12e1e11a1f6c08e685d6cb28",
         "original_path": "coalib/output/printers/LogPrinter.py",
         "licenses": [],
         "copyrights": []
@@ -615,9 +649,9 @@
         "path": "coalib/output/printers/LogPrinter.py",
         "type": "file",
         "name": "LogPrinter.py",
-        "size": 6096,
-        "sha1": "319f982d637c7ce94276edea46d9892497987d09",
-        "fingerprint": "1fc9df1e12e1e11a1f6c08e685d6cb28",
+        "size": 6235,
+        "sha1": "fff2eda4d8ce801ca15774fdd7c2a89e94875831",
+        "fingerprint": "1dc9da1fbef5854e79ed0aed89465b2a",
         "original_path": "coalib/output/printers/LogPrinter.py",
         "licenses": [],
         "copyrights": []
@@ -630,17 +664,6 @@
       ],
       "score": 52,
       "new": {
-        "path": "coalib/settings/DocstringMetadata.py",
-        "type": "file",
-        "name": "DocstringMetadata.py",
-        "size": 2495,
-        "sha1": "027f523e4098610452e54bf6c3f96610f0aec7cf",
-        "fingerprint": "48b8eaa17445cb47e1d89a77cddaf97a",
-        "original_path": "coalib/settings/DocstringMetadata.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/settings/DocstringMetadata.py",
         "type": "file",
         "name": "DocstringMetadata.py",
@@ -650,6 +673,17 @@
         "original_path": "coalib/settings/DocstringMetadata.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/settings/DocstringMetadata.py",
+        "type": "file",
+        "name": "DocstringMetadata.py",
+        "size": 2495,
+        "sha1": "027f523e4098610452e54bf6c3f96610f0aec7cf",
+        "fingerprint": "48b8eaa17445cb47e1d89a77cddaf97a",
+        "original_path": "coalib/settings/DocstringMetadata.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -662,9 +696,9 @@
         "path": "coalib/results/SourceRange.py",
         "type": "file",
         "name": "SourceRange.py",
-        "size": 4790,
-        "sha1": "f8cfce36f2ad4964fca37e16193330dd541069e7",
-        "fingerprint": "0d7328418e1c1831e9f91b2787b52aee",
+        "size": 6248,
+        "sha1": "882dc144a2fb720fce47f97efd36c162353391ba",
+        "fingerprint": "4d3103410eeccc93b969322ba7f52eea",
         "original_path": "coalib/results/SourceRange.py",
         "licenses": [],
         "copyrights": []
@@ -673,9 +707,9 @@
         "path": "coalib/results/SourceRange.py",
         "type": "file",
         "name": "SourceRange.py",
-        "size": 6248,
-        "sha1": "882dc144a2fb720fce47f97efd36c162353391ba",
-        "fingerprint": "4d3103410eeccc93b969322ba7f52eea",
+        "size": 4790,
+        "sha1": "f8cfce36f2ad4964fca37e16193330dd541069e7",
+        "fingerprint": "0d7328418e1c1831e9f91b2787b52aee",
         "original_path": "coalib/results/SourceRange.py",
         "licenses": [],
         "copyrights": []
@@ -688,46 +722,6 @@
       ],
       "score": 51,
       "new": {
-        "path": "coalib/coala_delete_orig.py",
-        "type": "file",
-        "name": "coala_delete_orig.py",
-        "size": 1450,
-        "sha1": "ba470220cfe23896e03e01094899e6fe94e37a3a",
-        "fingerprint": "d98322005edec725659f7ca9b42aab2c",
-        "original_path": "coalib/coala_delete_orig.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
-        "path": "coalib/coala_delete_orig.py",
-        "type": "file",
-        "name": "coala_delete_orig.py",
-        "size": 1573,
-        "sha1": "81d61062eef5564b2cbb6283b794a30b4816722f",
-        "fingerprint": "8b8b3a062eeecf21e79ef43cb430ba3e",
-        "original_path": "coalib/coala_delete_orig.py",
-        "licenses": [],
-        "copyrights": []
-      }
-    },
-    {
-      "status": "modified",
-      "factors": [
-        "Similar with hamming distance : 31"
-      ],
-      "score": 51,
-      "new": {
-        "path": "coalib/coala_main.py",
-        "type": "file",
-        "name": "coala_main.py",
-        "size": 5013,
-        "sha1": "1d92b5257fded9b408a579c0fc13d83f0c455c86",
-        "fingerprint": "78f4dc871b1e370185e021193b3734cd",
-        "original_path": "coalib/coala_main.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/coala_main.py",
         "type": "file",
         "name": "coala_main.py",
@@ -737,6 +731,46 @@
         "original_path": "coalib/coala_main.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/coala_main.py",
+        "type": "file",
+        "name": "coala_main.py",
+        "size": 5013,
+        "sha1": "1d92b5257fded9b408a579c0fc13d83f0c455c86",
+        "fingerprint": "78f4dc871b1e370185e021193b3734cd",
+        "original_path": "coalib/coala_main.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "modified",
+      "factors": [
+        "Similar with hamming distance : 31"
+      ],
+      "score": 51,
+      "new": {
+        "path": "coalib/coala_delete_orig.py",
+        "type": "file",
+        "name": "coala_delete_orig.py",
+        "size": 1573,
+        "sha1": "81d61062eef5564b2cbb6283b794a30b4816722f",
+        "fingerprint": "8b8b3a062eeecf21e79ef43cb430ba3e",
+        "original_path": "coalib/coala_delete_orig.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/coala_delete_orig.py",
+        "type": "file",
+        "name": "coala_delete_orig.py",
+        "size": 1450,
+        "sha1": "ba470220cfe23896e03e01094899e6fe94e37a3a",
+        "fingerprint": "d98322005edec725659f7ca9b42aab2c",
+        "original_path": "coalib/coala_delete_orig.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -746,17 +780,6 @@
       ],
       "score": 50,
       "new": {
-        "path": "coalib/bearlib/languages/documentation/DocstyleDefinition.py",
-        "type": "file",
-        "name": "DocstyleDefinition.py",
-        "size": 5815,
-        "sha1": "2f7a7bf51563d4db2ca4e26a5564fc70a22af029",
-        "fingerprint": "3afc41add5d7163401300fa7a0dc5544",
-        "original_path": "coalib/bearlib/languages/documentation/DocstyleDefinition.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/bearlib/languages/documentation/DocstyleDefinition.py",
         "type": "file",
         "name": "DocstyleDefinition.py",
@@ -766,6 +789,17 @@
         "original_path": "coalib/bearlib/languages/documentation/DocstyleDefinition.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/bearlib/languages/documentation/DocstyleDefinition.py",
+        "type": "file",
+        "name": "DocstyleDefinition.py",
+        "size": 5815,
+        "sha1": "2f7a7bf51563d4db2ca4e26a5564fc70a22af029",
+        "fingerprint": "3afc41add5d7163401300fa7a0dc5544",
+        "original_path": "coalib/bearlib/languages/documentation/DocstyleDefinition.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -778,9 +812,9 @@
         "path": "coalib/results/Diff.py",
         "type": "file",
         "name": "Diff.py",
-        "size": 13134,
-        "sha1": "8d2bdab0c8df913052df348a8db2795a0bfacb95",
-        "fingerprint": "a3749436c476a393ac4ab48d26d38c46",
+        "size": 18608,
+        "sha1": "9ecd165c90bdc360670abb94e1fe6aee65572843",
+        "fingerprint": "93749e34ccf3f177ac5ea28922f4884a",
         "original_path": "coalib/results/Diff.py",
         "licenses": [],
         "copyrights": []
@@ -789,9 +823,9 @@
         "path": "coalib/results/Diff.py",
         "type": "file",
         "name": "Diff.py",
-        "size": 18608,
-        "sha1": "9ecd165c90bdc360670abb94e1fe6aee65572843",
-        "fingerprint": "93749e34ccf3f177ac5ea28922f4884a",
+        "size": 13134,
+        "sha1": "8d2bdab0c8df913052df348a8db2795a0bfacb95",
+        "fingerprint": "a3749436c476a393ac4ab48d26d38c46",
         "original_path": "coalib/results/Diff.py",
         "licenses": [],
         "copyrights": []
@@ -807,9 +841,9 @@
         "path": "coalib/results/result_actions/ApplyPatchAction.py",
         "type": "file",
         "name": "ApplyPatchAction.py",
-        "size": 2282,
-        "sha1": "cbfeed295786c489aa9395886dfd2d19671af22b",
-        "fingerprint": "f32988aa9d6beda19e3c839d0752407e",
+        "size": 1931,
+        "sha1": "ca728679fa9346ea7ad048fb3fe2c340c5e7464a",
+        "fingerprint": "f308802b15fba9a8823481d907182266",
         "original_path": "coalib/results/result_actions/ApplyPatchAction.py",
         "licenses": [],
         "copyrights": []
@@ -818,9 +852,9 @@
         "path": "coalib/results/result_actions/ApplyPatchAction.py",
         "type": "file",
         "name": "ApplyPatchAction.py",
-        "size": 1931,
-        "sha1": "ca728679fa9346ea7ad048fb3fe2c340c5e7464a",
-        "fingerprint": "f308802b15fba9a8823481d907182266",
+        "size": 2282,
+        "sha1": "cbfeed295786c489aa9395886dfd2d19671af22b",
+        "fingerprint": "f32988aa9d6beda19e3c839d0752407e",
         "original_path": "coalib/results/result_actions/ApplyPatchAction.py",
         "licenses": [],
         "copyrights": []
@@ -836,9 +870,9 @@
         "path": "coalib/bears/Bear.py",
         "type": "file",
         "name": "Bear.py",
-        "size": 13931,
-        "sha1": "2a8383187dd5217c18741bbb979d9d513abc4f9f",
-        "fingerprint": "a658793a6fed424181d6043a3ad23a2f",
+        "size": 14966,
+        "sha1": "aadb71d6089b77749cdb73449daa66ed855fe65c",
+        "fingerprint": "a45f7832eda7526181d604365ef05aca",
         "original_path": "coalib/bears/Bear.py",
         "licenses": [],
         "copyrights": []
@@ -847,9 +881,9 @@
         "path": "coalib/bears/Bear.py",
         "type": "file",
         "name": "Bear.py",
-        "size": 14966,
-        "sha1": "aadb71d6089b77749cdb73449daa66ed855fe65c",
-        "fingerprint": "a45f7832eda7526181d604365ef05aca",
+        "size": 13931,
+        "sha1": "2a8383187dd5217c18741bbb979d9d513abc4f9f",
+        "fingerprint": "a658793a6fed424181d6043a3ad23a2f",
         "original_path": "coalib/bears/Bear.py",
         "licenses": [],
         "copyrights": []
@@ -862,17 +896,6 @@
       ],
       "score": 46,
       "new": {
-        "path": "coalib/bears/BEAR_KIND.py",
-        "type": "file",
-        "name": "BEAR_KIND.py",
-        "size": 71,
-        "sha1": "1dedd6553debf266c2640412be83ce83f790ee5a",
-        "fingerprint": "04e4c4c01c84756e028240c8400c419e",
-        "original_path": "coalib/bears/BEAR_KIND.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/bears/BEAR_KIND.py",
         "type": "file",
         "name": "BEAR_KIND.py",
@@ -882,6 +905,17 @@
         "original_path": "coalib/bears/BEAR_KIND.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/bears/BEAR_KIND.py",
+        "type": "file",
+        "name": "BEAR_KIND.py",
+        "size": 71,
+        "sha1": "1dedd6553debf266c2640412be83ce83f790ee5a",
+        "fingerprint": "04e4c4c01c84756e028240c8400c419e",
+        "original_path": "coalib/bears/BEAR_KIND.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -891,17 +925,6 @@
       ],
       "score": 46,
       "new": {
-        "path": "coalib/results/TextRange.py",
-        "type": "file",
-        "name": "TextRange.py",
-        "size": 4199,
-        "sha1": "48b2fcf56ef62729ff1a673f81705a0b44ea22da",
-        "fingerprint": "cf414f759c8dcb87bedc697fc73d00ea",
-        "original_path": "coalib/results/TextRange.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/results/TextRange.py",
         "type": "file",
         "name": "TextRange.py",
@@ -911,6 +934,17 @@
         "original_path": "coalib/results/TextRange.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/results/TextRange.py",
+        "type": "file",
+        "name": "TextRange.py",
+        "size": 4199,
+        "sha1": "48b2fcf56ef62729ff1a673f81705a0b44ea22da",
+        "fingerprint": "cf414f759c8dcb87bedc697fc73d00ea",
+        "original_path": "coalib/results/TextRange.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -923,9 +957,9 @@
         "path": "coalib/bearlib/abstractions/ExternalBearWrap.py",
         "type": "file",
         "name": "ExternalBearWrap.py",
-        "size": 7867,
-        "sha1": "161505af88d7b664904da509f91ac9ac2b3cd742",
-        "fingerprint": "b8c47183ea595f200dab02d485b6d16c",
+        "size": 7569,
+        "sha1": "b14944627d01b77995987e177ef5684ed2c93b75",
+        "fingerprint": "b1e971936b1949420d2a62d485afd074",
         "original_path": "coalib/bearlib/abstractions/ExternalBearWrap.py",
         "licenses": [],
         "copyrights": []
@@ -934,9 +968,9 @@
         "path": "coalib/bearlib/abstractions/ExternalBearWrap.py",
         "type": "file",
         "name": "ExternalBearWrap.py",
-        "size": 7569,
-        "sha1": "b14944627d01b77995987e177ef5684ed2c93b75",
-        "fingerprint": "b1e971936b1949420d2a62d485afd074",
+        "size": 7867,
+        "sha1": "161505af88d7b664904da509f91ac9ac2b3cd742",
+        "fingerprint": "b8c47183ea595f200dab02d485b6d16c",
         "original_path": "coalib/bearlib/abstractions/ExternalBearWrap.py",
         "licenses": [],
         "copyrights": []
@@ -952,9 +986,9 @@
         "path": "coalib/results/LineDiff.py",
         "type": "file",
         "name": "LineDiff.py",
-        "size": 2423,
-        "sha1": "984319005dc3629a94a9e6e32d36efbddef386f0",
-        "fingerprint": "c03f9da2151011896d799befb01547a6",
+        "size": 2418,
+        "sha1": "8893bc9d0af7d8568aab8128e14d98fff350b40a",
+        "fingerprint": "c839bda21030019f2d75abafd11d46f4",
         "original_path": "coalib/results/LineDiff.py",
         "licenses": [],
         "copyrights": []
@@ -963,9 +997,9 @@
         "path": "coalib/results/LineDiff.py",
         "type": "file",
         "name": "LineDiff.py",
-        "size": 2418,
-        "sha1": "8893bc9d0af7d8568aab8128e14d98fff350b40a",
-        "fingerprint": "c839bda21030019f2d75abafd11d46f4",
+        "size": 2423,
+        "sha1": "984319005dc3629a94a9e6e32d36efbddef386f0",
+        "fingerprint": "c03f9da2151011896d799befb01547a6",
         "original_path": "coalib/results/LineDiff.py",
         "licenses": [],
         "copyrights": []
@@ -981,9 +1015,9 @@
         "path": "coalib/bearlib/naming_conventions/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 3507,
-        "sha1": "04c549b54d2b6eee40ac41e8e05d2cf48d7fd632",
-        "fingerprint": "7b59879d408150c78e4c5f5a2b057003",
+        "size": 3745,
+        "sha1": "4baf7f36a608bb2f82d56f2ea11803ce04c885d2",
+        "fingerprint": "73d987bd408852ef8448cf5829896337",
         "original_path": "coalib/bearlib/naming_conventions/__init__.py",
         "licenses": [],
         "copyrights": []
@@ -992,9 +1026,9 @@
         "path": "coalib/bearlib/naming_conventions/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 3745,
-        "sha1": "4baf7f36a608bb2f82d56f2ea11803ce04c885d2",
-        "fingerprint": "73d987bd408852ef8448cf5829896337",
+        "size": 3507,
+        "sha1": "04c549b54d2b6eee40ac41e8e05d2cf48d7fd632",
+        "fingerprint": "7b59879d408150c78e4c5f5a2b057003",
         "original_path": "coalib/bearlib/naming_conventions/__init__.py",
         "licenses": [],
         "copyrights": []
@@ -1007,17 +1041,6 @@
       ],
       "score": 43,
       "new": {
-        "path": "coalib/bearlib/abstractions/Linter.py",
-        "type": "file",
-        "name": "Linter.py",
-        "size": 31946,
-        "sha1": "6ca88650c2d066a005333598736ab715b315be59",
-        "fingerprint": "2ae7c5cb283137770c7448ed2f8a797f",
-        "original_path": "coalib/bearlib/abstractions/Linter.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/bearlib/abstractions/Linter.py",
         "type": "file",
         "name": "Linter.py",
@@ -1027,6 +1050,17 @@
         "original_path": "coalib/bearlib/abstractions/Linter.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/bearlib/abstractions/Linter.py",
+        "type": "file",
+        "name": "Linter.py",
+        "size": 31946,
+        "sha1": "6ca88650c2d066a005333598736ab715b315be59",
+        "fingerprint": "2ae7c5cb283137770c7448ed2f8a797f",
+        "original_path": "coalib/bearlib/abstractions/Linter.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1036,17 +1070,6 @@
       ],
       "score": 43,
       "new": {
-        "path": "coalib/parsing/CliParsing.py",
-        "type": "file",
-        "name": "CliParsing.py",
-        "size": 4608,
-        "sha1": "ac872955d8f7077981dd9ffb0a862dde77b6a105",
-        "fingerprint": "2bcd40951316352148196b2a8a63499a",
-        "original_path": "coalib/parsing/CliParsing.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/parsing/CliParsing.py",
         "type": "file",
         "name": "CliParsing.py",
@@ -1056,6 +1079,17 @@
         "original_path": "coalib/parsing/CliParsing.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/parsing/CliParsing.py",
+        "type": "file",
+        "name": "CliParsing.py",
+        "size": 4608,
+        "sha1": "ac872955d8f7077981dd9ffb0a862dde77b6a105",
+        "fingerprint": "2bcd40951316352148196b2a8a63499a",
+        "original_path": "coalib/parsing/CliParsing.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1065,17 +1099,6 @@
       ],
       "score": 43,
       "new": {
-        "path": "coalib/output/printers/ListLogPrinter.py",
-        "type": "file",
-        "name": "ListLogPrinter.py",
-        "size": 1002,
-        "sha1": "1e041b0f70a6611482b8cc87729a454360f6c5a5",
-        "fingerprint": "1849b95ccea730fb04c10a92a28638a1",
-        "original_path": "coalib/output/printers/ListLogPrinter.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/output/printers/ListLogPrinter.py",
         "type": "file",
         "name": "ListLogPrinter.py",
@@ -1085,6 +1108,17 @@
         "original_path": "coalib/output/printers/ListLogPrinter.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/output/printers/ListLogPrinter.py",
+        "type": "file",
+        "name": "ListLogPrinter.py",
+        "size": 1002,
+        "sha1": "1e041b0f70a6611482b8cc87729a454360f6c5a5",
+        "fingerprint": "1849b95ccea730fb04c10a92a28638a1",
+        "original_path": "coalib/output/printers/ListLogPrinter.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1094,17 +1128,6 @@
       ],
       "score": 43,
       "new": {
-        "path": "coalib/collecting/Collectors.py",
-        "type": "file",
-        "name": "Collectors.py",
-        "size": 10674,
-        "sha1": "d74cc4eafa14a0c09d53ccff48ca8d7e21f014bf",
-        "fingerprint": "c869c4b39cbd64d994eff329370e9b1f",
-        "original_path": "coalib/collecting/Collectors.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/collecting/Collectors.py",
         "type": "file",
         "name": "Collectors.py",
@@ -1114,6 +1137,17 @@
         "original_path": "coalib/collecting/Collectors.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/collecting/Collectors.py",
+        "type": "file",
+        "name": "Collectors.py",
+        "size": 10674,
+        "sha1": "d74cc4eafa14a0c09d53ccff48ca8d7e21f014bf",
+        "fingerprint": "c869c4b39cbd64d994eff329370e9b1f",
+        "original_path": "coalib/collecting/Collectors.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1126,9 +1160,9 @@
         "path": "coalib/misc/Exceptions.py",
         "type": "file",
         "name": "Exceptions.py",
-        "size": 1013,
-        "sha1": "9bdba7e9b025e12ae4a7c632772623fe26d61c28",
-        "fingerprint": "b82f9a96d5e755f9444ce739a5c54150",
+        "size": 1059,
+        "sha1": "37de24c6523a6d6c8a43408e59736b773217718c",
+        "fingerprint": "b8bf1ad4d5eb54684454e73ea5f140c8",
         "original_path": "coalib/misc/Exceptions.py",
         "licenses": [],
         "copyrights": []
@@ -1137,9 +1171,9 @@
         "path": "coalib/misc/Exceptions.py",
         "type": "file",
         "name": "Exceptions.py",
-        "size": 1059,
-        "sha1": "37de24c6523a6d6c8a43408e59736b773217718c",
-        "fingerprint": "b8bf1ad4d5eb54684454e73ea5f140c8",
+        "size": 1013,
+        "sha1": "9bdba7e9b025e12ae4a7c632772623fe26d61c28",
+        "fingerprint": "b82f9a96d5e755f9444ce739a5c54150",
         "original_path": "coalib/misc/Exceptions.py",
         "licenses": [],
         "copyrights": []
@@ -1155,9 +1189,9 @@
         "path": "coalib/processes/Processing.py",
         "type": "file",
         "name": "Processing.py",
-        "size": 28892,
-        "sha1": "c1059893aa69289d9f7bad3d73b5cfca32e379e1",
-        "fingerprint": "8fa599d2554f91facc5f122828424e00",
+        "size": 30267,
+        "sha1": "f609a53b726a884ba774e91d807ccdb89d094fa2",
+        "fingerprint": "0aed91d2dd8fd1fa4c4f522948504c41",
         "original_path": "coalib/processes/Processing.py",
         "licenses": [],
         "copyrights": []
@@ -1166,9 +1200,9 @@
         "path": "coalib/processes/Processing.py",
         "type": "file",
         "name": "Processing.py",
-        "size": 30267,
-        "sha1": "f609a53b726a884ba774e91d807ccdb89d094fa2",
-        "fingerprint": "0aed91d2dd8fd1fa4c4f522948504c41",
+        "size": 28892,
+        "sha1": "c1059893aa69289d9f7bad3d73b5cfca32e379e1",
+        "fingerprint": "8fa599d2554f91facc5f122828424e00",
         "original_path": "coalib/processes/Processing.py",
         "licenses": [],
         "copyrights": []
@@ -1184,9 +1218,9 @@
         "path": "coalib/bearlib/spacing/SpacingHelper.py",
         "type": "file",
         "name": "SpacingHelper.py",
-        "size": 3809,
-        "sha1": "33ccbfc6383e8559bec62c7f43a39e2022c427a2",
-        "fingerprint": "159b24c21e6bda7e3d8c079f52b8be0c",
+        "size": 3825,
+        "sha1": "406bdc40280526bc19be12088452473eb0e421e2",
+        "fingerprint": "15db24c20e23597cbd9cb79d4098be60",
         "original_path": "coalib/bearlib/spacing/SpacingHelper.py",
         "licenses": [],
         "copyrights": []
@@ -1195,9 +1229,9 @@
         "path": "coalib/bearlib/spacing/SpacingHelper.py",
         "type": "file",
         "name": "SpacingHelper.py",
-        "size": 3825,
-        "sha1": "406bdc40280526bc19be12088452473eb0e421e2",
-        "fingerprint": "15db24c20e23597cbd9cb79d4098be60",
+        "size": 3809,
+        "sha1": "33ccbfc6383e8559bec62c7f43a39e2022c427a2",
+        "fingerprint": "159b24c21e6bda7e3d8c079f52b8be0c",
         "original_path": "coalib/bearlib/spacing/SpacingHelper.py",
         "licenses": [],
         "copyrights": []
@@ -1213,9 +1247,9 @@
         "path": "coalib/misc/Caching.py",
         "type": "file",
         "name": "Caching.py",
-        "size": 5382,
-        "sha1": "cf5c71f064d91bec125742b8eb63b1bef9725024",
-        "fingerprint": "4679ca1685029570ad3391ab2d6951d1",
+        "size": 5773,
+        "sha1": "9b855f0c4158de30da3a690d33b4ad6fdfebaa39",
+        "fingerprint": "4659c216958ef578b9a3910b25695dd9",
         "original_path": "coalib/misc/Caching.py",
         "licenses": [],
         "copyrights": []
@@ -1224,9 +1258,9 @@
         "path": "coalib/misc/Caching.py",
         "type": "file",
         "name": "Caching.py",
-        "size": 5773,
-        "sha1": "9b855f0c4158de30da3a690d33b4ad6fdfebaa39",
-        "fingerprint": "4659c216958ef578b9a3910b25695dd9",
+        "size": 5382,
+        "sha1": "cf5c71f064d91bec125742b8eb63b1bef9725024",
+        "fingerprint": "4679ca1685029570ad3391ab2d6951d1",
         "original_path": "coalib/misc/Caching.py",
         "licenses": [],
         "copyrights": []
@@ -1239,17 +1273,6 @@
       ],
       "score": 38,
       "new": {
-        "path": "coalib/results/SourcePosition.py",
-        "type": "file",
-        "name": "SourcePosition.py",
-        "size": 1287,
-        "sha1": "fa17682d4e15e32e3f1b72c21e9232f9fb35a2f7",
-        "fingerprint": "15484bc17569a8ed9cc166afee8773b4",
-        "original_path": "coalib/results/SourcePosition.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/results/SourcePosition.py",
         "type": "file",
         "name": "SourcePosition.py",
@@ -1259,6 +1282,17 @@
         "original_path": "coalib/results/SourcePosition.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/results/SourcePosition.py",
+        "type": "file",
+        "name": "SourcePosition.py",
+        "size": 1287,
+        "sha1": "fa17682d4e15e32e3f1b72c21e9232f9fb35a2f7",
+        "fingerprint": "15484bc17569a8ed9cc166afee8773b4",
+        "original_path": "coalib/results/SourcePosition.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1272,8 +1306,8 @@
         "type": "file",
         "name": "HiddenResult.py",
         "size": 639,
-        "sha1": "6e345fb1ba8824d211f5cf6de9bf92dd9477a721",
-        "fingerprint": "b91b4a4702a7a803f9696ee71735e82e",
+        "sha1": "f21878921fa19345eb41e23e9bfddfbf5f631200",
+        "fingerprint": "b91b824700afe803bc493ee7d737ea6a",
         "original_path": "coalib/results/HiddenResult.py",
         "licenses": [],
         "copyrights": []
@@ -1283,8 +1317,8 @@
         "type": "file",
         "name": "HiddenResult.py",
         "size": 639,
-        "sha1": "f21878921fa19345eb41e23e9bfddfbf5f631200",
-        "fingerprint": "b91b824700afe803bc493ee7d737ea6a",
+        "sha1": "6e345fb1ba8824d211f5cf6de9bf92dd9477a721",
+        "fingerprint": "b91b4a4702a7a803f9696ee71735e82e",
         "original_path": "coalib/results/HiddenResult.py",
         "licenses": [],
         "copyrights": []
@@ -1300,9 +1334,9 @@
         "path": "coalib/collecting/Importers.py",
         "type": "file",
         "name": "Importers.py",
-        "size": 6525,
-        "sha1": "481e110633ccda469d2fee25b3a7149f1400d40d",
-        "fingerprint": "c0c3abc539335102321bcb8b417724ef",
+        "size": 6342,
+        "sha1": "ba8fc7bbaad0f5b44d6aca32fc9e9a22701d511d",
+        "fingerprint": "c043a9c6391bd043321bcbeb4167366b",
         "original_path": "coalib/collecting/Importers.py",
         "licenses": [],
         "copyrights": []
@@ -1311,9 +1345,9 @@
         "path": "coalib/collecting/Importers.py",
         "type": "file",
         "name": "Importers.py",
-        "size": 6342,
-        "sha1": "ba8fc7bbaad0f5b44d6aca32fc9e9a22701d511d",
-        "fingerprint": "c043a9c6391bd043321bcbeb4167366b",
+        "size": 6525,
+        "sha1": "481e110633ccda469d2fee25b3a7149f1400d40d",
+        "fingerprint": "c0c3abc539335102321bcb8b417724ef",
         "original_path": "coalib/collecting/Importers.py",
         "licenses": [],
         "copyrights": []
@@ -1326,17 +1360,6 @@
       ],
       "score": 35,
       "new": {
-        "path": "coalib/settings/FunctionMetadata.py",
-        "type": "file",
-        "name": "FunctionMetadata.py",
-        "size": 10507,
-        "sha1": "f4da0dce54826c68cb3241e27b09d4478abf23d1",
-        "fingerprint": "7060282c309df21dbf024d9387b674af",
-        "original_path": "coalib/settings/FunctionMetadata.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/settings/FunctionMetadata.py",
         "type": "file",
         "name": "FunctionMetadata.py",
@@ -1346,6 +1369,17 @@
         "original_path": "coalib/settings/FunctionMetadata.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/settings/FunctionMetadata.py",
+        "type": "file",
+        "name": "FunctionMetadata.py",
+        "size": 10507,
+        "sha1": "f4da0dce54826c68cb3241e27b09d4478abf23d1",
+        "fingerprint": "7060282c309df21dbf024d9387b674af",
+        "original_path": "coalib/settings/FunctionMetadata.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1355,17 +1389,6 @@
       ],
       "score": 35,
       "new": {
-        "path": "coalib/misc/Shell.py",
-        "type": "file",
-        "name": "Shell.py",
-        "size": 4344,
-        "sha1": "6f5afaddd0b0587b9c5da4c9876c7c02b58f3471",
-        "fingerprint": "57f8a830d355efc59ab2cef672b2c896",
-        "original_path": "coalib/misc/Shell.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/misc/Shell.py",
         "type": "file",
         "name": "Shell.py",
@@ -1375,6 +1398,17 @@
         "original_path": "coalib/misc/Shell.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/misc/Shell.py",
+        "type": "file",
+        "name": "Shell.py",
+        "size": 4344,
+        "sha1": "6f5afaddd0b0587b9c5da4c9876c7c02b58f3471",
+        "fingerprint": "57f8a830d355efc59ab2cef672b2c896",
+        "original_path": "coalib/misc/Shell.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1384,17 +1418,6 @@
       ],
       "score": 35,
       "new": {
-        "path": "coalib/settings/ConfigurationGathering.py",
-        "type": "file",
-        "name": "ConfigurationGathering.py",
-        "size": 12826,
-        "sha1": "d7ad37ad4817fdeda51adaab56fdb5b30398caaa",
-        "fingerprint": "1b28a404cb47a335877b71cf0ad4e9cd",
-        "original_path": "coalib/settings/ConfigurationGathering.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/settings/ConfigurationGathering.py",
         "type": "file",
         "name": "ConfigurationGathering.py",
@@ -1404,6 +1427,17 @@
         "original_path": "coalib/settings/ConfigurationGathering.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/settings/ConfigurationGathering.py",
+        "type": "file",
+        "name": "ConfigurationGathering.py",
+        "size": 12826,
+        "sha1": "d7ad37ad4817fdeda51adaab56fdb5b30398caaa",
+        "fingerprint": "1b28a404cb47a335877b71cf0ad4e9cd",
+        "original_path": "coalib/settings/ConfigurationGathering.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1413,17 +1447,6 @@
       ],
       "score": 35,
       "new": {
-        "path": "coalib/results/TextPosition.py",
-        "type": "file",
-        "name": "TextPosition.py",
-        "size": 1086,
-        "sha1": "839fb63d8993f0e231db80565c15945011c67cd4",
-        "fingerprint": "0c254f646100e021dca548b785baa224",
-        "original_path": "coalib/results/TextPosition.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/results/TextPosition.py",
         "type": "file",
         "name": "TextPosition.py",
@@ -1433,6 +1456,17 @@
         "original_path": "coalib/results/TextPosition.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/results/TextPosition.py",
+        "type": "file",
+        "name": "TextPosition.py",
+        "size": 1086,
+        "sha1": "839fb63d8993f0e231db80565c15945011c67cd4",
+        "fingerprint": "0c254f646100e021dca548b785baa224",
+        "original_path": "coalib/results/TextPosition.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1445,9 +1479,9 @@
         "path": "coalib/misc/CachingUtilities.py",
         "type": "file",
         "name": "CachingUtilities.py",
-        "size": 6502,
-        "sha1": "81c78d59bff4c19ad188183530ebd3758b247d40",
-        "fingerprint": "7ac5987404de6c98ecbc7180e8633ebc",
+        "size": 7156,
+        "sha1": "eee3465fcf43bdcc933d0a5538753fca85e133c7",
+        "fingerprint": "7ae9987022de6558fc3c7180e86b7ebc",
         "original_path": "coalib/misc/CachingUtilities.py",
         "licenses": [],
         "copyrights": []
@@ -1456,9 +1490,9 @@
         "path": "coalib/misc/CachingUtilities.py",
         "type": "file",
         "name": "CachingUtilities.py",
-        "size": 7156,
-        "sha1": "eee3465fcf43bdcc933d0a5538753fca85e133c7",
-        "fingerprint": "7ae9987022de6558fc3c7180e86b7ebc",
+        "size": 6502,
+        "sha1": "81c78d59bff4c19ad188183530ebd3758b247d40",
+        "fingerprint": "7ac5987404de6c98ecbc7180e8633ebc",
         "original_path": "coalib/misc/CachingUtilities.py",
         "licenses": [],
         "copyrights": []
@@ -1471,17 +1505,6 @@
       ],
       "score": 34,
       "new": {
-        "path": "coalib/settings/SectionFilling.py",
-        "type": "file",
-        "name": "SectionFilling.py",
-        "size": 3942,
-        "sha1": "854be00b87187803b6d311592d2842b3ba07be0b",
-        "fingerprint": "931e5295cb2424b587c042a0173295ea",
-        "original_path": "coalib/settings/SectionFilling.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/settings/SectionFilling.py",
         "type": "file",
         "name": "SectionFilling.py",
@@ -1491,6 +1514,17 @@
         "original_path": "coalib/settings/SectionFilling.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/settings/SectionFilling.py",
+        "type": "file",
+        "name": "SectionFilling.py",
+        "size": 3942,
+        "sha1": "854be00b87187803b6d311592d2842b3ba07be0b",
+        "fingerprint": "931e5295cb2424b587c042a0173295ea",
+        "original_path": "coalib/settings/SectionFilling.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1500,17 +1534,6 @@
       ],
       "score": 34,
       "new": {
-        "path": "coalib/misc/BuildManPage.py",
-        "type": "file",
-        "name": "BuildManPage.py",
-        "size": 7292,
-        "sha1": "0ce03b82db96c5789f673e318e1d1946b6f04c4a",
-        "fingerprint": "6399f8b7db683e427e9d62c09cfccf17",
-        "original_path": "coalib/misc/BuildManPage.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/misc/BuildManPage.py",
         "type": "file",
         "name": "BuildManPage.py",
@@ -1520,6 +1543,17 @@
         "original_path": "coalib/misc/BuildManPage.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/misc/BuildManPage.py",
+        "type": "file",
+        "name": "BuildManPage.py",
+        "size": 7292,
+        "sha1": "0ce03b82db96c5789f673e318e1d1946b6f04c4a",
+        "fingerprint": "6399f8b7db683e427e9d62c09cfccf17",
+        "original_path": "coalib/misc/BuildManPage.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1529,17 +1563,6 @@
       ],
       "score": 34,
       "new": {
-        "path": "coalib/collecting/Dependencies.py",
-        "type": "file",
-        "name": "Dependencies.py",
-        "size": 1313,
-        "sha1": "953c7ba0324c83d7b07e83735e3e2c8c8f5e1acd",
-        "fingerprint": "4b55b4d2458f5aa4b389198549352cd2",
-        "original_path": "coalib/collecting/Dependencies.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/collecting/Dependencies.py",
         "type": "file",
         "name": "Dependencies.py",
@@ -1549,6 +1572,17 @@
         "original_path": "coalib/collecting/Dependencies.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/collecting/Dependencies.py",
+        "type": "file",
+        "name": "Dependencies.py",
+        "size": 1313,
+        "sha1": "953c7ba0324c83d7b07e83735e3e2c8c8f5e1acd",
+        "fingerprint": "4b55b4d2458f5aa4b389198549352cd2",
+        "original_path": "coalib/collecting/Dependencies.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1561,9 +1595,9 @@
         "path": "coalib/bears/LocalBear.py",
         "type": "file",
         "name": "LocalBear.py",
-        "size": 1523,
-        "sha1": "171aab7341ee0465c3353f651108e1ab8816778e",
-        "fingerprint": "566ef2ad89495fb6338f0bb5022d9f75",
+        "size": 1522,
+        "sha1": "74c46b4dff0a0bfaddae3945bf3e247544032160",
+        "fingerprint": "526ef2ed89c95fbe339f4bb8822f9745",
         "original_path": "coalib/bears/LocalBear.py",
         "licenses": [],
         "copyrights": []
@@ -1572,9 +1606,9 @@
         "path": "coalib/bears/LocalBear.py",
         "type": "file",
         "name": "LocalBear.py",
-        "size": 1522,
-        "sha1": "74c46b4dff0a0bfaddae3945bf3e247544032160",
-        "fingerprint": "526ef2ed89c95fbe339f4bb8822f9745",
+        "size": 1523,
+        "sha1": "171aab7341ee0465c3353f651108e1ab8816778e",
+        "fingerprint": "566ef2ad89495fb6338f0bb5022d9f75",
         "original_path": "coalib/bears/LocalBear.py",
         "licenses": [],
         "copyrights": []
@@ -1587,17 +1621,6 @@
       ],
       "score": 33,
       "new": {
-        "path": "coalib/bears/GlobalBear.py",
-        "type": "file",
-        "name": "GlobalBear.py",
-        "size": 1175,
-        "sha1": "5bcacff0da623782a10a06c372068f8c75a0f1c8",
-        "fingerprint": "5d34b77657e13d2ce4c1004619cd5c53",
-        "original_path": "coalib/bears/GlobalBear.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/bears/GlobalBear.py",
         "type": "file",
         "name": "GlobalBear.py",
@@ -1607,6 +1630,17 @@
         "original_path": "coalib/bears/GlobalBear.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/bears/GlobalBear.py",
+        "type": "file",
+        "name": "GlobalBear.py",
+        "size": 1175,
+        "sha1": "5bcacff0da623782a10a06c372068f8c75a0f1c8",
+        "fingerprint": "5d34b77657e13d2ce4c1004619cd5c53",
+        "original_path": "coalib/bears/GlobalBear.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1619,9 +1653,9 @@
         "path": "coalib/parsing/Globbing.py",
         "type": "file",
         "name": "Globbing.py",
-        "size": 13150,
-        "sha1": "f86d5aad9ba6926068592a740d3ae2f2d416d547",
-        "fingerprint": "fc950f722b42ab2ebfd2830debf832b3",
+        "size": 13234,
+        "sha1": "dc1cf3bdae11229793786485bc4cd184a813dafc",
+        "fingerprint": "fd9507336b06af4ebfdac30debf932b3",
         "original_path": "coalib/parsing/Globbing.py",
         "licenses": [],
         "copyrights": []
@@ -1630,9 +1664,9 @@
         "path": "coalib/parsing/Globbing.py",
         "type": "file",
         "name": "Globbing.py",
-        "size": 13234,
-        "sha1": "dc1cf3bdae11229793786485bc4cd184a813dafc",
-        "fingerprint": "fd9507336b06af4ebfdac30debf932b3",
+        "size": 13150,
+        "sha1": "f86d5aad9ba6926068592a740d3ae2f2d416d547",
+        "fingerprint": "fc950f722b42ab2ebfd2830debf832b3",
         "original_path": "coalib/parsing/Globbing.py",
         "licenses": [],
         "copyrights": []
@@ -1645,17 +1679,6 @@
       ],
       "score": 32,
       "new": {
-        "path": "coalib/results/result_actions/ResultAction.py",
-        "type": "file",
-        "name": "ResultAction.py",
-        "size": 3534,
-        "sha1": "6bf770d692b451f5d0ccfc17b9dd24c82ac43745",
-        "fingerprint": "145051da4cea0672c65bdae10b4e0b63",
-        "original_path": "coalib/results/result_actions/ResultAction.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/results/result_actions/ResultAction.py",
         "type": "file",
         "name": "ResultAction.py",
@@ -1665,6 +1688,17 @@
         "original_path": "coalib/results/result_actions/ResultAction.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/results/result_actions/ResultAction.py",
+        "type": "file",
+        "name": "ResultAction.py",
+        "size": 3534,
+        "sha1": "6bf770d692b451f5d0ccfc17b9dd24c82ac43745",
+        "fingerprint": "145051da4cea0672c65bdae10b4e0b63",
+        "original_path": "coalib/results/result_actions/ResultAction.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1677,9 +1711,9 @@
         "path": "coalib/processes/BearRunning.py",
         "type": "file",
         "name": "BearRunning.py",
-        "size": 24041,
-        "sha1": "fabf0293e99224ee9ddbdd5f41acc4e7c7e5fdc5",
-        "fingerprint": "203314d87e007a0fea85a49889a2a0bf",
+        "size": 24044,
+        "sha1": "2bf8e069823e4cdc46270b8e1bb03f71be13bfb1",
+        "fingerprint": "2032155856907a0fea8da49ac9a3a0b7",
         "original_path": "coalib/processes/BearRunning.py",
         "licenses": [],
         "copyrights": []
@@ -1688,9 +1722,9 @@
         "path": "coalib/processes/BearRunning.py",
         "type": "file",
         "name": "BearRunning.py",
-        "size": 24044,
-        "sha1": "2bf8e069823e4cdc46270b8e1bb03f71be13bfb1",
-        "fingerprint": "2032155856907a0fea8da49ac9a3a0b7",
+        "size": 24041,
+        "sha1": "fabf0293e99224ee9ddbdd5f41acc4e7c7e5fdc5",
+        "fingerprint": "203314d87e007a0fea85a49889a2a0bf",
         "original_path": "coalib/processes/BearRunning.py",
         "licenses": [],
         "copyrights": []
@@ -1706,9 +1740,9 @@
         "path": "coalib/settings/Section.py",
         "type": "file",
         "name": "Section.py",
-        "size": 8755,
-        "sha1": "c2dd35d5c718ea706bc6869539f9ae568945e8de",
-        "fingerprint": "4778cc063d1df6faaa57173f6ad98770",
+        "size": 8750,
+        "sha1": "4952b67b13082325c66457fd6afac13e1a1c4354",
+        "fingerprint": "c770cc023d9df7feaa57073b6ad997f0",
         "original_path": "coalib/settings/Section.py",
         "licenses": [],
         "copyrights": []
@@ -1717,9 +1751,9 @@
         "path": "coalib/settings/Section.py",
         "type": "file",
         "name": "Section.py",
-        "size": 8750,
-        "sha1": "4952b67b13082325c66457fd6afac13e1a1c4354",
-        "fingerprint": "c770cc023d9df7feaa57073b6ad997f0",
+        "size": 8755,
+        "sha1": "c2dd35d5c718ea706bc6869539f9ae568945e8de",
+        "fingerprint": "4778cc063d1df6faaa57173f6ad98770",
         "original_path": "coalib/settings/Section.py",
         "licenses": [],
         "copyrights": []
@@ -1735,9 +1769,9 @@
         "path": "coalib/bearlib/languages/documentation/doxygen.coalang",
         "type": "file",
         "name": "doxygen.coalang",
-        "size": 1215,
-        "sha1": "df1da2a93331aa0672bc7810b88aaedd83d6b3f4",
-        "fingerprint": "f047b03a7bb083b348ba4b9ab6bc2a38",
+        "size": 1433,
+        "sha1": "285cd67af2ba8cab1af84e0603ea6398cdd17676",
+        "fingerprint": "7007b0ba7bb0a3b358ba439ea6bc2a78",
         "original_path": "coalib/bearlib/languages/documentation/doxygen.coalang",
         "licenses": [],
         "copyrights": []
@@ -1746,9 +1780,9 @@
         "path": "coalib/bearlib/languages/documentation/doxygen.coalang",
         "type": "file",
         "name": "doxygen.coalang",
-        "size": 1433,
-        "sha1": "285cd67af2ba8cab1af84e0603ea6398cdd17676",
-        "fingerprint": "7007b0ba7bb0a3b358ba439ea6bc2a78",
+        "size": 1215,
+        "sha1": "df1da2a93331aa0672bc7810b88aaedd83d6b3f4",
+        "fingerprint": "f047b03a7bb083b348ba4b9ab6bc2a38",
         "original_path": "coalib/bearlib/languages/documentation/doxygen.coalang",
         "licenses": [],
         "copyrights": []
@@ -1764,9 +1798,9 @@
         "path": "coalib/settings/Setting.py",
         "type": "file",
         "name": "Setting.py",
-        "size": 8402,
-        "sha1": "a11855347f6d2d12495e265834ef611d254f645c",
-        "fingerprint": "4a1019a9f5b4d802aeca7d2de7d3d0f9",
+        "size": 8415,
+        "sha1": "4cbdc8afcbb645aa292750d281eb5c5180d9ecda",
+        "fingerprint": "4a1419a8f5b4d902acc97d2defd3d8f9",
         "original_path": "coalib/settings/Setting.py",
         "licenses": [],
         "copyrights": []
@@ -1775,9 +1809,9 @@
         "path": "coalib/settings/Setting.py",
         "type": "file",
         "name": "Setting.py",
-        "size": 8415,
-        "sha1": "4cbdc8afcbb645aa292750d281eb5c5180d9ecda",
-        "fingerprint": "4a1419a8f5b4d902acc97d2defd3d8f9",
+        "size": 8402,
+        "sha1": "a11855347f6d2d12495e265834ef611d254f645c",
+        "fingerprint": "4a1019a9f5b4d802aeca7d2de7d3d0f9",
         "original_path": "coalib/settings/Setting.py",
         "licenses": [],
         "copyrights": []
@@ -1794,8 +1828,8 @@
         "type": "file",
         "name": "ResultFilter.py",
         "size": 9630,
-        "sha1": "09a01787b0ecb8a6eebaafd072a8e7ca1c44f61c",
-        "fingerprint": "2b3cabb5ebde850faffb0e4798c61846",
+        "sha1": "818129a7d240d0a6759ea46efd8193f726e9c8c7",
+        "fingerprint": "2f3caab5cbde850faeb90e4398c61846",
         "original_path": "coalib/results/ResultFilter.py",
         "licenses": [],
         "copyrights": []
@@ -1805,8 +1839,8 @@
         "type": "file",
         "name": "ResultFilter.py",
         "size": 9630,
-        "sha1": "818129a7d240d0a6759ea46efd8193f726e9c8c7",
-        "fingerprint": "2f3caab5cbde850faeb90e4398c61846",
+        "sha1": "09a01787b0ecb8a6eebaafd072a8e7ca1c44f61c",
+        "fingerprint": "2b3cabb5ebde850faffb0e4798c61846",
         "original_path": "coalib/results/ResultFilter.py",
         "licenses": [],
         "copyrights": []
@@ -1822,9 +1856,9 @@
         "path": "coalib/results/AbsolutePosition.py",
         "type": "file",
         "name": "AbsolutePosition.py",
-        "size": 2124,
-        "sha1": "b71dbe990853bbef5e142afdd3e74e63aa50e5f4",
-        "fingerprint": "9eec100f2079940204c3463cb6e414f2",
+        "size": 2119,
+        "sha1": "97aeb781e8cf96293261d660a6e6f3388101e009",
+        "fingerprint": "9ecc000e2079940200c3463c36e41cf2",
         "original_path": "coalib/results/AbsolutePosition.py",
         "licenses": [],
         "copyrights": []
@@ -1833,9 +1867,9 @@
         "path": "coalib/results/AbsolutePosition.py",
         "type": "file",
         "name": "AbsolutePosition.py",
-        "size": 2119,
-        "sha1": "97aeb781e8cf96293261d660a6e6f3388101e009",
-        "fingerprint": "9ecc000e2079940200c3463c36e41cf2",
+        "size": 2124,
+        "sha1": "b71dbe990853bbef5e142afdd3e74e63aa50e5f4",
+        "fingerprint": "9eec100f2079940204c3463cb6e414f2",
         "original_path": "coalib/results/AbsolutePosition.py",
         "licenses": [],
         "copyrights": []
@@ -1848,17 +1882,6 @@
       ],
       "score": 25,
       "new": {
-        "path": "coalib/bearlib/abstractions/SectionCreatable.py",
-        "type": "file",
-        "name": "SectionCreatable.py",
-        "size": 2611,
-        "sha1": "c2a937979d1fa6f15d1f3a5d081fc655e6aa8b8c",
-        "fingerprint": "55a1bd1f39edec7f3923c2f47c7a3a0f",
-        "original_path": "coalib/bearlib/abstractions/SectionCreatable.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/bearlib/abstractions/SectionCreatable.py",
         "type": "file",
         "name": "SectionCreatable.py",
@@ -1868,6 +1891,17 @@
         "original_path": "coalib/bearlib/abstractions/SectionCreatable.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/bearlib/abstractions/SectionCreatable.py",
+        "type": "file",
+        "name": "SectionCreatable.py",
+        "size": 2611,
+        "sha1": "c2a937979d1fa6f15d1f3a5d081fc655e6aa8b8c",
+        "fingerprint": "55a1bd1f39edec7f3923c2f47c7a3a0f",
+        "original_path": "coalib/bearlib/abstractions/SectionCreatable.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1877,17 +1911,6 @@
       ],
       "score": 25,
       "new": {
-        "path": "coalib/misc/DictUtilities.py",
-        "type": "file",
-        "name": "DictUtilities.py",
-        "size": 1355,
-        "sha1": "36522522c930d05c37f791fa08eaf3ebe50b65d5",
-        "fingerprint": "1036a2201d37c7c380155ec265f387e1",
-        "original_path": "coalib/misc/DictUtilities.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/misc/DictUtilities.py",
         "type": "file",
         "name": "DictUtilities.py",
@@ -1897,6 +1920,17 @@
         "original_path": "coalib/misc/DictUtilities.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/misc/DictUtilities.py",
+        "type": "file",
+        "name": "DictUtilities.py",
+        "size": 1355,
+        "sha1": "36522522c930d05c37f791fa08eaf3ebe50b65d5",
+        "fingerprint": "1036a2201d37c7c380155ec265f387e1",
+        "original_path": "coalib/misc/DictUtilities.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1909,9 +1943,9 @@
         "path": "coalib/bearlib/languages/documentation/DocumentationExtraction.py",
         "type": "file",
         "name": "DocumentationExtraction.py",
-        "size": 11244,
-        "sha1": "7795573d96ef91b34a4cbed6fb9ed2b2a6c48834",
-        "fingerprint": "90a8d09d58849706b215f5e6f051f985",
+        "size": 11010,
+        "sha1": "f682dda756a679dbf8d00895e447657770bc4c5d",
+        "fingerprint": "90a8d09d5c84d702b215f5f6f0d1f985",
         "original_path": "coalib/bearlib/languages/documentation/DocumentationExtraction.py",
         "licenses": [],
         "copyrights": []
@@ -1920,9 +1954,9 @@
         "path": "coalib/bearlib/languages/documentation/DocumentationExtraction.py",
         "type": "file",
         "name": "DocumentationExtraction.py",
-        "size": 11010,
-        "sha1": "f682dda756a679dbf8d00895e447657770bc4c5d",
-        "fingerprint": "90a8d09d5c84d702b215f5f6f0d1f985",
+        "size": 11244,
+        "sha1": "7795573d96ef91b34a4cbed6fb9ed2b2a6c48834",
+        "fingerprint": "90a8d09d58849706b215f5e6f051f985",
         "original_path": "coalib/bearlib/languages/documentation/DocumentationExtraction.py",
         "licenses": [],
         "copyrights": []
@@ -1933,17 +1967,6 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/coala_format.py",
-        "type": "file",
-        "name": "coala_format.py",
-        "size": 936,
-        "sha1": "051e0b0a86a44cd635eab43f17ae177a1b43b8b8",
-        "fingerprint": "98bdefba529fc5e3aa3ee9a26591efa7",
-        "original_path": "coalib/coala_format.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/coala_format.py",
         "type": "file",
         "name": "coala_format.py",
@@ -1953,6 +1976,17 @@
         "original_path": "coalib/coala_format.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/coala_format.py",
+        "type": "file",
+        "name": "coala_format.py",
+        "size": 936,
+        "sha1": "051e0b0a86a44cd635eab43f17ae177a1b43b8b8",
+        "fingerprint": "98bdefba529fc5e3aa3ee9a26591efa7",
+        "original_path": "coalib/coala_format.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1960,17 +1994,6 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/processes/CONTROL_ELEMENT.py",
-        "type": "file",
-        "name": "CONTROL_ELEMENT.py",
-        "size": 114,
-        "sha1": "8830c48ff828d0d93a1e37b83f411fa3b8eb238a",
-        "fingerprint": "84424c804091b01202101c0a229c93de",
-        "original_path": "coalib/processes/CONTROL_ELEMENT.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/processes/CONTROL_ELEMENT.py",
         "type": "file",
         "name": "CONTROL_ELEMENT.py",
@@ -1980,6 +2003,17 @@
         "original_path": "coalib/processes/CONTROL_ELEMENT.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/processes/CONTROL_ELEMENT.py",
+        "type": "file",
+        "name": "CONTROL_ELEMENT.py",
+        "size": 114,
+        "sha1": "8830c48ff828d0d93a1e37b83f411fa3b8eb238a",
+        "fingerprint": "84424c804091b01202101c0a229c93de",
+        "original_path": "coalib/processes/CONTROL_ELEMENT.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1987,17 +2021,6 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/__init__.py",
-        "type": "file",
-        "name": "__init__.py",
-        "size": 592,
-        "sha1": "8adecf7174a46ffac9c3d66a3bcb73b36445adb8",
-        "fingerprint": "5aea4a72133d2436c53a0ba7d7a61d2c",
-        "original_path": "coalib/__init__.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/__init__.py",
         "type": "file",
         "name": "__init__.py",
@@ -2007,6 +2030,17 @@
         "original_path": "coalib/__init__.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 592,
+        "sha1": "8adecf7174a46ffac9c3d66a3bcb73b36445adb8",
+        "fingerprint": "5aea4a72133d2436c53a0ba7d7a61d2c",
+        "original_path": "coalib/__init__.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2014,17 +2048,6 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/output/ConfWriter.py",
-        "type": "file",
-        "name": "ConfWriter.py",
-        "size": 4015,
-        "sha1": "2ae75d42ae63cda2ee490434b995c6a93ad4a8a0",
-        "fingerprint": "febc7e7552bfc1b5fdb8a5bf49cd02a0",
-        "original_path": "coalib/output/ConfWriter.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/output/ConfWriter.py",
         "type": "file",
         "name": "ConfWriter.py",
@@ -2034,6 +2057,17 @@
         "original_path": "coalib/output/ConfWriter.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/output/ConfWriter.py",
+        "type": "file",
+        "name": "ConfWriter.py",
+        "size": 4015,
+        "sha1": "2ae75d42ae63cda2ee490434b995c6a93ad4a8a0",
+        "fingerprint": "febc7e7552bfc1b5fdb8a5bf49cd02a0",
+        "original_path": "coalib/output/ConfWriter.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2041,17 +2075,6 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/bearlib/languages/__init__.py",
-        "type": "file",
-        "name": "__init__.py",
-        "size": 86,
-        "sha1": "b5fd238b55022311cd4fcaa2635bf058a7a78660",
-        "fingerprint": "6895b8636b8cc861c715c67c7af609bb",
-        "original_path": "coalib/bearlib/languages/__init__.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/bearlib/languages/__init__.py",
         "type": "file",
         "name": "__init__.py",
@@ -2061,6 +2084,17 @@
         "original_path": "coalib/bearlib/languages/__init__.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/bearlib/languages/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 86,
+        "sha1": "b5fd238b55022311cd4fcaa2635bf058a7a78660",
+        "fingerprint": "6895b8636b8cc861c715c67c7af609bb",
+        "original_path": "coalib/bearlib/languages/__init__.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2068,17 +2102,6 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/bearlib/__init__.py",
-        "type": "file",
-        "name": "__init__.py",
-        "size": 211,
-        "sha1": "4cef36542f76d618ef6d258b2f1adc90e5d545da",
-        "fingerprint": "7688102f13925981f20810ae3e480c5f",
-        "original_path": "coalib/bearlib/__init__.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/bearlib/__init__.py",
         "type": "file",
         "name": "__init__.py",
@@ -2088,6 +2111,17 @@
         "original_path": "coalib/bearlib/__init__.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/bearlib/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 211,
+        "sha1": "4cef36542f76d618ef6d258b2f1adc90e5d545da",
+        "fingerprint": "7688102f13925981f20810ae3e480c5f",
+        "original_path": "coalib/bearlib/__init__.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2095,17 +2129,6 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/bearlib/languages/LanguageDefinition.py",
-        "type": "file",
-        "name": "LanguageDefinition.py",
-        "size": 1438,
-        "sha1": "2536c0a6d2093e584da16f29873661c44f5e118e",
-        "fingerprint": "b786be2e33146975211d2015109cffc0",
-        "original_path": "coalib/bearlib/languages/LanguageDefinition.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/bearlib/languages/LanguageDefinition.py",
         "type": "file",
         "name": "LanguageDefinition.py",
@@ -2115,31 +2138,15 @@
         "original_path": "coalib/bearlib/languages/LanguageDefinition.py",
         "licenses": [],
         "copyrights": []
-      }
-    },
-    {
-      "status": "modified",
-      "factors": [],
-      "score": 20,
-      "new": {
-        "path": "coalib/results/RESULT_SEVERITY.py",
-        "type": "file",
-        "name": "RESULT_SEVERITY.py",
-        "size": 335,
-        "sha1": "f62c69c57609c4b9f11e3ac4eef091f2aed21884",
-        "fingerprint": "74c4d3e1d03194a6230ce4fc924188b6",
-        "original_path": "coalib/results/RESULT_SEVERITY.py",
-        "licenses": [],
-        "copyrights": []
       },
       "old": {
-        "path": "coalib/results/RESULT_SEVERITY.py",
+        "path": "coalib/bearlib/languages/LanguageDefinition.py",
         "type": "file",
-        "name": "RESULT_SEVERITY.py",
-        "size": 335,
-        "sha1": "79d739a6683a04e90ebe1fcad2d7534c8347e5c7",
-        "fingerprint": "e4ee59c4c944c666f7a998f0916a6ad3",
-        "original_path": "coalib/results/RESULT_SEVERITY.py",
+        "name": "LanguageDefinition.py",
+        "size": 1438,
+        "sha1": "2536c0a6d2093e584da16f29873661c44f5e118e",
+        "fingerprint": "b786be2e33146975211d2015109cffc0",
+        "original_path": "coalib/bearlib/languages/LanguageDefinition.py",
         "licenses": [],
         "copyrights": []
       }
@@ -2149,17 +2156,6 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/coala_json.py",
-        "type": "file",
-        "name": "coala_json.py",
-        "size": 2137,
-        "sha1": "cd70a96cbed7fa84704a21f777490e5b7edf671e",
-        "fingerprint": "99bfb5ea528ec5b7b220e9a85893cfa7",
-        "original_path": "coalib/coala_json.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/coala_json.py",
         "type": "file",
         "name": "coala_json.py",
@@ -2169,6 +2165,17 @@
         "original_path": "coalib/coala_json.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/coala_json.py",
+        "type": "file",
+        "name": "coala_json.py",
+        "size": 2137,
+        "sha1": "cd70a96cbed7fa84704a21f777490e5b7edf671e",
+        "fingerprint": "99bfb5ea528ec5b7b220e9a85893cfa7",
+        "original_path": "coalib/coala_json.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2176,17 +2183,6 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/results/result_actions/PrintDebugMessageAction.py",
-        "type": "file",
-        "name": "PrintDebugMessageAction.py",
-        "size": 511,
-        "sha1": "986c5f904a0ee78c85a71d96b6621e85e1a9a8fd",
-        "fingerprint": "356aafc67c4ac74f425c679fe2901cc6",
-        "original_path": "coalib/results/result_actions/PrintDebugMessageAction.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/results/result_actions/PrintDebugMessageAction.py",
         "type": "file",
         "name": "PrintDebugMessageAction.py",
@@ -2196,6 +2192,17 @@
         "original_path": "coalib/results/result_actions/PrintDebugMessageAction.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/results/result_actions/PrintDebugMessageAction.py",
+        "type": "file",
+        "name": "PrintDebugMessageAction.py",
+        "size": 511,
+        "sha1": "986c5f904a0ee78c85a71d96b6621e85e1a9a8fd",
+        "fingerprint": "356aafc67c4ac74f425c679fe2901cc6",
+        "original_path": "coalib/results/result_actions/PrintDebugMessageAction.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2203,17 +2210,6 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/bearlib/languages/documentation/default.coalang",
-        "type": "file",
-        "name": "default.coalang",
-        "size": 68,
-        "sha1": "7f0974af6b1eaae9bae4c6da6cff997d8e30391b",
-        "fingerprint": "29648818f15009000691631ec22a1e20",
-        "original_path": "coalib/bearlib/languages/documentation/default.coalang",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/bearlib/languages/documentation/default.coalang",
         "type": "file",
         "name": "default.coalang",
@@ -2223,6 +2219,17 @@
         "original_path": "coalib/bearlib/languages/documentation/default.coalang",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/bearlib/languages/documentation/default.coalang",
+        "type": "file",
+        "name": "default.coalang",
+        "size": 68,
+        "sha1": "7f0974af6b1eaae9bae4c6da6cff997d8e30391b",
+        "fingerprint": "29648818f15009000691631ec22a1e20",
+        "original_path": "coalib/bearlib/languages/documentation/default.coalang",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2230,17 +2237,6 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/coala_ci.py",
-        "type": "file",
-        "name": "coala_ci.py",
-        "size": 1268,
-        "sha1": "f2c064700aa6d83522cbe7eeef5f3fd47a0739d4",
-        "fingerprint": "98a9edaa529dc523723eedb665b7efaf",
-        "original_path": "coalib/coala_ci.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/coala_ci.py",
         "type": "file",
         "name": "coala_ci.py",
@@ -2250,6 +2246,17 @@
         "original_path": "coalib/coala_ci.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/coala_ci.py",
+        "type": "file",
+        "name": "coala_ci.py",
+        "size": 1268,
+        "sha1": "f2c064700aa6d83522cbe7eeef5f3fd47a0739d4",
+        "fingerprint": "98a9edaa529dc523723eedb665b7efaf",
+        "original_path": "coalib/coala_ci.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2257,17 +2264,6 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/results/result_actions/OpenEditorAction.py",
-        "type": "file",
-        "name": "OpenEditorAction.py",
-        "size": 2125,
-        "sha1": "e0d186c0b4c6fcc6de680748ddae536e0ea08db3",
-        "fingerprint": "8965a1b3265a811555f9e6f686de63a6",
-        "original_path": "coalib/results/result_actions/OpenEditorAction.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/results/result_actions/OpenEditorAction.py",
         "type": "file",
         "name": "OpenEditorAction.py",
@@ -2277,31 +2273,15 @@
         "original_path": "coalib/results/result_actions/OpenEditorAction.py",
         "licenses": [],
         "copyrights": []
-      }
-    },
-    {
-      "status": "modified",
-      "factors": [],
-      "score": 20,
-      "new": {
-        "path": "coalib/results/Result.py",
-        "type": "file",
-        "name": "Result.py",
-        "size": 8637,
-        "sha1": "52192b2cd2a12bd23a26ff48ea20a3675f674ca3",
-        "fingerprint": "0f906ab5d4acc96d80be2b04f6f67f63",
-        "original_path": "coalib/results/Result.py",
-        "licenses": [],
-        "copyrights": []
       },
       "old": {
-        "path": "coalib/results/Result.py",
+        "path": "coalib/results/result_actions/OpenEditorAction.py",
         "type": "file",
-        "name": "Result.py",
-        "size": 11406,
-        "sha1": "5317d7eb908266c1ef7fa49414bd9124a4e2845a",
-        "fingerprint": "4d94a2b28c68cf64907c2b8daaf4235f",
-        "original_path": "coalib/results/Result.py",
+        "name": "OpenEditorAction.py",
+        "size": 2125,
+        "sha1": "e0d186c0b4c6fcc6de680748ddae536e0ea08db3",
+        "fingerprint": "8965a1b3265a811555f9e6f686de63a6",
+        "original_path": "coalib/results/result_actions/OpenEditorAction.py",
         "licenses": [],
         "copyrights": []
       }
@@ -2311,17 +2291,6 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/results/result_actions/ShowPatchAction.py",
-        "type": "file",
-        "name": "ShowPatchAction.py",
-        "size": 4291,
-        "sha1": "676d5e5de8850d9fbf10cf74af84148c17da9734",
-        "fingerprint": "2b714700258b20a7d93480c64620011e",
-        "original_path": "coalib/results/result_actions/ShowPatchAction.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/results/result_actions/ShowPatchAction.py",
         "type": "file",
         "name": "ShowPatchAction.py",
@@ -2331,6 +2300,17 @@
         "original_path": "coalib/results/result_actions/ShowPatchAction.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/results/result_actions/ShowPatchAction.py",
+        "type": "file",
+        "name": "ShowPatchAction.py",
+        "size": 4291,
+        "sha1": "676d5e5de8850d9fbf10cf74af84148c17da9734",
+        "fingerprint": "2b714700258b20a7d93480c64620011e",
+        "original_path": "coalib/results/result_actions/ShowPatchAction.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2338,17 +2318,33 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/output/printers/LOG_LEVEL.py",
+        "path": "coalib/results/Result.py",
         "type": "file",
-        "name": "LOG_LEVEL.py",
-        "size": 272,
-        "sha1": "a57241f7f6f906db3065b7d24bed00044defcd0f",
-        "fingerprint": "50644ff29da782e83e3c50c41a37fb88",
-        "original_path": "coalib/output/printers/LOG_LEVEL.py",
+        "name": "Result.py",
+        "size": 11406,
+        "sha1": "5317d7eb908266c1ef7fa49414bd9124a4e2845a",
+        "fingerprint": "4d94a2b28c68cf64907c2b8daaf4235f",
+        "original_path": "coalib/results/Result.py",
         "licenses": [],
         "copyrights": []
       },
       "old": {
+        "path": "coalib/results/Result.py",
+        "type": "file",
+        "name": "Result.py",
+        "size": 8637,
+        "sha1": "52192b2cd2a12bd23a26ff48ea20a3675f674ca3",
+        "fingerprint": "0f906ab5d4acc96d80be2b04f6f67f63",
+        "original_path": "coalib/results/Result.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "modified",
+      "factors": [],
+      "score": 20,
+      "new": {
         "path": "coalib/output/printers/LOG_LEVEL.py",
         "type": "file",
         "name": "LOG_LEVEL.py",
@@ -2358,6 +2354,17 @@
         "original_path": "coalib/output/printers/LOG_LEVEL.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/output/printers/LOG_LEVEL.py",
+        "type": "file",
+        "name": "LOG_LEVEL.py",
+        "size": 272,
+        "sha1": "a57241f7f6f906db3065b7d24bed00044defcd0f",
+        "fingerprint": "50644ff29da782e83e3c50c41a37fb88",
+        "original_path": "coalib/output/printers/LOG_LEVEL.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2365,17 +2372,6 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/parsing/DefaultArgParser.py",
-        "type": "file",
-        "name": "DefaultArgParser.py",
-        "size": 7803,
-        "sha1": "2dcf68c5179bc7f7d0074166bfadccf636c429b1",
-        "fingerprint": "51a1006471d9a6c3491834a129ea6038",
-        "original_path": "coalib/parsing/DefaultArgParser.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/parsing/DefaultArgParser.py",
         "type": "file",
         "name": "DefaultArgParser.py",
@@ -2385,6 +2381,17 @@
         "original_path": "coalib/parsing/DefaultArgParser.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/parsing/DefaultArgParser.py",
+        "type": "file",
+        "name": "DefaultArgParser.py",
+        "size": 7803,
+        "sha1": "2dcf68c5179bc7f7d0074166bfadccf636c429b1",
+        "fingerprint": "51a1006471d9a6c3491834a129ea6038",
+        "original_path": "coalib/parsing/DefaultArgParser.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2392,17 +2399,6 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/results/result_actions/PrintMoreInfoAction.py",
-        "type": "file",
-        "name": "PrintMoreInfoAction.py",
-        "size": 530,
-        "sha1": "b81493f315271c5d357ba2b5f1a723cef2a070f4",
-        "fingerprint": "2f7adfe45862d150c35077ebc2b02b76",
-        "original_path": "coalib/results/result_actions/PrintMoreInfoAction.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/results/result_actions/PrintMoreInfoAction.py",
         "type": "file",
         "name": "PrintMoreInfoAction.py",
@@ -2412,6 +2408,17 @@
         "original_path": "coalib/results/result_actions/PrintMoreInfoAction.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/results/result_actions/PrintMoreInfoAction.py",
+        "type": "file",
+        "name": "PrintMoreInfoAction.py",
+        "size": 530,
+        "sha1": "b81493f315271c5d357ba2b5f1a723cef2a070f4",
+        "fingerprint": "2f7adfe45862d150c35077ebc2b02b76",
+        "original_path": "coalib/results/result_actions/PrintMoreInfoAction.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2419,17 +2426,6 @@
       "factors": [],
       "score": 20,
       "new": {
-        "path": "coalib/output/Interactions.py",
-        "type": "file",
-        "name": "Interactions.py",
-        "size": 1191,
-        "sha1": "cea2ad6687ba74016a94e4077b6a691220acae7f",
-        "fingerprint": "29b16f5c4923844099fb15e14aa28176",
-        "original_path": "coalib/output/Interactions.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/output/Interactions.py",
         "type": "file",
         "name": "Interactions.py",
@@ -2439,6 +2435,17 @@
         "original_path": "coalib/output/Interactions.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "coalib/output/Interactions.py",
+        "type": "file",
+        "name": "Interactions.py",
+        "size": 1191,
+        "sha1": "cea2ad6687ba74016a94e4077b6a691220acae7f",
+        "fingerprint": "29b16f5c4923844099fb15e14aa28176",
+        "original_path": "coalib/output/Interactions.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2449,9 +2456,9 @@
         "path": "coalib/VERSION",
         "type": "file",
         "name": "VERSION",
-        "size": 6,
-        "sha1": "8606c087f8b6f1684acd81984a1b1723c35f95c1",
-        "fingerprint": "1f9fea2088b09fd355ce4bac1ba93ee9",
+        "size": 7,
+        "sha1": "5e19b8eeb6eabfe6b41ea1c9c1d1f983e0e2f4e7",
+        "fingerprint": "df91e475efb86aa58b6f3353472ec6e9",
         "original_path": "coalib/VERSION",
         "licenses": [],
         "copyrights": []
@@ -2460,37 +2467,37 @@
         "path": "coalib/VERSION",
         "type": "file",
         "name": "VERSION",
-        "size": 7,
-        "sha1": "5e19b8eeb6eabfe6b41ea1c9c1d1f983e0e2f4e7",
-        "fingerprint": "df91e475efb86aa58b6f3353472ec6e9",
+        "size": 6,
+        "sha1": "8606c087f8b6f1684acd81984a1b1723c35f95c1",
+        "fingerprint": "1f9fea2088b09fd355ce4bac1ba93ee9",
         "original_path": "coalib/VERSION",
         "licenses": [],
         "copyrights": []
       }
     },
     {
-      "status": "unmodified",
+      "status": "modified",
       "factors": [],
-      "score": 0,
+      "score": 20,
       "new": {
-        "path": "coalib/parsing/__init__.py",
+        "path": "coalib/results/RESULT_SEVERITY.py",
         "type": "file",
-        "name": "__init__.py",
-        "size": 167,
-        "sha1": "1d6888393b8f538d29e3a058f308ff1f62fb72b2",
-        "fingerprint": "6aa21401c620cd8a33708dc97662c0c1",
-        "original_path": "coalib/parsing/__init__.py",
+        "name": "RESULT_SEVERITY.py",
+        "size": 335,
+        "sha1": "79d739a6683a04e90ebe1fcad2d7534c8347e5c7",
+        "fingerprint": "e4ee59c4c944c666f7a998f0916a6ad3",
+        "original_path": "coalib/results/RESULT_SEVERITY.py",
         "licenses": [],
         "copyrights": []
       },
       "old": {
-        "path": "coalib/parsing/__init__.py",
+        "path": "coalib/results/RESULT_SEVERITY.py",
         "type": "file",
-        "name": "__init__.py",
-        "size": 167,
-        "sha1": "1d6888393b8f538d29e3a058f308ff1f62fb72b2",
-        "fingerprint": "6aa21401c620cd8a33708dc97662c0c1",
-        "original_path": "coalib/parsing/__init__.py",
+        "name": "RESULT_SEVERITY.py",
+        "size": 335,
+        "sha1": "f62c69c57609c4b9f11e3ac4eef091f2aed21884",
+        "fingerprint": "74c4d3e1d03194a6230ce4fc924188b6",
+        "original_path": "coalib/results/RESULT_SEVERITY.py",
         "licenses": [],
         "copyrights": []
       }
@@ -2500,24 +2507,24 @@
       "factors": [],
       "score": 0,
       "new": {
-        "path": "coalib/processes/__init__.py",
+        "path": "coalib/parsing/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 0,
-        "sha1": null,
-        "fingerprint": null,
-        "original_path": "coalib/processes/__init__.py",
+        "size": 167,
+        "sha1": "1d6888393b8f538d29e3a058f308ff1f62fb72b2",
+        "fingerprint": "6aa21401c620cd8a33708dc97662c0c1",
+        "original_path": "coalib/parsing/__init__.py",
         "licenses": [],
         "copyrights": []
       },
       "old": {
-        "path": "coalib/processes/__init__.py",
+        "path": "coalib/parsing/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 0,
-        "sha1": null,
-        "fingerprint": null,
-        "original_path": "coalib/processes/__init__.py",
+        "size": 167,
+        "sha1": "1d6888393b8f538d29e3a058f308ff1f62fb72b2",
+        "fingerprint": "6aa21401c620cd8a33708dc97662c0c1",
+        "original_path": "coalib/parsing/__init__.py",
         "licenses": [],
         "copyrights": []
       }
@@ -2955,18 +2962,28 @@
       }
     },
     {
-      "status": "removed",
+      "status": "unmodified",
       "factors": [],
       "score": 0,
-      "new": null,
-      "old": {
-        "path": "coalib/testing/LocalBearTestHelper.py",
+      "new": {
+        "path": "coalib/processes/__init__.py",
         "type": "file",
-        "name": "LocalBearTestHelper.py",
-        "size": 9119,
-        "sha1": "f7cc9efd05776b92a048505af1742b173fff276d",
-        "fingerprint": "0b6d8e58410aa6f9b25e60ee66e6ffb3",
-        "original_path": "coalib/testing/LocalBearTestHelper.py",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/processes/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/processes/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/processes/__init__.py",
         "licenses": [],
         "copyrights": []
       }
@@ -2977,13 +2994,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/bearlib/languages/definitions/C.py",
+        "path": "coalib/bears/requirements/PipRequirement.py",
         "type": "file",
-        "name": "C.py",
-        "size": 854,
-        "sha1": "0dc5ebcdde66051b9faa81cf0276ed27606f0af3",
-        "fingerprint": "8b87b1284ee299efc75b516b956ec8d9",
-        "original_path": "coalib/bearlib/languages/definitions/C.py",
+        "name": "PipRequirement.py",
+        "size": 847,
+        "sha1": "2de354930248f786449c8a1993af9f3564c6afd3",
+        "fingerprint": "1130f2506e1a4420c209dbc61a285300",
+        "original_path": "coalib/bears/requirements/PipRequirement.py",
         "licenses": [],
         "copyrights": []
       }
@@ -2994,13 +3011,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/bearlib/languages/definitions/Vala.py",
+        "path": "coalib/coala_dbus.py",
         "type": "file",
-        "name": "Vala.py",
-        "size": 345,
-        "sha1": "ffc71a5704f96d7762e830cf8f45efa5a99b9b30",
-        "fingerprint": "980fc93c6643e860828241a9b54678c0",
-        "original_path": "coalib/bearlib/languages/definitions/Vala.py",
+        "name": "coala_dbus.py",
+        "size": 1515,
+        "sha1": "12ba867dde148a67cf9fd14c54530486ae6a6c67",
+        "fingerprint": "8ebbe7fa569dd7f2aabeede55593c9af",
+        "original_path": "coalib/coala_dbus.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3011,13 +3028,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/bearlib/languages/definitions/CSS.py",
+        "path": "coalib/bears/requirements/GemRequirement.py",
         "type": "file",
-        "name": "CSS.py",
-        "size": 304,
-        "sha1": "d1b42eb998a77c50ee99c520ee3d8d51763c86ab",
-        "fingerprint": "9b8aca31be42bf589fc749a3854f700d",
-        "original_path": "coalib/bearlib/languages/definitions/CSS.py",
+        "name": "GemRequirement.py",
+        "size": 1067,
+        "sha1": "08a908974533d406249839ccdbf8911fa531be26",
+        "fingerprint": "b164f4186f3e60358f39cacd0e4e536c",
+        "original_path": "coalib/bears/requirements/GemRequirement.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3028,13 +3045,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/output/ConsoleInteraction.py",
+        "path": "coalib/bears/requirements/NpmRequirement.py",
         "type": "file",
-        "name": "ConsoleInteraction.py",
-        "size": 32748,
-        "sha1": "32988a3281d1a91677bc145fc03db80c1ef62dc8",
-        "fingerprint": "8a607554abc1cb9c495354f5c9982d11",
-        "original_path": "coalib/output/ConsoleInteraction.py",
+        "name": "NpmRequirement.py",
+        "size": 841,
+        "sha1": "20fe9d0cfc4a9571bbf2c2ee91a40a4e107cb8e6",
+        "fingerprint": "1022f2d46d144438ea1cdbce2bd851c9",
+        "original_path": "coalib/bears/requirements/NpmRequirement.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3045,13 +3062,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/bearlib/aspects/docs.py",
+        "path": "coalib/bearlib/languages/definitions/python3.coalang",
         "type": "file",
-        "name": "docs.py",
-        "size": 1522,
-        "sha1": "c89f1dbf730fd13e9146b0689716a4db658d04c6",
-        "fingerprint": "d84857523af1b851d4ccda77214482c5",
-        "original_path": "coalib/bearlib/aspects/docs.py",
+        "name": "python3.coalang",
+        "size": 197,
+        "sha1": "9d2b3693ee8ce866ce05f33132f9139d8effe113",
+        "fingerprint": "4e13ff2ee8b1291acebd8a25322f308a",
+        "original_path": "coalib/bearlib/languages/definitions/python3.coalang",
         "licenses": [],
         "copyrights": []
       }
@@ -3062,13 +3079,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/coala_modes.py",
+        "path": "coalib/parsing/StringProcessing/Core.py",
         "type": "file",
-        "name": "coala_modes.py",
-        "size": 3383,
-        "sha1": "b787b12e95d46676df02b5a0d7ae740db8631c39",
-        "fingerprint": "e8e5e4a5c8873621333c8bc4d8f52d70",
-        "original_path": "coalib/coala_modes.py",
+        "name": "Core.py",
+        "size": 21420,
+        "sha1": "9bc4ee2efb4030a110eee77aa93340bcc523d142",
+        "fingerprint": "43722cfbf2f6d56ca294653b1e16af80",
+        "original_path": "coalib/parsing/StringProcessing/Core.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3079,13 +3096,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/results/result_actions/IgnoreResultAction.py",
+        "path": "coalib/parsing/StringProcessing/Match.py",
         "type": "file",
-        "name": "IgnoreResultAction.py",
-        "size": 4109,
-        "sha1": "b81b6ef019de45edc91a029c6ff65c4e0be8ac5c",
-        "fingerprint": "e72aa3e97698ed2562d12c65ee1c1182",
-        "original_path": "coalib/results/result_actions/IgnoreResultAction.py",
+        "name": "Match.py",
+        "size": 1541,
+        "sha1": "a1a68427837dd34b3bc40e4c716238da4b206efa",
+        "fingerprint": "0c2a9e5e8470895acfa04d7607158532",
+        "original_path": "coalib/parsing/StringProcessing/Match.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3096,13 +3113,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/bearlib/languages/definitions/Unknown.py",
+        "path": "coalib/bearlib/languages/definitions/cpp.coalang",
         "type": "file",
-        "name": "Unknown.py",
-        "size": 91,
-        "sha1": "bba9c1d0ba06944fd744a8b21c1f886278b2bcb4",
-        "fingerprint": "2e538a180c2a43e272605142c5463048",
-        "original_path": "coalib/bearlib/languages/definitions/Unknown.py",
+        "name": "cpp.coalang",
+        "size": 1057,
+        "sha1": "eeae9b0805d0a73ec9776ca22b167b4c35fbd9d4",
+        "fingerprint": "4c81f332400813355093b2419a3219a5",
+        "original_path": "coalib/bearlib/languages/definitions/cpp.coalang",
         "licenses": [],
         "copyrights": []
       }
@@ -3113,13 +3130,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/results/result_actions/PrintAspectAction.py",
+        "path": "coalib/parsing/StringProcessing/InBetweenMatch.py",
         "type": "file",
-        "name": "PrintAspectAction.py",
-        "size": 704,
-        "sha1": "5807c6417acd936e207c4eb6a07a61a9b9338930",
-        "fingerprint": "755a2fcf9c448a802ef46009ba9c6846",
-        "original_path": "coalib/results/result_actions/PrintAspectAction.py",
+        "name": "InBetweenMatch.py",
+        "size": 2120,
+        "sha1": "8a30603a995eb98fdb520b6ea1c8ea87be369c59",
+        "fingerprint": "24530d0b9ff122277ff62d13250ecc8b",
+        "original_path": "coalib/parsing/StringProcessing/InBetweenMatch.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3130,13 +3147,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/bearlib/languages/definitions/Java.py",
+        "path": "coalib/output/dbus/DbusServer.py",
         "type": "file",
-        "name": "Java.py",
-        "size": 325,
-        "sha1": "c5d25b7336a141c16d50dafedfbc5edd51a2f53b",
-        "fingerprint": "0a03c93c3e420ce897699029954e90e3",
-        "original_path": "coalib/bearlib/languages/definitions/Java.py",
+        "name": "DbusServer.py",
+        "size": 5769,
+        "sha1": "d16266087223a9556f6e4781e69de390068dfe06",
+        "fingerprint": "b000c2408994a39d58cfbd1d6344e536",
+        "original_path": "coalib/output/dbus/DbusServer.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3147,13 +3164,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/bearlib/languages/definitions/JavaScript.py",
+        "path": "coalib/bearlib/abstractions/Lint.py",
         "type": "file",
-        "name": "JavaScript.py",
-        "size": 372,
-        "sha1": "e02eef3e90b166486c99ee3d465e0f7d09635164",
-        "fingerprint": "8702c97436629cc896e1c1a9954e7c22",
-        "original_path": "coalib/bearlib/languages/definitions/JavaScript.py",
+        "name": "Lint.py",
+        "size": 15710,
+        "sha1": "b430f0c735ca261779204a76e88658c21a6e8210",
+        "fingerprint": "b0e3971ba8512f7e537c6ccf699b5ab2",
+        "original_path": "coalib/bearlib/abstractions/Lint.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3164,13 +3181,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/bearlib/aspects/base.py",
+        "path": "coalib/misc/MutableValue.py",
         "type": "file",
-        "name": "base.py",
-        "size": 2106,
-        "sha1": "8414faf1f7bc07d2dd73bef8e84d37d35e069604",
-        "fingerprint": "e8e295866ae7640e23bdb9c87f647fa9",
-        "original_path": "coalib/bearlib/aspects/base.py",
+        "name": "MutableValue.py",
+        "size": 80,
+        "sha1": "4897a234c35f97cc6782289bd289f7b79962d292",
+        "fingerprint": "2ea13e761002738040a4a408074e2143",
+        "original_path": "coalib/misc/MutableValue.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3181,13 +3198,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/bearlib/aspects/Metadata.py",
+        "path": "coalib/parsing/StringProcessing/__init__.py",
         "type": "file",
-        "name": "Metadata.py",
-        "size": 7125,
-        "sha1": "4c35889a667755c893fdb0c62ad35b87ca573bc9",
-        "fingerprint": "cb2eb69062c675d3eac07728a3ca77a7",
-        "original_path": "coalib/bearlib/aspects/Metadata.py",
+        "name": "__init__.py",
+        "size": 1082,
+        "sha1": "fbd024543ce29cc0fedc6ad396a10d64a7a61128",
+        "fingerprint": "344d7f56111c282cbcde92929e63e141",
+        "original_path": "coalib/parsing/StringProcessing/__init__.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3198,13 +3215,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/bearlib/aspects/Redundancy.py",
+        "path": "coalib/output/dbus/__init__.py",
         "type": "file",
-        "name": "Redundancy.py",
-        "size": 6576,
-        "sha1": "e71489d0bc58b60b16a11e0504c72767171843fb",
-        "fingerprint": "d64ab4ea47375133ffdb7ee02b3a3dad",
-        "original_path": "coalib/bearlib/aspects/Redundancy.py",
+        "name": "__init__.py",
+        "size": 561,
+        "sha1": "727f8b13d15f98f72c6dc45aaa76ce1d209a6b90",
+        "fingerprint": "13b5a7360a43dd189f681c5ea9a850ae",
+        "original_path": "coalib/output/dbus/__init__.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3215,13 +3232,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/bearlib/languages/Language.py",
+        "path": "coalib/bears/requirements/PackageRequirement.py",
         "type": "file",
-        "name": "Language.py",
-        "size": 14576,
-        "sha1": "8fffd2c27b093bd8d66b26a858dac0e96fba7712",
-        "fingerprint": "9e6e4bc338476535a06df21a38888ae0",
-        "original_path": "coalib/bearlib/languages/Language.py",
+        "name": "PackageRequirement.py",
+        "size": 4261,
+        "sha1": "52be29490537645a298a16020c53c7fa8607b0e8",
+        "fingerprint": "8726332c80c5512cb636c877ebb9d1b1",
+        "original_path": "coalib/bears/requirements/PackageRequirement.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3232,13 +3249,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/bearlib/languages/definitions/Python.py",
+        "path": "coalib/misc/ContextManagers.py",
         "type": "file",
-        "name": "Python.py",
-        "size": 414,
-        "sha1": "aac5bfe4aa4d2d8c6d8d4b37483c649e1cb60a92",
-        "fingerprint": "e8084b5abc4647568cbf49bb0deb7a28",
-        "original_path": "coalib/bearlib/languages/definitions/Python.py",
+        "name": "ContextManagers.py",
+        "size": 7320,
+        "sha1": "2f96b9fafe873fbf4fe728ec3bee297b76b23ad3",
+        "fingerprint": "59ae0f94aaf016681f9b4e334b93d871",
+        "original_path": "coalib/misc/ContextManagers.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3249,13 +3266,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/testing/BearTestHelper.py",
+        "path": "coalib/output/dbus/BuildDbusService.py",
         "type": "file",
-        "name": "BearTestHelper.py",
-        "size": 513,
-        "sha1": "ce929e54914605a8cb2c58c87235f8911d09d133",
-        "fingerprint": "3299c7c84ad4d0de3ea4617aa0e69ada",
-        "original_path": "coalib/testing/BearTestHelper.py",
+        "name": "BuildDbusService.py",
+        "size": 1411,
+        "sha1": "50d4a97f5b22a668fa6b32a5439d895395e35ed8",
+        "fingerprint": "f396d383c00c04c29308444c18fa4b61",
+        "original_path": "coalib/output/dbus/BuildDbusService.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3266,13 +3283,64 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/settings/Annotations.py",
+        "path": "coalib/output/dbus/DbusDocument.py",
+        "type": "file",
+        "name": "DbusDocument.py",
+        "size": 6938,
+        "sha1": "c785c58df4bb36e11204298b08fd11706fec0537",
+        "fingerprint": "76b6e667cc3be1d65dfbb3ce78a6708b",
+        "original_path": "coalib/output/dbus/DbusDocument.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "removed",
+      "factors": [],
+      "score": 0,
+      "new": null,
+      "old": {
+        "path": "coalib/misc/StringConverter.py",
+        "type": "file",
+        "name": "StringConverter.py",
+        "size": 5054,
+        "sha1": "c631950e218cab444d1493617a65a12b00364881",
+        "fingerprint": "ea9a8d1344c48ce23d4fb5e986e50a88",
+        "original_path": "coalib/misc/StringConverter.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "removed",
+      "factors": [],
+      "score": 0,
+      "new": null,
+      "old": {
+        "path": "coalib/parsing/StringProcessing/Filters.py",
+        "type": "file",
+        "name": "Filters.py",
+        "size": 1331,
+        "sha1": "d6c829ce09c42b1f32c80427656ecc2571ba86a9",
+        "fingerprint": "a60f7b72ef38d44cb9ed9093571f9043",
+        "original_path": "coalib/parsing/StringProcessing/Filters.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "removed",
+      "factors": [],
+      "score": 0,
+      "new": null,
+      "old": {
+        "path": "coalib/misc/Annotations.py",
         "type": "file",
         "name": "Annotations.py",
         "size": 1580,
-        "sha1": "869f6eb810c52fb8a48a1d9f538ed379c42658f4",
-        "fingerprint": "b08707e21cfa0145500072973873e10c",
-        "original_path": "coalib/settings/Annotations.py",
+        "sha1": "cdb9d2308606ad94a071ded80d13b94be0ad5edf",
+        "fingerprint": "70870fe418fa0945500072b73873eb0e",
+        "original_path": "coalib/misc/Annotations.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3283,13 +3351,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/bearlib/languages/definitions/CSharp.py",
+        "path": "coalib/output/dbus/DbusApp.py",
         "type": "file",
-        "name": "CSharp.py",
-        "size": 261,
-        "sha1": "2303b6be2926902fce6e136af99557c30e02a886",
-        "fingerprint": "84d399bd3c4249e18722600b9141009a",
-        "original_path": "coalib/bearlib/languages/definitions/CSharp.py",
+        "name": "DbusApp.py",
+        "size": 1509,
+        "sha1": "3549f039b292fbefdf45c2c487b3695daaec594f",
+        "fingerprint": "3315270d0f17234d9838f3542645e550",
+        "original_path": "coalib/output/dbus/DbusApp.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3300,13 +3368,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/bearlib/languages/definitions/CPP.py",
+        "path": "coalib/bearlib/languages/definitions/c.coalang",
         "type": "file",
-        "name": "CPP.py",
-        "size": 1580,
-        "sha1": "37e0d9cd25b2373d03f7c298a778b037bde75f00",
-        "fingerprint": "99a729324f45236806c3f1fb896cda9b",
-        "original_path": "coalib/bearlib/languages/definitions/CPP.py",
+        "name": "c.coalang",
+        "size": 568,
+        "sha1": "a6f2eeb3d4a7a983bdec457cf438bebc5e96d429",
+        "fingerprint": "8d91eb5c609d76bddaf1c2443983596c",
+        "original_path": "coalib/bearlib/languages/definitions/c.coalang",
         "licenses": [],
         "copyrights": []
       }
@@ -3317,81 +3385,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "coalib/bearlib/aspects/__init__.py",
+        "path": "coalib/misc/Future.py",
         "type": "file",
-        "name": "__init__.py",
-        "size": 3402,
-        "sha1": "0c7bd34da16043fc8213a78e3e1ce52d6cc56caa",
-        "fingerprint": "1f35f6b654088409c60432ef061586a0",
-        "original_path": "coalib/bearlib/aspects/__init__.py",
-        "licenses": [],
-        "copyrights": []
-      }
-    },
-    {
-      "status": "removed",
-      "factors": [],
-      "score": 0,
-      "new": null,
-      "old": {
-        "path": "coalib/misc/Compatibility.py",
-        "type": "file",
-        "name": "Compatibility.py",
-        "size": 144,
-        "sha1": "324f7c59d9681f99e00d92f4ccfe5aae46e3a17e",
-        "fingerprint": "68aa9e94638ec7282ddeff407a44bef2",
-        "original_path": "coalib/misc/Compatibility.py",
-        "licenses": [],
-        "copyrights": []
-      }
-    },
-    {
-      "status": "removed",
-      "factors": [],
-      "score": 0,
-      "new": null,
-      "old": {
-        "path": "coalib/output/Logging.py",
-        "type": "file",
-        "name": "Logging.py",
-        "size": 2097,
-        "sha1": "b6f2cc82c535f13ba5b4e904df10c325a88bf7cf",
-        "fingerprint": "d6097cab5c7d99204399e7a48cdd3dcd",
-        "original_path": "coalib/output/Logging.py",
-        "licenses": [],
-        "copyrights": []
-      }
-    },
-    {
-      "status": "removed",
-      "factors": [],
-      "score": 0,
-      "new": null,
-      "old": {
-        "path": "coalib/bearlib/aspects/meta.py",
-        "type": "file",
-        "name": "meta.py",
-        "size": 2121,
-        "sha1": "13c6ea613e56cdd0141fd91b99ba1371e7ed0ff0",
-        "fingerprint": "932d49723eb293bdb1f1f789d8cef62e",
-        "original_path": "coalib/bearlib/aspects/meta.py",
-        "licenses": [],
-        "copyrights": []
-      }
-    },
-    {
-      "status": "removed",
-      "factors": [],
-      "score": 0,
-      "new": null,
-      "old": {
-        "path": "coalib/bearlib/aspects/taste.py",
-        "type": "file",
-        "name": "taste.py",
-        "size": 2896,
-        "sha1": "68ad8f8efb4a57cd48c279f3f5d58948212cb1aa",
-        "fingerprint": "1fe3af3b2c9452658904f0767ebf5761",
-        "original_path": "coalib/bearlib/aspects/taste.py",
+        "name": "Future.py",
+        "size": 3748,
+        "sha1": "c07134749c576cb2dbf33be37951e01f96763a25",
+        "fingerprint": "e124dbc2b4dbc3757b8bfab1722e8280",
+        "original_path": "coalib/misc/Future.py",
         "licenses": [],
         "copyrights": []
       }
@@ -3401,17 +3401,6 @@
       "factors": [],
       "score": 0,
       "new": {
-        "path": "coalib/bears/requirements/__init__.py",
-        "type": "file",
-        "name": "__init__.py",
-        "size": 0,
-        "sha1": null,
-        "fingerprint": null,
-        "original_path": "coalib/bears/requirements/__init__.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "coalib/testing/__init__.py",
         "type": "file",
         "name": "__init__.py",
@@ -3419,6 +3408,17 @@
         "sha1": null,
         "fingerprint": null,
         "original_path": "coalib/testing/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/bears/requirements/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/bears/requirements/__init__.py",
         "licenses": [],
         "copyrights": []
       }
