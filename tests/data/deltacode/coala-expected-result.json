@@ -1,7 +1,7 @@
 {
   "deltacode_notice": "Generated with DeltaCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nDeltaCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nDeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/nexB/deltacode/ for support and download.",
   "deltacode_errors": [],
-  "deltas_count": 123,
+  "deltas_count": 141,
   "delta_stats": {
     "old_files_count": 117,
     "new_files_count": 115,
@@ -2464,6 +2464,492 @@
         "sha1": "5e19b8eeb6eabfe6b41ea1c9c1d1f983e0e2f4e7",
         "fingerprint": "df91e475efb86aa58b6f3353472ec6e9",
         "original_path": "coalib/VERSION",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/parsing/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 167,
+        "sha1": "1d6888393b8f538d29e3a058f308ff1f62fb72b2",
+        "fingerprint": "6aa21401c620cd8a33708dc97662c0c1",
+        "original_path": "coalib/parsing/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/parsing/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 167,
+        "sha1": "1d6888393b8f538d29e3a058f308ff1f62fb72b2",
+        "fingerprint": "6aa21401c620cd8a33708dc97662c0c1",
+        "original_path": "coalib/parsing/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/processes/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/processes/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/processes/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/processes/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/bearlib/spacing/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/bearlib/spacing/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/bearlib/spacing/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/bearlib/spacing/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/default_coafile",
+        "type": "file",
+        "name": "default_coafile",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/default_coafile",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/default_coafile",
+        "type": "file",
+        "name": "default_coafile",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/default_coafile",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/bearlib/languages/documentation/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 131,
+        "sha1": "eb5fe0a696ffb1729c1d59ca79c7c8c41294b6a5",
+        "fingerprint": "4efe1f6ffd1ceb9b41961ab0345dd9f8",
+        "original_path": "coalib/bearlib/languages/documentation/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/bearlib/languages/documentation/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 131,
+        "sha1": "eb5fe0a696ffb1729c1d59ca79c7c8c41294b6a5",
+        "fingerprint": "4efe1f6ffd1ceb9b41961ab0345dd9f8",
+        "original_path": "coalib/bearlib/languages/documentation/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/processes/communication/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/processes/communication/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/processes/communication/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/processes/communication/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/output/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/output/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/output/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/output/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/collecting/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/collecting/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/collecting/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/collecting/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/processes/LogPrinterThread.py",
+        "type": "file",
+        "name": "LogPrinterThread.py",
+        "size": 688,
+        "sha1": "8fcd1e4e74eec575a4ee1d15d3b28c06e26c26da",
+        "fingerprint": "f0d01ba11529060bfb94e1f0e3245155",
+        "original_path": "coalib/processes/LogPrinterThread.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/processes/LogPrinterThread.py",
+        "type": "file",
+        "name": "LogPrinterThread.py",
+        "size": 688,
+        "sha1": "8fcd1e4e74eec575a4ee1d15d3b28c06e26c26da",
+        "fingerprint": "f0d01ba11529060bfb94e1f0e3245155",
+        "original_path": "coalib/processes/LogPrinterThread.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/misc/Enum.py",
+        "type": "file",
+        "name": "Enum.py",
+        "size": 270,
+        "sha1": "77579568fabc8ccb3d3e9476fea5f01f862066d9",
+        "fingerprint": "10eb976a00693bd4b34767452d4fda24",
+        "original_path": "coalib/misc/Enum.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/misc/Enum.py",
+        "type": "file",
+        "name": "Enum.py",
+        "size": 270,
+        "sha1": "77579568fabc8ccb3d3e9476fea5f01f862066d9",
+        "fingerprint": "10eb976a00693bd4b34767452d4fda24",
+        "original_path": "coalib/misc/Enum.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/results/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/results/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/results/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/results/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/output/printers/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 269,
+        "sha1": "5d2e282a3771dc975bef6a32cf338ad62500f421",
+        "fingerprint": "6119f362803a91b51636b9a32efe15e7",
+        "original_path": "coalib/output/printers/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/output/printers/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 269,
+        "sha1": "5d2e282a3771dc975bef6a32cf338ad62500f421",
+        "fingerprint": "6119f362803a91b51636b9a32efe15e7",
+        "original_path": "coalib/output/printers/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/settings/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/settings/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/settings/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/settings/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/bears/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/bears/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/bears/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/bears/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/misc/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/misc/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/misc/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 0,
+        "sha1": null,
+        "fingerprint": null,
+        "original_path": "coalib/misc/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/bearlib/abstractions/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 110,
+        "sha1": "7470ffdc8bb4a378866338e5ab0e14789b8dcb6a",
+        "fingerprint": "155828fa383550138b34f6cef327030c",
+        "original_path": "coalib/bearlib/abstractions/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/bearlib/abstractions/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 110,
+        "sha1": "7470ffdc8bb4a378866338e5ab0e14789b8dcb6a",
+        "fingerprint": "155828fa383550138b34f6cef327030c",
+        "original_path": "coalib/bearlib/abstractions/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/results/result_actions/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 145,
+        "sha1": "9db16072266575f9881dfbbafecdf8ab7a14cdb0",
+        "fingerprint": "20ca18b5604a47298a558b045295210b",
+        "original_path": "coalib/results/result_actions/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/results/result_actions/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 145,
+        "sha1": "9db16072266575f9881dfbbafecdf8ab7a14cdb0",
+        "fingerprint": "20ca18b5604a47298a558b045295210b",
+        "original_path": "coalib/results/result_actions/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    },
+    {
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "coalib/bearlib/languages/definitions/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 341,
+        "sha1": "87d64b589629f8347219295d2ef4225a5c8328c9",
+        "fingerprint": "be9d7000b7bbecae1169b75939c8e4a9",
+        "original_path": "coalib/bearlib/languages/definitions/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/bearlib/languages/definitions/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 341,
+        "sha1": "87d64b589629f8347219295d2ef4225a5c8328c9",
+        "fingerprint": "be9d7000b7bbecae1169b75939c8e4a9",
+        "original_path": "coalib/bearlib/languages/definitions/__init__.py",
         "licenses": [],
         "copyrights": []
       }

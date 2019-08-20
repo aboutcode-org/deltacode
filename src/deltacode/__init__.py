@@ -39,7 +39,7 @@ except DistributionNotFound:
     # package is not installed ??
     __version__ = '1.0.0'
 
-SIMILARITY_THRESHOLD = 35
+SIMILARITY_LIMIT = 35
 
 class DeltaCode(object):
     """
@@ -100,7 +100,7 @@ class DeltaCode(object):
             new_fingerprint = utils.bitarray_from_hex(delta.new_file.fingerprint)
             old_fingerprint = utils.bitarray_from_hex(delta.old_file.fingerprint)
             hamming_distance = utils.hamming_distance(new_fingerprint, old_fingerprint)
-            if hamming_distance <= SIMILARITY_THRESHOLD:
+            if hamming_distance > 0 and hamming_distance <= SIMILARITY_LIMIT:
                 delta.score += hamming_distance
                 delta.factors.append('Similar with hamming distance : {}'.format(hamming_distance))
 

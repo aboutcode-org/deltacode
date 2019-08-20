@@ -111,7 +111,7 @@ class TestCLI(FileBasedTesting):
 
         moved_expected = {
             "status": "moved",
-            "factors": ["Similar with hamming distance : 0"],
+            "factors": [],
             "score": 0,
             "new": {
                 "path": "b/a4.py",
@@ -177,7 +177,7 @@ class TestCLI(FileBasedTesting):
 
         unmodified_expected = {
             "status": "unmodified",
-            "factors": ["Similar with hamming distance : 0"],
+            "factors": [],
             "score": 0,
             "new": {
                 "path": "a/a3.py",
@@ -277,7 +277,7 @@ class TestCLI(FileBasedTesting):
 
         moved_expected = {
             "status" : "moved",
-            "factors": ["Similar with hamming distance : 0"],
+            "factors": [],
             "score": 0,
             "new": {
                 "path": "b/a4.py",
