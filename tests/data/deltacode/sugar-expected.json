@@ -3,13 +3,13 @@
   "deltacode_errors": [],
   "deltas_count": 136,
   "delta_stats": {
-    "old_files_count": 135,
-    "new_files_count": 132,
-    "percent_added": 0.74,
-    "percent_removed": 2.96,
+    "old_files_count": 132,
+    "new_files_count": 135,
+    "percent_added": 3.03,
+    "percent_removed": 0.76,
     "percent_moved": 0.0,
-    "percent_modified": 88.89,
-    "percent_unmodified": 8.15
+    "percent_modified": 90.91,
+    "percent_unmodified": 8.33
   },
   "deltas": [
     {
@@ -17,13 +17,64 @@
       "factors": [],
       "score": 100,
       "new": {
-        "path": "src/jarabe/model/update/new_aslo.py",
+        "path": "src/jarabe/journal/projectview.py",
         "type": "file",
-        "name": "new_aslo.py",
-        "size": 4033,
-        "sha1": "bba5118be118eb006a96721b1e19dfe2695da33f",
-        "fingerprint": "0a64e6aa429da7ca8ea4eea13712aea5",
-        "original_path": "src/jarabe/model/update/new_aslo.py",
+        "name": "projectview.py",
+        "size": 5486,
+        "sha1": "bea7d8d5de546621bf114984ca63211834858c4f",
+        "fingerprint": "dab4f7bcd0aee5fae626474077b686e4",
+        "original_path": "src/jarabe/journal/projectview.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": null
+    },
+    {
+      "status": "added",
+      "factors": [],
+      "score": 100,
+      "new": {
+        "path": "src/jarabe/view/viewhelp_webkit2.py",
+        "type": "file",
+        "name": "viewhelp_webkit2.py",
+        "size": 3617,
+        "sha1": "365a64c1e255e85a74e8fed2d7303fed7c2ea81e",
+        "fingerprint": "7c60cfe2de9bc5ceea2621716fa4a786",
+        "original_path": "src/jarabe/view/viewhelp_webkit2.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": null
+    },
+    {
+      "status": "added",
+      "factors": [],
+      "score": 100,
+      "new": {
+        "path": "src/jarabe/view/viewhelp_webkit1.py",
+        "type": "file",
+        "name": "viewhelp_webkit1.py",
+        "size": 4473,
+        "sha1": "9bddebeae693d2bac8ea53c3cc038d99576cd3b7",
+        "fingerprint": "38e4cfea8290657e62a6213167a78525",
+        "original_path": "src/jarabe/view/viewhelp_webkit1.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": null
+    },
+    {
+      "status": "added",
+      "factors": [],
+      "score": 100,
+      "new": {
+        "path": "src/jarabe/desktop/activitychooser.py",
+        "type": "file",
+        "name": "activitychooser.py",
+        "size": 11858,
+        "sha1": "86bb0568a05c34643023dea6a69cb25074d58a8d",
+        "fingerprint": "42f06af2c2d4ca1ab49620c2275ade8c",
+        "original_path": "src/jarabe/desktop/activitychooser.py",
         "licenses": [],
         "copyrights": []
       },
@@ -39,9 +90,9 @@
         "path": "src/jarabe/controlpanel/cmd.py",
         "type": "file",
         "name": "cmd.py",
-        "size": 5882,
-        "sha1": "80e818257e9bf9810bb94a272fb70c583bc2593c",
-        "fingerprint": "f0204eaa7589a55eae2622316e0b9624",
+        "size": 6014,
+        "sha1": "7e819114b8b6489557fd381031480da62f9e88bb",
+        "fingerprint": "f86407aa628ba74af83728f1268a8664",
         "original_path": "src/jarabe/controlpanel/cmd.py",
         "licenses": [],
         "copyrights": []
@@ -50,9 +101,9 @@
         "path": "src/jarabe/controlpanel/cmd.py",
         "type": "file",
         "name": "cmd.py",
-        "size": 6014,
-        "sha1": "7e819114b8b6489557fd381031480da62f9e88bb",
-        "fingerprint": "f86407aa628ba74af83728f1268a8664",
+        "size": 5882,
+        "sha1": "80e818257e9bf9810bb94a272fb70c583bc2593c",
+        "fingerprint": "f0204eaa7589a55eae2622316e0b9624",
         "original_path": "src/jarabe/controlpanel/cmd.py",
         "licenses": [],
         "copyrights": []
@@ -68,9 +119,9 @@
         "path": "src/jarabe/model/update/Makefile.am",
         "type": "file",
         "name": "Makefile.am",
-        "size": 135,
-        "sha1": "6af9ed6da642490c516c2c957bc163e98682fbdb",
-        "fingerprint": "42c98e2aee7702202056f27baef40239",
+        "size": 119,
+        "sha1": "93c092ca71a9f768ef2eaa4d8815360224f5a353",
+        "fingerprint": "4248972bae13126039d63242aafc4aac",
         "original_path": "src/jarabe/model/update/Makefile.am",
         "licenses": [],
         "copyrights": []
@@ -79,9 +130,9 @@
         "path": "src/jarabe/model/update/Makefile.am",
         "type": "file",
         "name": "Makefile.am",
-        "size": 119,
-        "sha1": "93c092ca71a9f768ef2eaa4d8815360224f5a353",
-        "fingerprint": "4248972bae13126039d63242aafc4aac",
+        "size": 135,
+        "sha1": "6af9ed6da642490c516c2c957bc163e98682fbdb",
+        "fingerprint": "42c98e2aee7702202056f27baef40239",
         "original_path": "src/jarabe/model/update/Makefile.am",
         "licenses": [],
         "copyrights": []
@@ -94,17 +145,6 @@
       ],
       "score": 49,
       "new": {
-        "path": "src/jarabe/view/viewhelp.py",
-        "type": "file",
-        "name": "viewhelp.py",
-        "size": 12761,
-        "sha1": "f8575af2f995919f1db32009b34a164046789b13",
-        "fingerprint": "1e6169b804954cfdc6bd0340471698b8",
-        "original_path": "src/jarabe/view/viewhelp.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/view/viewhelp.py",
         "type": "file",
         "name": "viewhelp.py",
@@ -114,6 +154,17 @@
         "original_path": "src/jarabe/view/viewhelp.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/view/viewhelp.py",
+        "type": "file",
+        "name": "viewhelp.py",
+        "size": 12761,
+        "sha1": "f8575af2f995919f1db32009b34a164046789b13",
+        "fingerprint": "1e6169b804954cfdc6bd0340471698b8",
+        "original_path": "src/jarabe/view/viewhelp.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -126,9 +177,9 @@
         "path": "src/jarabe/controlpanel/sectionview.py",
         "type": "file",
         "name": "sectionview.py",
-        "size": 2400,
-        "sha1": "59825c6123bdf90a51683ee7985c0f7824cbc60b",
-        "fingerprint": "1eecfdf016b8c76ea3b6410565ae4ea5",
+        "size": 2734,
+        "sha1": "523a5a296e34d173069fa9f16ae5695bc0050c54",
+        "fingerprint": "acacedf21798c74e676603b464aa6985",
         "original_path": "src/jarabe/controlpanel/sectionview.py",
         "licenses": [],
         "copyrights": []
@@ -137,9 +188,9 @@
         "path": "src/jarabe/controlpanel/sectionview.py",
         "type": "file",
         "name": "sectionview.py",
-        "size": 2734,
-        "sha1": "523a5a296e34d173069fa9f16ae5695bc0050c54",
-        "fingerprint": "acacedf21798c74e676603b464aa6985",
+        "size": 2400,
+        "sha1": "59825c6123bdf90a51683ee7985c0f7824cbc60b",
+        "fingerprint": "1eecfdf016b8c76ea3b6410565ae4ea5",
         "original_path": "src/jarabe/controlpanel/sectionview.py",
         "licenses": [],
         "copyrights": []
@@ -155,9 +206,9 @@
         "path": "src/jarabe/journal/journalwindow.py",
         "type": "file",
         "name": "journalwindow.py",
-        "size": 1059,
-        "sha1": "ea3246267eb2aa76f4a57c261fd37ca693cbb7d7",
-        "fingerprint": "566443aad699c76a82a6602325a2cea1",
+        "size": 1233,
+        "sha1": "3dabb719b48b425f37adf4fda0a535e43497e5ff",
+        "fingerprint": "f8e153fa568be7622aae63a367aacea7",
         "original_path": "src/jarabe/journal/journalwindow.py",
         "licenses": [],
         "copyrights": []
@@ -166,9 +217,9 @@
         "path": "src/jarabe/journal/journalwindow.py",
         "type": "file",
         "name": "journalwindow.py",
-        "size": 1233,
-        "sha1": "3dabb719b48b425f37adf4fda0a535e43497e5ff",
-        "fingerprint": "f8e153fa568be7622aae63a367aacea7",
+        "size": 1059,
+        "sha1": "ea3246267eb2aa76f4a57c261fd37ca693cbb7d7",
+        "fingerprint": "566443aad699c76a82a6602325a2cea1",
         "original_path": "src/jarabe/journal/journalwindow.py",
         "licenses": [],
         "copyrights": []
@@ -181,17 +232,6 @@
       ],
       "score": 47,
       "new": {
-        "path": "src/jarabe/main.py",
-        "type": "file",
-        "name": "main.py",
-        "size": 12221,
-        "sha1": "8fff7e4352a406f0794a045de8541760402ee14a",
-        "fingerprint": "8ae5728abed5c5cf02d6122a7dee9390",
-        "original_path": "src/jarabe/main.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/main.py",
         "type": "file",
         "name": "main.py",
@@ -201,6 +241,17 @@
         "original_path": "src/jarabe/main.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/main.py",
+        "type": "file",
+        "name": "main.py",
+        "size": 12221,
+        "sha1": "8fff7e4352a406f0794a045de8541760402ee14a",
+        "fingerprint": "8ae5728abed5c5cf02d6122a7dee9390",
+        "original_path": "src/jarabe/main.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -213,9 +264,9 @@
         "path": "src/jarabe/webservice/account.py",
         "type": "file",
         "name": "account.py",
-        "size": 3680,
-        "sha1": "8b092903a2ddca151b1267d913f1ddf841eddca7",
-        "fingerprint": "80f56aa5565faf85d9f611f2023b9a95",
+        "size": 3590,
+        "sha1": "b575677957524c07b40d7e0199ce2b96e91dee20",
+        "fingerprint": "a0f558b0561fdf0f796441f320bb9ac5",
         "original_path": "src/jarabe/webservice/account.py",
         "licenses": [],
         "copyrights": []
@@ -224,9 +275,9 @@
         "path": "src/jarabe/webservice/account.py",
         "type": "file",
         "name": "account.py",
-        "size": 3590,
-        "sha1": "b575677957524c07b40d7e0199ce2b96e91dee20",
-        "fingerprint": "a0f558b0561fdf0f796441f320bb9ac5",
+        "size": 3680,
+        "sha1": "8b092903a2ddca151b1267d913f1ddf841eddca7",
+        "fingerprint": "80f56aa5565faf85d9f611f2023b9a95",
         "original_path": "src/jarabe/webservice/account.py",
         "licenses": [],
         "copyrights": []
@@ -242,9 +293,9 @@
         "path": "src/jarabe/intro/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 621,
-        "sha1": "65e77ba26d41913b45fab214bbcfec27ab49b293",
-        "fingerprint": "23212248f99cbfd32c8f92e2bf9570d2",
+        "size": 474,
+        "sha1": "67ba25be5bb63ac8ecb5cfe6792810169a3e350c",
+        "fingerprint": "038129d0f91caf523d4b9262bdd5f1f8",
         "original_path": "src/jarabe/intro/__init__.py",
         "licenses": [],
         "copyrights": []
@@ -253,9 +304,9 @@
         "path": "src/jarabe/intro/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 474,
-        "sha1": "67ba25be5bb63ac8ecb5cfe6792810169a3e350c",
-        "fingerprint": "038129d0f91caf523d4b9262bdd5f1f8",
+        "size": 621,
+        "sha1": "65e77ba26d41913b45fab214bbcfec27ab49b293",
+        "fingerprint": "23212248f99cbfd32c8f92e2bf9570d2",
         "original_path": "src/jarabe/intro/__init__.py",
         "licenses": [],
         "copyrights": []
@@ -268,17 +319,6 @@
       ],
       "score": 45,
       "new": {
-        "path": "src/jarabe/desktop/homewindow.py",
-        "type": "file",
-        "name": "homewindow.py",
-        "size": 10228,
-        "sha1": "ae19c83d40edc5fe0f624121218f5feb1dc2e294",
-        "fingerprint": "54d97b8a45dccee683b6ee217d3a9ee0",
-        "original_path": "src/jarabe/desktop/homewindow.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/desktop/homewindow.py",
         "type": "file",
         "name": "homewindow.py",
@@ -288,6 +328,17 @@
         "original_path": "src/jarabe/desktop/homewindow.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/desktop/homewindow.py",
+        "type": "file",
+        "name": "homewindow.py",
+        "size": 10228,
+        "sha1": "ae19c83d40edc5fe0f624121218f5feb1dc2e294",
+        "fingerprint": "54d97b8a45dccee683b6ee217d3a9ee0",
+        "original_path": "src/jarabe/desktop/homewindow.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -300,9 +351,9 @@
         "path": "src/jarabe/model/update/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 1141,
-        "sha1": "73d282d19df7af28312e2b88bb9ac2deb6462d2d",
-        "fingerprint": "5a6467aac299cfff822663a365b38ea4",
+        "size": 1074,
+        "sha1": "c50ba895727228ef71828191606b24d8ec906646",
+        "fingerprint": "d864e2ae469bc7ca2a2663b164aba7a4",
         "original_path": "src/jarabe/model/update/__init__.py",
         "licenses": [],
         "copyrights": []
@@ -311,9 +362,9 @@
         "path": "src/jarabe/model/update/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 1074,
-        "sha1": "c50ba895727228ef71828191606b24d8ec906646",
-        "fingerprint": "d864e2ae469bc7ca2a2663b164aba7a4",
+        "size": 1141,
+        "sha1": "73d282d19df7af28312e2b88bb9ac2deb6462d2d",
+        "fingerprint": "5a6467aac299cfff822663a365b38ea4",
         "original_path": "src/jarabe/model/update/__init__.py",
         "licenses": [],
         "copyrights": []
@@ -326,17 +377,6 @@
       ],
       "score": 44,
       "new": {
-        "path": "src/jarabe/webservice/accountsmanager.py",
-        "type": "file",
-        "name": "accountsmanager.py",
-        "size": 7190,
-        "sha1": "89105a991611f7b1f250e83ca46c7305e8d262cd",
-        "fingerprint": "94e5f7e01842f1d632760c40af1ff591",
-        "original_path": "src/jarabe/webservice/accountsmanager.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/webservice/accountsmanager.py",
         "type": "file",
         "name": "accountsmanager.py",
@@ -346,6 +386,17 @@
         "original_path": "src/jarabe/webservice/accountsmanager.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/webservice/accountsmanager.py",
+        "type": "file",
+        "name": "accountsmanager.py",
+        "size": 7190,
+        "sha1": "89105a991611f7b1f250e83ca46c7305e8d262cd",
+        "fingerprint": "94e5f7e01842f1d632760c40af1ff591",
+        "original_path": "src/jarabe/webservice/accountsmanager.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -358,9 +409,9 @@
         "path": "src/jarabe/model/speech.py",
         "type": "file",
         "name": "speech.py",
-        "size": 1045,
-        "sha1": "7ed62fe3a7992e4fbe3d4616ac7bea77d41bad01",
-        "fingerprint": "52646fbac39cc74e02b6608274ae9ea0",
+        "size": 978,
+        "sha1": "bdf05ff03a07aca5d0de3ee05eedd51f0f6af240",
+        "fingerprint": "b8e5efaac69ac74e6a2660a364aa8ea4",
         "original_path": "src/jarabe/model/speech.py",
         "licenses": [],
         "copyrights": []
@@ -369,9 +420,9 @@
         "path": "src/jarabe/model/speech.py",
         "type": "file",
         "name": "speech.py",
-        "size": 978,
-        "sha1": "bdf05ff03a07aca5d0de3ee05eedd51f0f6af240",
-        "fingerprint": "b8e5efaac69ac74e6a2660a364aa8ea4",
+        "size": 1045,
+        "sha1": "7ed62fe3a7992e4fbe3d4616ac7bea77d41bad01",
+        "fingerprint": "52646fbac39cc74e02b6608274ae9ea0",
         "original_path": "src/jarabe/model/speech.py",
         "licenses": [],
         "copyrights": []
@@ -384,17 +435,6 @@
       ],
       "score": 43,
       "new": {
-        "path": "src/jarabe/model/desktop.py",
-        "type": "file",
-        "name": "desktop.py",
-        "size": 3636,
-        "sha1": "2d912a2645d39f165bc11d1cd610b695742e1705",
-        "fingerprint": "5ae44bb2c29fc52606a4412325aacca1",
-        "original_path": "src/jarabe/model/desktop.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/desktop.py",
         "type": "file",
         "name": "desktop.py",
@@ -404,6 +444,17 @@
         "original_path": "src/jarabe/model/desktop.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/desktop.py",
+        "type": "file",
+        "name": "desktop.py",
+        "size": 3636,
+        "sha1": "2d912a2645d39f165bc11d1cd610b695742e1705",
+        "fingerprint": "5ae44bb2c29fc52606a4412325aacca1",
+        "original_path": "src/jarabe/model/desktop.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -416,9 +467,9 @@
         "path": "src/jarabe/frame/friendstray.py",
         "type": "file",
         "name": "friendstray.py",
-        "size": 4377,
-        "sha1": "41a126b8f58eec7561dede38a17f9d05fed099bd",
-        "fingerprint": "7ef04fe2c69fc75ec73ec9256f57ce88",
+        "size": 4312,
+        "sha1": "7593e936cb4f2bf700cd1f03af4455a0ac605728",
+        "fingerprint": "3eb0cd6a669fc7526b3ec9a46fdb878c",
         "original_path": "src/jarabe/frame/friendstray.py",
         "licenses": [],
         "copyrights": []
@@ -427,9 +478,9 @@
         "path": "src/jarabe/frame/friendstray.py",
         "type": "file",
         "name": "friendstray.py",
-        "size": 4312,
-        "sha1": "7593e936cb4f2bf700cd1f03af4455a0ac605728",
-        "fingerprint": "3eb0cd6a669fc7526b3ec9a46fdb878c",
+        "size": 4377,
+        "sha1": "41a126b8f58eec7561dede38a17f9d05fed099bd",
+        "fingerprint": "7ef04fe2c69fc75ec73ec9256f57ce88",
         "original_path": "src/jarabe/frame/friendstray.py",
         "licenses": [],
         "copyrights": []
@@ -445,9 +496,9 @@
         "path": "src/jarabe/model/sound.py",
         "type": "file",
         "name": "sound.py",
-        "size": 2818,
-        "sha1": "94fea1763b960d3beb29e2c797bb1b81118c4ba3",
-        "fingerprint": "1a7ccdbcde8d45cfc1a28be475a69eb1",
+        "size": 2736,
+        "sha1": "a5f1580f934949f7fe8911d2c72bf4dd41d189d6",
+        "fingerprint": "aa7cebecee8a45cf49a609d465a29eb1",
         "original_path": "src/jarabe/model/sound.py",
         "licenses": [],
         "copyrights": []
@@ -456,9 +507,9 @@
         "path": "src/jarabe/model/sound.py",
         "type": "file",
         "name": "sound.py",
-        "size": 2736,
-        "sha1": "a5f1580f934949f7fe8911d2c72bf4dd41d189d6",
-        "fingerprint": "aa7cebecee8a45cf49a609d465a29eb1",
+        "size": 2818,
+        "sha1": "94fea1763b960d3beb29e2c797bb1b81118c4ba3",
+        "fingerprint": "1a7ccdbcde8d45cfc1a28be475a69eb1",
         "original_path": "src/jarabe/model/sound.py",
         "licenses": [],
         "copyrights": []
@@ -471,17 +522,6 @@
       ],
       "score": 40,
       "new": {
-        "path": "src/jarabe/util/telepathy/__init__.py",
-        "type": "file",
-        "name": "__init__.py",
-        "size": 798,
-        "sha1": "573b1af23e9b4568e16430f2538236eb66df56ca",
-        "fingerprint": "1a244bbad699c76f8ab660a065a69ea5",
-        "original_path": "src/jarabe/util/telepathy/__init__.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/util/telepathy/__init__.py",
         "type": "file",
         "name": "__init__.py",
@@ -491,6 +531,17 @@
         "original_path": "src/jarabe/util/telepathy/__init__.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/util/telepathy/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 798,
+        "sha1": "573b1af23e9b4568e16430f2538236eb66df56ca",
+        "fingerprint": "1a244bbad699c76f8ab660a065a69ea5",
+        "original_path": "src/jarabe/util/telepathy/__init__.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -500,17 +551,6 @@
       ],
       "score": 40,
       "new": {
-        "path": "src/jarabe/view/alerts.py",
-        "type": "file",
-        "name": "alerts.py",
-        "size": 2095,
-        "sha1": "3691e6dee61c161094ab130bd034a56ae2286631",
-        "fingerprint": "5a6c6ef2ce1fc46a823e21003fe2d6a4",
-        "original_path": "src/jarabe/view/alerts.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/view/alerts.py",
         "type": "file",
         "name": "alerts.py",
@@ -520,6 +560,17 @@
         "original_path": "src/jarabe/view/alerts.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/view/alerts.py",
+        "type": "file",
+        "name": "alerts.py",
+        "size": 2095,
+        "sha1": "3691e6dee61c161094ab130bd034a56ae2286631",
+        "fingerprint": "5a6c6ef2ce1fc46a823e21003fe2d6a4",
+        "original_path": "src/jarabe/view/alerts.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -529,17 +580,6 @@
       ],
       "score": 40,
       "new": {
-        "path": "src/jarabe/model/buddy.py",
-        "type": "file",
-        "name": "buddy.py",
-        "size": 6496,
-        "sha1": "0e64585d597aa1d2e7061030fb10c9dcf0c137c4",
-        "fingerprint": "3420d7a8f6dd845e30e4f285e562d6a3",
-        "original_path": "src/jarabe/model/buddy.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/buddy.py",
         "type": "file",
         "name": "buddy.py",
@@ -549,6 +589,17 @@
         "original_path": "src/jarabe/model/buddy.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/buddy.py",
+        "type": "file",
+        "name": "buddy.py",
+        "size": 6496,
+        "sha1": "0e64585d597aa1d2e7061030fb10c9dcf0c137c4",
+        "fingerprint": "3420d7a8f6dd845e30e4f285e562d6a3",
+        "original_path": "src/jarabe/model/buddy.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -558,17 +609,6 @@
       ],
       "score": 40,
       "new": {
-        "path": "src/jarabe/model/mimeregistry.py",
-        "type": "file",
-        "name": "mimeregistry.py",
-        "size": 1632,
-        "sha1": "c0b0c62c84df58321a60fc173a5fb76b738c1b92",
-        "fingerprint": "187167b0c699c54e28a6e12034bedea1",
-        "original_path": "src/jarabe/model/mimeregistry.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/mimeregistry.py",
         "type": "file",
         "name": "mimeregistry.py",
@@ -578,6 +618,17 @@
         "original_path": "src/jarabe/model/mimeregistry.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/mimeregistry.py",
+        "type": "file",
+        "name": "mimeregistry.py",
+        "size": 1632,
+        "sha1": "c0b0c62c84df58321a60fc173a5fb76b738c1b92",
+        "fingerprint": "187167b0c699c54e28a6e12034bedea1",
+        "original_path": "src/jarabe/model/mimeregistry.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -587,17 +638,6 @@
       ],
       "score": 40,
       "new": {
-        "path": "src/jarabe/desktop/groupbox.py",
-        "type": "file",
-        "name": "groupbox.py",
-        "size": 2845,
-        "sha1": "dc2c149a5a4dccacc71a5b59ba38cbe93fa22b5e",
-        "fingerprint": "3ab4dfb82e99ef6f8636a00276e6cea4",
-        "original_path": "src/jarabe/desktop/groupbox.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/desktop/groupbox.py",
         "type": "file",
         "name": "groupbox.py",
@@ -607,6 +647,17 @@
         "original_path": "src/jarabe/desktop/groupbox.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/desktop/groupbox.py",
+        "type": "file",
+        "name": "groupbox.py",
+        "size": 2845,
+        "sha1": "dc2c149a5a4dccacc71a5b59ba38cbe93fa22b5e",
+        "fingerprint": "3ab4dfb82e99ef6f8636a00276e6cea4",
+        "original_path": "src/jarabe/desktop/groupbox.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -616,17 +667,6 @@
       ],
       "score": 40,
       "new": {
-        "path": "src/jarabe/intro/genderpicker.py",
-        "type": "file",
-        "name": "genderpicker.py",
-        "size": 3502,
-        "sha1": "e4c74c8730fe324b3d60c35a350866e4a74f9521",
-        "fingerprint": "52796b8a8e5dcf7e66a6a12277fef4a2",
-        "original_path": "src/jarabe/intro/genderpicker.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/intro/genderpicker.py",
         "type": "file",
         "name": "genderpicker.py",
@@ -636,6 +676,17 @@
         "original_path": "src/jarabe/intro/genderpicker.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/intro/genderpicker.py",
+        "type": "file",
+        "name": "genderpicker.py",
+        "size": 3502,
+        "sha1": "e4c74c8730fe324b3d60c35a350866e4a74f9521",
+        "fingerprint": "52796b8a8e5dcf7e66a6a12277fef4a2",
+        "original_path": "src/jarabe/intro/genderpicker.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -648,9 +699,9 @@
         "path": "src/jarabe/frame/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 891,
-        "sha1": "1ec9f253c07c3745f7e83694ef1a7b7947169734",
-        "fingerprint": "5ae45fa8d69dc74e02a660a264e2b6a5",
+        "size": 824,
+        "sha1": "6d7fc42ca9b90ecb1c1f5d573a3c297bccfcd9e6",
+        "fingerprint": "d8e4feead68be7466aa460b264a2a6a7",
         "original_path": "src/jarabe/frame/__init__.py",
         "licenses": [],
         "copyrights": []
@@ -659,9 +710,9 @@
         "path": "src/jarabe/frame/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 824,
-        "sha1": "6d7fc42ca9b90ecb1c1f5d573a3c297bccfcd9e6",
-        "fingerprint": "d8e4feead68be7466aa460b264a2a6a7",
+        "size": 891,
+        "sha1": "1ec9f253c07c3745f7e83694ef1a7b7947169734",
+        "fingerprint": "5ae45fa8d69dc74e02a660a264e2b6a5",
         "original_path": "src/jarabe/frame/__init__.py",
         "licenses": [],
         "copyrights": []
@@ -674,17 +725,6 @@
       ],
       "score": 39,
       "new": {
-        "path": "src/jarabe/journal/journalactivity.py",
-        "type": "file",
-        "name": "journalactivity.py",
-        "size": 17450,
-        "sha1": "2428c1761ca0aaadde17872120bccc2f5c01b6c9",
-        "fingerprint": "cce9fab8b733eecf546e873a67ba95d5",
-        "original_path": "src/jarabe/journal/journalactivity.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/journal/journalactivity.py",
         "type": "file",
         "name": "journalactivity.py",
@@ -694,6 +734,17 @@
         "original_path": "src/jarabe/journal/journalactivity.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/journal/journalactivity.py",
+        "type": "file",
+        "name": "journalactivity.py",
+        "size": 17450,
+        "sha1": "2428c1761ca0aaadde17872120bccc2f5c01b6c9",
+        "fingerprint": "cce9fab8b733eecf546e873a67ba95d5",
+        "original_path": "src/jarabe/journal/journalactivity.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -703,17 +754,6 @@
       ],
       "score": 39,
       "new": {
-        "path": "src/jarabe/model/keyboard.py",
-        "type": "file",
-        "name": "keyboard.py",
-        "size": 2246,
-        "sha1": "718eea4dcd11e6db924e8fadbfbdd60847ae48b3",
-        "fingerprint": "52f16fa84399cf8e0eb240a327e29ea5",
-        "original_path": "src/jarabe/model/keyboard.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/keyboard.py",
         "type": "file",
         "name": "keyboard.py",
@@ -723,6 +763,17 @@
         "original_path": "src/jarabe/model/keyboard.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/keyboard.py",
+        "type": "file",
+        "name": "keyboard.py",
+        "size": 2246,
+        "sha1": "718eea4dcd11e6db924e8fadbfbdd60847ae48b3",
+        "fingerprint": "52f16fa84399cf8e0eb240a327e29ea5",
+        "original_path": "src/jarabe/model/keyboard.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -735,9 +786,9 @@
         "path": "src/jarabe/desktop/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 744,
-        "sha1": "a9edbe327bea935ca59ebbc43f38d0fd906573c8",
-        "fingerprint": "5ae443a8d699c74e22a661a065a29ea5",
+        "size": 677,
+        "sha1": "88162a20ff790a3197b028a0b4944e2132af17a0",
+        "fingerprint": "d8e4ebaad68be74e6a2661b164a2a6a7",
         "original_path": "src/jarabe/desktop/__init__.py",
         "licenses": [],
         "copyrights": []
@@ -746,9 +797,9 @@
         "path": "src/jarabe/desktop/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 677,
-        "sha1": "88162a20ff790a3197b028a0b4944e2132af17a0",
-        "fingerprint": "d8e4ebaad68be74e6a2661b164a2a6a7",
+        "size": 744,
+        "sha1": "a9edbe327bea935ca59ebbc43f38d0fd906573c8",
+        "fingerprint": "5ae443a8d699c74e22a661a065a29ea5",
         "original_path": "src/jarabe/desktop/__init__.py",
         "licenses": [],
         "copyrights": []
@@ -764,9 +815,9 @@
         "path": "src/jarabe/model/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 744,
-        "sha1": "a9edbe327bea935ca59ebbc43f38d0fd906573c8",
-        "fingerprint": "5ae443a8d699c74e22a661a065a29ea5",
+        "size": 677,
+        "sha1": "88162a20ff790a3197b028a0b4944e2132af17a0",
+        "fingerprint": "d8e4ebaad68be74e6a2661b164a2a6a7",
         "original_path": "src/jarabe/model/__init__.py",
         "licenses": [],
         "copyrights": []
@@ -775,9 +826,9 @@
         "path": "src/jarabe/model/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 677,
-        "sha1": "88162a20ff790a3197b028a0b4944e2132af17a0",
-        "fingerprint": "d8e4ebaad68be74e6a2661b164a2a6a7",
+        "size": 744,
+        "sha1": "a9edbe327bea935ca59ebbc43f38d0fd906573c8",
+        "fingerprint": "5ae443a8d699c74e22a661a065a29ea5",
         "original_path": "src/jarabe/model/__init__.py",
         "licenses": [],
         "copyrights": []
@@ -793,9 +844,9 @@
         "path": "src/jarabe/view/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 744,
-        "sha1": "a9edbe327bea935ca59ebbc43f38d0fd906573c8",
-        "fingerprint": "5ae443a8d699c74e22a661a065a29ea5",
+        "size": 677,
+        "sha1": "88162a20ff790a3197b028a0b4944e2132af17a0",
+        "fingerprint": "d8e4ebaad68be74e6a2661b164a2a6a7",
         "original_path": "src/jarabe/view/__init__.py",
         "licenses": [],
         "copyrights": []
@@ -804,9 +855,9 @@
         "path": "src/jarabe/view/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 677,
-        "sha1": "88162a20ff790a3197b028a0b4944e2132af17a0",
-        "fingerprint": "d8e4ebaad68be74e6a2661b164a2a6a7",
+        "size": 744,
+        "sha1": "a9edbe327bea935ca59ebbc43f38d0fd906573c8",
+        "fingerprint": "5ae443a8d699c74e22a661a065a29ea5",
         "original_path": "src/jarabe/view/__init__.py",
         "licenses": [],
         "copyrights": []
@@ -819,17 +870,6 @@
       ],
       "score": 39,
       "new": {
-        "path": "src/jarabe/__init__.py",
-        "type": "file",
-        "name": "__init__.py",
-        "size": 1029,
-        "sha1": "a1798864c851b83f5a7fe8bee244290d7881e60a",
-        "fingerprint": "582453b89298cf7f60a640a075e2be25",
-        "original_path": "src/jarabe/__init__.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/__init__.py",
         "type": "file",
         "name": "__init__.py",
@@ -839,6 +879,17 @@
         "original_path": "src/jarabe/__init__.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 1029,
+        "sha1": "a1798864c851b83f5a7fe8bee244290d7881e60a",
+        "fingerprint": "582453b89298cf7f60a640a075e2be25",
+        "original_path": "src/jarabe/__init__.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -848,17 +899,6 @@
       ],
       "score": 39,
       "new": {
-        "path": "src/jarabe/desktop/viewcontainer.py",
-        "type": "file",
-        "name": "viewcontainer.py",
-        "size": 2888,
-        "sha1": "d575f69d5424537b7ac9522f6c140ec2db29ba9c",
-        "fingerprint": "9a6141b2d28d67af0aa4412365c69ea1",
-        "original_path": "src/jarabe/desktop/viewcontainer.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/desktop/viewcontainer.py",
         "type": "file",
         "name": "viewcontainer.py",
@@ -868,6 +908,17 @@
         "original_path": "src/jarabe/desktop/viewcontainer.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/desktop/viewcontainer.py",
+        "type": "file",
+        "name": "viewcontainer.py",
+        "size": 2888,
+        "sha1": "d575f69d5424537b7ac9522f6c140ec2db29ba9c",
+        "fingerprint": "9a6141b2d28d67af0aa4412365c69ea1",
+        "original_path": "src/jarabe/desktop/viewcontainer.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -880,9 +931,9 @@
         "path": "src/jarabe/controlpanel/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 744,
-        "sha1": "a9edbe327bea935ca59ebbc43f38d0fd906573c8",
-        "fingerprint": "5ae443a8d699c74e22a661a065a29ea5",
+        "size": 677,
+        "sha1": "88162a20ff790a3197b028a0b4944e2132af17a0",
+        "fingerprint": "d8e4ebaad68be74e6a2661b164a2a6a7",
         "original_path": "src/jarabe/controlpanel/__init__.py",
         "licenses": [],
         "copyrights": []
@@ -891,9 +942,9 @@
         "path": "src/jarabe/controlpanel/__init__.py",
         "type": "file",
         "name": "__init__.py",
-        "size": 677,
-        "sha1": "88162a20ff790a3197b028a0b4944e2132af17a0",
-        "fingerprint": "d8e4ebaad68be74e6a2661b164a2a6a7",
+        "size": 744,
+        "sha1": "a9edbe327bea935ca59ebbc43f38d0fd906573c8",
+        "fingerprint": "5ae443a8d699c74e22a661a065a29ea5",
         "original_path": "src/jarabe/controlpanel/__init__.py",
         "licenses": [],
         "copyrights": []
@@ -906,17 +957,6 @@
       ],
       "score": 38,
       "new": {
-        "path": "src/jarabe/view/buddymenu.py",
-        "type": "file",
-        "name": "buddymenu.py",
-        "size": 8556,
-        "sha1": "a8ef370e353bfcc437a810f427c0eb3bd3b7514a",
-        "fingerprint": "8bed5f88c298210203b4608464a7be28",
-        "original_path": "src/jarabe/view/buddymenu.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/view/buddymenu.py",
         "type": "file",
         "name": "buddymenu.py",
@@ -926,6 +966,17 @@
         "original_path": "src/jarabe/view/buddymenu.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/view/buddymenu.py",
+        "type": "file",
+        "name": "buddymenu.py",
+        "size": 8556,
+        "sha1": "a8ef370e353bfcc437a810f427c0eb3bd3b7514a",
+        "fingerprint": "8bed5f88c298210203b4608464a7be28",
+        "original_path": "src/jarabe/view/buddymenu.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -935,17 +986,6 @@
       ],
       "score": 38,
       "new": {
-        "path": "src/jarabe/desktop/schoolserver.py",
-        "type": "file",
-        "name": "schoolserver.py",
-        "size": 5802,
-        "sha1": "1b6bbff1f2ad9fd2d2bfa89d7a8096f3f1340197",
-        "fingerprint": "32b89bb8ca8dc7cec62a67d33d508eb0",
-        "original_path": "src/jarabe/desktop/schoolserver.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/desktop/schoolserver.py",
         "type": "file",
         "name": "schoolserver.py",
@@ -955,6 +995,17 @@
         "original_path": "src/jarabe/desktop/schoolserver.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/desktop/schoolserver.py",
+        "type": "file",
+        "name": "schoolserver.py",
+        "size": 5802,
+        "sha1": "1b6bbff1f2ad9fd2d2bfa89d7a8096f3f1340197",
+        "fingerprint": "32b89bb8ca8dc7cec62a67d33d508eb0",
+        "original_path": "src/jarabe/desktop/schoolserver.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -964,17 +1015,6 @@
       ],
       "score": 38,
       "new": {
-        "path": "src/jarabe/view/buddyicon.py",
-        "type": "file",
-        "name": "buddyicon.py",
-        "size": 2820,
-        "sha1": "72d94534a6b30718969f7a8b026dc3de20def7e5",
-        "fingerprint": "3ee453a2968dc5c72eb760e17ea6d6a0",
-        "original_path": "src/jarabe/view/buddyicon.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/view/buddyicon.py",
         "type": "file",
         "name": "buddyicon.py",
@@ -984,6 +1024,17 @@
         "original_path": "src/jarabe/view/buddyicon.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/view/buddyicon.py",
+        "type": "file",
+        "name": "buddyicon.py",
+        "size": 2820,
+        "sha1": "72d94534a6b30718969f7a8b026dc3de20def7e5",
+        "fingerprint": "3ee453a2968dc5c72eb760e17ea6d6a0",
+        "original_path": "src/jarabe/view/buddyicon.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -993,17 +1044,6 @@
       ],
       "score": 38,
       "new": {
-        "path": "src/jarabe/model/update/aslo.py",
-        "type": "file",
-        "name": "aslo.py",
-        "size": 6781,
-        "sha1": "290e2f6f072eea86a4878e18eaae92a85d14c2b7",
-        "fingerprint": "10e15f842393c02a2eac60b2c4a22ea5",
-        "original_path": "src/jarabe/model/update/aslo.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/update/aslo.py",
         "type": "file",
         "name": "aslo.py",
@@ -1013,6 +1053,17 @@
         "original_path": "src/jarabe/model/update/aslo.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/update/aslo.py",
+        "type": "file",
+        "name": "aslo.py",
+        "size": 6781,
+        "sha1": "290e2f6f072eea86a4878e18eaae92a85d14c2b7",
+        "fingerprint": "10e15f842393c02a2eac60b2c4a22ea5",
+        "original_path": "src/jarabe/model/update/aslo.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1022,17 +1073,6 @@
       ],
       "score": 38,
       "new": {
-        "path": "src/jarabe/util/__init__.py",
-        "type": "file",
-        "name": "__init__.py",
-        "size": 788,
-        "sha1": "ee70f6987a1fe56193b7eef6134d6a94552267cf",
-        "fingerprint": "3a644bbad699c76f8ab660a165a68ea4",
-        "original_path": "src/jarabe/util/__init__.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/util/__init__.py",
         "type": "file",
         "name": "__init__.py",
@@ -1042,6 +1082,17 @@
         "original_path": "src/jarabe/util/__init__.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/util/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 788,
+        "sha1": "ee70f6987a1fe56193b7eef6134d6a94552267cf",
+        "fingerprint": "3a644bbad699c76f8ab660a165a68ea4",
+        "original_path": "src/jarabe/util/__init__.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1051,17 +1102,6 @@
       ],
       "score": 38,
       "new": {
-        "path": "src/jarabe/model/telepathyclient.py",
-        "type": "file",
-        "name": "telepathyclient.py",
-        "size": 5266,
-        "sha1": "46d7d62f4b7f87a84cf6475f10ae5f71adaad75a",
-        "fingerprint": "7e64fba443d5e747203ee7243402fa80",
-        "original_path": "src/jarabe/model/telepathyclient.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/telepathyclient.py",
         "type": "file",
         "name": "telepathyclient.py",
@@ -1071,6 +1111,17 @@
         "original_path": "src/jarabe/model/telepathyclient.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/telepathyclient.py",
+        "type": "file",
+        "name": "telepathyclient.py",
+        "size": 5266,
+        "sha1": "46d7d62f4b7f87a84cf6475f10ae5f71adaad75a",
+        "fingerprint": "7e64fba443d5e747203ee7243402fa80",
+        "original_path": "src/jarabe/model/telepathyclient.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1080,17 +1131,6 @@
       ],
       "score": 38,
       "new": {
-        "path": "src/jarabe/model/notifications.py",
-        "type": "file",
-        "name": "notifications.py",
-        "size": 4556,
-        "sha1": "1caecba929d1c6c8783044be1c62a109dc7d01bd",
-        "fingerprint": "bd2460a8c6c9806b82a601e35caaa6a9",
-        "original_path": "src/jarabe/model/notifications.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/notifications.py",
         "type": "file",
         "name": "notifications.py",
@@ -1100,6 +1140,17 @@
         "original_path": "src/jarabe/model/notifications.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/notifications.py",
+        "type": "file",
+        "name": "notifications.py",
+        "size": 4556,
+        "sha1": "1caecba929d1c6c8783044be1c62a109dc7d01bd",
+        "fingerprint": "bd2460a8c6c9806b82a601e35caaa6a9",
+        "original_path": "src/jarabe/model/notifications.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1112,9 +1163,9 @@
         "path": "src/jarabe/config.py.in",
         "type": "file",
         "name": "config.py.in",
-        "size": 956,
-        "sha1": "b6cc9987b163a5844fb726f623effc34c7561522",
-        "fingerprint": "18e4e3bad69bcf4e22a661a065e6dea1",
+        "size": 889,
+        "sha1": "d9b8cd3bfeaabb6d6cf5c020a600002ea87b85ee",
+        "fingerprint": "d8e4fbead69bef462aa461b065a2e7a3",
         "original_path": "src/jarabe/config.py.in",
         "licenses": [],
         "copyrights": []
@@ -1123,9 +1174,9 @@
         "path": "src/jarabe/config.py.in",
         "type": "file",
         "name": "config.py.in",
-        "size": 889,
-        "sha1": "d9b8cd3bfeaabb6d6cf5c020a600002ea87b85ee",
-        "fingerprint": "d8e4fbead69bef462aa461b065a2e7a3",
+        "size": 956,
+        "sha1": "b6cc9987b163a5844fb726f623effc34c7561522",
+        "fingerprint": "18e4e3bad69bcf4e22a661a065e6dea1",
         "original_path": "src/jarabe/config.py.in",
         "licenses": [],
         "copyrights": []
@@ -1138,17 +1189,6 @@
       ],
       "score": 37,
       "new": {
-        "path": "src/jarabe/journal/keepicon.py",
-        "type": "file",
-        "name": "keepicon.py",
-        "size": 2430,
-        "sha1": "636847b951f2a433049bc03d2cde113d306358c8",
-        "fingerprint": "5865c3e8969ccf6f00b6252165efcce5",
-        "original_path": "src/jarabe/journal/keepicon.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/journal/keepicon.py",
         "type": "file",
         "name": "keepicon.py",
@@ -1158,6 +1198,17 @@
         "original_path": "src/jarabe/journal/keepicon.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/journal/keepicon.py",
+        "type": "file",
+        "name": "keepicon.py",
+        "size": 2430,
+        "sha1": "636847b951f2a433049bc03d2cde113d306358c8",
+        "fingerprint": "5865c3e8969ccf6f00b6252165efcce5",
+        "original_path": "src/jarabe/journal/keepicon.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1167,17 +1218,6 @@
       ],
       "score": 37,
       "new": {
-        "path": "src/jarabe/controlpanel/toolbar.py",
-        "type": "file",
-        "name": "toolbar.py",
-        "size": 5114,
-        "sha1": "3be2de02fbf8443c40e2d07dd2ef6332a5b91887",
-        "fingerprint": "46746bb88c9dc4fba2b423e1263712a1",
-        "original_path": "src/jarabe/controlpanel/toolbar.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/controlpanel/toolbar.py",
         "type": "file",
         "name": "toolbar.py",
@@ -1187,6 +1227,17 @@
         "original_path": "src/jarabe/controlpanel/toolbar.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/controlpanel/toolbar.py",
+        "type": "file",
+        "name": "toolbar.py",
+        "size": 5114,
+        "sha1": "3be2de02fbf8443c40e2d07dd2ef6332a5b91887",
+        "fingerprint": "46746bb88c9dc4fba2b423e1263712a1",
+        "original_path": "src/jarabe/controlpanel/toolbar.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1196,17 +1247,6 @@
       ],
       "score": 37,
       "new": {
-        "path": "src/jarabe/desktop/transitionbox.py",
-        "type": "file",
-        "name": "transitionbox.py",
-        "size": 2436,
-        "sha1": "cf6e5e75379d8f0d512d19fd6453aed0d9074816",
-        "fingerprint": "5abc7bb88e99c746a2a4260377b296a4",
-        "original_path": "src/jarabe/desktop/transitionbox.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/desktop/transitionbox.py",
         "type": "file",
         "name": "transitionbox.py",
@@ -1216,6 +1256,17 @@
         "original_path": "src/jarabe/desktop/transitionbox.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/desktop/transitionbox.py",
+        "type": "file",
+        "name": "transitionbox.py",
+        "size": 2436,
+        "sha1": "cf6e5e75379d8f0d512d19fd6453aed0d9074816",
+        "fingerprint": "5abc7bb88e99c746a2a4260377b296a4",
+        "original_path": "src/jarabe/desktop/transitionbox.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1225,17 +1276,6 @@
       ],
       "score": 37,
       "new": {
-        "path": "src/jarabe/journal/__init__.py",
-        "type": "file",
-        "name": "__init__.py",
-        "size": 746,
-        "sha1": "f8d7993f07dc959a2234c77f26b9088882c28418",
-        "fingerprint": "1a646ba8c699c76f8aa661a165e68ea0",
-        "original_path": "src/jarabe/journal/__init__.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/journal/__init__.py",
         "type": "file",
         "name": "__init__.py",
@@ -1245,6 +1285,17 @@
         "original_path": "src/jarabe/journal/__init__.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/journal/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 746,
+        "sha1": "f8d7993f07dc959a2234c77f26b9088882c28418",
+        "fingerprint": "1a646ba8c699c76f8aa661a165e68ea0",
+        "original_path": "src/jarabe/journal/__init__.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1254,17 +1305,6 @@
       ],
       "score": 37,
       "new": {
-        "path": "src/jarabe/model/bundleregistry.py",
-        "type": "file",
-        "name": "bundleregistry.py",
-        "size": 27256,
-        "sha1": "6c259c6fc64ea6d4fa702bf29c36a2333c712fb9",
-        "fingerprint": "db2867bc937c414394cb403040d26966",
-        "original_path": "src/jarabe/model/bundleregistry.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/bundleregistry.py",
         "type": "file",
         "name": "bundleregistry.py",
@@ -1274,6 +1314,17 @@
         "original_path": "src/jarabe/model/bundleregistry.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/bundleregistry.py",
+        "type": "file",
+        "name": "bundleregistry.py",
+        "size": 27256,
+        "sha1": "6c259c6fc64ea6d4fa702bf29c36a2333c712fb9",
+        "fingerprint": "db2867bc937c414394cb403040d26966",
+        "original_path": "src/jarabe/model/bundleregistry.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1283,17 +1334,6 @@
       ],
       "score": 37,
       "new": {
-        "path": "src/jarabe/desktop/friendview.py",
-        "type": "file",
-        "name": "friendview.py",
-        "size": 3341,
-        "sha1": "82cfc49140962b54ecab2c7babe7d05c55565a6b",
-        "fingerprint": "96e051a6de99c6cb02a6e8a034e4b620",
-        "original_path": "src/jarabe/desktop/friendview.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/desktop/friendview.py",
         "type": "file",
         "name": "friendview.py",
@@ -1303,6 +1343,17 @@
         "original_path": "src/jarabe/desktop/friendview.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/desktop/friendview.py",
+        "type": "file",
+        "name": "friendview.py",
+        "size": 3341,
+        "sha1": "82cfc49140962b54ecab2c7babe7d05c55565a6b",
+        "fingerprint": "96e051a6de99c6cb02a6e8a034e4b620",
+        "original_path": "src/jarabe/desktop/friendview.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1315,9 +1366,9 @@
         "path": "src/jarabe/intro/colorpicker.py",
         "type": "file",
         "name": "colorpicker.py",
-        "size": 1638,
-        "sha1": "1ff247108c024ccaf08c086cdf85cecfefb9157b",
-        "fingerprint": "52f573b8c699cd66a2a6a46165269ea4",
+        "size": 1572,
+        "sha1": "d8de5269c37d563beed5be95360cf1b19e82037a",
+        "fingerprint": "f8f5f3bae69bcd462aa6a57165a28eac",
         "original_path": "src/jarabe/intro/colorpicker.py",
         "licenses": [],
         "copyrights": []
@@ -1326,9 +1377,9 @@
         "path": "src/jarabe/intro/colorpicker.py",
         "type": "file",
         "name": "colorpicker.py",
-        "size": 1572,
-        "sha1": "d8de5269c37d563beed5be95360cf1b19e82037a",
-        "fingerprint": "f8f5f3bae69bcd462aa6a57165a28eac",
+        "size": 1638,
+        "sha1": "1ff247108c024ccaf08c086cdf85cecfefb9157b",
+        "fingerprint": "52f573b8c699cd66a2a6a46165269ea4",
         "original_path": "src/jarabe/intro/colorpicker.py",
         "licenses": [],
         "copyrights": []
@@ -1341,17 +1392,6 @@
       ],
       "score": 36,
       "new": {
-        "path": "src/jarabe/intro/window.py",
-        "type": "file",
-        "name": "window.py",
-        "size": 13458,
-        "sha1": "238e5145080c2bc4810032affb72358ff1001d45",
-        "fingerprint": "52f4ce8a8ea9ebe66e4e41e8a483be24",
-        "original_path": "src/jarabe/intro/window.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/intro/window.py",
         "type": "file",
         "name": "window.py",
@@ -1361,6 +1401,17 @@
         "original_path": "src/jarabe/intro/window.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/intro/window.py",
+        "type": "file",
+        "name": "window.py",
+        "size": 13458,
+        "sha1": "238e5145080c2bc4810032affb72358ff1001d45",
+        "fingerprint": "52f4ce8a8ea9ebe66e4e41e8a483be24",
+        "original_path": "src/jarabe/intro/window.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1370,17 +1421,6 @@
       ],
       "score": 36,
       "new": {
-        "path": "src/jarabe/journal/iconmodel.py",
-        "type": "file",
-        "name": "iconmodel.py",
-        "size": 4444,
-        "sha1": "de501b6842eb6002b3f5b76a84f62374e804a9f0",
-        "fingerprint": "18e455e0cafbc97e1eb443a46df68ea6",
-        "original_path": "src/jarabe/journal/iconmodel.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/journal/iconmodel.py",
         "type": "file",
         "name": "iconmodel.py",
@@ -1390,6 +1430,17 @@
         "original_path": "src/jarabe/journal/iconmodel.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/journal/iconmodel.py",
+        "type": "file",
+        "name": "iconmodel.py",
+        "size": 4444,
+        "sha1": "de501b6842eb6002b3f5b76a84f62374e804a9f0",
+        "fingerprint": "18e455e0cafbc97e1eb443a46df68ea6",
+        "original_path": "src/jarabe/journal/iconmodel.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1399,17 +1450,6 @@
       ],
       "score": 36,
       "new": {
-        "path": "src/jarabe/journal/listview.py",
-        "type": "file",
-        "name": "listview.py",
-        "size": 31703,
-        "sha1": "3d8baf7b4a7c69c0e87129821fc9268c52bfb10f",
-        "fingerprint": "de44f0de9d7aef6886e327f736f7c5e0",
-        "original_path": "src/jarabe/journal/listview.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/journal/listview.py",
         "type": "file",
         "name": "listview.py",
@@ -1419,6 +1459,17 @@
         "original_path": "src/jarabe/journal/listview.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/journal/listview.py",
+        "type": "file",
+        "name": "listview.py",
+        "size": 31703,
+        "sha1": "3d8baf7b4a7c69c0e87129821fc9268c52bfb10f",
+        "fingerprint": "de44f0de9d7aef6886e327f736f7c5e0",
+        "original_path": "src/jarabe/journal/listview.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1428,17 +1479,6 @@
       ],
       "score": 36,
       "new": {
-        "path": "src/jarabe/model/brightness.py",
-        "type": "file",
-        "name": "brightness.py",
-        "size": 4846,
-        "sha1": "edbadcc62d6e1530b2ca0529918dd6de6ff76a36",
-        "fingerprint": "cce4efe48330c76f8636a28275a69681",
-        "original_path": "src/jarabe/model/brightness.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/brightness.py",
         "type": "file",
         "name": "brightness.py",
@@ -1448,6 +1488,17 @@
         "original_path": "src/jarabe/model/brightness.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/brightness.py",
+        "type": "file",
+        "name": "brightness.py",
+        "size": 4846,
+        "sha1": "edbadcc62d6e1530b2ca0529918dd6de6ff76a36",
+        "fingerprint": "cce4efe48330c76f8636a28275a69681",
+        "original_path": "src/jarabe/model/brightness.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1457,17 +1508,6 @@
       ],
       "score": 36,
       "new": {
-        "path": "src/jarabe/frame/framewindow.py",
-        "type": "file",
-        "name": "framewindow.py",
-        "size": 5668,
-        "sha1": "94a4f31bb2398a81df7c76074641c332a4bdb03e",
-        "fingerprint": "54b5eb7399a96cbeaabc958035459ef5",
-        "original_path": "src/jarabe/frame/framewindow.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/frame/framewindow.py",
         "type": "file",
         "name": "framewindow.py",
@@ -1477,6 +1517,17 @@
         "original_path": "src/jarabe/frame/framewindow.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/frame/framewindow.py",
+        "type": "file",
+        "name": "framewindow.py",
+        "size": 5668,
+        "sha1": "94a4f31bb2398a81df7c76074641c332a4bdb03e",
+        "fingerprint": "54b5eb7399a96cbeaabc958035459ef5",
+        "original_path": "src/jarabe/frame/framewindow.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1486,17 +1537,6 @@
       ],
       "score": 36,
       "new": {
-        "path": "src/jarabe/view/cursortracker.py",
-        "type": "file",
-        "name": "cursortracker.py",
-        "size": 1795,
-        "sha1": "b0fc71ba8210a7ac35013c91ae6bffd212be412f",
-        "fingerprint": "5aa46ee886898d4b223461e277368e20",
-        "original_path": "src/jarabe/view/cursortracker.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/view/cursortracker.py",
         "type": "file",
         "name": "cursortracker.py",
@@ -1506,6 +1546,17 @@
         "original_path": "src/jarabe/view/cursortracker.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/view/cursortracker.py",
+        "type": "file",
+        "name": "cursortracker.py",
+        "size": 1795,
+        "sha1": "b0fc71ba8210a7ac35013c91ae6bffd212be412f",
+        "fingerprint": "5aa46ee886898d4b223461e277368e20",
+        "original_path": "src/jarabe/view/cursortracker.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1515,17 +1566,6 @@
       ],
       "score": 36,
       "new": {
-        "path": "src/jarabe/desktop/viewtoolbar.py",
-        "type": "file",
-        "name": "viewtoolbar.py",
-        "size": 9539,
-        "sha1": "4a17716919938ad7979ff842f1d774f00bcae02c",
-        "fingerprint": "925cc6facbad805f60b4a1a7c6329a84",
-        "original_path": "src/jarabe/desktop/viewtoolbar.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/desktop/viewtoolbar.py",
         "type": "file",
         "name": "viewtoolbar.py",
@@ -1535,6 +1575,17 @@
         "original_path": "src/jarabe/desktop/viewtoolbar.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/desktop/viewtoolbar.py",
+        "type": "file",
+        "name": "viewtoolbar.py",
+        "size": 9539,
+        "sha1": "4a17716919938ad7979ff842f1d774f00bcae02c",
+        "fingerprint": "925cc6facbad805f60b4a1a7c6329a84",
+        "original_path": "src/jarabe/desktop/viewtoolbar.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1544,17 +1595,6 @@
       ],
       "score": 36,
       "new": {
-        "path": "src/jarabe/frame/frame.py",
-        "type": "file",
-        "name": "frame.py",
-        "size": 9158,
-        "sha1": "855e9cb1eaf2fd45b9bb0d2bd20a52bc833c35bb",
-        "fingerprint": "5ea865fadbd946ce0ee483453d339942",
-        "original_path": "src/jarabe/frame/frame.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/frame/frame.py",
         "type": "file",
         "name": "frame.py",
@@ -1564,6 +1604,17 @@
         "original_path": "src/jarabe/frame/frame.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/frame/frame.py",
+        "type": "file",
+        "name": "frame.py",
+        "size": 9158,
+        "sha1": "855e9cb1eaf2fd45b9bb0d2bd20a52bc833c35bb",
+        "fingerprint": "5ea865fadbd946ce0ee483453d339942",
+        "original_path": "src/jarabe/frame/frame.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1573,17 +1624,6 @@
       ],
       "score": 36,
       "new": {
-        "path": "src/jarabe/view/launcher.py",
-        "type": "file",
-        "name": "launcher.py",
-        "size": 6111,
-        "sha1": "43135df11d30021b91878c7b9a6a91aae610f407",
-        "fingerprint": "baf4c3a89a9a6a9ea7a4e38067328a90",
-        "original_path": "src/jarabe/view/launcher.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/view/launcher.py",
         "type": "file",
         "name": "launcher.py",
@@ -1593,6 +1633,17 @@
         "original_path": "src/jarabe/view/launcher.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/view/launcher.py",
+        "type": "file",
+        "name": "launcher.py",
+        "size": 6111,
+        "sha1": "43135df11d30021b91878c7b9a6a91aae610f407",
+        "fingerprint": "baf4c3a89a9a6a9ea7a4e38067328a90",
+        "original_path": "src/jarabe/view/launcher.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1602,17 +1653,6 @@
       ],
       "score": 36,
       "new": {
-        "path": "src/jarabe/frame/frameinvoker.py",
-        "type": "file",
-        "name": "frameinvoker.py",
-        "size": 1411,
-        "sha1": "2aaafb97bad60d7a938c15c9ef9289916644817d",
-        "fingerprint": "1ee453b0c6bbc7eea6aee5e035e69ea4",
-        "original_path": "src/jarabe/frame/frameinvoker.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/frame/frameinvoker.py",
         "type": "file",
         "name": "frameinvoker.py",
@@ -1622,6 +1662,17 @@
         "original_path": "src/jarabe/frame/frameinvoker.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/frame/frameinvoker.py",
+        "type": "file",
+        "name": "frameinvoker.py",
+        "size": 1411,
+        "sha1": "2aaafb97bad60d7a938c15c9ef9289916644817d",
+        "fingerprint": "1ee453b0c6bbc7eea6aee5e035e69ea4",
+        "original_path": "src/jarabe/frame/frameinvoker.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1631,17 +1682,6 @@
       ],
       "score": 36,
       "new": {
-        "path": "src/jarabe/journal/journalentrybundle.py",
-        "type": "file",
-        "name": "journalentrybundle.py",
-        "size": 3202,
-        "sha1": "18b50f05c36fc99561f529401694d27f25240c41",
-        "fingerprint": "36f451eb860bc5acc2a649823c3196a6",
-        "original_path": "src/jarabe/journal/journalentrybundle.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/journal/journalentrybundle.py",
         "type": "file",
         "name": "journalentrybundle.py",
@@ -1651,6 +1691,17 @@
         "original_path": "src/jarabe/journal/journalentrybundle.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/journal/journalentrybundle.py",
+        "type": "file",
+        "name": "journalentrybundle.py",
+        "size": 3202,
+        "sha1": "18b50f05c36fc99561f529401694d27f25240c41",
+        "fingerprint": "36f451eb860bc5acc2a649823c3196a6",
+        "original_path": "src/jarabe/journal/journalentrybundle.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1660,17 +1711,6 @@
       ],
       "score": 36,
       "new": {
-        "path": "src/jarabe/controlpanel/gui.py",
-        "type": "file",
-        "name": "gui.py",
-        "size": 20449,
-        "sha1": "52175d6701b646b0b142fc60f6bf4228147fc781",
-        "fingerprint": "042069b29edf03b0cebeea206ea6f692",
-        "original_path": "src/jarabe/controlpanel/gui.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/controlpanel/gui.py",
         "type": "file",
         "name": "gui.py",
@@ -1680,6 +1720,17 @@
         "original_path": "src/jarabe/controlpanel/gui.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/controlpanel/gui.py",
+        "type": "file",
+        "name": "gui.py",
+        "size": 20449,
+        "sha1": "52175d6701b646b0b142fc60f6bf4228147fc781",
+        "fingerprint": "042069b29edf03b0cebeea206ea6f692",
+        "original_path": "src/jarabe/controlpanel/gui.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1689,17 +1740,6 @@
       ],
       "score": 36,
       "new": {
-        "path": "src/jarabe/model/screen.py",
-        "type": "file",
-        "name": "screen.py",
-        "size": 1495,
-        "sha1": "ed96500583c5a794143e032704298cf4480c9b30",
-        "fingerprint": "12e563a89699cf034224412065a2dea5",
-        "original_path": "src/jarabe/model/screen.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/screen.py",
         "type": "file",
         "name": "screen.py",
@@ -1709,6 +1749,17 @@
         "original_path": "src/jarabe/model/screen.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/screen.py",
+        "type": "file",
+        "name": "screen.py",
+        "size": 1495,
+        "sha1": "ed96500583c5a794143e032704298cf4480c9b30",
+        "fingerprint": "12e563a89699cf034224412065a2dea5",
+        "original_path": "src/jarabe/model/screen.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1721,9 +1772,9 @@
         "path": "src/jarabe/desktop/activitieslist.py",
         "type": "file",
         "name": "activitieslist.py",
-        "size": 25528,
-        "sha1": "da1fe7b2b215bc9c086244b3224cb6b5ae356606",
-        "fingerprint": "93816fba1b700bf9c18786a144309172",
+        "size": 28491,
+        "sha1": "73c0c09da8495d7d08a37462c35cac21f9f2cee7",
+        "fingerprint": "91a06fba1b500bb8e3a7e7a10431b132",
         "original_path": "src/jarabe/desktop/activitieslist.py",
         "licenses": [],
         "copyrights": []
@@ -1732,9 +1783,9 @@
         "path": "src/jarabe/desktop/activitieslist.py",
         "type": "file",
         "name": "activitieslist.py",
-        "size": 28491,
-        "sha1": "73c0c09da8495d7d08a37462c35cac21f9f2cee7",
-        "fingerprint": "91a06fba1b500bb8e3a7e7a10431b132",
+        "size": 25528,
+        "sha1": "da1fe7b2b215bc9c086244b3224cb6b5ae356606",
+        "fingerprint": "93816fba1b700bf9c18786a144309172",
         "original_path": "src/jarabe/desktop/activitieslist.py",
         "licenses": [],
         "copyrights": []
@@ -1747,17 +1798,6 @@
       ],
       "score": 35,
       "new": {
-        "path": "src/jarabe/desktop/Makefile.am",
-        "type": "file",
-        "name": "Makefile.am",
-        "size": 405,
-        "sha1": "dccfb832b731959cf8ddb390118227ef53592741",
-        "fingerprint": "f8ef21cfe617e9e96b5bbfe81e8f98ca",
-        "original_path": "src/jarabe/desktop/Makefile.am",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/desktop/Makefile.am",
         "type": "file",
         "name": "Makefile.am",
@@ -1767,6 +1807,17 @@
         "original_path": "src/jarabe/desktop/Makefile.am",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/desktop/Makefile.am",
+        "type": "file",
+        "name": "Makefile.am",
+        "size": 405,
+        "sha1": "dccfb832b731959cf8ddb390118227ef53592741",
+        "fingerprint": "f8ef21cfe617e9e96b5bbfe81e8f98ca",
+        "original_path": "src/jarabe/desktop/Makefile.am",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1776,17 +1827,6 @@
       ],
       "score": 35,
       "new": {
-        "path": "src/jarabe/model/friends.py",
-        "type": "file",
-        "name": "friends.py",
-        "size": 5345,
-        "sha1": "98d0a1b0aca26bbe3f3c9207c8b6cbca4acc9733",
-        "fingerprint": "5fa4e3fa56996759a626570534d2daaa",
-        "original_path": "src/jarabe/model/friends.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/friends.py",
         "type": "file",
         "name": "friends.py",
@@ -1796,6 +1836,17 @@
         "original_path": "src/jarabe/model/friends.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/friends.py",
+        "type": "file",
+        "name": "friends.py",
+        "size": 5345,
+        "sha1": "98d0a1b0aca26bbe3f3c9207c8b6cbca4acc9733",
+        "fingerprint": "5fa4e3fa56996759a626570534d2daaa",
+        "original_path": "src/jarabe/model/friends.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1805,17 +1856,6 @@
       ],
       "score": 35,
       "new": {
-        "path": "src/jarabe/testrunner.py",
-        "type": "file",
-        "name": "testrunner.py",
-        "size": 1674,
-        "sha1": "e0cad5658677d7ec6382c720fbc323f047319042",
-        "fingerprint": "3e705da08699c52e22a669a13ca6d4a1",
-        "original_path": "src/jarabe/testrunner.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/testrunner.py",
         "type": "file",
         "name": "testrunner.py",
@@ -1825,6 +1865,17 @@
         "original_path": "src/jarabe/testrunner.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/testrunner.py",
+        "type": "file",
+        "name": "testrunner.py",
+        "size": 1674,
+        "sha1": "e0cad5658677d7ec6382c720fbc323f047319042",
+        "fingerprint": "3e705da08699c52e22a669a13ca6d4a1",
+        "original_path": "src/jarabe/testrunner.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1834,17 +1885,6 @@
       ],
       "score": 35,
       "new": {
-        "path": "src/jarabe/model/invites.py",
-        "type": "file",
-        "name": "invites.py",
-        "size": 11985,
-        "sha1": "b20d2ea2474bdb2ae14ab2cf6e1f0f1cdd27996f",
-        "fingerprint": "d7ec6380de3fcf6a16a4e73a75e7de05",
-        "original_path": "src/jarabe/model/invites.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/invites.py",
         "type": "file",
         "name": "invites.py",
@@ -1854,6 +1894,17 @@
         "original_path": "src/jarabe/model/invites.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/invites.py",
+        "type": "file",
+        "name": "invites.py",
+        "size": 11985,
+        "sha1": "b20d2ea2474bdb2ae14ab2cf6e1f0f1cdd27996f",
+        "fingerprint": "d7ec6380de3fcf6a16a4e73a75e7de05",
+        "original_path": "src/jarabe/model/invites.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1863,17 +1914,6 @@
       ],
       "score": 35,
       "new": {
-        "path": "src/jarabe/frame/devicestray.py",
-        "type": "file",
-        "name": "devicestray.py",
-        "size": 1967,
-        "sha1": "efbe7112aeda0a6735d40541f29a49bd90c43016",
-        "fingerprint": "12a453b04e9bc7ff2636484135b2c624",
-        "original_path": "src/jarabe/frame/devicestray.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/frame/devicestray.py",
         "type": "file",
         "name": "devicestray.py",
@@ -1883,6 +1923,17 @@
         "original_path": "src/jarabe/frame/devicestray.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/frame/devicestray.py",
+        "type": "file",
+        "name": "devicestray.py",
+        "size": 1967,
+        "sha1": "efbe7112aeda0a6735d40541f29a49bd90c43016",
+        "fingerprint": "12a453b04e9bc7ff2636484135b2c624",
+        "original_path": "src/jarabe/frame/devicestray.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1892,17 +1943,6 @@
       ],
       "score": 35,
       "new": {
-        "path": "src/jarabe/journal/modalalert.py",
-        "type": "file",
-        "name": "modalalert.py",
-        "size": 3707,
-        "sha1": "2a949ddf8d3d936cd0613d24d34e9d6b5e5683fa",
-        "fingerprint": "446063a88e99cf8ea89c688065f646a4",
-        "original_path": "src/jarabe/journal/modalalert.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/journal/modalalert.py",
         "type": "file",
         "name": "modalalert.py",
@@ -1912,6 +1952,17 @@
         "original_path": "src/jarabe/journal/modalalert.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/journal/modalalert.py",
+        "type": "file",
+        "name": "modalalert.py",
+        "size": 3707,
+        "sha1": "2a949ddf8d3d936cd0613d24d34e9d6b5e5683fa",
+        "fingerprint": "446063a88e99cf8ea89c688065f646a4",
+        "original_path": "src/jarabe/journal/modalalert.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1921,17 +1972,6 @@
       ],
       "score": 35,
       "new": {
-        "path": "src/jarabe/journal/journaltoolbox.py",
-        "type": "file",
-        "name": "journaltoolbox.py",
-        "size": 39275,
-        "sha1": "7f6339c4488e835fe35b245170b8f88cd9bc2cec",
-        "fingerprint": "fa14435dc099da9afb18a6535d8efca1",
-        "original_path": "src/jarabe/journal/journaltoolbox.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/journal/journaltoolbox.py",
         "type": "file",
         "name": "journaltoolbox.py",
@@ -1941,6 +1981,17 @@
         "original_path": "src/jarabe/journal/journaltoolbox.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/journal/journaltoolbox.py",
+        "type": "file",
+        "name": "journaltoolbox.py",
+        "size": 39275,
+        "sha1": "7f6339c4488e835fe35b245170b8f88cd9bc2cec",
+        "fingerprint": "fa14435dc099da9afb18a6535d8efca1",
+        "original_path": "src/jarabe/journal/journaltoolbox.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1950,17 +2001,6 @@
       ],
       "score": 35,
       "new": {
-        "path": "src/jarabe/apisocket.py",
-        "type": "file",
-        "name": "apisocket.py",
-        "size": 11168,
-        "sha1": "37315f5d0283def2832b3066828ff217756be7f8",
-        "fingerprint": "543d47eb1d81d2cb1aad8fad3d318ca9",
-        "original_path": "src/jarabe/apisocket.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/apisocket.py",
         "type": "file",
         "name": "apisocket.py",
@@ -1970,6 +2010,17 @@
         "original_path": "src/jarabe/apisocket.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/apisocket.py",
+        "type": "file",
+        "name": "apisocket.py",
+        "size": 11168,
+        "sha1": "37315f5d0283def2832b3066828ff217756be7f8",
+        "fingerprint": "543d47eb1d81d2cb1aad8fad3d318ca9",
+        "original_path": "src/jarabe/apisocket.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -1982,9 +2033,9 @@
         "path": "src/jarabe/view/pulsingicon.py",
         "type": "file",
         "name": "pulsingicon.py",
-        "size": 7328,
-        "sha1": "5dc538a3e0163253d754ea1bd16a0a404c368705",
-        "fingerprint": "d23c73ea06054bba230663e368a4d6b2",
+        "size": 7284,
+        "sha1": "ab06278586855a197f45ef33e3c6ade1b2cf3ef5",
+        "fingerprint": "9a3d78ea460447ba230663cb69a6d6f2",
         "original_path": "src/jarabe/view/pulsingicon.py",
         "licenses": [],
         "copyrights": []
@@ -1993,9 +2044,9 @@
         "path": "src/jarabe/view/pulsingicon.py",
         "type": "file",
         "name": "pulsingicon.py",
-        "size": 7284,
-        "sha1": "ab06278586855a197f45ef33e3c6ade1b2cf3ef5",
-        "fingerprint": "9a3d78ea460447ba230663cb69a6d6f2",
+        "size": 7328,
+        "sha1": "5dc538a3e0163253d754ea1bd16a0a404c368705",
+        "fingerprint": "d23c73ea06054bba230663e368a4d6b2",
         "original_path": "src/jarabe/view/pulsingicon.py",
         "licenses": [],
         "copyrights": []
@@ -2008,17 +2059,6 @@
       ],
       "score": 34,
       "new": {
-        "path": "src/jarabe/journal/expandedentry.py",
-        "type": "file",
-        "name": "expandedentry.py",
-        "size": 20066,
-        "sha1": "b9b88193e880224cc76bfbd189ad612e4bf83a2c",
-        "fingerprint": "ac04f7f69def2126ded762e7fcaabe2d",
-        "original_path": "src/jarabe/journal/expandedentry.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/journal/expandedentry.py",
         "type": "file",
         "name": "expandedentry.py",
@@ -2028,6 +2068,17 @@
         "original_path": "src/jarabe/journal/expandedentry.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/journal/expandedentry.py",
+        "type": "file",
+        "name": "expandedentry.py",
+        "size": 20066,
+        "sha1": "b9b88193e880224cc76bfbd189ad612e4bf83a2c",
+        "fingerprint": "ac04f7f69def2126ded762e7fcaabe2d",
+        "original_path": "src/jarabe/journal/expandedentry.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2037,17 +2088,6 @@
       ],
       "score": 34,
       "new": {
-        "path": "src/jarabe/controlpanel/inlinealert.py",
-        "type": "file",
-        "name": "inlinealert.py",
-        "size": 2802,
-        "sha1": "999d0ec431168b51af8726009bf6611d4b036da4",
-        "fingerprint": "58f4eeaa56dee7ee82a461202dae8ea4",
-        "original_path": "src/jarabe/controlpanel/inlinealert.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/controlpanel/inlinealert.py",
         "type": "file",
         "name": "inlinealert.py",
@@ -2057,6 +2097,17 @@
         "original_path": "src/jarabe/controlpanel/inlinealert.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/controlpanel/inlinealert.py",
+        "type": "file",
+        "name": "inlinealert.py",
+        "size": 2802,
+        "sha1": "999d0ec431168b51af8726009bf6611d4b036da4",
+        "fingerprint": "58f4eeaa56dee7ee82a461202dae8ea4",
+        "original_path": "src/jarabe/controlpanel/inlinealert.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2066,17 +2117,6 @@
       ],
       "score": 34,
       "new": {
-        "path": "src/jarabe/util/httprange.py",
-        "type": "file",
-        "name": "httprange.py",
-        "size": 2810,
-        "sha1": "54cbda4b578cb130200e6f5730eb37ad4a29ba48",
-        "fingerprint": "1ce03ff2fa5dd77a4ab4618174869eb0",
-        "original_path": "src/jarabe/util/httprange.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/util/httprange.py",
         "type": "file",
         "name": "httprange.py",
@@ -2086,6 +2126,17 @@
         "original_path": "src/jarabe/util/httprange.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/util/httprange.py",
+        "type": "file",
+        "name": "httprange.py",
+        "size": 2810,
+        "sha1": "54cbda4b578cb130200e6f5730eb37ad4a29ba48",
+        "fingerprint": "1ce03ff2fa5dd77a4ab4618174869eb0",
+        "original_path": "src/jarabe/util/httprange.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2098,9 +2149,9 @@
         "path": "src/jarabe/frame/zoomtoolbar.py",
         "type": "file",
         "name": "zoomtoolbar.py",
-        "size": 4263,
-        "sha1": "a90ad2fc5b3fa202e1f81a93c98840116d8daa34",
-        "fingerprint": "517c73f01abd0bd784b660a06483dfe3",
+        "size": 4196,
+        "sha1": "3dee09e0c6a0d8da0d6496a9590f11c1c2418c54",
+        "fingerprint": "717cfbf01a992bd724b620a464839f6f",
         "original_path": "src/jarabe/frame/zoomtoolbar.py",
         "licenses": [],
         "copyrights": []
@@ -2109,9 +2160,9 @@
         "path": "src/jarabe/frame/zoomtoolbar.py",
         "type": "file",
         "name": "zoomtoolbar.py",
-        "size": 4196,
-        "sha1": "3dee09e0c6a0d8da0d6496a9590f11c1c2418c54",
-        "fingerprint": "717cfbf01a992bd724b620a464839f6f",
+        "size": 4263,
+        "sha1": "a90ad2fc5b3fa202e1f81a93c98840116d8daa34",
+        "fingerprint": "517c73f01abd0bd784b660a06483dfe3",
         "original_path": "src/jarabe/frame/zoomtoolbar.py",
         "licenses": [],
         "copyrights": []
@@ -2124,17 +2175,6 @@
       ],
       "score": 33,
       "new": {
-        "path": "src/jarabe/view/keyhandler.py",
-        "type": "file",
-        "name": "keyhandler.py",
-        "size": 8356,
-        "sha1": "94eeab4fa38833a52b67e065caf017ce4e43b742",
-        "fingerprint": "4af960e08bb2efc28017a1a87ff29f28",
-        "original_path": "src/jarabe/view/keyhandler.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/view/keyhandler.py",
         "type": "file",
         "name": "keyhandler.py",
@@ -2144,6 +2184,17 @@
         "original_path": "src/jarabe/view/keyhandler.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/view/keyhandler.py",
+        "type": "file",
+        "name": "keyhandler.py",
+        "size": 8356,
+        "sha1": "94eeab4fa38833a52b67e065caf017ce4e43b742",
+        "fingerprint": "4af960e08bb2efc28017a1a87ff29f28",
+        "original_path": "src/jarabe/view/keyhandler.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2153,17 +2204,6 @@
       ],
       "score": 33,
       "new": {
-        "path": "src/jarabe/frame/clipboard.py",
-        "type": "file",
-        "name": "clipboard.py",
-        "size": 6266,
-        "sha1": "4878d62878f30d8359d01ea127f817768f4c3494",
-        "fingerprint": "cee57bfad259cfefa1b633c67583bfa5",
-        "original_path": "src/jarabe/frame/clipboard.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/frame/clipboard.py",
         "type": "file",
         "name": "clipboard.py",
@@ -2173,6 +2213,17 @@
         "original_path": "src/jarabe/frame/clipboard.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/frame/clipboard.py",
+        "type": "file",
+        "name": "clipboard.py",
+        "size": 6266,
+        "sha1": "4878d62878f30d8359d01ea127f817768f4c3494",
+        "fingerprint": "cee57bfad259cfefa1b633c67583bfa5",
+        "original_path": "src/jarabe/frame/clipboard.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2185,9 +2236,9 @@
         "path": "src/jarabe/journal/listmodel.py",
         "type": "file",
         "name": "listmodel.py",
-        "size": 10628,
-        "sha1": "278e44585978a28b3ef7d91263af9382b7e6ef5f",
-        "fingerprint": "5c85a9b2ca52c12e169403f555ce2eb1",
+        "size": 10533,
+        "sha1": "a69cd4db6163fed3c64534772c50bba72ef88718",
+        "fingerprint": "dc85a9b2c65bc12216d4237d45ce2ef1",
         "original_path": "src/jarabe/journal/listmodel.py",
         "licenses": [],
         "copyrights": []
@@ -2196,9 +2247,9 @@
         "path": "src/jarabe/journal/listmodel.py",
         "type": "file",
         "name": "listmodel.py",
-        "size": 10533,
-        "sha1": "a69cd4db6163fed3c64534772c50bba72ef88718",
-        "fingerprint": "dc85a9b2c65bc12216d4237d45ce2ef1",
+        "size": 10628,
+        "sha1": "278e44585978a28b3ef7d91263af9382b7e6ef5f",
+        "fingerprint": "5c85a9b2ca52c12e169403f555ce2eb1",
         "original_path": "src/jarabe/journal/listmodel.py",
         "licenses": [],
         "copyrights": []
@@ -2211,17 +2262,6 @@
       ],
       "score": 32,
       "new": {
-        "path": "src/jarabe/view/palettes.py",
-        "type": "file",
-        "name": "palettes.py",
-        "size": 11344,
-        "sha1": "abc9a584cae92374067d2dad6378ae4b78ee9bee",
-        "fingerprint": "f33d59a3efeec4ee30b42e0f1dd70fa0",
-        "original_path": "src/jarabe/view/palettes.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/view/palettes.py",
         "type": "file",
         "name": "palettes.py",
@@ -2231,6 +2271,17 @@
         "original_path": "src/jarabe/view/palettes.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/view/palettes.py",
+        "type": "file",
+        "name": "palettes.py",
+        "size": 11344,
+        "sha1": "abc9a584cae92374067d2dad6378ae4b78ee9bee",
+        "fingerprint": "f33d59a3efeec4ee30b42e0f1dd70fa0",
+        "original_path": "src/jarabe/view/palettes.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2240,17 +2291,6 @@
       ],
       "score": 32,
       "new": {
-        "path": "src/jarabe/journal/iconview.py",
-        "type": "file",
-        "name": "iconview.py",
-        "size": 12267,
-        "sha1": "79bc7bba20ec087ac4c1aa6af625c09295712d4e",
-        "fingerprint": "d270c7ffc76bc0c340f7f5f4f6a2de80",
-        "original_path": "src/jarabe/journal/iconview.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/journal/iconview.py",
         "type": "file",
         "name": "iconview.py",
@@ -2260,6 +2300,17 @@
         "original_path": "src/jarabe/journal/iconview.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/journal/iconview.py",
+        "type": "file",
+        "name": "iconview.py",
+        "size": 12267,
+        "sha1": "79bc7bba20ec087ac4c1aa6af625c09295712d4e",
+        "fingerprint": "d270c7ffc76bc0c340f7f5f4f6a2de80",
+        "original_path": "src/jarabe/journal/iconview.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2269,17 +2320,6 @@
       ],
       "score": 32,
       "new": {
-        "path": "src/jarabe/journal/Makefile.am",
-        "type": "file",
-        "name": "Makefile.am",
-        "size": 421,
-        "sha1": "d79dc0414a2b243c53260330149074f2e49e6ad2",
-        "fingerprint": "199a958d04b5aa9fd720127b7e9b4c6e",
-        "original_path": "src/jarabe/journal/Makefile.am",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/journal/Makefile.am",
         "type": "file",
         "name": "Makefile.am",
@@ -2289,6 +2329,17 @@
         "original_path": "src/jarabe/journal/Makefile.am",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/journal/Makefile.am",
+        "type": "file",
+        "name": "Makefile.am",
+        "size": 421,
+        "sha1": "d79dc0414a2b243c53260330149074f2e49e6ad2",
+        "fingerprint": "199a958d04b5aa9fd720127b7e9b4c6e",
+        "original_path": "src/jarabe/journal/Makefile.am",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2298,17 +2349,6 @@
       ],
       "score": 32,
       "new": {
-        "path": "src/jarabe/view/customizebundle.py",
-        "type": "file",
-        "name": "customizebundle.py",
-        "size": 7485,
-        "sha1": "58d0a2b40e660d68be27f2d686e8ae64fbf835f9",
-        "fingerprint": "97f0c7b39e516fddaa2860321cd504a0",
-        "original_path": "src/jarabe/view/customizebundle.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/view/customizebundle.py",
         "type": "file",
         "name": "customizebundle.py",
@@ -2318,6 +2358,17 @@
         "original_path": "src/jarabe/view/customizebundle.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/view/customizebundle.py",
+        "type": "file",
+        "name": "customizebundle.py",
+        "size": 7485,
+        "sha1": "58d0a2b40e660d68be27f2d686e8ae64fbf835f9",
+        "fingerprint": "97f0c7b39e516fddaa2860321cd504a0",
+        "original_path": "src/jarabe/view/customizebundle.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2327,17 +2378,6 @@
       ],
       "score": 32,
       "new": {
-        "path": "src/jarabe/desktop/keydialog.py",
-        "type": "file",
-        "name": "keydialog.py",
-        "size": 9991,
-        "sha1": "619ee3ea902bd2b96ca32b85d92c3ab0376b2e04",
-        "fingerprint": "50d45bfee48bd88743064da6e5911d46",
-        "original_path": "src/jarabe/desktop/keydialog.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/desktop/keydialog.py",
         "type": "file",
         "name": "keydialog.py",
@@ -2347,6 +2387,17 @@
         "original_path": "src/jarabe/desktop/keydialog.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/desktop/keydialog.py",
+        "type": "file",
+        "name": "keydialog.py",
+        "size": 9991,
+        "sha1": "619ee3ea902bd2b96ca32b85d92c3ab0376b2e04",
+        "fingerprint": "50d45bfee48bd88743064da6e5911d46",
+        "original_path": "src/jarabe/desktop/keydialog.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2356,17 +2407,6 @@
       ],
       "score": 32,
       "new": {
-        "path": "src/jarabe/model/filetransfer.py",
-        "type": "file",
-        "name": "filetransfer.py",
-        "size": 13337,
-        "sha1": "16855aafdd0221f5a6f1d05f7e156c457fc1c222",
-        "fingerprint": "5a2473a2ec9b45cb2296b0dc70bfde16",
-        "original_path": "src/jarabe/model/filetransfer.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/filetransfer.py",
         "type": "file",
         "name": "filetransfer.py",
@@ -2376,6 +2416,17 @@
         "original_path": "src/jarabe/model/filetransfer.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/filetransfer.py",
+        "type": "file",
+        "name": "filetransfer.py",
+        "size": 13337,
+        "sha1": "16855aafdd0221f5a6f1d05f7e156c457fc1c222",
+        "fingerprint": "5a2473a2ec9b45cb2296b0dc70bfde16",
+        "original_path": "src/jarabe/model/filetransfer.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2385,17 +2436,6 @@
       ],
       "score": 32,
       "new": {
-        "path": "src/jarabe/frame/notification.py",
-        "type": "file",
-        "name": "notification.py",
-        "size": 11022,
-        "sha1": "cc23bcce63c6682ce866223b695eb0e743311b37",
-        "fingerprint": "53f46df28e1807ffaac7e1c07eea8ea4",
-        "original_path": "src/jarabe/frame/notification.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/frame/notification.py",
         "type": "file",
         "name": "notification.py",
@@ -2405,6 +2445,17 @@
         "original_path": "src/jarabe/frame/notification.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/frame/notification.py",
+        "type": "file",
+        "name": "notification.py",
+        "size": 11022,
+        "sha1": "cc23bcce63c6682ce866223b695eb0e743311b37",
+        "fingerprint": "53f46df28e1807ffaac7e1c07eea8ea4",
+        "original_path": "src/jarabe/frame/notification.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2414,17 +2465,6 @@
       ],
       "score": 32,
       "new": {
-        "path": "src/jarabe/frame/clipboardtray.py",
-        "type": "file",
-        "name": "clipboardtray.py",
-        "size": 7210,
-        "sha1": "6726d85aff94a228f3f47ce98c5470fc4abac680",
-        "fingerprint": "1efc40ad5412cc5ec2ac21d125e7dc20",
-        "original_path": "src/jarabe/frame/clipboardtray.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/frame/clipboardtray.py",
         "type": "file",
         "name": "clipboardtray.py",
@@ -2434,6 +2474,17 @@
         "original_path": "src/jarabe/frame/clipboardtray.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/frame/clipboardtray.py",
+        "type": "file",
+        "name": "clipboardtray.py",
+        "size": 7210,
+        "sha1": "6726d85aff94a228f3f47ce98c5470fc4abac680",
+        "fingerprint": "1efc40ad5412cc5ec2ac21d125e7dc20",
+        "original_path": "src/jarabe/frame/clipboardtray.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2446,9 +2497,9 @@
         "path": "src/jarabe/journal/objectchooser.py",
         "type": "file",
         "name": "objectchooser.py",
-        "size": 8642,
-        "sha1": "b786112353a0a083abb29a58897cb0b315c114ee",
-        "fingerprint": "5e20ebbeceddcfcde63201122406e782",
+        "size": 8575,
+        "sha1": "667d588181c3ac7bf74f90b66620ac28ddce213f",
+        "fingerprint": "5e20ebbeeecd6fcd664221166404e782",
         "original_path": "src/jarabe/journal/objectchooser.py",
         "licenses": [],
         "copyrights": []
@@ -2457,9 +2508,9 @@
         "path": "src/jarabe/journal/objectchooser.py",
         "type": "file",
         "name": "objectchooser.py",
-        "size": 8575,
-        "sha1": "667d588181c3ac7bf74f90b66620ac28ddce213f",
-        "fingerprint": "5e20ebbeeecd6fcd664221166404e782",
+        "size": 8642,
+        "sha1": "b786112353a0a083abb29a58897cb0b315c114ee",
+        "fingerprint": "5e20ebbeceddcfcde63201122406e782",
         "original_path": "src/jarabe/journal/objectchooser.py",
         "licenses": [],
         "copyrights": []
@@ -2472,17 +2523,6 @@
       ],
       "score": 31,
       "new": {
-        "path": "src/jarabe/frame/eventarea.py",
-        "type": "file",
-        "name": "eventarea.py",
-        "size": 5302,
-        "sha1": "4c0f7f9d4028480eb52bad9f150009fd1cea4414",
-        "fingerprint": "58755784cb18e4ee42e8673074a39680",
-        "original_path": "src/jarabe/frame/eventarea.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/frame/eventarea.py",
         "type": "file",
         "name": "eventarea.py",
@@ -2492,6 +2532,17 @@
         "original_path": "src/jarabe/frame/eventarea.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/frame/eventarea.py",
+        "type": "file",
+        "name": "eventarea.py",
+        "size": 5302,
+        "sha1": "4c0f7f9d4028480eb52bad9f150009fd1cea4414",
+        "fingerprint": "58755784cb18e4ee42e8673074a39680",
+        "original_path": "src/jarabe/frame/eventarea.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2501,17 +2552,6 @@
       ],
       "score": 31,
       "new": {
-        "path": "src/jarabe/frame/clipboardobject.py",
-        "type": "file",
-        "name": "clipboardobject.py",
-        "size": 4373,
-        "sha1": "7c62b1e6d4a7ca94002663d9d869bdbe9c61e7c3",
-        "fingerprint": "1ae443ba8edbf78f82806f0575e35ea0",
-        "original_path": "src/jarabe/frame/clipboardobject.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/frame/clipboardobject.py",
         "type": "file",
         "name": "clipboardobject.py",
@@ -2521,6 +2561,17 @@
         "original_path": "src/jarabe/frame/clipboardobject.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/frame/clipboardobject.py",
+        "type": "file",
+        "name": "clipboardobject.py",
+        "size": 4373,
+        "sha1": "7c62b1e6d4a7ca94002663d9d869bdbe9c61e7c3",
+        "fingerprint": "1ae443ba8edbf78f82806f0575e35ea0",
+        "original_path": "src/jarabe/frame/clipboardobject.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2530,17 +2581,6 @@
       ],
       "score": 31,
       "new": {
-        "path": "src/jarabe/desktop/homebackgroundbox.py",
-        "type": "file",
-        "name": "homebackgroundbox.py",
-        "size": 3459,
-        "sha1": "85989757b0f2d52bf7ff701f9d00ce0fea60dc1c",
-        "fingerprint": "7a2959aad7bcc77ea6a621c036b28c89",
-        "original_path": "src/jarabe/desktop/homebackgroundbox.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/desktop/homebackgroundbox.py",
         "type": "file",
         "name": "homebackgroundbox.py",
@@ -2550,6 +2590,17 @@
         "original_path": "src/jarabe/desktop/homebackgroundbox.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/desktop/homebackgroundbox.py",
+        "type": "file",
+        "name": "homebackgroundbox.py",
+        "size": 3459,
+        "sha1": "85989757b0f2d52bf7ff701f9d00ce0fea60dc1c",
+        "fingerprint": "7a2959aad7bcc77ea6a621c036b28c89",
+        "original_path": "src/jarabe/desktop/homebackgroundbox.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2559,17 +2610,6 @@
       ],
       "score": 31,
       "new": {
-        "path": "src/jarabe/view/gesturehandler.py",
-        "type": "file",
-        "name": "gesturehandler.py",
-        "size": 2540,
-        "sha1": "a2077c881ed157cdb8dce55729f1c94feb98d883",
-        "fingerprint": "5a79e9a24e5bef6e2aa6612265bfde84",
-        "original_path": "src/jarabe/view/gesturehandler.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/view/gesturehandler.py",
         "type": "file",
         "name": "gesturehandler.py",
@@ -2579,6 +2619,17 @@
         "original_path": "src/jarabe/view/gesturehandler.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/view/gesturehandler.py",
+        "type": "file",
+        "name": "gesturehandler.py",
+        "size": 2540,
+        "sha1": "a2077c881ed157cdb8dce55729f1c94feb98d883",
+        "fingerprint": "5a79e9a24e5bef6e2aa6612265bfde84",
+        "original_path": "src/jarabe/view/gesturehandler.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2588,17 +2639,6 @@
       ],
       "score": 31,
       "new": {
-        "path": "src/jarabe/frame/clipboardpanelwindow.py",
-        "type": "file",
-        "name": "clipboardpanelwindow.py",
-        "size": 5221,
-        "sha1": "9d8ccfd8c4fd9c39a55380d5de2e72b9592975f3",
-        "fingerprint": "68b8cbd8c21fe4ee2c82e9f077b6cca1",
-        "original_path": "src/jarabe/frame/clipboardpanelwindow.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/frame/clipboardpanelwindow.py",
         "type": "file",
         "name": "clipboardpanelwindow.py",
@@ -2608,6 +2648,17 @@
         "original_path": "src/jarabe/frame/clipboardpanelwindow.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/frame/clipboardpanelwindow.py",
+        "type": "file",
+        "name": "clipboardpanelwindow.py",
+        "size": 5221,
+        "sha1": "9d8ccfd8c4fd9c39a55380d5de2e72b9592975f3",
+        "fingerprint": "68b8cbd8c21fe4ee2c82e9f077b6cca1",
+        "original_path": "src/jarabe/frame/clipboardpanelwindow.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2617,17 +2668,6 @@
       ],
       "score": 31,
       "new": {
-        "path": "src/jarabe/view/service.py",
-        "type": "file",
-        "name": "service.py",
-        "size": 3304,
-        "sha1": "11d6c794f293f0fdc174e3d9caa9373567683028",
-        "fingerprint": "f2ec4b94eeb9cf61823671c074ea9ea6",
-        "original_path": "src/jarabe/view/service.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/view/service.py",
         "type": "file",
         "name": "service.py",
@@ -2637,6 +2677,17 @@
         "original_path": "src/jarabe/view/service.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/view/service.py",
+        "type": "file",
+        "name": "service.py",
+        "size": 3304,
+        "sha1": "11d6c794f293f0fdc174e3d9caa9373567683028",
+        "fingerprint": "f2ec4b94eeb9cf61823671c074ea9ea6",
+        "original_path": "src/jarabe/view/service.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2649,9 +2700,9 @@
         "path": "src/jarabe/view/Makefile.am",
         "type": "file",
         "name": "Makefile.am",
-        "size": 333,
-        "sha1": "1db840cadf8b0dc56d91a7cfde7a5eef16794e87",
-        "fingerprint": "453b72b62eb2b3a1ac0fb2f427fdc96e",
+        "size": 382,
+        "sha1": "1f7576f59fb572e878262fe71a7859f50020fc3f",
+        "fingerprint": "c53a72962eb0f3a1ac0fb2f40bbdc9ae",
         "original_path": "src/jarabe/view/Makefile.am",
         "licenses": [],
         "copyrights": []
@@ -2660,9 +2711,9 @@
         "path": "src/jarabe/view/Makefile.am",
         "type": "file",
         "name": "Makefile.am",
-        "size": 382,
-        "sha1": "1f7576f59fb572e878262fe71a7859f50020fc3f",
-        "fingerprint": "c53a72962eb0f3a1ac0fb2f40bbdc9ae",
+        "size": 333,
+        "sha1": "1db840cadf8b0dc56d91a7cfde7a5eef16794e87",
+        "fingerprint": "453b72b62eb2b3a1ac0fb2f427fdc96e",
         "original_path": "src/jarabe/view/Makefile.am",
         "licenses": [],
         "copyrights": []
@@ -2675,17 +2726,6 @@
       ],
       "score": 30,
       "new": {
-        "path": "src/jarabe/model/screenshot.py",
-        "type": "file",
-        "name": "screenshot.py",
-        "size": 4056,
-        "sha1": "127baebbdbefb486d93dbca963e5ac9df77dcf30",
-        "fingerprint": "582067a2f4f985cda2aec9803662acac",
-        "original_path": "src/jarabe/model/screenshot.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/screenshot.py",
         "type": "file",
         "name": "screenshot.py",
@@ -2695,6 +2735,17 @@
         "original_path": "src/jarabe/model/screenshot.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/screenshot.py",
+        "type": "file",
+        "name": "screenshot.py",
+        "size": 4056,
+        "sha1": "127baebbdbefb486d93dbca963e5ac9df77dcf30",
+        "fingerprint": "582067a2f4f985cda2aec9803662acac",
+        "original_path": "src/jarabe/model/screenshot.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2704,17 +2755,6 @@
       ],
       "score": 30,
       "new": {
-        "path": "src/jarabe/desktop/favoritesview.py",
-        "type": "file",
-        "name": "favoritesview.py",
-        "size": 27490,
-        "sha1": "3b70b69bde8381449f092e91d198586e985e64ef",
-        "fingerprint": "dbf463ba89d6f7e492e3a3a455ef0461",
-        "original_path": "src/jarabe/desktop/favoritesview.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/desktop/favoritesview.py",
         "type": "file",
         "name": "favoritesview.py",
@@ -2724,6 +2764,17 @@
         "original_path": "src/jarabe/desktop/favoritesview.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/desktop/favoritesview.py",
+        "type": "file",
+        "name": "favoritesview.py",
+        "size": 27490,
+        "sha1": "3b70b69bde8381449f092e91d198586e985e64ef",
+        "fingerprint": "dbf463ba89d6f7e492e3a3a455ef0461",
+        "original_path": "src/jarabe/desktop/favoritesview.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2733,17 +2784,6 @@
       ],
       "score": 30,
       "new": {
-        "path": "src/jarabe/journal/bundlelauncher.py",
-        "type": "file",
-        "name": "bundlelauncher.py",
-        "size": 2707,
-        "sha1": "05573f200a29759edc804d9efb6930b1a177bc4d",
-        "fingerprint": "18ede9a2af1b4f5e0ea2e0207c4b9e22",
-        "original_path": "src/jarabe/journal/bundlelauncher.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/journal/bundlelauncher.py",
         "type": "file",
         "name": "bundlelauncher.py",
@@ -2753,6 +2793,17 @@
         "original_path": "src/jarabe/journal/bundlelauncher.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/journal/bundlelauncher.py",
+        "type": "file",
+        "name": "bundlelauncher.py",
+        "size": 2707,
+        "sha1": "05573f200a29759edc804d9efb6930b1a177bc4d",
+        "fingerprint": "18ede9a2af1b4f5e0ea2e0207c4b9e22",
+        "original_path": "src/jarabe/journal/bundlelauncher.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2762,17 +2813,6 @@
       ],
       "score": 30,
       "new": {
-        "path": "src/jarabe/model/neighborhood.py",
-        "type": "file",
-        "name": "neighborhood.py",
-        "size": 45287,
-        "sha1": "7abd6d5a68b200f2d286538f8c81debcfdc77d61",
-        "fingerprint": "ba3c419c8fa893f22903b60626bfe68d",
-        "original_path": "src/jarabe/model/neighborhood.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/neighborhood.py",
         "type": "file",
         "name": "neighborhood.py",
@@ -2782,6 +2822,17 @@
         "original_path": "src/jarabe/model/neighborhood.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/neighborhood.py",
+        "type": "file",
+        "name": "neighborhood.py",
+        "size": 45287,
+        "sha1": "7abd6d5a68b200f2d286538f8c81debcfdc77d61",
+        "fingerprint": "ba3c419c8fa893f22903b60626bfe68d",
+        "original_path": "src/jarabe/model/neighborhood.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2794,9 +2845,9 @@
         "path": "src/jarabe/view/viewsource.py",
         "type": "file",
         "name": "viewsource.py",
-        "size": 29847,
-        "sha1": "42d142d8ba36dfe317f77f2bd958c095d7f007f7",
-        "fingerprint": "dcc7cff89abccddff27e6ae356f2948a",
+        "size": 30015,
+        "sha1": "9a740f4382b41b44b2f48dd7270852edce564cfb",
+        "fingerprint": "d4c74bfc9ab8cddff27f6ae352f2168e",
         "original_path": "src/jarabe/view/viewsource.py",
         "licenses": [],
         "copyrights": []
@@ -2805,9 +2856,9 @@
         "path": "src/jarabe/view/viewsource.py",
         "type": "file",
         "name": "viewsource.py",
-        "size": 30015,
-        "sha1": "9a740f4382b41b44b2f48dd7270852edce564cfb",
-        "fingerprint": "d4c74bfc9ab8cddff27f6ae352f2168e",
+        "size": 29847,
+        "sha1": "42d142d8ba36dfe317f77f2bd958c095d7f007f7",
+        "fingerprint": "dcc7cff89abccddff27e6ae356f2948a",
         "original_path": "src/jarabe/view/viewsource.py",
         "licenses": [],
         "copyrights": []
@@ -2820,17 +2871,6 @@
       ],
       "score": 29,
       "new": {
-        "path": "src/jarabe/model/update/microformat.py",
-        "type": "file",
-        "name": "microformat.py",
-        "size": 16888,
-        "sha1": "c26ab32f5395edebdcd47fd13b51d3dc550e7672",
-        "fingerprint": "d74568985c15e57f2e3078aa2cc21d02",
-        "original_path": "src/jarabe/model/update/microformat.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/update/microformat.py",
         "type": "file",
         "name": "microformat.py",
@@ -2840,6 +2880,17 @@
         "original_path": "src/jarabe/model/update/microformat.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/update/microformat.py",
+        "type": "file",
+        "name": "microformat.py",
+        "size": 16888,
+        "sha1": "c26ab32f5395edebdcd47fd13b51d3dc550e7672",
+        "fingerprint": "d74568985c15e57f2e3078aa2cc21d02",
+        "original_path": "src/jarabe/model/update/microformat.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2849,17 +2900,6 @@
       ],
       "score": 29,
       "new": {
-        "path": "src/jarabe/desktop/snowflakelayout.py",
-        "type": "file",
-        "name": "snowflakelayout.py",
-        "size": 4529,
-        "sha1": "5c362e20e8c336ffee9a1c123e8c28c263743ac7",
-        "fingerprint": "1861c3cac0b9aeef2006d8b3750a14a9",
-        "original_path": "src/jarabe/desktop/snowflakelayout.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/desktop/snowflakelayout.py",
         "type": "file",
         "name": "snowflakelayout.py",
@@ -2869,6 +2909,17 @@
         "original_path": "src/jarabe/desktop/snowflakelayout.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/desktop/snowflakelayout.py",
+        "type": "file",
+        "name": "snowflakelayout.py",
+        "size": 4529,
+        "sha1": "5c362e20e8c336ffee9a1c123e8c28c263743ac7",
+        "fingerprint": "1861c3cac0b9aeef2006d8b3750a14a9",
+        "original_path": "src/jarabe/desktop/snowflakelayout.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2878,17 +2929,6 @@
       ],
       "score": 29,
       "new": {
-        "path": "src/jarabe/desktop/homebox.py",
-        "type": "file",
-        "name": "homebox.py",
-        "size": 7902,
-        "sha1": "07f34684cba9d1f273f71fdd1e8c89fc2a30c106",
-        "fingerprint": "1860df98c2ce8729a80766e2674edb3b",
-        "original_path": "src/jarabe/desktop/homebox.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/desktop/homebox.py",
         "type": "file",
         "name": "homebox.py",
@@ -2898,6 +2938,17 @@
         "original_path": "src/jarabe/desktop/homebox.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/desktop/homebox.py",
+        "type": "file",
+        "name": "homebox.py",
+        "size": 7902,
+        "sha1": "07f34684cba9d1f273f71fdd1e8c89fc2a30c106",
+        "fingerprint": "1860df98c2ce8729a80766e2674edb3b",
+        "original_path": "src/jarabe/desktop/homebox.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2907,17 +2958,6 @@
       ],
       "score": 29,
       "new": {
-        "path": "src/jarabe/view/tabbinghandler.py",
-        "type": "file",
-        "name": "tabbinghandler.py",
-        "size": 6183,
-        "sha1": "834b9990e293c0943529f04f9d25f9448c3b4504",
-        "fingerprint": "522145b05ab98d2402daa7836dbac5e4",
-        "original_path": "src/jarabe/view/tabbinghandler.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/view/tabbinghandler.py",
         "type": "file",
         "name": "tabbinghandler.py",
@@ -2927,6 +2967,17 @@
         "original_path": "src/jarabe/view/tabbinghandler.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/view/tabbinghandler.py",
+        "type": "file",
+        "name": "tabbinghandler.py",
+        "size": 6183,
+        "sha1": "834b9990e293c0943529f04f9d25f9448c3b4504",
+        "fingerprint": "522145b05ab98d2402daa7836dbac5e4",
+        "original_path": "src/jarabe/view/tabbinghandler.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2939,9 +2990,9 @@
         "path": "src/jarabe/desktop/favoriteslayout.py",
         "type": "file",
         "name": "favoriteslayout.py",
-        "size": 24362,
-        "sha1": "677f2bddd9713ce7bbb5c76cb02215f731ead3e9",
-        "fingerprint": "53300f9ce0d3c4944a8ea9b1b625ec21",
+        "size": 24400,
+        "sha1": "2d778d406c92fe26808240435d10d19dd9d07cc3",
+        "fingerprint": "53300d9ce0d3c414ca06a9b9f6a5ed21",
         "original_path": "src/jarabe/desktop/favoriteslayout.py",
         "licenses": [],
         "copyrights": []
@@ -2950,9 +3001,9 @@
         "path": "src/jarabe/desktop/favoriteslayout.py",
         "type": "file",
         "name": "favoriteslayout.py",
-        "size": 24400,
-        "sha1": "2d778d406c92fe26808240435d10d19dd9d07cc3",
-        "fingerprint": "53300d9ce0d3c414ca06a9b9f6a5ed21",
+        "size": 24362,
+        "sha1": "677f2bddd9713ce7bbb5c76cb02215f731ead3e9",
+        "fingerprint": "53300f9ce0d3c4944a8ea9b1b625ec21",
         "original_path": "src/jarabe/desktop/favoriteslayout.py",
         "licenses": [],
         "copyrights": []
@@ -2965,17 +3016,6 @@
       ],
       "score": 28,
       "new": {
-        "path": "src/jarabe/frame/activitiestray.py",
-        "type": "file",
-        "name": "activitiestray.py",
-        "size": 33243,
-        "sha1": "9b49584976b8225911a8292a85a05b5b37e41b66",
-        "fingerprint": "9a8547aac6bbbbdd1f3da0e5fdbf5e24",
-        "original_path": "src/jarabe/frame/activitiestray.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/frame/activitiestray.py",
         "type": "file",
         "name": "activitiestray.py",
@@ -2985,6 +3025,17 @@
         "original_path": "src/jarabe/frame/activitiestray.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/frame/activitiestray.py",
+        "type": "file",
+        "name": "activitiestray.py",
+        "size": 33243,
+        "sha1": "9b49584976b8225911a8292a85a05b5b37e41b66",
+        "fingerprint": "9a8547aac6bbbbdd1f3da0e5fdbf5e24",
+        "original_path": "src/jarabe/frame/activitiestray.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -2994,17 +3045,6 @@
       ],
       "score": 28,
       "new": {
-        "path": "src/jarabe/journal/palettes.py",
-        "type": "file",
-        "name": "palettes.py",
-        "size": 24904,
-        "sha1": "e4f4cf99721a404c37cd9506768dc1414af397c0",
-        "fingerprint": "ba7dfff26b1fc4baa617c25f54ab0760",
-        "original_path": "src/jarabe/journal/palettes.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/journal/palettes.py",
         "type": "file",
         "name": "palettes.py",
@@ -3014,6 +3054,17 @@
         "original_path": "src/jarabe/journal/palettes.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/journal/palettes.py",
+        "type": "file",
+        "name": "palettes.py",
+        "size": 24904,
+        "sha1": "e4f4cf99721a404c37cd9506768dc1414af397c0",
+        "fingerprint": "ba7dfff26b1fc4baa617c25f54ab0760",
+        "original_path": "src/jarabe/journal/palettes.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -3023,17 +3074,6 @@
       ],
       "score": 28,
       "new": {
-        "path": "src/jarabe/util/downloader.py",
-        "type": "file",
-        "name": "downloader.py",
-        "size": 8609,
-        "sha1": "5575a79f590724e7b2d8a9f1086696fa66888de5",
-        "fingerprint": "d9bc45b4de8b67472727a5f576e65d53",
-        "original_path": "src/jarabe/util/downloader.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/util/downloader.py",
         "type": "file",
         "name": "downloader.py",
@@ -3043,6 +3083,17 @@
         "original_path": "src/jarabe/util/downloader.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/util/downloader.py",
+        "type": "file",
+        "name": "downloader.py",
+        "size": 8609,
+        "sha1": "5575a79f590724e7b2d8a9f1086696fa66888de5",
+        "fingerprint": "d9bc45b4de8b67472727a5f576e65d53",
+        "original_path": "src/jarabe/util/downloader.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -3052,17 +3103,6 @@
       ],
       "score": 28,
       "new": {
-        "path": "src/jarabe/journal/detailview.py",
-        "type": "file",
-        "name": "detailview.py",
-        "size": 4034,
-        "sha1": "740131fe899ea7d2df6996f6867572a0ad4591a3",
-        "fingerprint": "7ab169b2ce89c6ed463665b56466e6a0",
-        "original_path": "src/jarabe/journal/detailview.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/journal/detailview.py",
         "type": "file",
         "name": "detailview.py",
@@ -3072,6 +3112,17 @@
         "original_path": "src/jarabe/journal/detailview.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/journal/detailview.py",
+        "type": "file",
+        "name": "detailview.py",
+        "size": 4034,
+        "sha1": "740131fe899ea7d2df6996f6867572a0ad4591a3",
+        "fingerprint": "7ab169b2ce89c6ed463665b56466e6a0",
+        "original_path": "src/jarabe/journal/detailview.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -3081,17 +3132,6 @@
       ],
       "score": 28,
       "new": {
-        "path": "src/jarabe/journal/volumestoolbar.py",
-        "type": "file",
-        "name": "volumestoolbar.py",
-        "size": 13278,
-        "sha1": "a3fa48fb429a64599bd72d30bd12b62619fda439",
-        "fingerprint": "10c862aad09bc0ba28bc24202c0e2626",
-        "original_path": "src/jarabe/journal/volumestoolbar.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/journal/volumestoolbar.py",
         "type": "file",
         "name": "volumestoolbar.py",
@@ -3101,6 +3141,17 @@
         "original_path": "src/jarabe/journal/volumestoolbar.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/journal/volumestoolbar.py",
+        "type": "file",
+        "name": "volumestoolbar.py",
+        "size": 13278,
+        "sha1": "a3fa48fb429a64599bd72d30bd12b62619fda439",
+        "fingerprint": "10c862aad09bc0ba28bc24202c0e2626",
+        "original_path": "src/jarabe/journal/volumestoolbar.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -3110,17 +3161,6 @@
       ],
       "score": 28,
       "new": {
-        "path": "src/jarabe/model/session.py",
-        "type": "file",
-        "name": "session.py",
-        "size": 4592,
-        "sha1": "6774e3df3dd1acf3088cf81e4569ab6baa98b9c5",
-        "fingerprint": "fe217bb8d29dc5460286a140643214e5",
-        "original_path": "src/jarabe/model/session.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/session.py",
         "type": "file",
         "name": "session.py",
@@ -3130,6 +3170,17 @@
         "original_path": "src/jarabe/model/session.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/session.py",
+        "type": "file",
+        "name": "session.py",
+        "size": 4592,
+        "sha1": "6774e3df3dd1acf3088cf81e4569ab6baa98b9c5",
+        "fingerprint": "fe217bb8d29dc5460286a140643214e5",
+        "original_path": "src/jarabe/model/session.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -3139,17 +3190,6 @@
       ],
       "score": 28,
       "new": {
-        "path": "src/jarabe/desktop/grid.py",
-        "type": "file",
-        "name": "grid.py",
-        "size": 7638,
-        "sha1": "f599e02bbb801927026ef042d3f25b6612aa86a7",
-        "fingerprint": "32e45730ea9acb3ea976a42574a633a2",
-        "original_path": "src/jarabe/desktop/grid.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/desktop/grid.py",
         "type": "file",
         "name": "grid.py",
@@ -3159,6 +3199,17 @@
         "original_path": "src/jarabe/desktop/grid.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/desktop/grid.py",
+        "type": "file",
+        "name": "grid.py",
+        "size": 7638,
+        "sha1": "f599e02bbb801927026ef042d3f25b6612aa86a7",
+        "fingerprint": "32e45730ea9acb3ea976a42574a633a2",
+        "original_path": "src/jarabe/desktop/grid.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -3168,17 +3219,6 @@
       ],
       "score": 28,
       "new": {
-        "path": "src/jarabe/model/olpcmesh.py",
-        "type": "file",
-        "name": "olpcmesh.py",
-        "size": 9432,
-        "sha1": "1c179237de023b37a59b3b700a3aaf6092e196b4",
-        "fingerprint": "acb078a8d399c1643e3225c726fba4a2",
-        "original_path": "src/jarabe/model/olpcmesh.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/olpcmesh.py",
         "type": "file",
         "name": "olpcmesh.py",
@@ -3188,6 +3228,17 @@
         "original_path": "src/jarabe/model/olpcmesh.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/olpcmesh.py",
+        "type": "file",
+        "name": "olpcmesh.py",
+        "size": 9432,
+        "sha1": "1c179237de023b37a59b3b700a3aaf6092e196b4",
+        "fingerprint": "acb078a8d399c1643e3225c726fba4a2",
+        "original_path": "src/jarabe/model/olpcmesh.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -3200,9 +3251,9 @@
         "path": "src/jarabe/intro/agepicker.py",
         "type": "file",
         "name": "agepicker.py",
-        "size": 9698,
-        "sha1": "8080a42ba5578eeefec2b736077353b3fd47f12e",
-        "fingerprint": "66457aaa9f6f69cf2385a1a06516cdba",
+        "size": 9542,
+        "sha1": "9de0b1f8b8ec383bc0ed13949e004bb9c20c3923",
+        "fingerprint": "64457aaa9feb69c52b85a1b06516c5ba",
         "original_path": "src/jarabe/intro/agepicker.py",
         "licenses": [],
         "copyrights": []
@@ -3211,9 +3262,9 @@
         "path": "src/jarabe/intro/agepicker.py",
         "type": "file",
         "name": "agepicker.py",
-        "size": 9542,
-        "sha1": "9de0b1f8b8ec383bc0ed13949e004bb9c20c3923",
-        "fingerprint": "64457aaa9feb69c52b85a1b06516c5ba",
+        "size": 9698,
+        "sha1": "8080a42ba5578eeefec2b736077353b3fd47f12e",
+        "fingerprint": "66457aaa9f6f69cf2385a1a06516cdba",
         "original_path": "src/jarabe/intro/agepicker.py",
         "licenses": [],
         "copyrights": []
@@ -3226,17 +3277,6 @@
       ],
       "score": 27,
       "new": {
-        "path": "src/jarabe/frame/clipboardmenu.py",
-        "type": "file",
-        "name": "clipboardmenu.py",
-        "size": 8775,
-        "sha1": "0c540d311e6a71810b2265409bec4043b8c9e160",
-        "fingerprint": "1af65db8c69bc4788ee064a93dba8ab0",
-        "original_path": "src/jarabe/frame/clipboardmenu.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/frame/clipboardmenu.py",
         "type": "file",
         "name": "clipboardmenu.py",
@@ -3246,6 +3286,17 @@
         "original_path": "src/jarabe/frame/clipboardmenu.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/frame/clipboardmenu.py",
+        "type": "file",
+        "name": "clipboardmenu.py",
+        "size": 8775,
+        "sha1": "0c540d311e6a71810b2265409bec4043b8c9e160",
+        "fingerprint": "1af65db8c69bc4788ee064a93dba8ab0",
+        "original_path": "src/jarabe/frame/clipboardmenu.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -3258,9 +3309,9 @@
         "path": "src/jarabe/desktop/networkviews.py",
         "type": "file",
         "name": "networkviews.py",
-        "size": 29739,
-        "sha1": "47c7884297f55b29c92c4b8148fa95e605c54bff",
-        "fingerprint": "3ee22a9161b8c83dee33054125facc55",
+        "size": 30613,
+        "sha1": "f292cdfb976fa12d05c5c815cfe9e054039e2899",
+        "fingerprint": "bee22a9060b9c83d6e33054125f8cd55",
         "original_path": "src/jarabe/desktop/networkviews.py",
         "licenses": [],
         "copyrights": []
@@ -3269,9 +3320,9 @@
         "path": "src/jarabe/desktop/networkviews.py",
         "type": "file",
         "name": "networkviews.py",
-        "size": 30613,
-        "sha1": "f292cdfb976fa12d05c5c815cfe9e054039e2899",
-        "fingerprint": "bee22a9060b9c83d6e33054125f8cd55",
+        "size": 29739,
+        "sha1": "47c7884297f55b29c92c4b8148fa95e605c54bff",
+        "fingerprint": "3ee22a9161b8c83dee33054125facc55",
         "original_path": "src/jarabe/desktop/networkviews.py",
         "licenses": [],
         "copyrights": []
@@ -3284,17 +3335,6 @@
       ],
       "score": 26,
       "new": {
-        "path": "src/jarabe/journal/model.py",
-        "type": "file",
-        "name": "model.py",
-        "size": 31898,
-        "sha1": "e1bd927b41fb2ff1436e636cce4c294d7b9808a0",
-        "fingerprint": "69e545eaf4ee59977ccfbc52cfa6ade7",
-        "original_path": "src/jarabe/journal/model.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/journal/model.py",
         "type": "file",
         "name": "model.py",
@@ -3304,6 +3344,17 @@
         "original_path": "src/jarabe/journal/model.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/journal/model.py",
+        "type": "file",
+        "name": "model.py",
+        "size": 31898,
+        "sha1": "e1bd927b41fb2ff1436e636cce4c294d7b9808a0",
+        "fingerprint": "69e545eaf4ee59977ccfbc52cfa6ade7",
+        "original_path": "src/jarabe/journal/model.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -3313,17 +3364,6 @@
       ],
       "score": 26,
       "new": {
-        "path": "src/jarabe/model/update/updater.py",
-        "type": "file",
-        "name": "updater.py",
-        "size": 10628,
-        "sha1": "615320a1fc20fce6235ac45c3f5f664125c228aa",
-        "fingerprint": "b069e7e9c588ca5be094c8e32dc7def1",
-        "original_path": "src/jarabe/model/update/updater.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/update/updater.py",
         "type": "file",
         "name": "updater.py",
@@ -3333,6 +3373,17 @@
         "original_path": "src/jarabe/model/update/updater.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/update/updater.py",
+        "type": "file",
+        "name": "updater.py",
+        "size": 10628,
+        "sha1": "615320a1fc20fce6235ac45c3f5f664125c228aa",
+        "fingerprint": "b069e7e9c588ca5be094c8e32dc7def1",
+        "original_path": "src/jarabe/model/update/updater.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -3342,17 +3393,6 @@
       ],
       "score": 26,
       "new": {
-        "path": "src/jarabe/model/network.py",
-        "type": "file",
-        "name": "network.py",
-        "size": 39913,
-        "sha1": "77d1208d716155117c0e13f1bf614a2fb4151a15",
-        "fingerprint": "9e5453327ed88359a2c20b8d97f75cb1",
-        "original_path": "src/jarabe/model/network.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/model/network.py",
         "type": "file",
         "name": "network.py",
@@ -3362,6 +3402,17 @@
         "original_path": "src/jarabe/model/network.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/model/network.py",
+        "type": "file",
+        "name": "network.py",
+        "size": 39913,
+        "sha1": "77d1208d716155117c0e13f1bf614a2fb4151a15",
+        "fingerprint": "9e5453327ed88359a2c20b8d97f75cb1",
+        "original_path": "src/jarabe/model/network.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -3371,17 +3422,6 @@
       ],
       "score": 26,
       "new": {
-        "path": "src/jarabe/frame/clipboardicon.py",
-        "type": "file",
-        "name": "clipboardicon.py",
-        "size": 8135,
-        "sha1": "0983787d49ef836347301d2b1907cebf08fb4c4c",
-        "fingerprint": "fee543aa11bac573e26681207e3de685",
-        "original_path": "src/jarabe/frame/clipboardicon.py",
-        "licenses": [],
-        "copyrights": []
-      },
-      "old": {
         "path": "src/jarabe/frame/clipboardicon.py",
         "type": "file",
         "name": "clipboardicon.py",
@@ -3391,6 +3431,17 @@
         "original_path": "src/jarabe/frame/clipboardicon.py",
         "licenses": [],
         "copyrights": []
+      },
+      "old": {
+        "path": "src/jarabe/frame/clipboardicon.py",
+        "type": "file",
+        "name": "clipboardicon.py",
+        "size": 8135,
+        "sha1": "0983787d49ef836347301d2b1907cebf08fb4c4c",
+        "fingerprint": "fee543aa11bac573e26681207e3de685",
+        "original_path": "src/jarabe/frame/clipboardicon.py",
+        "licenses": [],
+        "copyrights": []
       }
     },
     {
@@ -3403,9 +3454,9 @@
         "path": "src/jarabe/model/adhoc.py",
         "type": "file",
         "name": "adhoc.py",
-        "size": 11683,
-        "sha1": "7675f182ed2544c6f9b8f3272bb5ac346387eac5",
-        "fingerprint": "ea8247aa065c4cfe0eec0f956ec184a9",
+        "size": 11641,
+        "sha1": "430dc30d4a5a3ad7dee541f4e592e13355f680b1",
+        "fingerprint": "ea8247aa065c4cfe0aee07b566c184e9",
         "original_path": "src/jarabe/model/adhoc.py",
         "licenses": [],
         "copyrights": []
@@ -3414,9 +3465,9 @@
         "path": "src/jarabe/model/adhoc.py",
         "type": "file",
         "name": "adhoc.py",
-        "size": 11641,
-        "sha1": "430dc30d4a5a3ad7dee541f4e592e13355f680b1",
-        "fingerprint": "ea8247aa065c4cfe0aee07b566c184e9",
+        "size": 11683,
+        "sha1": "7675f182ed2544c6f9b8f3272bb5ac346387eac5",
+        "fingerprint": "ea8247aa065c4cfe0eec0f956ec184a9",
         "original_path": "src/jarabe/model/adhoc.py",
         "licenses": [],
         "copyrights": []
@@ -3432,9 +3483,9 @@
         "path": "src/jarabe/model/shell.py",
         "type": "file",
         "name": "shell.py",
-        "size": 28100,
-        "sha1": "275a9bbfb3cf1fe20de9d1f64436e96ec5789ad3",
-        "fingerprint": "17adf56bb57e6ec6605a694c54f798ae",
+        "size": 28024,
+        "sha1": "abee773ffbe9f67244e387abf2fe89c932b25710",
+        "fingerprint": "17adf56bb57e6ec6604a696cd4f790be",
         "original_path": "src/jarabe/model/shell.py",
         "licenses": [],
         "copyrights": []
@@ -3443,9 +3494,9 @@
         "path": "src/jarabe/model/shell.py",
         "type": "file",
         "name": "shell.py",
-        "size": 28024,
-        "sha1": "abee773ffbe9f67244e387abf2fe89c932b25710",
-        "fingerprint": "17adf56bb57e6ec6604a696cd4f790be",
+        "size": 28100,
+        "sha1": "275a9bbfb3cf1fe20de9d1f64436e96ec5789ad3",
+        "fingerprint": "17adf56bb57e6ec6605a694c54f798ae",
         "original_path": "src/jarabe/model/shell.py",
         "licenses": [],
         "copyrights": []
@@ -3461,9 +3512,9 @@
         "path": "src/jarabe/desktop/meshbox.py",
         "type": "file",
         "name": "meshbox.py",
-        "size": 23795,
-        "sha1": "e36678b42f2c154d7dda2b280defa4fff7aa0faa",
-        "fingerprint": "9aa87fba5efdde322790ab007eb0fca0",
+        "size": 23764,
+        "sha1": "d158fc1b4e164dc23154b332dd1c709b73f89419",
+        "fingerprint": "9ae87faa5efdde322790ab107eb0fca0",
         "original_path": "src/jarabe/desktop/meshbox.py",
         "licenses": [],
         "copyrights": []
@@ -3472,9 +3523,9 @@
         "path": "src/jarabe/desktop/meshbox.py",
         "type": "file",
         "name": "meshbox.py",
-        "size": 23764,
-        "sha1": "d158fc1b4e164dc23154b332dd1c709b73f89419",
-        "fingerprint": "9ae87faa5efdde322790ab107eb0fca0",
+        "size": 23795,
+        "sha1": "e36678b42f2c154d7dda2b280defa4fff7aa0faa",
+        "fingerprint": "9aa87fba5efdde322790ab007eb0fca0",
         "original_path": "src/jarabe/desktop/meshbox.py",
         "licenses": [],
         "copyrights": []
@@ -3490,9 +3541,9 @@
         "path": "src/jarabe/journal/misc.py",
         "type": "file",
         "name": "misc.py",
-        "size": 14648,
-        "sha1": "18dd4291eb83ceec095d1de8898bd57e1a56852b",
-        "fingerprint": "8b64c3189894821ea7d7eb1e75da7698",
+        "size": 14885,
+        "sha1": "d1620f6615148644793ff1162048363acf069c15",
+        "fingerprint": "8be4c3189894821ea7c7eb1e75da7698",
         "original_path": "src/jarabe/journal/misc.py",
         "licenses": [],
         "copyrights": []
@@ -3501,9 +3552,9 @@
         "path": "src/jarabe/journal/misc.py",
         "type": "file",
         "name": "misc.py",
-        "size": 14885,
-        "sha1": "d1620f6615148644793ff1162048363acf069c15",
-        "fingerprint": "8be4c3189894821ea7c7eb1e75da7698",
+        "size": 14648,
+        "sha1": "18dd4291eb83ceec095d1de8898bd57e1a56852b",
+        "fingerprint": "8b64c3189894821ea7d7eb1e75da7698",
         "original_path": "src/jarabe/journal/misc.py",
         "licenses": [],
         "copyrights": []
@@ -3812,64 +3863,13 @@
       "score": 0,
       "new": null,
       "old": {
-        "path": "src/jarabe/journal/projectview.py",
+        "path": "src/jarabe/model/update/new_aslo.py",
         "type": "file",
-        "name": "projectview.py",
-        "size": 5486,
-        "sha1": "bea7d8d5de546621bf114984ca63211834858c4f",
-        "fingerprint": "dab4f7bcd0aee5fae626474077b686e4",
-        "original_path": "src/jarabe/journal/projectview.py",
-        "licenses": [],
-        "copyrights": []
-      }
-    },
-    {
-      "status": "removed",
-      "factors": [],
-      "score": 0,
-      "new": null,
-      "old": {
-        "path": "src/jarabe/view/viewhelp_webkit2.py",
-        "type": "file",
-        "name": "viewhelp_webkit2.py",
-        "size": 3617,
-        "sha1": "365a64c1e255e85a74e8fed2d7303fed7c2ea81e",
-        "fingerprint": "7c60cfe2de9bc5ceea2621716fa4a786",
-        "original_path": "src/jarabe/view/viewhelp_webkit2.py",
-        "licenses": [],
-        "copyrights": []
-      }
-    },
-    {
-      "status": "removed",
-      "factors": [],
-      "score": 0,
-      "new": null,
-      "old": {
-        "path": "src/jarabe/view/viewhelp_webkit1.py",
-        "type": "file",
-        "name": "viewhelp_webkit1.py",
-        "size": 4473,
-        "sha1": "9bddebeae693d2bac8ea53c3cc038d99576cd3b7",
-        "fingerprint": "38e4cfea8290657e62a6213167a78525",
-        "original_path": "src/jarabe/view/viewhelp_webkit1.py",
-        "licenses": [],
-        "copyrights": []
-      }
-    },
-    {
-      "status": "removed",
-      "factors": [],
-      "score": 0,
-      "new": null,
-      "old": {
-        "path": "src/jarabe/desktop/activitychooser.py",
-        "type": "file",
-        "name": "activitychooser.py",
-        "size": 11858,
-        "sha1": "86bb0568a05c34643023dea6a69cb25074d58a8d",
-        "fingerprint": "42f06af2c2d4ca1ab49620c2275ade8c",
-        "original_path": "src/jarabe/desktop/activitychooser.py",
+        "name": "new_aslo.py",
+        "size": 4033,
+        "sha1": "bba5118be118eb006a96721b1e19dfe2695da33f",
+        "fingerprint": "0a64e6aa429da7ca8ea4eea13712aea5",
+        "original_path": "src/jarabe/model/update/new_aslo.py",
         "licenses": [],
         "copyrights": []
       }
