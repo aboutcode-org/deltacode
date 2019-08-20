@@ -33,7 +33,7 @@ import binascii
 import os
 
 from commoncode import paths
-
+from scancode import cli_test_utils
 
 def update_from_license_info(delta, unique_categories):
     """
