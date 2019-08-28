@@ -39,6 +39,7 @@ except DistributionNotFound:
     # package is not installed ??
     __version__ = '1.0.0'
 
+SIMILARITY_LIMIT = 35
 
 class DeltaCode(object):
     """
@@ -60,6 +61,7 @@ class DeltaCode(object):
             self.license_diff()
             self.copyright_diff()
             self.stats.calculate_stats()
+            self.similarity()
             # Sort deltas by score, descending, i.e., high > low, and then by
             # factors, alphabetically.  Run the least significant sort first.
             self.deltas.sort(key=lambda Delta: Delta.factors, reverse=False)
@@ -79,6 +81,28 @@ class DeltaCode(object):
                 f.original_path = f.path
             for f in self.old.files:
                 f.original_path = f.path
+
+    def similarity(self):
+        """
+        Compare the fingerprints of a pair of 'new' and 'old' File objects
+        in a Delta object and change the Delta object's 'score' attribute --
+        and add an appropriate category 'Similar with hamming distance'
+        to the Delta object's 'factors' attribute -- if the hamming
+        distance is less than the threshold distance.
+        """
+        for delta in self.deltas:
+            if delta.new_file == None or delta.old_file == None:
+                continue
+            new_fingerprint = delta.new_file.fingerprint
+            old_fingerprint = delta.old_file.fingerprint
+            if new_fingerprint == None or old_fingerprint == None:
+                continue
+            new_fingerprint = utils.bitarray_from_hex(delta.new_file.fingerprint)
+            old_fingerprint = utils.bitarray_from_hex(delta.old_file.fingerprint)
+            hamming_distance = utils.hamming_distance(new_fingerprint, old_fingerprint)
+            if hamming_distance > 0 and hamming_distance <= SIMILARITY_LIMIT:
+                delta.score += hamming_distance
+                delta.factors.append('Similar with hamming distance : {}'.format(hamming_distance))
 
     def determine_delta(self):
         """

@@ -456,6 +456,7 @@ class TestModels(FileBasedTesting):
             'name': 'file1.txt',
             'size': 20,
             'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'fingerprint': 'e30cf09443e7878dfed3288886e97542',
             'licenses': [
                 {
                     "key": "apache-2.0",
@@ -487,6 +488,7 @@ class TestModels(FileBasedTesting):
             'name': 'file1.txt',
             'size': 20,
             'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'fingerprint': 'e30cf09443e7878dfed3288886e97542',
             'original_path': '',
             'licenses': [
                 {
@@ -513,6 +515,7 @@ class TestModels(FileBasedTesting):
             'name': 'file1.txt',
             'size': 20,
             'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'fingerprint': 'e30cf09443e7878dfed3288886e97542',
         }
 
         expected = {
@@ -521,6 +524,7 @@ class TestModels(FileBasedTesting):
             'name': 'file1.txt',
             'size': 20,
             'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'fingerprint': 'e30cf09443e7878dfed3288886e97542',
             'original_path': '',
             'licenses': [],
             'copyrights': []
@@ -539,6 +543,7 @@ class TestModels(FileBasedTesting):
             'name': '',
             'size': '',
             'sha1': '',
+            'fingerprint': '',
             'original_path': '',
             'licenses': [],
             'copyrights': []
@@ -737,6 +742,7 @@ class TestModels(FileBasedTesting):
             'name': 'file1.txt',
             'size': 20,
             'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'fingerprint': 'e30cf09443e7878dfed3288886e97542',
             'licenses': [],
             'copyrights': [
                 {
@@ -759,6 +765,7 @@ class TestModels(FileBasedTesting):
             'name': 'file1.txt',
             'size': 20,
             'sha1': '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b',
+            'fingerprint': 'e30cf09443e7878dfed3288886e97542',
             'original_path': '',
             'licenses': [],
             'copyrights': [

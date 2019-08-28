@@ -36,7 +36,7 @@ from commoncode.testcase import FileBasedTesting
 import deltacode
 from deltacode import DeltaCode
 from deltacode import models
-
+from deltacode import test_utils
 
 class TestDeltacode(FileBasedTesting):
 
@@ -209,6 +209,7 @@ class TestDeltacode(FileBasedTesting):
                 ('name', ''),
                 ('size', ''),
                 ('sha1', ''),
+                ('fingerprint', ''),
                 ('original_path', ''),
                 ('licenses', []),
                 ('copyrights', [])
@@ -225,6 +226,7 @@ class TestDeltacode(FileBasedTesting):
                 ('name', ''),
                 ('size', ''),
                 ('sha1', ''),
+                ('fingerprint', ''),
                 ('original_path', ''),
                 ('licenses', []),
                 ('copyrights', [])
@@ -291,6 +293,7 @@ class TestDeltacode(FileBasedTesting):
             'name': 'removed.txt',
             'size': 20,
             'sha1': 'a',
+            'fingerprint': 'e30cf09443e7878dfed3288886e12345',
             'original_path': ''
         })
 
@@ -305,6 +308,7 @@ class TestDeltacode(FileBasedTesting):
                 ('name', 'removed.txt'),
                 ('size', 20),
                 ('sha1', 'a'),
+                ('fingerprint', 'e30cf09443e7878dfed3288886e12345'),
                 ('original_path', ''),
                 ('licenses', []),
                 ('copyrights', [])
@@ -323,6 +327,7 @@ class TestDeltacode(FileBasedTesting):
             'name': 'added.txt',
             'size': 20,
             'sha1': 'a',
+            'fingerprint': 'e30cf09443e7878dfed3288886e12345',
             'original_path': ''
         })
 
@@ -336,6 +341,7 @@ class TestDeltacode(FileBasedTesting):
                 ('name', 'added.txt'),
                 ('size', 20),
                 ('sha1', 'a'),
+                ('fingerprint', 'e30cf09443e7878dfed3288886e12345'),
                 ('original_path', ''),
                 ('licenses', []),
                 ('copyrights', [])
@@ -355,6 +361,7 @@ class TestDeltacode(FileBasedTesting):
             'name': 'modified.txt',
             'size': 20,
             'sha1': 'a',
+            'fingerprint': 'e30cf09443e7878dfed3288886e97542',
             'original_path': ''
         })
         old = models.File({
@@ -363,6 +370,7 @@ class TestDeltacode(FileBasedTesting):
             'name': 'modified.txt',
             'size': 21,
             'sha1': 'b',
+            'fingerprint': 'e30cf09443e2878dfed3288886e97541',
             'original_path': ''
         })
 
@@ -376,6 +384,7 @@ class TestDeltacode(FileBasedTesting):
                 ('name', 'modified.txt'),
                 ('size', 20),
                 ('sha1', 'a'),
+                ('fingerprint', 'e30cf09443e7878dfed3288886e97542'),
                 ('original_path', ''),
                 ('licenses', []),
                 ('copyrights', [])
@@ -386,6 +395,7 @@ class TestDeltacode(FileBasedTesting):
                 ('name', 'modified.txt'),
                 ('size', 21),
                 ('sha1', 'b'),
+                ('fingerprint', 'e30cf09443e2878dfed3288886e97541'),
                 ('original_path', ''),
                 ('licenses', []),
                 ('copyrights', [])
@@ -404,6 +414,7 @@ class TestDeltacode(FileBasedTesting):
             'name': 'unmodified.txt',
             'size': 20,
             'sha1': 'a',
+            'fingerprint': 'e30cf09443e7878dfed3288886e97542',
             'original_path': ''
         })
         old = models.File({
@@ -412,6 +423,7 @@ class TestDeltacode(FileBasedTesting):
             'name': 'unmodified.txt',
             'size': 20,
             'sha1': 'a',
+            'fingerprint': 'e30cf09443e7878dfed3288886e97542',
             'original_path': ''
         })
 
@@ -425,6 +437,7 @@ class TestDeltacode(FileBasedTesting):
                 ('name', 'unmodified.txt'),
                 ('size', 20),
                 ('sha1', 'a'),
+                ('fingerprint', 'e30cf09443e7878dfed3288886e97542'),
                 ('original_path', ''),
                 ('licenses', []),
                 ('copyrights', [])
@@ -435,6 +448,7 @@ class TestDeltacode(FileBasedTesting):
                 ('name', 'unmodified.txt'),
                 ('size', 20),
                 ('sha1', 'a'),
+                ('fingerprint', 'e30cf09443e7878dfed3288886e97542'),
                 ('original_path', ''),
                 ('licenses', []),
                 ('copyrights', [])
@@ -453,6 +467,7 @@ class TestDeltacode(FileBasedTesting):
             'name': 'moved.txt',
             'size': 20,
             'sha1': 'a',
+            'fingerprint': 'e30cf09443e7878dfed3288886e97542',
             'original_path': ''
         })
         old = models.File({
@@ -461,6 +476,7 @@ class TestDeltacode(FileBasedTesting):
             'name': 'moved.txt',
             'size': 20,
             'sha1': 'a',
+            'fingerprint': 'e30cf09443e7878dfed3288886e97542',
             'original_path': ''
         })
 
@@ -474,6 +490,7 @@ class TestDeltacode(FileBasedTesting):
                 ('name', 'moved.txt'),
                 ('size', 20),
                 ('sha1', 'a'),
+                ('fingerprint', 'e30cf09443e7878dfed3288886e97542'),
                 ('original_path', ''),
                 ('licenses', []),
                 ('copyrights', [])
@@ -484,6 +501,7 @@ class TestDeltacode(FileBasedTesting):
                 ('name', 'moved.txt'),
                 ('size', 20),
                 ('sha1', 'a'),
+                ('fingerprint', 'e30cf09443e7878dfed3288886e97542'),
                 ('original_path', ''),
                 ('licenses', []),
                 ('copyrights', [])
@@ -1283,6 +1301,7 @@ class TestDeltacode(FileBasedTesting):
             'name': 'modified.txt',
             'size': 21,
             'sha1': 'a_modified',
+            'fingerprint': 'e30cf09443e7878dfed3288886e97542',
             'original_path': '',
             'licenses': [],
             'copyrights': [
@@ -1346,6 +1365,7 @@ class TestDeltacode(FileBasedTesting):
             'name': 'modified.txt',
             'size': 20,
             'sha1': 'a',
+            'fingerprint': 'e30cf09443e7878dfed3289786e97542',
             'original_path': '',
             'licenses': [],
             'copyrights': [
@@ -1371,6 +1391,7 @@ class TestDeltacode(FileBasedTesting):
                 ('name', 'modified.txt'),
                 ('size', 21),
                 ('sha1', 'a_modified'),
+                ('fingerprint', 'e30cf09443e7878dfed3288886e97542'),
                 ('original_path', ''),
                 ('licenses', []),
                 ('copyrights', [OrderedDict([
@@ -1430,6 +1451,7 @@ class TestDeltacode(FileBasedTesting):
                 ('name', 'modified.txt'),
                 ('size', 20),
                 ('sha1', 'a'),
+                ('fingerprint', 'e30cf09443e7878dfed3289786e97542'),
                 ('original_path', ''),
                 ('licenses', []),
                 ('copyrights', [OrderedDict([
@@ -1616,3 +1638,27 @@ class TestDeltacode(FileBasedTesting):
         stats_object = deltacode_object.stats.to_dict()
 
         assert stats_object == expected
+
+    def test_similarity_matching_1(self):
+        old_file = self.get_test_loc('deltacode/coala-0.7.0-old.json')
+        new_file = self.get_test_loc('deltacode/coala-0.10.0-new.json')
+        result_file = self.get_temp_file('json')
+        args = ['--new', new_file, '--old', old_file, '--json-file', result_file, '--all-delta-types']
+        test_utils.run_scan_click(args)
+        test_utils.check_json_scan(self.get_test_loc('deltacode/coala-expected-result.json'), result_file, regen=False)
+
+    def test_similarity_matching_2(self):
+        old_file = self.get_test_loc('deltacode/sugar-0.108.0-old.json')
+        new_file = self.get_test_loc('deltacode/sugar-0.114-new.json')
+        result_file = self.get_temp_file('json')
+        args = ['--new', new_file, '--old', old_file, '--json-file', result_file, '--all-delta-types']
+        test_utils.run_scan_click(args)
+        test_utils.check_json_scan(self.get_test_loc('deltacode/sugar-expected.json'), result_file, regen=False)
+
+    def test_non_similarity_matching_1(self):
+        old_file = self.get_test_loc('deltacode/coala-0.7.0-old.json')
+        new_file = self.get_test_loc('deltacode/sugar-0.114-new.json')
+        result_file = self.get_temp_file('json')
+        args = ['--new', new_file, '--old', old_file, '--json-file', result_file, '--all-delta-types']
+        test_utils.run_scan_click(args)
+        test_utils.check_json_scan(self.get_test_loc('deltacode/sugar-coala-expected.json'), result_file, regen=False)

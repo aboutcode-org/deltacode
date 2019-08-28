@@ -25,13 +25,14 @@
 
 from __future__ import absolute_import, division
 
+from bitarray import bitarray
 from collections import defaultdict
+from bitarray import bitdiff
 
+import binascii
 import os
 
-
 from commoncode import paths
-
 
 def update_from_license_info(delta, unique_categories):
     """
@@ -282,3 +283,33 @@ def get_notice():
     notice = acknowledgment_text.strip().replace('  ', '')
 
     return notice
+
+
+def hamming_distance(fingerprint1, fingerprint2):
+    """
+    Return hamming distance between two given fingerprints.
+    Hamming distance is the difference in the bits of two binary string.
+    Files with fingerprints whose hamming distance are less tends to be more similar.
+    """
+    distance = bitdiff(fingerprint1, fingerprint2)
+    result = int(distance)
+
+    return result
+
+def bitarray_from_hex(fingerprint_hex):
+    """
+    Return bitarray from a hex string.
+    """
+    bytes = binascii.unhexlify(fingerprint_hex)
+    result = bitarray_from_bytes(bytes)
+
+    return result
+
+def bitarray_from_bytes(b):
+    """
+    Return bitarray from a byte string, interpreted as machine values.
+    """
+    a = bitarray()
+    a.frombytes(b)
+
+    return a

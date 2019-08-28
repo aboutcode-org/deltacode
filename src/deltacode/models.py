@@ -179,6 +179,7 @@ class File(object):
         self.name = dictionary.get('name', '')
         self.size = dictionary.get('size', '')
         self.sha1 = dictionary.get('sha1', '')
+        self.fingerprint = dictionary.get('fingerprint', '')
         self.original_path = ''
         self.licenses = self.get_licenses(dictionary) if dictionary.get('licenses') else []
         self.copyrights = self.get_copyrights(dictionary) if dictionary.get('copyrights') else []
@@ -210,6 +211,7 @@ class File(object):
             ('name', self.name),
             ('size', self.size),
             ('sha1', self.sha1),
+            ('fingerprint', self.fingerprint),
             ('original_path', self.original_path),
         ])
 
