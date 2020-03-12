@@ -51,7 +51,18 @@ def write_json(deltacode, outfile, all_delta_types=False):
         ('delta_stats', deltacode.stats.to_dict()),
         ('deltas', deltas(deltacode, all_delta_types))
     ])
-
+    click.secho(get_notice(),fg="green")
+    click.echo('deltacode_options: {')
+    for option in deltacode.options:
+        click.echo("""   "{}": "{}" """.format(option,deltacode.options[option]))
+    click.echo("}")    
+    click.echo("""deltacode_version: "{}" """.format(__version__))
+    click.echo('deltacode_errors: {}'.format(collect_errors(deltacode)))
+    click.echo('deltas_count: {}'.format(len([d for d in deltas(deltacode, all_delta_types)])))
+    click.echo('delta_stats: {')
+    for stat in deltacode.stats.to_dict():
+        click.echo("""   "{}": {}""".format(str(stat),deltacode.stats.to_dict()[stat]))
+    click.echo("}")    
     # TODO: add toggle for pretty printing
     simplejson.dump(results, outfile, iterable_as_array=True, indent=2)
     outfile.write('\n')
