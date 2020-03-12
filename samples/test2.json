@@ -1,0 +1,58 @@
+{
+  "headers": [
+    {
+      "tool_name": "scancode-toolkit",
+      "tool_version": "3.1.1",
+      "options": {
+        "input": [
+          "char_modifier.ipynb"
+        ],
+        "--copyright": true,
+        "--info": true,
+        "--json-pp": "test2.json",
+        "--license": true,
+        "--package": true
+      },
+      "notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/nexB/scancode-toolkit/ for support and download.",
+      "start_timestamp": "2020-03-12T170144.454277",
+      "end_timestamp": "2020-03-12T170147.038486",
+      "message": null,
+      "errors": [],
+      "extra_data": {
+        "files_count": 1
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "char_modifier.ipynb",
+      "type": "file",
+      "name": "char_modifier.ipynb",
+      "base_name": "char_modifier",
+      "extension": ".ipynb",
+      "size": 2128,
+      "date": "2020-03-04",
+      "sha1": "24694f62142476422ec1163e55ff1d1fc97b1f0b",
+      "md5": "f0f94ddb7ffcf1cd0c0c372713306b83",
+      "mime_type": "text/plain",
+      "file_type": "ASCII text",
+      "programming_language": "Python",
+      "is_binary": false,
+      "is_text": true,
+      "is_archive": false,
+      "is_media": false,
+      "is_source": true,
+      "is_script": false,
+      "licenses": [],
+      "license_expressions": [],
+      "copyrights": [],
+      "holders": [],
+      "authors": [],
+      "packages": [],
+      "files_count": 0,
+      "dirs_count": 0,
+      "size_count": 0,
+      "scan_errors": []
+    }
+  ]
+}
