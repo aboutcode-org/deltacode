@@ -29,6 +29,8 @@ env:
 # Set `python:` (to empty) to clear it from the travis-ci web interface
 # Set `osx_image: xcode7.3` to pin OSX and Python versions, see here:
 #   https://docs.travis-ci.com/user/osx-ci-environment/
+
+
 matrix:
   include:
     - os: osx
@@ -43,7 +45,12 @@ matrix:
       osx_image: xcode7.3
     - os: windows
       env: TEST_SUITE="$PYTEST"
-      
+      language: generic
+      python:
+    - os: windows
+      env: TEST_SUITE="./etc/release/release.sh"
+      language: generic
+      python:
 
 install:
   - ./configure
