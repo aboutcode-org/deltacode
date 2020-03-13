@@ -33,16 +33,16 @@ env:
 
 matrix:
   include:
-    - os: osx
-      env: TEST_SUITE="$PYTEST"
-      language: generic
-      python:
-      osx_image: xcode7.3
-    - os: osx
-      env: TEST_SUITE="./etc/release/release.sh"
-      language: generic
-      python:
-      osx_image: xcode7.3
+    # - os: osx
+    #   env: TEST_SUITE="$PYTEST"
+    #   language: generic
+    #   python:
+    #   osx_image: xcode7.3
+    # - os: osx
+    #   env: TEST_SUITE="./etc/release/release.sh"
+    #   language: generic
+    #   python:
+    #   osx_image: xcode7.3
     - os: windows
       env: TEST_SUITE="$PYTEST"
       language: generic
