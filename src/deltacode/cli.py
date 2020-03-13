@@ -55,6 +55,12 @@ def write_json(deltacode, outfile, all_delta_types=False):
     # TODO: add toggle for pretty printing
     simplejson.dump(results, outfile, iterable_as_array=True, indent=2)
     outfile.write('\n')
+   
+    # Output delta_stats at cli
+    status = deltacode.stats.to_dict()
+    click.echo("\nDelta stats :\n")
+    for stat, value in status.iteritems():
+        click.echo("{} : {}".format(stat,value))  
 
 
 def print_version(ctx, param, value):

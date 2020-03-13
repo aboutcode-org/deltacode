@@ -11,6 +11,7 @@
 /Scripts
 /Lib
 /pip-selfcheck.json
+/output.json
 /tmp
 .Python
 /include
