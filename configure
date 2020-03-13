@@ -27,7 +27,6 @@ CONFIGURE_ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if [[ "$PYTHON_EXE" == "" ]]; then
     PYTHON_EXE=python
 fi
-PYTHON_EXE=python2.7
 $PYTHON_EXE "$CONFIGURE_ROOT_DIR/etc/configure.py" $CFG_CMD_LINE_ARGS
 
 if [ -f "$CONFIGURE_ROOT_DIR/bin/activate" ]; then
