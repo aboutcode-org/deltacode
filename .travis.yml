@@ -29,10 +29,31 @@ env:
 # Set `python:` (to empty) to clear it from the travis-ci web interface
 # Set `osx_image: xcode7.3` to pin OSX and Python versions, see here:
 #   https://docs.travis-ci.com/user/osx-ci-environment/
+
+#The process of adding windows build to travis is adopted from the below url
+# https://blog.travis-ci.com/2019-08-07-extensive-python-testing-on-travis-ci
 matrix:
   include:
-    - os: osx
+    - os: windows  # Windows 10.0.17134 N/A Build 17134
+      language: shell  # 'language: python' is an error on Travis CI Windows
+      before_install:
+        - choco install python2
+        - python --version
+        - python -m pip install --upgrade pip
+        - pip install --upgrade pytest
+        - pip install codecov
       env: TEST_SUITE="$PYTEST"
+    - os: windows  # Windows 10.0.17134 N/A Build 17134
+      language: shell  # 'language: python' is an error on Travis CI Windows
+      before_install:
+        - choco install python2
+        - python --version
+        - python -m pip install --upgrade pip
+        - pip install --upgrade pytest
+        - pip install codecov
+      env: TEST_SUITE="$PYTEST"
+    - os: osx
+      env: TEST_SUITE="./etc/release/release.sh"
       language: generic
       python:
       osx_image: xcode7.3
