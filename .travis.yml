@@ -51,9 +51,9 @@ matrix:
         - python -m pip install --upgrade pip
         - pip install --upgrade pytest
         - pip install codecov
-      env: TEST_SUITE="$PYTEST"
-    - os: osx
       env: TEST_SUITE="./etc/release/release.sh"
+    - os: osx
+      env: TEST_SUITE="$PYTEST"      
       language: generic
       python:
       osx_image: xcode7.3
