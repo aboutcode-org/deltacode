@@ -1,19 +1,8 @@
-language: python
-
-python:
-  - 2.7.13
-
-# Use a matrix of TEST_SUITE variables to distribute tests to several machines
-# Use a global PYTEST variable to run all of the tests in a uniform fashion
-env:
   global:
     - PYTEST="bin/py.test -n 2 -vvs"
-
   matrix:
     - TEST_SUITE="$PYTEST"
     - TEST_SUITE="./etc/release/release.sh"
-
-
 # Travis does not offer OSX with arbitrary python versions (like 2.7.13 above)
 # So, you can not simply have the following section in your build matrix:
 # os:
@@ -21,7 +10,6 @@ env:
 #   - osx
 # Instead, you have to include OSX entries into the build matrix manually.
 # In particular, this means specifying the environment variables again.
-
 # The following was adapted from here:
 #   https://docs.travis-ci.com/user/multi-os/
 # Set TEST_SUITE in `env:` so that the `script:` section below works
@@ -29,29 +17,10 @@ env:
 # Set `python:` (to empty) to clear it from the travis-ci web interface
 # Set `osx_image: xcode7.3` to pin OSX and Python versions, see here:
 #   https://docs.travis-ci.com/user/osx-ci-environment/
-
-#The process of adding windows build to travis is adopted from the below url
-# https://blog.travis-ci.com/2019-08-07-extensive-python-testing-on-travis-ci
 matrix:
   include:
-    - os: windows  # Windows 10.0.17134 N/A Build 17134
-      language: shell  # 'language: python' is an error on Travis CI Windows
-      before_install:
-        - choco install python2 -x86
-        - ln -s /c/Python27/python.exe /c/Python27/python2.7.exe
-      env:
-        - PATH="/c/Python27:/c/Python27/Scripts:$PATH" 
-        - TEST_SUITE="$PYTEST"
-    - os: windows  # Windows 10.0.17134 N/A Build 17134
-      language: shell  # 'language: python' is an error on Travis CI Windows
-      before_install:
-        - choco install python2 -x86
-        - ln -s /c/Python27/python.exe /c/Python27/python2.7.exe
-      env:
-        - PATH="/c/Python27:/c/Python27/Scripts:$PATH" 
-        - TEST_SUITE="./etc/release/release.sh"
     - os: osx
-      env: TEST_SUITE="$PYTEST"      
+      env: TEST_SUITE="$PYTEST"
       language: generic
       python:
       osx_image: xcode7.3
@@ -60,21 +29,24 @@ matrix:
       language: generic
       python:
       osx_image: xcode7.3
+    - os: windows
+      language: shell
+      before_install:
+        - choco install python2 -x86
+        - ln -s /c/Python27/python.exe /c/Python27/python2.7.exe
+      env:
+        - PATH="/c/Python27:/c/Python27/Scripts:$PATH"
+        - TEST_SUITE="$PYTEST"
+    - os: windows
+      language: shell
+      before_install:
+        - choco install python2 -x86
+        - ln -s /c/Python27/python.exe /c/Python27/python2.7.exe
+      env:
+        - PATH="/c/Python27:/c/Python27/Scripts:$PATH"
+        - TEST_SUITE="./etc/release/release.sh"
+
+
 
 install:
   - ./configure
-
-
-script:
-  - $TEST_SUITE
-
-notifications:
-  irc:
-    channels:
-      - "chat.freenode.net#aboutcode"
-  on_sucess: change
-  on_failure: always
-  use_notice: true
-  skip_join: true
-  template:
-    - "%{repository_slug}#%{build_number} (%{branch}-%{commit}:%{author})-%{message}- %{build_url}"
