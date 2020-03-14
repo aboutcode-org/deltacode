@@ -38,6 +38,7 @@ matrix:
       language: shell  # 'language: python' is an error on Travis CI Windows
       before_install:
         - choco install python2
+        - ln -s /c/Python27/python.exe /c/Python27/python2.7.exe
       env:
         - PATH=/c/Python27:/c/Python27/Scripts:$PATH 
         - TEST_SUITE="$PYTEST"
@@ -45,6 +46,7 @@ matrix:
       language: shell  # 'language: python' is an error on Travis CI Windows
       before_install:
         - choco install python2
+        - ln -s /c/Python27/python.exe /c/Python27/python2.7.exe
       env:
         - PATH=/c/Python27:/c/Python27/Scripts:$PATH 
         - TEST_SUITE="./etc/release/release.sh"
