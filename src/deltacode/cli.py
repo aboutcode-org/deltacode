@@ -27,6 +27,8 @@ from __future__ import absolute_import
 
 from collections import OrderedDict
 
+from datetime import datetime
+
 import click
 import simplejson
 
@@ -63,7 +65,7 @@ def print_version(ctx, param, value):
     click.echo('DeltaCode version ' + __version__)
     ctx.exit()
 
-def print_summary(new,old,deltas_count):
+def print_summary(deltacode, new, old, deltas_count, start_timestamp, end_timestamp):
     click.echo(click.style('Delta check done.', fg='green'))
     if deltas_count == 0:
         click.echo('Summary:      The two codebases are identical.')
@@ -71,7 +73,12 @@ def print_summary(new,old,deltas_count):
         click.echo('Summary:      The two codebases differ.')
     click.echo('New file:     {}'.format(new))
     click.echo('Old file:     {}'.format(old))
-    click.echo('Deltas count: {}'.format(deltas_count))
+    click.echo('Delta counts: ')
+    for st in deltacode.stats.to_dict():
+        click.echo('  {}: {}'.format(str(st),deltacode.stats.to_dict()[st]))
+    click.echo('Timings: ')
+    click.echo('  delta_start: {}'.format(start_timestamp))
+    click.echo('  delta_end:   {}'.format(end_timestamp))
     click.echo(click.style('For more information check out the json file.', fg='green'))
 
 @click.command()
@@ -96,12 +103,18 @@ def cli(new, old, json_file, all_delta_types):
         ('--all-delta-types', all_delta_types)
     ])
 
+    # get time before delta
+    start_timestamp = datetime.now()
+
     # do the delta
     deltacode = DeltaCode(new, old, options)
+
+    # get time after delta
+    end_timestamp = datetime.now()
 
     # generate JSON output
     write_json(deltacode, json_file, all_delta_types)
 
     # show limited delta status
     deltas_count = len([d for d in deltas(deltacode, all_delta_types)])
-    print_summary(new,old,deltas_count)
+    print_summary(deltacode, new, old, deltas_count, start_timestamp, end_timestamp)
