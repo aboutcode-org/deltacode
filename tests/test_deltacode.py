@@ -1645,7 +1645,7 @@ class TestDeltacode(FileBasedTesting):
         result_file = self.get_temp_file('json')
         args = ['--new', new_file, '--old', old_file, '--json-file', result_file, '--all-delta-types']
         test_utils.run_scan_click(args)
-        test_utils.check_json_scan(self.get_test_loc('deltacode/coala-expected-result.json'), result_file, regen=True)
+        test_utils.check_json_scan(self.get_test_loc('deltacode/coala-expected-result.json'), result_file, regen=False)
 
     def test_similarity_matching_2(self):
         old_file = self.get_test_loc('deltacode/sugar-0.108.0-old.json')
@@ -1653,7 +1653,7 @@ class TestDeltacode(FileBasedTesting):
         result_file = self.get_temp_file('json')
         args = ['--new', new_file, '--old', old_file, '--json-file', result_file, '--all-delta-types']
         test_utils.run_scan_click(args)
-        test_utils.check_json_scan(self.get_test_loc('deltacode/sugar-expected.json'), result_file, regen=True)
+        test_utils.check_json_scan(self.get_test_loc('deltacode/sugar-expected.json'), result_file, regen=False)
 
     def test_non_similarity_matching_1(self):
         old_file = self.get_test_loc('deltacode/coala-0.7.0-old.json')
@@ -1661,4 +1661,4 @@ class TestDeltacode(FileBasedTesting):
         result_file = self.get_temp_file('json')
         args = ['--new', new_file, '--old', old_file, '--json-file', result_file, '--all-delta-types']
         test_utils.run_scan_click(args)
-        test_utils.check_json_scan(self.get_test_loc('deltacode/sugar-coala-expected.json'), result_file, regen=True)
+        test_utils.check_json_scan(self.get_test_loc('deltacode/sugar-coala-expected.json'), result_file, regen=False)

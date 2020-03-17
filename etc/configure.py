@@ -508,7 +508,6 @@ if __name__ == '__main__':
             print('ERROR: unknown option: %(arg0)s' % locals())
             print(usage)
             sys.exit(1)
-
     sys.path.insert(0, root_dir)
     bin_dir = os.path.join(root_dir, 'bin')
     standard_python = sys.executable
@@ -565,7 +564,6 @@ if __name__ == '__main__':
         create_virtualenv = create_virtualenv_py2
     else:
         create_virtualenv = create_virtualenv_py3
-
     # Finally execute our three steps: venv, install and scripts
     if not os.path.exists(configured_python):
         create_virtualenv(standard_python, root_dir, thirdparty_dirs, quiet=quiet)

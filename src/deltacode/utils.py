@@ -40,6 +40,14 @@ def update_from_license_info(delta, unique_categories):
     one or more appropriate categories to its 'factors' attribute if there has
     been a license change and depending on the nature of that change.
     """
+
+    if delta.new_file:
+        if delta.new_file.has_licenses():
+            delta.add_license()
+    if delta.old_file:
+        if delta.old_file.has_licenses():
+            delta.add_license()
+
     if delta.is_added():
         update_added_from_license_info(delta, unique_categories)
 
@@ -121,6 +129,12 @@ def update_from_copyright_info(delta):
     one or more appropriate categories to its 'factors' attribute if there has
     been a copyright change and depending on the nature of that change.
     """
+    if delta.new_file:
+        if delta.new_file.has_copyrights():
+            delta.add_copyright()
+    if delta.old_file:
+        if delta.old_file.has_copyrights():
+            delta.add_copyright()
     if delta.is_added():
         update_added_from_copyright_info(delta)
 

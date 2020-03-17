@@ -283,9 +283,17 @@ class Delta(object):
     def __init__(self, score=0, new_file=None, old_file=None):
         self.new_file = new_file if new_file else None
         self.old_file = old_file if old_file else None
+        self.has_license = False
+        self.has_copyright = False
         self.factors = []
         self.score = score
         self.status = ''
+    
+    def add_license(self) :
+        self.has_license = True
+
+    def add_copyright(self):
+        self.has_copyright = True    
 
     def update(self, score=0, factor=''):
         """
