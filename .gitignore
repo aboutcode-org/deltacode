@@ -37,7 +37,12 @@ htmlcov
 .vscode
 
 # Sphinx
-docs/_build
+/docs/_build
+/docs/build
+/docs/bin
+/docs/include
+/docs/share
+/docs/lib
 
 .DS_Store
 *~
