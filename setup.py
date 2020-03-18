@@ -135,7 +135,7 @@ setup(
         'click',
         'scancode-toolkit >= 3.0',
         'unicodecsv',
-        'license_expression'
+        'license_expression',
     ],
 
     entry_points={
