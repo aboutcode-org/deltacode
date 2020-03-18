@@ -47,3 +47,12 @@ docs/_build
 *.bak
 /.cache/
 /.settings/
+
+#package-url
+/.eggs
+/.cache
+/src/packageurl_python.egg-info
+pip-selfcheck.json
+pyvenv.cfg
+.Python
+/.tox
