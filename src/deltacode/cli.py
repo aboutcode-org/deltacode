@@ -34,7 +34,6 @@ from deltacode import DeltaCode
 from deltacode import __version__
 from deltacode.utils import deltas, get_notice, collect_errors
 
-
 def write_json(deltacode, outfile, all_delta_types=False):
     """
     Using the DeltaCode object, create a .json file containing the primary
