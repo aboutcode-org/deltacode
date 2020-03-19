@@ -42,7 +42,7 @@ class Scan(object):
             path = ''
 
         self.errors = []
-
+        
         if not self.is_valid_scan(path):
             self.path = ''
             self.files_count = 0
@@ -53,6 +53,30 @@ class Scan(object):
             self.files_count = self.get_files_count(path)
             self.files = self.load_files(path)
             self.options = self.get_options(path)
+            
+    def get_scanned_options(self):
+        try:
+            scan = json.loads(open(self.path).read())
+        except IOError:
+            return
+        scan = json.loads(open(self.path).read())
+        scanned_options = []
+        headers = scan.get('headers')
+        if headers:
+            headers = headers[0].get('options')
+            has_copyright = headers.get('--copyright')
+            has_license = headers.get('--license')
+            has_info = headers.get('--info')
+            has_package = headers.get('--package')
+            if has_copyright:
+                scanned_options.append('--copyright')
+            if has_info:
+                scanned_options.append('--info')
+            if has_license:
+                scanned_options.append('--license')
+            if has_package:
+                scanned_options.append('--package')
+            return ' '.join(scanned_options)
 
     def get_options(self, path):
         """

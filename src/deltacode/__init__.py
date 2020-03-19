@@ -51,11 +51,14 @@ class DeltaCode(object):
         self.new = Scan(new_path)
         self.old = Scan(old_path)
         self.options = options
+        self.scannedOptions = dict({'--new':str(),'--old':str()})
         self.deltas = []
         self.errors = []
         self.stats = Stat(self.new.files_count, self.old.files_count)
 
         if self.new.path != '' and self.old.path != '':
+            self.scannedOptions['--new'] = self.new.get_scanned_options()
+            self.scannedOptions['--old'] = self.old.get_scanned_options()
             self.determine_delta()
             self.determine_moved()
             self.license_diff()
