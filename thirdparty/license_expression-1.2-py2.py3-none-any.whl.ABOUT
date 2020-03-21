@@ -16,4 +16,4 @@ notice_file: license_expression-0.99-py2.py3-none-any.whl.NOTICE
 notice_url: https://github.com/nexB/license-expression/blob/master/NOTICE
 owner: nexB
 owner_url: http://www.nexb.com/
-version: '0.99'
+version: '1.2'
