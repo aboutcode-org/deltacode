@@ -1,6 +1,6 @@
 about_resource: packageurl_python-0.8.5-py2.py3-none-any.whl
 name: packageurl-python
-version: 0.8.5
+version: 0.8.7
 download_url: https://files.pythonhosted.org/packages/24/33/1bba8e898fa25b9ef315066bd790620b36af214097e2fcbfb4d34afce524/packageurl_python-0.8.5-py2.py3-none-any.whl#sha256=f7805d41d6d7e285295451deb2d647e3e285fbfd8ed7e87effb1ccf3ad95b340
 description: Python implementation of the package url spec
 homepage_url: https://github.com/package-url/packageurl-python
