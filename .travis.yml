@@ -1,7 +1,7 @@
 language: python
 
 python:
-  - 2.7.13
+  - 3.6
 
 # Use a matrix of TEST_SUITE variables to distribute tests to several machines
 # Use a global PYTEST variable to run all of the tests in a uniform fashion
@@ -32,15 +32,17 @@ env:
 matrix:
   include:
     - os: osx
-      env: TEST_SUITE="$PYTEST"
-      language: generic
-      python:
-      osx_image: xcode7.3
+      osx_iamge: xcode11.2
+      env: 
+      - TEST_SUITE="$PYTEST"
+      language: shell
+      python: 3.6
     - os: osx
-      env: TEST_SUITE="./etc/release/release.sh"
-      language: generic
-      python:
-      osx_image: xcode7.3
+      osx_image: xcode11.2
+      env:
+      - TEST_SUITE="./etc/release/release.sh"
+      language: shell
+      python: 3.6
 
 install:
   - ./configure
@@ -48,6 +50,7 @@ install:
 script:
   - $TEST_SUITE
 
+  
 notifications:
   irc:
     channels:

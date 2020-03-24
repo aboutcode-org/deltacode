@@ -17,6 +17,7 @@
 /Include
 /tcl/
 /local
+/lib64
 
 # Installer logs
 pip-log.txt

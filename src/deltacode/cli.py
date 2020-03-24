@@ -29,6 +29,7 @@ from collections import OrderedDict
 
 import click
 import simplejson
+import json
 
 from deltacode import DeltaCode
 from deltacode import __version__
@@ -49,7 +50,7 @@ def write_json(deltacode, outfile, all_delta_types=False):
         ('deltacode_errors', collect_errors(deltacode)),
         ('deltas_count', len([d for d in deltas(deltacode, all_delta_types)])),
         ('delta_stats', deltacode.stats.to_dict()),
-        ('deltas', deltas(deltacode, all_delta_types))
+        ('deltas',deltas(deltacode, all_delta_types))
     ])
 
     # TODO: add toggle for pretty printing
@@ -69,7 +70,7 @@ def print_version(ctx, param, value):
 @click.option('--version', is_flag=True, is_eager=True, expose_value=False, callback=print_version, help='Show the version and exit.')
 @click.option('-n', '--new', required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Identify the path to the "new" scan file')
 @click.option('-o', '--old', required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Identify the path to the "old" scan file')
-@click.option('-j', '--json-file', prompt=False, default='-', type=click.File(mode='wb', lazy=False), help='Identify the path to the .json output file')
+@click.option('-j', '--json-file', prompt=False, default='-', type=click.File(mode='w', lazy=False), help='Identify the path to the .json output file')
 @click.option('-a', '--all-delta-types', is_flag=True, help="Include unmodified files as well as all changed files in the .json output.  If not selected, only changed files are included.")
 def cli(new, old, json_file, all_delta_types):
     """
