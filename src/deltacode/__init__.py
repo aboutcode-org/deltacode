@@ -30,6 +30,7 @@ from collections import OrderedDict
 from deltacode.models import File
 from deltacode.models import Scan
 from deltacode import utils
+from scancode.resource import VirtualCodebase
 
 
 from pkg_resources import get_distribution, DistributionNotFound
@@ -48,14 +49,25 @@ class DeltaCode(object):
     the form of File objects) contained in those scans.
     """
     def __init__(self, new_path, old_path, options):
-        self.new = Scan(new_path)
-        self.old = Scan(old_path)
+        if new_path and old_path:
+            self.codebase1 = VirtualCodebase(new_path)
+            self.codebase2 = VirtualCodebase(old_path)
+        self.new_files_count = 0 #keeps the count of the new file
+        self.old_files_count = 0 #keeps the count of old files
+        self.new_files = [] # a list of [[new file1:Original path],[new file2:Original Path],...]
+        self.old_files = [] # a list of [[old file1:Original path],[old file2:Original Path],...]
+        self.new_files_fingerprint = dict() # map of { {new_file1:fingerprint},{new_file2:fingerprint},...} it will be needed when we need the fingerprints
+        self.old_files_fingerprint = dict() # map of { {old_file1:fingerprint},{old_file2:fingerprint},...}
         self.options = options
         self.deltas = []
         self.errors = []
-        self.stats = Stat(self.new.files_count, self.old.files_count)
+        self.enumerate_files_from_codebases()
+        self.stats = Stat(self.new_files_count, self.old_files_count)        
+        
+        if new_path != None and old_path != None:
 
-        if self.new.path != '' and self.old.path != '':
+            self.new_files_errors = []
+            self.old_files_errors = []
             self.determine_delta()
             self.determine_moved()
             self.license_diff()
@@ -67,6 +79,46 @@ class DeltaCode(object):
             self.deltas.sort(key=lambda Delta: Delta.factors, reverse=False)
             self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
 
+    def get_files(self,codebase,is_new):
+        """
+        Walk through the codebase, then generate the resources it(including all files and its directories)
+        then we enumerate over this generated codebase to get file, and directories as (obj)
+        Now during the time of enumeration we append files in the self.new_files list and incremants out self.new_files_count
+        Similarly for old_files.
+        Now , we also maintain a map which maps from object path to its fingerprint.
+        This map will be required when we calculate the hamming distances and compare similarity.
+        """
+        resources = codebase.walk_filtered(topdown=True)
+        for i,obj in enumerate(resources):            
+            if is_new:
+                if obj.is_file:
+                    # append in the new_files
+                    self.new_files.append([obj,''])
+                    # increment the new files count
+                    self.new_files_count += 1
+                    try :
+                        self.new_files_fingerprint[obj.path] = obj.fingerprint
+                    except AttributeError:
+                        self.new_files_fingerprint[obj.path] = None
+            else:
+                if obj.is_file:
+                    # append in the old files
+                    self.old_files.append([obj,''])
+                    # increment the old files count
+                    self.old_files_count += 1
+                    try:
+                        self.old_files_fingerprint[obj.path] = obj.fingerprint
+                    except AttributeError:
+                        self.old_files_fingerprint[obj.path] = None
+
+    def enumerate_files_from_codebases(self):
+       """
+       An method which call the utility function get_files for generating the codebase
+       """
+       self.get_files(self.codebase1,is_new = True)
+       self.get_files(self.codebase2,is_new = False)
+        
+
     def align_scans(self):
         """
         Seek to align the paths of a pair of files (File objects) in the pair
@@ -75,12 +127,15 @@ class DeltaCode(object):
         which calls utils.align_trees().
         """
         try:
-            utils.fix_trees(self.new.files, self.old.files)
+            utils.fix_trees(self.new_files, self.old_files)
         except utils.AlignmentException:
-            for f in self.new.files:
-                f.original_path = f.path
-            for f in self.old.files:
-                f.original_path = f.path
+            # self.new_files is a list of type [[ScannedResourceObject,originalPath],...]
+            # initially all original path are set to empty string
+            # so this part actually sets the original paths 
+            for f in self.new_files:
+                f[1] = f[0].path
+            for f in self.old_files:
+                f[1] = f[0].path
 
     def similarity(self):
         """
@@ -93,12 +148,13 @@ class DeltaCode(object):
         for delta in self.deltas:
             if delta.new_file == None or delta.old_file == None:
                 continue
-            new_fingerprint = delta.new_file.fingerprint
-            old_fingerprint = delta.old_file.fingerprint
+            # this extracts the fingerprint corresponding to the particular file path
+            new_fingerprint = self.new_files_fingerprint[delta.new_file.path]
+            old_fingerprint = self.old_files_fingerprint[delta.old_file.path]
             if new_fingerprint == None or old_fingerprint == None:
                 continue
-            new_fingerprint = utils.bitarray_from_hex(delta.new_file.fingerprint)
-            old_fingerprint = utils.bitarray_from_hex(delta.old_file.fingerprint)
+            new_fingerprint = utils.bitarray_from_hex(self.new_files_fingerprint[delta.new_file.path])
+            old_fingerprint = utils.bitarray_from_hex(self.old_files_fingerprint[delta.old_file.path])
             hamming_distance = utils.hamming_distance(new_fingerprint, old_fingerprint)
             if hamming_distance > 0 and hamming_distance <= SIMILARITY_LIMIT:
                 delta.score += hamming_distance
@@ -112,8 +168,9 @@ class DeltaCode(object):
         """
         # align scan and create our index
         self.align_scans()
-        new_index = self.new.index_files()
-        old_index = self.old.index_files()
+        # returns file index wrt to old and new files
+        new_index = utils.index_files(self.new_files)
+        old_index = utils.index_files(self.old_files)
 
         # gathering counts to ensure no files lost or missing from our 'deltas' set
         new_visited, old_visited = 0, 0
@@ -172,12 +229,12 @@ class DeltaCode(object):
                     continue
 
         # make sure everything is accounted for
-        if new_visited != self.new.files_count:
+        if new_visited != self.new_files_count:
             self.errors.append(
                 'DeltaCode Warning: new_visited({}) != new_total({}). Assuming old scancode format.'.format(new_visited, self.new.files_count)
             )
 
-        if old_visited != self.old.files_count:
+        if old_visited != self.old_files_count:
             self.errors.append(
                 'DeltaCode Warning: old_visited({}) != old_total({}). Assuming old scancode format.'.format(old_visited, self.old.files_count)
             )
@@ -323,7 +380,99 @@ class Delta(object):
         if self.new_file and not self.old_file:
             return True
 
-    def to_dict(self):
+    def copyrights_to_dict(self,file):
+        """
+        Given a Copyright object, return an OrderedDict with the full
+        set of fields from the ScanCode 'copyrights' value.
+        """
+        copyrightC = []
+        try :
+            copyrightC = file.copyrights
+        except AttributeError:
+            # arises when the ScannedResource do not have any license attribute
+            return []
+        if len(copyrightC) == 0:
+            return []
+        if isinstance(copyrightC[0],OrderedDict):
+            # all the copyright are in correct format
+            all_copyrights = []
+            for i in range(len(copyrightC)):
+                # we iterate over all the copyrights
+                statements = copyrightC[i].get("statements")
+                holders = copyrightC[i].get("holders")
+                d = OrderedDict([
+                    ('statements', statements),
+                    ('holders', holders)
+                ])
+                all_copyrights.append(d)
+
+            return all_copyrights
+
+    def licenses_to_dict(self,file):
+        """
+        Given a License object, return an OrderedDict with the full
+        set of fields from the ScanCode 'license' value.
+        """
+        licenseL = []
+        try:
+            licenseL = file.license
+        except AttributeError:
+            # arises when the ScannedResource do not have any license attribute
+            return []
+
+        if len(licenseL) == 0:
+            return []
+        if isinstance(licenseL[0],OrderedDict):
+            # the licenses are in the correct format
+            all_licenses = []
+            for i in range(len(licenseL)):
+                # we iterate over all the licenses
+                d = OrderedDict([
+                    ('key', licenseL[i]["key"]),
+                    ('score', licenseL[i]["score"]),
+                    ('short_name', licenseL[i]["short_name"]),
+                    ('category', licenseL[i]["category"]),
+                    ('owner', licenseL[i]["owner"])
+                ])
+                all_licenses.append(d)
+            return all_licenses
+
+    def new_file_to_dict(self,deltacode):
+        # if self.new_file is not empty we return the new file attributes
+        if self.new_file:
+            return OrderedDict([
+                ("path",self.new_file.path),
+                ("type",self.new_file.type),
+                ("name",self.new_file.name),
+                ("size",self.new_file.size),
+                ("sha1",self.new_file.sha1),
+                ("fingerprint",deltacode.new_files_fingerprint[self.new_file.path]),
+                ("original_path",self.new_file.path),
+                # since license itself has many sub fields so we obtain it from another utility function
+                ("licenses",self.licenses_to_dict(self.new_file)),
+                # since copyright itself has many sub fields so we obtain it from another utility function
+                ("copyrights",self.copyrights_to_dict(self.new_file))          
+            ])
+        
+    
+    def old_file_to_dict(self,deltacode):
+        if self.old_file :
+            return OrderedDict([
+                ("path",self.old_file.path),
+                ("type",self.old_file.type),
+                ("name",self.old_file.name),
+                ("size",self.old_file.size),
+                ("sha1",self.old_file.sha1),
+                ("fingerprint",deltacode.old_files_fingerprint[self.old_file.path]),
+                ("original_path",self.old_file.path),
+                # since license itself has many sub fields so we obtain it from another utility function
+                ("licenses",self.licenses_to_dict(self.old_file)),
+                # since copyright itself has many sub fields so we obtain it from another utility function
+                ("copyrights",self.copyrights_to_dict(self.old_file))       
+            ])
+
+
+    def to_dict(self,deltacode):
         """
         Return an OrderedDict comprising the 'factors', 'score' and new and old
         'path' attributes of the object.
@@ -342,8 +491,10 @@ class Delta(object):
             ('status', self.status),
             ('factors', self.factors),
             ('score', self.score),
-            ('new', new_file),
-            ('old', old_file),
+            # receives the detail of the new file
+            ('new', self.new_file_to_dict(deltacode)),
+            # receives the details of the old file 
+            ('old', self.old_file_to_dict(deltacode)),
         ])
 
 class Stat(object):

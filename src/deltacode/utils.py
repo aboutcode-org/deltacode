@@ -45,7 +45,7 @@ def update_from_license_info(delta, unique_categories):
 
     if delta.is_modified():
         update_modified_from_license_info(delta, unique_categories)
-
+    
 
 def update_added_from_license_info(delta, unique_categories):
     """
@@ -53,20 +53,25 @@ def update_added_from_license_info(delta, unique_categories):
     one or more categories to its 'factors' attribute if there has
     been a license change.
     """
-    new_licenses = delta.new_file.licenses or []
-    new_categories = set(license.category for license in new_licenses)
+    try:
+        new_licenses = delta.new_file.licenses or []
 
-    if delta.new_file.has_licenses():
-        delta.update(20, 'license info added')
+        new_categories = set(license['category'] for license in new_licenses)
 
-        for category in new_categories:
-            # no license ==> 'Copyleft Limited'or higher
-            if category in unique_categories:
-                delta.update(20, category.lower() + ' added')
-            # no license ==> 'Permissive' or 'Public Domain'
-            else:
-                delta.update(0, category.lower() + ' added')
-        return
+        if delta.new_file.licenses:
+            delta.update(20, 'license info added')
+
+            for category in new_categories:
+                # no license ==> 'Copyleft Limited'or higher
+                if category in unique_categories:
+                    delta.update(20, category.lower() + ' added')
+                # no license ==> 'Permissive' or 'Public Domain'
+                else:
+                    delta.update(0, category.lower() + ' added')
+            return
+    except AttributeError :
+        # this situation arises when the ScannedResource object has no license field for it
+        pass
 
 
 def update_modified_from_license_info(delta, unique_categories):
@@ -75,45 +80,48 @@ def update_modified_from_license_info(delta, unique_categories):
     one or more categories to its 'factors' attribute if there has
     been a license change.
     """
-    if not delta.new_file.has_licenses() and delta.old_file.has_licenses():
-        delta.update(15, 'license info removed')
-        return
+    try:
+        if not delta.new_file.licenses and delta.old_file.licenses:
+            delta.update(15, 'license info removed')
+            return
 
-    new_licenses = delta.new_file.licenses or []
-    old_licenses = delta.old_file.licenses or []
+        new_licenses = delta.new_file.licenses or []
+        old_licenses = delta.old_file.licenses or []
+        # print("success")
+        new_categories = set(license['category'] for license in new_licenses)
+        old_categories = set(license['category'] for license in old_licenses)
 
-    new_categories = set(license.category for license in new_licenses)
-    old_categories = set(license.category for license in old_licenses)
+        if delta.new_file.licenses and not delta.old_file.licenses:
+            delta.update(20, 'license info added')
 
-    if delta.new_file.has_licenses() and not delta.old_file.has_licenses():
-        delta.update(20, 'license info added')
+            for category in new_categories:
+                # no license ==> 'Copyleft Limited'or higher
+                if category in unique_categories:
+                    delta.update(20, category.lower() + ' added')
+                # no license ==> 'Permissive' or 'Public Domain'
+                else:
+                    delta.update(0, category.lower() + ' added')
+            return
 
-        for category in new_categories:
-            # no license ==> 'Copyleft Limited'or higher
-            if category in unique_categories:
-                delta.update(20, category.lower() + ' added')
-            # no license ==> 'Permissive' or 'Public Domain'
-            else:
-                delta.update(0, category.lower() + ' added')
-        return
+        new_keys = set(license.key for license in new_licenses)
+        old_keys = set(license.key for license in old_licenses)
 
-    new_keys = set(license.key for license in new_licenses)
-    old_keys = set(license.key for license in old_licenses)
-
-    if new_keys != old_keys:
-        delta.update(10, 'license change')
-        for category in new_categories - old_categories:
-            unique_categories_in_old_file = len(old_categories & unique_categories)
-            # 'Permissive' or 'Public Domain' ==> 'Copyleft Limited' or higher
-            if unique_categories_in_old_file == 0 and category in unique_categories:
-                delta.update(20, category.lower() + ' added')
-            # at least 1 category in the old file was 'Copyleft Limited' or higher ==> 'Copyleft Limited' or higher
-            elif unique_categories_in_old_file != 0 and category in unique_categories:
-                delta.update(10, category.lower() + ' added')
-            # 'Permissive' or 'Public Domain' ==> 'Permissive' or 'Public Domain' if not in old_categories
-            elif category not in unique_categories:
-                delta.update(0, category.lower() + ' added')
-
+        if new_keys != old_keys:
+            delta.update(10, 'license change')
+            for category in new_categories - old_categories:
+                unique_categories_in_old_file = len(old_categories & unique_categories)
+                # 'Permissive' or 'Public Domain' ==> 'Copyleft Limited' or higher
+                if unique_categories_in_old_file == 0 and category in unique_categories:
+                    delta.update(20, category.lower() + ' added')
+                # at least 1 category in the old file was 'Copyleft Limited' or higher ==> 'Copyleft Limited' or higher
+                elif unique_categories_in_old_file != 0 and category in unique_categories:
+                    delta.update(10, category.lower() + ' added')
+                # 'Permissive' or 'Public Domain' ==> 'Permissive' or 'Public Domain' if not in old_categories
+                elif category not in unique_categories:
+                    delta.update(0, category.lower() + ' added')
+    except AttributeError:
+        # this situation arises when the ScannedResource object has no license field for it
+        pass
 
 def update_from_copyright_info(delta):
     """
@@ -134,9 +142,13 @@ def update_added_from_copyright_info(delta):
     one or more categories to its 'factors' attribute if there has
     been a copyright change.
     """
-    if delta.new_file.has_copyrights():
-        delta.update(10, 'copyright info added')
-        return
+    try:
+        if delta.new_file.copyrights:
+            delta.update(10, 'copyright info added')
+            return
+    except AttributeError:
+        # this situation arises when the ScannedResource object has no copyright field for it
+        pass
 
 
 def update_modified_from_copyright_info(delta):
@@ -145,27 +157,31 @@ def update_modified_from_copyright_info(delta):
     one or more categories to its 'factors' attribute if there has
     been a copyright change.
     """
-    new_copyrights = delta.new_file.copyrights or []
-    old_copyrights = delta.old_file.copyrights or []
+    try:
+        new_copyrights = delta.new_file.copyrights or []
+        old_copyrights = delta.old_file.copyrights or []
 
-    if delta.new_file.has_copyrights() and not delta.old_file.has_copyrights():
-        delta.update(10, 'copyright info added')
-        return
-    if not delta.new_file.has_copyrights() and delta.old_file.has_copyrights():
-        delta.update(10, 'copyright info removed')
-        return
+        if delta.new_file.copyrights and not delta.old_file.copyrights:
+            delta.update(10, 'copyright info added')
+            return
+        if not delta.new_file.copyrights and delta.old_file.copyrights:
+            delta.update(10, 'copyright info removed')
+            return
 
-    new_holders = set(holder for copyright in new_copyrights for holder in copyright.holders)
-    old_holders = set(holder for copyright in old_copyrights for holder in copyright.holders)
+        new_holders = set(holder for copyright in new_copyrights for holder in copyright['holders'])
+        old_holders = set(holder for copyright in old_copyrights for holder in copyright['holders'])
 
-    if new_holders != old_holders:
-        delta.update(5, 'copyright change')
+        if new_holders != old_holders:
+            delta.update(5, 'copyright change')
 
+    except AttributeError:
+        # this situation arises when the ScannedResource object has no copyright field for it
+        pass
 
 def collect_errors(deltacode):
     errors = []
-    errors.extend(deltacode.new.errors)
-    errors.extend(deltacode.old.errors)
+    errors.extend(deltacode.new_files_errors)
+    errors.extend(deltacode.old_files_errors)
     errors.extend(deltacode.errors)
 
     return errors
@@ -179,9 +195,9 @@ def deltas(deltacode, all_delta_types=False):
     """
     for delta in deltacode.deltas:
         if all_delta_types is True:
-            yield delta.to_dict()
+            yield delta.to_dict(deltacode)
         elif not delta.is_unmodified():
-            yield delta.to_dict()
+            yield delta.to_dict(deltacode)
 
 def calculate_percent(value, total):
     """
@@ -203,29 +219,28 @@ def align_trees(a_files, b_files):
     respectively from a File path in 'a' or a File path in 'b' to obtain the
     equal paths for two files that are the same in 'a' and 'b'.
     """
-    # we need to find one uniquly named file that exists in 'a' and 'b'.
+    # we need to find one uniquely named file that exists in 'a' and 'b'.
     a_names = defaultdict(list)
     for a_file in a_files:
-        a_names[a_file.name].append(a_file)
+        a_names[a_file[0].name].append(a_file)
     a_uniques = {k: v[0] for k, v in a_names.items() if len(v) == 1}
 
     b_names = defaultdict(list)
     for b_file in b_files:
-        b_names[b_file.name].append(b_file)
+        b_names[b_file[0].name].append(b_file)
     b_uniques = {k: v[0] for k, v in b_names.items() if len(v) == 1}
-
     candidate_found = False
     for a_name, a_unique in a_uniques.items():
         if a_name not in b_uniques:
             continue
         b_unique = b_uniques.get(a_name)
-        if a_unique and a_unique.sha1 == b_unique.sha1:
+        if a_unique and a_unique[0].sha1 == b_unique[0].sha1:
             candidate_found = True
             break
 
     if not candidate_found:
         raise AlignmentException
-    if a_unique.path == b_unique.path:
+    if a_unique[0].path == b_unique[0].path:
         return 0, 0
 
     common_suffix, common_segments = paths.common_path_suffix(a_unique.path, b_unique.path)
@@ -244,12 +259,32 @@ def fix_trees(a_files, b_files):
     """
     a_offset, b_offset = align_trees(a_files, b_files)
     for a_file in a_files:
-        a_file.original_path = a_file.path
-        a_file.path = '/'.join(paths.split(a_file.path)[a_offset:])
+        a_file[1] = a_file[0].path
+        a_file[0].path = '/'.join(paths.split(a_file[0].path)[a_offset:])
 
     for b_file in b_files:
-        b_file.original_path = b_file.path
-        b_file.path = '/'.join(paths.split(b_file.path)[b_offset:])
+        b_file[1] = b_file[0].path
+        b_file[0].path = '/'.join(paths.split(b_file[0].path)[b_offset:])
+
+def index_files(files ,index_key = 'path'):
+    """
+    Return a dictionary of a list of File objects indexed by the key passed via
+    the 'key' variable.  If no 'key' variable is passed, the dict is
+    keyed by the File object's 'path' variable.  This function does not
+    currently catch the AttributeError exception.
+    """
+    index = {}
+
+    for f in files:
+        key = getattr(f[0], index_key)
+
+        if index.get(key) is None:
+            index[key] = []
+            index[key].append(f[0])
+        else:
+            index[key].append(f[0])
+
+    return index
 
 
 def check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas):
