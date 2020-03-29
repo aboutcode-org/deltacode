@@ -37,6 +37,7 @@ import deltacode
 from deltacode import DeltaCode
 from deltacode import models
 from deltacode import test_utils
+from scancode.resource import VirtualCodebase
 
 class TestDeltacode(FileBasedTesting):
 
@@ -185,7 +186,11 @@ class TestDeltacode(FileBasedTesting):
         assert result.deltas == []
 
     def test_Delta_one_None(self):
-        file_obj = models.File({'path': 'fake/path.txt'})
+        try:
+            file_obj = VirtualCodebase('fake/path.txt')
+        except IOError:
+            file_obj = None
+            pass
 
         first_None = deltacode.Delta(10, None, file_obj)
         second_None = deltacode.Delta(100, file_obj, None)
@@ -233,7 +238,7 @@ class TestDeltacode(FileBasedTesting):
         ])
 
         assert first_None.to_dict(deltacode) == expected_first
-        # assert second_None.to_dict(deltacode) == expected_second
+        assert second_None.to_dict(deltacode) == expected_second
 
     def test_Delta_None_files(self):
         delta = deltacode.Delta(None, None, None)
@@ -715,7 +720,7 @@ class TestDeltacode(FileBasedTesting):
         assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [20]
         assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
         assert [d.status for d in deltas_object if d.new_file.path == 'path.txt'] == ['modified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+        assert [d.to_dict(deltacode_object).get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
             OrderedDict([
                 ('key', 'mit'),
                 ('score', 95.0),
@@ -724,7 +729,7 @@ class TestDeltacode(FileBasedTesting):
                 ('owner', None)
             ])
         ]
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+        assert [d.to_dict(deltacode_object).get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
             OrderedDict([
                 ('key', 'mit'),
                 ('score', 95.0),

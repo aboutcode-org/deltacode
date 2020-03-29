@@ -49,9 +49,11 @@ class DeltaCode(object):
     the form of File objects) contained in those scans.
     """
     def __init__(self, new_path, old_path, options):
-        if new_path and old_path:
+        try:
             self.codebase1 = VirtualCodebase(new_path)
             self.codebase2 = VirtualCodebase(old_path)
+        except :
+            pass
         self.new_files_count = 0 #keeps the count of the new file
         self.old_files_count = 0 #keeps the count of old files
         self.new_files = [] # a list of [[new file1:Original path],[new file2:Original Path],...]
@@ -149,8 +151,9 @@ class DeltaCode(object):
             if delta.new_file == None or delta.old_file == None:
                 continue
             # this extracts the fingerprint corresponding to the particular file path
-            new_fingerprint = self.new_files_fingerprint[delta.new_file.path]
-            old_fingerprint = self.old_files_fingerprint[delta.old_file.path]
+            
+            new_fingerprint = self.new_files_fingerprint.get(delta.new_file.path,None)
+            old_fingerprint = self.old_files_fingerprint.get(delta.old_file.path,None)
             if new_fingerprint == None or old_fingerprint == None:
                 continue
             new_fingerprint = utils.bitarray_from_hex(self.new_files_fingerprint[delta.new_file.path])
@@ -294,6 +297,7 @@ class DeltaCode(object):
         ])
 
         for delta in self.deltas:
+
             utils.update_from_license_info(delta, unique_categories)
 
     def copyright_diff(self):
@@ -415,7 +419,7 @@ class Delta(object):
         """
         licenseL = []
         try:
-            licenseL = file.license
+            licenseL = file.licenses
         except AttributeError:
             # arises when the ScannedResource do not have any license attribute
             return []
@@ -427,12 +431,17 @@ class Delta(object):
             all_licenses = []
             for i in range(len(licenseL)):
                 # we iterate over all the licenses
+                key = licenseL[i].get("key",None)
+                score = licenseL[i].get("score",None)
+                short_key = licenseL[i].get("short_name",None)
+                category = licenseL[i].get("category",None)
+                owner = licenseL[i].get("owner",None)
                 d = OrderedDict([
-                    ('key', licenseL[i]["key"]),
-                    ('score', licenseL[i]["score"]),
-                    ('short_name', licenseL[i]["short_name"]),
-                    ('category', licenseL[i]["category"]),
-                    ('owner', licenseL[i]["owner"])
+                    ('key', key),
+                    ('score', score),
+                    ('short_name', short_key),
+                    ('category', category),
+                    ('owner', owner)
                 ])
                 all_licenses.append(d)
             return all_licenses
@@ -446,7 +455,7 @@ class Delta(object):
                 ("name",self.new_file.name),
                 ("size",self.new_file.size),
                 ("sha1",self.new_file.sha1),
-                ("fingerprint",deltacode.new_files_fingerprint[self.new_file.path]),
+                ("fingerprint",deltacode.new_files_fingerprint.get(self.new_file.path,"")),
                 ("original_path",self.new_file.path),
                 # since license itself has many sub fields so we obtain it from another utility function
                 ("licenses",self.licenses_to_dict(self.new_file)),
@@ -463,7 +472,7 @@ class Delta(object):
                 ("name",self.old_file.name),
                 ("size",self.old_file.size),
                 ("sha1",self.old_file.sha1),
-                ("fingerprint",deltacode.old_files_fingerprint[self.old_file.path]),
+                ("fingerprint",deltacode.old_files_fingerprint.get(self.old_file.path,"")),
                 ("original_path",self.old_file.path),
                 # since license itself has many sub fields so we obtain it from another utility function
                 ("licenses",self.licenses_to_dict(self.old_file)),

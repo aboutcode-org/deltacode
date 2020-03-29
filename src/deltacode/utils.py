@@ -81,15 +81,16 @@ def update_modified_from_license_info(delta, unique_categories):
     been a license change.
     """
     try:
+       
         if not delta.new_file.licenses and delta.old_file.licenses:
             delta.update(15, 'license info removed')
             return
 
         new_licenses = delta.new_file.licenses or []
         old_licenses = delta.old_file.licenses or []
-        # print("success")
-        new_categories = set(license['category'] for license in new_licenses)
-        old_categories = set(license['category'] for license in old_licenses)
+
+        new_categories = set(license.get('category','') for license in new_licenses)
+        old_categories = set(license.get('category','') for license in old_licenses)
 
         if delta.new_file.licenses and not delta.old_file.licenses:
             delta.update(20, 'license info added')
@@ -103,10 +104,11 @@ def update_modified_from_license_info(delta, unique_categories):
                     delta.update(0, category.lower() + ' added')
             return
 
-        new_keys = set(license.key for license in new_licenses)
-        old_keys = set(license.key for license in old_licenses)
+        new_keys = set(license['key'] for license in delta.new_file.licenses)
+        old_keys = set(license['key'] for license in delta.old_file.licenses)
 
         if new_keys != old_keys:
+
             delta.update(10, 'license change')
             for category in new_categories - old_categories:
                 unique_categories_in_old_file = len(old_categories & unique_categories)
@@ -243,9 +245,9 @@ def align_trees(a_files, b_files):
     if a_unique[0].path == b_unique[0].path:
         return 0, 0
 
-    common_suffix, common_segments = paths.common_path_suffix(a_unique.path, b_unique.path)
-    a_segments = len(paths.split(a_unique.path))
-    b_segments = len(paths.split(b_unique.path))
+    common_suffix, common_segments = paths.common_path_suffix(a_unique[0].path, b_unique[0].path)
+    a_segments = len(paths.split(a_unique[0].path))
+    b_segments = len(paths.split(b_unique[0].path))
 
     return a_segments - common_segments, b_segments - common_segments
 
