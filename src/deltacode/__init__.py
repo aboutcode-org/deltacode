@@ -402,8 +402,8 @@ class Delta(object):
             all_copyrights = []
             for i in range(len(copyrightC)):
                 # we iterate over all the copyrights
-                statements = copyrightC[i].get("statements")
-                holders = copyrightC[i].get("holders")
+                statements = copyrightC[i].get("statements",None)
+                holders = copyrightC[i].get("holders",None)
                 d = OrderedDict([
                     ('statements', statements),
                     ('holders', holders)

@@ -37,6 +37,7 @@ import deltacode
 from deltacode import DeltaCode
 from deltacode import models
 from deltacode import test_utils
+from deltacode import utils
 from scancode.resource import VirtualCodebase
 
 class TestDeltacode(FileBasedTesting):
@@ -47,22 +48,19 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/ecos-align-index-new.json')
         old_scan = self.get_test_loc('deltacode/ecos-align-index-old.json')
 
-        new = models.Scan(new_scan)
-        old = models.Scan(old_scan)
+        new = VirtualCodebase(new_scan)
+        old = VirtualCodebase(old_scan)
 
         options = OrderedDict([
             ('--all-delta-types', False)
         ])
 
-        delta = DeltaCode(None, None, options)
-
-        delta.new = new
-        delta.old = old
+        delta = DeltaCode(new, old, options)
 
         delta.align_scans()
 
-        new_index = delta.new.index_files()
-        old_index = delta.old.index_files()
+        new_index = utils.index_files(delta.new_files)
+        old_index = utils.index_files(delta.old_files)
 
         new_index_length = 0
         for k,v in new_index.items():
@@ -618,7 +616,7 @@ class TestDeltacode(FileBasedTesting):
         assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [35]
         assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['license info removed']
         assert [d.status for d in deltas_object if d.new_file.path == 'path.txt'] == ['modified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+        assert [d.to_dict(deltacode_object).get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
             OrderedDict([
                 ('key', 'mit'),
                 ('score', 50.0),
@@ -627,7 +625,7 @@ class TestDeltacode(FileBasedTesting):
                 ('owner', None)
             ])
         ]
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
+        assert [d.to_dict(deltacode_object).get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
 
     def test_score_old_no_lic_info(self):
         new_scan = self.get_test_loc('deltacode/score_old_no_lic_info_new.json')
@@ -647,8 +645,8 @@ class TestDeltacode(FileBasedTesting):
         assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [40]
         assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['license info added', 'permissive added']
         assert [d.status for d in deltas_object if d.new_file.path == 'path.txt'] == ['modified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+        assert [d.to_dict(deltacode_object).get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
+        assert [d.to_dict(deltacode_object).get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
             OrderedDict([
                 ('key', 'mit'),
                 ('score', 50.0),
@@ -676,7 +674,7 @@ class TestDeltacode(FileBasedTesting):
         assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [50]
         assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['license change', 'copyleft added']
         assert [d.status for d in deltas_object if d.new_file.path == 'path.txt'] == ['modified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+        assert [d.to_dict(deltacode_object).get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
             OrderedDict([
                 ('key', 'mit'),
                 ('score', 50.0),
@@ -685,7 +683,7 @@ class TestDeltacode(FileBasedTesting):
                 ('owner', None)
             ])
         ]
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+        assert [d.to_dict(deltacode_object).get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
             OrderedDict([
                 ('key', 'gpl-2.0'),
                 ('score', 100.0),
@@ -757,7 +755,7 @@ class TestDeltacode(FileBasedTesting):
         assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [20]
         assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
         assert [d.status for d in deltas_object if d.new_file.path == 'path.txt'] == ['modified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+        assert [d.to_dict(deltacode_object).get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
             OrderedDict([
                 ('key', 'mit'),
                 ('score', 100.0),
@@ -766,7 +764,7 @@ class TestDeltacode(FileBasedTesting):
                 ('owner', None)
             ])
         ]
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+        assert [d.to_dict(deltacode_object).get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
             OrderedDict([
                 ('key', 'mit'),
                 ('score', 75.0),
@@ -801,13 +799,13 @@ class TestDeltacode(FileBasedTesting):
         assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [25]
         assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['copyright change']
         assert [d.status for d in deltas_object if d.new_file.path == 'path.txt'] == ['modified']
-        assert [d.to_dict().get('old').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+        assert [d.to_dict(deltacode_object).get('old').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
             OrderedDict([
                 ('statements', ['Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler']),
                 ('holders', ['Jean-loup Gailly, Mark Adler'])
             ])
         ]
-        assert [d.to_dict().get('new').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+        assert [d.to_dict(deltacode_object).get('new').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
             OrderedDict([
                 ('statements', ['Copyright (c) 2016 Mark Adler']),
                 ('holders', ['Mark Adler'])
@@ -836,8 +834,8 @@ class TestDeltacode(FileBasedTesting):
         assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [30]
         assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['copyright info added']
         assert [d.status for d in deltas_object if d.new_file.path == 'path.txt'] == ['modified']
-        assert [d.to_dict().get('old').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
-        assert [d.to_dict().get('new').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+        assert [d.to_dict(deltacode_object).get('old').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
+        assert [d.to_dict(deltacode_object).get('new').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
             OrderedDict([
                 ('statements', ['Copyright (c) 2016 Mark Adler']),
                 ('holders', ['Mark Adler'])
@@ -866,13 +864,13 @@ class TestDeltacode(FileBasedTesting):
         assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [30]
         assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['copyright info removed']
         assert [d.status for d in deltas_object if d.new_file.path == 'path.txt'] == ['modified']
-        assert [d.to_dict().get('old').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+        assert [d.to_dict(deltacode_object).get('old').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
             OrderedDict([
                 ('statements', ['Copyright (c) 2016 Mark Adler']),
                 ('holders', ['Mark Adler'])
             ])
         ]
-        assert [d.to_dict().get('new').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
+        assert [d.to_dict(deltacode_object).get('new').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
 
         assert len([i for i in deltas_object if i.score == 30]) == 1
         assert len([i for i in deltas_object if i.score == 20]) == 0
