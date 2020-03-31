@@ -65,7 +65,6 @@ class DeltaCode(object):
         self.errors = []
         self.enumerate_files_from_codebases()
         self.stats = Stat(self.new_files_count, self.old_files_count)        
-        
         if new_path != None and old_path != None:
 
             self.new_files_errors = []
@@ -93,25 +92,27 @@ class DeltaCode(object):
         resources = codebase.walk_filtered(topdown=True)
         for i,obj in enumerate(resources):            
             if is_new:
+                # append in the new_files
+                self.new_files.append([obj,''])
+                try :
+                    self.new_files_fingerprint[obj.path] = obj.fingerprint
+                except AttributeError:
+                    self.new_files_fingerprint[obj.path] = None
                 if obj.is_file:
-                    # append in the new_files
-                    self.new_files.append([obj,''])
                     # increment the new files count
                     self.new_files_count += 1
-                    try :
-                        self.new_files_fingerprint[obj.path] = obj.fingerprint
-                    except AttributeError:
-                        self.new_files_fingerprint[obj.path] = None
+
             else:
+                # append in the old files
+                self.old_files.append([obj,''])
+                try:
+                    self.old_files_fingerprint[obj.path] = obj.fingerprint
+                except AttributeError:
+                    self.old_files_fingerprint[obj.path] = None
                 if obj.is_file:
-                    # append in the old files
-                    self.old_files.append([obj,''])
                     # increment the old files count
                     self.old_files_count += 1
-                    try:
-                        self.old_files_fingerprint[obj.path] = obj.fingerprint
-                    except AttributeError:
-                        self.old_files_fingerprint[obj.path] = None
+                    
 
     def enumerate_files_from_codebases(self):
        """
@@ -174,7 +175,6 @@ class DeltaCode(object):
         # returns file index wrt to old and new files
         new_index = utils.index_files(self.new_files)
         old_index = utils.index_files(self.old_files)
-
         # gathering counts to ensure no files lost or missing from our 'deltas' set
         new_visited, old_visited = 0, 0
 

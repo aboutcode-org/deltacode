@@ -33,6 +33,7 @@ import binascii
 import os
 
 from commoncode import paths
+from collections import OrderedDict
 
 def update_from_license_info(delta, unique_categories):
     """
@@ -276,16 +277,16 @@ def index_files(files ,index_key = 'path'):
     currently catch the AttributeError exception.
     """
     index = {}
-
     for f in files:
-        key = getattr(f[0], index_key)
 
+        key = str(getattr(f[0], index_key))
+        
         if index.get(key) is None:
             index[key] = []
             index[key].append(f[0])
         else:
             index[key].append(f[0])
-
+        
     return index
 
 
