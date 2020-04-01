@@ -52,7 +52,7 @@ class DeltaCode(object):
         try:
             self.codebase1 = VirtualCodebase(new_path)
             self.codebase2 = VirtualCodebase(old_path)
-        except :
+        except Exception as exception:
             pass
         self.new_files_count = 0 #keeps the count of the new file
         self.old_files_count = 0 #keeps the count of old files
@@ -549,4 +549,3 @@ class Stat(object):
             ('percent_modified', self.percent_modified),
             ('percent_unmodified', self.percent_unmodified),
         ])
-

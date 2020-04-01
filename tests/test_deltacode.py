@@ -409,24 +409,14 @@ class TestDeltacode(FileBasedTesting):
         assert delta.to_dict() == expected
 
     def test_Delta_to_dict_unmodified(self):
-        new = models.File({
-            'path': 'path/unmodified.txt',
-            'type': 'file',
-            'name': 'unmodified.txt',
-            'size': 20,
-            'sha1': 'a',
-            'fingerprint': 'e30cf09443e7878dfed3288886e97542',
-            'original_path': ''
-        })
-        old = models.File({
-            'path': 'path/unmodified.txt',
-            'type': 'file',
-            'name': 'unmodified.txt',
-            'size': 20,
-            'sha1': 'a',
-            'fingerprint': 'e30cf09443e7878dfed3288886e97542',
-            'original_path': ''
-        })
+        new_scan = self.get_test_loc('deltacode/test_Delta_to_dict_unmodified.json')
+        old_scan = self.get_test_loc('deltacode/test_Delta_to_dict_unmodified.json')
+
+        options = OrderedDict([
+            ('--all-delta-types', True)
+        ])
+        deltacode_object = DeltaCode(new_scan,old_scan,options)
+        delta_objects = deltacode_object.deltas
 
         expected = OrderedDict([
             ('status', 'unmodified'),
@@ -439,7 +429,7 @@ class TestDeltacode(FileBasedTesting):
                 ('size', 20),
                 ('sha1', 'a'),
                 ('fingerprint', 'e30cf09443e7878dfed3288886e97542'),
-                ('original_path', ''),
+                ('original_path', 'path/unmodified.txt'),
                 ('licenses', []),
                 ('copyrights', [])
             ])),
@@ -450,16 +440,15 @@ class TestDeltacode(FileBasedTesting):
                 ('size', 20),
                 ('sha1', 'a'),
                 ('fingerprint', 'e30cf09443e7878dfed3288886e97542'),
-                ('original_path', ''),
+                ('original_path', 'path/unmodified.txt'),
                 ('licenses', []),
                 ('copyrights', [])
             ]))
         ])
-
-        delta = deltacode.Delta(0, new, old)
-        delta.status = 'unmodified'
-
-        assert delta.to_dict() == expected
+        for delta in delta_objects:
+            delta.status = 'unmodified'
+        for delta in delta_objects:
+            assert delta.to_dict(deltacode_object) == expected
 
     def test_Delta_to_dict_moved(self):
         new = models.File({
