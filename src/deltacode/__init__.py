@@ -288,12 +288,6 @@ class Delta(object):
         self.factors = []
         self.score = score
         self.status = ''
-    
-    def add_license(self) :
-        self.has_license = True
-
-    def add_copyright(self):
-        self.has_copyright = True    
 
     def update(self, score=0, factor=''):
         """

@@ -43,10 +43,10 @@ def update_from_license_info(delta, unique_categories):
 
     if delta.new_file:
         if delta.new_file.has_licenses():
-            delta.add_license()
+            delta.has_licenses = True
     if delta.old_file:
         if delta.old_file.has_licenses():
-            delta.add_license()
+            delta.has_licenses = True
 
     if delta.is_added():
         update_added_from_license_info(delta, unique_categories)
@@ -131,10 +131,10 @@ def update_from_copyright_info(delta):
     """
     if delta.new_file:
         if delta.new_file.has_copyrights():
-            delta.add_copyright()
+            delta.has_copyrights = True
     if delta.old_file:
         if delta.old_file.has_copyrights():
-            delta.add_copyright()
+            delta.has_copyrights = True
     if delta.is_added():
         update_added_from_copyright_info(delta)
 
