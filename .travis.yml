@@ -1,19 +1,14 @@
 language: python
-
 python:
   - 2.7.13
-
 # Use a matrix of TEST_SUITE variables to distribute tests to several machines
 # Use a global PYTEST variable to run all of the tests in a uniform fashion
 env:
   global:
     - PYTEST="bin/py.test -n 2 -vvs"
-
   matrix:
     - TEST_SUITE="$PYTEST"
     - TEST_SUITE="./etc/release/release.sh"
-
-
 # Travis does not offer OSX with arbitrary python versions (like 2.7.13 above)
 # So, you can not simply have the following section in your build matrix:
 # os:
@@ -21,7 +16,6 @@ env:
 #   - osx
 # Instead, you have to include OSX entries into the build matrix manually.
 # In particular, this means specifying the environment variables again.
-
 # The following was adapted from here:
 #   https://docs.travis-ci.com/user/multi-os/
 # Set TEST_SUITE in `env:` so that the `script:` section below works
@@ -31,6 +25,22 @@ env:
 #   https://docs.travis-ci.com/user/osx-ci-environment/
 matrix:
   include:
+    - os: windows
+      language: shell
+      before_install:
+        - choco install python2 -x86
+        - ln -s /c/Python27/python.exe /c/Python27/python2.7.exe
+      env:
+        - PATH="/c/Python27:/c/Python27/Scripts:$PATH"
+        - TEST_SUITE="$PYTEST"
+    - os: windows
+      language: shell
+      before_install:
+        - choco install python2 -x86
+        - ln -s /c/Python27/python.exe /c/Python27/python2.7.exe
+      env:
+        - PATH="/c/Python27:/c/Python27/Scripts:$PATH"
+        - TEST_SUITE="./etc/release/release.sh"
     - os: osx
       env: TEST_SUITE="$PYTEST"
       language: generic
@@ -41,13 +51,10 @@ matrix:
       language: generic
       python:
       osx_image: xcode7.3
-
 install:
   - ./configure
-
 script:
   - $TEST_SUITE
-
 notifications:
   irc:
     channels:
