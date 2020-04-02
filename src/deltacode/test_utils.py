@@ -46,8 +46,6 @@ def run_scan_click(options, monkeypatch=None, test_mode=True, expected_rc=0, env
     from click.testing import CliRunner
     from deltacode import cli
 
-    options = add_windows_extra_timeout(options)
-
     if monkeypatch:
         monkeypatch.setattr(click._termui_impl, 'isatty', lambda _: True)
         monkeypatch.setattr(click , 'get_terminal_size', lambda : (80, 43,))
