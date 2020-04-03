@@ -206,8 +206,11 @@ def calculate_percent(value, total):
     """
     Return the rounded value percentage of total.
     """
-    ratio = (value / total) * 100
-    return round(ratio, 2)
+    try :
+        ratio = (value / total) * 100
+        return round(ratio, 2)
+    except ZeroDivisionError:
+        return 0
 
 class AlignmentException(Exception):
     """

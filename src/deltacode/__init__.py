@@ -26,6 +26,7 @@
 from __future__ import absolute_import
 
 from collections import OrderedDict
+import click
 
 from deltacode.models import File
 from deltacode.models import Scan
@@ -49,11 +50,13 @@ class DeltaCode(object):
     the form of File objects) contained in those scans.
     """
     def __init__(self, new_path, old_path, options):
+        self.codebase1 = None
+        self.codebase2 = None
         try:
             self.codebase1 = VirtualCodebase(new_path)
             self.codebase2 = VirtualCodebase(old_path)
         except Exception as exception:
-            pass
+            click.secho(exception.message ,fg = "red")
         self.new_files_count = 0 #keeps the count of the new file
         self.old_files_count = 0 #keeps the count of old files
         self.new_files = [] # a list of [[new file1:Original path],[new file2:Original Path],...]
@@ -63,10 +66,10 @@ class DeltaCode(object):
         self.options = options
         self.deltas = []
         self.errors = []
-        self.enumerate_files_from_codebases()
-        self.stats = Stat(self.new_files_count, self.old_files_count)        
-        if new_path != None and old_path != None:
-
+       
+        if self.codebase1 != None and self.codebase2 != None:
+            self.enumerate_files_from_codebases()
+            self.stats = Stat(self.new_files_count, self.old_files_count) 
             self.new_files_errors = []
             self.old_files_errors = []
             self.determine_delta()
