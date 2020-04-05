@@ -1,0 +1,46 @@
+jobs :
+
+  - template: etc/ci/azure-linux.yml
+    parameters: 
+      job-name: vm_ubuntu-16.04
+      image_name: ubuntu-16.04
+      python_versions: ['2.7']
+      test_suites: 
+          deltacode_ubuntu-16.04: |
+            "bin/py.test"
+          release_ubuntu-16.04: |
+            "./etc/release/release.sh"
+
+  - template: etc/ci/azure-linux.yml
+    parameters: 
+      job-name: vm_ubuntu-18.04
+      image_name: ubuntu-18.04
+      python_versions: ['2.7']
+      test_suites: 
+          deltacode_ubuntu-18.04: |
+            "bin/py.test"
+          release_ubuntu-18.04: |
+            "./etc/release/release.sh"
+
+
+  - template: etc/ci/azure-mac.yml
+    parameters: 
+      job-name: vm_macos-10.15
+      image_name: macos-10.15
+      python_versions: ['2.7']
+      test_suites: 
+          deltacode_macOS-10.15: |
+            "bin/py.test"
+          release_macOS-10.15: |
+            "./etc/release/release.sh"
+
+  - template: etc/ci/azure-mac.yml
+    parameters: 
+      job-name: vm_macos-10.14
+      image_name: macos-10.14
+      python_versions: ['2.7']
+      test_suites: 
+          deltacode_macOS-10.14: |
+            "bin/py.test"
+          release_macOS-10.14: |
+            "./etc/release/release.sh"    
