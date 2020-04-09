@@ -345,6 +345,25 @@ class Delta(object):
             ('new', new_file),
             ('old', old_file),
         ])
+    def __str__(self):
+        
+        if self.old_file:
+            old_file_path = self.old_file.original_path
+        else:
+            old_file_path = "null"
+
+        if self.new_file:
+            new_file_path = self.new_file.original_path
+        else:
+            new_file_path = "null"
+
+        return (
+                "    status: " + str(self.status) + "\n"
+                "    factors: [" + ", ".join(self.factors) + "]\n" +
+                "    score: " + str(self.score) + "\n"+
+                "    new_file: " + new_file_path + "\n"+
+                "    old_file: " + old_file_path + "\n" 
+               )
 
 class Stat(object):
     """

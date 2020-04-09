@@ -50,11 +50,31 @@ def write_json(deltacode, outfile, all_delta_types=False):
         ('deltas_count', len([d for d in deltas(deltacode, all_delta_types)])),
         ('delta_stats', deltacode.stats.to_dict()),
         ('deltas', deltas(deltacode, all_delta_types))
-    ])
+    ])  
 
-    # TODO: add toggle for pretty printing
-    simplejson.dump(results, outfile, iterable_as_array=True, indent=2)
-    outfile.write('\n')
+    try:
+
+        simplejson.dump(results, outfile, iterable_as_array=True, indent=2)
+        outfile.write('\n')    
+        if outfile.name != '<stdout>' : 
+            "This condition arises when we are required to print in the json file and the value of -j in not the console terminal" 
+            click.echo('deltas_count: {}'.format(len([d for d in deltas(deltacode, all_delta_types)])))
+            click.echo('delta_stats: ')
+            for stat in deltacode.stats.to_dict():
+                click.echo("""   "{}": {}""".format(str(stat),deltacode.stats.to_dict()[stat]))  
+            # TODO: add toggle for pretty printing
+
+            delta_count = 1
+            for delta in deltacode.deltas :
+                if delta.status != "unmodified":
+                        click.echo("delta {}".format(delta_count))
+                        click.echo(delta)
+                        delta_count += 1
+
+    except Exception as e:
+        "This exception arises when outfile has no name attribute"
+        simplejson.dump(results, outfile, iterable_as_array=True, indent=2)
+        outfile.write('\n')    
 
 
 def print_version(ctx, param, value):
