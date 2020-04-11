@@ -1,0 +1,12 @@
+environment:
+    matrix:
+        - TEST_SUITE: "py.test "
+
+install:
+    - ./configure
+
+build: off
+
+
+test_script:
+    - cmd: "%TEST_SUITE%"
