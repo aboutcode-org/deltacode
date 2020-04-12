@@ -63,6 +63,8 @@ class DeltaCode(object):
         self.old_files = [] # a list of [[old file1:Original path],[old file2:Original Path],...]
         self.new_files_fingerprint = dict() # map of { {new_file1:fingerprint},{new_file2:fingerprint},...} it will be needed when we need the fingerprints
         self.old_files_fingerprint = dict() # map of { {old_file1:fingerprint},{old_file2:fingerprint},...}
+        self.new_files_original_path = dict() #this keeps a map of the path of file with respect to original path 
+        self.old_files_original_path = dict()
         self.options = options
         self.deltas = []
         self.errors = []
@@ -133,7 +135,7 @@ class DeltaCode(object):
         which calls utils.align_trees().
         """
         try:
-            utils.fix_trees(self.new_files, self.old_files)
+            self.new_files_original_path , self.old_files_original_path = utils.fix_trees(self.new_files, self.old_files)
         except utils.AlignmentException:
             # self.new_files is a list of type [[ScannedResourceObject,originalPath],...]
             # initially all original path are set to empty string
@@ -182,9 +184,8 @@ class DeltaCode(object):
         new_visited, old_visited = 0, 0
 
         # perform the deltas
-        for path, new_files in new_index.items():
+        for path, new_files in new_index.items():            
             for new_file in new_files:
-
                 if new_file.type != 'file':
                     continue
 
@@ -459,7 +460,7 @@ class Delta(object):
                 ("size",self.new_file.size),
                 ("sha1",self.new_file.sha1),
                 ("fingerprint",deltacode.new_files_fingerprint.get(self.new_file.path,"")),
-                ("original_path",self.new_file.path),
+                ("original_path",deltacode.new_files_original_path.get(self.new_file.path, "")),
                 # since license itself has many sub fields so we obtain it from another utility function
                 ("licenses",self.licenses_to_dict(self.new_file)),
                 # since copyright itself has many sub fields so we obtain it from another utility function
@@ -476,7 +477,7 @@ class Delta(object):
                 ("size",self.old_file.size),
                 ("sha1",self.old_file.sha1),
                 ("fingerprint",deltacode.old_files_fingerprint.get(self.old_file.path,"")),
-                ("original_path",self.old_file.path),
+                ("original_path",deltacode.old_files_original_path.get(self.old_file.path, "")),
                 # since license itself has many sub fields so we obtain it from another utility function
                 ("licenses",self.licenses_to_dict(self.old_file)),
                 # since copyright itself has many sub fields so we obtain it from another utility function

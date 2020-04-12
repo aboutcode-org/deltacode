@@ -264,13 +264,20 @@ def fix_trees(a_files, b_files):
     'b'.
     """
     a_offset, b_offset = align_trees(a_files, b_files)
+    original_path_a = OrderedDict()
+    original_path_b  = OrderedDict()
     for a_file in a_files:
+        original_path = a_file[0].path
         a_file[1] = a_file[0].path
         a_file[0].path = '/'.join(paths.split(a_file[0].path)[a_offset:])
+        original_path_a[a_file[0].path] = original_path
 
     for b_file in b_files:
+        original_path = b_file[0].path
         b_file[1] = b_file[0].path
         b_file[0].path = '/'.join(paths.split(b_file[0].path)[b_offset:])
+        original_path_b[b_file[0].path] = original_path
+    return original_path_a , original_path_b
 
 def index_files(files ,index_key = 'path'):
     """
@@ -289,7 +296,6 @@ def index_files(files ,index_key = 'path'):
             index[key].append(f[0])
         else:
             index[key].append(f[0])
-        
     return index
 
 

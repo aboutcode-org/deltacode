@@ -110,132 +110,96 @@ class TestCLI(FileBasedTesting):
         assert json_result.get('deltas_count') == 8
 
         moved_expected = {
-            "status": "moved",
-            "factors": [],
-            "score": 0,
-            "new": {
-                "path": "b/a4.py",
-                "type": "file",
-                "name": "a4.py",
-                "size": 200,
-                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
-                "fingerprint": "e30cf09443e7878dfed3288886e97542",
-                "original_path": "1_file_moved_new/b/a4.py",
-                "licenses": [
-                    {
-                        "key": "apache-2.0",
-                        "score": 40.0,
-                        "short_name": "Apache 2.0",
-                        "category": "Permissive",
-                        "owner": "Apache Software Foundation"
-                    }
-                ],
-                "copyrights": [
-                    {
-                        "statements": [
-                            "Copyright (c) 2017 Acme Software Inc. and others."
-                        ],
-                        "holders": [
-                            "Acme Software Inc. and others."
-                        ]
-                    }
-                ]
-            },
-            "old": {
-                "path": "a/a4.py",
-                "type": "file",
-                "name": "a4.py",
-                "size": 200,
-                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
-                "fingerprint": "e30cf09443e7878dfed3288886e97542",
-                "original_path": "1_file_moved_old/a/a4.py",
-                "licenses": [
-                    {
-                        "key": "apache-2.0",
-                        "score": 40.0,
-                        "short_name": "Apache 2.0",
-                        "category": "Permissive",
-                        "owner": "Apache Software Foundation"
-                    }
-                ],
-                "copyrights": [
-                    {
-                        "statements": [
-                            "Copyright (c) 2017 Acme Software Inc. and others."
-                        ],
-                        "holders": [
-                            "Acme Software Inc. and others."
-                        ]
-                    }
-                ]
-            }
-        }
+      "status": "moved",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "b/a4.py",
+        "type": "file",
+        "name": "a4.py",
+        "size": 10172,
+        "sha1": "612ad650a328990087959416a7e2fd160b1daea9",
+        "fingerprint": "",
+        "original_path": "1_file_moved_new/b/a4.py",
+        "licenses": [
+          {
+            "key": "apache-2.0",
+            "score": 100.0,
+            "short_name": "Apache 2.0",
+            "category": "Permissive",
+            "owner": "Apache Software Foundation"
+          }
+        ],
+        "copyrights": []
+      },
+      "old": {
+        "path": "a/a4.py",
+        "type": "file",
+        "name": "a4.py",
+        "size": 10172,
+        "sha1": "612ad650a328990087959416a7e2fd160b1daea9",
+        "fingerprint": "",
+        "original_path": "1_file_moved_old/a/a4.py",
+        "licenses": [
+          {
+            "key": "apache-2.0",
+            "score": 100.0,
+            "short_name": "Apache 2.0",
+            "category": "Permissive",
+            "owner": "Apache Software Foundation"
+          }
+        ],
+        "copyrights": []
+      }
+    }
 
         moved_result = [d for d in json_result.get('deltas') if d.get('status') == 'moved'].pop()
 
         assert moved_result == moved_expected
 
         unmodified_expected = {
-            "status": "unmodified",
-            "factors": [],
-            "score": 0,
-            "new": {
-                "path": "a/a3.py",
-                "type": "file",
-                "name": "a3.py",
-                "size": 200,
-                "sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9",
-                "fingerprint": "e30cf09443e7878dfed3288886e97533",
-                "original_path": "1_file_moved_new/a/a3.py",
-                "licenses": [
-                    {
-                        "key": "apache-2.0",
-                        "score": 40.0,
-                        "short_name": "Apache 2.0",
-                        "category": "Permissive",
-                        "owner": "Apache Software Foundation"
-                    }
-                ],
-                "copyrights": [
-                    {
-                        "statements": [
-                            "Copyright (c) 2017 Acme Software Inc. and others."
-                        ],
-                        "holders": [
-                            "Acme Software Inc. and others."
-                        ]
-                    }
-                ]
-            },
-            "old": {
-                "path": "a/a3.py",
-                "type": "file",
-                "name": "a3.py",
-                "size": 200,
-                "sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9",
-                "fingerprint": "e30cf09443e7878dfed3288886e97533",
-                "original_path": "1_file_moved_old/a/a3.py",
-                "licenses": [
-                    {
-                        "key": "apache-2.0",
-                        "score": 40.0,
-                        "short_name": "Apache 2.0",
-                        "category": "Permissive",
-                        "owner": "Apache Software Foundation"
-                    }
-                ],
-                "copyrights": [
-                    {
-                        "statements": [
-                            "Copyright (c) 2017 Acme Software Inc. and others."
-                        ],
-                        "holders": [
-                            "Acme Software Inc. and others."
-                        ]
-                    }
-                ]
-            }
-        }
+      "status": "unmodified",
+      "factors": [],
+      "score": 0,
+      "new": {
+        "path": "a/a3.py",
+        "type": "file",
+        "name": "a3.py",
+        "size": 10172,
+        "sha1": "612ad650a328990087959416a7e2fd160b1daea9",
+        "fingerprint": "",
+        "original_path": "1_file_moved_new/a/a3.py",
+        "licenses": [
+          {
+            "key": "apache-2.0",
+            "score": 100.0,
+            "short_name": "Apache 2.0",
+            "category": "Permissive",
+            "owner": "Apache Software Foundation"
+          }
+        ],
+        "copyrights": []
+      },
+      "old": {
+        "path": "a/a3.py",
+        "type": "file",
+        "name": "a3.py",
+        "size": 10172,
+        "sha1": "612ad650a328990087959416a7e2fd160b1daea9",
+        "fingerprint": "",
+        "original_path": "1_file_moved_old/a/a3.py",
+        "licenses": [
+          {
+            "key": "apache-2.0",
+            "score": 100.0,
+            "short_name": "Apache 2.0",
+            "category": "Permissive",
+            "owner": "Apache Software Foundation"
+          }
+        ],
+        "copyrights": []
+      }
+    }
 
         unmodified_result = [d for d in json_result.get('deltas') if d.get('score') == 0 and d.get('new').get('path') == 'a/a3.py'].pop()
 
@@ -276,67 +240,48 @@ class TestCLI(FileBasedTesting):
         assert json_result.get('deltas_count') == 1
 
         moved_expected = {
-            "status" : "moved",
+            "status": "moved",
             "factors": [],
             "score": 0,
             "new": {
                 "path": "b/a4.py",
                 "type": "file",
                 "name": "a4.py",
-                "size": 200,
-                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
-                "fingerprint": "e30cf09443e7878dfed3288886e97542",
+                "size": 10172,
+                "sha1": "612ad650a328990087959416a7e2fd160b1daea9",
+                "fingerprint": "",
                 "original_path": "1_file_moved_new/b/a4.py",
                 "licenses": [
-                    {
-                        "key": "apache-2.0",
-                        "score": 40.0,
-                        "short_name": "Apache 2.0",
-                        "category": "Permissive",
-                        "owner": "Apache Software Foundation"
-                    }
+                {
+                    "key": "apache-2.0",
+                    "score": 100.0,
+                    "short_name": "Apache 2.0",
+                    "category": "Permissive",
+                    "owner": "Apache Software Foundation"
+                }
                 ],
-                "copyrights": [
-                    {
-                        "statements": [
-                            "Copyright (c) 2017 Acme Software Inc. and others."
-                        ],
-                        "holders": [
-                            "Acme Software Inc. and others."
-                        ]
-                    }
-                ]
+                "copyrights": []
             },
             "old": {
                 "path": "a/a4.py",
                 "type": "file",
                 "name": "a4.py",
-                "size": 200,
-                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
-                "fingerprint": "e30cf09443e7878dfed3288886e97542",
+                "size": 10172,
+                "sha1": "612ad650a328990087959416a7e2fd160b1daea9",
+                "fingerprint": "",
                 "original_path": "1_file_moved_old/a/a4.py",
                 "licenses": [
-                    {
-                        "key": "apache-2.0",
-                        "score": 40.0,
-                        "short_name": "Apache 2.0",
-                        "category": "Permissive",
-                        "owner": "Apache Software Foundation"
-                    }
+                {
+                    "key": "apache-2.0",
+                    "score": 100.0,
+                    "short_name": "Apache 2.0",
+                    "category": "Permissive",
+                    "owner": "Apache Software Foundation"
+                }
                 ],
-                "copyrights": [
-                    {
-                        "statements": [
-                            "Copyright (c) 2017 Acme Software Inc. and others."
-                        ],
-                        "holders": [
-                            "Acme Software Inc. and others."
-                        ]
-                    }
-                ]
+                "copyrights": []
             }
-        }
-
+    }
         moved_result = [d for d in json_result.get('deltas') if d.get('status') == 'moved'].pop()
 
         assert moved_result == moved_expected
@@ -370,8 +315,8 @@ class TestCLI(FileBasedTesting):
         assert '"path": "b/a4.py"' in result.output
         assert '"name": "a4.py"' in result.output
         assert '"type": "file"' in result.output
-        assert '"size": 200' in result.output
-        assert '"sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b"' in result.output
+        assert '"size": 10172' in result.output
+        assert '"sha1": "612ad650a328990087959416a7e2fd160b1daea9"' in result.output
         assert '"original_path": "1_file_moved_new/b/a4.py"' in result.output
         assert '"key": "apache-2.0"' in result.output
 
@@ -383,8 +328,8 @@ class TestCLI(FileBasedTesting):
         assert '"path": "a/a3.py"' in result.output
         assert '"name": "a3.py"' in result.output
         assert '"type": "file"' in result.output
-        assert '"size": 200' in result.output
-        assert '"sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9"' in result.output
+        assert '"size": 10172' in result.output
+        assert '"sha1": "612ad650a328990087959416a7e2fd160b1daea9"' in result.output
         assert '"original_path": "1_file_moved_new/a/a3.py"' in result .output
 
     def test_no_output_option_selected_all_not_selected(self):
@@ -412,8 +357,8 @@ class TestCLI(FileBasedTesting):
         assert '"path": "b/a4.py"' in result.output
         assert '"name": "a4.py"' in result.output
         assert '"type": "file"' in result.output
-        assert '"size": 200' in result.output
-        assert '"sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b"' in result.output
+        assert '"size": 10172' in result.output
+        assert '"sha1": "612ad650a328990087959416a7e2fd160b1daea9"' in result.output
         assert '"original_path": "1_file_moved_new/b/a4.py"' in result.output
         assert '"key": "apache-2.0"' in result.output
 
@@ -424,7 +369,7 @@ class TestCLI(FileBasedTesting):
 
         assert '"path": "a/a3.py"' not in result.output
         assert '"name": "a3.py"' not in result.output
-        assert '"sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9"' not in result.output
+        assert '"sha1": "612ad650a328990087959416a7e2fd160b1daa9"' not in result.output
         assert '"original_path": "1_file_moved_new/a/a3.py"' not in result .output
 
     def test_json_deltas_count_all_selected(self):
