@@ -155,7 +155,7 @@ class Scan(object):
         keyed by the File object's 'path' variable.  This function does not
         currently catch the AttributeError exception.
         """
-        index = {}
+        index = OrderedDict()
 
         for f in self.files:
             key = getattr(f, index_key)
