@@ -195,9 +195,8 @@ class DeltaCode(object):
         added = self.index_deltas('sha1', [i for i in self.deltas if i.old_file is None and i.new_file])
         removed = self.index_deltas('sha1', [i for i in self.deltas if i.old_file and i.new_file is None])
 
-        # TODO: should it be iteritems() or items()
-        for added_sha1, added_deltas in added.iteritems():
-            for removed_sha1, removed_deltas in removed.iteritems():
+        for added_sha1, added_deltas in added.items():
+            for removed_sha1, removed_deltas in removed.items():
 
                 # check for matching sha1s on both sides
                 if utils.check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas):
