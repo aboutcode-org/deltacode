@@ -216,6 +216,7 @@ def create_virtualenv_py2(std_python, root_dir, tpp_dirs=(), quiet=False):
     vendored Python distributions that pip will use to find required
     components.
     """
+    
     if not quiet:
         print("* Configuring Python ...")
     # search virtualenv.py in the tpp_dirs. keep the first found
