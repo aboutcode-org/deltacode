@@ -7,7 +7,7 @@ python:
 # Use a global PYTEST variable to run all of the tests in a uniform fashion
 env:
   global:
-    - PYTEST="bin/py.test -n 2 -vvs"
+    - PYTEST="bin/py.test -n 2 -vvs --cov=src --cov-report=term --cov-report=xml -n2"
 
   matrix:
     - TEST_SUITE="$PYTEST"
@@ -47,6 +47,10 @@ install:
 
 script:
   - $TEST_SUITE
+
+after_success:
+  - ./bin/codecov
+
 
 notifications:
   irc:
