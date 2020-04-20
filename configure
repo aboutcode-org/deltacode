@@ -25,7 +25,16 @@ fi
 CONFIGURE_ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [[ "$PYTHON_EXE" == "" ]]; then
-    PYTHON_EXE=python
+    PYTHON_EXE=$(which python2 || true)
+fi
+
+if [[ "$PYTHON_EXE" == "" ]]; then
+    echo You should have Python2.7 installed to configure deltacode
+    exit_code=1
+    if [ $exit_code -ne 0 ]; then
+        echo "configure command failed with exit code ${exit_code}."
+        exit $exit_code
+    fi
 fi
 
 $PYTHON_EXE "$CONFIGURE_ROOT_DIR/etc/configure.py" $CFG_CMD_LINE_ARGS
