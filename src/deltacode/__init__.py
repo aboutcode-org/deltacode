@@ -70,7 +70,8 @@ class DeltaCode(object):
         self.errors = []
        
         if self.codebase1 != None and self.codebase2 != None:
-            self.enumerate_files_from_codebases()
+            self.fetch_files(self.codebase1,is_new = True)
+            self.fetch_files(self.codebase2,is_new = False)
             self.stats = Stat(self.new_files_count, self.old_files_count) 
             self.new_files_errors = []
             self.old_files_errors = []
@@ -85,7 +86,7 @@ class DeltaCode(object):
             self.deltas.sort(key=lambda Delta: Delta.factors, reverse=False)
             self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
 
-    def get_files(self,codebase,is_new):
+    def fetch_files(self,codebase,is_new):
         """
         Walk through the codebase, then generate the resources it(including all files and its directories)
         then we enumerate over this generated codebase to get file, and directories as (obj)
@@ -117,15 +118,6 @@ class DeltaCode(object):
                 if obj.is_file:
                     # increment the old files count
                     self.old_files_count += 1
-                    
-
-    def enumerate_files_from_codebases(self):
-       """
-       An method which call the utility function get_files for generating the codebase
-       """
-       self.get_files(self.codebase1,is_new = True)
-       self.get_files(self.codebase2,is_new = False)
-        
 
     def align_scans(self):
         """
@@ -450,26 +442,8 @@ class Delta(object):
                 all_licenses.append(d)
             return all_licenses
 
-    def new_file_to_dict(self,deltacode):
-        # if self.new_file is not empty we return the new file attributes
-        if self.new_file:
-            return OrderedDict([
-                ("path",self.new_file.path),
-                ("type",self.new_file.type),
-                ("name",self.new_file.name),
-                ("size",self.new_file.size),
-                ("sha1",self.new_file.sha1),
-                ("fingerprint",deltacode.new_files_fingerprint.get(self.new_file.path,"")),
-                ("original_path",deltacode.new_files_original_path.get(self.new_file.path, "")),
-                # since license itself has many sub fields so we obtain it from another utility function
-                ("licenses",self.licenses_to_dict(self.new_file)),
-                # since copyright itself has many sub fields so we obtain it from another utility function
-                ("copyrights",self.copyrights_to_dict(self.new_file))          
-            ])
-        
-    
-    def old_file_to_dict(self,deltacode):
-        if self.old_file :
+    def file_to_dict(self,deltacode, new_file = True):
+        if new_file==False and self.old_file :
             return OrderedDict([
                 ("path",self.old_file.path),
                 ("type",self.old_file.type),
@@ -483,7 +457,20 @@ class Delta(object):
                 # since copyright itself has many sub fields so we obtain it from another utility function
                 ("copyrights",self.copyrights_to_dict(self.old_file))       
             ])
-
+        elif new_file and self.new_file:
+            return OrderedDict([
+                ("path",self.new_file.path),
+                ("type",self.new_file.type),
+                ("name",self.new_file.name),
+                ("size",self.new_file.size),
+                ("sha1",self.new_file.sha1),
+                ("fingerprint",deltacode.new_files_fingerprint.get(self.new_file.path,"")),
+                ("original_path",deltacode.new_files_original_path.get(self.new_file.path, "")),
+                # since license itself has many sub fields so we obtain it from another utility function
+                ("licenses",self.licenses_to_dict(self.new_file)),
+                # since copyright itself has many sub fields so we obtain it from another utility function
+                ("copyrights",self.copyrights_to_dict(self.new_file))          
+            ])
 
     def to_dict(self,deltacode):
         """
@@ -505,9 +492,9 @@ class Delta(object):
             ('factors', self.factors),
             ('score', self.score),
             # receives the detail of the new file
-            ('new', self.new_file_to_dict(deltacode)),
+            ('new', self.file_to_dict(deltacode , new_file = True)),
             # receives the details of the old file 
-            ('old', self.old_file_to_dict(deltacode)),
+            ('old', self.file_to_dict(deltacode , new_file = False)),
         ])
 
 class Stat(object):
