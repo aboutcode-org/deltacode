@@ -52,11 +52,7 @@ class DeltaCode(object):
     def __init__(self, new_path, old_path, options):
         self.codebase1 = None
         self.codebase2 = None
-        try:
-            self.codebase1 = VirtualCodebase(new_path)
-            self.codebase2 = VirtualCodebase(old_path)
-        except Exception as exception:
-            click.secho(exception.message ,fg = "red")
+
         self.new_files_count = 0 #keeps the count of the new file
         self.old_files_count = 0 #keeps the count of old files
         self.new_files = [] # a list of [[new file1:Original path],[new file2:Original Path],...]
@@ -69,6 +65,13 @@ class DeltaCode(object):
         self.deltas = []
         self.errors = []
        
+        try:
+            self.codebase1 = VirtualCodebase(new_path)
+            self.codebase2 = VirtualCodebase(old_path)
+        except Exception as exception:
+            self.errors.append("KeyError")
+            click.secho(exception.message ,fg = "red")
+
         if self.codebase1 != None and self.codebase2 != None:
             self.fetch_files(self.codebase1,is_new = True)
             self.fetch_files(self.codebase2,is_new = False)
