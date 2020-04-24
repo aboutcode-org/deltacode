@@ -135,6 +135,8 @@ setup(
         'click',
         'scancode-toolkit >= 3.0',
         'unicodecsv',
+        'license-expression==0.99;python_version=="2.7"',
+        'license-expression==1.2;python_version=="3.6"',
     ],
 
     entry_points={
