@@ -253,6 +253,15 @@ class License(object):
         self.short_name = dictionary.get('short_name')
         self.category = dictionary.get('category')
         self.owner = dictionary.get('owner')
+        self.simplify_expression()
+
+    def simplify_expression(self):
+        licensing = Licensing()
+        try:
+            short_name = licensing.parse(self.short_name)
+            self.short_name = str(short_name.simplify())
+        except:
+            pass
 
     def to_dict(self):
         """

@@ -407,7 +407,7 @@ class TestModels(FileBasedTesting):
         with pytest.raises(AttributeError):
             assert result.spdx_license_key == "Apache-2.0"
 
-    def test_Dual_Licensing(self):
+    def test_Dual_Licensing1(self):
         data = {
           "key": "classpath-exception-2.0",
           "score": 55.0,
@@ -445,7 +445,7 @@ class TestModels(FileBasedTesting):
         expected = {
                 "key": "classpath-exception-2.0",
                 "score": 55.0,
-                "short_name": "Classpath exception to GPL 2.0 or later",
+                "short_name": "Classpath exception to GPL 2.0 OR later",
                 "category": "Copyleft Limited",
                 "owner": "Free Software Foundation (FSF)"
             
@@ -453,6 +453,39 @@ class TestModels(FileBasedTesting):
         
         result = models.License(data).to_dict()
         assert result == expected
+
+    def test_Dual_Licensing2(self):
+        data = {
+            "key": "GPL-2.0 or LGPL-2.1 and mit",
+            "score": 80.0,
+            "short_name": "GPL-2.0 or LGPL-2.1 and mit",
+            "category": "Permissive",
+            "owner": "Apache Software Foundation",
+            "homepage_url": "http://www.apache.org/licenses/",
+            "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
+            "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
+            "spdx_license_key": "Apache-2.0",
+            "spdx_url": "https://spdx.org/licenses/Apache-2.0",
+            "start_line": 3,
+            "end_line": 3,
+            "matched_rule": {
+                "identifier": "apache-2.0_57.RULE",
+                "license_choice": False,
+                "licenses": [
+                    "apache-2.0"
+                ]
+            }
+        }
+
+        expected = {
+                "key": "GPL-2.0 or LGPL-2.1 and mit",
+                "score": 55.0,
+                "short_name": "GPL-2.0 or LGPL-2.1 and mit",
+                "category": "Copyleft Limited",
+                "owner": "Free Software Foundation (FSF)"
+        }
+        results = models.License(data).to_dict()
+        return results == expected
 
     def test_License_to_dict_empty(self):
         result = models.License().to_dict()

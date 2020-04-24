@@ -986,7 +986,7 @@ class TestDeltacode(FileBasedTesting):
             OrderedDict([
                 ('key', 'gpl-1.0-plus'),
                 ('score', 20.0),
-                ('short_name', 'GPL 1.0 or later'),
+                ('short_name', 'GPL 1.0 OR later'),
                 ('category', 'Copyleft'),
                 ('owner', "Free Software Foundation (FSF)")
             ])
@@ -1026,7 +1026,7 @@ class TestDeltacode(FileBasedTesting):
             OrderedDict([
                 ('key', 'gpl-1.0-plus'),
                 ('score', 20.0),
-                ('short_name', 'GPL 1.0 or later'),
+                ('short_name', 'GPL 1.0 OR later'),
                 ('category', 'Copyleft'),
                 ('owner', "Free Software Foundation (FSF)")
             ])
@@ -1067,7 +1067,7 @@ class TestDeltacode(FileBasedTesting):
             OrderedDict([
                 ('key', 'gpl-3.0-plus'),
                 ('score', 100.0),
-                ('short_name', 'GPL 3.0 or later'),
+                ('short_name', 'GPL 3.0 OR later'),
                 ('category', 'Copyleft'),
                 ('owner', "Free Software Foundation (FSF)")
             ])
@@ -1110,7 +1110,7 @@ class TestDeltacode(FileBasedTesting):
             OrderedDict([
                 ('key', 'gpl-3.0-plus'),
                 ('score', 100.0),
-                ('short_name', 'GPL 3.0 or later'),
+                ('short_name', 'GPL 3.0 OR later'),
                 ('category', 'Copyleft'),
                 ('owner', "Free Software Foundation (FSF)")
             ])
@@ -1156,7 +1156,7 @@ class TestDeltacode(FileBasedTesting):
             OrderedDict([
                 ('key', 'gpl-3.0-plus'),
                 ('score', 100.0),
-                ('short_name', 'GPL 3.0 or later'),
+                ('short_name', 'GPL 3.0 OR later'),
                 ('category', 'Copyleft'),
                 ('owner', "Free Software Foundation (FSF)")
             ])
@@ -1165,7 +1165,7 @@ class TestDeltacode(FileBasedTesting):
             OrderedDict([
                 ('key', 'gpl-3.0-plus'),
                 ('score', 100.0),
-                ('short_name', 'GPL 3.0 or later'),
+                ('short_name', 'GPL 3.0 OR later'),
                 ('category', 'Copyleft'),
                 ('owner', "Free Software Foundation (FSF)")
             ])
@@ -1209,7 +1209,7 @@ class TestDeltacode(FileBasedTesting):
             OrderedDict([
                 ('key', 'gpl-3.0-plus'),
                 ('score', 100.0),
-                ('short_name', 'GPL 3.0 or later'),
+                ('short_name', 'GPL 3.0 OR later'),
                 ('category', 'Copyleft'),
                 ('owner', "Free Software Foundation (FSF)")
             ])
@@ -1218,7 +1218,7 @@ class TestDeltacode(FileBasedTesting):
             OrderedDict([
                 ('key', 'gpl-1.0-plus'),
                 ('score', 20.0),
-                ('short_name', 'GPL 1.0 or later'),
+                ('short_name', 'GPL 1.0 OR later'),
                 ('category', 'Copyleft'),
                 ('owner', "Free Software Foundation (FSF)")
             ])
