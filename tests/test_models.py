@@ -31,6 +31,7 @@ import os
 import pytest
 
 from click.testing import CliRunner
+from collections import OrderedDict
 
 from commoncode.testcase import FileBasedTesting
 from deltacode import DeltaCode
@@ -405,6 +406,53 @@ class TestModels(FileBasedTesting):
         assert result == expected
         with pytest.raises(AttributeError):
             assert result.spdx_license_key == "Apache-2.0"
+
+    def test_Dual_Licensing(self):
+        data = {
+          "key": "classpath-exception-2.0",
+          "score": 55.0,
+          "name": "Classpath exception to GPL 2.0 or later",
+          "short_name": "Classpath exception to GPL 2.0 or later",
+          "category": "Copyleft Limited",
+          "is_exception": "true",
+          "owner": "Free Software Foundation (FSF)",
+          "homepage_url": "http://www.gnu.org/software/classpath/",
+          "text_url": "http://www.gnu.org/software/classpath/license.html",
+          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:classpath-exception-2.0",
+          "spdx_license_key": "Classpath-exception-2.0",
+          "spdx_url": "https://spdx.org/licenses/Classpath-exception-2.0",
+          "start_line": 1,
+          "end_line": 2,
+          "matched_rule": {
+            "identifier": "gpl-2.0_with_classpath-exception-2.0_8.RULE",
+            "license_expression": "gpl-2.0 WITH classpath-exception-2.0",
+            "licenses": [
+              "gpl-2.0",
+              "classpath-exception-2.0"
+            ],
+            "is_license_text": "false",
+            "is_license_notice": "false",
+            "is_license_reference": "true",
+            "is_license_tag": "false",
+            "matcher": "2-aho",
+            "rule_length": 10,
+            "matched_length": 10,
+            "match_coverage": 100.0,
+            "rule_relevance": 55
+          }
+        }
+        
+        expected = {
+                "key": "classpath-exception-2.0",
+                "score": 55.0,
+                "short_name": "Classpath exception to GPL 2.0 or later",
+                "category": "Copyleft Limited",
+                "owner": "Free Software Foundation (FSF)"
+            
+          }
+        
+        result = models.License(data).to_dict()
+        assert result == expected
 
     def test_License_to_dict_empty(self):
         result = models.License().to_dict()
