@@ -69,7 +69,7 @@ class DeltaCode(object):
             self.codebase1 = VirtualCodebase(new_path)
             self.codebase2 = VirtualCodebase(old_path)
         except Exception as exception:
-            self.errors.append("KeyError")
+            self.errors.append(exception.message)
             click.secho(exception.message ,fg = "red")
 
         if self.codebase1 != None and self.codebase2 != None:

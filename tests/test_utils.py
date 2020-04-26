@@ -39,6 +39,7 @@ from commoncode.testcase import FileBasedTesting
 import deltacode
 from deltacode import utils
 from deltacode import models
+from scancode.resource import VirtualCodebase
 
 
 unique_categories = set([
@@ -443,43 +444,15 @@ class TestUtils(FileBasedTesting):
         assert 'license change' in test_delta.factors
 
     def test_update_from_license_info_two_permissives_to_one_permissive(self):
-        test_file_new = models.File({
-            'path':'/test/path.txt',
-            'name': 'path.txt',
-            'sha1': 'a',
-            'original_path': '',
-            "licenses": [
-                {
-                    "key": "mit",
-                    "score": 80.0,
-                    "short_name": "MIT License",
-                    "category": "Permissive"
-                }
-            ]
-        })
-        test_file_old = models.File({
-            'path':'/test/path.txt',
-            'name': 'path.txt',
-            'sha1': 'a_modified',
-            'original_path': '',
-            "licenses": [
-                {
-                    "key": "mit",
-                    "score": 80.0,
-                    "short_name": "MIT License",
-                    "category": "Permissive"
-                },
-                {
-                    "key": "apache-2.0",
-                    "score": 40.0,
-                    "short_name": "Apache 2.0",
-                    "category": "Permissive"
-                }
-            ]
-        })
+        test_scan_new = self.get_test_loc('utils/test_update_from_license_info_two_permissives_to_one_permissive_new.json')
+        test_scan_old = self.get_test_loc('utils/test_update_from_license_info_two_permissives_to_one_permissive_old.json')
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+        deltacodeObj = deltacode.DeltaCode(test_scan_old , test_scan_new , options)
 
-        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
-
+        test_delta = deltacode.Delta(20, deltacodeObj.new_files[1][0], deltacodeObj.old_files[1][0])
+        print(deltacodeObj.new_files)
         utils.update_modified_from_license_info(test_delta, unique_categories)
 
         assert test_delta.score == 30
@@ -1546,11 +1519,12 @@ class TestUtils(FileBasedTesting):
         test_scan_new = self.get_test_loc('utils/align-trees-simple-new.json')
         # Our old scan uses --full-root option in scancode
         test_scan_old = self.get_test_loc('utils/align-trees-simple-old.json')
+        options = OrderedDict([
+            ('--all-delta-types', False)
+        ])
+        deltacodeObj = deltacode.DeltaCode(test_scan_old , test_scan_new , options)
 
-        new_scan = models.Scan(test_scan_new)
-        old_scan = models.Scan(test_scan_old)
-
-        result_seg_new, result_seg_old = utils.align_trees(new_scan.files, old_scan.files)
+        result_seg_new, result_seg_old = utils.align_trees(deltacodeObj.new_files[0][0], deltacodeObj.old_files[0][0])
 
         assert result_seg_new == 0
         # Our old scan uses --full-root option in scancode, hence the 5 segments that

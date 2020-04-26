@@ -1,0 +1,24 @@
+{
+    "files":[
+        {
+            "path":"test/path.txt",
+            "name": "path.txt",
+            "sha1": "a_modified",
+            "original_path": "",
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                },
+                {
+                    "key": "apache-2.0",
+                    "score": 40.0,
+                    "short_name": "Apache 2.0",
+                    "category": "Permissive"
+                }
+            ]
+        }
+    ]
+}
