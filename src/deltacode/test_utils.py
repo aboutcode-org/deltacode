@@ -34,6 +34,7 @@ import io
 import json
 
 from commoncode.system import on_windows
+from scancode.resource import VirtualCodebase
 
 
 def run_scan_click(options, monkeypatch=None, test_mode=True, expected_rc=0, env=None):
@@ -168,3 +169,14 @@ def streamline_headers(headers):
     headers.pop('deltacode_version', None)
     headers.pop('deltacode_options', None)
     streamline_errors(headers['deltacode_errors'])
+
+
+def fetch_files(location):
+    codebase = VirtualCodebase(location)
+    resourceFiles = []
+    resources = codebase.walk_filtered(topdown=True)
+
+    for index , obj in enumerate(resources):
+        resourceFiles.append([obj , ''])
+
+    return resourceFiles

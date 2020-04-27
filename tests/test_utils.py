@@ -40,6 +40,7 @@ import deltacode
 from deltacode import utils
 from deltacode import models
 from scancode.resource import VirtualCodebase
+from deltacode import test_utils
 
 
 unique_categories = set([
@@ -1522,10 +1523,11 @@ class TestUtils(FileBasedTesting):
         options = OrderedDict([
             ('--all-delta-types', False)
         ])
-        deltacodeObj = deltacode.DeltaCode(test_scan_old , test_scan_new , options)
-
-        result_seg_new, result_seg_old = utils.align_trees(deltacodeObj.new_files[0][0], deltacodeObj.old_files[0][0])
-
+        new_files = test_utils.fetch_files(test_scan_new);
+        old_files = test_utils.fetch_files(test_scan_old)
+        
+        result_seg_new, result_seg_old = utils.align_trees(new_files, old_files)
+        print(result_seg_new , result_seg_old)
         assert result_seg_new == 0
         # Our old scan uses --full-root option in scancode, hence the 5 segments that
         # can be removed.
