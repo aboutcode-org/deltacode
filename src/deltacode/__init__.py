@@ -53,8 +53,6 @@ class DeltaCode(object):
         self.codebase1 = None
         self.codebase2 = None
 
-        self.new_files_count = 0 #keeps the count of the new file
-        self.old_files_count = 0 #keeps the count of old files
         self.new_files = [] # a list of [[new file1:Original path],[new file2:Original Path],...]
         self.old_files = [] # a list of [[old file1:Original path],[old file2:Original Path],...]
         self.new_files_fingerprint = dict() # map of { {new_file1:fingerprint},{new_file2:fingerprint},...} it will be needed when we need the fingerprints
@@ -75,7 +73,7 @@ class DeltaCode(object):
         if self.codebase1 != None and self.codebase2 != None:
             self.fetch_files(self.codebase1,is_new = True)
             self.fetch_files(self.codebase2,is_new = False)
-            self.stats = Stat(self.new_files_count, self.old_files_count) 
+            self.stats = Stat(self.codebase1.compute_counts(), self.codebase2.compute_counts()) 
             self.new_files_errors = []
             self.old_files_errors = []
             self.determine_delta()
@@ -107,9 +105,6 @@ class DeltaCode(object):
                     self.new_files_fingerprint[obj.path] = obj.fingerprint
                 except AttributeError:
                     self.new_files_fingerprint[obj.path] = None
-                if obj.is_file:
-                    # increment the new files count
-                    self.new_files_count += 1
 
             else:
                 # append in the old files
@@ -118,9 +113,6 @@ class DeltaCode(object):
                     self.old_files_fingerprint[obj.path] = obj.fingerprint
                 except AttributeError:
                     self.old_files_fingerprint[obj.path] = None
-                if obj.is_file:
-                    # increment the old files count
-                    self.old_files_count += 1
 
     def align_scans(self):
         """
@@ -231,14 +223,14 @@ class DeltaCode(object):
                     continue
 
         # make sure everything is accounted for
-        if new_visited != self.new_files_count:
+        if new_visited != self.codebase1.compute_counts()[0]:
             self.errors.append(
-                'DeltaCode Warning: new_visited({}) != new_total({}). Assuming old scancode format.'.format(new_visited, self.new.files_count)
+                'DeltaCode Warning: new_visited({}) != new_total({}). Assuming old scancode format.'.format(new_visited, self.codebase1.compute_counts()[0])
             )
 
-        if old_visited != self.old_files_count:
+        if old_visited != self.codebase2.compute_counts()[0]:
             self.errors.append(
-                'DeltaCode Warning: old_visited({}) != old_total({}). Assuming old scancode format.'.format(old_visited, self.old.files_count)
+                'DeltaCode Warning: old_visited({}) != old_total({}). Assuming old scancode format.'.format(old_visited, self.codebase2.compute_counts()[0])
             )
 
     def determine_moved(self):
@@ -506,8 +498,8 @@ class Stat(object):
     with respect to the old directory.
     """
     def __init__(self, new_files_count, old_files_count):
-        self.new_files_count = new_files_count
-        self.old_files_count = old_files_count
+        self.new_files_count = new_files_count[0]
+        self.old_files_count = old_files_count[0]
         self.num_added = 0
         self.num_removed = 0
         self.num_moved = 0

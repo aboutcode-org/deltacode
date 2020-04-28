@@ -40,6 +40,7 @@ from deltacode import test_utils
 from deltacode import utils
 from scancode.resource import VirtualCodebase
 
+
 class TestDeltacode(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
@@ -83,8 +84,8 @@ class TestDeltacode(FileBasedTesting):
 
         result = DeltaCode(new_scan, old_scan, options)
 
-        assert result.new.files_count == 11408
-        assert result.old.files_count == 8631
+        assert result.codebase1.compute_counts()[0] + result.codebase1.compute_counts()[1]== 11409
+        assert result.codebase2.compute_counts()[0] + result.codebase2.compute_counts()[1]== 8632
 
     def test_DeltaCode_align_scan_zlib_alignment_exception(self):
         new_scan = self.get_test_loc('deltacode/align-scan-zlib-alignment-exception-new.json')
@@ -97,18 +98,16 @@ class TestDeltacode(FileBasedTesting):
 
         results = DeltaCode(new_scan, old_scan, options)
 
-        assert results.new.files_count == 293
-        assert results.old.files_count == 40
+        assert results.codebase1.compute_counts()[0] + results.codebase1.compute_counts()[1]== 294
+        assert results.codebase2.compute_counts()[0] + results.codebase2.compute_counts()[1]== 41
 
-        for f in results.new.files:
-            assert f.__class__.__name__ == 'File'
-            assert f.original_path != None
-            assert f.original_path == f.path
+        for f in results.new_files:
+            assert f[0].__class__.__name__ == 'ScannedResource'
+            assert f[0].path != None
 
-        for f in results.old.files:
-            assert f.__class__.__name__ == 'File'
-            assert f.original_path != None
-            assert f.original_path == f.path
+        for f in results.old_files:
+            assert f[0].__class__.__name__ == 'ScannedResource'
+            assert f[0].path != None
 
     def test_DeltaCode_delta_len_error(self):
         new_scan = self.get_test_loc('deltacode/delta-len-error-new.json')
@@ -175,10 +174,10 @@ class TestDeltacode(FileBasedTesting):
 
         result = DeltaCode(None, None, options)
 
-        assert result.new_files_count == 0
+        assert result.codebase1.compute_counts()[0] == 0
         assert result.new_files == []
 
-        assert result.old_files_count == 0
+        assert result.codebase2.compute_counts()[0] == 0
         assert result.old_files == []
 
         assert result.deltas == []
