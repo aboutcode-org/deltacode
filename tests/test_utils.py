@@ -1527,7 +1527,6 @@ class TestUtils(FileBasedTesting):
         old_files = test_utils.fetch_files(test_scan_old)
         
         result_seg_new, result_seg_old = utils.align_trees(new_files, old_files)
-        print(result_seg_new , result_seg_old)
         assert result_seg_new == 0
         # Our old scan uses --full-root option in scancode, hence the 5 segments that
         # can be removed.
@@ -1537,12 +1536,12 @@ class TestUtils(FileBasedTesting):
         test_scan_new = self.get_test_loc('utils/align-trees-zlib-failing-new.json')
         test_scan_old = self.get_test_loc('utils/align-trees-zlib-failing-old.json')
 
-        new_scan = models.Scan(test_scan_new)
-        old_scan = models.Scan(test_scan_old)
+        new_scan = test_utils.fetch_files(test_scan_new)
+        old_scan = test_utils.fetch_files(test_scan_old)
 
         # test that the exception is raised
         with pytest.raises(utils.AlignmentException):
-            result_seg_new, result_seg_old = utils.align_trees(new_scan.files, old_scan.files)
+            result_seg_new, result_seg_old = utils.align_trees(new_scan, old_scan)
 
     def test_DeltaCode_check_moved_no_sha1_match(self):
         added_sha1 = 'a'
