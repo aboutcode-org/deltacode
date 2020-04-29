@@ -446,7 +446,7 @@ class Delta(object):
                 ("size",self.old_file.size),
                 ("sha1",self.old_file.sha1),
                 ("fingerprint",deltacode.old_files_fingerprint.get(self.old_file.path,"")),
-                ("original_path",deltacode.old_files_original_path.get(self.old_file.path, "")),
+                ("original_path",deltacode.old_files_original_path.get(self.old_file.path, self.old_file.path)),
                 # since license itself has many sub fields so we obtain it from another utility function
                 ("licenses",self.licenses_to_dict(self.old_file)),
                 # since copyright itself has many sub fields so we obtain it from another utility function
@@ -460,7 +460,7 @@ class Delta(object):
                 ("size",self.new_file.size),
                 ("sha1",self.new_file.sha1),
                 ("fingerprint",deltacode.new_files_fingerprint.get(self.new_file.path,"")),
-                ("original_path",deltacode.new_files_original_path.get(self.new_file.path, "")),
+                ("original_path",deltacode.new_files_original_path.get(self.new_file.path, self.new_file.path)),
                 # since license itself has many sub fields so we obtain it from another utility function
                 ("licenses",self.licenses_to_dict(self.new_file)),
                 # since copyright itself has many sub fields so we obtain it from another utility function
