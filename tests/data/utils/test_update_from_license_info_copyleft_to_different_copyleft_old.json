@@ -1,0 +1,18 @@
+{
+    "files":[{
+        "path":"test/path.txt",
+        "name": "path.txt",
+        "sha1": "a_modified",
+        "original_path": "",
+        "licenses": [
+            {
+                "key": "gpl-2.0",
+                "score": 70.0,
+                "short_name": "GPL 2.0",
+                "category": "Copyleft"
+            }
+        ]
+    }
+
+    ]
+}

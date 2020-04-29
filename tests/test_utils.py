@@ -553,37 +553,13 @@ class TestUtils(FileBasedTesting):
             assert factor in test_delta.factors
 
     def test_update_from_license_info_copyleft_to_different_copyleft(self):
-        test_file_new = models.File({
-            'path':'/test/path.txt',
-            'name': 'path.txt',
-            'sha1': 'a',
-            'original_path': '',
-            "licenses": [
-                {
-                    "key": "adapt-1.0",
-                    "score": 15.0,
-                    "short_name": "APL 1.0",
-                    "category": "Copyleft",
-                    "owner": "OSI - Open Source Initiative"
-                }
-            ]
-        })
-        test_file_old = models.File({
-            'path':'/test/path.txt',
-            'name': 'path.txt',
-            'sha1': 'a_modified',
-            'original_path': '',
-            "licenses": [
-                {
-                    "key": "gpl-2.0",
-                    "score": 70.0,
-                    "short_name": "GPL 2.0",
-                    "category": "Copyleft"
-                }
-            ]
-        })
+        test_file_new = self.get_test_loc('utils/test_update_from_license_info_copyleft_to_different_copyleft_new.json')
+        test_file_old = self.get_test_loc('utils/test_update_from_license_info_copyleft_to_different_copyleft_old.json')
 
-        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+        fetch_new_files = test_utils.fetch_files(test_file_new)
+        fetch_old_files = test_utils.fetch_files(test_file_old)
+
+        test_delta = deltacode.Delta(20, fetch_new_files[1][0], fetch_old_files[1][0])
 
         utils.update_modified_from_license_info(test_delta, unique_categories)
 

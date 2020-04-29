@@ -1,0 +1,19 @@
+{
+    "files":[{
+        "path":"test/path.txt",
+        "name": "path.txt",
+        "sha1": "a",
+        "original_path": "",
+        "licenses": [
+            {
+                "key": "adapt-1.0",
+                "score": 15.0,
+                "short_name": "APL 1.0",
+                "category": "Copyleft",
+                "owner": "OSI - Open Source Initiative"
+            }
+        ]
+    }
+
+    ]
+}
