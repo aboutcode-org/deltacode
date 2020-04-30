@@ -69,23 +69,22 @@ class DeltaCode(object):
         except Exception as exception:
             self.errors.append(exception.message)
             click.secho(exception.message ,fg = "red")
-
-        if self.codebase1 != None and self.codebase2 != None:
-            self.fetch_files(self.codebase1,is_new = True)
-            self.fetch_files(self.codebase2,is_new = False)
-            self.stats = Stat(self.codebase1.compute_counts(), self.codebase2.compute_counts()) 
-            self.new_files_errors = []
-            self.old_files_errors = []
-            self.determine_delta()
-            self.determine_moved()
-            self.license_diff()
-            self.copyright_diff()
-            self.stats.calculate_stats()
-            self.similarity()
-            # Sort deltas by score, descending, i.e., high > low, and then by
-            # factors, alphabetically.  Run the least significant sort first.
-            self.deltas.sort(key=lambda Delta: Delta.factors, reverse=False)
-            self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
+        
+        self.fetch_files(self.codebase1,is_new = True)
+        self.fetch_files(self.codebase2,is_new = False)
+        self.stats = Stat(self.codebase1.compute_counts(), self.codebase2.compute_counts()) 
+        self.new_files_errors = []
+        self.old_files_errors = []
+        self.determine_delta()
+        self.determine_moved()
+        self.license_diff()
+        self.copyright_diff()
+        self.stats.calculate_stats()
+        self.similarity()
+        # Sort deltas by score, descending, i.e., high > low, and then by
+        # factors, alphabetically.  Run the least significant sort first.
+        self.deltas.sort(key=lambda Delta: Delta.factors, reverse=False)
+        self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
 
     def fetch_files(self,codebase,is_new):
         """
