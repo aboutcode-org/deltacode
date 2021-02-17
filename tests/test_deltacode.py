@@ -1590,7 +1590,7 @@ class TestDeltacode(FileBasedTesting):
         assert [d.score for d in deltas_object if d.new_file.path == 'a1.py'] == [50]
         assert [d.score for d in deltas_object if d.new_file.path == 'a2.py'] == [0]
 
-        assert [d.factors for d in deltas_object if d.new_file.path == 'a1.py'].pop() == ['license change', 'commercial added', 'proprietary free added']
+        assert sorted([d.factors for d in deltas_object if d.new_file.path == 'a1.py'].pop()) == sorted(['license change', 'commercial added', 'proprietary free added'])
         assert [d.status for d in deltas_object if d.new_file.path == 'a1.py'] == ['modified']
         assert [d.factors for d in deltas_object if d.new_file.path == 'a2.py'].pop() == []
         assert [d.status for d in deltas_object if d.new_file.path == 'a2.py'] == ['unmodified']

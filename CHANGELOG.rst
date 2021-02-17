@@ -1,11 +1,13 @@
-Changelog
-=========
+Release notes
+-------------
 
-1.0.0 (2018-04-05)
-------------------
-* Initial release of DeltaCode
+vNext ()
+--------
+- Remove support for python2.7.
+- Add support for python3.6+.
+- Add Azurze Pipelines support for CI checks.
+- Update python project files to more modern standards.
 
-  * support for finding codebase differences from two scancode output files
-  * uses ScanCode-ToolKit license and copyright scan data to aid in the 'delta' process
-  * scores and classifies pairs of files depending on their 'differences'
-  * simple command line with JSON output format
+v1.0.0 (2018-04-05)
+-------------------
+- Initial release.
