@@ -46,8 +46,6 @@ def run_scan_click(options, monkeypatch=None, test_mode=True, expected_rc=0, env
     from click.testing import CliRunner
     from deltacode import cli
 
-    options = add_windows_extra_timeout(options)
-
     if monkeypatch:
         monkeypatch.setattr(click._termui_impl, 'isatty', lambda _: True)
         monkeypatch.setattr(click , 'get_terminal_size', lambda : (80, 43,))
@@ -78,16 +76,6 @@ def get_opts(options):
 
 
 WINDOWS_CI_TIMEOUT = '222.2'
-
-
-def add_windows_extra_timeout(options, timeout=WINDOWS_CI_TIMEOUT):
-    """
-    Add a timeout to an options list if on Windows.
-    """
-    if on_windows and '--timeout' not in options:
-        # somehow the Appevyor windows CI is now much slower and timeouts at 120 secs
-        options += ['--timeout', timeout]
-    return options
 
 
 def check_json_scan(expected_file, result_file, regen=False, remove_file_date=False, ignore_headers=False):
