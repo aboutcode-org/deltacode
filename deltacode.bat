@@ -1,12 +1,12 @@
 @echo OFF
-@rem Copyright (c) 2018 nexB Inc. http://www.nexb.com/ - All rights reserved.
+@rem Copyright (c) nexB Inc. http://www.nexb.com/ - All rights reserved.
 
 @rem  A minimal shell wrapper to the CLI entry point
 
 set DELTACODE_ROOT_DIR=%~dp0
 @rem Use a trailing space in the next line to set the variable to an empty string
 set DELTACODE_CMD_LINE_ARGS= 
-set DELTACODE_CONFIGURED_PYTHON=%DELTACODE_ROOT_DIR%\bin\python.exe
+set DELTACODE_CONFIGURED_PYTHON=%DELTACODE_ROOT_DIR%\tmp\bin\python.exe
 
 @rem Collect all command line arguments in a variable
 :collectarg
@@ -29,6 +29,6 @@ if %errorlevel% neq 0 (
 )
 
 :deltacode
-"%DELTACODE_ROOT_DIR%\bin\deltacode" %DELTACODE_CMD_LINE_ARGS%
+"%DELTACODE_ROOT_DIR%\tmp\bin\deltacode" %DELTACODE_CMD_LINE_ARGS%
 
 :EOS
