@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2018 nexB Inc. http://www.nexb.com/ - All rights reserved.
+# Copyright (c) nexB Inc. http://www.nexb.com/ - All rights reserved.
 #
 
 # A minimal shell wrapper to the CLI entry point fo DeltaCode
@@ -100,15 +100,15 @@ _canonicalize_file_path() {
 }
 
 ###################################################################################
-# Now run scancode proper
+# Now run deltacode proper
 
 DELTACODE_BIN="$( realpath "${BASH_SOURCE[0]}" )"
 DELTACODE_ROOT_DIR="$( cd "$( dirname "${DELTACODE_BIN}" )" && pwd )"
 
-DELTACODE_CONFIGURED_PYTHON="$DELTACODE_ROOT_DIR/bin/python"
+DELTACODE_CONFIGURED_PYTHON="$DELTACODE_ROOT_DIR/tmp/bin/python"
 if [ ! -f "$DELTACODE_CONFIGURED_PYTHON" ]; then
     echo "* Configuring DeltaCode for first use..."
     CONFIGURE_QUIET=1 "$DELTACODE_ROOT_DIR/configure" etc/conf
 fi
 
-"$DELTACODE_ROOT_DIR/bin/deltacode" "$@"
+"$DELTACODE_ROOT_DIR/tmp/bin/deltacode" "$@"
