@@ -474,7 +474,7 @@ class TestCLI(FileBasedTesting):
         result = runner.invoke(cli.cli, [])
 
         assert 'Usage: cli [OPTIONS]' in result.output
-        assert """Error: Missing option "-n" / "--new".""" in result.output
+        assert "Error: Missing option '-n' / '--new'." in result.output
 
     def test_incorrect_flag(self):
         runner = CliRunner()
