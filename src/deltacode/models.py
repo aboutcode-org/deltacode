@@ -30,7 +30,7 @@ from collections import OrderedDict
 import json
 
 
-class Scan(object):
+class Scan:
     """
     Process the files contained in an incoming ScanCode scan to test whether
     they are valid, retrieve the scan's 'files_count' value, create a list of
@@ -169,7 +169,7 @@ class Scan(object):
         return index
 
 
-class File(object):
+class File:
     """
     File object created from an ABCD formatted 'file' dictionary.
     """
@@ -241,7 +241,7 @@ class File(object):
         return "%s" % self.__dict__
 
 
-class License(object):
+class License:
     """
     License object created from the 'license' field in an ABCD formatted 'file'
     dictionary.
@@ -276,7 +276,7 @@ class License(object):
         return "%s" % self.__dict__
 
 
-class Copyright(object):
+class Copyright:
     """
     Copyright object created from the 'copyrights' field in an ABCD formatted
     'file' dictionary.

@@ -170,7 +170,7 @@ if is_pypy:
         REQUIRED_MODULES.append('_functools')
 
 
-class Logger(object):
+class Logger:
 
     """
     Logging object for use in command-line script.  Allows ranges of
@@ -2209,7 +2209,7 @@ LC_LOAD_DYLIB = 0xc
 maxint = majver == 3 and getattr(sys, 'maxsize') or getattr(sys, 'maxint')
 
 
-class fileview(object):
+class fileview:
     """
     A proxy for file-like objects that exposes a given view of a file.
     Modified from macholib.

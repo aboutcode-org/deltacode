@@ -163,6 +163,9 @@ def update_modified_from_copyright_info(delta):
 
 
 def collect_errors(deltacode):
+    """
+    Returns a list of errors to the console which might be present in the old and new ScanCode scans.
+    """
     errors = []
     errors.extend(deltacode.new.errors)
     errors.extend(deltacode.old.errors)

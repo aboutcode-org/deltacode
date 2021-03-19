@@ -41,7 +41,7 @@ except DistributionNotFound:
 
 SIMILARITY_LIMIT = 35
 
-class DeltaCode(object):
+class DeltaCode:
     """
     Handle the basic operations on a pair of incoming ScanCode scans (in JSON
     format) and the Delta objects created from a comparison of the files (in
@@ -273,7 +273,7 @@ class DeltaCode(object):
         return index
 
 
-class Delta(object):
+class Delta:
     """
     A tuple reflecting a comparison of two files -- each of which is a File
     object -- and the 'factors' (e.g., 'added', 'modified' etc.) and related
@@ -345,7 +345,7 @@ class Delta(object):
             ('old', old_file),
         ])
 
-class Stat(object):
+class Stat:
     """
     Contains all the stats for the file changes in the new directory
     with respect to the old directory.
