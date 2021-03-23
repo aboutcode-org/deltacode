@@ -30,7 +30,7 @@ from collections import OrderedDict
 from deltacode.models import File
 from deltacode.models import Scan
 from deltacode import utils
-
+from commoncode.resource import VirtualCodebase
 
 from pkg_resources import get_distribution, DistributionNotFound
 try:
