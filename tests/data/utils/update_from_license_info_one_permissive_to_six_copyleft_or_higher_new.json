@@ -1,0 +1,67 @@
+{
+    "scancode_notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/nexB/scancode-toolkit/ for support and download.",
+    "scancode_version": "2.1.0",
+    "scancode_options": {
+        "--license": true,
+        "--info": true
+    },
+    "files_count": 1,
+    "files": [
+        {
+            "path":"test/path.txt",
+            "name": "path.txt",
+            "sha1": "a",
+            "original_path": "",
+            "licenses": [
+                {
+                    "key": "mit",
+                    "score": 80.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive"
+                },
+                {
+                    "key": "adapt-1.0",
+                    "score": 15.0,
+                    "short_name": "APL 1.0",
+                    "category": "Copyleft",
+                    "owner": "OSI - Open Source Initiative"
+                },
+                {
+                    "key": "bittorrent-1.0",
+                    "score": 100.0,
+                    "short_name": "BitTorrent 1.0",
+                    "category": "Copyleft Limited",
+                    "owner": "BitTorrent, Inc."
+                },
+                {
+                    "key": "bloomberg-blpapi",
+                    "score": 100.0,
+                    "short_name": "Bloomberg BLPAPI License",
+                    "category": "Proprietary Free",
+                    "owner": "Bloomberg Labs"
+                },
+                {
+                    "key": "commercial-license",
+                    "score": 55.0,
+                    "short_name": "Commercial License",
+                    "category": "Commercial",
+                    "owner": "Unspecified"
+                },
+                {
+                    "key": "wrox-download",
+                    "score": 100.0,
+                    "short_name": "Wrox Download Terms and Conditions",
+                    "category": "Free Restricted",
+                    "owner": "Wiley"
+                },
+                {
+                    "key": "mozilla-ospl-1.0",
+                    "score": 99.93,
+                    "short_name": "Mozilla Open Software Patent License 1.0",
+                    "category": "Patent License",
+                    "owner": "Mozilla"
+                }
+            ]
+        }
+    ]
+}

@@ -25,21 +25,24 @@
 
 from __future__ import absolute_import
 
+import os
 from collections import OrderedDict
 
-from deltacode.models import File
-from deltacode.models import Scan
 from deltacode import utils
+from commoncode import paths
 from commoncode.resource import VirtualCodebase
 
+
 from pkg_resources import get_distribution, DistributionNotFound
+
 try:
-    __version__ = get_distribution('deltacode').version
+    __version__ = get_distribution("deltacode").version
 except DistributionNotFound:
     # package is not installed ??
-    __version__ = '1.0.0'
+    __version__ = "1.0.0"
 
 SIMILARITY_LIMIT = 35
+
 
 class DeltaCode(object):
     """
@@ -47,40 +50,41 @@ class DeltaCode(object):
     format) and the Delta objects created from a comparison of the files (in
     the form of File objects) contained in those scans.
     """
+
     def __init__(self, new_path, old_path, options):
-        self.new = Scan(new_path)
-        self.old = Scan(old_path)
+        self.codebase1 = None
+        self.codebase2 = None
         self.options = options
         self.deltas = []
         self.errors = []
-        self.stats = Stat(self.new.files_count, self.old.files_count)
 
-        if self.new.path != '' and self.old.path != '':
-            self.determine_delta()
-            self.determine_moved()
-            self.license_diff()
-            self.copyright_diff()
-            self.stats.calculate_stats()
-            self.similarity()
-            # Sort deltas by score, descending, i.e., high > low, and then by
-            # factors, alphabetically.  Run the least significant sort first.
-            self.deltas.sort(key=lambda Delta: Delta.factors, reverse=False)
-            self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
-
-    def align_scans(self):
-        """
-        Seek to align the paths of a pair of files (File objects) in the pair
-        of incoming scans so that the attributes and other characteristics of
-        the files can be compared with one another.  Call utils.fix_trees(),
-        which calls utils.align_trees().
-        """
-        try:
-            utils.fix_trees(self.new.files, self.old.files)
-        except utils.AlignmentException:
-            for f in self.new.files:
-                f.original_path = f.path
-            for f in self.old.files:
-                f.original_path = f.path
+        if os.path.isfile(new_path) and os.path.isfile(old_path):
+            self.codebase1 = VirtualCodebase(new_path)
+            self.codebase2 = VirtualCodebase(old_path)
+        else:
+            error_message = (
+                "{} is expected to be a file".format(new_path)
+                if not os.path.isfile(new_path)
+                else "{} is expected to be a file".format(old_path)
+            )
+            raise utils.FileError(error_message)
+        self.stats = Stat(
+            self.codebase1.compute_counts()[0], self.codebase2.compute_counts()[0]
+        )
+        self.new_scan_options = []
+        self.old_scan_options = []
+        self.new_files_errors = []
+        self.old_files_errors = []
+        self.determine_delta()
+        self.options_diff()
+        self.license_diff()
+        self.copyright_diff()
+        self.stats.calculate_stats()
+        self.similarity()
+        # Sort deltas by score, descending, i.e., high > low, and then by
+        # factors, alphabetically.  Run the least significant sort first.
+        self.deltas.sort(key=lambda Delta: Delta.factors, reverse=False)
+        self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
 
     def similarity(self):
         """
@@ -93,129 +97,165 @@ class DeltaCode(object):
         for delta in self.deltas:
             if delta.new_file == None or delta.old_file == None:
                 continue
-            new_fingerprint = delta.new_file.fingerprint
-            old_fingerprint = delta.old_file.fingerprint
+            new_fingerprint = (
+                delta.new_file.fingerprint
+                if hasattr(delta.new_file, "fingerprint")
+                else None
+            )
+            old_fingerprint = (
+                delta.old_file.fingerprint
+                if hasattr(delta.old_file, "fingerprint")
+                else None
+            )
+
             if new_fingerprint == None or old_fingerprint == None:
                 continue
             new_fingerprint = utils.bitarray_from_hex(delta.new_file.fingerprint)
             old_fingerprint = utils.bitarray_from_hex(delta.old_file.fingerprint)
+
             hamming_distance = utils.hamming_distance(new_fingerprint, old_fingerprint)
             if hamming_distance > 0 and hamming_distance <= SIMILARITY_LIMIT:
                 delta.score += hamming_distance
-                delta.factors.append('Similar with hamming distance : {}'.format(hamming_distance))
+                delta.factors.append(
+                    "Similar with hamming distance : {}".format(hamming_distance)
+                )
+
+    def create_deltas(
+        self, new_resource, old_resource, new_path, old_path, score, status
+    ):
+        """
+        Creates the Delta Objects and appends them to the member list.
+        """
+        delta = Delta(score, new_resource, old_resource)
+        delta.status = status
+        self.deltas.append(delta)
 
     def determine_delta(self):
         """
-        Add to a list of Delta objects that can be sorted by their attributes,
-        e.g., by Delta.score.  Return None if no File objects can be loaded
-        from either scan.
+        Create Delta objects and append them to the list. Top Down BFS Traversal is used 
+        to visit the codebase structures of the old and new Codebase Directiries.
         """
-        # align scan and create our index
-        self.align_scans()
-        new_index = self.new.index_files()
-        old_index = self.old.index_files()
 
-        # gathering counts to ensure no files lost or missing from our 'deltas' set
-        new_visited, old_visited = 0, 0
+        old_resource_considered = set()
+        # Set to keep track of the old resources visited
+        try:
+            Delta.NEW_CODEBASE_OFFSET, Delta.OLD_CODEBASE_OFFSET = utils.align_trees(
+                self.codebase1, self.codebase2
+            )
+        except utils.AlignmentException:
+            Delta.NEW_CODEBASE_OFFSET, Delta.OLD_CODEBASE_OFFSET = 0, 0
 
-        # perform the deltas
-        for path, new_files in new_index.items():
-            for new_file in new_files:
+        for new_resource in self.codebase1.walk():
+            # Visit each resource of the new codebase in a Top Down BFS fashion
+            if new_resource.is_file: 
+                path_new = "/".join(
+                    paths.split(new_resource.path)[Delta.NEW_CODEBASE_OFFSET :]
+                )
+            # If the resource is a file align its path
 
-                if new_file.type != 'file':
+                old_resource = self.codebase2.get_resource_from_path(path_new)
+                # Check in the old codebase weather a resource with such a path exists or not
+                # if it exists and their corresponding sha's are same then its an unmodified delta
+
+                if old_resource and old_resource.sha1 == new_resource.sha1:
+                    old_resource_considered.add(old_resource.path)
+                    path_old = "/".join(
+                        paths.split(old_resource.path)[Delta.OLD_CODEBASE_OFFSET :]
+                    )
+                    self.create_deltas(
+                        new_resource, old_resource, path_new, path_old, 0, "unmodified",
+                    )
+                    self.stats.num_unmodified += 1
+
                     continue
-
-                new_visited += 1
-
-                try:
-                    delta_old_files = old_index[path]
-                except KeyError:
-                    delta = Delta(100, new_file, None)
-                    delta.status = 'added'
-                    self.stats.num_added += 1
-                    self.deltas.append(delta)
-                    continue
-
-                # at this point, we have a delta_old_file.
-                # we need to determine wheather this is identical,
-                # or a modification.
-                for f in delta_old_files:
-                    # TODO: make sure sha1 is NOT empty
-                    if new_file.sha1 == f.sha1:
-                        delta = Delta(0, new_file, f)
-                        delta.status = 'unmodified'
-                        self.stats.num_unmodified += 1
-                        self.deltas.append(delta)
+                
+                
+                # Now when  we do not get old resources with the same name 
+                ADDED = True
+                for old_resource in self.codebase2.walk():
+                    # Visit each resource of the new codebase in a Bottom Up BFS fashion
+                    if old_resource.path in old_resource_considered:
+                        # If old resources are previously considered then continue
                         continue
-                    else:
-                        delta = Delta(20, new_file, f)
-                        delta.status = 'modified'
-                        self.stats.num_modified += 1
-                        self.deltas.append(delta)
+                    path_old = "/".join(
+                        paths.split(old_resource.path)[Delta.OLD_CODEBASE_OFFSET :]
+                    )
+                    # Make the path aligned
+                    if (
+                        old_resource.is_file
+                        and not old_resource.path in old_resource_considered
+                    ):
+                    # If the old resource is a file and currently unvisited
 
-        # now time to find the added.
-        for path, old_files in old_index.items():
-            for old_file in old_files:
-                if old_file.type != 'file':
-                    continue
+                        if path_new == path_old:
+                            # Old and New Resources are having the same path after alignment
+                            ADDED = False
+                            if new_resource.sha1 == old_resource.sha1:
+                                # They are having same sha1
+                                old_resource_considered.add(old_resource.path)
+                                self.create_deltas(
+                                    new_resource,
+                                    old_resource,
+                                    path_new,
+                                    path_old,
+                                    0,
+                                    "unmodified",
+                                )
+                                self.stats.num_unmodified += 1
+                                break
+                            else:
+                                # They are having different sha1
+                                old_resource_considered.add(old_resource.path)
+                                self.create_deltas(
+                                    new_resource,
+                                    old_resource,
+                                    path_new,
+                                    path_old,
+                                    20,
+                                    "modified",
+                                )
+                                self.stats.num_modified += 1
+                                break
+                        else:
+                            # Their paths are different
+                            if new_resource.sha1 == old_resource.sha1:
+                                # THey are having the same sha1
+                                old_resource_considered.add(old_resource.path)
+                                ADDED = False
+                                self.create_deltas(
+                                    new_resource,
+                                    old_resource,
+                                    path_new,
+                                    path_old,
+                                    0,
+                                    "moved",
+                                )
+                                self.stats.num_moved += 1
+                                break
 
-                old_visited += 1
+                if ADDED:
+                    # If none of the above criteria matches then the delta is an added one.
+                    self.create_deltas(
+                        new_resource, None, path_new, None, 100, "added",
+                    )
+                    self.stats.num_added += 1
 
-                try:
-                    # This file already classified so do nothing
-                    new_index[path]
-                except KeyError:
-                    delta = Delta(0, None, old_file)
-                    delta.status = 'removed'
-                    self.stats.num_removed += 1
-                    self.deltas.append(delta)
-                    continue
-
-        # make sure everything is accounted for
-        if new_visited != self.new.files_count:
-            self.errors.append(
-                'DeltaCode Warning: new_visited({}) != new_total({}). Assuming old scancode format.'.format(new_visited, self.new.files_count)
-            )
-
-        if old_visited != self.old.files_count:
-            self.errors.append(
-                'DeltaCode Warning: old_visited({}) != old_total({}). Assuming old scancode format.'.format(old_visited, self.old.files_count)
-            )
-
-    def determine_moved(self):
-        """
-        Modify the list of Delta objects by creating an index of
-        'removed' Delta objects and an index of 'added' Delta objects indexed
-        by their 'sha1' attribute, identifying any unique pairs of Deltas in
-        both indices with the same 'sha1' and File 'name' attributes, and
-        converting each such pair of 'added' and 'removed' Delta objects to a
-        'moved' Delta object.  The 'added' and 'removed' indices are defined by
-        the presence/absence of the object's 'old_file' and 'new_file'.
-        """
-        added = self.index_deltas('sha1', [i for i in self.deltas if i.old_file is None and i.new_file])
-        removed = self.index_deltas('sha1', [i for i in self.deltas if i.old_file and i.new_file is None])
-
-        for added_sha1, added_deltas in added.items():
-            for removed_sha1, removed_deltas in removed.items():
-
-                # check for matching sha1s on both sides
-                if utils.check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas):
-                    self.update_deltas(added_deltas.pop(), removed_deltas.pop())
-
-    def update_deltas(self, added, removed):
-        """
-        Convert the matched 'added' and 'removed' Delta objects to a combined
-        'moved' Delta object -- passing the appropriate 'score' during object
-        creation -- and delete the 'added' and 'removed' objects.
-        """
-        delta = Delta(0, added.new_file, removed.old_file)
-        delta.status = 'moved'
-        self.stats.num_moved += 1
-        self.stats.num_added -= 1
-        self.stats.num_removed -= 1
-        self.deltas.append(delta)
-        self.deltas.remove(added)
-        self.deltas.remove(removed)
+        for old_resource_remaining in self.codebase2.walk():
+            # Now again visit the old codebase in a top down fashion
+            # If any delta is left out it is a case of removed delta 
+            if (
+                old_resource_remaining.is_file
+                and old_resource_remaining.path not in old_resource_considered
+            ):
+                path_old = "/".join(
+                    paths.split(old_resource_remaining.path)[
+                        Delta.OLD_CODEBASE_OFFSET :
+                    ]
+                )
+                self.create_deltas(
+                    None, old_resource_remaining, None, path_old, 0, "removed",
+                )
+                self.stats.num_removed += 1
 
     def license_diff(self):
         """
@@ -226,14 +266,16 @@ class DeltaCode(object):
         has been a license change.
         """
         # TODO: Figure out the best way to handle this.
-        unique_categories = set([
-            'Commercial',
-            'Copyleft',
-            'Copyleft Limited',
-            'Free Restricted',
-            'Patent License',
-            'Proprietary Free'
-        ])
+        unique_categories = set(
+            [
+                "Commercial",
+                "Copyleft",
+                "Copyleft Limited",
+                "Free Restricted",
+                "Patent License",
+                "Proprietary Free",
+            ]
+        )
 
         for delta in self.deltas:
             utils.update_from_license_info(delta, unique_categories)
@@ -249,28 +291,12 @@ class DeltaCode(object):
         for delta in self.deltas:
             utils.update_from_copyright_info(delta)
 
-    def index_deltas(self, index_key='path', delta_list=[]):
-        """
-        Return a dictionary of a list of Delta objects indexed by the key
-        passed via the 'index_key' variable.  If no 'index_key' variable is
-        passed, the dict is keyed by the Delta object's 'path' variable.  For a
-        'removed' Delta object -- identified by its 'score' attribute -- use
-        the variable from the 'old_file'; for all other Delta objects (e.g.,
-        'added'), use the 'new_file'.  This function does not currently catch
-        the AttributeError exception.
-        """
-        index = {}
-
-        for delta in delta_list:
-            key = getattr(delta.new_file if delta.new_file else delta.old_file, index_key)
-
-            if index.get(key) is None:
-                index[key] = []
-                index[key].append(delta)
-            else:
-                index[key].append(delta)
-
-        return index
+    def options_diff(self):
+        try:
+            self.new_scan_options = self.codebase1.get_headers()[0].get("options", "")
+            self.old_scan_options = self.codebase2.get_headers()[0].get("options", "")
+        except IndexError as exception:
+            pass
 
 
 class Delta(object):
@@ -279,14 +305,18 @@ class Delta(object):
     object -- and the 'factors' (e.g., 'added', 'modified' etc.) and related
     'score' that characterize that comparison.
     """
+
+    NEW_CODEBASE_OFFSET = 0
+    OLD_CODEBASE_OFFSET = 0
+
     def __init__(self, score=0, new_file=None, old_file=None):
         self.new_file = new_file if new_file else None
         self.old_file = old_file if old_file else None
         self.factors = []
         self.score = score
-        self.status = ''
+        self.status = ""
 
-    def update(self, score=0, factor=''):
+    def update(self, score=0, factor=""):
         """
         Add the score to the Delta object's 'score' attribute and add a string,
         summarizing the factor associated with the score, to the object's
@@ -310,9 +340,12 @@ class Delta(object):
         other than 'unmodified' and return True if all but 'unmodified' are
         ruled out.
         """
-        if (self.new_file and self.old_file and
-                self.new_file.sha1 == self.old_file.sha1 and
-                self.new_file.path == self.old_file.path):
+        if (
+            self.new_file
+            and self.old_file
+            and self.new_file.sha1 == self.old_file.sha1
+            and self.new_file.path == self.old_file.path
+        ):
             return True
 
     def is_added(self):
@@ -322,11 +355,86 @@ class Delta(object):
         if self.new_file and not self.old_file:
             return True
 
-    def to_dict(self):
+    def copyrights_to_dict(self, file):
+        """
+        Given a Copyright object, return an OrderedDict with the full
+        set of fields from the ScanCode 'copyrights' value.
+        """
+        copyrights = []
+        try:
+            copyrights = file.copyrights
+        except AttributeError:
+            return []
+
+        all_copyrights = []
+        for copyright in copyrights:
+            all_copyrights.append(
+                OrderedDict(
+                    [
+                        ("statements", copyright.get("statements", None)),
+                        ("holders", copyright.get("holders", None)),
+                    ]
+                )
+            )
+
+        return all_copyrights
+
+    def licenses_to_dict(self, file):
+        """
+        Given a License object, return an OrderedDict with the full
+        set of fields from the ScanCode 'license' value.
+        """
+        licenses = []
+        try:
+            for license in file.licenses:
+                licenses.append(
+                    OrderedDict(
+                        [
+                            ("key", license.get("key", None)),
+                            ("score", license.get("score", None)),
+                            ("short_name", license.get("short_name", None)),
+                            ("category", license.get("category", None)),
+                            ("owner", license.get("owner", None)),
+                        ]
+                    )
+                )
+            return licenses
+        except:
+            return []
+
+    def file_to_dict(self, deltacode, file, new_file=True):
+
+        path_offset = (
+            Delta.NEW_CODEBASE_OFFSET if new_file else Delta.OLD_CODEBASE_OFFSET
+        )
+        if file:
+            return OrderedDict(
+                [
+                    ("path", "/".join(paths.split(file.path)[path_offset:])),
+                    ("type", file.type),
+                    ("name", file.name),
+                    ("size", file.size),
+                    ("sha1", file.sha1),
+                    (
+                        "fingerprint",
+                        file.fingerprint if hasattr(file, "fingerprint") else "",
+                    ),
+                    ("original_path", file.path),
+                    ("licenses", self.licenses_to_dict(file)),
+                    ("copyrights", self.copyrights_to_dict(file)),
+                ]
+            )
+
+    def to_dict(self, deltacode):
         """
         Return an OrderedDict comprising the 'factors', 'score' and new and old
         'path' attributes of the object.
         """
+        if (
+            not deltacode.options.get("--all-delta-types", "") == True
+            and self.status == "unmodified"
+        ):
+            return
         if self.new_file:
             new_file = self.new_file.to_dict()
         else:
@@ -337,19 +445,23 @@ class Delta(object):
         else:
             old_file = None
 
-        return OrderedDict([
-            ('status', self.status),
-            ('factors', self.factors),
-            ('score', self.score),
-            ('new', new_file),
-            ('old', old_file),
-        ])
+        return OrderedDict(
+            [
+                ("status", self.status),
+                ("factors", self.factors),
+                ("score", self.score),
+                ("new", self.file_to_dict(deltacode, self.new_file, new_file=True)),
+                ("old", self.file_to_dict(deltacode, self.old_file, new_file=False)),
+            ]
+        )
+
 
 class Stat(object):
     """
     Contains all the stats for the file changes in the new directory
     with respect to the old directory.
     """
+
     def __init__(self, new_files_count, old_files_count):
         self.new_files_count = new_files_count
         self.old_files_count = old_files_count
@@ -369,23 +481,34 @@ class Stat(object):
         Calculates the percentage change of new directory with respect to
         the old directory.
         """
-        self.percent_added = utils.calculate_percent(self.num_added, self.old_files_count)
-        self.percent_removed = utils.calculate_percent(self.num_removed, self.old_files_count)
-        self.percent_moved = utils.calculate_percent(self.num_moved, self.old_files_count)
-        self.percent_modified = utils.calculate_percent(self.num_modified, self.old_files_count)
-        self.percent_unmodified = utils.calculate_percent(self.num_unmodified, self.old_files_count)
+        self.percent_added = utils.calculate_percent(
+            self.num_added, self.old_files_count
+        )
+        self.percent_removed = utils.calculate_percent(
+            self.num_removed, self.old_files_count
+        )
+        self.percent_moved = utils.calculate_percent(
+            self.num_moved, self.old_files_count
+        )
+        self.percent_modified = utils.calculate_percent(
+            self.num_modified, self.old_files_count
+        )
+        self.percent_unmodified = utils.calculate_percent(
+            self.num_unmodified, self.old_files_count
+        )
 
     def to_dict(self):
         """
         Return an OrderedDict comprising all the percent attributes of the object.
         """
-        return OrderedDict([
-            ('old_files_count', self.old_files_count),
-            ('new_files_count', self.new_files_count),
-            ('percent_added', self.percent_added),
-            ('percent_removed', self.percent_removed),
-            ('percent_moved', self.percent_moved),
-            ('percent_modified', self.percent_modified),
-            ('percent_unmodified', self.percent_unmodified),
-        ])
-
+        return OrderedDict(
+            [
+                ("old_files_count", self.old_files_count),
+                ("new_files_count", self.new_files_count),
+                ("percent_added", self.percent_added),
+                ("percent_removed", self.percent_removed),
+                ("percent_moved", self.percent_moved),
+                ("percent_modified", self.percent_modified),
+                ("percent_unmodified", self.percent_unmodified),
+            ]
+        )

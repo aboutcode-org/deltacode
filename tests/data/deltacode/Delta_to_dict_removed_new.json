@@ -1,0 +1,57 @@
+{
+    "headers": [
+      {
+        "tool_name": "scancode-toolkit",
+        "tool_version": "21.3.31",
+        "options": {
+          "input": [
+            "music/"
+          ],
+          "--copyright": true,
+          "--json-pp": "../music_new.json",
+          "--license": true,
+          "--package": true
+        },
+        "notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/nexB/scancode-toolkit/ for support and download.",
+        "start_timestamp": "2021-05-25T171204.704038",
+        "end_timestamp": "2021-05-25T171205.962836",
+        "duration": 1.2588143348693848,
+        "message": null,
+        "errors": [],
+        "extra_data": {
+          "files_count": 0
+        }
+      }
+    ],
+    "files": [
+        {
+            "path": "music",
+            "type": "directory",
+            "name": "music",
+            "base_name": "music",
+            "extension": "",
+            "size": 0,
+            "date": null,
+            "sha1": null,
+            "md5": null,
+            "sha256": null,
+            "mime_type": null,
+            "file_type": null,
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": false,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "copyrights": [],
+            "holders": [],
+            "authors": [],
+            "packages": [],
+            "files_count": 1,
+            "dirs_count": 0,
+            "size_count": 7783,
+            "scan_errors": []
+          }
+    ]
+  }
