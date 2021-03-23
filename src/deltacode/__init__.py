@@ -48,24 +48,68 @@ class DeltaCode(object):
     the form of File objects) contained in those scans.
     """
     def __init__(self, new_path, old_path, options):
-        self.new = Scan(new_path)
-        self.old = Scan(old_path)
+        self.codebase1 = None
+        self.codebase2 = None
+
+        self.new_files = [] # a list of [[new file1:Original path],[new file2:Original Path],...]
+        self.old_files = [] # a list of [[old file1:Original path],[old file2:Original Path],...]
+        self.new_files_fingerprint = dict() # map of { {new_file1:fingerprint},{new_file2:fingerprint},...} it will be needed when we need the fingerprints
+        self.old_files_fingerprint = dict() # map of { {old_file1:fingerprint},{old_file2:fingerprint},...}
+        self.new_files_original_path = dict() #this keeps a map of the path of file with respect to original path 
+        self.old_files_original_path = dict()
         self.options = options
         self.deltas = []
         self.errors = []
-        self.stats = Stat(self.new.files_count, self.old.files_count)
 
-        if self.new.path != '' and self.old.path != '':
-            self.determine_delta()
-            self.determine_moved()
-            self.license_diff()
-            self.copyright_diff()
-            self.stats.calculate_stats()
-            self.similarity()
-            # Sort deltas by score, descending, i.e., high > low, and then by
-            # factors, alphabetically.  Run the least significant sort first.
-            self.deltas.sort(key=lambda Delta: Delta.factors, reverse=False)
-            self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
+        try:
+            self.codebase1 = VirtualCodebase(new_path)
+            self.codebase2 = VirtualCodebase(old_path)
+        except Exception as exception:
+            self.errors.append(exception.message)
+            print(exception.message)
+
+        self.fetch_files(self.codebase1,is_new = True)
+        self.fetch_files(self.codebase2,is_new = False)
+        self.stats = Stat(self.codebase1.compute_counts(), self.codebase2.compute_counts()) 
+        self.new_files_errors = []
+        self.old_files_errors = []
+        self.determine_delta()
+        self.determine_moved()
+        self.license_diff()
+        self.copyright_diff()
+        self.stats.calculate_stats()
+        self.similarity()
+        # Sort deltas by score, descending, i.e., high > low, and then by
+        # factors, alphabetically.  Run the least significant sort first.
+        self.deltas.sort(key=lambda Delta: Delta.factors, reverse=False)
+        self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
+
+    def fetch_files(self,codebase,is_new):
+        """
+        Walk through the codebase, then generate the resources it(including all files and its directories)
+        then we enumerate over this generated codebase to get file, and directories as (obj)
+        Now during the time of enumeration we append files in the self.new_files list and incremants out self.new_files_count
+        Similarly for old_files.
+        Now , we also maintain a map which maps from object path to its fingerprint.
+        This map will be required when we calculate the hamming distances and compare similarity.
+        """
+        resources = codebase.walk_filtered(topdown=True)
+        for i,obj in enumerate(resources):            
+            if is_new:
+                # append in the new_files
+                self.new_files.append([obj,''])
+                try :
+                    self.new_files_fingerprint[obj.path] = obj.fingerprint
+                except AttributeError:
+                    self.new_files_fingerprint[obj.path] = None
+
+            else:
+                # append in the old files
+                self.old_files.append([obj,''])
+                try:
+                    self.old_files_fingerprint[obj.path] = obj.fingerprint
+                except AttributeError:
+                    self.old_files_fingerprint[obj.path] = None
 
     def align_scans(self):
         """
@@ -75,12 +119,12 @@ class DeltaCode(object):
         which calls utils.align_trees().
         """
         try:
-            utils.fix_trees(self.new.files, self.old.files)
+            self.new_files_original_path , self.old_files_original_path = utils.fix_trees(self.new_files, self.old_files)
         except utils.AlignmentException:
-            for f in self.new.files:
-                f.original_path = f.path
-            for f in self.old.files:
-                f.original_path = f.path
+            for f in self.new_files:
+                f[1] = f[0].path
+            for f in self.old_files:
+                f[1] = f[0].path
 
     def similarity(self):
         """
@@ -93,12 +137,14 @@ class DeltaCode(object):
         for delta in self.deltas:
             if delta.new_file == None or delta.old_file == None:
                 continue
-            new_fingerprint = delta.new_file.fingerprint
-            old_fingerprint = delta.old_file.fingerprint
+            new_fingerprint = self.new_files_fingerprint.get(delta.new_file.path,None)
+            old_fingerprint = self.old_files_fingerprint.get(delta.old_file.path,None)
+
             if new_fingerprint == None or old_fingerprint == None:
                 continue
-            new_fingerprint = utils.bitarray_from_hex(delta.new_file.fingerprint)
-            old_fingerprint = utils.bitarray_from_hex(delta.old_file.fingerprint)
+            new_fingerprint = utils.bitarray_from_hex(self.new_files_fingerprint[delta.new_file.path])
+            old_fingerprint = utils.bitarray_from_hex(self.old_files_fingerprint[delta.old_file.path])
+
             hamming_distance = utils.hamming_distance(new_fingerprint, old_fingerprint)
             if hamming_distance > 0 and hamming_distance <= SIMILARITY_LIMIT:
                 delta.score += hamming_distance
@@ -112,8 +158,8 @@ class DeltaCode(object):
         """
         # align scan and create our index
         self.align_scans()
-        new_index = self.new.index_files()
-        old_index = self.old.index_files()
+        new_index = utils.index_files(self.new_files)
+        old_index = utils.index_files(self.old_files)
 
         # gathering counts to ensure no files lost or missing from our 'deltas' set
         new_visited, old_visited = 0, 0
@@ -172,14 +218,14 @@ class DeltaCode(object):
                     continue
 
         # make sure everything is accounted for
-        if new_visited != self.new.files_count:
+        if new_visited != self.codebase1.compute_counts()[0]:
             self.errors.append(
-                'DeltaCode Warning: new_visited({}) != new_total({}). Assuming old scancode format.'.format(new_visited, self.new.files_count)
+                'DeltaCode Warning: new_visited({}) != new_total({}). Assuming old scancode format.'.format(new_visited, self.codebase1.compute_counts()[0])
             )
 
-        if old_visited != self.old.files_count:
+        if old_visited != self.codebase2.compute_counts()[0]:
             self.errors.append(
-                'DeltaCode Warning: old_visited({}) != old_total({}). Assuming old scancode format.'.format(old_visited, self.old.files_count)
+                'DeltaCode Warning: old_visited({}) != old_total({}). Assuming old scancode format.'.format(old_visited, self.codebase2.compute_counts()[0])
             )
 
     def determine_moved(self):
@@ -322,7 +368,99 @@ class Delta(object):
         if self.new_file and not self.old_file:
             return True
 
-    def to_dict(self):
+    def copyrights_to_dict(self,file):
+        """
+        Given a Copyright object, return an OrderedDict with the full
+        set of fields from the ScanCode 'copyrights' value.
+        """
+        copyrightC = []
+        try :
+            copyrightC = file.copyrights
+        except AttributeError:
+            # arises when the ScannedResource do not have any license attribute
+            return []
+        if len(copyrightC) == 0:
+            return []
+        if isinstance(copyrightC[0],OrderedDict):
+            # all the copyright are in correct format
+            all_copyrights = []
+            for i in range(len(copyrightC)):
+                # we iterate over all the copyrights
+                statements = copyrightC[i].get("statements",None)
+                holders = copyrightC[i].get("holders",None)
+                d = OrderedDict([
+                    ('statements', statements),
+                    ('holders', holders)
+                ])
+                all_copyrights.append(d)
+
+            return all_copyrights
+
+    def licenses_to_dict(self,file):
+        """
+        Given a License object, return an OrderedDict with the full
+        set of fields from the ScanCode 'license' value.
+        """
+        licenseL = []
+        try:
+            licenseL = file.licenses
+        except AttributeError:
+            # arises when the ScannedResource do not have any license attribute
+            return []
+
+        if len(licenseL) == 0:
+            return []
+        if isinstance(licenseL[0],OrderedDict):
+            # the licenses are in the correct format
+            all_licenses = []
+            for i in range(len(licenseL)):
+                # we iterate over all the licenses
+                key = licenseL[i].get("key",None)
+                score = licenseL[i].get("score",None)
+                short_key = licenseL[i].get("short_name",None)
+                category = licenseL[i].get("category",None)
+                owner = licenseL[i].get("owner",None)
+                d = OrderedDict([
+                    ('key', key),
+                    ('score', score),
+                    ('short_name', short_key),
+                    ('category', category),
+                    ('owner', owner)
+                ])
+                all_licenses.append(d)
+            return all_licenses
+
+    def file_to_dict(self,deltacode, new_file = True):
+        if new_file==False and self.old_file :
+            return OrderedDict([
+                ("path",self.old_file.path),
+                ("type",self.old_file.type),
+                ("name",self.old_file.name),
+                ("size",self.old_file.size),
+                ("sha1",self.old_file.sha1),
+                ("fingerprint",deltacode.old_files_fingerprint.get(self.old_file.path,"")),
+                ("original_path",deltacode.old_files_original_path.get(self.old_file.path, self.old_file.path)),
+                # since license itself has many sub fields so we obtain it from another utility function
+                ("licenses",self.licenses_to_dict(self.old_file)),
+                # since copyright itself has many sub fields so we obtain it from another utility function
+                ("copyrights",self.copyrights_to_dict(self.old_file))       
+            ])
+        elif new_file and self.new_file:
+            return OrderedDict([
+                ("path",self.new_file.path),
+                ("type",self.new_file.type),
+                ("name",self.new_file.name),
+                ("size",self.new_file.size),
+                ("sha1",self.new_file.sha1),
+                ("fingerprint",deltacode.new_files_fingerprint.get(self.new_file.path,"")),
+                ("original_path",deltacode.new_files_original_path.get(self.new_file.path, self.new_file.path)),
+                # since license itself has many sub fields so we obtain it from another utility function
+                ("licenses",self.licenses_to_dict(self.new_file)),
+                # since copyright itself has many sub fields so we obtain it from another utility function
+                ("copyrights",self.copyrights_to_dict(self.new_file))          
+            ])
+
+    def to_dict(self, deltacode):
         """
         Return an OrderedDict comprising the 'factors', 'score' and new and old
         'path' attributes of the object.
@@ -341,8 +479,10 @@ class Delta(object):
             ('status', self.status),
             ('factors', self.factors),
             ('score', self.score),
-            ('new', new_file),
-            ('old', old_file),
+            # receives the detail of the new file
+            ('new', self.file_to_dict(deltacode , new_file = True)),
+            # receives the details of the old file 
+            ('old', self.file_to_dict(deltacode , new_file = False)),
         ])
 
 class Stat(object):
@@ -351,8 +491,8 @@ class Stat(object):
     with respect to the old directory.
     """
     def __init__(self, new_files_count, old_files_count):
-        self.new_files_count = new_files_count
-        self.old_files_count = old_files_count
+        self.new_files_count = new_files_count[0]
+        self.old_files_count = old_files_count[0]
         self.num_added = 0
         self.num_removed = 0
         self.num_moved = 0

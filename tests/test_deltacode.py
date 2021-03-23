@@ -37,6 +37,8 @@ import deltacode
 from deltacode import DeltaCode
 from deltacode import models
 from deltacode import test_utils
+from deltacode import utils
+from commoncode.resource import VirtualCodebase
 
 class TestDeltacode(FileBasedTesting):
 
@@ -46,22 +48,19 @@ class TestDeltacode(FileBasedTesting):
         new_scan = self.get_test_loc('deltacode/ecos-align-index-new.json')
         old_scan = self.get_test_loc('deltacode/ecos-align-index-old.json')
 
-        new = models.Scan(new_scan)
-        old = models.Scan(old_scan)
+        new = VirtualCodebase(new_scan)
+        old = VirtualCodebase(old_scan)
 
         options = OrderedDict([
             ('--all-delta-types', False)
         ])
 
-        delta = DeltaCode(None, None, options)
-
-        delta.new = new
-        delta.old = old
+        delta = DeltaCode(new, old, options)
 
         delta.align_scans()
 
-        new_index = delta.new.index_files()
-        old_index = delta.old.index_files()
+        new_index = utils.new.index_files(delta.new_files)
+        old_index = utils.old.index_files(delta.old_files)
 
         new_index_length = 0
         for k,v in new_index.items():
