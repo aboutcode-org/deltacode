@@ -57,6 +57,7 @@ class DeltaCode(object):
         self.old_files_fingerprint = dict() # map of { {old_file1:fingerprint},{old_file2:fingerprint},...}
         self.new_files_original_path = dict() #this keeps a map of the path of file with respect to original path 
         self.old_files_original_path = dict()
+
         self.options = options
         self.deltas = []
         self.errors = []
@@ -64,25 +65,27 @@ class DeltaCode(object):
         try:
             self.codebase1 = VirtualCodebase(new_path)
             self.codebase2 = VirtualCodebase(old_path)
+            
         except Exception as exception:
-            self.errors.append(exception.message)
-            print(exception.message)
+            self.errors.append(str(exception))
 
-        self.fetch_files(self.codebase1,is_new = True)
-        self.fetch_files(self.codebase2,is_new = False)
-        self.stats = Stat(self.codebase1.compute_counts(), self.codebase2.compute_counts()) 
-        self.new_files_errors = []
-        self.old_files_errors = []
-        self.determine_delta()
-        self.determine_moved()
-        self.license_diff()
-        self.copyright_diff()
-        self.stats.calculate_stats()
-        self.similarity()
-        # Sort deltas by score, descending, i.e., high > low, and then by
-        # factors, alphabetically.  Run the least significant sort first.
-        self.deltas.sort(key=lambda Delta: Delta.factors, reverse=False)
-        self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
+        if self.codebase1 is not None and self.codebase2 is not None:
+            self.fetch_files(self.codebase1,is_new = True)
+            self.fetch_files(self.codebase2,is_new = False)
+            self.stats = Stat(self.codebase1.compute_counts(), self.codebase2.compute_counts()) 
+            self.new_files_errors = []
+            self.old_files_errors = []
+            self.determine_delta()
+            self.determine_moved()
+            self.license_diff()
+            self.copyright_diff()
+            self.stats.calculate_stats()
+            self.similarity()
+            # Sort deltas by score, descending, i.e., high > low, and then by
+            # factors, alphabetically.  Run the least significant sort first.
+            self.deltas.sort(key=lambda Delta: Delta.factors, reverse=False)
+            self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
+ 
 
     def fetch_files(self,codebase,is_new):
         """

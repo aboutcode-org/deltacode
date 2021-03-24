@@ -283,57 +283,39 @@ class TestCLI(FileBasedTesting):
                 "path": "b/a4.py",
                 "type": "file",
                 "name": "a4.py",
-                "size": 200,
-                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
-                "fingerprint": "e30cf09443e7878dfed3288886e97542",
+                "size": 10172,
+                "sha1": "612ad650a328990087959416a7e2fd160b1daea9",
+                "fingerprint": "",
                 "original_path": "1_file_moved_new/b/a4.py",
                 "licenses": [
                     {
                         "key": "apache-2.0",
-                        "score": 40.0,
+                        "score": 100.0,
                         "short_name": "Apache 2.0",
                         "category": "Permissive",
                         "owner": "Apache Software Foundation"
                     }
                 ],
-                "copyrights": [
-                    {
-                        "statements": [
-                            "Copyright (c) 2017 Acme Software Inc. and others."
-                        ],
-                        "holders": [
-                            "Acme Software Inc. and others."
-                        ]
-                    }
-                ]
+                "copyrights": []
             },
             "old": {
                 "path": "a/a4.py",
                 "type": "file",
                 "name": "a4.py",
-                "size": 200,
-                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
-                "fingerprint": "e30cf09443e7878dfed3288886e97542",
+                "size": 10172,
+                "sha1": "612ad650a328990087959416a7e2fd160b1daea9",
+                "fingerprint": "",
                 "original_path": "1_file_moved_old/a/a4.py",
                 "licenses": [
                     {
                         "key": "apache-2.0",
-                        "score": 40.0,
+                        "score": 100.0,
                         "short_name": "Apache 2.0",
                         "category": "Permissive",
                         "owner": "Apache Software Foundation"
                     }
                 ],
-                "copyrights": [
-                    {
-                        "statements": [
-                            "Copyright (c) 2017 Acme Software Inc. and others."
-                        ],
-                        "holders": [
-                            "Acme Software Inc. and others."
-                        ]
-                    }
-                ]
+                "copyrights": []
             }
         }
 

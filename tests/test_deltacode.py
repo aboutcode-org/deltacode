@@ -38,7 +38,9 @@ from deltacode import DeltaCode
 from deltacode import models
 from deltacode import test_utils
 from deltacode import utils
+from deltacode.utils import collect_errors
 from commoncode.resource import VirtualCodebase
+
 
 class TestDeltacode(FileBasedTesting):
 
@@ -175,18 +177,17 @@ class TestDeltacode(FileBasedTesting):
 
         result = DeltaCode(None, None, options)
 
-        assert result.new.path == ''
-        assert result.new.files_count == 0
-        assert result.new.files == []
-
-        assert result.old.path == ''
-        assert result.old.files_count == 0
-        assert result.old.files == []
-
-        assert result.deltas == []
+        assert result.errors
+        assert result.codebase1 == None
+        assert result.codebase2 == None
+        assert result.deltas
 
     def test_Delta_one_None(self):
-        file_obj = models.File({'path': 'fake/path.txt'})
+        try:
+            file_obj = VirtualCodebase('fake/path.txt')
+        except IOError:
+            file_obj = None
+            pass
 
         first_None = deltacode.Delta(10, None, file_obj)
         second_None = deltacode.Delta(100, file_obj, None)
@@ -233,8 +234,8 @@ class TestDeltacode(FileBasedTesting):
             ('old', None)
         ])
 
-        assert first_None.to_dict() == expected_first
-        assert second_None.to_dict() == expected_second
+        assert first_None.to_dict(deltacode) == expected_first
+        assert second_None.to_dict(deltacode) == expected_second
 
     def test_Delta_None_files(self):
         delta = deltacode.Delta(None, None, None)
@@ -243,7 +244,7 @@ class TestDeltacode(FileBasedTesting):
         assert type(delta.old_file) == type(None)
         assert delta.score == None
         assert delta.factors == []
-        assert delta.to_dict() == OrderedDict([('status', ''), ('factors', []), ('score', None), ('new', None), ('old', None)])
+        assert delta.to_dict(deltacode) == OrderedDict([('status', ''), ('factors', []), ('score', None), ('new', None), ('old', None)])
 
     def test_DeltaCode_license_modified(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')
@@ -351,7 +352,7 @@ class TestDeltacode(FileBasedTesting):
         delta = deltacode.Delta(100, new, None)
         delta.status = 'added'
 
-        assert delta.to_dict() == expected
+        assert delta.to_dict(deltacode) == expected
 
     def test_Delta_to_dict_modified(self):
         new = models.File({
@@ -404,7 +405,7 @@ class TestDeltacode(FileBasedTesting):
         delta = deltacode.Delta(20, new, old)
         delta.status = 'modified'
 
-        assert delta.to_dict() == expected
+        assert delta.to_dict(delta) == expected
 
     def test_Delta_to_dict_unmodified(self):
         new = models.File({
