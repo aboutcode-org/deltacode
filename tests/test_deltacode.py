@@ -180,7 +180,7 @@ class TestDeltacode(FileBasedTesting):
         assert result.errors
         assert result.codebase1 == None
         assert result.codebase2 == None
-        assert result.deltas
+        assert result.deltas == []
 
     def test_Delta_one_None(self):
         try:
