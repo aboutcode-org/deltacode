@@ -131,13 +131,11 @@ def update_from_copyright_info(delta):
     one or more appropriate categories to its 'factors' attribute if there has
     been a copyright change and depending on the nature of that change.
     """
-    try:
-        if delta.new_file.copyrights:
-            delta.update(10, 'copyright info added')
-            return
-    except AttributeError:
-        # this situation arises when the ScannedResource object has no copyright field for it
-        pass
+    if delta.is_added():
+        update_added_from_copyright_info(delta)
+
+    if delta.is_modified():
+        update_modified_from_copyright_info(delta)
 
 def update_added_from_copyright_info(delta):
     """
@@ -244,7 +242,7 @@ def align_trees(a_files, b_files):
     if a_unique[0].path == b_unique[0].path:
         return 0, 0
 
-    common_suffix, common_segments = paths.common_path_suffix(a_unique.path, b_unique.path)
+    common_suffix, common_segments = paths.common_path_suffix(a_unique[0].path, b_unique[0].path)
     a_segments = len(paths.split(a_unique[0].path))
     b_segments = len(paths.split(b_unique[0].path))
 

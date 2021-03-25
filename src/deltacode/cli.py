@@ -88,6 +88,5 @@ def cli(new, old, json_file, all_delta_types):
 
     # do the delta
     deltacode = DeltaCode(new, old, options)
-
     # generate JSON output
     write_json(deltacode, json_file, all_delta_types)

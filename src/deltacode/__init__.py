@@ -376,6 +376,7 @@ class Delta(object):
         Given a Copyright object, return an OrderedDict with the full
         set of fields from the ScanCode 'copyrights' value.
         """
+
         copyrightC = []
         try :
             copyrightC = file.copyrights
@@ -384,7 +385,8 @@ class Delta(object):
             return []
         if len(copyrightC) == 0:
             return []
-        if isinstance(copyrightC[0],OrderedDict):
+
+        if isinstance(copyrightC[0],dict):
             # all the copyright are in correct format
             all_copyrights = []
             for i in range(len(copyrightC)):
@@ -396,7 +398,7 @@ class Delta(object):
                     ('holders', holders)
                 ])
                 all_copyrights.append(d)
-
+            
             return all_copyrights
 
     def licenses_to_dict(self,file):
@@ -413,7 +415,7 @@ class Delta(object):
 
         if len(licenseL) == 0:
             return []
-        if isinstance(licenseL[0],OrderedDict):
+        if isinstance(licenseL[0],dict):
             # the licenses are in the correct format
             all_licenses = []
             for i in range(len(licenseL)):
