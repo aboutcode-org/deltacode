@@ -85,8 +85,8 @@ class TestDeltacode(FileBasedTesting):
 
         result = DeltaCode(new_scan, old_scan, options)
 
-        assert result.new.files_count == 11408
-        assert result.old.files_count == 8631
+        assert len(result.new_files) == 11409
+        assert len(result.old_files) == 8632
 
     def test_DeltaCode_align_scan_zlib_alignment_exception(self):
         new_scan = self.get_test_loc('deltacode/align-scan-zlib-alignment-exception-new.json')
@@ -99,19 +99,19 @@ class TestDeltacode(FileBasedTesting):
 
         results = DeltaCode(new_scan, old_scan, options)
 
-        assert results.new.files_count == 293
-        assert results.old.files_count == 40
+        assert len(results.new_files) == 294  # +1 is due to because we are also considering the main directory here
+        assert len(results.old_files) == 41
 
-        for f in results.new.files:
-            assert f.__class__.__name__ == 'File'
-            assert f.original_path != None
-            assert f.original_path == f.path
+        for f in results.new_files:
+            assert f[0].__class__.__name__ == 'ScannedResource'
+            assert f[0].path != None
+            assert f[0].path == f[1]
 
-        for f in results.old.files:
-            assert f.__class__.__name__ == 'File'
-            assert f.original_path != None
-            assert f.original_path == f.path
-
+        for f in results.old_files:
+            assert f[0].__class__.__name__ == 'ScannedResource'
+            assert f[0].path != None
+            assert f[0].path == f[1]
+    # Test no longer required
     def test_DeltaCode_delta_len_error(self):
         new_scan = self.get_test_loc('deltacode/delta-len-error-new.json')
         old_scan = self.get_test_loc('deltacode/delta-len-error-old.json')
@@ -143,15 +143,9 @@ class TestDeltacode(FileBasedTesting):
 
         result = DeltaCode(test_path_1, test_path_2, options)
 
-        assert result.new.path == ''
-        assert result.new.files_count == 0
-        assert result.new.files == []
-
-        assert result.old.path == ''
-        assert result.old.files_count == 0
-        assert result.old.files == []
-
-        assert result.deltas == []
+        assert result.codebase1 == None
+        assert result.codebase2 == None
+        assert len(result.errors) >= 1
 
     def test_DeltaCode_empty_paths(self):
         options = OrderedDict([
@@ -676,7 +670,7 @@ class TestDeltacode(FileBasedTesting):
         assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [50]
         assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['license change', 'copyleft added']
         assert [d.status for d in deltas_object if d.new_file.path == 'path.txt'] == ['modified']
-        assert [d.to_dict().get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+        assert [d.to_dict(deltacode_object).get('old').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
             OrderedDict([
                 ('key', 'mit'),
                 ('score', 50.0),
@@ -685,7 +679,7 @@ class TestDeltacode(FileBasedTesting):
                 ('owner', None)
             ])
         ]
-        assert [d.to_dict().get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+        assert [d.to_dict(deltacode_object).get('new').get('licenses') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
             OrderedDict([
                 ('key', 'gpl-2.0'),
                 ('score', 100.0),
@@ -865,13 +859,13 @@ class TestDeltacode(FileBasedTesting):
         assert [d.score for d in deltas_object if d.new_file.path == 'path.txt'] == [30]
         assert [d.factors for d in deltas_object if d.new_file.path == 'path.txt'].pop() == ['copyright info removed']
         assert [d.status for d in deltas_object if d.new_file.path == 'path.txt'] == ['modified']
-        assert [d.to_dict().get('old').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
+        assert [d.to_dict(deltacode_object).get('old').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == [
             OrderedDict([
                 ('statements', ['Copyright (c) 2016 Mark Adler']),
                 ('holders', ['Mark Adler'])
             ])
         ]
-        assert [d.to_dict().get('new').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
+        assert [d.to_dict(deltacode_object).get('new').get('copyrights') for d in deltas_object if d.new_file.path == 'path.txt'].pop() == []
 
         assert len([i for i in deltas_object if i.score == 30]) == 1
         assert len([i for i in deltas_object if i.score == 20]) == 0
@@ -1558,6 +1552,7 @@ class TestDeltacode(FileBasedTesting):
         assert [d.factors for d in deltas_object if d.new_file.path == 'a2.py'].pop() == []
         assert [d.status for d in deltas_object if d.new_file.path == 'a2.py'] == ['unmodified']
 
+    # These files have fingerprint plugins in their files.
     def test_DeltaCode_apache_to_all_notable_lic(self):
         new_scan = self.get_test_loc('deltacode/apache_to_all_notable_lic_new.json')
         old_scan = self.get_test_loc('deltacode/apache_to_all_notable_lic_old.json')
@@ -1578,6 +1573,7 @@ class TestDeltacode(FileBasedTesting):
         assert [d.factors for d in deltas_object if d.new_file.path == 'a2.py'].pop() == []
         assert [d.status for d in deltas_object if d.new_file.path == 'a2.py'] == ['unmodified']
 
+    # These files have fingerprint field enabled in them
     def test_DeltaCode_copyleft_etc_to_prop_free_and_commercial(self):
         new_scan = self.get_test_loc('deltacode/copyleft_etc_to_prop_free_and_commercial_new.json')
         old_scan = self.get_test_loc('deltacode/copyleft_etc_to_prop_free_and_commercial_old.json')

@@ -33,7 +33,7 @@ import binascii
 import os
 
 from commoncode import paths
-from typing import OrderedDict
+from collections import OrderedDict
 
 def update_from_license_info(delta, unique_categories):
     """

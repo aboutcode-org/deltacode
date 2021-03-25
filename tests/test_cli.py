@@ -74,7 +74,7 @@ def check_csvs(
 class TestCLI(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
-
+    # TODO: need to fix in scancode
     def test_json_output_option_selected_all_selected(self):
         new_scan = self.get_test_loc('cli/scan_1_file_moved_new.json')
         old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
@@ -240,7 +240,7 @@ class TestCLI(FileBasedTesting):
         unmodified_result = [d for d in json_result.get('deltas') if d.get('score') == 0 and d.get('new').get('path') == 'a/a3.py'].pop()
 
         assert unmodified_result == unmodified_expected
-
+    # TODO: need to fix in scancode
     def test_json_output_option_selected_all_not_selected(self):
         new_scan = self.get_test_loc('cli/scan_1_file_moved_new.json')
         old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
@@ -326,7 +326,7 @@ class TestCLI(FileBasedTesting):
         unmodified_result = [d for d in json_result.get('deltas') if d.get('status') == 'unmodified']
 
         assert len(unmodified_result) == 0
-
+    # TODO: need to fix in scancode
     def test_no_output_option_selected_all_selected(self):
         new_scan = self.get_test_loc('cli/scan_1_file_moved_new.json')
         old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
@@ -368,7 +368,7 @@ class TestCLI(FileBasedTesting):
         assert '"size": 200' in result.output
         assert '"sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9"' in result.output
         assert '"original_path": "1_file_moved_new/a/a3.py"' in result .output
-
+    # TODO: need to fix in scancode
     def test_no_output_option_selected_all_not_selected(self):
         new_scan = self.get_test_loc('cli/scan_1_file_moved_new.json')
         old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')

@@ -70,8 +70,8 @@ class DeltaCode(object):
             self.errors.append(str(exception))
 
         if self.codebase1 is not None and self.codebase2 is not None:
-            self.fetch_files(self.codebase1,is_new = True)
-            self.fetch_files(self.codebase2,is_new = False)
+            self.fetch_files(self.codebase1,self.new_files, self.new_files_fingerprint)
+            self.fetch_files(self.codebase2,self.old_files, self.old_files_fingerprint)
             self.stats = Stat(self.codebase1.compute_counts(), self.codebase2.compute_counts()) 
             self.new_files_errors = []
             self.old_files_errors = []
@@ -87,7 +87,7 @@ class DeltaCode(object):
             self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
  
 
-    def fetch_files(self,codebase,is_new):
+    def fetch_files(self,codebase, files, fingerprint):
         """
         Walk through the codebase, then generate the resources it(including all files and its directories)
         then we enumerate over this generated codebase to get file, and directories as (obj)
@@ -97,22 +97,12 @@ class DeltaCode(object):
         This map will be required when we calculate the hamming distances and compare similarity.
         """
         resources = codebase.walk_filtered(topdown=True)
-        for i,obj in enumerate(resources):            
-            if is_new:
-                # append in the new_files
-                self.new_files.append([obj,''])
-                try :
-                    self.new_files_fingerprint[obj.path] = obj.fingerprint
-                except AttributeError:
-                    self.new_files_fingerprint[obj.path] = None
-
-            else:
-                # append in the old files
-                self.old_files.append([obj,''])
-                try:
-                    self.old_files_fingerprint[obj.path] = obj.fingerprint
-                except AttributeError:
-                    self.old_files_fingerprint[obj.path] = None
+        for i,obj in enumerate(resources):
+            files.append([obj,''])
+            try :
+                fingerprint[obj.path] = obj.fingerprint
+            except AttributeError:
+                fingerprint[obj.path] = None
 
     def align_scans(self):
         """
