@@ -143,7 +143,8 @@ def update_added_from_copyright_info(delta):
     one or more categories to its 'factors' attribute if there has
     been a copyright change.
     """
-    if delta.new_file.has_copyrights():
+    
+    if hasattr(delta.new_file, 'copyrights'):
         delta.update(10, 'copyright info added')
         return
 
