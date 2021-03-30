@@ -36,9 +36,11 @@ import unicodecsv
 from click.testing import CliRunner
 
 from commoncode.testcase import FileBasedTesting
+from commoncode.resource import VirtualCodebase
 import deltacode
 from deltacode import utils
 from deltacode import models
+from deltacode import DeltaCode
 
 
 unique_categories = set([
@@ -93,41 +95,15 @@ class TestUtils(FileBasedTesting):
         assert len(test_delta.factors) == 0
 
     def test_update_from_license_info_no_license_changes(self):
-        test_file_new = models.File({
-            'path':'/test/path.txt',
-            'name': 'path.txt',
-            'sha1': 'a',
-            'original_path': '',
-            "licenses": [
-                {
-                    "key": "gpl-2.0",
-                    "score": 70.0,
-                    "short_name": "GPL 2.0",
-                    "category": "Copyleft"
-                }
-            ]
-        })
-        test_file_old = models.File({
-            'path':'/test/path.txt',
-            'name': 'path.txt',
-            'sha1': 'a_modified',
-            'original_path': '',
-            "licenses": [
-                {
-                    "key": "gpl-2.0",
-                    "score": 70.0,
-                    "short_name": "GPL 2.0",
-                    "category": "Copyleft"
-                }
-            ]
-        })
+        test_scan_new = self.get_test_loc('utils/update_from_license_info_no_license_changes_new.json')
+        test_scan_old = self.get_test_loc('utils/update_from_license_info_no_license_changes_old.json')
 
-        test_delta = deltacode.Delta(20, test_file_new, test_file_old)
+        result = DeltaCode(test_scan_new, test_scan_old, {})
 
-        utils.update_modified_from_license_info(test_delta, unique_categories)
+        utils.update_modified_from_license_info(result.deltas, unique_categories)
 
-        assert test_delta.score == 20
-        assert len(test_delta.factors) == 0
+        assert result.deltas[0].score == 20
+        assert len(result.deltas[0].factors) == 0
 
     def test_update_from_license_info_single_license_change(self):
         test_file_new = models.File({
