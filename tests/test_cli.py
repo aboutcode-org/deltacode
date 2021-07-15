@@ -47,15 +47,14 @@ def load_csv(location):
     Load a CSV file at location and return a tuple of (field names, list of rows as
     mappings field->value).
     """
-    with codecs.open(location, 'rb', encoding='utf-8') as csvin:
+    with codecs.open(location, "rb", encoding="utf-8") as csvin:
         reader = unicodecsv.DictReader(csvin)
         fields = reader.fieldnames
         values = sorted(reader)
         return fields, values
 
-def check_csvs(
-        result_file, expected_file,
-        regen=False):
+
+def check_csvs(result_file, expected_file, regen=False):
     """
     Copied from https://github.com/nexB/scancode-toolkit/blob/develop/etc/scripts/test_json2csv.py
     Load and compare two CSVs.
@@ -65,6 +64,7 @@ def check_csvs(
     result_fields, results = load_csv(result_file)
     if regen:
         import shutil
+
         shutil.copy2(result_file, expected_file)
     expected_fields, expected = load_csv(expected_file)
     assert expected_fields == result_fields
@@ -72,43 +72,44 @@ def check_csvs(
     for exp, res in zip(sorted(expected), sorted(results)):
         assert exp == res
 
+
 class TestCLI(FileBasedTesting):
 
-    test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
-
+    test_data_dir = os.path.join(os.path.dirname(__file__), "data")
+    # TODO: need to fix in scancode
     def test_json_output_option_selected_all_selected(self):
-        new_scan = self.get_test_loc('cli/scan_1_file_moved_new.json')
-        old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
+        new_scan = self.get_test_loc("cli/scan_1_file_moved_new.json")
+        old_scan = self.get_test_loc("cli/scan_1_file_moved_old.json")
 
-        result_file = self.get_temp_file('json')
+        result_file = self.get_temp_file("json")
 
         runner = CliRunner()
+
         result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file, '-a'], terminal_width=TERMINAL_WIDTH)
+
 
         assert result.exit_code == 0
 
         json_result = json.load(open(result_file))
 
-        notice = ('Generated with DeltaCode and provided on an "AS IS" BASIS, WITHOUT WARRANTIES\n'
-                  'OR CONDITIONS OF ANY KIND, either express or implied. No content created from\n'
-                  'DeltaCode should be considered or used as legal advice. Consult an Attorney\n'
-                  'for any legal advice.\n'
-                  'DeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\n'
-                  'Visit https://github.com/nexB/deltacode/ for support and download.')
+        notice = (
+            'Generated with DeltaCode and provided on an "AS IS" BASIS, WITHOUT WARRANTIES\n'
+            "OR CONDITIONS OF ANY KIND, either express or implied. No content created from\n"
+            "DeltaCode should be considered or used as legal advice. Consult an Attorney\n"
+            "for any legal advice.\n"
+            "DeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\n"
+            "Visit https://github.com/nexB/deltacode/ for support and download."
+        )
 
-        assert json_result.get('deltacode_notice') == notice
+        assert json_result.get("deltacode_notice") == notice
 
-        options =  {
-            '--new': new_scan,
-            '--old': old_scan,
-            '--all-delta-types': True
-        }
+        options = {"--new": new_scan, "--old": old_scan, "--all-delta-types": True}
 
-        assert json_result.get('deltacode_options') == options
+        assert json_result.get("deltacode_options") == options
 
-        assert json_result.get('deltacode_errors') == []
+        assert json_result.get("deltacode_errors") == []
 
-        assert json_result.get('deltas_count') == 8
+        assert json_result.get("deltas_count") == 8
 
         moved_expected = {
             "status": "moved",
@@ -120,7 +121,7 @@ class TestCLI(FileBasedTesting):
                 "name": "a4.py",
                 "size": 200,
                 "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
-                "fingerprint": "e30cf09443e7878dfed3288886e97542",
+                "fingerprint": "",
                 "original_path": "1_file_moved_new/b/a4.py",
                 "licenses": [
                     {
@@ -128,7 +129,7 @@ class TestCLI(FileBasedTesting):
                         "score": 40.0,
                         "short_name": "Apache 2.0",
                         "category": "Permissive",
-                        "owner": "Apache Software Foundation"
+                        "owner": "Apache Software Foundation",
                     }
                 ],
                 "copyrights": [
@@ -136,11 +137,9 @@ class TestCLI(FileBasedTesting):
                         "statements": [
                             "Copyright (c) 2017 Acme Software Inc. and others."
                         ],
-                        "holders": [
-                            "Acme Software Inc. and others."
-                        ]
+                        "holders": ["Acme Software Inc. and others."],
                     }
-                ]
+                ],
             },
             "old": {
                 "path": "a/a4.py",
@@ -148,7 +147,7 @@ class TestCLI(FileBasedTesting):
                 "name": "a4.py",
                 "size": 200,
                 "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
-                "fingerprint": "e30cf09443e7878dfed3288886e97542",
+                "fingerprint": "",
                 "original_path": "1_file_moved_old/a/a4.py",
                 "licenses": [
                     {
@@ -156,7 +155,7 @@ class TestCLI(FileBasedTesting):
                         "score": 40.0,
                         "short_name": "Apache 2.0",
                         "category": "Permissive",
-                        "owner": "Apache Software Foundation"
+                        "owner": "Apache Software Foundation",
                     }
                 ],
                 "copyrights": [
@@ -164,15 +163,15 @@ class TestCLI(FileBasedTesting):
                         "statements": [
                             "Copyright (c) 2017 Acme Software Inc. and others."
                         ],
-                        "holders": [
-                            "Acme Software Inc. and others."
-                        ]
+                        "holders": ["Acme Software Inc. and others."],
                     }
-                ]
-            }
+                ],
+            },
         }
 
-        moved_result = [d for d in json_result.get('deltas') if d.get('status') == 'moved'].pop()
+        moved_result = [
+            d for d in json_result.get("deltas") if d.get("status") == "moved"
+        ].pop()
 
         assert moved_result == moved_expected
 
@@ -186,7 +185,7 @@ class TestCLI(FileBasedTesting):
                 "name": "a3.py",
                 "size": 200,
                 "sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9",
-                "fingerprint": "e30cf09443e7878dfed3288886e97533",
+                "fingerprint": "",
                 "original_path": "1_file_moved_new/a/a3.py",
                 "licenses": [
                     {
@@ -194,7 +193,7 @@ class TestCLI(FileBasedTesting):
                         "score": 40.0,
                         "short_name": "Apache 2.0",
                         "category": "Permissive",
-                        "owner": "Apache Software Foundation"
+                        "owner": "Apache Software Foundation",
                     }
                 ],
                 "copyrights": [
@@ -202,11 +201,9 @@ class TestCLI(FileBasedTesting):
                         "statements": [
                             "Copyright (c) 2017 Acme Software Inc. and others."
                         ],
-                        "holders": [
-                            "Acme Software Inc. and others."
-                        ]
+                        "holders": ["Acme Software Inc. and others."],
                     }
-                ]
+                ],
             },
             "old": {
                 "path": "a/a3.py",
@@ -214,7 +211,7 @@ class TestCLI(FileBasedTesting):
                 "name": "a3.py",
                 "size": 200,
                 "sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9",
-                "fingerprint": "e30cf09443e7878dfed3288886e97533",
+                "fingerprint": "",
                 "original_path": "1_file_moved_old/a/a3.py",
                 "licenses": [
                     {
@@ -222,7 +219,7 @@ class TestCLI(FileBasedTesting):
                         "score": 40.0,
                         "short_name": "Apache 2.0",
                         "category": "Permissive",
-                        "owner": "Apache Software Foundation"
+                        "owner": "Apache Software Foundation",
                     }
                 ],
                 "copyrights": [
@@ -230,54 +227,57 @@ class TestCLI(FileBasedTesting):
                         "statements": [
                             "Copyright (c) 2017 Acme Software Inc. and others."
                         ],
-                        "holders": [
-                            "Acme Software Inc. and others."
-                        ]
+                        "holders": ["Acme Software Inc. and others."],
                     }
-                ]
-            }
+                ],
+            },
         }
 
-        unmodified_result = [d for d in json_result.get('deltas') if d.get('score') == 0 and d.get('new').get('path') == 'a/a3.py'].pop()
+        unmodified_result = [
+            d
+            for d in json_result.get("deltas")
+            if d.get("score") == 0 and d.get("new").get("path") == "a/a3.py"
+        ].pop()
 
         assert unmodified_result == unmodified_expected
 
+    # TODO: need to fix in scancode
     def test_json_output_option_selected_all_not_selected(self):
-        new_scan = self.get_test_loc('cli/scan_1_file_moved_new.json')
-        old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
+        new_scan = self.get_test_loc("cli/scan_1_file_moved_new.json")
+        old_scan = self.get_test_loc("cli/scan_1_file_moved_old.json")
 
-        result_file = self.get_temp_file('json')
+        result_file = self.get_temp_file("json")
 
         runner = CliRunner()
+
         result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file], terminal_width=TERMINAL_WIDTH)
+
 
         assert result.exit_code == 0
 
         json_result = json.load(open(result_file))
 
-        notice = ('Generated with DeltaCode and provided on an "AS IS" BASIS, WITHOUT WARRANTIES\n'
-                  'OR CONDITIONS OF ANY KIND, either express or implied. No content created from\n'
-                  'DeltaCode should be considered or used as legal advice. Consult an Attorney\n'
-                  'for any legal advice.\n'
-                  'DeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\n'
-                  'Visit https://github.com/nexB/deltacode/ for support and download.')
+        notice = (
+            'Generated with DeltaCode and provided on an "AS IS" BASIS, WITHOUT WARRANTIES\n'
+            "OR CONDITIONS OF ANY KIND, either express or implied. No content created from\n"
+            "DeltaCode should be considered or used as legal advice. Consult an Attorney\n"
+            "for any legal advice.\n"
+            "DeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\n"
+            "Visit https://github.com/nexB/deltacode/ for support and download."
+        )
 
-        assert json_result.get('deltacode_notice') == notice
+        assert json_result.get("deltacode_notice") == notice
 
-        options =  {
-            '--new': new_scan,
-            '--old': old_scan,
-            '--all-delta-types': False
-        }
+        options = {"--new": new_scan, "--old": old_scan, "--all-delta-types": False}
 
-        assert json_result.get('deltacode_options') == options
+        assert json_result.get("deltacode_options") == options
 
-        assert json_result.get('deltacode_errors') == []
+        assert json_result.get("deltacode_errors") == []
 
-        assert json_result.get('deltas_count') == 1
+        assert json_result.get("deltas_count") == 1
 
         moved_expected = {
-            "status" : "moved",
+            "status": "moved",
             "factors": [],
             "score": 0,
             "new": {
@@ -286,7 +286,7 @@ class TestCLI(FileBasedTesting):
                 "name": "a4.py",
                 "size": 200,
                 "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
-                "fingerprint": "e30cf09443e7878dfed3288886e97542",
+                "fingerprint": "",
                 "original_path": "1_file_moved_new/b/a4.py",
                 "licenses": [
                     {
@@ -294,7 +294,7 @@ class TestCLI(FileBasedTesting):
                         "score": 40.0,
                         "short_name": "Apache 2.0",
                         "category": "Permissive",
-                        "owner": "Apache Software Foundation"
+                        "owner": "Apache Software Foundation",
                     }
                 ],
                 "copyrights": [
@@ -302,11 +302,9 @@ class TestCLI(FileBasedTesting):
                         "statements": [
                             "Copyright (c) 2017 Acme Software Inc. and others."
                         ],
-                        "holders": [
-                            "Acme Software Inc. and others."
-                        ]
+                        "holders": ["Acme Software Inc. and others."],
                     }
-                ]
+                ],
             },
             "old": {
                 "path": "a/a4.py",
@@ -314,7 +312,7 @@ class TestCLI(FileBasedTesting):
                 "name": "a4.py",
                 "size": 200,
                 "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
-                "fingerprint": "e30cf09443e7878dfed3288886e97542",
+                "fingerprint": "",
                 "original_path": "1_file_moved_old/a/a4.py",
                 "licenses": [
                     {
@@ -322,7 +320,7 @@ class TestCLI(FileBasedTesting):
                         "score": 40.0,
                         "short_name": "Apache 2.0",
                         "category": "Permissive",
-                        "owner": "Apache Software Foundation"
+                        "owner": "Apache Software Foundation",
                     }
                 ],
                 "copyrights": [
@@ -330,35 +328,43 @@ class TestCLI(FileBasedTesting):
                         "statements": [
                             "Copyright (c) 2017 Acme Software Inc. and others."
                         ],
-                        "holders": [
-                            "Acme Software Inc. and others."
-                        ]
+                        "holders": ["Acme Software Inc. and others."],
                     }
-                ]
-            }
+                ],
+            },
         }
 
-        moved_result = [d for d in json_result.get('deltas') if d.get('status') == 'moved'].pop()
+        moved_result = [
+            d for d in json_result.get("deltas") if d.get("status") == "moved"
+        ].pop()
 
         assert moved_result == moved_expected
 
-        unmodified_result = [d for d in json_result.get('deltas') if d.get('status') == 'unmodified']
+        unmodified_result = [
+            d for d in json_result.get("deltas") if d.get("status") == "unmodified"
+        ]
 
         assert len(unmodified_result) == 0
 
+    # TODO: need to fix in scancode
     def test_no_output_option_selected_all_selected(self):
-        new_scan = self.get_test_loc('cli/scan_1_file_moved_new.json')
-        old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
+        new_scan = self.get_test_loc("cli/scan_1_file_moved_new.json")
+        old_scan = self.get_test_loc("cli/scan_1_file_moved_old.json")
 
         runner = CliRunner()
+
         result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-a'], terminal_width=TERMINAL_WIDTH)
+
 
         assert result.exit_code == 0
 
-        assert 'deltacode_notice' in result.output
-        assert 'Generated with DeltaCode and provided on an \\"AS IS\\" BASIS, WITHOUT WARRANTIES\\n' in result.output
+        assert "deltacode_notice" in result.output
+        assert (
+            'Generated with DeltaCode and provided on an \\"AS IS\\" BASIS, WITHOUT WARRANTIES\\n'
+            in result.output
+        )
 
-        assert 'deltacode_options' in result.output
+        assert "deltacode_options" in result.output
         assert '"--all-delta-types": true' in result.output
 
         assert '"deltacode_errors": []' in result.output
@@ -386,21 +392,27 @@ class TestCLI(FileBasedTesting):
         assert '"type": "file"' in result.output
         assert '"size": 200' in result.output
         assert '"sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9"' in result.output
-        assert '"original_path": "1_file_moved_new/a/a3.py"' in result .output
+        assert '"original_path": "1_file_moved_new/a/a3.py"' in result.output
 
+    # TODO: need to fix in scancode
     def test_no_output_option_selected_all_not_selected(self):
-        new_scan = self.get_test_loc('cli/scan_1_file_moved_new.json')
-        old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
+        new_scan = self.get_test_loc("cli/scan_1_file_moved_new.json")
+        old_scan = self.get_test_loc("cli/scan_1_file_moved_old.json")
 
         runner = CliRunner()
+
         result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan], terminal_width=TERMINAL_WIDTH)
+
 
         assert result.exit_code == 0
 
-        assert 'deltacode_notice' in result.output
-        assert 'Generated with DeltaCode and provided on an \\"AS IS\\" BASIS, WITHOUT WARRANTIES\\n' in result.output
+        assert "deltacode_notice" in result.output
+        assert (
+            'Generated with DeltaCode and provided on an \\"AS IS\\" BASIS, WITHOUT WARRANTIES\\n'
+            in result.output
+        )
 
-        assert 'deltacode_options' in result.output
+        assert "deltacode_options" in result.output
         assert '"--all-delta-types": false' in result.output
 
         assert '"deltacode_errors": []' in result.output
@@ -426,59 +438,71 @@ class TestCLI(FileBasedTesting):
         assert '"path": "a/a3.py"' not in result.output
         assert '"name": "a3.py"' not in result.output
         assert '"sha1": "fd5d3589c825f448546d7dcec36da3e567d35fe9"' not in result.output
-        assert '"original_path": "1_file_moved_new/a/a3.py"' not in result .output
+        assert '"original_path": "1_file_moved_new/a/a3.py"' not in result.output
 
     def test_json_deltas_count_all_selected(self):
-        new_scan = self.get_test_loc('cli/scan_sorted01_new.json')
-        old_scan = self.get_test_loc('cli/scan_sorted01_old.json')
+        new_scan = self.get_test_loc("cli/scan_sorted01_new.json")
+        old_scan = self.get_test_loc("cli/scan_sorted01_old.json")
 
-        result_file = self.get_temp_file('json')
+        result_file = self.get_temp_file("json")
 
         runner = CliRunner()
+
         result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file, '-a'], terminal_width=TERMINAL_WIDTH)
+
 
         json_result = json.load(open(result_file))
 
-        assert json_result.get('deltas_count') == 7
+        assert json_result.get("deltas_count") == 7
 
     def test_json_deltas_count_all_not_selected(self):
-        new_scan = self.get_test_loc('cli/scan_sorted01_new.json')
-        old_scan = self.get_test_loc('cli/scan_sorted01_old.json')
+        new_scan = self.get_test_loc("cli/scan_sorted01_new.json")
+        old_scan = self.get_test_loc("cli/scan_sorted01_old.json")
 
-        result_file = self.get_temp_file('json')
+        result_file = self.get_temp_file("json")
 
         runner = CliRunner()
+
         result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file], terminal_width=TERMINAL_WIDTH)
 
         json_result = json.load(open(result_file))
 
-        assert json_result.get('deltas_count') == 4
+        assert json_result.get("deltas_count") == 4
 
     def test_help(self):
         runner = CliRunner()
+
         result = runner.invoke(cli.cli, ['--help'], terminal_width=TERMINAL_WIDTH)
 
-        assert 'Usage: cli [OPTIONS]' in result.output
-        assert 'Identify the changes that need to be made' in result.output
-        assert 'If no file option is selected' in result.output
-        assert 'Include unmodified files' in result.output
-        assert '--version' in result.output
+
+        assert "Usage: cli [OPTIONS]" in result.output
+        assert "Identify the changes that need to be made" in result.output
+        assert "If no file" in result.output
+        assert "option is selected" in result.output
+        assert "Include unmodified files" in result.output
+        assert "--version" in result.output
 
     def test_version(self):
         runner = CliRunner()
+
         result = runner.invoke(cli.cli, ['--version'], terminal_width=TERMINAL_WIDTH)
 
-        assert 'DeltaCode version' in result.output
+
+        assert "DeltaCode version" in result.output
 
     def test_empty(self):
         runner = CliRunner()
+
         result = runner.invoke(cli.cli, [], terminal_width=TERMINAL_WIDTH)
         
         assert 'Usage: cli [OPTIONS]' in result.output
+
         assert "Error: Missing option '-n' / '--new'." in result.output
 
     def test_incorrect_flag(self):
         runner = CliRunner()
+
         result = runner.invoke(cli.cli, ['-xyz'], terminal_width=TERMINAL_WIDTH)
 
         assert 'Error: No such option: -x' in result.output
+

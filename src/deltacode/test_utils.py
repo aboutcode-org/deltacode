@@ -34,7 +34,8 @@ import io
 import json
 
 from commoncode.system import on_windows
-
+from commoncode import paths
+from commoncode.resource import VirtualCodebase
 
 def run_scan_click(options, monkeypatch=None, test_mode=True, expected_rc=0, env=None):
     """
@@ -148,6 +149,10 @@ def streamline_errors(errors):
         cleaned_error = ''.join([error_lines[0] + error_lines[-1]])
         errors[i] = cleaned_error
 
+
+def get_aligned_path(delta, path, new_file):
+    OFFSET = delta.NEW_CODEBASE_OFFSET if new_file else delta.OLD_CODEBASE_OFFSET
+    return "/".join(paths.split(path)[OFFSET:])
 
 def streamline_headers(headers):
     """

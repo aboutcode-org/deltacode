@@ -44,6 +44,8 @@ def write_json(deltacode, outfile, all_delta_types=False):
     """
     results = OrderedDict([
         ('deltacode_notice', get_notice()),
+        # ('new_scan_options', deltacode.new_scan_options),
+        # ('old_scan_options', deltacode.old_scan_options),
         ('deltacode_options', deltacode.options),
         ('deltacode_version', __version__),
         ('deltacode_errors', collect_errors(deltacode)),
@@ -88,6 +90,5 @@ def cli(new, old, json_file, all_delta_types):
 
     # do the delta
     deltacode = DeltaCode(new, old, options)
-
     # generate JSON output
     write_json(deltacode, json_file, all_delta_types)

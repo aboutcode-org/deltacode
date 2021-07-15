@@ -33,6 +33,8 @@ import binascii
 import os
 
 from commoncode import paths
+from collections import OrderedDict
+
 
 def update_from_license_info(delta, unique_categories):
     """
@@ -53,19 +55,20 @@ def update_added_from_license_info(delta, unique_categories):
     one or more categories to its 'factors' attribute if there has
     been a license change.
     """
-    new_licenses = delta.new_file.licenses or []
-    new_categories = set(license.category for license in new_licenses)
+    new_licenses = (
+        delta.new_file.licenses if hasattr(delta.new_file, "licenses") else []
+    )
 
-    if delta.new_file.has_licenses():
-        delta.update(20, 'license info added')
-
+    new_categories = set(license["category"] for license in new_licenses)
+    if hasattr(delta.new_file, "licenses"):
+        delta.update(20, "license info added")
         for category in new_categories:
             # no license ==> 'Copyleft Limited'or higher
             if category in unique_categories:
-                delta.update(20, category.lower() + ' added')
+                delta.update(20, category.lower() + " added")
             # no license ==> 'Permissive' or 'Public Domain'
             else:
-                delta.update(0, category.lower() + ' added')
+                delta.update(0, category.lower() + " added")
         return
 
 
@@ -75,44 +78,50 @@ def update_modified_from_license_info(delta, unique_categories):
     one or more categories to its 'factors' attribute if there has
     been a license change.
     """
-    if not delta.new_file.has_licenses() and delta.old_file.has_licenses():
-        delta.update(15, 'license info removed')
+
+    new_licenses = (
+        delta.new_file.licenses if hasattr(delta.new_file, "licenses") else []
+    )
+    old_licenses = (
+        delta.old_file.licenses if hasattr(delta.old_file, "licenses") else []
+    )
+
+    if not new_licenses and old_licenses:
+        delta.update(15, "license info removed")
         return
 
-    new_licenses = delta.new_file.licenses or []
-    old_licenses = delta.old_file.licenses or []
+    new_categories = set(license.get("category", "") for license in new_licenses)
+    old_categories = set(license.get("category", "") for license in old_licenses)
 
-    new_categories = set(license.category for license in new_licenses)
-    old_categories = set(license.category for license in old_licenses)
-
-    if delta.new_file.has_licenses() and not delta.old_file.has_licenses():
-        delta.update(20, 'license info added')
+    if new_licenses and not old_licenses:
+        delta.update(20, "license info added")
 
         for category in new_categories:
             # no license ==> 'Copyleft Limited'or higher
             if category in unique_categories:
-                delta.update(20, category.lower() + ' added')
+                delta.update(20, category.lower() + " added")
             # no license ==> 'Permissive' or 'Public Domain'
             else:
-                delta.update(0, category.lower() + ' added')
+                delta.update(0, category.lower() + " added")
         return
 
-    new_keys = set(license.key for license in new_licenses)
-    old_keys = set(license.key for license in old_licenses)
+    new_keys = set(license.get("key", "") for license in new_licenses)
+    old_keys = set(license.get("key", "") for license in old_licenses)
 
     if new_keys != old_keys:
-        delta.update(10, 'license change')
+
+        delta.update(10, "license change")
         for category in new_categories - old_categories:
             unique_categories_in_old_file = len(old_categories & unique_categories)
             # 'Permissive' or 'Public Domain' ==> 'Copyleft Limited' or higher
             if unique_categories_in_old_file == 0 and category in unique_categories:
-                delta.update(20, category.lower() + ' added')
+                delta.update(20, category.lower() + " added")
             # at least 1 category in the old file was 'Copyleft Limited' or higher ==> 'Copyleft Limited' or higher
             elif unique_categories_in_old_file != 0 and category in unique_categories:
-                delta.update(10, category.lower() + ' added')
+                delta.update(10, category.lower() + " added")
             # 'Permissive' or 'Public Domain' ==> 'Permissive' or 'Public Domain' if not in old_categories
             elif category not in unique_categories:
-                delta.update(0, category.lower() + ' added')
+                delta.update(0, category.lower() + " added")
 
 
 def update_from_copyright_info(delta):
@@ -134,8 +143,9 @@ def update_added_from_copyright_info(delta):
     one or more categories to its 'factors' attribute if there has
     been a copyright change.
     """
-    if delta.new_file.has_copyrights():
-        delta.update(10, 'copyright info added')
+
+    if hasattr(delta.new_file, "copyrights"):
+        delta.update(10, "copyright info added")
         return
 
 
@@ -145,27 +155,39 @@ def update_modified_from_copyright_info(delta):
     one or more categories to its 'factors' attribute if there has
     been a copyright change.
     """
-    new_copyrights = delta.new_file.copyrights or []
-    old_copyrights = delta.old_file.copyrights or []
 
-    if delta.new_file.has_copyrights() and not delta.old_file.has_copyrights():
-        delta.update(10, 'copyright info added')
+    new_copyrights = (
+        delta.new_file.copyrights if hasattr(delta.new_file, "copyrights") else []
+    )
+    old_copyrights = (
+        delta.old_file.copyrights if hasattr(delta.old_file, "copyrights") else []
+    )
+
+    if new_copyrights and not old_copyrights:
+        delta.update(10, "copyright info added")
         return
-    if not delta.new_file.has_copyrights() and delta.old_file.has_copyrights():
-        delta.update(10, 'copyright info removed')
+    if not new_copyrights and old_copyrights:
+        delta.update(10, "copyright info removed")
         return
 
-    new_holders = set(holder for copyright in new_copyrights for holder in copyright.holders)
-    old_holders = set(holder for copyright in old_copyrights for holder in copyright.holders)
-
+    new_holders = set(
+        holder
+        for copyright in new_copyrights
+        for holder in copyright.get("holders", [])
+    )
+    old_holders = set(
+        holder
+        for copyright in old_copyrights
+        for holder in copyright.get("holders", [])
+    )
     if new_holders != old_holders:
-        delta.update(5, 'copyright change')
+        delta.update(5, "copyright change")
 
 
 def collect_errors(deltacode):
     errors = []
-    errors.extend(deltacode.new.errors)
-    errors.extend(deltacode.old.errors)
+    errors.extend(deltacode.new_files_errors)
+    errors.extend(deltacode.old_files_errors)
     errors.extend(deltacode.errors)
 
     return errors
@@ -179,39 +201,57 @@ def deltas(deltacode, all_delta_types=False):
     """
     for delta in deltacode.deltas:
         if all_delta_types is True:
-            yield delta.to_dict()
-        elif not delta.is_unmodified():
-            yield delta.to_dict()
+            yield delta.to_dict(deltacode)
+        elif not delta.status == "unmodified":
+            yield delta.to_dict(deltacode)
+
 
 def calculate_percent(value, total):
     """
     Return the rounded value percentage of total.
     """
-    ratio = (value / total) * 100
-    return round(ratio, 2)
+    try:
+        ratio = (value / total) * 100
+        return round(ratio, 2)
+    except ZeroDivisionError:
+        return 0
+
 
 class AlignmentException(Exception):
     """
     Named exception for alignment errors.
     """
+
     pass
 
-def align_trees(a_files, b_files):
+
+class FileError(Exception):
     """
-    Given two sequences of File objects 'a' and 'b', return a tuple of
-    two integers that represent the number path segments to remove
-    respectively from a File path in 'a' or a File path in 'b' to obtain the
-    equal paths for two files that are the same in 'a' and 'b'.
+    Named Exception for handling errors which could be raised due to 
+    unsupported errors in the json file
     """
-    # we need to find one uniquly named file that exists in 'a' and 'b'.
+    def __init__(self, *args):
+        if args:
+            self.message = args[0]
+        else:
+            self.message = None
+
+    def __str__(self):
+        return self.message
+
+
+def align_trees(codebase1, codebase2):
+    """
+    Aligns the path of the two codebases
+    """
     a_names = defaultdict(list)
-    for a_file in a_files:
-        a_names[a_file.name].append(a_file)
+    for resource in codebase1.walk():
+        a_names[resource.name].append(resource)
     a_uniques = {k: v[0] for k, v in a_names.items() if len(v) == 1}
 
     b_names = defaultdict(list)
-    for b_file in b_files:
-        b_names[b_file.name].append(b_file)
+    for resource in codebase2.walk():
+        b_names[resource.name].append(resource)
     b_uniques = {k: v[0] for k, v in b_names.items() if len(v) == 1}
 
     candidate_found = False
@@ -228,59 +268,31 @@ def align_trees(a_files, b_files):
     if a_unique.path == b_unique.path:
         return 0, 0
 
-    common_suffix, common_segments = paths.common_path_suffix(a_unique.path, b_unique.path)
+    common_suffix, common_segments = paths.common_path_suffix(
+        a_unique.path, b_unique.path
+    )
     a_segments = len(paths.split(a_unique.path))
     b_segments = len(paths.split(b_unique.path))
 
     return a_segments - common_segments, b_segments - common_segments
 
 
-def fix_trees(a_files, b_files):
-    """
-    Given two sequences of File objects 'a' and 'b', use the tuple of two
-    integers returned by align_trees() to remove the number of path segments
-    required to create equal paths for two files that are the same in 'a' and
-    'b'.
-    """
-    a_offset, b_offset = align_trees(a_files, b_files)
-    for a_file in a_files:
-        a_file.original_path = a_file.path
-        a_file.path = '/'.join(paths.split(a_file.path)[a_offset:])
-
-    for b_file in b_files:
-        b_file.original_path = b_file.path
-        b_file.path = '/'.join(paths.split(b_file.path)[b_offset:])
-
-
-def check_moved(added_sha1, added_deltas, removed_sha1, removed_deltas):
-    """
-    Return True if there is only one pair of matching 'added' and 'removed'
-    Delta objects and their respective File objects have the same 'name' attribute.
-    """
-    if added_sha1 != removed_sha1:
-        return False
-    if len(added_deltas) != 1 or len(removed_deltas) != 1:
-        return False
-    if added_deltas[0].new_file.name == removed_deltas[0].old_file.name:
-        return True
-
-
 def get_notice():
     """
     Retrieve the notice text from the NOTICE file for display in the JSON output.
     """
-    notice_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'NOTICE')
+    notice_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "NOTICE")
     notice_text = open(notice_path).read()
 
-    delimiter = '\n\n\n'
+    delimiter = "\n\n\n"
     [notice_text, extra_notice_text] = notice_text.split(delimiter, 1)
     extra_notice_text = delimiter + extra_notice_text
 
-    delimiter = '\n\n  '
+    delimiter = "\n\n  "
     [notice_text, acknowledgment_text] = notice_text.split(delimiter, 1)
     acknowledgment_text = delimiter + acknowledgment_text
 
-    notice = acknowledgment_text.strip().replace('  ', '')
+    notice = acknowledgment_text.strip().replace("  ", "")
 
     return notice
 
@@ -296,6 +308,7 @@ def hamming_distance(fingerprint1, fingerprint2):
 
     return result
 
+
 def bitarray_from_hex(fingerprint_hex):
     """
     Return bitarray from a hex string.
@@ -304,6 +317,7 @@ def bitarray_from_hex(fingerprint_hex):
     result = bitarray_from_bytes(bytes)
 
     return result
+
 
 def bitarray_from_bytes(b):
     """
