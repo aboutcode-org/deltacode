@@ -39,6 +39,7 @@ from deltacode import cli
 from deltacode import DeltaCode
 from deltacode import utils
 
+TERMINAL_WIDTH = 1000
 
 def load_csv(location):
     """
@@ -82,7 +83,7 @@ class TestCLI(FileBasedTesting):
         result_file = self.get_temp_file('json')
 
         runner = CliRunner()
-        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file, '-a'])
+        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file, '-a'], terminal_width=TERMINAL_WIDTH)
 
         assert result.exit_code == 0
 
@@ -248,7 +249,7 @@ class TestCLI(FileBasedTesting):
         result_file = self.get_temp_file('json')
 
         runner = CliRunner()
-        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file])
+        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file], terminal_width=TERMINAL_WIDTH)
 
         assert result.exit_code == 0
 
@@ -350,7 +351,7 @@ class TestCLI(FileBasedTesting):
         old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
 
         runner = CliRunner()
-        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-a'])
+        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-a'], terminal_width=TERMINAL_WIDTH)
 
         assert result.exit_code == 0
 
@@ -392,7 +393,7 @@ class TestCLI(FileBasedTesting):
         old_scan = self.get_test_loc('cli/scan_1_file_moved_old.json')
 
         runner = CliRunner()
-        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan])
+        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan], terminal_width=TERMINAL_WIDTH)
 
         assert result.exit_code == 0
 
@@ -434,7 +435,7 @@ class TestCLI(FileBasedTesting):
         result_file = self.get_temp_file('json')
 
         runner = CliRunner()
-        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file, '-a'])
+        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file, '-a'], terminal_width=TERMINAL_WIDTH)
 
         json_result = json.load(open(result_file))
 
@@ -447,7 +448,7 @@ class TestCLI(FileBasedTesting):
         result_file = self.get_temp_file('json')
 
         runner = CliRunner()
-        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file])
+        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file], terminal_width=TERMINAL_WIDTH)
 
         json_result = json.load(open(result_file))
 
@@ -455,7 +456,7 @@ class TestCLI(FileBasedTesting):
 
     def test_help(self):
         runner = CliRunner()
-        result = runner.invoke(cli.cli, ['--help'])
+        result = runner.invoke(cli.cli, ['--help'], terminal_width=TERMINAL_WIDTH)
 
         assert 'Usage: cli [OPTIONS]' in result.output
         assert 'Identify the changes that need to be made' in result.output
@@ -465,19 +466,19 @@ class TestCLI(FileBasedTesting):
 
     def test_version(self):
         runner = CliRunner()
-        result = runner.invoke(cli.cli, ['--version'])
+        result = runner.invoke(cli.cli, ['--version'], terminal_width=TERMINAL_WIDTH)
 
         assert 'DeltaCode version' in result.output
 
     def test_empty(self):
         runner = CliRunner()
-        result = runner.invoke(cli.cli, [])
+        result = runner.invoke(cli.cli, [], terminal_width=TERMINAL_WIDTH)
         
         assert 'Usage: cli [OPTIONS]' in result.output
         assert "Error: Missing option '-n' / '--new'." in result.output
 
     def test_incorrect_flag(self):
         runner = CliRunner()
-        result = runner.invoke(cli.cli, ['-xyz'])
+        result = runner.invoke(cli.cli, ['-xyz'], terminal_width=TERMINAL_WIDTH)
 
-        assert 'Error: no such option: -x' in result.output
+        assert 'Error: No such option: -x' in result.output
