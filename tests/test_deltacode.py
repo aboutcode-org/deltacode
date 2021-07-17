@@ -37,7 +37,6 @@ import deltacode
 from deltacode import DeltaCode
 from deltacode import test_utils
 from deltacode import utils
-from deltacode.utils import collect_errors
 from deltacode.test_utils import get_aligned_path
 from commoncode.resource import VirtualCodebase
 

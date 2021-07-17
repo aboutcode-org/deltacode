@@ -183,16 +183,6 @@ def update_modified_from_copyright_info(delta):
     if new_holders != old_holders:
         delta.update(5, "copyright change")
 
-
-def collect_errors(deltacode):
-    errors = []
-    errors.extend(deltacode.new_files_errors)
-    errors.extend(deltacode.old_files_errors)
-    errors.extend(deltacode.errors)
-
-    return errors
-
-
 def deltas(deltacode, all_delta_types=False):
     """
     Return a generator of Delta dictionaries for JSON serialized ouput.  Omit
