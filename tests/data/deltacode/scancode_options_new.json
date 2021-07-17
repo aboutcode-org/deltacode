@@ -1,0 +1,38 @@
+{
+    "headers": [
+      {
+        "tool_name": "scancode-toolkit",
+        "tool_version": "3.0.2.post1029.8efa043b4",
+        "options": {
+          "input": [
+            "/home/arnav-mandal1234/Downloads/coala-0.10.0/coalib/"
+          ],
+          "--fingerprint": true,
+          "--info": true,
+          "--json-pp": "o.json"
+        },
+        "notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/nexB/scancode-toolkit/ for support and download.",
+        "start_timestamp": "2019-08-17T193247.327863",
+        "end_timestamp": "2019-08-17T193249.994771",
+        "message": null,
+        "errors": [],
+        "extra_data": {
+          "files_count": 1
+        }
+      }
+    ],
+    "files": [
+        {
+            "path": "coalib/__init__.py",
+            "type": "file",
+            "name": "__init__.py",
+            "size": 587,
+            "date": "2017-02-05",
+            "sha1": "8fc64c86979if8cec0758cfe0fe92d85b219ac49",
+            "files_count": 0,
+            "dirs_count": 0,
+            "size_count": 0,
+            "scan_errors": []
+          }
+    ]
+}
