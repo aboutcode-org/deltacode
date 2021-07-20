@@ -1,6 +1,5 @@
 {
   "deltacode_notice": "Generated with DeltaCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nDeltaCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nDeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/nexB/deltacode/ for support and download.",
-  "deltacode_errors": [],
   "deltas_count": 250,
   "delta_stats": {
     "old_files_count": 115,

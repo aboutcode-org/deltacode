@@ -160,4 +160,3 @@ def streamline_headers(headers):
     """
     headers.pop('deltacode_version', None)
     headers.pop('deltacode_options', None)
-    streamline_errors(headers['deltacode_errors'])
