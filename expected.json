@@ -1,0 +1,65 @@
+{
+  "deltacode_notice": "Generated with DeltaCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nDeltaCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nDeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/nexB/deltacode/ for support and download.",
+  "new_scan_options": {
+    "input": [
+      "/home/arnav-mandal1234/Downloads/coala-0.10.0/coalib/"
+    ],
+    "--fingerprint": true,
+    "--info": true,
+    "--json-pp": "o.json"
+  },
+  "old_scan_options": {
+    "input": [
+      "/home/arnav-mandal1234/Downloads/coala-0.10.0/coalib/"
+    ],
+    "--fingerprint": true,
+    "--info": true,
+    "--json-pp": "o.json"
+  },
+  "deltacode_options": {
+    "--new": "tests/data/deltacode/scancode_options_new.json",
+    "--old": "tests/data/deltacode/scancode_options_old.json",
+    "--all-delta-types": false
+  },
+  "deltacode_version": "1.0.1.dev112+gde3c583.d20210613",
+  "deltacode_errors": [],
+  "deltas_count": 1,
+  "delta_stats": {
+    "old_files_count": 1,
+    "new_files_count": 1,
+    "percent_added": 0.0,
+    "percent_removed": 0.0,
+    "percent_moved": 0.0,
+    "percent_modified": 100.0,
+    "percent_unmodified": 0.0
+  },
+  "deltas": [
+    {
+      "status": "modified",
+      "factors": [],
+      "score": 20,
+      "new": {
+        "path": "coalib/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 587,
+        "sha1": "8fc64c86979if8cec0758cfe0fe92d85b219ac49",
+        "fingerprint": "",
+        "original_path": "coalib/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      },
+      "old": {
+        "path": "coalib/__init__.py",
+        "type": "file",
+        "name": "__init__.py",
+        "size": 587,
+        "sha1": "8fc64c86979bf8cec0758cfe0fe92d85b219ac49",
+        "fingerprint": "",
+        "original_path": "coalib/__init__.py",
+        "licenses": [],
+        "copyrights": []
+      }
+    }
+  ]
+}

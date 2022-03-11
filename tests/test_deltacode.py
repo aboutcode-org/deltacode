@@ -1463,3 +1463,11 @@ class TestDeltacode(FileBasedTesting):
         args = ['--new', new_file, '--old', old_file, '--json-file', result_file, '--all-delta-types']
         test_utils.run_scan_click(args)
         test_utils.check_json_scan(self.get_test_loc('deltacode/sugar-coala-expected.json'), result_file, regen=False)
+        
+    def test_scancode_options(self):
+        old_file = self.get_test_loc('deltacode/scancode_options_old.json')
+        new_file = self.get_test_loc('deltacode/scancode_options_new.json')
+        result_file = self.get_temp_file('json')
+        args = ['--new', new_file, '--old', old_file, '--json-file', result_file, '--all-delta-types']
+        test_utils.run_scan_click(args)
+        test_utils.check_json_scan(self.get_test_loc('deltacode/scancode_options_expected.json'), result_file, regen=False)
