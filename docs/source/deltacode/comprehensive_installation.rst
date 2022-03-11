@@ -32,12 +32,8 @@ DeltaCode needs a Python 3.6(or above) interpreter.
 
 - **On Windows**:
 
-    Use the Python 3.6 32-bit (e.g. the Windows x86 MSI installer) for X86 regardless of whether
-    you run Windows on 32-bit or 64-bit. **DO NOT USE Python X86_64 installer** even if you run
-    64 bit Windows.
-
     Download Python from this url:
-    https://www.python.org/downloads/release/python-368/
+    https://www.python.org/
 
     Install Python on the c: drive and use all default installer options.
     See the Windows installation section for more installation details.
@@ -46,7 +42,7 @@ DeltaCode needs a Python 3.6(or above) interpreter.
 
     Download and install Python from this url:
 
-    https://www.python.org/downloads/release/python-368/
+    https://www.python.org/
 
 Installation on Linux and Mac
 -----------------------------
@@ -123,6 +119,7 @@ Un-installation
 
 - Delete the directory in which you extracted DeltaCode.
 - Delete any temporary files created in your system temp directory under a deltacode directory.
+
 
 Using the docker image for testing Deltacode
 ---------------

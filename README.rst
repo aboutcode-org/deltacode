@@ -80,11 +80,11 @@ For other questions, discussions, and chats, we have:
 - an official Gitter channel at https://gitter.im/aboutcode-org/discuss
   Gitter also has an IRC bridge at https://irc.gitter.im/
 
-- an official #aboutcode IRC channel on freenode (server chat.freenode.net)
+- an official #aboutcode IRC channel on liberachat (server web.libera.chat)
   for DeltaCode and other related tools. Note that this receives
   notifications from repos so it can be a tad noisy. You can use your
   favorite IRC client or use the web chat at
-  https://webchat.freenode.net/
+  https://web.libera.chat/?#aboutcode .
 
 
 Source code
