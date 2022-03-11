@@ -60,7 +60,7 @@ For other questions, discussions, and chats, we have:
 Bug reports
 ===========
 
-When `reporting a bug`__ please include:
+When reporting a bug please include:
 
 * Your operating system name, version and architecture (32 or 64 bits).
 * Your Python version.

@@ -13,3 +13,4 @@ Welcome to the DeltaCode Documentation.
    development
    json_to_csv
    release_process
+   GSOC_2021_report

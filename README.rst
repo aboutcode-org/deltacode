@@ -37,12 +37,12 @@ For more comprehensive installation instructions and development instructions, s
 For development instructions, see:
 `Development Instructions <https://github.com/nexB/deltacode/wiki/Development>`_
 
-Make sure you have Python 2.7 installed:
-  * Download and install Python 2.7 32 bits for Windows
-    https://www.python.org/ftp/python/2.7.14/python-2.7.14.msi
-  * Download and install Python 2.7 for Mac
-    https://www.python.org/ftp/python/2.7.14/python-2.7.14-macosx10.6.pkg
-  * Download and install Python 2.7 for Linux via distro package manager
+Make sure you have Python 3.6+ installed:
+  * Download and install Python 3.6+ Windows
+    https://www.python.org/downloads/windows/
+  * Download and install Python 3.6+ for Mac
+    https://www.python.org/downloads/mac-osx/
+  * Download and install Python 3.6+ for Linux via distro package manager
 
 Next, download and extract the latest DeltaCode release from::
 

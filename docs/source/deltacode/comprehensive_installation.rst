@@ -1,7 +1,7 @@
 Comprehensive Installation
 ==========================
 
-DeltaCode requires Python 2.7.x and is tested on Linux, Mac, and Windows. Make sure Python 2.7 is
+DeltaCode requires Python 3.6+ and is tested on Linux, Mac, and Windows. Make sure Python 3.6 (or above) is
 installed first.
 
 System Requirements
@@ -20,11 +20,11 @@ System Requirements
 Prerequisites
 -------------
 
-DeltaCode needs a Python 2.7 interpreter.
+DeltaCode needs a Python 3.6(or above) interpreter.
 
 - **On Linux**:
 
-    Use your package manager to install ``python2.7``. If Python 2.7 is not available from your
+    Use your package manager to install atleast ``python3.6``. If Python 3.6 is not available from your
     package manager, you must compile it from sources.
 
     For instance, visit https://github.com/dejacode/about-code-tool/wiki/BuildingPython27OnCentos6
@@ -32,12 +32,8 @@ DeltaCode needs a Python 2.7 interpreter.
 
 - **On Windows**:
 
-    Use the Python 2.7 32-bit (e.g. the Windows x86 MSI installer) for X86 regardless of whether
-    you run Windows on 32-bit or 64-bit. **DO NOT USE Python X86_64 installer** even if you run
-    64 bit Windows.
-
     Download Python from this url:
-    https://www.python.org/ftp/python/2.7.14/python-2.7.14.msi
+    https://www.python.org/
 
     Install Python on the c: drive and use all default installer options.
     See the Windows installation section for more installation details.
@@ -46,7 +42,7 @@ DeltaCode needs a Python 2.7 interpreter.
 
     Download and install Python from this url:
 
-    https://www.python.org/ftp/python/2.7.14/python-2.7.14-macosx10.6.pkg
+    https://www.python.org/
 
 Installation on Linux and Mac
 -----------------------------
@@ -123,3 +119,16 @@ Un-installation
 
 - Delete the directory in which you extracted DeltaCode.
 - Delete any temporary files created in your system temp directory under a deltacode directory.
+
+
+Using the docker image for testing Deltacode
+---------------
+
+- In the project root directory run `docker-compose up`.
+- This will create an image of deltacode with the name `delta_code`.
+- To verify the image created run `docker image ls`.
+- To run the image run `docker run -itd --name <specific name of container>  delta_code `.
+- The above command runs the image in the background and creates a container with the name as per specified.
+- To execute the container in a bash mode run `docker exec -it <container name> bash`.
+- The above command will open a bash shell in the container.
+- To run the commands / pytest inside the shell you can use the commands as specified in the documentations.
