@@ -58,6 +58,22 @@ class DeltaCode(object):
         self.deltas = []
         self.errors = []
 
+        self._populate(new_path, old_path)
+        
+        self.new_scan_options = []
+        self.old_scan_options = []
+        self.determine_delta()
+        self.options_diff()
+        self.license_diff()
+        self.copyright_diff()
+        self.stats.calculate_stats()
+        self.similarity()
+        # Sort deltas by score, descending, i.e., high > low, and then by
+        # factors, alphabetically.  Run the least significant sort first.
+        self.deltas.sort(key=lambda Delta: Delta.factors, reverse=False)
+        self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
+
+    def _populate(self, new_path, old_path):
         if os.path.isfile(new_path) and os.path.isfile(old_path):
             self.codebase1 = VirtualCodebase(new_path)
             self.codebase2 = VirtualCodebase(old_path)
@@ -71,20 +87,6 @@ class DeltaCode(object):
         self.stats = Stat(
             self.codebase1.compute_counts()[0], self.codebase2.compute_counts()[0]
         )
-        self.new_scan_options = []
-        self.old_scan_options = []
-        self.new_files_errors = []
-        self.old_files_errors = []
-        self.determine_delta()
-        self.options_diff()
-        self.license_diff()
-        self.copyright_diff()
-        self.stats.calculate_stats()
-        self.similarity()
-        # Sort deltas by score, descending, i.e., high > low, and then by
-        # factors, alphabetically.  Run the least significant sort first.
-        self.deltas.sort(key=lambda Delta: Delta.factors, reverse=False)
-        self.deltas.sort(key=lambda Delta: Delta.score, reverse=True)
 
     def similarity(self):
         """

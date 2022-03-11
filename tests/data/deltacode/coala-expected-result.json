@@ -6,7 +6,6 @@
     "--all-delta-types": true
   },
   "deltacode_version": "1.0.1.dev112+gde3c583.d20210613",
-  "deltacode_errors": [],
   "deltas_count": 141,
   "delta_stats": {
     "old_files_count": 115,

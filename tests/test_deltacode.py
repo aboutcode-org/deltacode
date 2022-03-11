@@ -35,10 +35,8 @@ import pytest
 from commoncode.testcase import FileBasedTesting
 import deltacode
 from deltacode import DeltaCode
-from deltacode import models
 from deltacode import test_utils
 from deltacode import utils
-from deltacode.utils import collect_errors
 from deltacode.test_utils import get_aligned_path
 from commoncode.resource import VirtualCodebase
 
@@ -101,101 +99,6 @@ class TestDeltacode(FileBasedTesting):
             assert f.rid != None
             assert not f.is_filtered
 
-    @pytest.mark.xfail(reason='Tests no longer required having None paths')
-    def test_DeltaCode_invalid_paths(self):
-        test_path_1 = '/some/invalid/path/1.json'
-        test_path_2 = '/some/invalid/path/2.json'
-
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
-
-        result = DeltaCode(test_path_1, test_path_2, options)
-
-        assert result.codebase1 == None
-        assert result.codebase2 == None
-        assert len(result.errors) >= 1
-
-    @pytest.mark.xfail(reason='Tests no longer required having invalid paths')
-    def test_DeltaCode_empty_paths(self):
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
-
-        result = DeltaCode('', '', options)
-
-        assert result.codebase1 == None
-
-        assert result.codebase2 == None
-
-        assert result.deltas == []
-
-        assert result.errors
-
-    @pytest.mark.xfail(reason='Tests no longer required having None paths')
-    def test_DeltaCode_None_paths(self):
-        options = OrderedDict([
-            ('--all-delta-types', False)
-        ])
-
-        result = DeltaCode(None, None, options)
-
-        assert result.errors
-        assert result.codebase1 == None
-        assert result.codebase2 == None
-        assert result.deltas == []
-
-    @pytest.mark.xfail(reason='Tests no longer required having None paths')
-    def test_Delta_one_None(self):
-        try:
-            file_obj = VirtualCodebase('fake/path.txt')
-        except IOError:
-            file_obj = None
-            pass
-        first_None = deltacode.Delta(10, None, file_obj)
-        second_None = deltacode.Delta(100, file_obj, None)
-
-        assert first_None.score == 10
-        assert second_None.score == 100
-
-        assert first_None.factors == []
-        assert second_None.factors == []
-
-        expected_first = OrderedDict([
-            ('status', ''),
-            ('factors', []),
-            ('score', 10),
-            ('new', None),
-            ('old', OrderedDict([
-                ('path', 'fake/path.txt'),
-                ('type', ''),
-                ('name', ''),
-                ('size', ''),
-                ('sha1', ''),
-                ('fingerprint', ''),
-                ('original_path', ''),
-                ('licenses', []),
-                ('copyrights', [])
-            ]))
-        ])
-
-        expected_second = OrderedDict([
-            ('status', ''),
-            ('factors', []),
-            ('score', 100),
-            ('new', OrderedDict([
-                ('path', 'fake/path.txt'),
-                ('type', ''),
-                ('name', ''),
-                ('size', ''),
-                ('sha1', ''),
-                ('fingerprint', ''),
-                ('original_path', ''),
-                ('licenses', []),
-                ('copyrights', [])
-            ])),
-            ('old', None)
-        ])
 
     def test_DeltaCode_license_modified(self):
         new_scan = self.get_test_loc('deltacode/scan_modified_new_license_added.json')
@@ -409,72 +312,6 @@ class TestDeltacode(FileBasedTesting):
         delta.status = 'moved'
 
         assert delta.to_dict(deltacode) == expected
-
-    def test_Delta_create_object_removed(self):
-        new = None
-        old = models.File({'path': 'path/removed.txt'})
-
-        delta = deltacode.Delta(0, new, old)
-        delta.factors.append('removed')
-
-        assert type(delta.new_file) == type(None)
-        assert delta.old_file.path == 'path/removed.txt'
-        assert 'removed' in delta.factors
-        assert delta.score == 0
-
-    def test_Delta_create_object_added(self):
-        new = models.File({'path': 'path/added.txt'})
-        old = None
-
-        delta = deltacode.Delta(100, new, old)
-        delta.factors.append('added')
-
-        assert delta.new_file.path == 'path/added.txt'
-        assert type(delta.old_file) == type(None)
-        assert 'added' in delta.factors
-        assert delta.score == 100
-
-    def test_Delta_create_object_modified(self):
-        new = models.File({'path': 'path/modified.txt', 'sha1': 'a'})
-        old = models.File({'path': 'path/modified.txt', 'sha1': 'b'})
-
-        delta = deltacode.Delta(20, new, old)
-        delta.factors.append('modified')
-
-        assert delta.new_file.path == 'path/modified.txt'
-        assert delta.new_file.sha1 == 'a'
-        assert delta.old_file.path == 'path/modified.txt'
-        assert delta.old_file.sha1 == 'b'
-        assert 'modified' in delta.factors
-        assert delta.score == 20
-
-    def test_Delta_create_object_unmodified(self):
-        new = models.File({'path': 'path/unmodified.txt', 'sha1': 'a'})
-        old = models.File({'path': 'path/unmodified.txt', 'sha1': 'a'})
-
-        delta = deltacode.Delta(0, new, old)
-        delta.factors.append('unmodified')
-
-        assert delta.new_file.path == 'path/unmodified.txt'
-        assert delta.new_file.sha1 == 'a'
-        assert delta.old_file.path == 'path/unmodified.txt'
-        assert delta.old_file.sha1 == 'a'
-        assert 'unmodified' in delta.factors
-        assert delta.score == 0
-
-    def test_Delta_create_object_moved(self):
-        new = models.File({'path': 'path_new/moved.txt', 'sha1': 'a'})
-        old = models.File({'path': 'path_old/moved.txt', 'sha1': 'a'})
-
-        delta = deltacode.Delta(0, new, old)
-        delta.factors.append('moved')
-
-        assert delta.new_file.path == 'path_new/moved.txt'
-        assert delta.new_file.sha1 == 'a'
-        assert delta.old_file.path == 'path_old/moved.txt'
-        assert delta.old_file.sha1 == 'a'
-        assert 'moved' in delta.factors
-        assert delta.score == 0
 
     def test_Delta_create_object_empty(self):
         delta = deltacode.Delta()
@@ -1112,48 +949,6 @@ class TestDeltacode(FileBasedTesting):
         assert len([i for i in deltas_object if i.score == 30]) == 1
         assert len([i for i in deltas_object if i.score == 25]) == 0
         assert len([i for i in deltas_object if i.score == 20]) == 0
-
-    def test_Delta_update_added(self):
-        new = models.File({
-            'path': 'path/added.txt',
-            'type': 'file',
-            'name': 'added.txt',
-            'size': 20,
-            'sha1': 'a',
-            'original_path': ''
-        })
-
-        delta = deltacode.Delta(100, new, None)
-
-        delta.update(25, 'This is a test of an added file')
-
-        assert delta.score == 125
-        assert delta.factors == ['This is a test of an added file']
-
-    def test_Delta_update_modified(self):
-        new = models.File({
-            'path': 'path/modified.txt',
-            'type': 'file',
-            'name': 'modified.txt',
-            'size': 20,
-            'sha1': 'a',
-            'original_path': ''
-        })
-        old = models.File({
-            'path': 'path/modified.txt',
-            'type': 'file',
-            'name': 'modified.txt',
-            'size': 21,
-            'sha1': 'b',
-            'original_path': ''
-        })
-
-        delta = deltacode.Delta(20, new, old)
-
-        delta.update(25, 'This is a test of a modified file')
-
-        assert delta.score == 45
-        assert delta.factors == ['This is a test of a modified file']
 
     def test_Delta_update_license_change_no_copyright_change(self):
         new_scan = self.get_test_loc('deltacode/score_license_change_no_copyright_change_new.json')

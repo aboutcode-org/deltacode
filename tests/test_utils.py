@@ -39,7 +39,6 @@ from commoncode.testcase import FileBasedTesting
 from commoncode.resource import VirtualCodebase
 import deltacode
 from deltacode import utils
-from deltacode import models
 from deltacode import DeltaCode
 
 
@@ -63,15 +62,6 @@ class TestUtils(FileBasedTesting):
         utils.update_from_license_info(test_delta, set())
 
         assert test_delta.score == 0
-
-    def test_update_from_license_info_non_modified(self):
-        test_file = models.File({'path':'/test/path.txt', 'name': 'path.txt'})
-        test_delta = deltacode.Delta(old_file=test_file)
-
-        utils.update_from_license_info(test_delta, set())
-
-        assert test_delta.score == 0
-        assert len(test_delta.factors) == 0
 
     def test_update_from_license_info_no_license_key_value(self):
         test_file_new = self.get_test_loc('utils/update_from_license_info_no_license_key_value_new.json')
@@ -276,84 +266,6 @@ class TestUtils(FileBasedTesting):
         assert len(deltas.factors) == 2
         assert 'license change' in deltas.factors
         assert 'copyleft limited added' in deltas.factors
-
-    @pytest.mark.xfail(reason='Tests no longer required having None paths')
-    def test_update_from_license_info_file_added_permissive_license(self):
-        test_file_new = models.File({
-            'path':'/test/path.txt',
-            'name': 'path.txt',
-            'sha1': 'a',
-            'original_path': '',
-            "licenses": [
-                {
-                    "key": "mit",
-                    "score": 80.0,
-                    "short_name": "MIT License",
-                    "category": "Permissive"
-                }
-            ]
-        })
-
-        test_delta = deltacode.Delta(100, test_file_new, None)
-
-        utils.update_added_from_license_info(test_delta, unique_categories)
-
-        assert test_delta.score == 120
-        assert len(test_delta.factors) == 2
-
-        assert 'license info added' in test_delta.factors
-        assert 'permissive added' in test_delta.factors
-
-    @pytest.mark.xfail(reason='Tests no longer required having None paths')
-    def test_update_from_license_info_file_added_commercial_and_copyleft_licenses(self):
-        test_file_new = models.File({
-            'path':'/test/path.txt',
-            'name': 'path.txt',
-            'sha1': 'a',
-            'original_path': '',
-            "licenses": [
-                {
-                    "key": "commercial-license",
-                    "score": 55.0,
-                    "short_name": "Commercial License",
-                    "category": "Commercial",
-                    "owner": "Unspecified"
-                },
-                {
-                    "key": "adapt-1.0",
-                    "score": 15.0,
-                    "short_name": "APL 1.0",
-                    "category": "Copyleft",
-                    "owner": "OSI - Open Source Initiative"
-                }
-            ]
-        })
-
-        test_delta = deltacode.Delta(100, test_file_new, None)
-
-        utils.update_added_from_license_info(test_delta, unique_categories)
-
-        assert test_delta.score == 160
-        assert len(test_delta.factors) == 3
-
-        assert 'license info added' in test_delta.factors
-
-        expected_factors = [
-            'license info added',
-            'commercial added',
-            'copyleft added'
-        ]
-
-        for factor in expected_factors:
-            assert factor in test_delta.factors
-
-    @pytest.mark.xfail(reason='Tests no longer required having None paths')
-    def test_update_from_copyright_info_empty(self):
-        test_delta = deltacode.Delta()
-
-        utils.update_from_copyright_info(test_delta)
-
-        assert test_delta.score == 0
 
     def test_update_from_copyright_info_non_modified(self):
         test_file_new = self.get_test_loc('utils/update_from_copyright_info_non_modified_new.json')
