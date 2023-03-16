@@ -2,6 +2,7 @@
 *.py[cod]
 
 # virtualenv and other misc bits
+/src/*.egg-info
 *.egg-info
 /dist
 /build
@@ -12,6 +13,7 @@
 /Lib
 /pip-selfcheck.json
 /tmp
+/venv
 .Python
 /include
 /Include

@@ -27,10 +27,21 @@ author = 'nexb Inc.'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "sphinx.ext.intersphinx",
 ]
 
+# This points to aboutcode.readthedocs.io
+# In case of "undefined label" ERRORS check docs on intersphinx to troubleshoot
+# Link was created at commit - https://github.com/nexB/aboutcode/commit/faea9fcf3248f8f198844fe34d43833224ac4a83
+
+intersphinx_mapping = {
+    "aboutcode": ("https://aboutcode.readthedocs.io/en/latest/", None),
+    "scancode-workbench": ("https://scancode-workbench.readthedocs.io/en/develop/", None),
+}
+
+
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -43,7 +54,7 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+html_theme = "sphinx_rtd_theme"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -58,6 +69,4 @@ html_context = {
     "conf_py_path": "/docs/source/",  # path in the checkout to the docs root
     }
 
-html_css_files = [
-    '_static/theme_overrides.css'
-    ]
+html_css_files = ['_static/theme_overrides.css']
