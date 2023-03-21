@@ -9,10 +9,11 @@ Project: Virtual Codebase support in DeltaCode
 Project Overview
 ----------------
 
-The goal of this proposal is to refactor DeltaCode to use Scancode-Toolkit’s Virtual Codebase class.
-This refactoring will allow DeltaCode to be a library as opposed to only be used as a CLI tool, moreover,
-this refactor will allow DeltaCode to determine deltas much more effectively in the form of BFS tree scan 
-of the two tree structures unlike indexing the entire codebase.
+The goal of this proposal is to refactor DeltaCode to use Scancode-Toolkit’s Virtual
+Codebase class. This refactoring will allow DeltaCode to be a library as opposed to
+only be used as a CLI tool, moreover, this refactor will allow DeltaCode to determine
+deltas much more effectively in the form of BFS tree scan of the two tree structures
+unlike indexing the entire codebase.
 
 
 Main Objectives of the project
@@ -21,13 +22,14 @@ Main Objectives of the project
 - Migrate to using VirtualCodebase from the latest scancode.
 - Create DeltaCode documentation on Read The Docs.
 - Provide the support for fingerprint plugin for Virtual Codebase.
-- Provide the Support for enabling Virtual Codebase to scan files having full root paths as their location.
+- Provide the Support for enabling Virtual Codebase to scan files having full root paths
+  as their location.
 
 The Project
 -----------
 
-- Virtual Codebase Integration with Deltacode 
-- Removing redundant File and License Objects 
+- Virtual Codebase Integration with Deltacode
+- Removing redundant File and License Objects
 - Provided options in deltacode scans
 - Added Docker Script for Dockerizing the Deltacode Application and make it platform-independent.
 - Add Read the Docs Support to Deltacode.
@@ -62,6 +64,8 @@ really like to thank `@pombredanne <https://github.com/pombredanne>`_,
 constant support throughout the journey. From good job claps to nit-picky constructive
 code-reviews, I enjoyed every bit of this GSoC project.
 
-I had a wonderful time during the GSOC, I learned a lot of things during this time. I really enjoyed this project.
-I would really like to thank my mentors `@pombredanne <https://github.com/pombredanne>`_, `@majurg <https://github.com/majurg>`_, and `@TG1999 <https://github.com/TG1999>`_, 
+I had a wonderful time during the GSOC, I learned a lot of things during this time.I really
+enjoyed this project. I would really like to thank my mentors
+`@pombredanne <https://github.com/pombredanne>`_,
+`@majurg <https://github.com/majurg>`_, and `@TG1999 <https://github.com/TG1999>`_,
 and all other About code members who constantly supported me throughout this project.

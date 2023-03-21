@@ -1,14 +1,14 @@
 Comprehensive Installation
 ==========================
 
-DeltaCode requires Python 3.6+ and is tested on Linux, Mac, and Windows. Make sure Python 3.6 (or above) is
-installed first.
+DeltaCode requires Python 3.8+ and is tested on Linux, Mac, and Windows. Make sure
+Python 3.8 (or above) is installed first.
 
 System Requirements
 -------------------
 
-- Hardware : DeltaCode will run best with a modern X86 processor and at least 1GB of RAM and 250MB
-  of disk.
+- Hardware : DeltaCode will run best with a modern X86 processor and at least 1GB of RAM and
+  250MB of disk.
 
 - Supported operating systems : DeltaCode should run on these OSes:
 
@@ -20,12 +20,12 @@ System Requirements
 Prerequisites
 -------------
 
-DeltaCode needs a Python 3.6(or above) interpreter.
+DeltaCode needs a Python 3.8(or above) interpreter.
 
 - **On Linux**:
 
-    Use your package manager to install atleast ``python3.6``. If Python 3.6 is not available from your
-    package manager, you must compile it from sources.
+    Use your package manager to install atleast ``python3.8``. If Python 3.8 is not available
+    from your package manager, you must compile it from sources.
 
     For instance, visit https://github.com/dejacode/about-code-tool/wiki/BuildingPython27OnCentos6
     for instructions to compile Python from sources on Centos.
@@ -122,13 +122,15 @@ Un-installation
 
 
 Using the docker image for testing Deltacode
----------------
+--------------------------------------------
 
 - In the project root directory run `docker-compose up`.
 - This will create an image of deltacode with the name `delta_code`.
 - To verify the image created run `docker image ls`.
-- To run the image run `docker run -itd --name <specific name of container>  delta_code `.
-- The above command runs the image in the background and creates a container with the name as per specified.
+- To run the image run `docker run -itd --name <specific name of container>  delta_code`.
+- The above command runs the image in the background and creates a container with the name
+  as per specified.
 - To execute the container in a bash mode run `docker exec -it <container name> bash`.
 - The above command will open a bash shell in the container.
-- To run the commands / pytest inside the shell you can use the commands as specified in the documentations.
+- To run the commands / pytest inside the shell you can use the commands as specified
+  in the documentations.
