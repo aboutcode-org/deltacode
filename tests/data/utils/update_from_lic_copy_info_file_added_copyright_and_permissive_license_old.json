@@ -11,6 +11,7 @@
         {
             "path":"test",
             "name": "test",
+            "type": "directory",
             "sha1": "b",
             "original_path": "",
             "licenses": [],

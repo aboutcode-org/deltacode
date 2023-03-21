@@ -121,7 +121,7 @@ class DeltaCode(object):
                 )
 
     def create_deltas(
-        self, new_resource, old_resource, new_path, old_path, score, status
+        self, new_resource, old_resource, score, status
     ):
         """
         Creates the Delta Objects and appends them to the member list.
@@ -153,7 +153,7 @@ class DeltaCode(object):
                 )
             # If the resource is a file align its path
 
-                old_resource = self.codebase2.get_resource_from_path(path_new)
+                old_resource = self.codebase2.get_resource(path_new)
                 # Check in the old codebase weather a resource with such a path exists or not
                 # if it exists and their corresponding sha's are same then its an unmodified delta
 
@@ -163,7 +163,7 @@ class DeltaCode(object):
                         paths.split(old_resource.path)[Delta.OLD_CODEBASE_OFFSET :]
                     )
                     self.create_deltas(
-                        new_resource, old_resource, path_new, path_old, 0, "unmodified",
+                        new_resource, old_resource, 0, "unmodified",
                     )
                     self.stats.num_unmodified += 1
 
@@ -196,8 +196,6 @@ class DeltaCode(object):
                                 self.create_deltas(
                                     new_resource,
                                     old_resource,
-                                    path_new,
-                                    path_old,
                                     0,
                                     "unmodified",
                                 )
@@ -209,8 +207,6 @@ class DeltaCode(object):
                                 self.create_deltas(
                                     new_resource,
                                     old_resource,
-                                    path_new,
-                                    path_old,
                                     20,
                                     "modified",
                                 )
@@ -225,8 +221,6 @@ class DeltaCode(object):
                                 self.create_deltas(
                                     new_resource,
                                     old_resource,
-                                    path_new,
-                                    path_old,
                                     0,
                                     "moved",
                                 )
@@ -236,7 +230,7 @@ class DeltaCode(object):
                 if ADDED:
                     # If none of the above criteria matches then the delta is an added one.
                     self.create_deltas(
-                        new_resource, None, path_new, None, 100, "added",
+                        new_resource, None, 100, "added",
                     )
                     self.stats.num_added += 1
 
@@ -253,7 +247,7 @@ class DeltaCode(object):
                     ]
                 )
                 self.create_deltas(
-                    None, old_resource_remaining, None, path_old, 0, "removed",
+                    None, old_resource_remaining, 0, "removed",
                 )
                 self.stats.num_removed += 1
 

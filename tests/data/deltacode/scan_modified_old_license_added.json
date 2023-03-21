@@ -37,7 +37,7 @@
       {
         "path": "some/path/b/b1.py",
         "type": "file",
-        "name": "b2.py",
+        "name": "b1.py",
         "size": 200,
         "sha1": "333647771481d39dd3a53f6dc210c26abac37748",
         "licenses": [
