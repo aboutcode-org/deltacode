@@ -9,16 +9,9 @@
     "files_count": 2,
     "files": [
         {
-            "path":"test",
-            "name": "path",
-            "sha1": "c",
-            "original_path": "",
-            "licenses": [],
-            "copyrights": []
-        },
-        {
             "path":"/test/path.txt",
             "name": "path.txt",
+            "type": "file",
             "sha1": "a",
             "original_path": "",
             "licenses": [

@@ -93,12 +93,12 @@ class TestDeltacode(FileBasedTesting):
 
         for f in results.codebase1.walk():
             assert f.__class__.__name__ == 'ScannedResource'
-            assert f.rid != None
+            assert f.path is not None
             assert not f.is_filtered
 
-        for f in results.codebase1.walk():
+        for f in results.codebase2.walk():
             assert f.__class__.__name__ == 'ScannedResource'
-            assert f.rid != None
+            assert f.path is not None
             assert not f.is_filtered
 
     @pytest.mark.xfail(reason='Tests no longer required having None paths')
