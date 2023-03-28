@@ -27,7 +27,7 @@ from __future__ import absolute_import, division
 
 from bitarray import bitarray
 from collections import defaultdict
-from bitarray import bitdiff
+from bitarray.util import count_xor
 
 import binascii
 import os
@@ -303,7 +303,7 @@ def hamming_distance(fingerprint1, fingerprint2):
     Hamming distance is the difference in the bits of two binary string.
     Files with fingerprints whose hamming distance are less tends to be more similar.
     """
-    distance = bitdiff(fingerprint1, fingerprint2)
+    distance = count_xor(fingerprint1, fingerprint2)
     result = int(distance)
 
     return result
