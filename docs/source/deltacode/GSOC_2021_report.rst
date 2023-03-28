@@ -49,10 +49,10 @@ Links
 -----
 
 ..
-    [Project Link] https://summerofcode.withgoogle.com/organizations/5312205181943808/#6516503005888512
+    [Project Link] https://summerofcode.withgoogle.com/archive/2021/projects/6580434925780992
 
-- `Project Details <https://summerofcode.withgoogle.com/organizations/5312205181943808/#6516503005888512>`_
-- `Proposal <https://docs.google.com/document/d/19btijAja6x8hbD_X-dGor1RiiEGF3-1gEHYkzqzC3xQ/edit#heading=h.z6ne0og04bp5>`_
+- `Project Details <https://summerofcode.withgoogle.com/archive/2021/projects/6580434925780992>`_
+- `Proposal <https://docs.google.com/document/d/19btijAja6x8hbD_X-dGor1RiiEGF3-1gEHYkzqzC3xQ/edit>`_
 - `ScanCode Toolkit <https://github.com/nexB/scancode-toolkit>`_
 - `DeltaCode <https://github.com/nexB/deltacode>`_
 
@@ -60,12 +60,12 @@ Links
 
 I’ve had a wonderful time during these three months and have learned plenty of things. I would
 really like to thank `@pombredanne <https://github.com/pombredanne>`_,
-`@majurg <https://github.com/majurg>`_, and `@JonoYang <https://github.com/JonoYang>`_ for their
+`@steven-esser <https://github.com/steven-esser>`_, and `@JonoYang <https://github.com/JonoYang>`_ for their
 constant support throughout the journey. From good job claps to nit-picky constructive
 code-reviews, I enjoyed every bit of this GSoC project.
 
 I had a wonderful time during the GSOC, I learned a lot of things during this time.I really
 enjoyed this project. I would really like to thank my mentors
 `@pombredanne <https://github.com/pombredanne>`_,
-`@majurg <https://github.com/majurg>`_, and `@TG1999 <https://github.com/TG1999>`_,
+`@steven-esser <https://github.com/steven-esser>`_, and `@TG1999 <https://github.com/TG1999>`_,
 and all other About code members who constantly supported me throughout this project.
