@@ -271,8 +271,14 @@ class DeltaCode(object):
             ]
         )
 
+        license_refs = {}
+        for license_reference in self.codebase1.attributes.license_references:
+            license_refs[license_reference["key"]] = license_reference["category"]
+        for license_reference in self.codebase2.attributes.license_references:
+            license_refs[license_reference["key"]] = license_reference["category"]
+
         for delta in self.deltas:
-            utils.update_from_license_info(delta, unique_categories)
+            utils.update_from_license_info(delta, unique_categories, license_refs)
 
     def copyright_diff(self):
         """
