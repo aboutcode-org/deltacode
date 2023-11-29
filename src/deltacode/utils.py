@@ -59,7 +59,9 @@ def update_added_from_license_info(delta, unique_categories, license_refs):
         delta.new_file.license_detections if hasattr(delta.new_file, "license_detections") else []
     )
 
-    new_categories = set(license_refs[license["license_expression"]] for license in new_licenses)
+    new_categories = set()
+    for license in new_licenses:
+        new_categories.add(license_refs.get(license["license_expression"], "N/A"))
     if hasattr(delta.new_file, "license_detections"):
         delta.update(20, "license info added")
         for category in new_categories:
@@ -90,8 +92,12 @@ def update_modified_from_license_info(delta, unique_categories, license_refs):
         delta.update(15, "license info removed")
         return
 
-    new_categories = set(license_refs[license["license_expression"]] for license in new_licenses)
-    old_categories = set(license_refs[license["license_expression"]] for license in old_licenses)
+    new_categories = set()
+    for license in new_licenses:
+        new_categories.add(license_refs.get(license["license_expression"], "N/A"))
+    old_categories = set()
+    for license in old_licenses:
+        old_categories.add(license_refs.get(license["license_expression"], "N/A"))
 
     if new_licenses and not old_licenses:
         delta.update(20, "license info added")
