@@ -133,7 +133,7 @@ class DeltaCode(object):
     def determine_delta(self):
         """
         Create Delta objects and append them to the list. Top Down BFS Traversal is used 
-        to visit the codebase structures of the old and new Codebase Directiries.
+        to visit the codebase structures of the old and new Codebase Directories.
         """
 
         old_resource_considered = set()
@@ -271,8 +271,14 @@ class DeltaCode(object):
             ]
         )
 
+        license_refs = {}
+        for license_reference in self.codebase1.attributes.license_references:
+            license_refs[license_reference["key"]] = license_reference["category"]
+        for license_reference in self.codebase2.attributes.license_references:
+            license_refs[license_reference["key"]] = license_reference["category"]
+
         for delta in self.deltas:
-            utils.update_from_license_info(delta, unique_categories)
+            utils.update_from_license_info(delta, unique_categories, license_refs)
 
     def copyright_diff(self):
         """
@@ -380,15 +386,13 @@ class Delta(object):
         """
         licenses = []
         try:
-            for license in file.licenses:
+            for license in file.license_detections:
                 licenses.append(
                     OrderedDict(
                         [
-                            ("key", license.get("key", None)),
-                            ("score", license.get("score", None)),
-                            ("short_name", license.get("short_name", None)),
-                            ("category", license.get("category", None)),
-                            ("owner", license.get("owner", None)),
+                            ("identifier", license.get("identifier", None)),
+                            ("license_expression", license.get("license_expression", None)),
+                            ("matches", license.get("matches", None)),
                         ]
                     )
                 )

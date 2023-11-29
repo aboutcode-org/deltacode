@@ -248,10 +248,36 @@ class License(object):
     """
     def __init__(self, dictionary={}):
         self.key = dictionary.get('key')
-        self.score = dictionary.get('score')
+        self.language = dictionary.get('language')
         self.short_name = dictionary.get('short_name')
+        self.name = dictionary.get('name')
         self.category = dictionary.get('category')
         self.owner = dictionary.get('owner')
+        self.homepage_url = dictionary.get('homepage_url')
+        self.notes = dictionary.get('notes')
+        self.is_builtin = dictionary.get('is_builtin')
+        self.is_exception = dictionary.get('is_exception')
+        self.is_unknown = dictionary.get('is_unknown')
+        self.is_generic = dictionary.get('is_generic')
+        self.spdx_license_key = dictionary.get('spdx_license_key')
+        self.other_spdx_license_keys = dictionary.get('other_spdx_license_keys')
+        self.osi_license_key = dictionary.get('osi_license_key')
+        self.text_urls = dictionary.get('text_urls')
+        self.osi_url = dictionary.get('osi_url')
+        self.faq_url = dictionary.get('faq_url')
+        self.other_urls = dictionary.get('other_urls')
+        self.key_aliases = dictionary.get('key_aliases')
+        self.minimum_coverage = dictionary.get('minimum_coverage')
+        self.standard_notice = dictionary.get('standard_notice')
+        self.ignorable_copyrights = dictionary.get('ignorable_copyrights')
+        self.ignorable_holders = dictionary.get('ignorable_holders')
+        self.ignorable_authors = dictionary.get('ignorable_authors')
+        self.ignorable_urls = dictionary.get('ignorable_urls')
+        self.ignorable_emails = dictionary.get('ignorable_emails')
+        self.text = dictionary.get('text')
+        self.scancode_url = dictionary.get('scancode_url')
+        self.licensedb_url = dictionary.get('licensedb_url')
+        self.spdx_url = dictionary.get('spdx_url')
 
     def to_dict(self):
         """
@@ -260,10 +286,36 @@ class License(object):
         """
         d = OrderedDict([
             ('key', self.key),
-            ('score', self.score),
+            ('language', self.language),
             ('short_name', self.short_name),
+            ('name', self.name),
             ('category', self.category),
-            ('owner', self.owner)
+            ('owner', self.owner),
+            ('homepage_url', self.homepage_url),
+            ('notes', self.notes),
+            ('is_builtin', self.is_builtin),
+            ('is_exception', self.is_exception),
+            ('is_unknown', self.is_unknown),
+            ('is_generic', self.is_generic),
+            ('spdx_license_key', self.spdx_license_key),
+            ('other_spdx_license_keys', self.other_spdx_license_keys),
+            ('osi_license_key', self.osi_license_key),
+            ('text_urls', self.text_urls),
+            ('osi_url', self.osi_url),
+            ('faq_url', self.faq_url),
+            ('other_urls', self.other_urls),
+            ('key_aliases', self.key_aliases),
+            ('minimum_coverage', self.minimum_coverage),
+            ('standard_notice', self.standard_notice),
+            ('ignorable_copyrights', self.ignorable_copyrights),
+            ('ignorable_holders', self.ignorable_holders),
+            ('ignorable_authors', self.ignorable_authors),
+            ('ignorable_urls', self.ignorable_urls),
+            ('ignorable_emails', self.ignorable_emails),
+            ('text', self.text),
+            ('scancode_url', self.scancode_url),
+            ('licensedb_url', self.licensedb_url),
+            ('spdx_url', self.spdx_url)
         ])
 
         return d

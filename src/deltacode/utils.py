@@ -36,31 +36,33 @@ from commoncode import paths
 from collections import OrderedDict
 
 
-def update_from_license_info(delta, unique_categories):
+def update_from_license_info(delta, unique_categories, license_refs):
     """
     Increase an 'added' or 'modified' Delta object's 'score' attribute and add
     one or more appropriate categories to its 'factors' attribute if there has
     been a license change and depending on the nature of that change.
     """
     if delta.is_added():
-        update_added_from_license_info(delta, unique_categories)
+        update_added_from_license_info(delta, unique_categories, license_refs)
 
     if delta.is_modified():
-        update_modified_from_license_info(delta, unique_categories)
+        update_modified_from_license_info(delta, unique_categories, license_refs)
 
 
-def update_added_from_license_info(delta, unique_categories):
+def update_added_from_license_info(delta, unique_categories, license_refs):
     """
     Increase an 'added' Delta object's 'score' attribute and add
     one or more categories to its 'factors' attribute if there has
     been a license change.
     """
     new_licenses = (
-        delta.new_file.licenses if hasattr(delta.new_file, "licenses") else []
+        delta.new_file.license_detections if hasattr(delta.new_file, "license_detections") else []
     )
 
-    new_categories = set(license["category"] for license in new_licenses)
-    if hasattr(delta.new_file, "licenses"):
+    new_categories = set()
+    for license in new_licenses:
+        new_categories.add(license_refs.get(license["license_expression"], "N/A"))
+    if hasattr(delta.new_file, "license_detections"):
         delta.update(20, "license info added")
         for category in new_categories:
             # no license ==> 'Copyleft Limited'or higher
@@ -72,7 +74,7 @@ def update_added_from_license_info(delta, unique_categories):
         return
 
 
-def update_modified_from_license_info(delta, unique_categories):
+def update_modified_from_license_info(delta, unique_categories, license_refs):
     """
     Increase a 'modified' Delta object's 'score' attribute and add
     one or more categories to its 'factors' attribute if there has
@@ -80,18 +82,22 @@ def update_modified_from_license_info(delta, unique_categories):
     """
 
     new_licenses = (
-        delta.new_file.licenses if hasattr(delta.new_file, "licenses") else []
+        delta.new_file.license_detections if hasattr(delta.new_file, "license_detections") else []
     )
     old_licenses = (
-        delta.old_file.licenses if hasattr(delta.old_file, "licenses") else []
+        delta.old_file.license_detections if hasattr(delta.old_file, "license_detections") else []
     )
 
     if not new_licenses and old_licenses:
         delta.update(15, "license info removed")
         return
 
-    new_categories = set(license.get("category", "") for license in new_licenses)
-    old_categories = set(license.get("category", "") for license in old_licenses)
+    new_categories = set()
+    for license in new_licenses:
+        new_categories.add(license_refs.get(license["license_expression"], "N/A"))
+    old_categories = set()
+    for license in old_licenses:
+        old_categories.add(license_refs.get(license["license_expression"], "N/A"))
 
     if new_licenses and not old_licenses:
         delta.update(20, "license info added")
@@ -105,11 +111,10 @@ def update_modified_from_license_info(delta, unique_categories):
                 delta.update(0, category.lower() + " added")
         return
 
-    new_keys = set(license.get("key", "") for license in new_licenses)
-    old_keys = set(license.get("key", "") for license in old_licenses)
+    new_ids = set(license.get("identifier", "") for license in new_licenses)
+    old_ids = set(license.get("identifier", "") for license in old_licenses)
 
-    if new_keys != old_keys:
-
+    if new_ids != old_ids:
         delta.update(10, "license change")
         for category in new_categories - old_categories:
             unique_categories_in_old_file = len(old_categories & unique_categories)
