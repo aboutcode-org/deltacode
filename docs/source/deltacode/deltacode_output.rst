@@ -196,7 +196,7 @@ in the ``deltas`` key/value pair -- in this case, an excerpt from the ``JSON`` o
 DeltaCode comparison of ``zlib-1.2.11`` and ``zlib-1.2.9``:::
 
   {
-    "deltacode_notice": "Generated with DeltaCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nDeltaCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nDeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/nexB/deltacode/ for support and download.",
+    "deltacode_notice": "Generated with DeltaCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nDeltaCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nDeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/aboutcode-org/deltacode/ for support and download.",
     "deltacode_options": {
       "--new": "C:/scans/zlib-1.2.11.json",
       "--old": "C:/scans/zlib-1.2.9.json",

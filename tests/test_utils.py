@@ -1,6 +1,6 @@
 #
 # Copyright (c) 2017-2018 nexB Inc. and others. All rights reserved.
-# http://nexb.com and https://github.com/nexB/deltacode/
+# http://nexb.com and https://github.com/aboutcode-org/deltacode/
 # The DeltaCode software is licensed under the Apache License version 2.0.
 # Data generated with DeltaCode require an acknowledgment.
 # DeltaCode is a trademark of nexB Inc.
@@ -20,7 +20,7 @@
 #  DeltaCode should be considered or used as legal advice. Consult an Attorney
 #  for any legal advice.
 #  DeltaCode is a free and open source software analysis tool from nexB Inc. and others.
-#  Visit https://github.com/nexB/deltacode/ for support and download.
+#  Visit https://github.com/aboutcode-org/deltacode/ for support and download.
 #
 
 from __future__ import absolute_import, print_function, unicode_literals, division
@@ -65,7 +65,7 @@ class TestUtils(FileBasedTesting):
         assert test_delta.score == 0
 
     def test_update_from_license_info_non_modified(self):
-        test_file = models.File({'path':'/test/path.txt', 'name': 'path.txt'})
+        test_file = models.File({'path': '/test/path.txt', 'name': 'path.txt'})
         test_delta = deltacode.Delta(old_file=test_file)
 
         utils.update_from_license_info(test_delta, set())
@@ -74,8 +74,10 @@ class TestUtils(FileBasedTesting):
         assert len(test_delta.factors) == 0
 
     def test_update_from_license_info_no_license_key_value(self):
-        test_file_new = self.get_test_loc('utils/update_from_license_info_no_license_key_value_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_license_info_no_license_key_value_old.json')
+        test_file_new = self.get_test_loc(
+            'utils/update_from_license_info_no_license_key_value_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_license_info_no_license_key_value_old.json')
 
         results = DeltaCode(test_file_new, test_file_old, {})
 
@@ -85,8 +87,10 @@ class TestUtils(FileBasedTesting):
         assert len(deltas.factors) == 0
 
     def test_update_from_license_info_no_license_changes(self):
-        test_scan_new = self.get_test_loc('utils/update_from_license_info_no_license_changes_new.json')
-        test_scan_old = self.get_test_loc('utils/update_from_license_info_no_license_changes_old.json')
+        test_scan_new = self.get_test_loc(
+            'utils/update_from_license_info_no_license_changes_new.json')
+        test_scan_old = self.get_test_loc(
+            'utils/update_from_license_info_no_license_changes_old.json')
 
         result = DeltaCode(test_scan_new, test_scan_old, {})
 
@@ -96,8 +100,10 @@ class TestUtils(FileBasedTesting):
         assert len(deltas.factors) == 0
 
     def test_update_from_license_info_single_license_change(self):
-        test_file_new = self.get_test_loc('utils/update_from_license_info_single_license_change_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_license_info_single_license_change_old.json')
+        test_file_new = self.get_test_loc(
+            'utils/update_from_license_info_single_license_change_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_license_info_single_license_change_old.json')
 
         results = DeltaCode(test_file_new, test_file_old, {})
 
@@ -105,7 +111,7 @@ class TestUtils(FileBasedTesting):
             'license change',
             'copyleft added'
         ]
-        
+
         deltas = results.deltas[0]
 
         assert deltas.score == 50
@@ -114,8 +120,10 @@ class TestUtils(FileBasedTesting):
             assert factor in deltas.factors
 
     def test_update_from_license_info_copyleft_license_info_added(self):
-        test_file_new = self.get_test_loc('utils/update_from_license_info_copyleft_license_info_added_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_license_info_copyleft_license_info_added_old.json')
+        test_file_new = self.get_test_loc(
+            'utils/update_from_license_info_copyleft_license_info_added_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_license_info_copyleft_license_info_added_old.json')
 
         results = DeltaCode(test_file_new, test_file_old, {})
 
@@ -132,9 +140,10 @@ class TestUtils(FileBasedTesting):
             assert factor in deltas.factors
 
     def test_update_from_license_info_permissive_license_info_added(self):
-        test_file_new = self.get_test_loc('utils/update_from_license_info_permissive_license_info_added_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_license_info_permissive_license_info_added_old.json')
-
+        test_file_new = self.get_test_loc(
+            'utils/update_from_license_info_permissive_license_info_added_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_license_info_permissive_license_info_added_old.json')
 
         results = DeltaCode(test_file_new, test_file_old, {})
 
@@ -146,9 +155,10 @@ class TestUtils(FileBasedTesting):
         assert 'permissive added' in deltas.factors
 
     def test_update_from_license_info_permissive_license_info_removed(self):
-        test_file_new = self.get_test_loc('utils/update_from_license_info_permissive_license_info_removed_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_license_info_permissive_license_info_removed_old.json')
-
+        test_file_new = self.get_test_loc(
+            'utils/update_from_license_info_permissive_license_info_removed_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_license_info_permissive_license_info_removed_old.json')
 
         results = DeltaCode(test_file_new, test_file_old, {})
 
@@ -159,9 +169,10 @@ class TestUtils(FileBasedTesting):
         assert 'license info removed' in deltas.factors
 
     def test_update_from_license_info_copyleft_license_info_removed(self):
-        test_file_new = self.get_test_loc('utils/update_from_license_info_copyleft_license_info_removed_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_license_info_copyleft_license_info_removed_old.json')
-
+        test_file_new = self.get_test_loc(
+            'utils/update_from_license_info_copyleft_license_info_removed_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_license_info_copyleft_license_info_removed_old.json')
 
         results = DeltaCode(test_file_new, test_file_old, {})
 
@@ -172,8 +183,10 @@ class TestUtils(FileBasedTesting):
         assert 'license info removed' in deltas.factors
 
     def test_update_from_license_info_one_license_added(self):
-        test_file_new = self.get_test_loc('utils/update_from_license_info_one_license_added_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_license_info_one_license_added_old.json')
+        test_file_new = self.get_test_loc(
+            'utils/update_from_license_info_one_license_added_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_license_info_one_license_added_old.json')
 
         results = DeltaCode(test_file_new, test_file_old, {})
 
@@ -190,9 +203,10 @@ class TestUtils(FileBasedTesting):
             assert factor in deltas.factors
 
     def test_update_from_license_info_one_license_removed(self):
-        test_file_new = self.get_test_loc('utils/update_from_license_info_one_license_removed_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_license_info_one_license_removed_old.json')
-
+        test_file_new = self.get_test_loc(
+            'utils/update_from_license_info_one_license_removed_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_license_info_one_license_removed_old.json')
 
         results = DeltaCode(test_file_new, test_file_old, {})
 
@@ -203,8 +217,10 @@ class TestUtils(FileBasedTesting):
         assert 'license change' in deltas.factors
 
     def test_update_from_license_info_one_permissive_to_two_permissives(self):
-        test_file_new = self.get_test_loc('utils/update_from_license_info_one_permissive_to_two_permissives_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_license_info_one_permissive_to_two_permissives_old.json')
+        test_file_new = self.get_test_loc(
+            'utils/update_from_license_info_one_permissive_to_two_permissives_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_license_info_one_permissive_to_two_permissives_old.json')
 
         results = DeltaCode(test_file_new, test_file_old, {})
 
@@ -215,8 +231,10 @@ class TestUtils(FileBasedTesting):
         assert 'license change' in deltas.factors
 
     def test_update_from_license_info_two_permissives_to_one_permissive(self):
-        test_file_new = self.get_test_loc('utils/update_from_license_info_one_permissive_to_two_permissives_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_license_info_one_permissive_to_two_permissives_old.json')
+        test_file_new = self.get_test_loc(
+            'utils/update_from_license_info_one_permissive_to_two_permissives_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_license_info_one_permissive_to_two_permissives_old.json')
 
         results = DeltaCode(test_file_new, test_file_old, {})
 
@@ -227,9 +245,10 @@ class TestUtils(FileBasedTesting):
         assert 'license change' in deltas.factors
 
     def test_update_from_license_info_one_permissive_to_six_copyleft_or_higher(self):
-        test_file_new = self.get_test_loc('utils/update_from_license_info_one_permissive_to_six_copyleft_or_higher_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_license_info_one_permissive_to_six_copyleft_or_higher_old.json')
-
+        test_file_new = self.get_test_loc(
+            'utils/update_from_license_info_one_permissive_to_six_copyleft_or_higher_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_license_info_one_permissive_to_six_copyleft_or_higher_old.json')
 
         results = DeltaCode(test_file_new, test_file_old, {})
 
@@ -252,9 +271,10 @@ class TestUtils(FileBasedTesting):
             assert factor in deltas.factors
 
     def test_update_from_license_info_copyleft_to_different_copyleft(self):
-        test_file_new = self.get_test_loc('utils/update_from_license_info_copyleft_to_different_copyleft_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_license_info_copyleft_to_different_copyleft_old.json')
-
+        test_file_new = self.get_test_loc(
+            'utils/update_from_license_info_copyleft_to_different_copyleft_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_license_info_copyleft_to_different_copyleft_old.json')
 
         results = DeltaCode(test_file_new, test_file_old, {})
 
@@ -265,8 +285,10 @@ class TestUtils(FileBasedTesting):
         assert 'license change' in deltas.factors
 
     def test_update_from_license_info_copyleft_to_copyleft_limited(self):
-        test_file_new = self.get_test_loc('utils/update_from_license_info_copyleft_to_copyleft_limited_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_license_info_copyleft_to_copyleft_limited_old.json')
+        test_file_new = self.get_test_loc(
+            'utils/update_from_license_info_copyleft_to_copyleft_limited_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_license_info_copyleft_to_copyleft_limited_old.json')
 
         results = DeltaCode(test_file_new, test_file_old, {})
 
@@ -280,7 +302,7 @@ class TestUtils(FileBasedTesting):
     @pytest.mark.xfail(reason='Tests no longer required having None paths')
     def test_update_from_license_info_file_added_permissive_license(self):
         test_file_new = models.File({
-            'path':'/test/path.txt',
+            'path': '/test/path.txt',
             'name': 'path.txt',
             'sha1': 'a',
             'original_path': '',
@@ -307,7 +329,7 @@ class TestUtils(FileBasedTesting):
     @pytest.mark.xfail(reason='Tests no longer required having None paths')
     def test_update_from_license_info_file_added_commercial_and_copyleft_licenses(self):
         test_file_new = models.File({
-            'path':'/test/path.txt',
+            'path': '/test/path.txt',
             'name': 'path.txt',
             'sha1': 'a',
             'original_path': '',
@@ -356,8 +378,10 @@ class TestUtils(FileBasedTesting):
         assert test_delta.score == 0
 
     def test_update_from_copyright_info_non_modified(self):
-        test_file_new = self.get_test_loc('utils/update_from_copyright_info_non_modified_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_copyright_info_non_modified_old.json')
+        test_file_new = self.get_test_loc(
+            'utils/update_from_copyright_info_non_modified_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_copyright_info_non_modified_old.json')
 
         test_delta = DeltaCode(test_file_new, test_file_old, {})
 
@@ -365,9 +389,10 @@ class TestUtils(FileBasedTesting):
         assert test_delta.deltas[0].status == "unmodified"
 
     def test_update_from_copyright_info_no_copyright_key_value(self):
-        test_file_new = self.get_test_loc('utils/update_from_copyright_info_no_copyright_key_value_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_copyright_info_no_copyright_key_value_old.json')
-
+        test_file_new = self.get_test_loc(
+            'utils/update_from_copyright_info_no_copyright_key_value_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_copyright_info_no_copyright_key_value_old.json')
 
         results = DeltaCode(test_file_new, test_file_old, {})
 
@@ -377,9 +402,10 @@ class TestUtils(FileBasedTesting):
         assert len(deltas.factors) == 0
 
     def test_update_from_copyright_info_no_copyright_changes(self):
-        test_file_new = self.get_test_loc('utils/update_from_copyright_info_no_copyright_changes_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_copyright_info_no_copyright_changes_old.json')
-
+        test_file_new = self.get_test_loc(
+            'utils/update_from_copyright_info_no_copyright_changes_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_copyright_info_no_copyright_changes_old.json')
 
         results = DeltaCode(test_file_new, test_file_old, {})
 
@@ -389,8 +415,10 @@ class TestUtils(FileBasedTesting):
         assert len(deltas.factors) == 0
 
     def test_update_from_copyright_info_single_copyright_change(self):
-        test_file_new = self.get_test_loc('utils/update_from_copyright_info_single_copyright_change_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_copyright_info_single_copyright_change_old.json')
+        test_file_new = self.get_test_loc(
+            'utils/update_from_copyright_info_single_copyright_change_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_copyright_info_single_copyright_change_old.json')
 
         results = DeltaCode(test_file_new, test_file_old, {})
 
@@ -401,9 +429,10 @@ class TestUtils(FileBasedTesting):
         assert 'copyright change' in deltas.factors
 
     def test_update_from_copyright_info_single_copyright_change_holders_only(self):
-        test_scan_new = self.get_test_loc("utils/update_from_copyright_info_single_copyright_change_holders_only_new.json")
-        test_scan_old = self.get_test_loc("utils/update_from_copyright_info_single_copyright_change_holders_only_old.json")
-
+        test_scan_new = self.get_test_loc(
+            "utils/update_from_copyright_info_single_copyright_change_holders_only_new.json")
+        test_scan_old = self.get_test_loc(
+            "utils/update_from_copyright_info_single_copyright_change_holders_only_old.json")
 
         results = DeltaCode(test_scan_new, test_scan_old, {})
         deltas = results.deltas[0]
@@ -413,8 +442,10 @@ class TestUtils(FileBasedTesting):
         assert 'copyright change' in deltas.factors
 
     def test_update_from_copyright_info_single_copyright_change_statements_only(self):
-        test_scan_new = self.get_test_loc('utils/update_from_copyright_info_single_copyright_change_statements_only_new.json')
-        test_scan_old = self.get_test_loc('utils/update_from_copyright_info_single_copyright_change_statements_only_old.json')
+        test_scan_new = self.get_test_loc(
+            'utils/update_from_copyright_info_single_copyright_change_statements_only_new.json')
+        test_scan_old = self.get_test_loc(
+            'utils/update_from_copyright_info_single_copyright_change_statements_only_old.json')
 
         results = DeltaCode(test_scan_new, test_scan_old, {})
 
@@ -425,22 +456,24 @@ class TestUtils(FileBasedTesting):
         assert 'copyright change' not in deltas.factors
 
     def test_update_from_copyright_info_copyright_info_added(self):
-        test_scan_new = self.get_test_loc('utils/update_from_copyright_info_copyright_info_added_new.json')
-        test_scan_old = self.get_test_loc('utils/update_from_copyright_info_copyright_info_added_old.json')
-
+        test_scan_new = self.get_test_loc(
+            'utils/update_from_copyright_info_copyright_info_added_new.json')
+        test_scan_old = self.get_test_loc(
+            'utils/update_from_copyright_info_copyright_info_added_old.json')
 
         results = DeltaCode(test_scan_new, test_scan_old, {})
 
         deltas = results.deltas[0]
-    
+
         assert deltas.score == 30
         assert len(deltas.factors) == 1
         assert 'copyright info added' in deltas.factors
 
     def test_update_from_copyright_info_copyright_info_removed(self):
-        test_scan_new = self.get_test_loc('utils/update_from_copyright_info_copyright_info_removed_new.json')
-        test_scan_old = self.get_test_loc('utils/update_from_copyright_info_copyright_info_removed_old.json')
-
+        test_scan_new = self.get_test_loc(
+            'utils/update_from_copyright_info_copyright_info_removed_new.json')
+        test_scan_old = self.get_test_loc(
+            'utils/update_from_copyright_info_copyright_info_removed_old.json')
 
         results = DeltaCode(test_scan_new, test_scan_old, {})
 
@@ -451,8 +484,10 @@ class TestUtils(FileBasedTesting):
         assert 'copyright info removed' in deltas.factors
 
     def test_update_from_copyright_info_one_copyright_added(self):
-        test_scan_new = self.get_test_loc('utils/update_from_copyright_info_one_copyright_added_new.json')
-        test_scan_old = self.get_test_loc('utils/update_from_copyright_info_one_copyright_added_old.json')
+        test_scan_new = self.get_test_loc(
+            'utils/update_from_copyright_info_one_copyright_added_new.json')
+        test_scan_old = self.get_test_loc(
+            'utils/update_from_copyright_info_one_copyright_added_old.json')
 
         results = DeltaCode(test_scan_new, test_scan_old, {})
 
@@ -463,9 +498,10 @@ class TestUtils(FileBasedTesting):
         assert 'copyright change' in deltas.factors
 
     def test_update_from_copyright_info_one_copyright_removed(self):
-        test_scan_new = self.get_test_loc('utils/update_from_copyright_info_one_copyright_removed_new.json')
-        test_scan_old = self.get_test_loc('utils/update_from_copyright_info_one_copyright_removed_old.json')
-
+        test_scan_new = self.get_test_loc(
+            'utils/update_from_copyright_info_one_copyright_removed_new.json')
+        test_scan_old = self.get_test_loc(
+            'utils/update_from_copyright_info_one_copyright_removed_old.json')
 
         results = DeltaCode(test_scan_new, test_scan_old, {})
 
@@ -476,9 +512,10 @@ class TestUtils(FileBasedTesting):
         assert 'copyright change' in deltas.factors
 
     def test_update_from_copyright_info_file_added_one_copyright(self):
-        test_scan_new = self.get_test_loc('utils/update_from_copyright_info_file_added_one_copyright_new.json')
-        test_scan_old = self.get_test_loc('utils/update_from_copyright_info_file_added_one_copyright_old.json')
-
+        test_scan_new = self.get_test_loc(
+            'utils/update_from_copyright_info_file_added_one_copyright_new.json')
+        test_scan_old = self.get_test_loc(
+            'utils/update_from_copyright_info_file_added_one_copyright_old.json')
 
         test_delta = DeltaCode(test_scan_new, test_scan_old, {})
 
@@ -489,12 +526,13 @@ class TestUtils(FileBasedTesting):
         assert 'copyright info added' in deltas.factors
 
     def test_update_from_lic_copy_info_copyright_and_license_info_added(self):
-        test_scan_new = self.get_test_loc('utils/update_from_lic_copy_info_copyright_and_license_info_added_new.json')
-        test_scan_old = self.get_test_loc('utils/update_from_lic_copy_info_copyright_and_license_info_added_old.json')
-
+        test_scan_new = self.get_test_loc(
+            'utils/update_from_lic_copy_info_copyright_and_license_info_added_new.json')
+        test_scan_old = self.get_test_loc(
+            'utils/update_from_lic_copy_info_copyright_and_license_info_added_old.json')
 
         results = DeltaCode(test_scan_new, test_scan_old, {})
-        
+
         deltas = results.deltas[0]
 
         expected_factors = [
@@ -509,9 +547,10 @@ class TestUtils(FileBasedTesting):
             assert factor in deltas.factors
 
     def test_update_from_lic_copy_info_copyright_and_license_info_removed(self):
-        test_file_new = self.get_test_loc('utils/update_from_lic_copy_info_copyright_and_license_info_removed_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_lic_copy_info_copyright_and_license_info_removed_old.json')
-
+        test_file_new = self.get_test_loc(
+            'utils/update_from_lic_copy_info_copyright_and_license_info_removed_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_lic_copy_info_copyright_and_license_info_removed_old.json')
 
         test_delta = DeltaCode(test_file_new, test_file_old, {})
 
@@ -528,9 +567,10 @@ class TestUtils(FileBasedTesting):
             assert factor in deltas.factors
 
     def test_update_from_lic_copy_info_copyright_info_added_license_info_removed(self):
-        test_file_new = self.get_test_loc('utils/update_from_lic_copy_info_copyright_info_added_license_info_removed_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_lic_copy_info_copyright_info_added_license_info_removed_old.json')
-
+        test_file_new = self.get_test_loc(
+            'utils/update_from_lic_copy_info_copyright_info_added_license_info_removed_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_lic_copy_info_copyright_info_added_license_info_removed_old.json')
 
         test_delta = DeltaCode(test_file_new, test_file_old, {})
 
@@ -547,12 +587,13 @@ class TestUtils(FileBasedTesting):
             assert factor in deltas.factors
 
     def test_update_from_lic_copy_info_license_info_added_copyright_info_removed(self):
-        test_file_new = self.get_test_loc('utils/update_from_lic_copy_info_license_info_added_copyright_info_removed_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_lic_copy_info_license_info_added_copyright_info_removed_old.json')
-
+        test_file_new = self.get_test_loc(
+            'utils/update_from_lic_copy_info_license_info_added_copyright_info_removed_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_lic_copy_info_license_info_added_copyright_info_removed_old.json')
 
         test_delta = DeltaCode(test_file_new, test_file_old, {})
-        
+
         expected_factors = [
             'license info added',
             'copyleft added',
@@ -567,9 +608,10 @@ class TestUtils(FileBasedTesting):
             assert factor in deltas.factors
 
     def test_update_from_lic_copy_info_copyright_change_no_license_change(self):
-        test_file_new = self.get_test_loc('utils/update_from_lic_copy_info_copyright_change_no_license_change_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_lic_copy_info_copyright_change_no_license_change_old.json')
-
+        test_file_new = self.get_test_loc(
+            'utils/update_from_lic_copy_info_copyright_change_no_license_change_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_lic_copy_info_copyright_change_no_license_change_old.json')
 
         test_delta = DeltaCode(test_file_new, test_file_old, {})
 
@@ -580,9 +622,10 @@ class TestUtils(FileBasedTesting):
         assert 'copyright change' in deltas.factors
 
     def test_update_from_lic_copy_info_license_change_no_copyright_change(self):
-        test_file_new = self.get_test_loc('utils/update_from_lic_copy_info_license_change_no_copyright_change_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_lic_copy_info_license_change_no_copyright_change_old.json')
-
+        test_file_new = self.get_test_loc(
+            'utils/update_from_lic_copy_info_license_change_no_copyright_change_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_lic_copy_info_license_change_no_copyright_change_old.json')
 
         test_delta = DeltaCode(test_file_new, test_file_old, {})
 
@@ -599,9 +642,10 @@ class TestUtils(FileBasedTesting):
             assert factor in deltas.factors
 
     def test_update_from_lic_copy_info_file_added_copyright_and_permissive_license(self):
-        test_file_new = self.get_test_loc('utils/update_from_lic_copy_info_file_added_copyright_and_permissive_license_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_lic_copy_info_file_added_copyright_and_permissive_license_old.json')
-
+        test_file_new = self.get_test_loc(
+            'utils/update_from_lic_copy_info_file_added_copyright_and_permissive_license_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_lic_copy_info_file_added_copyright_and_permissive_license_old.json')
 
         deltacode = DeltaCode(test_file_new, test_file_old, {})
 
@@ -610,7 +654,7 @@ class TestUtils(FileBasedTesting):
             'permissive added',
             'copyright info added'
         ]
-        
+
         delta = deltacode.deltas[0]
 
         assert delta.score == 130
@@ -619,9 +663,10 @@ class TestUtils(FileBasedTesting):
             assert factor in delta.factors
 
     def test_update_from_lic_copy_info_file_added_copyright_and_commercial_and_copyleft_licenses(self):
-        test_file_new = self.get_test_loc('utils/update_from_lic_copy_info_file_added_copyright_and_commercial_and_copyleft_licenses_new.json')
-        test_file_old = self.get_test_loc('utils/update_from_lic_copy_info_file_added_copyright_and_commercial_and_copyleft_licenses_old.json')
-
+        test_file_new = self.get_test_loc(
+            'utils/update_from_lic_copy_info_file_added_copyright_and_commercial_and_copyleft_licenses_new.json')
+        test_file_old = self.get_test_loc(
+            'utils/update_from_lic_copy_info_file_added_copyright_and_commercial_and_copyleft_licenses_old.json')
 
         deltacode = DeltaCode(test_file_new, test_file_old, {})
 
@@ -655,12 +700,15 @@ class TestUtils(FileBasedTesting):
         assert result_seg_old == 5
 
     def test_align_tress_zlib_failing(self):
-        test_scan_new = self.get_test_loc('utils/align-trees-zlib-failing-new.json')
-        test_scan_old = self.get_test_loc('utils/align-trees-zlib-failing-old.json')
+        test_scan_new = self.get_test_loc(
+            'utils/align-trees-zlib-failing-new.json')
+        test_scan_old = self.get_test_loc(
+            'utils/align-trees-zlib-failing-old.json')
 
         new_scan = VirtualCodebase(test_scan_new)
         old_scan = VirtualCodebase(test_scan_old)
 
         # test that the exception is raised
         with pytest.raises(utils.AlignmentException):
-            result_seg_new, result_seg_old = utils.align_trees(new_scan, old_scan)
+            result_seg_new, result_seg_old = utils.align_trees(
+                new_scan, old_scan)

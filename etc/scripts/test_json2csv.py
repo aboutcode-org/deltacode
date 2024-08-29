@@ -1,6 +1,6 @@
 #
 # Copyright (c) 2017-2018 nexB Inc. and others. All rights reserved.
-# http://nexb.com and https://github.com/nexB/deltacode/
+# http://nexb.com and https://github.com/aboutcode-org/deltacode/
 # The DeltaCode software is licensed under the Apache License version 2.0.
 # Data generated with DeltaCode require an acknowledgment.
 # DeltaCode is a trademark of nexB Inc.
@@ -20,7 +20,7 @@
 #  DeltaCode should be considered or used as legal advice. Consult an Attorney
 #  for any legal advice.
 #  DeltaCode is a free and open source software analysis tool from nexB Inc. and others.
-#  Visit https://github.com/nexB/deltacode/ for support and download.
+#  Visit https://github.com/aboutcode-org/deltacode/ for support and download.
 #
 
 from __future__ import print_function
@@ -41,7 +41,7 @@ import json2csv
 
 def load_csv(location):
     """
-    Copied from https://github.com/nexB/scancode-toolkit/blob/develop/etc/scripts/test_json2csv.py
+    Copied from https://github.com/aboutcode-org/scancode-toolkit/blob/develop/etc/scripts/test_json2csv.py
     Load a CSV file at location and return a tuple of (field names, list of rows as
     mappings field->value).
     """
@@ -56,7 +56,7 @@ def check_csvs(
         result_file, expected_file,
         regen=False):
     """
-    Copied from https://github.com/nexB/scancode-toolkit/blob/develop/etc/scripts/test_json2csv.py
+    Copied from https://github.com/aboutcode-org/scancode-toolkit/blob/develop/etc/scripts/test_json2csv.py
     Load and compare two CSVs.
     `ignore_keys`, a tuple of keys that will be ignored in the comparisons,
     has been removed from this function as unnecessary.
@@ -209,7 +209,8 @@ class TestJson2CSV(FileBasedTesting):
         result_file = self.get_temp_file('.csv')
         with open(result_file, 'wb') as rf:
             json2csv.json_delta_to_csv(test_json, rf)
-        expected_file = self.get_test_loc('json2csv/1_file_moved_and_1_copy.csv')
+        expected_file = self.get_test_loc(
+            'json2csv/1_file_moved_and_1_copy.csv')
 
         check_csvs(result_file, expected_file)
 
@@ -218,7 +219,8 @@ class TestJson2CSV(FileBasedTesting):
         result_file = self.get_temp_file('.csv')
         with open(result_file, 'wb') as rf:
             json2csv.json_delta_to_csv(test_json, rf)
-        expected_file = self.get_test_loc('json2csv/1_file_moved_and_added.csv')
+        expected_file = self.get_test_loc(
+            'json2csv/1_file_moved_and_added.csv')
 
         check_csvs(result_file, expected_file)
 
@@ -227,7 +229,8 @@ class TestJson2CSV(FileBasedTesting):
         result_file = self.get_temp_file('.csv')
         with open(result_file, 'wb') as rf:
             json2csv.json_delta_to_csv(test_json, rf)
-        expected_file = self.get_test_loc('json2csv/single_copyright_change.csv')
+        expected_file = self.get_test_loc(
+            'json2csv/single_copyright_change.csv')
 
         check_csvs(result_file, expected_file)
 
@@ -245,60 +248,73 @@ class TestJson2CSV(FileBasedTesting):
         result_file = self.get_temp_file('.csv')
         with open(result_file, 'wb') as rf:
             json2csv.json_delta_to_csv(test_json, rf)
-        expected_file = self.get_test_loc('json2csv/copyright_info_removed.csv')
+        expected_file = self.get_test_loc(
+            'json2csv/copyright_info_removed.csv')
 
         check_csvs(result_file, expected_file)
 
     def test_json_delta_to_csv_copyright_and_license_info_added_csv(self):
-        test_json = self.get_test_loc('json2csv/copyright_and_license_info_added.json')
+        test_json = self.get_test_loc(
+            'json2csv/copyright_and_license_info_added.json')
         result_file = self.get_temp_file('.csv')
         with open(result_file, 'wb') as rf:
             json2csv.json_delta_to_csv(test_json, rf)
-        expected_file = self.get_test_loc('json2csv/copyright_and_license_info_added.csv')
+        expected_file = self.get_test_loc(
+            'json2csv/copyright_and_license_info_added.csv')
 
         check_csvs(result_file, expected_file)
 
     def test_json_delta_to_csv_copyright_and_license_info_removed_csv(self):
-        test_json = self.get_test_loc('json2csv/copyright_and_license_info_removed.json')
+        test_json = self.get_test_loc(
+            'json2csv/copyright_and_license_info_removed.json')
         result_file = self.get_temp_file('.csv')
         with open(result_file, 'wb') as rf:
             json2csv.json_delta_to_csv(test_json, rf)
-        expected_file = self.get_test_loc('json2csv/copyright_and_license_info_removed.csv')
+        expected_file = self.get_test_loc(
+            'json2csv/copyright_and_license_info_removed.csv')
 
         check_csvs(result_file, expected_file)
 
     def test_json_delta_to_csv_copyright_info_added_license_info_removed_csv(self):
-        test_json = self.get_test_loc('json2csv/copyright_info_added_license_info_removed.json')
+        test_json = self.get_test_loc(
+            'json2csv/copyright_info_added_license_info_removed.json')
         result_file = self.get_temp_file('.csv')
         with open(result_file, 'wb') as rf:
             json2csv.json_delta_to_csv(test_json, rf)
-        expected_file = self.get_test_loc('json2csv/copyright_info_added_license_info_removed.csv')
+        expected_file = self.get_test_loc(
+            'json2csv/copyright_info_added_license_info_removed.csv')
 
         check_csvs(result_file, expected_file)
 
     def test_json_delta_to_csv_license_info_added_copyright_info_removed_csv(self):
-        test_json = self.get_test_loc('json2csv/license_info_added_copyright_info_removed.json')
+        test_json = self.get_test_loc(
+            'json2csv/license_info_added_copyright_info_removed.json')
         result_file = self.get_temp_file('.csv')
         with open(result_file, 'wb') as rf:
             json2csv.json_delta_to_csv(test_json, rf)
-        expected_file = self.get_test_loc('json2csv/license_info_added_copyright_info_removed.csv')
+        expected_file = self.get_test_loc(
+            'json2csv/license_info_added_copyright_info_removed.csv')
 
         check_csvs(result_file, expected_file)
 
     def test_json_delta_to_csv_copyright_change_no_license_change_csv(self):
-        test_json = self.get_test_loc('json2csv/copyright_change_no_license_change.json')
+        test_json = self.get_test_loc(
+            'json2csv/copyright_change_no_license_change.json')
         result_file = self.get_temp_file('.csv')
         with open(result_file, 'wb') as rf:
             json2csv.json_delta_to_csv(test_json, rf)
-        expected_file = self.get_test_loc('json2csv/copyright_change_no_license_change.csv')
+        expected_file = self.get_test_loc(
+            'json2csv/copyright_change_no_license_change.csv')
 
         check_csvs(result_file, expected_file)
 
     def test_json_delta_to_csv_license_change_no_copyright_change_csv(self):
-        test_json = self.get_test_loc('json2csv/license_change_no_copyright_change.json')
+        test_json = self.get_test_loc(
+            'json2csv/license_change_no_copyright_change.json')
         result_file = self.get_temp_file('.csv')
         with open(result_file, 'wb') as rf:
             json2csv.json_delta_to_csv(test_json, rf)
-        expected_file = self.get_test_loc('json2csv/license_change_no_copyright_change.csv')
+        expected_file = self.get_test_loc(
+            'json2csv/license_change_no_copyright_change.csv')
 
         check_csvs(result_file, expected_file)

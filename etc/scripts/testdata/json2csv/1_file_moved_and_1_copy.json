@@ -1,121 +1,105 @@
 {
-  "deltacode_notice": "Generated with DeltaCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nDeltaCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nDeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/nexB/deltacode/ for support and download.",
-  "deltacode_options": {
-    "new_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/scan_1_file_moved_and_1_copy_new.json",
-    "old_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/scan_1_file_moved_and_1_copy_old.json",
-    "--all-delta-types": false
-  },
-  "deltacode_version": "1.0.0.post37.cba847f.dirty.20180402221516",
-  "deltacode_errors": [
-    "DeltaCode Warning: new_visited(9) != new_total(11). Assuming old scancode format.",
-    "DeltaCode Warning: old_visited(8) != old_total(10). Assuming old scancode format."
-  ],
-  "deltas": [
-    {
-      "factors": [
-        "added",
-        "license info added",
-        "copyright info added"
-      ],
-      "score": 130,
-      "new": {
-        "path": "b/a4.py",
-        "type": "file",
-        "name": "a4.py",
-        "size": 200,
-        "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
-        "original_path": "1_file_moved_and_1_copy_new/b/a4.py",
-        "licenses": [
-          {
-            "key": "apache-2.0",
-            "score": 40.0,
-            "short_name": "Apache 2.0",
-            "category": "Permissive",
-            "owner": "Apache Software Foundation"
-          }
-        ],
-        "copyrights": [
-          {
-            "statements": [
-              "Copyright (c) 2017 Acme Software Inc. and others."
-            ],
-            "holders": [
-              "Acme Software Inc. and others."
-            ]
-          }
-        ]
-      },
-      "old": null
+    "deltacode_notice": "Generated with DeltaCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nDeltaCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nDeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/aboutcode-org/deltacode/ for support and download.",
+    "deltacode_options": {
+        "new_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/scan_1_file_moved_and_1_copy_new.json",
+        "old_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/scan_1_file_moved_and_1_copy_old.json",
+        "--all-delta-types": false
     },
-    {
-      "factors": [
-        "added",
-        "license info added",
-        "copyright info added"
-      ],
-      "score": 130,
-      "new": {
-        "path": "b/a4_copy.py",
-        "type": "file",
-        "name": "a4_copy.py",
-        "size": 200,
-        "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
-        "original_path": "1_file_moved_and_1_copy_new/b/a4_copy.py",
-        "licenses": [
-          {
-            "key": "apache-2.0",
-            "score": 40.0,
-            "short_name": "Apache 2.0",
-            "category": "Permissive",
-            "owner": "Apache Software Foundation"
-          }
-        ],
-        "copyrights": [
-          {
-            "statements": [
-              "Copyright (c) 2017 Acme Software Inc. and others."
-            ],
-            "holders": [
-              "Acme Software Inc. and others."
-            ]
-          }
-        ]
-      },
-      "old": null
-    },
-    {
-      "factors": [
-        "removed"
-      ],
-      "score": 0,
-      "new": null,
-      "old": {
-        "path": "a/a4.py",
-        "type": "file",
-        "name": "a4.py",
-        "size": 200,
-        "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
-        "original_path": "1_file_moved_and_1_copy_old/a/a4.py",
-        "licenses": [
-          {
-            "key": "apache-2.0",
-            "score": 40.0,
-            "short_name": "Apache 2.0",
-            "category": "Permissive",
-            "owner": "Apache Software Foundation"
-          }
-        ],
-        "copyrights": [
-          {
-            "statements": [
-              "Copyright (c) 2017 Acme Software Inc. and others."
-            ],
-            "holders": [
-              "Acme Software Inc. and others."
-            ]
-          }
-        ]
-      }
-    }
-  ]
+    "deltacode_version": "1.0.0.post37.cba847f.dirty.20180402221516",
+    "deltacode_errors": [
+        "DeltaCode Warning: new_visited(9) != new_total(11). Assuming old scancode format.",
+        "DeltaCode Warning: old_visited(8) != old_total(10). Assuming old scancode format."
+    ],
+    "deltas": [
+        {
+            "factors": ["added", "license info added", "copyright info added"],
+            "score": 130,
+            "new": {
+                "path": "b/a4.py",
+                "type": "file",
+                "name": "a4.py",
+                "size": 200,
+                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
+                "original_path": "1_file_moved_and_1_copy_new/b/a4.py",
+                "licenses": [
+                    {
+                        "key": "apache-2.0",
+                        "score": 40.0,
+                        "short_name": "Apache 2.0",
+                        "category": "Permissive",
+                        "owner": "Apache Software Foundation"
+                    }
+                ],
+                "copyrights": [
+                    {
+                        "statements": [
+                            "Copyright (c) 2017 Acme Software Inc. and others."
+                        ],
+                        "holders": ["Acme Software Inc. and others."]
+                    }
+                ]
+            },
+            "old": null
+        },
+        {
+            "factors": ["added", "license info added", "copyright info added"],
+            "score": 130,
+            "new": {
+                "path": "b/a4_copy.py",
+                "type": "file",
+                "name": "a4_copy.py",
+                "size": 200,
+                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
+                "original_path": "1_file_moved_and_1_copy_new/b/a4_copy.py",
+                "licenses": [
+                    {
+                        "key": "apache-2.0",
+                        "score": 40.0,
+                        "short_name": "Apache 2.0",
+                        "category": "Permissive",
+                        "owner": "Apache Software Foundation"
+                    }
+                ],
+                "copyrights": [
+                    {
+                        "statements": [
+                            "Copyright (c) 2017 Acme Software Inc. and others."
+                        ],
+                        "holders": ["Acme Software Inc. and others."]
+                    }
+                ]
+            },
+            "old": null
+        },
+        {
+            "factors": ["removed"],
+            "score": 0,
+            "new": null,
+            "old": {
+                "path": "a/a4.py",
+                "type": "file",
+                "name": "a4.py",
+                "size": 200,
+                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
+                "original_path": "1_file_moved_and_1_copy_old/a/a4.py",
+                "licenses": [
+                    {
+                        "key": "apache-2.0",
+                        "score": 40.0,
+                        "short_name": "Apache 2.0",
+                        "category": "Permissive",
+                        "owner": "Apache Software Foundation"
+                    }
+                ],
+                "copyrights": [
+                    {
+                        "statements": [
+                            "Copyright (c) 2017 Acme Software Inc. and others."
+                        ],
+                        "holders": ["Acme Software Inc. and others."]
+                    }
+                ]
+            }
+        }
+    ]
 }

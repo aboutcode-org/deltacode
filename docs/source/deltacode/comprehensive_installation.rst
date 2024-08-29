@@ -78,7 +78,7 @@ Installation on Linux and Mac
 -----------------------------
 
 Download and extract the latest DeltaCode release from:
-https://github.com/nexB/deltacode/releases/latest
+https://github.com/aboutcode-org/deltacode/releases/latest
 
 Check whether the :ref:`install_prerequisites` are installed. Open a terminal
 in the extracted directory and run::
@@ -91,7 +91,7 @@ Installation on Windows
 -----------------------
 
 Download the latest DeltaCode release zip file from:
-https://github.com/nexB/deltacode/releases/latest
+https://github.com/aboutcode-org/deltacode/releases/latest
 
 - In the File Explorer, select the downloaded DeltaCode zip and right-click.
 
@@ -182,7 +182,7 @@ Download the DeltaCode Source Code
 
 Run the following once you have `Git <https://git-scm.com/>`_ installed::
 
-    git clone https://github.com/nexB/deltacode.git
+    git clone https://github.com/aboutcode-org/deltacode.git
     cd deltacode
 
 

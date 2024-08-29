@@ -1,7 +1,7 @@
 Deltacode
 =========
 DeltaCode is a simple command line utility that leverages the power
-of `scancode-toolkit <https://github.com/nexB/scancode-toolkit>`_
+of `scancode-toolkit <https://github.com/aboutcode-org/scancode-toolkit>`_
 to determine file-level differences between two codebases.
 
 During a typical software release cycle, development teams and software
@@ -78,7 +78,7 @@ Run a simple delta saved to the `output.json` file::
 Then open `output.json` to view the delta results.
 
 To get DeltaCode results for your codebase, install
-`scancode-toolkit <https://github.com/nexB/scancode-toolkit>`_ and generate a
+`scancode-toolkit <https://github.com/aboutcode-org/scancode-toolkit>`_ and generate a
 scan for each of the codebases you wish to 'Delta'
 
 
@@ -86,7 +86,7 @@ Support
 =======
 
 If you have a problem, a suggestion or found a bug, please enter a ticket at:
-https://github.com/nexB/deltacode/issues
+https://github.com/aboutcode-org/deltacode/issues
 
 For discussions and chats, we have:
 
@@ -105,8 +105,8 @@ For discussions and chats, we have:
 Source code
 ===========
 
-* https://github.com/nexB/deltacode/releases
-* https://github.com/nexB/deltacode.git
+* https://github.com/aboutcode-org/deltacode/releases
+* https://github.com/aboutcode-org/deltacode.git
 * https://pypi.org/project/deltacode/
 
 

@@ -39,11 +39,11 @@ I have completed all the tasks that were in the scope of this GSoC project.
 Pull Requests
 -------------
 
-- https://github.com/nexB/deltacode/pull/167 [Merged]
-- https://github.com/nexB/deltacode/pull/176 [Open]
-- https://github.com/nexB/deltacode/pull/171 [Open]
-- https://github.com/nexB/deltacode/pull/178 [Open]
-- https://github.com/nexB/deltacode/pull/168 [Open]
+- https://github.com/aboutcode-org/deltacode/pull/167 [Merged]
+- https://github.com/aboutcode-org/deltacode/pull/176 [Open]
+- https://github.com/aboutcode-org/deltacode/pull/171 [Open]
+- https://github.com/aboutcode-org/deltacode/pull/178 [Open]
+- https://github.com/aboutcode-org/deltacode/pull/168 [Open]
 
 Links
 -----
@@ -53,8 +53,8 @@ Links
 
 - `Project Details <https://summerofcode.withgoogle.com/archive/2021/projects/6580434925780992>`_
 - `Proposal <https://docs.google.com/document/d/19btijAja6x8hbD_X-dGor1RiiEGF3-1gEHYkzqzC3xQ/edit>`_
-- `ScanCode Toolkit <https://github.com/nexB/scancode-toolkit>`_
-- `DeltaCode <https://github.com/nexB/deltacode>`_
+- `ScanCode Toolkit <https://github.com/aboutcode-org/scancode-toolkit>`_
+- `DeltaCode <https://github.com/aboutcode-org/deltacode>`_
 
 ------------
 

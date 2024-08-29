@@ -1,6 +1,6 @@
 #
 # Copyright (c) nexB Inc. and others. All rights reserved.
-# http://nexb.com and https://github.com/nexB/deltacode/
+# http://nexb.com and https://github.com/aboutcode-org/deltacode/
 # The DeltaCode software is licensed under the Apache License version 2.0.
 # Data generated with DeltaCode require an acknowledgment.
 # DeltaCode is a trademark of nexB Inc.
@@ -20,7 +20,7 @@
 #  DeltaCode should be considered or used as legal advice. Consult an Attorney
 #  for any legal advice.
 #  DeltaCode is a free and open source software analysis tool from nexB Inc. and others.
-#  Visit https://github.com/nexB/deltacode/ for support and download.
+#  Visit https://github.com/aboutcode-org/deltacode/ for support and download.
 #
 
 from __future__ import absolute_import
@@ -37,6 +37,7 @@ from commoncode.system import on_windows
 from commoncode import paths
 from commoncode.resource import VirtualCodebase
 
+
 def run_scan_click(options, monkeypatch=None, test_mode=True, expected_rc=0, env=None):
     """
     Run a scan as a Click-controlled subprocess
@@ -49,7 +50,7 @@ def run_scan_click(options, monkeypatch=None, test_mode=True, expected_rc=0, env
 
     if monkeypatch:
         monkeypatch.setattr(click._termui_impl, 'isatty', lambda _: True)
-        monkeypatch.setattr(click , 'get_terminal_size', lambda : (80, 43,))
+        monkeypatch.setattr(click, 'get_terminal_size', lambda: (80, 43,))
     runner = CliRunner()
 
     result = runner.invoke(cli.cli, options, catch_exceptions=False, env=env)
@@ -104,8 +105,10 @@ def check_json_scan(expected_file, result_file, regen=False, remove_file_date=Fa
     # NOTE we redump the JSON as a string for a more efficient display of the
     # failures comparison/diff
     # TODO: remove sort, this should no longer be needed
-    expected = json.dumps(expected, indent=2, sort_keys=True, separators=(',', ': '))
-    results = json.dumps(results, indent=2, sort_keys=True, separators=(',', ': '))
+    expected = json.dumps(expected, indent=2,
+                          sort_keys=True, separators=(',', ': '))
+    results = json.dumps(results, indent=2, sort_keys=True,
+                         separators=(',', ': '))
     assert expected == results
 
 
@@ -132,7 +135,7 @@ def load_json_result_from_string(string, remove_file_date=False):
     # clean new headers attributes
     streamline_headers(scan_results)
 
-    scan_results['deltas'].sort(key=lambda  x: x['factors'], reverse=False)
+    scan_results['deltas'].sort(key=lambda x: x['factors'], reverse=False)
     scan_results['deltas'].sort(key=lambda x: x['score'], reverse=True)
     return scan_results
 
@@ -153,6 +156,7 @@ def streamline_errors(errors):
 def get_aligned_path(delta, path, new_file):
     OFFSET = delta.NEW_CODEBASE_OFFSET if new_file else delta.OLD_CODEBASE_OFFSET
     return "/".join(paths.split(path)[OFFSET:])
+
 
 def streamline_headers(headers):
     """

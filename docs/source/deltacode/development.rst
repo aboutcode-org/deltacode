@@ -10,7 +10,7 @@ TL;DR:
 - We use DCO signoff in commit messages, like Linux does.
 
 See CONTRIBUTING.rst for details:
-https://github.com/nexB/deltacode/blob/develop/CONTRIBUTING.rst
+https://github.com/aboutcode-org/deltacode/blob/develop/CONTRIBUTING.rst
 
 .. _contrib_code_conven:
 
@@ -111,13 +111,13 @@ directory of released app archives; this is done at build time.
 These dependencies are stored as pre-built wheels. These wheels are sometimes
 built by us when there is no wheel available upstream on PyPI. We store all
 these prebuilt wheels with corresponding .ABOUT and .LICENSE files in
-https://github.com/nexB/thirdparty-packages/tree/main/pypi which is published
+https://github.com/aboutcode-org/thirdparty-packages/tree/main/pypi which is published
 for download at  https://thirdparty.aboutcode.org/pypi/
 
 Because this is used by the configure script, all the thirdparty dependencies
 used in DeltaCode MUST be available there first. Therefore adding a new
 dependency means requesting a merge/PR in
-https://github.com/nexB/thirdparty-packages/ first that contains all the
+https://github.com/aboutcode-org/thirdparty-packages/ first that contains all the
 recursive dependencies.
 
 There are utility scripts in ``etc/release`` that can help with the dependencies

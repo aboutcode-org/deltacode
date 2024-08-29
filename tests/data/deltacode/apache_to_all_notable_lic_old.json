@@ -1,166 +1,158 @@
 {
-  "scancode_notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/nexB/scancode-toolkit/ for support and download.",
-  "scancode_version": "2.9.0b1.post32.fea65d35a",
-  "scancode_options": {
-    "input": "C:\\code\\nexb\\dev\\codebase01\\licenses\\apache_to_all_notable_lic\\apache_to_all_notable_lic_old",
-    "--copyright": true,
-    "--info": true,
-    "--json-pp": "C:\\code\\nexb\\dev\\deltacode\\tests\\data\\deltacode\\apache_to_all_notable_lic_old.json",
-    "--license": true,
-    "--package": true
-  },
-  "files_count": 2,
-  "files": [
-    {
-      "path": "apache_to_all_notable_lic_old",
-      "type": "directory",
-      "name": "apache_to_all_notable_lic_old",
-      "base_name": "apache_to_all_notable_lic_old",
-      "extension": "",
-      "size": 0,
-      "date": null,
-      "sha1": null,
-      "md5": null,
-      "mime_type": null,
-      "file_type": null,
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": false,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "licenses": [],
-      "copyrights": [],
-      "packages": [],
-      "files_count": 2,
-      "dirs_count": 0,
-      "size_count": 400,
-      "scan_errors": []
+    "scancode_notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/aboutcode-org/scancode-toolkit/ for support and download.",
+    "scancode_version": "2.9.0b1.post32.fea65d35a",
+    "scancode_options": {
+        "input": "C:\\code\\nexb\\dev\\codebase01\\licenses\\apache_to_all_notable_lic\\apache_to_all_notable_lic_old",
+        "--copyright": true,
+        "--info": true,
+        "--json-pp": "C:\\code\\nexb\\dev\\deltacode\\tests\\data\\deltacode\\apache_to_all_notable_lic_old.json",
+        "--license": true,
+        "--package": true
     },
-    {
-      "path": "apache_to_all_notable_lic_old/a1.py",
-      "type": "file",
-      "name": "a1.py",
-      "base_name": "a1",
-      "extension": ".py",
-      "size": 200,
-      "date": "2018-03-16",
-      "sha1": "84b647771481d39dd3a53f6dc210c26abac37748",
-      "md5": "3cb56efa7140478458dbaa2b30239845",
-      "fingerprint": "e30cf09443e7878dfed3288886e97542",
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": "Python",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "licenses": [
+    "files_count": 2,
+    "files": [
         {
-          "key": "apache-2.0",
-          "score": 40.0,
-          "short_name": "Apache 2.0",
-          "category": "Permissive",
-          "owner": "Apache Software Foundation",
-          "homepage_url": "http://www.apache.org/licenses/",
-          "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
-          "spdx_license_key": "Apache-2.0",
-          "spdx_url": "https://spdx.org/licenses/Apache-2.0",
-          "start_line": 3,
-          "end_line": 3,
-          "matched_rule": {
-            "identifier": "apache-2.0_57.RULE",
-            "license_choice": false,
+            "path": "apache_to_all_notable_lic_old",
+            "type": "directory",
+            "name": "apache_to_all_notable_lic_old",
+            "base_name": "apache_to_all_notable_lic_old",
+            "extension": "",
+            "size": 0,
+            "date": null,
+            "sha1": null,
+            "md5": null,
+            "mime_type": null,
+            "file_type": null,
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": false,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "licenses": [],
+            "copyrights": [],
+            "packages": [],
+            "files_count": 2,
+            "dirs_count": 0,
+            "size_count": 400,
+            "scan_errors": []
+        },
+        {
+            "path": "apache_to_all_notable_lic_old/a1.py",
+            "type": "file",
+            "name": "a1.py",
+            "base_name": "a1",
+            "extension": ".py",
+            "size": 200,
+            "date": "2018-03-16",
+            "sha1": "84b647771481d39dd3a53f6dc210c26abac37748",
+            "md5": "3cb56efa7140478458dbaa2b30239845",
+            "fingerprint": "e30cf09443e7878dfed3288886e97542",
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": "Python",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
             "licenses": [
-              "apache-2.0"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
+                {
+                    "key": "apache-2.0",
+                    "score": 40.0,
+                    "short_name": "Apache 2.0",
+                    "category": "Permissive",
+                    "owner": "Apache Software Foundation",
+                    "homepage_url": "http://www.apache.org/licenses/",
+                    "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
+                    "spdx_license_key": "Apache-2.0",
+                    "spdx_url": "https://spdx.org/licenses/Apache-2.0",
+                    "start_line": 3,
+                    "end_line": 3,
+                    "matched_rule": {
+                        "identifier": "apache-2.0_57.RULE",
+                        "license_choice": false,
+                        "licenses": ["apache-2.0"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017 Acme Software Inc. and others."
+                    ],
+                    "holders": ["Acme Software Inc. and others."],
+                    "authors": [],
+                    "start_line": 2,
+                    "end_line": 2
+                }
+            ],
+            "packages": [],
+            "files_count": 0,
+            "dirs_count": 0,
+            "size_count": 0,
+            "scan_errors": []
+        },
         {
-          "statements": [
-            "Copyright (c) 2017 Acme Software Inc. and others."
-          ],
-          "holders": [
-            "Acme Software Inc. and others."
-          ],
-          "authors": [],
-          "start_line": 2,
-          "end_line": 2
-        }
-      ],
-      "packages": [],
-      "files_count": 0,
-      "dirs_count": 0,
-      "size_count": 0,
-      "scan_errors": []
-    },
-    {
-      "path": "apache_to_all_notable_lic_old/a2.py",
-      "type": "file",
-      "name": "a2.py",
-      "base_name": "a2",
-      "extension": ".py",
-      "size": 200,
-      "date": "2017-09-26",
-      "sha1": "310797523e47db8481aeb06f1634317285115091",
-      "md5": "19efdad483f68bc9997a5c1f7ba41b26",
-      "fingerprint": "e30cf09443e7878ddea3288886e97542",
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": "Python",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "licenses": [
-        {
-          "key": "apache-2.0",
-          "score": 40.0,
-          "short_name": "Apache 2.0",
-          "category": "Permissive",
-          "owner": "Apache Software Foundation",
-          "homepage_url": "http://www.apache.org/licenses/",
-          "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
-          "spdx_license_key": "Apache-2.0",
-          "spdx_url": "https://spdx.org/licenses/Apache-2.0",
-          "start_line": 3,
-          "end_line": 3,
-          "matched_rule": {
-            "identifier": "apache-2.0_57.RULE",
-            "license_choice": false,
+            "path": "apache_to_all_notable_lic_old/a2.py",
+            "type": "file",
+            "name": "a2.py",
+            "base_name": "a2",
+            "extension": ".py",
+            "size": 200,
+            "date": "2017-09-26",
+            "sha1": "310797523e47db8481aeb06f1634317285115091",
+            "md5": "19efdad483f68bc9997a5c1f7ba41b26",
+            "fingerprint": "e30cf09443e7878ddea3288886e97542",
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": "Python",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
             "licenses": [
-              "apache-2.0"
-            ]
-          }
+                {
+                    "key": "apache-2.0",
+                    "score": 40.0,
+                    "short_name": "Apache 2.0",
+                    "category": "Permissive",
+                    "owner": "Apache Software Foundation",
+                    "homepage_url": "http://www.apache.org/licenses/",
+                    "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
+                    "spdx_license_key": "Apache-2.0",
+                    "spdx_url": "https://spdx.org/licenses/Apache-2.0",
+                    "start_line": 3,
+                    "end_line": 3,
+                    "matched_rule": {
+                        "identifier": "apache-2.0_57.RULE",
+                        "license_choice": false,
+                        "licenses": ["apache-2.0"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2017 Acme Software Inc. and others."
+                    ],
+                    "holders": ["Acme Software Inc. and others."],
+                    "authors": [],
+                    "start_line": 2,
+                    "end_line": 2
+                }
+            ],
+            "packages": [],
+            "files_count": 0,
+            "dirs_count": 0,
+            "size_count": 0,
+            "scan_errors": []
         }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright (c) 2017 Acme Software Inc. and others."
-          ],
-          "holders": [
-            "Acme Software Inc. and others."
-          ],
-          "authors": [],
-          "start_line": 2,
-          "end_line": 2
-        }
-      ],
-      "packages": [],
-      "files_count": 0,
-      "dirs_count": 0,
-      "size_count": 0,
-      "scan_errors": []
-    }
-  ]
+    ]
 }

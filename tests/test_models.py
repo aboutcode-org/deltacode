@@ -1,6 +1,6 @@
 #
 # Copyright (c) 2017-2018 nexB Inc. and others. All rights reserved.
-# http://nexb.com and https://github.com/nexB/deltacode/
+# http://nexb.com and https://github.com/aboutcode-org/deltacode/
 # The DeltaCode software is licensed under the Apache License version 2.0.
 # Data generated with DeltaCode require an acknowledgment.
 # DeltaCode is a trademark of nexB Inc.
@@ -20,7 +20,7 @@
 #  DeltaCode should be considered or used as legal advice. Consult an Attorney
 #  for any legal advice.
 #  DeltaCode is a free and open source software analysis tool from nexB Inc. and others.
-#  Visit https://github.com/nexB/deltacode/ for support and download.
+#  Visit https://github.com/aboutcode-org/deltacode/ for support and download.
 #
 
 from __future__ import absolute_import, print_function, unicode_literals, division
@@ -36,12 +36,14 @@ from commoncode.testcase import FileBasedTesting
 from deltacode import DeltaCode
 from deltacode import models
 
+
 class TestModels(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
 
     def test_Scan_index_files_simple(self):
-        test_files = [models.File({'path': 'path1/a'}), models.File({'path': 'path1/b'})]
+        test_files = [models.File({'path': 'path1/a'}),
+                      models.File({'path': 'path1/b'})]
 
         scan = models.Scan()
         scan.files = test_files
@@ -52,7 +54,8 @@ class TestModels(FileBasedTesting):
         assert index.get('path1/b') == [test_files[1]]
 
     def test_Scan_index_files_key_path(self):
-        test_files = [models.File({'path': 'path1/a'}), models.File({'path': 'path1/b'})]
+        test_files = [models.File({'path': 'path1/a'}),
+                      models.File({'path': 'path1/b'})]
 
         scan = models.Scan()
         scan.files = test_files
@@ -63,7 +66,8 @@ class TestModels(FileBasedTesting):
         assert index.get('path1/b') == [test_files[1]]
 
     def test_Scan_index_files_key_missing(self):
-        test_files = [models.File({'path': 'path1/a'}), models.File({'path': 'path1/b'})]
+        test_files = [models.File({'path': 'path1/a'}),
+                      models.File({'path': 'path1/b'})]
 
         scan = models.Scan()
         scan.files = test_files
@@ -86,7 +90,8 @@ class TestModels(FileBasedTesting):
         assert index.get('3340d86b1da9323067db8022f86dc97cfccee1d0') == result
 
     def test_Scan_index_files_key_sha1_multiple_copies(self):
-        test_file = self.get_test_loc('models/scan/multiple_copies_01-i_scan.json')
+        test_file = self.get_test_loc(
+            'models/scan/multiple_copies_01-i_scan.json')
 
         scan = models.Scan(test_file)
 
@@ -110,7 +115,8 @@ class TestModels(FileBasedTesting):
             assert each.sha1 == '6f71666c46446c29d3f45feef5419ae76fb86a5b'
 
     def test_Scan_index_files_key_name_multiple_copies(self):
-        test_file = self.get_test_loc('models/scan/multiple_copies_01-i_scan.json')
+        test_file = self.get_test_loc(
+            'models/scan/multiple_copies_01-i_scan.json')
 
         scan = models.Scan(test_file)
 
@@ -134,18 +140,22 @@ class TestModels(FileBasedTesting):
             assert each.name == 'a4.py'
 
     def test_Scan_index_files_large_openssl_key_path(self):
-        test_file = self.get_test_loc('models/scan/openssl-1.1.0f-clip_scan.json')
+        test_file = self.get_test_loc(
+            'models/scan/openssl-1.1.0f-clip_scan.json')
 
         scan = models.Scan(test_file)
 
         index = scan.index_files('path')
         assert len(index.get('openssl-1.1.0f/crypto/rc2')) == 1
-        assert len(index.get('openssl-1.1.0f/crypto/include/internal/x509_int.h')) == 1
-        assert len(index.get('openssl-1.1.0f/crypto/ec/asm/ecp_nistz256-armv4.pl')) == 1
+        assert len(
+            index.get('openssl-1.1.0f/crypto/include/internal/x509_int.h')) == 1
+        assert len(
+            index.get('openssl-1.1.0f/crypto/ec/asm/ecp_nistz256-armv4.pl')) == 1
         assert len(index.get('openssl-1.1.0f/test/testreq2.pem')) == 1
 
     def test_Scan_index_files_large_openssl_key_sha1(self):
-        test_file = self.get_test_loc('models/scan/openssl-1.1.0f-clip_scan.json')
+        test_file = self.get_test_loc(
+            'models/scan/openssl-1.1.0f-clip_scan.json')
 
         scan = models.Scan(test_file)
 
@@ -160,7 +170,8 @@ class TestModels(FileBasedTesting):
             assert each.sha1 == 'cd5cb64b8c0d5654b5a768d820a2b1ec03ec365a'
 
     def test_Scan_index_files_large_openssl_key_name(self):
-        test_file = self.get_test_loc('models/scan/openssl-1.1.0f-clip_scan.json')
+        test_file = self.get_test_loc(
+            'models/scan/openssl-1.1.0f-clip_scan.json')
 
         scan = models.Scan(test_file)
 
@@ -175,20 +186,25 @@ class TestModels(FileBasedTesting):
             assert each.name == 'dh2048.pem'
 
     def test_Scan_index_files_large_dropbear_key_path(self):
-        test_file = self.get_test_loc('models/scan/dropbear-2017.75-clip_scan.json')
+        test_file = self.get_test_loc(
+            'models/scan/dropbear-2017.75-clip_scan.json')
 
         scan = models.Scan(test_file)
 
         index = scan.index_files('path')
 
-        assert len(index.get('dropbear-2017.75/libtomcrypt/src/modes/cfb/cfb_encrypt.c')) == 1
-        assert index.get('dropbear-2017.75/libtomcrypt/src/modes/cfb/cfb_encrypt.c')[0].path == 'dropbear-2017.75/libtomcrypt/src/modes/cfb/cfb_encrypt.c'
+        assert len(
+            index.get('dropbear-2017.75/libtomcrypt/src/modes/cfb/cfb_encrypt.c')) == 1
+        assert index.get('dropbear-2017.75/libtomcrypt/src/modes/cfb/cfb_encrypt.c')[
+            0].path == 'dropbear-2017.75/libtomcrypt/src/modes/cfb/cfb_encrypt.c'
 
         assert len(index.get('dropbear-2017.75/dss.h')) == 1
-        assert index.get('dropbear-2017.75/dss.h')[0].path == 'dropbear-2017.75/dss.h'
+        assert index.get(
+            'dropbear-2017.75/dss.h')[0].path == 'dropbear-2017.75/dss.h'
 
     def test_Scan_index_files_large_dropbear_key_sha1(self):
-        test_file = self.get_test_loc('models/scan/dropbear-2017.75-clip_scan.json')
+        test_file = self.get_test_loc(
+            'models/scan/dropbear-2017.75-clip_scan.json')
 
         scan = models.Scan(test_file)
 
@@ -203,7 +219,8 @@ class TestModels(FileBasedTesting):
             assert each.sha1 == '71cb8d2a576df3157730d5353eb81f6d6feb328c'
 
     def test_Scan_index_files_large_dropbear_key_name(self):
-        test_file = self.get_test_loc('models/scan/dropbear-2017.75-clip_scan.json')
+        test_file = self.get_test_loc(
+            'models/scan/dropbear-2017.75-clip_scan.json')
 
         scan = models.Scan(test_file)
 
@@ -287,7 +304,8 @@ class TestModels(FileBasedTesting):
         assert scan.options['--info'] == True
 
     def test_Scan_valid_scanfile_new_scancode_header_format(self):
-        test_file = self.get_test_loc('models/scan/new-scancode-header-format.json')
+        test_file = self.get_test_loc(
+            'models/scan/new-scancode-header-format.json')
 
         result = models.Scan(test_file)
 
@@ -304,7 +322,8 @@ class TestModels(FileBasedTesting):
         for result, path in zip(valid_results, valid_paths):
             assert result.path == path
             assert result.files != None
-            assert result.files_count != None and isinstance(result.files_count, int)
+            assert result.files_count != None and isinstance(
+                result.files_count, int)
 
     def test_Scan_malformed_json(self):
         invalid_path = self.get_test_loc('models/scan/malformed.json')
@@ -323,7 +342,8 @@ class TestModels(FileBasedTesting):
             invalid_result = models.Scan(invalid_path)
 
         normalized_path = os.path.abspath(invalid_path)
-        assert str(e.value) == 'JSON file: {} is missing the ScanCode version.'.format(normalized_path)
+        assert str(e.value) == 'JSON file: {} is missing the ScanCode version.'.format(
+            normalized_path)
 
     def test_Scan_old_version(self):
         invalid_path = self.get_test_loc('models/scan/old-version.json')
@@ -332,7 +352,8 @@ class TestModels(FileBasedTesting):
             invalid_result = models.Scan(invalid_path)
 
         normalized_path = os.path.abspath(invalid_path)
-        assert str(e.value) == 'JSON file: {} was created with an old version of ScanCode.'.format(normalized_path)
+        assert str(e.value) == 'JSON file: {} was created with an old version of ScanCode.'.format(
+            normalized_path)
 
     def test_Scan_info_not_selected(self):
         invalid_path = self.get_test_loc('models/scan/info-not-selected.json')
@@ -341,7 +362,8 @@ class TestModels(FileBasedTesting):
             invalid_result = models.Scan(invalid_path)
 
         normalized_path = os.path.abspath(invalid_path)
-        assert str(e.value) == 'JSON file: {} is missing the ScanCode --info attribute.'.format(normalized_path)
+        assert str(
+            e.value) == 'JSON file: {} is missing the ScanCode --info attribute.'.format(normalized_path)
 
     def test_Scan_invalid_path(self):
         test_path = '/some/invalid/path.json'
@@ -409,7 +431,7 @@ class TestModels(FileBasedTesting):
     def test_License_to_dict_empty(self):
         result = models.License().to_dict()
 
-        for k,v in result.items():
+        for k, v in result.items():
             assert v == None
 
     def test_License_object_simple(self):
@@ -659,8 +681,8 @@ class TestModels(FileBasedTesting):
         assert '26d82f1931cbdbd83c2a6871b2cecd5cbcc8c26b' == result.sha1
 
     def test_File_size_difference(self):
-        a = {'path': '', 'name': '', 'sha1':'', 'size': 4096}
-        b = {'path': '', 'name': '', 'sha1':'', 'size': 4096}
+        a = {'path': '', 'name': '', 'sha1': '', 'size': 4096}
+        b = {'path': '', 'name': '', 'sha1': '', 'size': 4096}
         a_file = models.File(a)
         b_file = models.File(b)
         assert 0 == a_file.size_difference(b_file)
@@ -702,7 +724,7 @@ class TestModels(FileBasedTesting):
     def test_Copyright_to_dict_empty(self):
         result = models.Copyright().to_dict()
 
-        for k,v in result.items():
+        for k, v in result.items():
             assert v == None
 
     def test_Copyright_object_simple(self):
@@ -721,11 +743,11 @@ class TestModels(FileBasedTesting):
         result = models.Copyright(data)
 
         assert result.statements == [
-                "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler"
-            ]
+            "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler"
+        ]
         assert result.holders == [
-                "Jean-loup Gailly, Mark Adler"
-            ]
+            "Jean-loup Gailly, Mark Adler"
+        ]
         with pytest.raises(AttributeError):
             assert result.made_up_key == "a_string"
 
@@ -920,7 +942,7 @@ class TestModels(FileBasedTesting):
         }
 
         result_new = models.File(new)
-        new_copyrights =  result_new.copyrights.pop()
+        new_copyrights = result_new.copyrights.pop()
 
         assert new_copyrights.statements == [
             "Copyright (c) 1995-2005, 2014, 2016 Jean-loup Gailly, Mark Adler",
@@ -1036,7 +1058,7 @@ class TestModels(FileBasedTesting):
         }
 
         result_new = models.File(new)
-        new_copyrights =  result_new.copyrights.pop()
+        new_copyrights = result_new.copyrights.pop()
 
         assert new_copyrights.statements == [
             "~@ \n \r",
