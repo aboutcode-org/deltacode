@@ -1,5 +1,5 @@
 {
-    "scancode_notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/nexB/scancode-toolkit/ for support and download.",
+    "scancode_notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/aboutcode-org/scancode-toolkit/ for support and download.",
     "scancode_version": "2.1.0",
     "scancode_options": {
         "--license": true,
@@ -39,9 +39,7 @@
                     "matched_rule": {
                         "identifier": "gpl-3.0-plus_3.RULE",
                         "license_choice": false,
-                        "licenses": [
-                            "gpl-3.0-plus"
-                        ]
+                        "licenses": ["gpl-3.0-plus"]
                     }
                 }
             ],

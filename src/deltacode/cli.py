@@ -1,6 +1,6 @@
 #
 # Copyright (c) 2017-2018 nexB Inc. and others. All rights reserved.
-# http://nexb.com and https://github.com/nexB/deltacode/
+# http://nexb.com and https://github.com/aboutcode-org/deltacode/
 # The DeltaCode software is licensed under the Apache License version 2.0.
 # Data generated with DeltaCode require an acknowledgment.
 # DeltaCode is a trademark of nexB Inc.
@@ -20,7 +20,7 @@
 #  DeltaCode should be considered or used as legal advice. Consult an Attorney
 #  for any legal advice.
 #  DeltaCode is a free and open source software analysis tool from nexB Inc. and others.
-#  Visit https://github.com/nexB/deltacode/ for support and download.
+#  Visit https://github.com/aboutcode-org/deltacode/ for support and download.
 #
 
 from __future__ import absolute_import

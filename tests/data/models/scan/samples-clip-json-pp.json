@@ -1,2171 +1,2018 @@
 {
-  "scancode_notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/nexB/scancode-toolkit/ for support and download.",
-  "scancode_version": "2.2.1",
-  "scancode_options": {
-    "--copyright": true,
-    "--license": true,
-    "--package": true,
-    "--info": true,
-    "--license-score": 0,
-    "--format": "json-pp"
-  },
-  "files_count": 43,
-  "files": [
-    {
-      "path": "samples/README",
-      "type": "file",
-      "name": "README",
-      "base_name": "README",
-      "extension": "",
-      "date": "2017-02-02",
-      "size": 239,
-      "sha1": "c6cff3e0957498242703871dc306ed735181a9e5",
-      "md5": "5a863f0639e14c541564ba1bbd698af0",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [],
-      "packages": []
+    "scancode_notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/aboutcode-org/scancode-toolkit/ for support and download.",
+    "scancode_version": "2.2.1",
+    "scancode_options": {
+        "--copyright": true,
+        "--license": true,
+        "--package": true,
+        "--info": true,
+        "--license-score": 0,
+        "--format": "json-pp"
     },
-    {
-      "path": "samples/screenshot.png",
-      "type": "file",
-      "name": "screenshot.png",
-      "base_name": "screenshot",
-      "extension": ".png",
-      "date": "2017-02-02",
-      "size": 622754,
-      "sha1": "01ff4b1de0bc6c75c9cca6e46c80c1802d6976d4",
-      "md5": "b6ef5a90777147423c98b42a6a25e57a",
-      "files_count": null,
-      "mime_type": "image/png",
-      "file_type": "PNG image data, 2880 x 1666, 8-bit/color RGB, non-interlaced",
-      "programming_language": null,
-      "is_binary": true,
-      "is_text": false,
-      "is_archive": false,
-      "is_media": true,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [],
-      "packages": []
-    },
-    {
-      "path": "samples/arch",
-      "type": "directory",
-      "name": "arch",
-      "base_name": "arch",
-      "extension": "",
-      "date": null,
-      "size": 28103,
-      "sha1": null,
-      "md5": null,
-      "files_count": 1,
-      "mime_type": null,
-      "file_type": null,
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": false,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [],
-      "packages": []
-    },
-    {
-      "path": "samples/JGroups",
-      "type": "directory",
-      "name": "JGroups",
-      "base_name": "JGroups",
-      "extension": "",
-      "date": null,
-      "size": 245739,
-      "sha1": null,
-      "md5": null,
-      "files_count": 14,
-      "mime_type": null,
-      "file_type": null,
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": false,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib",
-      "type": "directory",
-      "name": "zlib",
-      "base_name": "zlib",
-      "extension": "",
-      "date": null,
-      "size": 274911,
-      "sha1": null,
-      "md5": null,
-      "files_count": 16,
-      "mime_type": null,
-      "file_type": null,
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": false,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [],
-      "packages": []
-    },
-    {
-      "path": "samples/arch/zlib.tar.gz",
-      "type": "file",
-      "name": "zlib.tar.gz",
-      "base_name": "zlib",
-      "extension": ".tar.gz",
-      "date": "2017-02-02",
-      "size": 28103,
-      "sha1": "576f0ccfe534d7f5ff5d6400078d3c6586de3abd",
-      "md5": "20b2370751abfc08bb3556c1d8114b5a",
-      "files_count": null,
-      "mime_type": "application/x-gzip",
-      "file_type": "gzip compressed data, last modified: Wed Jul 15 02:08:19 2015, from Unix",
-      "programming_language": null,
-      "is_binary": true,
-      "is_text": false,
-      "is_archive": true,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [],
-      "packages": [
+    "files_count": 43,
+    "files": [
         {
-          "type": "plain tarball",
-          "name": null,
-          "version": null,
-          "primary_language": null,
-          "packaging": "archive",
-          "summary": null,
-          "description": null,
-          "payload_type": null,
-          "size": null,
-          "release_date": null,
-          "authors": [],
-          "maintainers": [],
-          "contributors": [],
-          "owners": [],
-          "packagers": [],
-          "distributors": [],
-          "vendors": [],
-          "keywords": [],
-          "keywords_doc_url": null,
-          "metafile_locations": [],
-          "metafile_urls": [],
-          "homepage_url": null,
-          "notes": null,
-          "download_urls": [],
-          "download_sha1": null,
-          "download_sha256": null,
-          "download_md5": null,
-          "bug_tracking_url": null,
-          "support_contacts": [],
-          "code_view_url": null,
-          "vcs_tool": null,
-          "vcs_repository": null,
-          "vcs_revision": null,
-          "copyright_top_level": null,
-          "copyrights": [],
-          "asserted_licenses": [],
-          "legal_file_locations": [],
-          "license_expression": null,
-          "license_texts": [],
-          "notice_texts": [],
-          "dependencies": {},
-          "related_packages": []
-        }
-      ]
-    },
-    {
-      "path": "samples/JGroups/EULA",
-      "type": "file",
-      "name": "EULA",
-      "base_name": "EULA",
-      "extension": "",
-      "date": "2017-02-02",
-      "size": 8265,
-      "sha1": "48fbca418bc12ffad8b8c82b08dac07508b08c6c",
-      "md5": "a97752adcb0781cf02a011f06e95887c",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": "Velocity",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "jboss-eula",
-          "score": 100.0,
-          "short_name": "JBoss EULA",
-          "category": "Proprietary Free",
-          "owner": "JBoss Community",
-          "homepage_url": "",
-          "text_url": "http://repository.jboss.org/licenses/jbossorg-eula.txt",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:jboss-eula",
-          "spdx_license_key": "",
-          "spdx_url": "",
-          "start_line": 3,
-          "end_line": 108,
-          "matched_rule": {
-            "identifier": "jboss-eula.LICENSE",
-            "license_choice": false,
-            "licenses": [
-              "jboss-eula"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright 2006 Red Hat, Inc."
-          ],
-          "holders": [
-            "Red Hat, Inc."
-          ],
-          "authors": [],
-          "start_line": 104,
-          "end_line": 104
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/JGroups/LICENSE",
-      "type": "file",
-      "name": "LICENSE",
-      "base_name": "LICENSE",
-      "extension": "",
-      "date": "2017-02-02",
-      "size": 26934,
-      "sha1": "8f1a637d2e2ed1bdb9eb01a7dccb5c12cc0557e1",
-      "md5": "f14599a2f089f6ff8c97e2baa4e3d575",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "lgpl-2.1-plus",
-          "score": 100.0,
-          "short_name": "LGPL 2.1 or later",
-          "category": "Copyleft Limited",
-          "owner": "Free Software Foundation (FSF)",
-          "homepage_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
-          "text_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:lgpl-2.1-plus",
-          "spdx_license_key": "LGPL-2.1+",
-          "spdx_url": "https://spdx.org/licenses/LGPL-2.1",
-          "start_line": 1,
-          "end_line": 502,
-          "matched_rule": {
-            "identifier": "lgpl-2.1-plus_2.RULE",
-            "license_choice": false,
-            "licenses": [
-              "lgpl-2.1-plus"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright (c) 1991, 1999 Free Software Foundation, Inc."
-          ],
-          "holders": [
-            "Free Software Foundation, Inc."
-          ],
-          "authors": [],
-          "start_line": 4,
-          "end_line": 7
+            "path": "samples/README",
+            "type": "file",
+            "name": "README",
+            "base_name": "README",
+            "extension": "",
+            "date": "2017-02-02",
+            "size": 239,
+            "sha1": "c6cff3e0957498242703871dc306ed735181a9e5",
+            "md5": "5a863f0639e14c541564ba1bbd698af0",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [],
+            "packages": []
         },
         {
-          "statements": [
-            "copyrighted by the Free Software Foundation"
-          ],
-          "holders": [
-            "the Free Software Foundation"
-          ],
-          "authors": [],
-          "start_line": 427,
-          "end_line": 433
+            "path": "samples/screenshot.png",
+            "type": "file",
+            "name": "screenshot.png",
+            "base_name": "screenshot",
+            "extension": ".png",
+            "date": "2017-02-02",
+            "size": 622754,
+            "sha1": "01ff4b1de0bc6c75c9cca6e46c80c1802d6976d4",
+            "md5": "b6ef5a90777147423c98b42a6a25e57a",
+            "files_count": null,
+            "mime_type": "image/png",
+            "file_type": "PNG image data, 2880 x 1666, 8-bit/color RGB, non-interlaced",
+            "programming_language": null,
+            "is_binary": true,
+            "is_text": false,
+            "is_archive": false,
+            "is_media": true,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [],
+            "packages": []
         },
         {
-          "statements": [],
-          "holders": [],
-          "authors": [
-            "James Random Hacker."
-          ],
-          "start_line": 496,
-          "end_line": 497
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/JGroups/licenses",
-      "type": "directory",
-      "name": "licenses",
-      "base_name": "licenses",
-      "extension": "",
-      "date": null,
-      "size": 54569,
-      "sha1": null,
-      "md5": null,
-      "files_count": 5,
-      "mime_type": null,
-      "file_type": null,
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": false,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [],
-      "packages": []
-    },
-    {
-      "path": "samples/JGroups/src",
-      "type": "directory",
-      "name": "src",
-      "base_name": "src",
-      "extension": "",
-      "date": null,
-      "size": 155971,
-      "sha1": null,
-      "md5": null,
-      "files_count": 7,
-      "mime_type": null,
-      "file_type": null,
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": false,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [],
-      "packages": []
-    },
-    {
-      "path": "samples/JGroups/licenses/apache-1.1.txt",
-      "type": "file",
-      "name": "apache-1.1.txt",
-      "base_name": "apache-1.1",
-      "extension": ".txt",
-      "date": "2017-02-02",
-      "size": 2885,
-      "sha1": "6b5608d35c3e304532af43db8bbfc5947bef46a6",
-      "md5": "276982197c941f4cbf3d218546e17ae2",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "apache-1.1",
-          "score": 100.0,
-          "short_name": "Apache 1.1",
-          "category": "Permissive",
-          "owner": "Apache Software Foundation",
-          "homepage_url": "http://www.apache.org/licenses/",
-          "text_url": "http://apache.org/licenses/LICENSE-1.1",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-1.1",
-          "spdx_license_key": "Apache-1.1",
-          "spdx_url": "https://spdx.org/licenses/Apache-1.1",
-          "start_line": 2,
-          "end_line": 56,
-          "matched_rule": {
-            "identifier": "apache-1.1.SPDX.RULE",
-            "license_choice": false,
-            "licenses": [
-              "apache-1.1"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright (c) 2000 The Apache Software Foundation."
-          ],
-          "holders": [
-            "The Apache Software Foundation."
-          ],
-          "authors": [],
-          "start_line": 4,
-          "end_line": 5
+            "path": "samples/arch",
+            "type": "directory",
+            "name": "arch",
+            "base_name": "arch",
+            "extension": "",
+            "date": null,
+            "size": 28103,
+            "sha1": null,
+            "md5": null,
+            "files_count": 1,
+            "mime_type": null,
+            "file_type": null,
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": false,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [],
+            "packages": []
         },
         {
-          "statements": [],
-          "holders": [],
-          "authors": [
-            "the Apache Software Foundation"
-          ],
-          "start_line": 20,
-          "end_line": 23
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/JGroups/licenses/apache-2.0.txt",
-      "type": "file",
-      "name": "apache-2.0.txt",
-      "base_name": "apache-2.0",
-      "extension": ".txt",
-      "date": "2017-02-02",
-      "size": 11560,
-      "sha1": "47b573e3824cd5e02a1a3ae99e2735b49e0256e4",
-      "md5": "d273d63619c9aeaf15cdaf76422c4f87",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "apache-2.0",
-          "score": 100.0,
-          "short_name": "Apache 2.0",
-          "category": "Permissive",
-          "owner": "Apache Software Foundation",
-          "homepage_url": "http://www.apache.org/licenses/",
-          "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
-          "spdx_license_key": "Apache-2.0",
-          "spdx_url": "https://spdx.org/licenses/Apache-2.0",
-          "start_line": 2,
-          "end_line": 202,
-          "matched_rule": {
-            "identifier": "apache-2.0_easyeclipse.RULE",
-            "license_choice": false,
-            "licenses": [
-              "apache-2.0"
-            ]
-          }
-        }
-      ],
-      "copyrights": [],
-      "packages": []
-    },
-    {
-      "path": "samples/JGroups/licenses/bouncycastle.txt",
-      "type": "file",
-      "name": "bouncycastle.txt",
-      "base_name": "bouncycastle",
-      "extension": ".txt",
-      "date": "2017-02-02",
-      "size": 1203,
-      "sha1": "5693e1524ea9c177cd603f47c2b77f5b8ec2a3b9",
-      "md5": "8d00871ced5dc2a03d1e90f1e59ea97b",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "mit",
-          "score": 100.0,
-          "short_name": "MIT License",
-          "category": "Permissive",
-          "owner": "MIT",
-          "homepage_url": "http://opensource.org/licenses/mit-license.php",
-          "text_url": "http://opensource.org/licenses/mit-license.php",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:mit",
-          "spdx_license_key": "MIT",
-          "spdx_url": "https://spdx.org/licenses/MIT",
-          "start_line": 7,
-          "end_line": 18,
-          "matched_rule": {
-            "identifier": "mit.LICENSE",
-            "license_choice": false,
-            "licenses": [
-              "mit"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright (c) 2000 - 2006 The Legion Of The Bouncy Castle (http://www.bouncycastle.org)"
-          ],
-          "holders": [
-            "Legion Of The Bouncy Castle (http://www.bouncycastle.org)"
-          ],
-          "authors": [],
-          "start_line": 5,
-          "end_line": 5
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/JGroups/licenses/cpl-1.0.txt",
-      "type": "file",
-      "name": "cpl-1.0.txt",
-      "base_name": "cpl-1.0",
-      "extension": ".txt",
-      "date": "2017-02-02",
-      "size": 11987,
-      "sha1": "681cf776bcd79752543d42490ec7ed22a29fd888",
-      "md5": "9a6d2c9ae73d59eb3dd38e3909750d14",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "cpl-1.0",
-          "score": 99.94,
-          "short_name": "CPL 1.0",
-          "category": "Copyleft Limited",
-          "owner": "IBM",
-          "homepage_url": "http://www.eclipse.org/legal/cpl-v10.html",
-          "text_url": "http://www.eclipse.org/legal/cpl-v10.html",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:cpl-1.0",
-          "spdx_license_key": "CPL-1.0",
-          "spdx_url": "https://spdx.org/licenses/CPL-1.0",
-          "start_line": 1,
-          "end_line": 212,
-          "matched_rule": {
-            "identifier": "cpl-1.0.SPDX.RULE",
-            "license_choice": false,
-            "licenses": [
-              "cpl-1.0"
-            ]
-          }
-        }
-      ],
-      "copyrights": [],
-      "packages": []
-    },
-    {
-      "path": "samples/JGroups/licenses/lgpl.txt",
-      "type": "file",
-      "name": "lgpl.txt",
-      "base_name": "lgpl",
-      "extension": ".txt",
-      "date": "2017-02-02",
-      "size": 26934,
-      "sha1": "8f1a637d2e2ed1bdb9eb01a7dccb5c12cc0557e1",
-      "md5": "f14599a2f089f6ff8c97e2baa4e3d575",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "lgpl-2.1-plus",
-          "score": 100.0,
-          "short_name": "LGPL 2.1 or later",
-          "category": "Copyleft Limited",
-          "owner": "Free Software Foundation (FSF)",
-          "homepage_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
-          "text_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:lgpl-2.1-plus",
-          "spdx_license_key": "LGPL-2.1+",
-          "spdx_url": "https://spdx.org/licenses/LGPL-2.1",
-          "start_line": 1,
-          "end_line": 502,
-          "matched_rule": {
-            "identifier": "lgpl-2.1-plus_2.RULE",
-            "license_choice": false,
-            "licenses": [
-              "lgpl-2.1-plus"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright (c) 1991, 1999 Free Software Foundation, Inc."
-          ],
-          "holders": [
-            "Free Software Foundation, Inc."
-          ],
-          "authors": [],
-          "start_line": 4,
-          "end_line": 7
+            "path": "samples/JGroups",
+            "type": "directory",
+            "name": "JGroups",
+            "base_name": "JGroups",
+            "extension": "",
+            "date": null,
+            "size": 245739,
+            "sha1": null,
+            "md5": null,
+            "files_count": 14,
+            "mime_type": null,
+            "file_type": null,
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": false,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [],
+            "packages": []
         },
         {
-          "statements": [
-            "copyrighted by the Free Software Foundation"
-          ],
-          "holders": [
-            "the Free Software Foundation"
-          ],
-          "authors": [],
-          "start_line": 427,
-          "end_line": 433
+            "path": "samples/zlib",
+            "type": "directory",
+            "name": "zlib",
+            "base_name": "zlib",
+            "extension": "",
+            "date": null,
+            "size": 274911,
+            "sha1": null,
+            "md5": null,
+            "files_count": 16,
+            "mime_type": null,
+            "file_type": null,
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": false,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [],
+            "packages": []
         },
         {
-          "statements": [],
-          "holders": [],
-          "authors": [
-            "James Random Hacker."
-          ],
-          "start_line": 496,
-          "end_line": 497
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/JGroups/src/FixedMembershipToken.java",
-      "type": "file",
-      "name": "FixedMembershipToken.java",
-      "base_name": "FixedMembershipToken",
-      "extension": ".java",
-      "date": "2017-02-02",
-      "size": 5294,
-      "sha1": "4375406c4515f66ac0498d7c6cec5a4841a74cbc",
-      "md5": "d1994ba211364156da23ebda7b91de2e",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": "Java",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "lgpl-2.1-plus",
-          "score": 100.0,
-          "short_name": "LGPL 2.1 or later",
-          "category": "Copyleft Limited",
-          "owner": "Free Software Foundation (FSF)",
-          "homepage_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
-          "text_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:lgpl-2.1-plus",
-          "spdx_license_key": "LGPL-2.1+",
-          "spdx_url": "https://spdx.org/licenses/LGPL-2.1",
-          "start_line": 7,
-          "end_line": 20,
-          "matched_rule": {
-            "identifier": "lgpl-2.1-plus_59.RULE",
-            "license_choice": false,
-            "licenses": [
-              "lgpl-2.1-plus"
+            "path": "samples/arch/zlib.tar.gz",
+            "type": "file",
+            "name": "zlib.tar.gz",
+            "base_name": "zlib",
+            "extension": ".tar.gz",
+            "date": "2017-02-02",
+            "size": 28103,
+            "sha1": "576f0ccfe534d7f5ff5d6400078d3c6586de3abd",
+            "md5": "20b2370751abfc08bb3556c1d8114b5a",
+            "files_count": null,
+            "mime_type": "application/x-gzip",
+            "file_type": "gzip compressed data, last modified: Wed Jul 15 02:08:19 2015, from Unix",
+            "programming_language": null,
+            "is_binary": true,
+            "is_text": false,
+            "is_archive": true,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [],
+            "packages": [
+                {
+                    "type": "plain tarball",
+                    "name": null,
+                    "version": null,
+                    "primary_language": null,
+                    "packaging": "archive",
+                    "summary": null,
+                    "description": null,
+                    "payload_type": null,
+                    "size": null,
+                    "release_date": null,
+                    "authors": [],
+                    "maintainers": [],
+                    "contributors": [],
+                    "owners": [],
+                    "packagers": [],
+                    "distributors": [],
+                    "vendors": [],
+                    "keywords": [],
+                    "keywords_doc_url": null,
+                    "metafile_locations": [],
+                    "metafile_urls": [],
+                    "homepage_url": null,
+                    "notes": null,
+                    "download_urls": [],
+                    "download_sha1": null,
+                    "download_sha256": null,
+                    "download_md5": null,
+                    "bug_tracking_url": null,
+                    "support_contacts": [],
+                    "code_view_url": null,
+                    "vcs_tool": null,
+                    "vcs_repository": null,
+                    "vcs_revision": null,
+                    "copyright_top_level": null,
+                    "copyrights": [],
+                    "asserted_licenses": [],
+                    "legal_file_locations": [],
+                    "license_expression": null,
+                    "license_texts": [],
+                    "notice_texts": [],
+                    "dependencies": {},
+                    "related_packages": []
+                }
             ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright 2005, JBoss Inc."
-          ],
-          "holders": [
-            "JBoss Inc."
-          ],
-          "authors": [],
-          "start_line": 2,
-          "end_line": 5
         },
         {
-          "statements": [],
-          "holders": [],
-          "authors": [
-            "Chris Mills (millsy@jboss.com)"
-          ],
-          "start_line": 51,
-          "end_line": 51
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/JGroups/src/GuardedBy.java",
-      "type": "file",
-      "name": "GuardedBy.java",
-      "base_name": "GuardedBy",
-      "extension": ".java",
-      "date": "2017-02-02",
-      "size": 836,
-      "sha1": "93a222292c1eb143538cf876f0e5575fccd87271",
-      "md5": "739d4bb080991b678a662f5742f30ff1",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": "Java",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "cc-by-2.5",
-          "score": 70.0,
-          "short_name": "CC-BY-2.5",
-          "category": "Permissive",
-          "owner": "Creative Commons",
-          "homepage_url": "http://creativecommons.org/licenses/by/2.5/",
-          "text_url": "http://creativecommons.org/licenses/by/2.5/legalcode",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:cc-by-2.5",
-          "spdx_license_key": "CC-BY-2.5",
-          "spdx_url": "https://spdx.org/licenses/CC-BY-2.5",
-          "start_line": 10,
-          "end_line": 11,
-          "matched_rule": {
-            "identifier": "cc-by-2.5_4.RULE",
-            "license_choice": false,
+            "path": "samples/JGroups/EULA",
+            "type": "file",
+            "name": "EULA",
+            "base_name": "EULA",
+            "extension": "",
+            "date": "2017-02-02",
+            "size": 8265,
+            "sha1": "48fbca418bc12ffad8b8c82b08dac07508b08c6c",
+            "md5": "a97752adcb0781cf02a011f06e95887c",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": "Velocity",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
             "licenses": [
-              "cc-by-2.5"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright (c) 2005 Brian Goetz and Tim Peierls"
-          ],
-          "holders": [
-            "Brian Goetz and Tim Peierls"
-          ],
-          "authors": [],
-          "start_line": 9,
-          "end_line": 12
+                {
+                    "key": "jboss-eula",
+                    "score": 100.0,
+                    "short_name": "JBoss EULA",
+                    "category": "Proprietary Free",
+                    "owner": "JBoss Community",
+                    "homepage_url": "",
+                    "text_url": "http://repository.jboss.org/licenses/jbossorg-eula.txt",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:jboss-eula",
+                    "spdx_license_key": "",
+                    "spdx_url": "",
+                    "start_line": 3,
+                    "end_line": 108,
+                    "matched_rule": {
+                        "identifier": "jboss-eula.LICENSE",
+                        "license_choice": false,
+                        "licenses": ["jboss-eula"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": ["Copyright 2006 Red Hat, Inc."],
+                    "holders": ["Red Hat, Inc."],
+                    "authors": [],
+                    "start_line": 104,
+                    "end_line": 104
+                }
+            ],
+            "packages": []
         },
         {
-          "statements": [],
-          "holders": [],
-          "authors": [
-            "Bela Ban"
-          ],
-          "start_line": 14,
-          "end_line": 17
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/JGroups/src/ImmutableReference.java",
-      "type": "file",
-      "name": "ImmutableReference.java",
-      "base_name": "ImmutableReference",
-      "extension": ".java",
-      "date": "2017-02-02",
-      "size": 1893,
-      "sha1": "429e0ef4c3e85c37b766225402cb77b75f4bda9f",
-      "md5": "4f72b0abb111b459c89db7e7fd89aba1",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": "Java",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "lgpl-2.1-plus",
-          "score": 100.0,
-          "short_name": "LGPL 2.1 or later",
-          "category": "Copyleft Limited",
-          "owner": "Free Software Foundation (FSF)",
-          "homepage_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
-          "text_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:lgpl-2.1-plus",
-          "spdx_license_key": "LGPL-2.1+",
-          "spdx_url": "https://spdx.org/licenses/LGPL-2.1",
-          "start_line": 7,
-          "end_line": 20,
-          "matched_rule": {
-            "identifier": "lgpl-2.1-plus_59.RULE",
-            "license_choice": false,
+            "path": "samples/JGroups/LICENSE",
+            "type": "file",
+            "name": "LICENSE",
+            "base_name": "LICENSE",
+            "extension": "",
+            "date": "2017-02-02",
+            "size": 26934,
+            "sha1": "8f1a637d2e2ed1bdb9eb01a7dccb5c12cc0557e1",
+            "md5": "f14599a2f089f6ff8c97e2baa4e3d575",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
             "licenses": [
-              "lgpl-2.1-plus"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright 2010, Red Hat, Inc."
-          ],
-          "holders": [
-            "Red Hat, Inc."
-          ],
-          "authors": [],
-          "start_line": 2,
-          "end_line": 5
+                {
+                    "key": "lgpl-2.1-plus",
+                    "score": 100.0,
+                    "short_name": "LGPL 2.1 or later",
+                    "category": "Copyleft Limited",
+                    "owner": "Free Software Foundation (FSF)",
+                    "homepage_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
+                    "text_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:lgpl-2.1-plus",
+                    "spdx_license_key": "LGPL-2.1+",
+                    "spdx_url": "https://spdx.org/licenses/LGPL-2.1",
+                    "start_line": 1,
+                    "end_line": 502,
+                    "matched_rule": {
+                        "identifier": "lgpl-2.1-plus_2.RULE",
+                        "license_choice": false,
+                        "licenses": ["lgpl-2.1-plus"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 1991, 1999 Free Software Foundation, Inc."
+                    ],
+                    "holders": ["Free Software Foundation, Inc."],
+                    "authors": [],
+                    "start_line": 4,
+                    "end_line": 7
+                },
+                {
+                    "statements": [
+                        "copyrighted by the Free Software Foundation"
+                    ],
+                    "holders": ["the Free Software Foundation"],
+                    "authors": [],
+                    "start_line": 427,
+                    "end_line": 433
+                },
+                {
+                    "statements": [],
+                    "holders": [],
+                    "authors": ["James Random Hacker."],
+                    "start_line": 496,
+                    "end_line": 497
+                }
+            ],
+            "packages": []
         },
         {
-          "statements": [],
-          "holders": [],
-          "authors": [
-            "Brian Stansberry"
-          ],
-          "start_line": 29,
-          "end_line": 29
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/JGroups/src/RATE_LIMITER.java",
-      "type": "file",
-      "name": "RATE_LIMITER.java",
-      "base_name": "RATE_LIMITER",
-      "extension": ".java",
-      "date": "2017-02-02",
-      "size": 3812,
-      "sha1": "7e79042c0239ec9313749be7cceb6f12d0705992",
-      "md5": "1895e6dee69935f4fc6902abe2d80f6e",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": "Java",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [
-        {
-          "statements": [],
-          "holders": [],
-          "authors": [
-            "Bela Ban"
-          ],
-          "start_line": 14,
-          "end_line": 17
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/JGroups/src/RouterStub.java",
-      "type": "file",
-      "name": "RouterStub.java",
-      "base_name": "RouterStub",
-      "extension": ".java",
-      "date": "2017-02-02",
-      "size": 10208,
-      "sha1": "f255c2dbdb104bb0b0773da62fd57a05828a3c53",
-      "md5": "7026e7ae2fa9bf3217441f7495f5989a",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": "Java",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [
-        {
-          "statements": [],
-          "holders": [],
-          "authors": [
-            "Bela Ban"
-          ],
-          "start_line": 22,
-          "end_line": 24
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/JGroups/src/RouterStubManager.java",
-      "type": "file",
-      "name": "RouterStubManager.java",
-      "base_name": "RouterStubManager",
-      "extension": ".java",
-      "date": "2017-02-02",
-      "size": 8375,
-      "sha1": "7c03434b9b6ed5e8d70a780a4a8c677955a365bf",
-      "md5": "2fe89992a3dfb7f5f2343236fbe665a4",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": "Java",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "lgpl-2.1-plus",
-          "score": 100.0,
-          "short_name": "LGPL 2.1 or later",
-          "category": "Copyleft Limited",
-          "owner": "Free Software Foundation (FSF)",
-          "homepage_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
-          "text_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:lgpl-2.1-plus",
-          "spdx_license_key": "LGPL-2.1+",
-          "spdx_url": "https://spdx.org/licenses/LGPL-2.1",
-          "start_line": 7,
-          "end_line": 20,
-          "matched_rule": {
-            "identifier": "lgpl-2.1-plus_59.RULE",
-            "license_choice": false,
-            "licenses": [
-              "lgpl-2.1-plus"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright 2009, Red Hat Middleware LLC"
-          ],
-          "holders": [
-            "Red Hat Middleware LLC"
-          ],
-          "authors": [],
-          "start_line": 2,
-          "end_line": 5
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/JGroups/src/S3_PING.java",
-      "type": "file",
-      "name": "S3_PING.java",
-      "base_name": "S3_PING",
-      "extension": ".java",
-      "date": "2017-02-02",
-      "size": 125553,
-      "sha1": "41ea46b0c88c4cf331b38b0074497672c114dd12",
-      "md5": "8f47e9762f9654f6ccb160740cd856c8",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": "Java",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "public-domain",
-          "score": 10.0,
-          "short_name": "Public Domain",
-          "category": "Public Domain",
-          "owner": "Unspecified",
-          "homepage_url": "http://www.linfo.org/publicdomain.html",
-          "text_url": "",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:public-domain",
-          "spdx_license_key": "",
-          "spdx_url": "",
-          "start_line": 1649,
-          "end_line": 1649,
-          "matched_rule": {
-            "identifier": "public-domain.LICENSE",
-            "license_choice": false,
-            "licenses": [
-              "public-domain"
-            ]
-          }
+            "path": "samples/JGroups/licenses",
+            "type": "directory",
+            "name": "licenses",
+            "base_name": "licenses",
+            "extension": "",
+            "date": null,
+            "size": 54569,
+            "sha1": null,
+            "md5": null,
+            "files_count": 5,
+            "mime_type": null,
+            "file_type": null,
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": false,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [],
+            "packages": []
         },
         {
-          "key": "public-domain",
-          "score": 10.0,
-          "short_name": "Public Domain",
-          "category": "Public Domain",
-          "owner": "Unspecified",
-          "homepage_url": "http://www.linfo.org/publicdomain.html",
-          "text_url": "",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:public-domain",
-          "spdx_license_key": "",
-          "spdx_url": "",
-          "start_line": 1692,
-          "end_line": 1692,
-          "matched_rule": {
-            "identifier": "public-domain.LICENSE",
-            "license_choice": false,
-            "licenses": [
-              "public-domain"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [],
-          "holders": [],
-          "authors": [
-            "Bela Ban"
-          ],
-          "start_line": 35,
-          "end_line": 38
+            "path": "samples/JGroups/src",
+            "type": "directory",
+            "name": "src",
+            "base_name": "src",
+            "extension": "",
+            "date": null,
+            "size": 155971,
+            "sha1": null,
+            "md5": null,
+            "files_count": 7,
+            "mime_type": null,
+            "file_type": null,
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": false,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [],
+            "packages": []
         },
         {
-          "statements": [],
-          "holders": [],
-          "authors": [
-            "Robert Harder",
-            "rob@iharder.net"
-          ],
-          "start_line": 1697,
-          "end_line": 1700
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/adler32.c",
-      "type": "file",
-      "name": "adler32.c",
-      "base_name": "adler32",
-      "extension": ".c",
-      "date": "2017-02-02",
-      "size": 5147,
-      "sha1": "f7142f39739b275d3077987f6132504139dcedd9",
-      "md5": "faf360ba01a8aa854409e93214a46296",
-      "files_count": null,
-      "mime_type": "text/x-c",
-      "file_type": "C source, ASCII text, with CRLF line terminators",
-      "programming_language": "C",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "zlib",
-          "score": 60.0,
-          "short_name": "ZLIB License",
-          "category": "Permissive",
-          "owner": "zlib",
-          "homepage_url": "http://www.zlib.net/",
-          "text_url": "http://www.gzip.org/zlib/zlib_license.html",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
-          "spdx_license_key": "Zlib",
-          "spdx_url": "https://spdx.org/licenses/Zlib",
-          "start_line": 3,
-          "end_line": 3,
-          "matched_rule": {
-            "identifier": "zlib_5.RULE",
-            "license_choice": false,
+            "path": "samples/JGroups/licenses/apache-1.1.txt",
+            "type": "file",
+            "name": "apache-1.1.txt",
+            "base_name": "apache-1.1",
+            "extension": ".txt",
+            "date": "2017-02-02",
+            "size": 2885,
+            "sha1": "6b5608d35c3e304532af43db8bbfc5947bef46a6",
+            "md5": "276982197c941f4cbf3d218546e17ae2",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
             "licenses": [
-              "zlib"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright (c) 1995-2011 Mark Adler"
-          ],
-          "holders": [
-            "Mark Adler"
-          ],
-          "authors": [],
-          "start_line": 1,
-          "end_line": 3
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/deflate.c",
-      "type": "file",
-      "name": "deflate.c",
-      "base_name": "deflate",
-      "extension": ".c",
-      "date": "2017-02-02",
-      "size": 73443,
-      "sha1": "4cfa5e74c668ef12218a6eee87801e8b75d248ef",
-      "md5": "2018726c0f336ce97d2aeeafc06879c3",
-      "files_count": null,
-      "mime_type": "text/x-c",
-      "file_type": "C source, ASCII text, with CRLF line terminators",
-      "programming_language": "C",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "zlib",
-          "score": 60.0,
-          "short_name": "ZLIB License",
-          "category": "Permissive",
-          "owner": "zlib",
-          "homepage_url": "http://www.zlib.net/",
-          "text_url": "http://www.gzip.org/zlib/zlib_license.html",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
-          "spdx_license_key": "Zlib",
-          "spdx_url": "https://spdx.org/licenses/Zlib",
-          "start_line": 3,
-          "end_line": 3,
-          "matched_rule": {
-            "identifier": "zlib_5.RULE",
-            "license_choice": false,
-            "licenses": [
-              "zlib"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright (c) 1995-2013 Jean-loup Gailly and Mark Adler"
-          ],
-          "holders": [
-            "Jean-loup Gailly and Mark Adler"
-          ],
-          "authors": [],
-          "start_line": 1,
-          "end_line": 3
+                {
+                    "key": "apache-1.1",
+                    "score": 100.0,
+                    "short_name": "Apache 1.1",
+                    "category": "Permissive",
+                    "owner": "Apache Software Foundation",
+                    "homepage_url": "http://www.apache.org/licenses/",
+                    "text_url": "http://apache.org/licenses/LICENSE-1.1",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-1.1",
+                    "spdx_license_key": "Apache-1.1",
+                    "spdx_url": "https://spdx.org/licenses/Apache-1.1",
+                    "start_line": 2,
+                    "end_line": 56,
+                    "matched_rule": {
+                        "identifier": "apache-1.1.SPDX.RULE",
+                        "license_choice": false,
+                        "licenses": ["apache-1.1"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2000 The Apache Software Foundation."
+                    ],
+                    "holders": ["The Apache Software Foundation."],
+                    "authors": [],
+                    "start_line": 4,
+                    "end_line": 5
+                },
+                {
+                    "statements": [],
+                    "holders": [],
+                    "authors": ["the Apache Software Foundation"],
+                    "start_line": 20,
+                    "end_line": 23
+                }
+            ],
+            "packages": []
         },
         {
-          "statements": [],
-          "holders": [],
-          "authors": [
-            "Leonid Broukhis. Thanks"
-          ],
-          "start_line": 33,
-          "end_line": 35
+            "path": "samples/JGroups/licenses/apache-2.0.txt",
+            "type": "file",
+            "name": "apache-2.0.txt",
+            "base_name": "apache-2.0",
+            "extension": ".txt",
+            "date": "2017-02-02",
+            "size": 11560,
+            "sha1": "47b573e3824cd5e02a1a3ae99e2735b49e0256e4",
+            "md5": "d273d63619c9aeaf15cdaf76422c4f87",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "apache-2.0",
+                    "score": 100.0,
+                    "short_name": "Apache 2.0",
+                    "category": "Permissive",
+                    "owner": "Apache Software Foundation",
+                    "homepage_url": "http://www.apache.org/licenses/",
+                    "text_url": "http://www.apache.org/licenses/LICENSE-2.0",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:apache-2.0",
+                    "spdx_license_key": "Apache-2.0",
+                    "spdx_url": "https://spdx.org/licenses/Apache-2.0",
+                    "start_line": 2,
+                    "end_line": 202,
+                    "matched_rule": {
+                        "identifier": "apache-2.0_easyeclipse.RULE",
+                        "license_choice": false,
+                        "licenses": ["apache-2.0"]
+                    }
+                }
+            ],
+            "copyrights": [],
+            "packages": []
         },
         {
-          "statements": [
-            "Copyright 1995-2013 Jean-loup Gailly and Mark Adler"
-          ],
-          "holders": [
-            "Jean-loup Gailly and Mark Adler"
-          ],
-          "authors": [],
-          "start_line": 54,
-          "end_line": 55
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/deflate.h",
-      "type": "file",
-      "name": "deflate.h",
-      "base_name": "deflate",
-      "extension": ".h",
-      "date": "2017-02-02",
-      "size": 13120,
-      "sha1": "cf1978ea0378a2f0b0fa98c383c9b08a3b3f3655",
-      "md5": "f284d0140dcd0d799ad8a6c74e311829",
-      "files_count": null,
-      "mime_type": "text/x-c",
-      "file_type": "C source, ASCII text, with CRLF line terminators",
-      "programming_language": "C",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "zlib",
-          "score": 60.0,
-          "short_name": "ZLIB License",
-          "category": "Permissive",
-          "owner": "zlib",
-          "homepage_url": "http://www.zlib.net/",
-          "text_url": "http://www.gzip.org/zlib/zlib_license.html",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
-          "spdx_license_key": "Zlib",
-          "spdx_url": "https://spdx.org/licenses/Zlib",
-          "start_line": 3,
-          "end_line": 3,
-          "matched_rule": {
-            "identifier": "zlib_5.RULE",
-            "license_choice": false,
+            "path": "samples/JGroups/licenses/bouncycastle.txt",
+            "type": "file",
+            "name": "bouncycastle.txt",
+            "base_name": "bouncycastle",
+            "extension": ".txt",
+            "date": "2017-02-02",
+            "size": 1203,
+            "sha1": "5693e1524ea9c177cd603f47c2b77f5b8ec2a3b9",
+            "md5": "8d00871ced5dc2a03d1e90f1e59ea97b",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
             "licenses": [
-              "zlib"
-            ]
-          }
+                {
+                    "key": "mit",
+                    "score": 100.0,
+                    "short_name": "MIT License",
+                    "category": "Permissive",
+                    "owner": "MIT",
+                    "homepage_url": "http://opensource.org/licenses/mit-license.php",
+                    "text_url": "http://opensource.org/licenses/mit-license.php",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:mit",
+                    "spdx_license_key": "MIT",
+                    "spdx_url": "https://spdx.org/licenses/MIT",
+                    "start_line": 7,
+                    "end_line": 18,
+                    "matched_rule": {
+                        "identifier": "mit.LICENSE",
+                        "license_choice": false,
+                        "licenses": ["mit"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2000 - 2006 The Legion Of The Bouncy Castle (http://www.bouncycastle.org)"
+                    ],
+                    "holders": [
+                        "Legion Of The Bouncy Castle (http://www.bouncycastle.org)"
+                    ],
+                    "authors": [],
+                    "start_line": 5,
+                    "end_line": 5
+                }
+            ],
+            "packages": []
         },
         {
-          "key": "zlib",
-          "score": 100.0,
-          "short_name": "ZLIB License",
-          "category": "Permissive",
-          "owner": "zlib",
-          "homepage_url": "http://www.zlib.net/",
-          "text_url": "http://www.gzip.org/zlib/zlib_license.html",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
-          "spdx_license_key": "Zlib",
-          "spdx_url": "https://spdx.org/licenses/Zlib",
-          "start_line": 93,
-          "end_line": 94,
-          "matched_rule": {
-            "identifier": "zlib_21.RULE",
-            "license_choice": false,
+            "path": "samples/JGroups/licenses/cpl-1.0.txt",
+            "type": "file",
+            "name": "cpl-1.0.txt",
+            "base_name": "cpl-1.0",
+            "extension": ".txt",
+            "date": "2017-02-02",
+            "size": 11987,
+            "sha1": "681cf776bcd79752543d42490ec7ed22a29fd888",
+            "md5": "9a6d2c9ae73d59eb3dd38e3909750d14",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
             "licenses": [
-              "zlib"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright (c) 1995-2012 Jean-loup Gailly"
-          ],
-          "holders": [
-            "Jean-loup Gailly"
-          ],
-          "authors": [],
-          "start_line": 1,
-          "end_line": 3
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/zlib.h",
-      "type": "file",
-      "name": "zlib.h",
-      "base_name": "zlib",
-      "extension": ".h",
-      "date": "2017-02-02",
-      "size": 89651,
-      "sha1": "1fabede36e27d93619690144b7a240bfe7a24f88",
-      "md5": "a1d4c6864c789f539d325566a863ff26",
-      "files_count": null,
-      "mime_type": "text/x-c",
-      "file_type": "C source, ASCII text, with CRLF line terminators",
-      "programming_language": "C",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "zlib",
-          "score": 100.0,
-          "short_name": "ZLIB License",
-          "category": "Permissive",
-          "owner": "zlib",
-          "homepage_url": "http://www.zlib.net/",
-          "text_url": "http://www.gzip.org/zlib/zlib_license.html",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
-          "spdx_license_key": "Zlib",
-          "spdx_url": "https://spdx.org/licenses/Zlib",
-          "start_line": 6,
-          "end_line": 23,
-          "matched_rule": {
-            "identifier": "zlib_17.RULE",
-            "license_choice": false,
-            "licenses": [
-              "zlib"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright (c) 1995-2013 Jean-loup Gailly and Mark Adler"
-          ],
-          "holders": [
-            "Jean-loup Gailly and Mark Adler"
-          ],
-          "authors": [],
-          "start_line": 4,
-          "end_line": 4
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/zutil.c",
-      "type": "file",
-      "name": "zutil.c",
-      "base_name": "zutil",
-      "extension": ".c",
-      "date": "2017-02-02",
-      "size": 7738,
-      "sha1": "750edc45373acd6b3f187ad0d25766819db67a37",
-      "md5": "15b58dbc0d7c5ee05deb2a0094ecca8c",
-      "files_count": null,
-      "mime_type": "text/x-c",
-      "file_type": "C source, ASCII text, with CRLF line terminators",
-      "programming_language": "C",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "zlib",
-          "score": 60.0,
-          "short_name": "ZLIB License",
-          "category": "Permissive",
-          "owner": "zlib",
-          "homepage_url": "http://www.zlib.net/",
-          "text_url": "http://www.gzip.org/zlib/zlib_license.html",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
-          "spdx_license_key": "Zlib",
-          "spdx_url": "https://spdx.org/licenses/Zlib",
-          "start_line": 3,
-          "end_line": 3,
-          "matched_rule": {
-            "identifier": "zlib_5.RULE",
-            "license_choice": false,
-            "licenses": [
-              "zlib"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright (c) 1995-2005, 2010, 2011, 2012 Jean-loup Gailly."
-          ],
-          "holders": [
-            "Jean-loup Gailly."
-          ],
-          "authors": [],
-          "start_line": 1,
-          "end_line": 3
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/zutil.h",
-      "type": "file",
-      "name": "zutil.h",
-      "base_name": "zutil",
-      "extension": ".h",
-      "date": "2017-02-02",
-      "size": 7019,
-      "sha1": "b541ca323c529c1b6bc3102b8b01473a2409aa5a",
-      "md5": "0cd2089ea6c4dc4bd584d7dd3fb7037f",
-      "files_count": null,
-      "mime_type": "text/x-c",
-      "file_type": "C source, ASCII text, with CRLF line terminators",
-      "programming_language": "C",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "zlib",
-          "score": 60.0,
-          "short_name": "ZLIB License",
-          "category": "Permissive",
-          "owner": "zlib",
-          "homepage_url": "http://www.zlib.net/",
-          "text_url": "http://www.gzip.org/zlib/zlib_license.html",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
-          "spdx_license_key": "Zlib",
-          "spdx_url": "https://spdx.org/licenses/Zlib",
-          "start_line": 3,
-          "end_line": 3,
-          "matched_rule": {
-            "identifier": "zlib_5.RULE",
-            "license_choice": false,
-            "licenses": [
-              "zlib"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright (c) 1995-2013 Jean-loup Gailly."
-          ],
-          "holders": [
-            "Jean-loup Gailly."
-          ],
-          "authors": [],
-          "start_line": 1,
-          "end_line": 3
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/ada",
-      "type": "directory",
-      "name": "ada",
-      "base_name": "ada",
-      "extension": "",
-      "date": null,
-      "size": 13922,
-      "sha1": null,
-      "md5": null,
-      "files_count": 1,
-      "mime_type": null,
-      "file_type": null,
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": false,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/dotzlib",
-      "type": "directory",
-      "name": "dotzlib",
-      "base_name": "dotzlib",
-      "extension": "",
-      "date": null,
-      "size": 14257,
-      "sha1": null,
-      "md5": null,
-      "files_count": 4,
-      "mime_type": null,
-      "file_type": null,
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": false,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/gcc_gvmat64",
-      "type": "directory",
-      "name": "gcc_gvmat64",
-      "base_name": "gcc_gvmat64",
-      "extension": "",
-      "date": null,
-      "size": 16413,
-      "sha1": null,
-      "md5": null,
-      "files_count": 1,
-      "mime_type": null,
-      "file_type": null,
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": false,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/infback9",
-      "type": "directory",
-      "name": "infback9",
-      "base_name": "infback9",
-      "extension": "",
-      "date": null,
-      "size": 23875,
-      "sha1": null,
-      "md5": null,
-      "files_count": 2,
-      "mime_type": null,
-      "file_type": null,
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": false,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/iostream2",
-      "type": "directory",
-      "name": "iostream2",
-      "base_name": "iostream2",
-      "extension": "",
-      "date": null,
-      "size": 10326,
-      "sha1": null,
-      "md5": null,
-      "files_count": 2,
-      "mime_type": null,
-      "file_type": null,
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": false,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/ada/zlib.ads",
-      "type": "file",
-      "name": "zlib.ads",
-      "base_name": "zlib",
-      "extension": ".ads",
-      "date": "2017-02-02",
-      "size": 13922,
-      "sha1": "b1735a58842c907a4926f50326c774538482efd2",
-      "md5": "55f9046b4db726c6981e28a15dd48b12",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": "Ada",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "gpl-2.0-plus-ada",
-          "score": 100.0,
-          "short_name": "GPL 2.0 or later with Ada exception",
-          "category": "Copyleft Limited",
-          "owner": "Dmitriy Anisimkov",
-          "homepage_url": "",
-          "text_url": "",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:gpl-2.0-plus-ada",
-          "spdx_license_key": "",
-          "spdx_url": "",
-          "start_line": 6,
-          "end_line": 25,
-          "matched_rule": {
-            "identifier": "gpl-2.0-plus-ada.LICENSE",
-            "license_choice": false,
-            "licenses": [
-              "gpl-2.0-plus-ada"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright (c) 2002-2004 Dmitriy Anisimkov"
-          ],
-          "holders": [
-            "Dmitriy Anisimkov"
-          ],
-          "authors": [],
-          "start_line": 4,
-          "end_line": 4
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/dotzlib/AssemblyInfo.cs",
-      "type": "file",
-      "name": "AssemblyInfo.cs",
-      "base_name": "AssemblyInfo",
-      "extension": ".cs",
-      "date": "2017-02-02",
-      "size": 2500,
-      "sha1": "9f1db1177b2e9a014f72bb3cd80be17133e06d16",
-      "md5": "23d0d7c18846fc31655b6aa89b7c8038",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": "C#",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [
-        {
-          "statements": [
-            "(c) 2004 by Henrik Ravn"
-          ],
-          "holders": [
-            "Henrik Ravn"
-          ],
-          "authors": [],
-          "start_line": 13,
-          "end_line": 16
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/dotzlib/ChecksumImpl.cs",
-      "type": "file",
-      "name": "ChecksumImpl.cs",
-      "base_name": "ChecksumImpl",
-      "extension": ".cs",
-      "date": "2017-02-02",
-      "size": 8040,
-      "sha1": "3807a0e24a57b92ea301559cab7307b8eab52c51",
-      "md5": "d01b3cb2e75da9b15f05b92b42f6bd33",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ISO-8859 text, with CRLF line terminators",
-      "programming_language": "C#",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "boost-1.0",
-          "score": 91.3,
-          "short_name": "Boost 1.0",
-          "category": "Permissive",
-          "owner": "Boost",
-          "homepage_url": "http://www.boost.org/users/license.html",
-          "text_url": "http://www.boost.org/LICENSE_1_0.txt",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:boost-1.0",
-          "spdx_license_key": "BSL-1.0",
-          "spdx_url": "https://spdx.org/licenses/BSL-1.0",
-          "start_line": 4,
-          "end_line": 5,
-          "matched_rule": {
-            "identifier": "boost-1.0_1.RULE",
-            "license_choice": false,
-            "licenses": [
-              "boost-1.0"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "(c) Copyright Henrik Ravn 2004"
-          ],
-          "holders": [
-            "Henrik Ravn"
-          ],
-          "authors": [],
-          "start_line": 2,
-          "end_line": 2
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/dotzlib/LICENSE_1_0.txt",
-      "type": "file",
-      "name": "LICENSE_1_0.txt",
-      "base_name": "LICENSE_1_0",
-      "extension": ".txt",
-      "date": "2017-02-02",
-      "size": 1359,
-      "sha1": "892b34f7865d90a6f949f50d95e49625a10bc7f0",
-      "md5": "81543b22c36f10d20ac9712f8d80ef8d",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "boost-1.0",
-          "score": 100.0,
-          "short_name": "Boost 1.0",
-          "category": "Permissive",
-          "owner": "Boost",
-          "homepage_url": "http://www.boost.org/users/license.html",
-          "text_url": "http://www.boost.org/LICENSE_1_0.txt",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:boost-1.0",
-          "spdx_license_key": "BSL-1.0",
-          "spdx_url": "https://spdx.org/licenses/BSL-1.0",
-          "start_line": 1,
-          "end_line": 23,
-          "matched_rule": {
-            "identifier": "boost-1.0.LICENSE",
-            "license_choice": false,
-            "licenses": [
-              "boost-1.0"
-            ]
-          }
-        }
-      ],
-      "copyrights": [],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/dotzlib/readme.txt",
-      "type": "file",
-      "name": "readme.txt",
-      "base_name": "readme",
-      "extension": ".txt",
-      "date": "2017-02-02",
-      "size": 2358,
-      "sha1": "b1229b826f0096808628474538cea8fec2922a9b",
-      "md5": "1f20f3168ee63d90de033edac2ce383c",
-      "files_count": null,
-      "mime_type": "text/plain",
-      "file_type": "ASCII text, with CRLF line terminators",
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "boost-1.0",
-          "score": 30.0,
-          "short_name": "Boost 1.0",
-          "category": "Permissive",
-          "owner": "Boost",
-          "homepage_url": "http://www.boost.org/users/license.html",
-          "text_url": "http://www.boost.org/LICENSE_1_0.txt",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:boost-1.0",
-          "spdx_license_key": "BSL-1.0",
-          "spdx_url": "https://spdx.org/licenses/BSL-1.0",
-          "start_line": 58,
-          "end_line": 58,
-          "matched_rule": {
-            "identifier": "boost-1.0.RULE",
-            "license_choice": false,
-            "licenses": [
-              "boost-1.0"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright (c) Henrik Ravn 2004"
-          ],
-          "holders": [
-            "Henrik Ravn"
-          ],
-          "authors": [],
-          "start_line": 55,
-          "end_line": 55
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/gcc_gvmat64/gvmat64.S",
-      "type": "file",
-      "name": "gvmat64.S",
-      "base_name": "gvmat64",
-      "extension": ".S",
-      "date": "2017-02-02",
-      "size": 16413,
-      "sha1": "742603cba1af98a1432cc02efb019b1a5760adf2",
-      "md5": "5e772d7302475e5473d0c4c57b9861e8",
-      "files_count": null,
-      "mime_type": "text/x-c",
-      "file_type": "C source, ASCII text, with CRLF line terminators",
-      "programming_language": "GAS",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "zlib",
-          "score": 98.53,
-          "short_name": "ZLIB License",
-          "category": "Permissive",
-          "owner": "zlib",
-          "homepage_url": "http://www.zlib.net/",
-          "text_url": "http://www.gzip.org/zlib/zlib_license.html",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
-          "spdx_license_key": "Zlib",
-          "spdx_url": "https://spdx.org/licenses/Zlib",
-          "start_line": 13,
-          "end_line": 31,
-          "matched_rule": {
-            "identifier": "zlib_4.RULE",
-            "license_choice": false,
-            "licenses": [
-              "zlib"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
-        {
-          "statements": [
-            "Copyright (c) 1995-2010 Jean-loup Gailly, Brian Raiter and Gilles Vollant."
-          ],
-          "holders": [
-            "Jean-loup Gailly, Brian Raiter and Gilles Vollant."
-          ],
-          "authors": [],
-          "start_line": 9,
-          "end_line": 10
+                {
+                    "key": "cpl-1.0",
+                    "score": 99.94,
+                    "short_name": "CPL 1.0",
+                    "category": "Copyleft Limited",
+                    "owner": "IBM",
+                    "homepage_url": "http://www.eclipse.org/legal/cpl-v10.html",
+                    "text_url": "http://www.eclipse.org/legal/cpl-v10.html",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:cpl-1.0",
+                    "spdx_license_key": "CPL-1.0",
+                    "spdx_url": "https://spdx.org/licenses/CPL-1.0",
+                    "start_line": 1,
+                    "end_line": 212,
+                    "matched_rule": {
+                        "identifier": "cpl-1.0.SPDX.RULE",
+                        "license_choice": false,
+                        "licenses": ["cpl-1.0"]
+                    }
+                }
+            ],
+            "copyrights": [],
+            "packages": []
         },
         {
-          "statements": [],
-          "holders": [],
-          "authors": [
-            "Gilles Vollant"
-          ],
-          "start_line": 12,
-          "end_line": 15
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/infback9/infback9.c",
-      "type": "file",
-      "name": "infback9.c",
-      "base_name": "infback9",
-      "extension": ".c",
-      "date": "2017-02-02",
-      "size": 22244,
-      "sha1": "be9fd74e9afc16cfbbb693195df972665179c734",
-      "md5": "f08efcac0c60b475a7a34888a7b85236",
-      "files_count": null,
-      "mime_type": "text/x-c",
-      "file_type": "C source, ASCII text, with CRLF line terminators",
-      "programming_language": "C",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "zlib",
-          "score": 60.0,
-          "short_name": "ZLIB License",
-          "category": "Permissive",
-          "owner": "zlib",
-          "homepage_url": "http://www.zlib.net/",
-          "text_url": "http://www.gzip.org/zlib/zlib_license.html",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
-          "spdx_license_key": "Zlib",
-          "spdx_url": "https://spdx.org/licenses/Zlib",
-          "start_line": 3,
-          "end_line": 3,
-          "matched_rule": {
-            "identifier": "zlib_5.RULE",
-            "license_choice": false,
+            "path": "samples/JGroups/licenses/lgpl.txt",
+            "type": "file",
+            "name": "lgpl.txt",
+            "base_name": "lgpl",
+            "extension": ".txt",
+            "date": "2017-02-02",
+            "size": 26934,
+            "sha1": "8f1a637d2e2ed1bdb9eb01a7dccb5c12cc0557e1",
+            "md5": "f14599a2f089f6ff8c97e2baa4e3d575",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
             "licenses": [
-              "zlib"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
+                {
+                    "key": "lgpl-2.1-plus",
+                    "score": 100.0,
+                    "short_name": "LGPL 2.1 or later",
+                    "category": "Copyleft Limited",
+                    "owner": "Free Software Foundation (FSF)",
+                    "homepage_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
+                    "text_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:lgpl-2.1-plus",
+                    "spdx_license_key": "LGPL-2.1+",
+                    "spdx_url": "https://spdx.org/licenses/LGPL-2.1",
+                    "start_line": 1,
+                    "end_line": 502,
+                    "matched_rule": {
+                        "identifier": "lgpl-2.1-plus_2.RULE",
+                        "license_choice": false,
+                        "licenses": ["lgpl-2.1-plus"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 1991, 1999 Free Software Foundation, Inc."
+                    ],
+                    "holders": ["Free Software Foundation, Inc."],
+                    "authors": [],
+                    "start_line": 4,
+                    "end_line": 7
+                },
+                {
+                    "statements": [
+                        "copyrighted by the Free Software Foundation"
+                    ],
+                    "holders": ["the Free Software Foundation"],
+                    "authors": [],
+                    "start_line": 427,
+                    "end_line": 433
+                },
+                {
+                    "statements": [],
+                    "holders": [],
+                    "authors": ["James Random Hacker."],
+                    "start_line": 496,
+                    "end_line": 497
+                }
+            ],
+            "packages": []
+        },
         {
-          "statements": [
-            "Copyright (c) 1995-2008 Mark Adler"
-          ],
-          "holders": [
-            "Mark Adler"
-          ],
-          "authors": [],
-          "start_line": 1,
-          "end_line": 3
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/infback9/infback9.h",
-      "type": "file",
-      "name": "infback9.h",
-      "base_name": "infback9",
-      "extension": ".h",
-      "date": "2017-02-02",
-      "size": 1631,
-      "sha1": "9f66c9bf6ad6b4c676e3fe514be653704b403019",
-      "md5": "7acf663360f7bb54d0f95b808c673fd4",
-      "files_count": null,
-      "mime_type": "text/x-c",
-      "file_type": "C source, ASCII text, with CRLF line terminators",
-      "programming_language": "C",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "zlib",
-          "score": 60.0,
-          "short_name": "ZLIB License",
-          "category": "Permissive",
-          "owner": "zlib",
-          "homepage_url": "http://www.zlib.net/",
-          "text_url": "http://www.gzip.org/zlib/zlib_license.html",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
-          "spdx_license_key": "Zlib",
-          "spdx_url": "https://spdx.org/licenses/Zlib",
-          "start_line": 3,
-          "end_line": 3,
-          "matched_rule": {
-            "identifier": "zlib_5.RULE",
-            "license_choice": false,
+            "path": "samples/JGroups/src/FixedMembershipToken.java",
+            "type": "file",
+            "name": "FixedMembershipToken.java",
+            "base_name": "FixedMembershipToken",
+            "extension": ".java",
+            "date": "2017-02-02",
+            "size": 5294,
+            "sha1": "4375406c4515f66ac0498d7c6cec5a4841a74cbc",
+            "md5": "d1994ba211364156da23ebda7b91de2e",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": "Java",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
             "licenses": [
-              "zlib"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
+                {
+                    "key": "lgpl-2.1-plus",
+                    "score": 100.0,
+                    "short_name": "LGPL 2.1 or later",
+                    "category": "Copyleft Limited",
+                    "owner": "Free Software Foundation (FSF)",
+                    "homepage_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
+                    "text_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:lgpl-2.1-plus",
+                    "spdx_license_key": "LGPL-2.1+",
+                    "spdx_url": "https://spdx.org/licenses/LGPL-2.1",
+                    "start_line": 7,
+                    "end_line": 20,
+                    "matched_rule": {
+                        "identifier": "lgpl-2.1-plus_59.RULE",
+                        "license_choice": false,
+                        "licenses": ["lgpl-2.1-plus"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": ["Copyright 2005, JBoss Inc."],
+                    "holders": ["JBoss Inc."],
+                    "authors": [],
+                    "start_line": 2,
+                    "end_line": 5
+                },
+                {
+                    "statements": [],
+                    "holders": [],
+                    "authors": ["Chris Mills (millsy@jboss.com)"],
+                    "start_line": 51,
+                    "end_line": 51
+                }
+            ],
+            "packages": []
+        },
         {
-          "statements": [
-            "Copyright (c) 2003 Mark Adler"
-          ],
-          "holders": [
-            "Mark Adler"
-          ],
-          "authors": [],
-          "start_line": 1,
-          "end_line": 3
-        }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/iostream2/zstream.h",
-      "type": "file",
-      "name": "zstream.h",
-      "base_name": "zstream",
-      "extension": ".h",
-      "date": "2017-02-02",
-      "size": 9590,
-      "sha1": "e849f490ba14f090f2d97655197098f0a4187c4a",
-      "md5": "4d344c3d93e264c9d9b42ed7c54d34d9",
-      "files_count": null,
-      "mime_type": "text/x-c++",
-      "file_type": "C++ source, ASCII text, with CRLF line terminators",
-      "programming_language": "C",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [
-        {
-          "key": "cmr-no",
-          "score": 100.0,
-          "short_name": "CMR License",
-          "category": "Permissive",
-          "owner": "CMR - Christian Michelsen Research AS",
-          "homepage_url": "",
-          "text_url": "",
-          "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:cmr-no",
-          "spdx_license_key": "",
-          "spdx_url": "",
-          "start_line": 3,
-          "end_line": 15,
-          "matched_rule": {
-            "identifier": "cmr-no.LICENSE",
-            "license_choice": false,
+            "path": "samples/JGroups/src/GuardedBy.java",
+            "type": "file",
+            "name": "GuardedBy.java",
+            "base_name": "GuardedBy",
+            "extension": ".java",
+            "date": "2017-02-02",
+            "size": 836,
+            "sha1": "93a222292c1eb143538cf876f0e5575fccd87271",
+            "md5": "739d4bb080991b678a662f5742f30ff1",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": "Java",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
             "licenses": [
-              "cmr-no"
-            ]
-          }
-        }
-      ],
-      "copyrights": [
+                {
+                    "key": "cc-by-2.5",
+                    "score": 70.0,
+                    "short_name": "CC-BY-2.5",
+                    "category": "Permissive",
+                    "owner": "Creative Commons",
+                    "homepage_url": "http://creativecommons.org/licenses/by/2.5/",
+                    "text_url": "http://creativecommons.org/licenses/by/2.5/legalcode",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:cc-by-2.5",
+                    "spdx_license_key": "CC-BY-2.5",
+                    "spdx_url": "https://spdx.org/licenses/CC-BY-2.5",
+                    "start_line": 10,
+                    "end_line": 11,
+                    "matched_rule": {
+                        "identifier": "cc-by-2.5_4.RULE",
+                        "license_choice": false,
+                        "licenses": ["cc-by-2.5"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 2005 Brian Goetz and Tim Peierls"
+                    ],
+                    "holders": ["Brian Goetz and Tim Peierls"],
+                    "authors": [],
+                    "start_line": 9,
+                    "end_line": 12
+                },
+                {
+                    "statements": [],
+                    "holders": [],
+                    "authors": ["Bela Ban"],
+                    "start_line": 14,
+                    "end_line": 17
+                }
+            ],
+            "packages": []
+        },
         {
-          "statements": [
-            "Copyright (c) 1997 Christian Michelsen Research as Advanced Computing"
-          ],
-          "holders": [
-            "Christian Michelsen Research",
-            "Advanced Computing"
-          ],
-          "authors": [],
-          "start_line": 3,
-          "end_line": 5
+            "path": "samples/JGroups/src/ImmutableReference.java",
+            "type": "file",
+            "name": "ImmutableReference.java",
+            "base_name": "ImmutableReference",
+            "extension": ".java",
+            "date": "2017-02-02",
+            "size": 1893,
+            "sha1": "429e0ef4c3e85c37b766225402cb77b75f4bda9f",
+            "md5": "4f72b0abb111b459c89db7e7fd89aba1",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": "Java",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "lgpl-2.1-plus",
+                    "score": 100.0,
+                    "short_name": "LGPL 2.1 or later",
+                    "category": "Copyleft Limited",
+                    "owner": "Free Software Foundation (FSF)",
+                    "homepage_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
+                    "text_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:lgpl-2.1-plus",
+                    "spdx_license_key": "LGPL-2.1+",
+                    "spdx_url": "https://spdx.org/licenses/LGPL-2.1",
+                    "start_line": 7,
+                    "end_line": 20,
+                    "matched_rule": {
+                        "identifier": "lgpl-2.1-plus_59.RULE",
+                        "license_choice": false,
+                        "licenses": ["lgpl-2.1-plus"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": ["Copyright 2010, Red Hat, Inc."],
+                    "holders": ["Red Hat, Inc."],
+                    "authors": [],
+                    "start_line": 2,
+                    "end_line": 5
+                },
+                {
+                    "statements": [],
+                    "holders": [],
+                    "authors": ["Brian Stansberry"],
+                    "start_line": 29,
+                    "end_line": 29
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/JGroups/src/RATE_LIMITER.java",
+            "type": "file",
+            "name": "RATE_LIMITER.java",
+            "base_name": "RATE_LIMITER",
+            "extension": ".java",
+            "date": "2017-02-02",
+            "size": 3812,
+            "sha1": "7e79042c0239ec9313749be7cceb6f12d0705992",
+            "md5": "1895e6dee69935f4fc6902abe2d80f6e",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": "Java",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [
+                {
+                    "statements": [],
+                    "holders": [],
+                    "authors": ["Bela Ban"],
+                    "start_line": 14,
+                    "end_line": 17
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/JGroups/src/RouterStub.java",
+            "type": "file",
+            "name": "RouterStub.java",
+            "base_name": "RouterStub",
+            "extension": ".java",
+            "date": "2017-02-02",
+            "size": 10208,
+            "sha1": "f255c2dbdb104bb0b0773da62fd57a05828a3c53",
+            "md5": "7026e7ae2fa9bf3217441f7495f5989a",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": "Java",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [
+                {
+                    "statements": [],
+                    "holders": [],
+                    "authors": ["Bela Ban"],
+                    "start_line": 22,
+                    "end_line": 24
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/JGroups/src/RouterStubManager.java",
+            "type": "file",
+            "name": "RouterStubManager.java",
+            "base_name": "RouterStubManager",
+            "extension": ".java",
+            "date": "2017-02-02",
+            "size": 8375,
+            "sha1": "7c03434b9b6ed5e8d70a780a4a8c677955a365bf",
+            "md5": "2fe89992a3dfb7f5f2343236fbe665a4",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": "Java",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "lgpl-2.1-plus",
+                    "score": 100.0,
+                    "short_name": "LGPL 2.1 or later",
+                    "category": "Copyleft Limited",
+                    "owner": "Free Software Foundation (FSF)",
+                    "homepage_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
+                    "text_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:lgpl-2.1-plus",
+                    "spdx_license_key": "LGPL-2.1+",
+                    "spdx_url": "https://spdx.org/licenses/LGPL-2.1",
+                    "start_line": 7,
+                    "end_line": 20,
+                    "matched_rule": {
+                        "identifier": "lgpl-2.1-plus_59.RULE",
+                        "license_choice": false,
+                        "licenses": ["lgpl-2.1-plus"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": ["Copyright 2009, Red Hat Middleware LLC"],
+                    "holders": ["Red Hat Middleware LLC"],
+                    "authors": [],
+                    "start_line": 2,
+                    "end_line": 5
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/JGroups/src/S3_PING.java",
+            "type": "file",
+            "name": "S3_PING.java",
+            "base_name": "S3_PING",
+            "extension": ".java",
+            "date": "2017-02-02",
+            "size": 125553,
+            "sha1": "41ea46b0c88c4cf331b38b0074497672c114dd12",
+            "md5": "8f47e9762f9654f6ccb160740cd856c8",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": "Java",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "public-domain",
+                    "score": 10.0,
+                    "short_name": "Public Domain",
+                    "category": "Public Domain",
+                    "owner": "Unspecified",
+                    "homepage_url": "http://www.linfo.org/publicdomain.html",
+                    "text_url": "",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:public-domain",
+                    "spdx_license_key": "",
+                    "spdx_url": "",
+                    "start_line": 1649,
+                    "end_line": 1649,
+                    "matched_rule": {
+                        "identifier": "public-domain.LICENSE",
+                        "license_choice": false,
+                        "licenses": ["public-domain"]
+                    }
+                },
+                {
+                    "key": "public-domain",
+                    "score": 10.0,
+                    "short_name": "Public Domain",
+                    "category": "Public Domain",
+                    "owner": "Unspecified",
+                    "homepage_url": "http://www.linfo.org/publicdomain.html",
+                    "text_url": "",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:public-domain",
+                    "spdx_license_key": "",
+                    "spdx_url": "",
+                    "start_line": 1692,
+                    "end_line": 1692,
+                    "matched_rule": {
+                        "identifier": "public-domain.LICENSE",
+                        "license_choice": false,
+                        "licenses": ["public-domain"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [],
+                    "holders": [],
+                    "authors": ["Bela Ban"],
+                    "start_line": 35,
+                    "end_line": 38
+                },
+                {
+                    "statements": [],
+                    "holders": [],
+                    "authors": ["Robert Harder", "rob@iharder.net"],
+                    "start_line": 1697,
+                    "end_line": 1700
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/adler32.c",
+            "type": "file",
+            "name": "adler32.c",
+            "base_name": "adler32",
+            "extension": ".c",
+            "date": "2017-02-02",
+            "size": 5147,
+            "sha1": "f7142f39739b275d3077987f6132504139dcedd9",
+            "md5": "faf360ba01a8aa854409e93214a46296",
+            "files_count": null,
+            "mime_type": "text/x-c",
+            "file_type": "C source, ASCII text, with CRLF line terminators",
+            "programming_language": "C",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "zlib",
+                    "score": 60.0,
+                    "short_name": "ZLIB License",
+                    "category": "Permissive",
+                    "owner": "zlib",
+                    "homepage_url": "http://www.zlib.net/",
+                    "text_url": "http://www.gzip.org/zlib/zlib_license.html",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
+                    "spdx_license_key": "Zlib",
+                    "spdx_url": "https://spdx.org/licenses/Zlib",
+                    "start_line": 3,
+                    "end_line": 3,
+                    "matched_rule": {
+                        "identifier": "zlib_5.RULE",
+                        "license_choice": false,
+                        "licenses": ["zlib"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": ["Copyright (c) 1995-2011 Mark Adler"],
+                    "holders": ["Mark Adler"],
+                    "authors": [],
+                    "start_line": 1,
+                    "end_line": 3
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/deflate.c",
+            "type": "file",
+            "name": "deflate.c",
+            "base_name": "deflate",
+            "extension": ".c",
+            "date": "2017-02-02",
+            "size": 73443,
+            "sha1": "4cfa5e74c668ef12218a6eee87801e8b75d248ef",
+            "md5": "2018726c0f336ce97d2aeeafc06879c3",
+            "files_count": null,
+            "mime_type": "text/x-c",
+            "file_type": "C source, ASCII text, with CRLF line terminators",
+            "programming_language": "C",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "zlib",
+                    "score": 60.0,
+                    "short_name": "ZLIB License",
+                    "category": "Permissive",
+                    "owner": "zlib",
+                    "homepage_url": "http://www.zlib.net/",
+                    "text_url": "http://www.gzip.org/zlib/zlib_license.html",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
+                    "spdx_license_key": "Zlib",
+                    "spdx_url": "https://spdx.org/licenses/Zlib",
+                    "start_line": 3,
+                    "end_line": 3,
+                    "matched_rule": {
+                        "identifier": "zlib_5.RULE",
+                        "license_choice": false,
+                        "licenses": ["zlib"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 1995-2013 Jean-loup Gailly and Mark Adler"
+                    ],
+                    "holders": ["Jean-loup Gailly and Mark Adler"],
+                    "authors": [],
+                    "start_line": 1,
+                    "end_line": 3
+                },
+                {
+                    "statements": [],
+                    "holders": [],
+                    "authors": ["Leonid Broukhis. Thanks"],
+                    "start_line": 33,
+                    "end_line": 35
+                },
+                {
+                    "statements": [
+                        "Copyright 1995-2013 Jean-loup Gailly and Mark Adler"
+                    ],
+                    "holders": ["Jean-loup Gailly and Mark Adler"],
+                    "authors": [],
+                    "start_line": 54,
+                    "end_line": 55
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/deflate.h",
+            "type": "file",
+            "name": "deflate.h",
+            "base_name": "deflate",
+            "extension": ".h",
+            "date": "2017-02-02",
+            "size": 13120,
+            "sha1": "cf1978ea0378a2f0b0fa98c383c9b08a3b3f3655",
+            "md5": "f284d0140dcd0d799ad8a6c74e311829",
+            "files_count": null,
+            "mime_type": "text/x-c",
+            "file_type": "C source, ASCII text, with CRLF line terminators",
+            "programming_language": "C",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "zlib",
+                    "score": 60.0,
+                    "short_name": "ZLIB License",
+                    "category": "Permissive",
+                    "owner": "zlib",
+                    "homepage_url": "http://www.zlib.net/",
+                    "text_url": "http://www.gzip.org/zlib/zlib_license.html",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
+                    "spdx_license_key": "Zlib",
+                    "spdx_url": "https://spdx.org/licenses/Zlib",
+                    "start_line": 3,
+                    "end_line": 3,
+                    "matched_rule": {
+                        "identifier": "zlib_5.RULE",
+                        "license_choice": false,
+                        "licenses": ["zlib"]
+                    }
+                },
+                {
+                    "key": "zlib",
+                    "score": 100.0,
+                    "short_name": "ZLIB License",
+                    "category": "Permissive",
+                    "owner": "zlib",
+                    "homepage_url": "http://www.zlib.net/",
+                    "text_url": "http://www.gzip.org/zlib/zlib_license.html",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
+                    "spdx_license_key": "Zlib",
+                    "spdx_url": "https://spdx.org/licenses/Zlib",
+                    "start_line": 93,
+                    "end_line": 94,
+                    "matched_rule": {
+                        "identifier": "zlib_21.RULE",
+                        "license_choice": false,
+                        "licenses": ["zlib"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": ["Copyright (c) 1995-2012 Jean-loup Gailly"],
+                    "holders": ["Jean-loup Gailly"],
+                    "authors": [],
+                    "start_line": 1,
+                    "end_line": 3
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/zlib.h",
+            "type": "file",
+            "name": "zlib.h",
+            "base_name": "zlib",
+            "extension": ".h",
+            "date": "2017-02-02",
+            "size": 89651,
+            "sha1": "1fabede36e27d93619690144b7a240bfe7a24f88",
+            "md5": "a1d4c6864c789f539d325566a863ff26",
+            "files_count": null,
+            "mime_type": "text/x-c",
+            "file_type": "C source, ASCII text, with CRLF line terminators",
+            "programming_language": "C",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "zlib",
+                    "score": 100.0,
+                    "short_name": "ZLIB License",
+                    "category": "Permissive",
+                    "owner": "zlib",
+                    "homepage_url": "http://www.zlib.net/",
+                    "text_url": "http://www.gzip.org/zlib/zlib_license.html",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
+                    "spdx_license_key": "Zlib",
+                    "spdx_url": "https://spdx.org/licenses/Zlib",
+                    "start_line": 6,
+                    "end_line": 23,
+                    "matched_rule": {
+                        "identifier": "zlib_17.RULE",
+                        "license_choice": false,
+                        "licenses": ["zlib"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 1995-2013 Jean-loup Gailly and Mark Adler"
+                    ],
+                    "holders": ["Jean-loup Gailly and Mark Adler"],
+                    "authors": [],
+                    "start_line": 4,
+                    "end_line": 4
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/zutil.c",
+            "type": "file",
+            "name": "zutil.c",
+            "base_name": "zutil",
+            "extension": ".c",
+            "date": "2017-02-02",
+            "size": 7738,
+            "sha1": "750edc45373acd6b3f187ad0d25766819db67a37",
+            "md5": "15b58dbc0d7c5ee05deb2a0094ecca8c",
+            "files_count": null,
+            "mime_type": "text/x-c",
+            "file_type": "C source, ASCII text, with CRLF line terminators",
+            "programming_language": "C",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "zlib",
+                    "score": 60.0,
+                    "short_name": "ZLIB License",
+                    "category": "Permissive",
+                    "owner": "zlib",
+                    "homepage_url": "http://www.zlib.net/",
+                    "text_url": "http://www.gzip.org/zlib/zlib_license.html",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
+                    "spdx_license_key": "Zlib",
+                    "spdx_url": "https://spdx.org/licenses/Zlib",
+                    "start_line": 3,
+                    "end_line": 3,
+                    "matched_rule": {
+                        "identifier": "zlib_5.RULE",
+                        "license_choice": false,
+                        "licenses": ["zlib"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 1995-2005, 2010, 2011, 2012 Jean-loup Gailly."
+                    ],
+                    "holders": ["Jean-loup Gailly."],
+                    "authors": [],
+                    "start_line": 1,
+                    "end_line": 3
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/zutil.h",
+            "type": "file",
+            "name": "zutil.h",
+            "base_name": "zutil",
+            "extension": ".h",
+            "date": "2017-02-02",
+            "size": 7019,
+            "sha1": "b541ca323c529c1b6bc3102b8b01473a2409aa5a",
+            "md5": "0cd2089ea6c4dc4bd584d7dd3fb7037f",
+            "files_count": null,
+            "mime_type": "text/x-c",
+            "file_type": "C source, ASCII text, with CRLF line terminators",
+            "programming_language": "C",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "zlib",
+                    "score": 60.0,
+                    "short_name": "ZLIB License",
+                    "category": "Permissive",
+                    "owner": "zlib",
+                    "homepage_url": "http://www.zlib.net/",
+                    "text_url": "http://www.gzip.org/zlib/zlib_license.html",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
+                    "spdx_license_key": "Zlib",
+                    "spdx_url": "https://spdx.org/licenses/Zlib",
+                    "start_line": 3,
+                    "end_line": 3,
+                    "matched_rule": {
+                        "identifier": "zlib_5.RULE",
+                        "license_choice": false,
+                        "licenses": ["zlib"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": ["Copyright (c) 1995-2013 Jean-loup Gailly."],
+                    "holders": ["Jean-loup Gailly."],
+                    "authors": [],
+                    "start_line": 1,
+                    "end_line": 3
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/ada",
+            "type": "directory",
+            "name": "ada",
+            "base_name": "ada",
+            "extension": "",
+            "date": null,
+            "size": 13922,
+            "sha1": null,
+            "md5": null,
+            "files_count": 1,
+            "mime_type": null,
+            "file_type": null,
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": false,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/dotzlib",
+            "type": "directory",
+            "name": "dotzlib",
+            "base_name": "dotzlib",
+            "extension": "",
+            "date": null,
+            "size": 14257,
+            "sha1": null,
+            "md5": null,
+            "files_count": 4,
+            "mime_type": null,
+            "file_type": null,
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": false,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/gcc_gvmat64",
+            "type": "directory",
+            "name": "gcc_gvmat64",
+            "base_name": "gcc_gvmat64",
+            "extension": "",
+            "date": null,
+            "size": 16413,
+            "sha1": null,
+            "md5": null,
+            "files_count": 1,
+            "mime_type": null,
+            "file_type": null,
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": false,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/infback9",
+            "type": "directory",
+            "name": "infback9",
+            "base_name": "infback9",
+            "extension": "",
+            "date": null,
+            "size": 23875,
+            "sha1": null,
+            "md5": null,
+            "files_count": 2,
+            "mime_type": null,
+            "file_type": null,
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": false,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/iostream2",
+            "type": "directory",
+            "name": "iostream2",
+            "base_name": "iostream2",
+            "extension": "",
+            "date": null,
+            "size": 10326,
+            "sha1": null,
+            "md5": null,
+            "files_count": 2,
+            "mime_type": null,
+            "file_type": null,
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": false,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/ada/zlib.ads",
+            "type": "file",
+            "name": "zlib.ads",
+            "base_name": "zlib",
+            "extension": ".ads",
+            "date": "2017-02-02",
+            "size": 13922,
+            "sha1": "b1735a58842c907a4926f50326c774538482efd2",
+            "md5": "55f9046b4db726c6981e28a15dd48b12",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": "Ada",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "gpl-2.0-plus-ada",
+                    "score": 100.0,
+                    "short_name": "GPL 2.0 or later with Ada exception",
+                    "category": "Copyleft Limited",
+                    "owner": "Dmitriy Anisimkov",
+                    "homepage_url": "",
+                    "text_url": "",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:gpl-2.0-plus-ada",
+                    "spdx_license_key": "",
+                    "spdx_url": "",
+                    "start_line": 6,
+                    "end_line": 25,
+                    "matched_rule": {
+                        "identifier": "gpl-2.0-plus-ada.LICENSE",
+                        "license_choice": false,
+                        "licenses": ["gpl-2.0-plus-ada"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": ["Copyright (c) 2002-2004 Dmitriy Anisimkov"],
+                    "holders": ["Dmitriy Anisimkov"],
+                    "authors": [],
+                    "start_line": 4,
+                    "end_line": 4
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/dotzlib/AssemblyInfo.cs",
+            "type": "file",
+            "name": "AssemblyInfo.cs",
+            "base_name": "AssemblyInfo",
+            "extension": ".cs",
+            "date": "2017-02-02",
+            "size": 2500,
+            "sha1": "9f1db1177b2e9a014f72bb3cd80be17133e06d16",
+            "md5": "23d0d7c18846fc31655b6aa89b7c8038",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": "C#",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [
+                {
+                    "statements": ["(c) 2004 by Henrik Ravn"],
+                    "holders": ["Henrik Ravn"],
+                    "authors": [],
+                    "start_line": 13,
+                    "end_line": 16
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/dotzlib/ChecksumImpl.cs",
+            "type": "file",
+            "name": "ChecksumImpl.cs",
+            "base_name": "ChecksumImpl",
+            "extension": ".cs",
+            "date": "2017-02-02",
+            "size": 8040,
+            "sha1": "3807a0e24a57b92ea301559cab7307b8eab52c51",
+            "md5": "d01b3cb2e75da9b15f05b92b42f6bd33",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ISO-8859 text, with CRLF line terminators",
+            "programming_language": "C#",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "boost-1.0",
+                    "score": 91.3,
+                    "short_name": "Boost 1.0",
+                    "category": "Permissive",
+                    "owner": "Boost",
+                    "homepage_url": "http://www.boost.org/users/license.html",
+                    "text_url": "http://www.boost.org/LICENSE_1_0.txt",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:boost-1.0",
+                    "spdx_license_key": "BSL-1.0",
+                    "spdx_url": "https://spdx.org/licenses/BSL-1.0",
+                    "start_line": 4,
+                    "end_line": 5,
+                    "matched_rule": {
+                        "identifier": "boost-1.0_1.RULE",
+                        "license_choice": false,
+                        "licenses": ["boost-1.0"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": ["(c) Copyright Henrik Ravn 2004"],
+                    "holders": ["Henrik Ravn"],
+                    "authors": [],
+                    "start_line": 2,
+                    "end_line": 2
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/dotzlib/LICENSE_1_0.txt",
+            "type": "file",
+            "name": "LICENSE_1_0.txt",
+            "base_name": "LICENSE_1_0",
+            "extension": ".txt",
+            "date": "2017-02-02",
+            "size": 1359,
+            "sha1": "892b34f7865d90a6f949f50d95e49625a10bc7f0",
+            "md5": "81543b22c36f10d20ac9712f8d80ef8d",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "boost-1.0",
+                    "score": 100.0,
+                    "short_name": "Boost 1.0",
+                    "category": "Permissive",
+                    "owner": "Boost",
+                    "homepage_url": "http://www.boost.org/users/license.html",
+                    "text_url": "http://www.boost.org/LICENSE_1_0.txt",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:boost-1.0",
+                    "spdx_license_key": "BSL-1.0",
+                    "spdx_url": "https://spdx.org/licenses/BSL-1.0",
+                    "start_line": 1,
+                    "end_line": 23,
+                    "matched_rule": {
+                        "identifier": "boost-1.0.LICENSE",
+                        "license_choice": false,
+                        "licenses": ["boost-1.0"]
+                    }
+                }
+            ],
+            "copyrights": [],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/dotzlib/readme.txt",
+            "type": "file",
+            "name": "readme.txt",
+            "base_name": "readme",
+            "extension": ".txt",
+            "date": "2017-02-02",
+            "size": 2358,
+            "sha1": "b1229b826f0096808628474538cea8fec2922a9b",
+            "md5": "1f20f3168ee63d90de033edac2ce383c",
+            "files_count": null,
+            "mime_type": "text/plain",
+            "file_type": "ASCII text, with CRLF line terminators",
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "boost-1.0",
+                    "score": 30.0,
+                    "short_name": "Boost 1.0",
+                    "category": "Permissive",
+                    "owner": "Boost",
+                    "homepage_url": "http://www.boost.org/users/license.html",
+                    "text_url": "http://www.boost.org/LICENSE_1_0.txt",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:boost-1.0",
+                    "spdx_license_key": "BSL-1.0",
+                    "spdx_url": "https://spdx.org/licenses/BSL-1.0",
+                    "start_line": 58,
+                    "end_line": 58,
+                    "matched_rule": {
+                        "identifier": "boost-1.0.RULE",
+                        "license_choice": false,
+                        "licenses": ["boost-1.0"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": ["Copyright (c) Henrik Ravn 2004"],
+                    "holders": ["Henrik Ravn"],
+                    "authors": [],
+                    "start_line": 55,
+                    "end_line": 55
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/gcc_gvmat64/gvmat64.S",
+            "type": "file",
+            "name": "gvmat64.S",
+            "base_name": "gvmat64",
+            "extension": ".S",
+            "date": "2017-02-02",
+            "size": 16413,
+            "sha1": "742603cba1af98a1432cc02efb019b1a5760adf2",
+            "md5": "5e772d7302475e5473d0c4c57b9861e8",
+            "files_count": null,
+            "mime_type": "text/x-c",
+            "file_type": "C source, ASCII text, with CRLF line terminators",
+            "programming_language": "GAS",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "zlib",
+                    "score": 98.53,
+                    "short_name": "ZLIB License",
+                    "category": "Permissive",
+                    "owner": "zlib",
+                    "homepage_url": "http://www.zlib.net/",
+                    "text_url": "http://www.gzip.org/zlib/zlib_license.html",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
+                    "spdx_license_key": "Zlib",
+                    "spdx_url": "https://spdx.org/licenses/Zlib",
+                    "start_line": 13,
+                    "end_line": 31,
+                    "matched_rule": {
+                        "identifier": "zlib_4.RULE",
+                        "license_choice": false,
+                        "licenses": ["zlib"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 1995-2010 Jean-loup Gailly, Brian Raiter and Gilles Vollant."
+                    ],
+                    "holders": [
+                        "Jean-loup Gailly, Brian Raiter and Gilles Vollant."
+                    ],
+                    "authors": [],
+                    "start_line": 9,
+                    "end_line": 10
+                },
+                {
+                    "statements": [],
+                    "holders": [],
+                    "authors": ["Gilles Vollant"],
+                    "start_line": 12,
+                    "end_line": 15
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/infback9/infback9.c",
+            "type": "file",
+            "name": "infback9.c",
+            "base_name": "infback9",
+            "extension": ".c",
+            "date": "2017-02-02",
+            "size": 22244,
+            "sha1": "be9fd74e9afc16cfbbb693195df972665179c734",
+            "md5": "f08efcac0c60b475a7a34888a7b85236",
+            "files_count": null,
+            "mime_type": "text/x-c",
+            "file_type": "C source, ASCII text, with CRLF line terminators",
+            "programming_language": "C",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "zlib",
+                    "score": 60.0,
+                    "short_name": "ZLIB License",
+                    "category": "Permissive",
+                    "owner": "zlib",
+                    "homepage_url": "http://www.zlib.net/",
+                    "text_url": "http://www.gzip.org/zlib/zlib_license.html",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
+                    "spdx_license_key": "Zlib",
+                    "spdx_url": "https://spdx.org/licenses/Zlib",
+                    "start_line": 3,
+                    "end_line": 3,
+                    "matched_rule": {
+                        "identifier": "zlib_5.RULE",
+                        "license_choice": false,
+                        "licenses": ["zlib"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": ["Copyright (c) 1995-2008 Mark Adler"],
+                    "holders": ["Mark Adler"],
+                    "authors": [],
+                    "start_line": 1,
+                    "end_line": 3
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/infback9/infback9.h",
+            "type": "file",
+            "name": "infback9.h",
+            "base_name": "infback9",
+            "extension": ".h",
+            "date": "2017-02-02",
+            "size": 1631,
+            "sha1": "9f66c9bf6ad6b4c676e3fe514be653704b403019",
+            "md5": "7acf663360f7bb54d0f95b808c673fd4",
+            "files_count": null,
+            "mime_type": "text/x-c",
+            "file_type": "C source, ASCII text, with CRLF line terminators",
+            "programming_language": "C",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "zlib",
+                    "score": 60.0,
+                    "short_name": "ZLIB License",
+                    "category": "Permissive",
+                    "owner": "zlib",
+                    "homepage_url": "http://www.zlib.net/",
+                    "text_url": "http://www.gzip.org/zlib/zlib_license.html",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:zlib",
+                    "spdx_license_key": "Zlib",
+                    "spdx_url": "https://spdx.org/licenses/Zlib",
+                    "start_line": 3,
+                    "end_line": 3,
+                    "matched_rule": {
+                        "identifier": "zlib_5.RULE",
+                        "license_choice": false,
+                        "licenses": ["zlib"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": ["Copyright (c) 2003 Mark Adler"],
+                    "holders": ["Mark Adler"],
+                    "authors": [],
+                    "start_line": 1,
+                    "end_line": 3
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/iostream2/zstream.h",
+            "type": "file",
+            "name": "zstream.h",
+            "base_name": "zstream",
+            "extension": ".h",
+            "date": "2017-02-02",
+            "size": 9590,
+            "sha1": "e849f490ba14f090f2d97655197098f0a4187c4a",
+            "md5": "4d344c3d93e264c9d9b42ed7c54d34d9",
+            "files_count": null,
+            "mime_type": "text/x-c++",
+            "file_type": "C++ source, ASCII text, with CRLF line terminators",
+            "programming_language": "C",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [
+                {
+                    "key": "cmr-no",
+                    "score": 100.0,
+                    "short_name": "CMR License",
+                    "category": "Permissive",
+                    "owner": "CMR - Christian Michelsen Research AS",
+                    "homepage_url": "",
+                    "text_url": "",
+                    "reference_url": "https://enterprise.dejacode.com/urn/urn:dje:license:cmr-no",
+                    "spdx_license_key": "",
+                    "spdx_url": "",
+                    "start_line": 3,
+                    "end_line": 15,
+                    "matched_rule": {
+                        "identifier": "cmr-no.LICENSE",
+                        "license_choice": false,
+                        "licenses": ["cmr-no"]
+                    }
+                }
+            ],
+            "copyrights": [
+                {
+                    "statements": [
+                        "Copyright (c) 1997 Christian Michelsen Research as Advanced Computing"
+                    ],
+                    "holders": [
+                        "Christian Michelsen Research",
+                        "Advanced Computing"
+                    ],
+                    "authors": [],
+                    "start_line": 3,
+                    "end_line": 5
+                }
+            ],
+            "packages": []
+        },
+        {
+            "path": "samples/zlib/iostream2/zstream_test.cpp",
+            "type": "file",
+            "name": "zstream_test.cpp",
+            "base_name": "zstream_test",
+            "extension": ".cpp",
+            "date": "2017-02-02",
+            "size": 736,
+            "sha1": "ced646ae3fc8dde7e7cdff41da29b92cce4f795d",
+            "md5": "b3a86f4710d45e920c8adfa04876b7b5",
+            "files_count": null,
+            "mime_type": "text/x-c",
+            "file_type": "C source, ASCII text, with CRLF line terminators",
+            "programming_language": "C++",
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": true,
+            "is_script": false,
+            "scan_errors": [],
+            "licenses": [],
+            "copyrights": [],
+            "packages": []
         }
-      ],
-      "packages": []
-    },
-    {
-      "path": "samples/zlib/iostream2/zstream_test.cpp",
-      "type": "file",
-      "name": "zstream_test.cpp",
-      "base_name": "zstream_test",
-      "extension": ".cpp",
-      "date": "2017-02-02",
-      "size": 736,
-      "sha1": "ced646ae3fc8dde7e7cdff41da29b92cce4f795d",
-      "md5": "b3a86f4710d45e920c8adfa04876b7b5",
-      "files_count": null,
-      "mime_type": "text/x-c",
-      "file_type": "C source, ASCII text, with CRLF line terminators",
-      "programming_language": "C++",
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": true,
-      "is_script": false,
-      "scan_errors": [],
-      "licenses": [],
-      "copyrights": [],
-      "packages": []
-    }
-  ]
+    ]
 }

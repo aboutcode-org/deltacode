@@ -5,15 +5,15 @@ Contributing
 Contributions are welcome and appreciated!
 Every little bit helps, and credit will always be given.
 
-.. _issue : https://github.com/nexB/deltacode/issue
+.. _issue : https://github.com/aboutcode-org/deltacode/issue
 __ issue_
 
 If you are new to DeltaCode and want to find easy tickets to work on,
-check `easy issues <https://github.com/nexB/deltacode/labels/easy>`_
+check `easy issues <https://github.com/aboutcode-org/deltacode/labels/easy>`_
 
 When contributing to DeltaCode (such as code, bugs, documentation, etc.) you
 agree to the Developer `Certificate of Origin <http://developercertificate.org/>`_
-and the DeltaCode license (see the `NOTICE <https://github.com/nexB/deltacode/blob/develop/NOTICE>`_ file).
+and the DeltaCode license (see the `NOTICE <https://github.com/aboutcode-org/deltacode/blob/develop/NOTICE>`_ file).
 The same approach is used by the Linux Kernel developers and several other projects.
 
 For commits, it is best to simply add a line like this to your commit message,
@@ -22,7 +22,7 @@ with your name and email::
     Signed-off-by: Jane Doe <developer@example.com>
 
 Please try to write a good commit message, see `good commit message wiki
-<https://github.com/nexB/aboutcode/wiki/Writing-good-commit-messages>`_ for
+<https://github.com/aboutcode-org/aboutcode/wiki/Writing-good-commit-messages>`_ for
 details. In particular use the imperative for your commit subject: think that
 you are giving an order to the codebase to update itself.
 
@@ -79,7 +79,7 @@ Documentation improvements
 
 Documentation can come in the form of wiki pages, docstrings, blog posts,
 articles, etc. Even a minor typo fix is welcomed.
-See also extra documentation on the `Wiki <https://github.com/nexB/deltacode/wiki>`_.
+See also extra documentation on the `Wiki <https://github.com/aboutcode-org/deltacode/wiki>`_.
 
 
 Development

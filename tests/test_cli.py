@@ -1,6 +1,6 @@
 #
 # Copyright (c) 2017-2018 nexB Inc. and others. All rights reserved.
-# http://nexb.com and https://github.com/nexB/deltacode/
+# http://nexb.com and https://github.com/aboutcode-org/deltacode/
 # The DeltaCode software is licensed under the Apache License version 2.0.
 # Data generated with DeltaCode require an acknowledgment.
 # DeltaCode is a trademark of nexB Inc.
@@ -20,7 +20,7 @@
 #  DeltaCode should be considered or used as legal advice. Consult an Attorney
 #  for any legal advice.
 #  DeltaCode is a free and open source software analysis tool from nexB Inc. and others.
-#  Visit https://github.com/nexB/deltacode/ for support and download.
+#  Visit https://github.com/aboutcode-org/deltacode/ for support and download.
 #
 
 from __future__ import absolute_import, print_function, unicode_literals, division
@@ -41,9 +41,10 @@ from deltacode import utils
 
 TERMINAL_WIDTH = 1000
 
+
 def load_csv(location):
     """
-    Copied from https://github.com/nexB/scancode-toolkit/blob/develop/etc/scripts/test_json2csv.py
+    Copied from https://github.com/aboutcode-org/scancode-toolkit/blob/develop/etc/scripts/test_json2csv.py
     Load a CSV file at location and return a tuple of (field names, list of rows as
     mappings field->value).
     """
@@ -56,7 +57,7 @@ def load_csv(location):
 
 def check_csvs(result_file, expected_file, regen=False):
     """
-    Copied from https://github.com/nexB/scancode-toolkit/blob/develop/etc/scripts/test_json2csv.py
+    Copied from https://github.com/aboutcode-org/scancode-toolkit/blob/develop/etc/scripts/test_json2csv.py
     Load and compare two CSVs.
     `ignore_keys`, a tuple of keys that will be ignored in the comparisons,
     has been removed from this function as unnecessary.
@@ -77,6 +78,7 @@ class TestCLI(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), "data")
     # TODO: need to fix in scancode
+
     def test_json_output_option_selected_all_selected(self):
         new_scan = self.get_test_loc("cli/scan_1_file_moved_new.json")
         old_scan = self.get_test_loc("cli/scan_1_file_moved_old.json")
@@ -85,8 +87,8 @@ class TestCLI(FileBasedTesting):
 
         runner = CliRunner()
 
-        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file, '-a'], terminal_width=TERMINAL_WIDTH)
-
+        result = runner.invoke(cli.cli, [
+                               '-n', new_scan, '-o',  old_scan, '-j', result_file, '-a'], terminal_width=TERMINAL_WIDTH)
 
         assert result.exit_code == 0
 
@@ -98,12 +100,13 @@ class TestCLI(FileBasedTesting):
             "DeltaCode should be considered or used as legal advice. Consult an Attorney\n"
             "for any legal advice.\n"
             "DeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\n"
-            "Visit https://github.com/nexB/deltacode/ for support and download."
+            "Visit https://github.com/aboutcode-org/deltacode/ for support and download."
         )
 
         assert json_result.get("deltacode_notice") == notice
 
-        options = {"--new": new_scan, "--old": old_scan, "--all-delta-types": True}
+        options = {"--new": new_scan, "--old": old_scan,
+                   "--all-delta-types": True}
 
         assert json_result.get("deltacode_options") == options
 
@@ -250,8 +253,8 @@ class TestCLI(FileBasedTesting):
 
         runner = CliRunner()
 
-        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file], terminal_width=TERMINAL_WIDTH)
-
+        result = runner.invoke(cli.cli, [
+                               '-n', new_scan, '-o',  old_scan, '-j', result_file], terminal_width=TERMINAL_WIDTH)
 
         assert result.exit_code == 0
 
@@ -263,12 +266,13 @@ class TestCLI(FileBasedTesting):
             "DeltaCode should be considered or used as legal advice. Consult an Attorney\n"
             "for any legal advice.\n"
             "DeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\n"
-            "Visit https://github.com/nexB/deltacode/ for support and download."
+            "Visit https://github.com/aboutcode-org/deltacode/ for support and download."
         )
 
         assert json_result.get("deltacode_notice") == notice
 
-        options = {"--new": new_scan, "--old": old_scan, "--all-delta-types": False}
+        options = {"--new": new_scan, "--old": old_scan,
+                   "--all-delta-types": False}
 
         assert json_result.get("deltacode_options") == options
 
@@ -353,8 +357,8 @@ class TestCLI(FileBasedTesting):
 
         runner = CliRunner()
 
-        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-a'], terminal_width=TERMINAL_WIDTH)
-
+        result = runner.invoke(
+            cli.cli, ['-n', new_scan, '-o',  old_scan, '-a'], terminal_width=TERMINAL_WIDTH)
 
         assert result.exit_code == 0
 
@@ -401,8 +405,8 @@ class TestCLI(FileBasedTesting):
 
         runner = CliRunner()
 
-        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan], terminal_width=TERMINAL_WIDTH)
-
+        result = runner.invoke(
+            cli.cli, ['-n', new_scan, '-o',  old_scan], terminal_width=TERMINAL_WIDTH)
 
         assert result.exit_code == 0
 
@@ -448,8 +452,8 @@ class TestCLI(FileBasedTesting):
 
         runner = CliRunner()
 
-        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file, '-a'], terminal_width=TERMINAL_WIDTH)
-
+        result = runner.invoke(cli.cli, [
+                               '-n', new_scan, '-o',  old_scan, '-j', result_file, '-a'], terminal_width=TERMINAL_WIDTH)
 
         json_result = json.load(open(result_file))
 
@@ -463,7 +467,8 @@ class TestCLI(FileBasedTesting):
 
         runner = CliRunner()
 
-        result = runner.invoke(cli.cli, ['-n', new_scan, '-o',  old_scan, '-j', result_file], terminal_width=TERMINAL_WIDTH)
+        result = runner.invoke(cli.cli, [
+                               '-n', new_scan, '-o',  old_scan, '-j', result_file], terminal_width=TERMINAL_WIDTH)
 
         json_result = json.load(open(result_file))
 
@@ -472,8 +477,8 @@ class TestCLI(FileBasedTesting):
     def test_help(self):
         runner = CliRunner()
 
-        result = runner.invoke(cli.cli, ['--help'], terminal_width=TERMINAL_WIDTH)
-
+        result = runner.invoke(
+            cli.cli, ['--help'], terminal_width=TERMINAL_WIDTH)
 
         assert "Usage: cli [OPTIONS]" in result.output
         assert "Identify the changes that need to be made" in result.output
@@ -485,8 +490,8 @@ class TestCLI(FileBasedTesting):
     def test_version(self):
         runner = CliRunner()
 
-        result = runner.invoke(cli.cli, ['--version'], terminal_width=TERMINAL_WIDTH)
-
+        result = runner.invoke(
+            cli.cli, ['--version'], terminal_width=TERMINAL_WIDTH)
 
         assert "DeltaCode version" in result.output
 
@@ -494,7 +499,7 @@ class TestCLI(FileBasedTesting):
         runner = CliRunner()
 
         result = runner.invoke(cli.cli, [], terminal_width=TERMINAL_WIDTH)
-        
+
         assert 'Usage: cli [OPTIONS]' in result.output
 
         assert "Error: Missing option '-n' / '--new'." in result.output
@@ -502,7 +507,7 @@ class TestCLI(FileBasedTesting):
     def test_incorrect_flag(self):
         runner = CliRunner()
 
-        result = runner.invoke(cli.cli, ['-xyz'], terminal_width=TERMINAL_WIDTH)
+        result = runner.invoke(
+            cli.cli, ['-xyz'], terminal_width=TERMINAL_WIDTH)
 
         assert 'Error: No such option: -x' in result.output
-

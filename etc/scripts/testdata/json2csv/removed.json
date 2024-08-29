@@ -1,49 +1,45 @@
 {
-  "deltacode_notice": "Generated with DeltaCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nDeltaCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nDeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/nexB/deltacode/ for support and download.",
-  "deltacode_options": {
-    "new_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/new_removed1.json",
-    "old_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/old_removed1.json",
-    "--all-delta-types": false
-  },
-  "deltacode_version": "1.0.0.post37.cba847f.dirty.20180402221516",
-  "deltacode_errors": [
-    "DeltaCode Warning: new_visited(7) != new_total(9). Assuming old scancode format.",
-    "DeltaCode Warning: old_visited(8) != old_total(10). Assuming old scancode format."
-  ],
-  "deltas": [
-    {
-      "factors": [
-        "removed"
-      ],
-      "score": 0,
-      "new": null,
-      "old": {
-        "path": "a/a4.py",
-        "type": "file",
-        "name": "a4.py",
-        "size": 200,
-        "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
-        "original_path": "codebase_01/a/a4.py",
-        "licenses": [
-          {
-            "key": "apache-2.0",
-            "score": 80.0,
-            "short_name": "Apache 2.0",
-            "category": "Permissive",
-            "owner": "Apache Software Foundation"
-          }
-        ],
-        "copyrights": [
-          {
-            "statements": [
-              "Copyright (c) 2017 Acme Software Inc. and others."
-            ],
-            "holders": [
-              "Acme Software Inc. and others."
-            ]
-          }
-        ]
-      }
-    }
-  ]
+    "deltacode_notice": "Generated with DeltaCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nDeltaCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nDeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/aboutcode-org/deltacode/ for support and download.",
+    "deltacode_options": {
+        "new_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/new_removed1.json",
+        "old_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/old_removed1.json",
+        "--all-delta-types": false
+    },
+    "deltacode_version": "1.0.0.post37.cba847f.dirty.20180402221516",
+    "deltacode_errors": [
+        "DeltaCode Warning: new_visited(7) != new_total(9). Assuming old scancode format.",
+        "DeltaCode Warning: old_visited(8) != old_total(10). Assuming old scancode format."
+    ],
+    "deltas": [
+        {
+            "factors": ["removed"],
+            "score": 0,
+            "new": null,
+            "old": {
+                "path": "a/a4.py",
+                "type": "file",
+                "name": "a4.py",
+                "size": 200,
+                "sha1": "6f71666c46446c29d3f45feef5419ae76fb86a5b",
+                "original_path": "codebase_01/a/a4.py",
+                "licenses": [
+                    {
+                        "key": "apache-2.0",
+                        "score": 80.0,
+                        "short_name": "Apache 2.0",
+                        "category": "Permissive",
+                        "owner": "Apache Software Foundation"
+                    }
+                ],
+                "copyrights": [
+                    {
+                        "statements": [
+                            "Copyright (c) 2017 Acme Software Inc. and others."
+                        ],
+                        "holders": ["Acme Software Inc. and others."]
+                    }
+                ]
+            }
+        }
+    ]
 }

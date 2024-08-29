@@ -1,57 +1,53 @@
 {
-  "deltacode_notice": "Generated with DeltaCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nDeltaCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nDeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/nexB/deltacode/ for support and download.",
-  "deltacode_options": {
-    "new_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/copyright_info_added_license_info_removed_new.json",
-    "old_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/copyright_info_added_license_info_removed_old.json",
-    "--all-delta-types": false
-  },
-  "deltacode_version": "1.0.0.post37.cba847f.dirty.20180402221516",
-  "deltacode_errors": [],
-  "deltas": [
-    {
-      "factors": [
-        "modified",
-        "license info removed",
-        "copyright info added"
-      ],
-      "score": 45,
-      "new": {
-        "path": "path.txt",
-        "type": "file",
-        "name": "path.txt",
-        "size": 300,
-        "sha1": "b_modified",
-        "original_path": "new/path.txt",
-        "licenses": [],
-        "copyrights": [
-          {
-            "statements": [
-              "Copyright (c) 2016 Mark Adler"
+    "deltacode_notice": "Generated with DeltaCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nDeltaCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nDeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/aboutcode-org/deltacode/ for support and download.",
+    "deltacode_options": {
+        "new_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/copyright_info_added_license_info_removed_new.json",
+        "old_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/copyright_info_added_license_info_removed_old.json",
+        "--all-delta-types": false
+    },
+    "deltacode_version": "1.0.0.post37.cba847f.dirty.20180402221516",
+    "deltacode_errors": [],
+    "deltas": [
+        {
+            "factors": [
+                "modified",
+                "license info removed",
+                "copyright info added"
             ],
-            "holders": [
-              "Mark Adler"
-            ]
-          }
-        ]
-      },
-      "old": {
-        "path": "path.txt",
-        "type": "file",
-        "name": "path.txt",
-        "size": 300,
-        "sha1": "b",
-        "original_path": "old/path.txt",
-        "licenses": [
-          {
-            "key": "gpl-3.0-plus",
-            "score": 100.0,
-            "short_name": "GPL 3.0 or later",
-            "category": "Copyleft",
-            "owner": "Free Software Foundation (FSF)"
-          }
-        ],
-        "copyrights": []
-      }
-    }
-  ]
+            "score": 45,
+            "new": {
+                "path": "path.txt",
+                "type": "file",
+                "name": "path.txt",
+                "size": 300,
+                "sha1": "b_modified",
+                "original_path": "new/path.txt",
+                "licenses": [],
+                "copyrights": [
+                    {
+                        "statements": ["Copyright (c) 2016 Mark Adler"],
+                        "holders": ["Mark Adler"]
+                    }
+                ]
+            },
+            "old": {
+                "path": "path.txt",
+                "type": "file",
+                "name": "path.txt",
+                "size": 300,
+                "sha1": "b",
+                "original_path": "old/path.txt",
+                "licenses": [
+                    {
+                        "key": "gpl-3.0-plus",
+                        "score": 100.0,
+                        "short_name": "GPL 3.0 or later",
+                        "category": "Copyleft",
+                        "owner": "Free Software Foundation (FSF)"
+                    }
+                ],
+                "copyrights": []
+            }
+        }
+    ]
 }

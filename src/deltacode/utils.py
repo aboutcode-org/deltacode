@@ -1,6 +1,6 @@
 #
 # Copyright (c) 2017-2018 nexB Inc. and others. All rights reserved.
-# http://nexb.com and https://github.com/nexB/deltacode/
+# http://nexb.com and https://github.com/aboutcode-org/deltacode/
 # The DeltaCode software is licensed under the Apache License version 2.0.
 # Data generated with DeltaCode require an acknowledgment.
 # DeltaCode is a trademark of nexB Inc.
@@ -20,7 +20,7 @@
 #  DeltaCode should be considered or used as legal advice. Consult an Attorney
 #  for any legal advice.
 #  DeltaCode is a free and open source software analysis tool from nexB Inc. and others.
-#  Visit https://github.com/nexB/deltacode/ for support and download.
+#  Visit https://github.com/aboutcode-org/deltacode/ for support and download.
 #
 
 from __future__ import absolute_import, division
@@ -90,8 +90,10 @@ def update_modified_from_license_info(delta, unique_categories):
         delta.update(15, "license info removed")
         return
 
-    new_categories = set(license.get("category", "") for license in new_licenses)
-    old_categories = set(license.get("category", "") for license in old_licenses)
+    new_categories = set(license.get("category", "")
+                         for license in new_licenses)
+    old_categories = set(license.get("category", "")
+                         for license in old_licenses)
 
     if new_licenses and not old_licenses:
         delta.update(20, "license info added")
@@ -112,7 +114,8 @@ def update_modified_from_license_info(delta, unique_categories):
 
         delta.update(10, "license change")
         for category in new_categories - old_categories:
-            unique_categories_in_old_file = len(old_categories & unique_categories)
+            unique_categories_in_old_file = len(
+                old_categories & unique_categories)
             # 'Permissive' or 'Public Domain' ==> 'Copyleft Limited' or higher
             if unique_categories_in_old_file == 0 and category in unique_categories:
                 delta.update(20, category.lower() + " added")
@@ -157,10 +160,12 @@ def update_modified_from_copyright_info(delta):
     """
 
     new_copyrights = (
-        delta.new_file.copyrights if hasattr(delta.new_file, "copyrights") else []
+        delta.new_file.copyrights if hasattr(
+            delta.new_file, "copyrights") else []
     )
     old_copyrights = (
-        delta.old_file.copyrights if hasattr(delta.old_file, "copyrights") else []
+        delta.old_file.copyrights if hasattr(
+            delta.old_file, "copyrights") else []
     )
 
     if new_copyrights and not old_copyrights:
@@ -227,9 +232,10 @@ class AlignmentException(Exception):
 
 class FileError(Exception):
     """
-    Named Exception for handling errors which could be raised due to 
+    Named Exception for handling errors which could be raised due to
     unsupported errors in the json file
     """
+
     def __init__(self, *args):
         if args:
             self.message = args[0]
@@ -281,7 +287,8 @@ def get_notice():
     """
     Retrieve the notice text from the NOTICE file for display in the JSON output.
     """
-    notice_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "NOTICE")
+    notice_path = os.path.join(os.path.abspath(
+        os.path.dirname(__file__)), "NOTICE")
     notice_text = open(notice_path).read()
 
     delimiter = "\n\n\n"

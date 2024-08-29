@@ -1,6 +1,6 @@
 #
 # Copyright (c) 2017-2018 nexB Inc. and others. All rights reserved.
-# http://nexb.com and https://github.com/nexB/deltacode/
+# http://nexb.com and https://github.com/aboutcode-org/deltacode/
 # The DeltaCode software is licensed under the Apache License version 2.0.
 # Data generated with DeltaCode require an acknowledgment.
 # DeltaCode is a trademark of nexB Inc.
@@ -20,10 +20,11 @@
 #  DeltaCode should be considered or used as legal advice. Consult an Attorney
 #  for any legal advice.
 #  DeltaCode is a free and open source software analysis tool from nexB Inc. and others.
-#  Visit https://github.com/nexB/deltacode/ for support and download.
+#  Visit https://github.com/aboutcode-org/deltacode/ for support and download.
 #
 
 from __future__ import print_function
+import unicodecsv
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
@@ -35,7 +36,6 @@ import os
 import click
 click.disable_unicode_literals_warning = True
 
-import unicodecsv
 
 """
 Convert a DeltaCode JSON file to a CSV.
@@ -113,7 +113,8 @@ def flatten_deltas(deltas, headers):
             ('Type', new.get('type', old.get('type'))),
             ('Size', new.get('size', old.get('size'))),
             # TODO: Need better way to ID 'moved' deltas.
-            ('Old Path', old.get('original_path') if 'moved' == delta.get('status') else ''),
+            ('Old Path', old.get('original_path')
+             if 'moved' == delta.get('status') else ''),
         ])
 
 

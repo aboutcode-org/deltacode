@@ -1,69 +1,63 @@
 {
-  "scancode_notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/nexB/scancode-toolkit/ for support and download.",
-  "scancode_version": "2.9.0b1.post8.2a658c314",
-  "scancode_options": {
-    "input": "C:\\code\\nexb\\dev\\codebase01\\sorting\\sorted01_new",
-    "--copyright": true,
-    "--info": true,
-    "--json-pp": "C:\\code\\nexb\\dev\\deltacode\\tests\\data\\deltacode\\scan_sorted01_new.json",
-    "--license": true,
-    "--package": true
-  },
-  "files_count": 6,
-  "files": [
-    {
-      "path": "new/a.txt",
-      "type": "file",
-      "name": "a.txt",
-      "size": 100,
-      "sha1": "abtrbt",
-      "licenses": [
-      ]
+    "scancode_notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/aboutcode-org/scancode-toolkit/ for support and download.",
+    "scancode_version": "2.9.0b1.post8.2a658c314",
+    "scancode_options": {
+        "input": "C:\\code\\nexb\\dev\\codebase01\\sorting\\sorted01_new",
+        "--copyright": true,
+        "--info": true,
+        "--json-pp": "C:\\code\\nexb\\dev\\deltacode\\tests\\data\\deltacode\\scan_sorted01_new.json",
+        "--license": true,
+        "--package": true
     },
-    {
-      "path": "new/b.txt",
-      "type": "file",
-      "name": "b.txt",
-      "size": 100,
-      "sha1": "dasdas",
-      "licenses": [
-      ]
-    },
-    {
-      "path": "new/c.txt",
-      "type": "file",
-      "name": "c.txt",
-      "size": 110,
-      "sha1": "avfvf",
-      "licenses": [
-      ]
-    },
-    {
-      "path": "new/d.txt",
-      "type": "file",
-      "name": "d.txt",
-      "size": 110,
-      "sha1": "avfvf",
-      "licenses": [
-      ]
-    },
-    {
-      "path": "new/e2.txt",
-      "type": "file",
-      "name": "e2.txt",
-      "size": 210,
-      "sha1": "avfvvrvf",
-      "licenses": [
-      ]
-    },
-    {
-      "path": "new/f2.txt",
-      "type": "file",
-      "name": "f2.txt",
-      "size": 110,
-      "sha1": "ivfvvrvf",
-      "licenses": [
-      ]
-    }
-  ]
+    "files_count": 6,
+    "files": [
+        {
+            "path": "new/a.txt",
+            "type": "file",
+            "name": "a.txt",
+            "size": 100,
+            "sha1": "abtrbt",
+            "licenses": []
+        },
+        {
+            "path": "new/b.txt",
+            "type": "file",
+            "name": "b.txt",
+            "size": 100,
+            "sha1": "dasdas",
+            "licenses": []
+        },
+        {
+            "path": "new/c.txt",
+            "type": "file",
+            "name": "c.txt",
+            "size": 110,
+            "sha1": "avfvf",
+            "licenses": []
+        },
+        {
+            "path": "new/d.txt",
+            "type": "file",
+            "name": "d.txt",
+            "size": 110,
+            "sha1": "avfvf",
+            "licenses": []
+        },
+        {
+            "path": "new/e2.txt",
+            "type": "file",
+            "name": "e2.txt",
+            "size": 210,
+            "sha1": "avfvvrvf",
+            "licenses": []
+        },
+        {
+            "path": "new/f2.txt",
+            "type": "file",
+            "name": "f2.txt",
+            "size": 110,
+            "sha1": "ivfvvrvf",
+            "licenses": []
+        }
+    ]
 }

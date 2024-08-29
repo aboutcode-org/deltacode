@@ -1,47 +1,44 @@
 {
-  "deltacode_notice": "Generated with DeltaCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nDeltaCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nDeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/nexB/deltacode/ for support and download.",
-  "deltacode_options": {
-    "new_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/scan_new_license_info_added.json",
-    "old_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/scan_old_license_info_added.json",
-    "--all-delta-types": false
-  },
-  "deltacode_version": "1.0.0.post37.cba847f.dirty.20180402221516",
-  "deltacode_errors": [],
-  "deltas": [
-    {
-      "factors": [
-        "modified",
-        "license info added"
-      ],
-      "score": 40,
-      "new": {
-        "path": "some/path/a/a1.py",
-        "type": "file",
-        "name": "a1.py",
-        "size": 350,
-        "sha1": "222647771481d39dd3a53f6dc210c26abac37748",
-        "original_path": "some/path/a/a1.py",
-        "licenses": [
-          {
-            "key": "apache-2.0",
-            "score": 80.0,
-            "short_name": "Apache 2.0",
-            "category": "Permissive",
-            "owner": null
-          }
-        ],
-        "copyrights": []
-      },
-      "old": {
-        "path": "some/path/a/a1.py",
-        "type": "file",
-        "name": "a1.py",
-        "size": 300,
-        "sha1": "000647771481d39dd3a53f6dc210c26abac37748",
-        "original_path": "some/path/a/a1.py",
-        "licenses": [],
-        "copyrights": []
-      }
-    }
-  ]
+    "deltacode_notice": "Generated with DeltaCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nDeltaCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nDeltaCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/aboutcode-org/deltacode/ for support and download.",
+    "deltacode_options": {
+        "new_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/scan_new_license_info_added.json",
+        "old_scan_path": "C:/code/nexb/dev/deltacode/tests/data/cli/scan_old_license_info_added.json",
+        "--all-delta-types": false
+    },
+    "deltacode_version": "1.0.0.post37.cba847f.dirty.20180402221516",
+    "deltacode_errors": [],
+    "deltas": [
+        {
+            "factors": ["modified", "license info added"],
+            "score": 40,
+            "new": {
+                "path": "some/path/a/a1.py",
+                "type": "file",
+                "name": "a1.py",
+                "size": 350,
+                "sha1": "222647771481d39dd3a53f6dc210c26abac37748",
+                "original_path": "some/path/a/a1.py",
+                "licenses": [
+                    {
+                        "key": "apache-2.0",
+                        "score": 80.0,
+                        "short_name": "Apache 2.0",
+                        "category": "Permissive",
+                        "owner": null
+                    }
+                ],
+                "copyrights": []
+            },
+            "old": {
+                "path": "some/path/a/a1.py",
+                "type": "file",
+                "name": "a1.py",
+                "size": 300,
+                "sha1": "000647771481d39dd3a53f6dc210c26abac37748",
+                "original_path": "some/path/a/a1.py",
+                "licenses": [],
+                "copyrights": []
+            }
+        }
+    ]
 }

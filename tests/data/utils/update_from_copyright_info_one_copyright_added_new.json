@@ -1,5 +1,5 @@
 {
-    "scancode_notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/nexB/scancode-toolkit/ for support and download.",
+    "scancode_notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/aboutcode-org/scancode-toolkit/ for support and download.",
     "scancode_version": "2.1.0",
     "scancode_options": {
         "--copyright": true,
@@ -8,7 +8,7 @@
     "files_count": 1,
     "files": [
         {
-            "path":"test/path.txt",
+            "path": "test/path.txt",
             "name": "path.txt",
             "type": "file",
             "sha1": "a",
@@ -18,17 +18,13 @@
                     "statements": [
                         "Copyright (c) 2017-2018 Francois Hennebique and others."
                     ],
-                    "holders": [
-                        "Francois Hennebique and others."
-                    ]
+                    "holders": ["Francois Hennebique and others."]
                 },
                 {
                     "statements": [
                         "Copyright (c) 2015 Edouard-Leon Scott de Martinville."
                     ],
-                    "holders": [
-                        "Edouard-Leon Scott de Martinville."
-                    ]
+                    "holders": ["Edouard-Leon Scott de Martinville."]
                 }
             ]
         }

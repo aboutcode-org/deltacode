@@ -14,8 +14,8 @@ Check that we run a supported OS and architecture.
 
 def unsupported(platform):
     print('Unsupported OS/platform %r.' % platform)
-    print('See https://github.com/nexB/scancode-toolkit/ for supported OS/platforms.')
-    print('Enter a ticket https://github.com/nexB/scancode-toolkit/issues asking for support of your OS/platform combo.')
+    print('See https://github.com/aboutcode-org/scancode-toolkit/ for supported OS/platforms.')
+    print('Enter a ticket https://github.com/aboutcode-org/scancode-toolkit/issues asking for support of your OS/platform combo.')
     sys.exit(1)
 
 

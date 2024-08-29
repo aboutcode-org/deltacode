@@ -1,6 +1,6 @@
 #
 # Copyright (c) 2017-2018 nexB Inc. and others. All rights reserved.
-# http://nexb.com and https://github.com/nexB/deltacode/
+# http://nexb.com and https://github.com/aboutcode-org/deltacode/
 # The DeltaCode software is licensed under the Apache License version 2.0.
 # Data generated with DeltaCode require an acknowledgment.
 # DeltaCode is a trademark of nexB Inc.
@@ -20,7 +20,7 @@
 #  DeltaCode should be considered or used as legal advice. Consult an Attorney
 #  for any legal advice.
 #  DeltaCode is a free and open source software analysis tool from nexB Inc. and others.
-#  Visit https://github.com/nexB/deltacode/ for support and download.
+#  Visit https://github.com/aboutcode-org/deltacode/ for support and download.
 #
 
 from __future__ import absolute_import
@@ -37,6 +37,7 @@ class Scan(object):
     File objects, and generate a dictionary of File objects indexed by a
     selected key.
     """
+
     def __init__(self, path=''):
         if path is None:
             path = ''
@@ -95,7 +96,7 @@ class Scan(object):
             headers = scan.get('headers')
             if headers:
                 version = headers[0].get('tool_version')
-        
+
         options = scan.get('scancode_options')
         if not options:
             headers = scan.get('headers')
@@ -103,13 +104,16 @@ class Scan(object):
                 options = headers[0].get('options')
 
         if not version:
-            raise ScanException('JSON file: {} is missing the ScanCode version.'.format(location))
+            raise ScanException(
+                'JSON file: {} is missing the ScanCode version.'.format(location))
 
         if int(version.split('.').pop(0)) < 2:
-            raise ScanException('JSON file: {} was created with an old version of ScanCode.'.format(location))
+            raise ScanException(
+                'JSON file: {} was created with an old version of ScanCode.'.format(location))
 
         if not options.get('--info'):
-            raise ScanException('JSON file: {} is missing the ScanCode --info attribute.'.format(location))
+            raise ScanException(
+                'JSON file: {} is missing the ScanCode --info attribute.'.format(location))
 
         return True
 
@@ -130,7 +134,8 @@ class Scan(object):
         if not files_count:
             headers = scan.get('headers')
             if headers:
-                files_count = headers[0].get('extra_data', {}).get('files_count')
+                files_count = headers[0].get(
+                    'extra_data', {}).get('files_count')
 
         return files_count
 
@@ -173,6 +178,7 @@ class File(object):
     """
     File object created from an ABCD formatted 'file' dictionary.
     """
+
     def __init__(self, dictionary={}):
         self.path = dictionary.get('path', '')
         self.type = dictionary.get('type', '')
@@ -181,8 +187,10 @@ class File(object):
         self.sha1 = dictionary.get('sha1', '')
         self.fingerprint = dictionary.get('fingerprint', '')
         self.original_path = ''
-        self.licenses = self.get_licenses(dictionary) if dictionary.get('licenses') else []
-        self.copyrights = self.get_copyrights(dictionary) if dictionary.get('copyrights') else []
+        self.licenses = self.get_licenses(
+            dictionary) if dictionary.get('licenses') else []
+        self.copyrights = self.get_copyrights(
+            dictionary) if dictionary.get('copyrights') else []
 
     def get_licenses(self, dictionary):
         if dictionary.get('licenses') == []:
@@ -246,6 +254,7 @@ class License(object):
     License object created from the 'license' field in an ABCD formatted 'file'
     dictionary.
     """
+
     def __init__(self, dictionary={}):
         self.key = dictionary.get('key')
         self.score = dictionary.get('score')
@@ -281,6 +290,7 @@ class Copyright(object):
     Copyright object created from the 'copyrights' field in an ABCD formatted
     'file' dictionary.
     """
+
     def __init__(self, dictionary={}):
         self.statements = dictionary.get('statements')
         self.holders = dictionary.get('holders')

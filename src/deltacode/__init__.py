@@ -1,6 +1,6 @@
 #
 # Copyright (c) 2017-2018 nexB Inc. and others. All rights reserved.
-# http://nexb.com and https://github.com/nexB/deltacode/
+# http://nexb.com and https://github.com/aboutcode-org/deltacode/
 # The DeltaCode software is licensed under the Apache License version 2.0.
 # Data generated with DeltaCode require an acknowledgment.
 # DeltaCode is a trademark of nexB Inc.
@@ -20,7 +20,7 @@
 #  DeltaCode should be considered or used as legal advice. Consult an Attorney
 #  for any legal advice.
 #  DeltaCode is a free and open source software analysis tool from nexB Inc. and others.
-#  Visit https://github.com/nexB/deltacode/ for support and download.
+#  Visit https://github.com/aboutcode-org/deltacode/ for support and download.
 #
 
 from __future__ import absolute_import
@@ -69,7 +69,8 @@ class DeltaCode(object):
             )
             raise utils.FileError(error_message)
         self.stats = Stat(
-            self.codebase1.compute_counts()[0], self.codebase2.compute_counts()[0]
+            self.codebase1.compute_counts(
+            )[0], self.codebase2.compute_counts()[0]
         )
         self.new_scan_options = []
         self.old_scan_options = []
@@ -110,14 +111,18 @@ class DeltaCode(object):
 
             if new_fingerprint == None or old_fingerprint == None:
                 continue
-            new_fingerprint = utils.bitarray_from_hex(delta.new_file.fingerprint)
-            old_fingerprint = utils.bitarray_from_hex(delta.old_file.fingerprint)
+            new_fingerprint = utils.bitarray_from_hex(
+                delta.new_file.fingerprint)
+            old_fingerprint = utils.bitarray_from_hex(
+                delta.old_file.fingerprint)
 
-            hamming_distance = utils.hamming_distance(new_fingerprint, old_fingerprint)
+            hamming_distance = utils.hamming_distance(
+                new_fingerprint, old_fingerprint)
             if hamming_distance > 0 and hamming_distance <= SIMILARITY_LIMIT:
                 delta.score += hamming_distance
                 delta.factors.append(
-                    "Similar with hamming distance : {}".format(hamming_distance)
+                    "Similar with hamming distance : {}".format(
+                        hamming_distance)
                 )
 
     def create_deltas(
@@ -132,7 +137,7 @@ class DeltaCode(object):
 
     def determine_delta(self):
         """
-        Create Delta objects and append them to the list. Top Down BFS Traversal is used 
+        Create Delta objects and append them to the list. Top Down BFS Traversal is used
         to visit the codebase structures of the old and new Codebase Directiries.
         """
 
@@ -147,9 +152,9 @@ class DeltaCode(object):
 
         for new_resource in self.codebase1.walk():
             # Visit each resource of the new codebase in a Top Down BFS fashion
-            if new_resource.is_file: 
+            if new_resource.is_file:
                 path_new = "/".join(
-                    paths.split(new_resource.path)[Delta.NEW_CODEBASE_OFFSET :]
+                    paths.split(new_resource.path)[Delta.NEW_CODEBASE_OFFSET:]
                 )
             # If the resource is a file align its path
 
@@ -160,7 +165,8 @@ class DeltaCode(object):
                 if old_resource and old_resource.sha1 == new_resource.sha1:
                     old_resource_considered.add(old_resource.path)
                     path_old = "/".join(
-                        paths.split(old_resource.path)[Delta.OLD_CODEBASE_OFFSET :]
+                        paths.split(old_resource.path)[
+                            Delta.OLD_CODEBASE_OFFSET:]
                     )
                     self.create_deltas(
                         new_resource, old_resource, 0, "unmodified",
@@ -168,9 +174,8 @@ class DeltaCode(object):
                     self.stats.num_unmodified += 1
 
                     continue
-                
-                
-                # Now when  we do not get old resources with the same name 
+
+                # Now when  we do not get old resources with the same name
                 ADDED = True
                 for old_resource in self.codebase2.walk():
                     # Visit each resource of the new codebase in a Bottom Up BFS fashion
@@ -178,14 +183,15 @@ class DeltaCode(object):
                         # If old resources are previously considered then continue
                         continue
                     path_old = "/".join(
-                        paths.split(old_resource.path)[Delta.OLD_CODEBASE_OFFSET :]
+                        paths.split(old_resource.path)[
+                            Delta.OLD_CODEBASE_OFFSET:]
                     )
                     # Make the path aligned
                     if (
                         old_resource.is_file
                         and not old_resource.path in old_resource_considered
                     ):
-                    # If the old resource is a file and currently unvisited
+                        # If the old resource is a file and currently unvisited
 
                         if path_new == path_old:
                             # Old and New Resources are having the same path after alignment
@@ -236,14 +242,14 @@ class DeltaCode(object):
 
         for old_resource_remaining in self.codebase2.walk():
             # Now again visit the old codebase in a top down fashion
-            # If any delta is left out it is a case of removed delta 
+            # If any delta is left out it is a case of removed delta
             if (
                 old_resource_remaining.is_file
                 and old_resource_remaining.path not in old_resource_considered
             ):
                 path_old = "/".join(
                     paths.split(old_resource_remaining.path)[
-                        Delta.OLD_CODEBASE_OFFSET :
+                        Delta.OLD_CODEBASE_OFFSET:
                     ]
                 )
                 self.create_deltas(
@@ -287,8 +293,10 @@ class DeltaCode(object):
 
     def options_diff(self):
         try:
-            self.new_scan_options = self.codebase1.get_headers()[0].get("options", "")
-            self.old_scan_options = self.codebase2.get_headers()[0].get("options", "")
+            self.new_scan_options = self.codebase1.get_headers()[
+                0].get("options", "")
+            self.old_scan_options = self.codebase2.get_headers()[
+                0].get("options", "")
         except IndexError as exception:
             pass
 
@@ -411,7 +419,8 @@ class Delta(object):
                     ("sha1", file.sha1),
                     (
                         "fingerprint",
-                        file.fingerprint if hasattr(file, "fingerprint") else "",
+                        file.fingerprint if hasattr(
+                            file, "fingerprint") else "",
                     ),
                     ("original_path", file.path),
                     ("licenses", self.licenses_to_dict(file)),
